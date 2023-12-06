@@ -1,0 +1,26 @@
+# github CODEOWNERS file to define owners of sub directories.
+# Find a detailled description for github CODEOWNERS here:
+# https://docs.github.com/de/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Each line is a file pattern followed by one or more owners.
+
+# root directory and default handling (Robert OR Justin). Subsequent definitions will overwrite a previous definition.
+/* @robertschubert @JustinDxx
+
+# examples directory (Robert OR Justin)
+/examples @robertschubert @JustinDxx
+
+# scenario directory (Rico AND Justin)
+/scenario @rcrswld
+/scenario @JustinDxx
+
+# sensor directory (Rico AND Justin)
+/sensor @rcrswld
+/sensor @JustinDxx
+
+# src directory and default handling (Robert OR Justin)
+/src @robertschubert @JustinDxx
+
+# survey directory (Philipp AND Robert)
+/survey @robertschubert
+/survey @phi981
+
