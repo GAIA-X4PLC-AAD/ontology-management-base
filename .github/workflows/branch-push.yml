@@ -1,0 +1,43 @@
+name: Create VARIABLES.md file on change within Branch
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.12.0
+
+    - name: Install rdflib
+      run: pip install rdflib
+
+    - name: Run Python script
+      run: python3 src/readme_generator.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Check for changes
+      id: check_changes
+      run: |
+        git diff --quiet || { echo "changes found"; echo "CHANGES_FOUND=true" >> $GITHUB_OUTPUT; }
+      continue-on-error: true
+      working-directory: ${{ github.workspace }}
+
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
+      run: |
+        git config --local user.email "justin.dex@msg-david.de"
+        git config --local user.name "GitHub Action"
+        git add */VARIABLES.md
+        git commit -m "Add VARIABLES.md files"
+        git push
+      working-directory: ${{ github.workspace }}
