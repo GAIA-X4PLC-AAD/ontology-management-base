@@ -73,7 +73,7 @@ NOTE: the VARIABLES.md file should not be changed since it will be overwritten a
 
 ## Modeling Guidelines
 
-This section describes that _must_ be followed when applying changes to this repository.
+This section describes guidelines that _must_ be followed when applying changes to this repository.
 
 ### General
 
