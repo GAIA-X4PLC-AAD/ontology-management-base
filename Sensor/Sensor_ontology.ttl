@@ -1,0 +1,17 @@
+@prefix Sensor: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Sensor_ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+Sensor: a owl:Ontology ;
+    rdfs:label "ontology definition for Sensor"@en ;
+    dcterms:contributor "Maurizio Ahmann (SL)" ;
+    owl:versionInfo "0.1"^^xsd:float .
+
+Sensor:Sensor a owl:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "attributes for sensor data"@en ;
+    rdfs:subClassOf gax-core:Resource .
+
