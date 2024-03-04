@@ -1,0 +1,104 @@
+@prefix Surface-model: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Surface-model_ontology> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+Surface-model:Asset_Shape a sh:NodeShape ;
+    sh:property [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "existence of horizontal starting platform"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of platform failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "platform"@en ;
+            sh:path Surface-model:Surface-model_quality_platform ],
+        [ skos:example "EPSG xyz" ;
+            sh:datatype xsd:string ;
+            sh:description "ellipsodial height or orthometric heigt"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of height_system failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "height_system"@en ;
+            sh:path Surface-model:Surface-model_Georefencing_height_system ],
+        [ skos:example "-3,14159" ;
+            sh:datatype xsd:float ;
+            sh:description "heading at starting position"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of orientation failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "orientation"@en ;
+            sh:path Surface-model:Surface-model_quality_orientation ],
+        [ skos:example "25" ;
+            sh:datatype xsd:float ;
+            sh:description "nan"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of elevation_range failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "elevation_range"@en ;
+            sh:path Surface-model:Surface-model_quantity_elevation_range ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "existence of smooth ramp from platform to road"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of ramp failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "ramp"@en ;
+            sh:path Surface-model:Surface-model_quality_ramp ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:float ;
+            sh:description "world coordinates of surface model origin"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of origin failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "origin"@en ;
+            sh:path Surface-model:Surface-model_Georefencing_origin ],
+        [ skos:example "yes" ;
+            sh:datatype xsd:boolean ;
+            sh:description "is projection system provided within the dataset"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of MapData_Field failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "MapData_Field"@en ;
+            sh:path Surface-model:Surface-model_Georefencing_MapData_Field ],
+        [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "longitudinal resolution "@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of resolution_longitudinal failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "resolution_longitudinal"@en ;
+            sh:path Surface-model:Surface-model_quality_resolution_longitudinal ],
+        [ skos:example "1.46" ;
+            sh:datatype xsd:float ;
+            sh:description "Road network length in km"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of length failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "length"@en ;
+            sh:path Surface-model:Surface-model_quantity_length ],
+        [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "lateral resolutions"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of resolution_lateral failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "resolution_lateral"@en ;
+            sh:path Surface-model:Surface-model_quality_resolution_lateral ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "height, friction values, grey values"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of type failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "type"@en ;
+            sh:path Surface-model:Surface-model_Data_type ],
+        [ skos:example "EPSG 32632" ;
+            sh:datatype xsd:string ;
+            sh:description "EPSG code of the map"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of projection_type failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "projection_type"@en ;
+            sh:path Surface-model:Surface-model_Georefencing_projection_type ] ;
+    sh:targetClass Surface-model:Asset .
+

@@ -1,0 +1,17 @@
+@prefix Surface-model: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Surface-model_ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+Surface-model: a owl:Ontology ;
+    rdfs:label "ontology definition for Surface-model"@en ;
+    dcterms:contributor "Sebastian Tuttas (3DM)" ;
+    owl:versionInfo "0.1"^^xsd:float .
+
+Surface-model:Surface-model a owl:Class ;
+    rdfs:label "Surface-model" ;
+    rdfs:comment "attributes for crg / rgr"@en ;
+    rdfs:subClassOf gax-core:Resource .
+
