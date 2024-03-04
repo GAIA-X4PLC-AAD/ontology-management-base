@@ -1,0 +1,17 @@
+@prefix Geodata_DOP: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Geodata_DOP_ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+Geodata_DOP: a owl:Ontology ;
+    rdfs:label "ontology definition for Geodata_DOP"@en ;
+    dcterms:contributor "Maximilian Sindram (VCS)" ;
+    owl:versionInfo "0.1"^^xsd:float .
+
+Geodata_DOP:Geodata_DOP a owl:Class ;
+    rdfs:label "Geodata_DOP" ;
+    rdfs:comment "attributes for DOP"@en ;
+    rdfs:subClassOf gax-core:Resource .
+
