@@ -1,0 +1,17 @@
+@prefix Simulation_ValidationVerifikation: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Simulation_ValidationVerifikation_ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+Simulation_ValidationVerifikation: a owl:Ontology ;
+    rdfs:label "ontology definition for Simulation_ValidationVerifikation"@en ;
+    dcterms:contributor "Maurizio Ahmann (SL)" ;
+    owl:versionInfo "0.1"^^xsd:float .
+
+Simulation_ValidationVerifikation:Simulation_ValidationVerifikation a owl:Class ;
+    rdfs:label "Simulation_ValidationVerifikation" ;
+    rdfs:comment "attributes for V&V"@en ;
+    rdfs:subClassOf gax-core:Resource .
+
