@@ -1,0 +1,34 @@
+name: Upload files into FC on manual trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      folder_to_upload:
+        description: 'Folder to upload .ttl files from'
+        required: true
+
+env:
+  FOLDER_TO_UPLOAD: ${{ github.event.inputs.folder_to_upload }} # Folder to upload, this variable is specified by the user
+  KEYCLOAK_USER: ${{ secrets.KEYCLOAK_USER }} # Keycloak Username, this is defined in a secret within github
+  KEYCLOAK_PASSWORD: ${{ secrets.KEYCLOAK_PASSWORD }} # Keycloak Password, this is defined in a secret within github
+  KEYCLOAK_CLIENT_SECRET_KEY: ${{ secrets.KEYCLOAK_CLIENT_SECRET_KEY }} # Keycloak Client Secret Key, this is defined in a secret within github
+
+jobs:
+  upload-folder:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12.0
+
+    - name: Install required python libraries
+      run: pip install -r src/requirements.txt
+
+    - name: Run Python upload into FC
+      run: python3 src/fc_upload.py
+      working-directory: ${{ github.workspace }}
