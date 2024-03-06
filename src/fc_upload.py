@@ -1,7 +1,7 @@
 import os
 import requests
 
-import src.authhelper.keycloakhandling
+import authhelper.keycloakhandling
 
 
 ### ENVIRONMENT VARIABLES
@@ -36,7 +36,7 @@ def post_to_catalogue(endpoint: str, request_body: str) -> requests.Response:
     return the answer from the Federated Catalogue
     """
 
-    auth_header = src.authhelper.keycloakhandling.get_auth_header()
+    auth_header = authhelper.keycloakhandling.get_auth_header()
     auth_header["Content-Type"] = "text/turtle"
     return requests.post(FEDERATED_CATALOGUE_URL + endpoint, headers=auth_header, data=request_body)
 
