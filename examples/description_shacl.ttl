@@ -3,7 +3,7 @@
 ### Just like in the Ontology we can find a Prefix Section within the SHACL Shape aswell
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix description_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management/tree/main/examples/description_ontology/> . # This is the prefix we defined through the @base tag in the ontology
+@prefix description_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> . # This is the prefix we defined through the @base tag in the ontology
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 

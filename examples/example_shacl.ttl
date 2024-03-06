@@ -1,6 +1,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix example_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management/tree/main/examples/example_ontology/> .
+@prefix example_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
