@@ -10,7 +10,7 @@ environment-model: a owl:Ontology ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-environment-model:environment-model a owl:Class ;
+environment-model:Asset a owl:Class ;
     rdfs:label "environment-model" ;
     rdfs:comment "attributes for 3d environment models"@en ;
     rdfs:subClassOf gax-core:Resource .
