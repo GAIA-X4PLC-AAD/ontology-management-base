@@ -3,41 +3,59 @@
 ### Just like in the Ontology we can find a Prefix Section within the SHACL Shape aswell
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix example: <http://example.org/example/> . # This is the prefix we defined through the @base tag in the ontology
+@prefix description_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management/tree/main/examples/description_ontology/> . # This is the prefix we defined through the @base tag in the ontology
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 ### The following lines provide the actual content of the SHACL Shape, i. e. the constraints we want to set for a specific object
-example:ExampleServiceOfferingShape # This is the subject our predicates & objects will refer to
+description_ontology:ExampleServiceOfferingShape # This is the subject our predicates & objects will refer to
 	a sh:NodeShape ; # This line specifies that our Subject (example:ExampleServiceOfferingShape) is from the type SHACL Shape
-	sh:targetClass example:ExampleServiceOffering ; # This line specifies the class our Nodeshape(=SHACL Shape) is applied to. This class has been defined within the ontology. 
+	sh:targetClass description_ontology:ExampleServiceOffering ; # This line specifies the class our Nodeshape(=SHACL Shape) is applied to. This class has been defined within the ontology.
 	# Now we define the properties of our class
 	sh:property # This is the predicate of our triple, the subject is still "example:ExampleServiceOfferingShape"
 	# The following lines denote the object of our triple, which is a list of key/value-pairs
 	[
-		sh:path example:property1 ; # This is the specification of our property usually provided as an IRI pointing to an Ontology where the property is further specified
-		sh:datatype xsd:string ;  # This is the datatype of our property, usually we use xml datatypes (http://www.w3.org/2001/XMLSchema#), but other datatypes conforming to the RDF literal abstraction could also be used. 
-		skos:example "Property 1 Value" ; # An example value how this property could be filled
-		sh:minCount 1 ;  # Indicates that this is a mandatory property. Each instance of the tagetClass needs to have at least 1 of this property. We could also specify a maxCount.
-		sh:message "Validation of property1 failed" ; # Error Message if this property is not provided in a proper way
-		sh:name "Property 1" ; # An alternative name for the property
-		sh:description "A description that describes property 1."@en ; # A description for the property
+	  sh:path description_ontology:property1 ; # This is the specification of our property usually provided as an IRI pointing to an Ontology where the property is further specified
+	  sh:datatype xsd:string ;  # This is the datatype of our property, usually we use xml datatypes (http://www.w3.org/2001/XMLSchema#), but other datatypes conforming to the RDF literal abstraction could also be used.
+	  skos:example "Property 1 Value" ; # An example value how this property could be filled
+	  sh:minCount 1 ;  # Indicates that this is a mandatory property. Each instance of the tagetClass needs to have at least 1 of this property. We could also specify a maxCount.
+	  sh:message "Validation of property1 failed" ; # Error Message if this property is not provided in a proper way
+	  sh:name "Property 1" ; # An alternative name for the property
+	  sh:description "A description that describes property 1."@en ; # A description for the property
+	  sh:order 1 ; # This attribute depicts the order of the attributes and is just used for form building and similar tasks, it is not used for validation.
 	] ; # The next property still refers to "example:ExampleServiceOfferingShape" as the subject
 	sh:property # Now we have similar key/value-pairs as in the property before.
 	[
-		sh:path example:property2 ;
-		sh:datatype xsd:string ; 
-		skos:example "Property 2 Value" ;
-		sh:minCount 1 ;
-		sh:message "Validation of property2 failed" ;
-		sh:name "Property 2" ;
-		sh:description "A description that describes property 2."@en ;
-	] ; 
+	  sh:path description_ontology:property2 ;
+	  sh:datatype xsd:string ;
+	  skos:example "Property 2 Value" ;
+	  sh:minCount 1 ;
+	  sh:message "Validation of property2 failed" ;
+	  sh:name "Property 2" ;
+	  sh:description "A description that describes property 2."@en ;
+	  sh:order 2 ;
+	] ;
 	sh:property # This property is special in a way that it provides the possibility to link to another class. Whenever you use a property linking between classes, you need to specify the domain & range of the regarding property in an ontology (have a look into the description_ontology-file for more information).
 	[
-		sh:path example:belongs_to ; 
-		sh:nodeKind sh:IRI ; # This attribute is set instead of "sh:datatype". It denotes that this property needs to have a node, which is expressed in form of an IRI. This enables linkage between different classes.
-		sh:minCount 1 ;
-		sh:message "Validation of Identifier of related Self Description failed" ;
-		sh:name "Belongs to" ;
-		sh:description "Identifier of related Self Description."@en ;
-	] . 
+	  sh:path description_ontology:belongs_to ;
+	  sh:nodeKind sh:IRI ; # This attribute is set instead of "sh:datatype". It denotes that this property needs to have a node, which is expressed in form of an IRI. This enables linkage between different classes.
+	  sh:minCount 1 ;
+	  sh:message "Validation of Identifier of related Self Description failed" ;
+	  sh:name "Belongs to" ;
+	  sh:description "Identifier of related Self Description."@en ;
+	  sh:order 3 ;
+	] ;
+	sh:property # This property is an example on how to include properties from different domains
+	[
+	  sh:path description_ontology:hasJunctionIntersection ; # This line specifies a newly defined property. This property refers to the class "JunctionIntersection" in openlabel. We do not use "JunctionIntersection" directly, because it is modelled as a class in openlabel, although we want to use it as a property.
+	  sh:nodeKind sh:IRI ; # We need to use nodeKind IRI again, because we want this property to become an openlabel class, which we refer to in the next line.
+	  sh:in (openlabel:IntersectionTJunction openlabel:IntersectionStaggered openlabel:IntersectionYJunction openlabel:IntersectionCrossroad openlabel:IntersectionGradeSeperated) ; # This line specifies all the values this property can become. In openlabel these are subclasses of "JunctionIntersection"
+	  # sh:in can also be used in conjunction with primitive datatypes, like
+	  # sh:datatype xsd:string ;
+	  # sh:in ("abc" "def" "ghi") ;
+	  sh:minCount 1 ;
+	  sh:maxCount 1 ;
+	  sh:message "Error in validating JunctionIntersection attribute."@en ;
+	  sh:description "Further description of the content of the scenario"@en ;
+	  sh:order 4 ;
+	] .
