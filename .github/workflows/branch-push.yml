@@ -22,18 +22,14 @@ jobs:
       run: pip install rdflib
 
     - name: Run Python script
-      run: python3 src/readme_generator.py
-      working-directory: ${{ github.workspace }}
-
-    - name: Check for changes
-      id: check_changes
+      id: run_python_script
       run: |
-        git diff --quiet || { echo "changes found"; echo "CHANGES_FOUND=true" >> $GITHUB_OUTPUT; }
-      continue-on-error: true
+        python_output=$(python3 src/readme_generator.py)
+        echo "::set-output name=PYTHON_OUTPUT::$python_output"
       working-directory: ${{ github.workspace }}
 
     - name: Commit and push changes
-      if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
+      if: contains(steps.run_python_script.outputs.PYTHON_OUTPUT, 'Appended to VARIABLES.md')
       run: |
         git config --local user.email "justin.dex@msg-david.de"
         git config --local user.name "GitHub Action"
