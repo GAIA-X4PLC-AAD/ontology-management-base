@@ -32,7 +32,7 @@
 # @base <http://example.org/ontology/> .
 # <apple> <hasColor> <green> => http://example.org/ontology/apple http://example.org/ontology/hasColor http://example.org/ontology/green
 
-@base <http://example.org/example/> .
+@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -43,34 +43,34 @@
 ## Content of an Ontology
 # Every Ontology needs to be declared as an OWL-Ontology by including a triple
 # Example:
-# <http://example.org/example/> rdf:type owl:Ontology .
-# In this case <http://example.org/example/> is the IRI for the ontology we are defining.
+# <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology .
+# In this case <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> is the IRI for the ontology we are defining.
 
-# We define that the ontology "http://example.org/example/" is an owl Ontology, this is required for the FC
-<http://example.org/example/> rdf:type owl:Ontology ; # A semi-colon indicates that the next line als refers to the same subject as the predicate & object in this line
-      # This is a purl specific predicate, you can name a contributor of the ontology
-      <http://purl.org/dc/terms/contributor> "Max Mustermann" ;
-      # This is a label-assignment for your ontology by using rdfs:label as the predicate and a literal as the object
-      rdfs:label "An example Ontology for demonstration purposes."@en ;
-      # This predicate indicates the used owl-Version of your ontology
-      owl:versionInfo 0.5 .
+# We define that the ontology "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/" is an owl Ontology, this is required for the FC
+<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology ; # A semi-colon indicates that the next line als refers to the same subject as the predicate & object in this line
+    # This is a purl specific predicate, you can name a contributor of the ontology
+    <http://purl.org/dc/terms/contributor> "Max Mustermann" ;
+    # This is a label-assignment for your ontology by using rdfs:label as the predicate and a literal as the object
+    rdfs:label "An example Ontology for demonstration purposes."@en ;
+    # This predicate indicates the used owl-Version of your ontology
+    owl:versionInfo 0.5 .
 
 # The next line defines the class we want to create constraints for in the SHACL shape. The class is defined as being from type owl:Class
 <ExampleServiceOffering> rdf:type owl:Class ;
-      # The next lines also refer to the class <ExampleServiceOffering> (due to the semi-colons again)
-      # We define <ExampleServiceOffering> as a subClassOf a gax-core:ServiceOffering (https://w3id.org/gaia-x/core#ServiceOffering)
-      # Instead of ServiceOffering, Resource (https://w3id.org/gaia-x/core#Resource) and Participant (https://w3id.org/gaia-x/core#Participant) could also be used. (To upload a regarding Self Description into the Federated Catalogue it provides different endpoints for each.)
-      rdfs:subClassOf gax-core:ServiceOffering ;
-      # In the next line we define a label again
-      rdfs:label "Example Service Offering"@en ; 
-      # In the next line we add a comment to our class <ExampleServiceOffering>
-      rdfs:comment "Describes an example Service Offering."@en .
+    # The next lines also refer to the class <ExampleServiceOffering> (due to the semi-colons again)
+    # We define <ExampleServiceOffering> as a subClassOf a gax-core:ServiceOffering (https://w3id.org/gaia-x/core#ServiceOffering)
+    # Instead of ServiceOffering, Resource (https://w3id.org/gaia-x/core#Resource) and Participant (https://w3id.org/gaia-x/core#Participant) could also be used. (To upload a regarding Self Description into the Federated Catalogue it provides different endpoints for each.)
+    rdfs:subClassOf gax-core:ServiceOffering ;
+    # In the next line we define a label again
+    rdfs:label "Example Service Offering"@en ;
+    # In the next line we add a comment to our class <ExampleServiceOffering>
+    rdfs:comment "Describes an example Service Offering."@en .
 
 # Whenever we use a property which is referencing another node, we need to specify its domain and range within the ontology
 <belongs_to> rdf:type owl:ObjectProperty ;
-# In general terms, we use domain and range as follows: Domain Property Range. In our case: Domain belongs_to Range.
-# In our example we relate to another instance of the same class. The relation could also be made between different classes. 
-      # In this case we use the domain "ExampleServiceOffering", which means that this property is used to describe an ExampleServiceOffering
-      rdfs:domain <ExampleServiceOffering> ;
-      # In this case we use the range "ExampleServiceOffering", which means that the value of the property must be an ExampleServiceOffering
-      rdfs:range <ExampleServiceOffering> .
+    # In general terms, we use domain and range as follows: Domain Property Range. In our case: Domain belongs_to Range.
+    # In our example we relate to another instance of the same class. The relation could also be made between different classes.
+    # In this case we use the domain "ExampleServiceOffering", which means that this property is used to describe an ExampleServiceOffering
+    rdfs:domain <ExampleServiceOffering> ;
+    # In this case we use the range "ExampleServiceOffering", which means that the value of the property must be an ExampleServiceOffering
+    rdfs:range <ExampleServiceOffering> .

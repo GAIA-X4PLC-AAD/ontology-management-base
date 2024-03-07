@@ -25,7 +25,7 @@ def main():
         relevant_prefixes = set()  # Initialize set to store relevant prefixes
 
         # Extract SHACL Properties (paths) and additional attributes from all .ttl files in the directory.
-        for filename in os.listdir(full_directory_path):
+        for filename in sorted(os.listdir(full_directory_path)):
             if filename.endswith("shacl.ttl"):
                 file_path = os.path.join(full_directory_path, filename)
                 rdf_graph = extract_rdf_graph_from_ttl(file_path)
@@ -50,15 +50,16 @@ def main():
                 # Write prefixes above the table
                 if extracted_prefixes:
                     file.write("## Prefixes\n\n")
-                    for namespace, prefix in extracted_prefixes.items():
+                    # iterate and sort by prefix.
+                    for namespace, prefix in sorted(extracted_prefixes.items(), key=lambda x: x[1]):
                         file.write(f"- {prefix}: <{namespace}>\n")
                     file.write("\n")
-                
+
                 # Write table header
                 file.write("## List of SHACL Properties\n\n")
                 file.write("| Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |\n")
                 file.write("| --- | --- | --- | --- | --- | --- | --- | --- |\n")
-                
+
                 for prop in shacl_properties:
                     # Replace IRIs with prefixes
                     for namespace, prefix in extracted_prefixes.items():
@@ -79,10 +80,10 @@ def main():
                         datatype_or_nodekind = "<" + str(prop['nodeKind']) + ">"
                     else:
                         datatype_or_nodekind = ''
-                    
+
                     file.write(f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
                                f"|\n")
-                    
+
             print(f"Appended to VARIABLES.md in {full_directory_path}")
 
 
@@ -153,7 +154,7 @@ def extract_shacl_properties(rdf_graph, insertion_filename=None) -> list[dict]:
             'description': row.description,
             'datatype': row.datatype,
             'nodeKind': row.nodeKind,
-            'in': getattr(row, 'in', None) 
+            'in': getattr(row, 'in', None)
         }
         if insertion_filename:
             property_details['filename'] = insertion_filename
