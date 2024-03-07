@@ -1,0 +1,136 @@
+@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+environment-model:Asset_Shape a sh:NodeShape ;
+    sh:property [ skos:example "0.1 m" ;
+            sh:datatype xsd:float ;
+            sh:description "real texture resolution in meter (max?)"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of texture_resolution failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "texture_resolution"@en ;
+            sh:path environment-model:environment-model_quality_texture_resolution ],
+        [ skos:example "Trian3DBuilder, version 7.7" ;
+            sh:datatype xsd:string ;
+            sh:description "tool for the creation of the data"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of creation_version failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "creation_version"@en ;
+            sh:path environment-model:environment-model_project_creation_version ],
+        [ skos:example "high" ;
+            sh:datatype xsd:string ;
+            sh:description "category of the level of detail (High - highest level of detail with additional object enrichment, Med - directly from data sources, with environment, Low - topological representation)."@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of detail_level failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "detail_level"@en ;
+            sh:path environment-model:environment-model_quality_detail_level ],
+        [ skos:example "12000" ;
+            sh:datatype xsd:int ;
+            sh:description "Total number of all geoemtries, instances are considered only once"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of geometry_count failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "geometry_count"@en ;
+            sh:path environment-model:environment-model_quantity_geometry_count ],
+        [ skos:example "512m" ;
+            sh:datatype xsd:float ;
+            sh:description "tile size in meter"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of tile_size failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "tile_size"@en ;
+            sh:path environment-model:environment-model_quantity_tile_size ],
+        [ skos:example "DataSmith" ;
+            sh:datatype xsd:string ;
+            sh:description "format type for visual system"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of format failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "format"@en ;
+            sh:path environment-model:environment-model_data_format ],
+        [ skos:example "4.27" ;
+            sh:datatype xsd:string ;
+            sh:description "version of visual system"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of version failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "version"@en ;
+            sh:path environment-model:environment-model_project_version ],
+        [ skos:example "1" ;
+            sh:datatype xsd:int ;
+            sh:description "number of tiles as row"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of tile_count_x failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "tile_count_x"@en ;
+            sh:path environment-model:environment-model_quantity_tile_count_x ],
+        [ skos:example "Trian3DBuilder, version 7.7" ;
+            sh:datatype xsd:string ;
+            sh:description "tool for the creation of the data"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of creation_source failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "creation_source"@en ;
+            sh:path environment-model:environment-model_project_creation_source ],
+        [ skos:example "SDK 4.25" ;
+            sh:datatype xsd:string ;
+            sh:description "nan"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of version failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "version"@en ;
+            sh:path environment-model:environment-model_data_version ],
+        [ skos:example "Epic" ;
+            sh:datatype xsd:string ;
+            sh:description "name of software vendor"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of software_vendor failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "software_vendor"@en ;
+            sh:path environment-model:environment-model_project_software_vendor ],
+        [ skos:example "PBR" ;
+            sh:datatype xsd:string ;
+            sh:description "description of quality features"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of features failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "features"@en ;
+            sh:path environment-model:environment-model_quality_features ],
+        [ skos:example "2" ;
+            sh:datatype xsd:int ;
+            sh:description "number of tiles as column"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of tile_count_y failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "tile_count_y"@en ;
+            sh:path environment-model:environment-model_quantity_tile_count_y ],
+        [ skos:example "179" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "number of textures"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of texture_material_count failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "texture_material_count"@en ;
+            sh:path environment-model:environment-model_quantity_texture_material_count ],
+        [ skos:example "16000000" ;
+            sh:datatype xsd:int ;
+            sh:description "Total number of all triangles, instances are considered only once"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of triangle_count failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "triangle_count"@en ;
+            sh:path environment-model:environment-model_quantity_triangle_count ],
+        [ skos:example "Unreal" ;
+            sh:datatype xsd:string ;
+            sh:description "name of the visual system"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of software_name failed!"@en ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:name "software_name"@en ;
+            sh:path environment-model:environment-model_project_software_name ] ;
+    sh:targetClass environment-model:Asset .
+
