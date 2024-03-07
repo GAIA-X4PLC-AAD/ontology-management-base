@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: 3.12.0
 
@@ -23,6 +23,12 @@ jobs:
 
     - name: Run Python script
       run: python3 src/readme_generator.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Check git status
+      id: give_status
+      run: |
+        git status
       working-directory: ${{ github.workspace }}
 
     - name: Check for changes
