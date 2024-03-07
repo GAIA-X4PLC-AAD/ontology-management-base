@@ -38,6 +38,6 @@ jobs:
         git config --local user.email "justin.dex@msg-david.de"
         git config --local user.name "GitHub Action"
         git add */VARIABLES.md
-        git commit -m "Add VARIABLES.md files"
+        git commit -s -m "Add VARIABLES.md files"
         git push
       working-directory: ${{ github.workspace }}
