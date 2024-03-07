@@ -24,7 +24,7 @@
 ## Prefix section
 # You may use the prefix section to shorten the IRIs in your document to enhance readability.
 # Example:
-# @prefix exmpl: <http://example.org/ontology/> .
+# @prefix exmpl: <http://example.org/ontology/> 
 # exmpl:apple exmpl:hasColor exmpl:green
 #
 # The @base tag is used as a prefix whenever there is a relative path provided without a prefix.
