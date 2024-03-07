@@ -43,10 +43,10 @@
 ## Content of an Ontology
 # Every Ontology needs to be declared as an OWL-Ontology by including a triple
 # Example:
-# <http://example.org/example/> rdf:type owl:Ontology .
-# In this case <http://example.org/example/> is the IRI for the ontology we are defining.
+# <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology .
+# In this case <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> is the IRI for the ontology we are defining.
 
-# We define that the ontology "http://example.org/example/" is an owl Ontology, this is required for the FC
+# We define that the ontology "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/" is an owl Ontology, this is required for the FC
 <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology ; # A semi-colon indicates that the next line als refers to the same subject as the predicate & object in this line
     # This is a purl specific predicate, you can name a contributor of the ontology
     <http://purl.org/dc/terms/contributor> "Max Mustermann" ;
