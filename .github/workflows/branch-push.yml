@@ -29,9 +29,9 @@ jobs:
       id: check_changes
       run: |
         if git status --porcelain | grep "VARIABLES.md"; then
-          echo "::set-output name=CHANGES_FOUND::true"
+          echo "CHANGES_FOUND=true" >> $GITHUB_OUTPUT
         else
-          echo "::set-output name=CHANGES_FOUND::false"
+          echo "CHANGES_FOUND=false" >> $GITHUB_OUTPUT
         fi
       continue-on-error: true
       working-directory: ${{ github.workspace }}
