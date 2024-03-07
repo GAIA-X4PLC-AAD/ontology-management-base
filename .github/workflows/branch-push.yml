@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v3
       with:
         python-version: 3.12.0
 
@@ -22,18 +22,26 @@ jobs:
       run: pip install rdflib
 
     - name: Run Python script
-      id: run_python_script
+      run: python3 src/readme_generator.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Check for changes
+      id: check_changes
       run: |
-        python_output=$(python3 src/readme_generator.py)
-        echo "::set-output name=PYTHON_OUTPUT::$python_output"
+        if git status --porcelain | grep "VARIABLES.md"; then
+          echo "::set-output name=CHANGES_FOUND::true"
+        else
+          echo "::set-output name=CHANGES_FOUND::false"
+        fi
+      continue-on-error: true
       working-directory: ${{ github.workspace }}
 
     - name: Commit and push changes
-      if: contains(steps.run_python_script.outputs.PYTHON_OUTPUT, 'Appended to VARIABLES.md')
+      if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
       run: |
         git config --local user.email "justin.dex@msg-david.de"
         git config --local user.name "GitHub Action"
         git add */VARIABLES.md
-        git commit -s -m "Add VARIABLES.md files"
+        git commit -m "Add VARIABLES.md files"
         git push
       working-directory: ${{ github.workspace }}
