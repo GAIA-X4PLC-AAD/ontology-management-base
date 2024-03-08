@@ -24,7 +24,7 @@ def main():
         shacl_properties = []
         relevant_prefixes = set()  # Initialize set to store relevant prefixes
 
-        # Extract SHACL Properties (paths) and additional attributes from all .ttl files in the directory.
+        # Extract SHACL Properties (paths) and additional attributes from all sorted .ttl files in the directory.
         for filename in sorted(os.listdir(full_directory_path)):
             if filename.endswith("shacl.ttl"):
                 file_path = os.path.join(full_directory_path, filename)
