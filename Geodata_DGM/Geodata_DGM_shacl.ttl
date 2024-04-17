@@ -1,4 +1,4 @@
-@prefix Geodata_DGM: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Geodata_DGM_ontology> .
+@prefix Geodata_DGM: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Geodata_DGM_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -11,13 +11,13 @@ Geodata_DGM:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "format"@en ;
             sh:path Geodata_DGM:Geodata_DGM_quality_format ],
-        [ skos:example "2011-11-11 00:00:00" ;
-            sh:datatype xsd:string ;
-            sh:description "Creation Date"@en ;
-            sh:message "Validation of creationDate failed!"@en ;
+        [ skos:example "LDBV Commercial" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "License"@en ;
+            sh:message "Validation of license failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "creationDate"@en ;
-            sh:path Geodata_DGM:Geodata_DGM_quality_creationDate ],
+            sh:name "license"@en ;
+            sh:path Geodata_DGM:Geodata_DGM_quality_license ],
         [ skos:example "1" ;
             sh:datatype xsd:int ;
             sh:description "Resolution of the dataset"@en ;
@@ -25,12 +25,12 @@ Geodata_DGM:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "resolution"@en ;
             sh:path Geodata_DGM:Geodata_DGM_quality_resolution ],
-        [ skos:example "LDBV Commercial" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "License"@en ;
-            sh:message "Validation of license failed!"@en ;
+        [ skos:example "2011-11-11 00:00:00" ;
+            sh:datatype xsd:string ;
+            sh:description "Creation Date"@en ;
+            sh:message "Validation of creationDate failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "license"@en ;
-            sh:path Geodata_DGM:Geodata_DGM_quality_license ] ;
+            sh:name "creationDate"@en ;
+            sh:path Geodata_DGM:Geodata_DGM_quality_creationDate ] ;
     sh:targetClass Geodata_DGM:Asset .
 
