@@ -1,82 +1,16 @@
-@prefix Simulation-Configuration: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Simulation-Configuration_ontology> .
+@prefix Simulation-Configuration: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Simulation-Configuration_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 Simulation-Configuration:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "OS: Windows x64, Tools: MatlabRuntime R2015a, Libraries: e.g." ;
-            sh:datatype xsd:string ;
-            sh:description "required OS, Tools, Libraries"@en ;
-            sh:message "Validation of SystemRequirements failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "SystemRequirements"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_SystemRequirements ],
-        [ skos:example "true" ;
+    sh:property [ skos:example "true" ;
             sh:datatype xsd:boolean ;
             sh:description "indicates if a default experiment is defined"@en ;
             sh:message "Validation of hasDefaultExperiment failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "hasDefaultExperiment"@en ;
             sh:path Simulation-Configuration:Simulation-Configuration_quality_hasDefaultExperiment ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "indicated if a SSP Traceability information is appended (Simulation Task Meta Data)"@en ;
-            sh:message "Validation of hasSTMD failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "hasSTMD"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSTMD ],
-        [ skos:example "copyright 2023 Awesome Sim Ltd. All rights reserved" ;
-            sh:datatype xsd:string ;
-            sh:description """Optional attribute giving information about copyrights of the contents of
-this file"""@en ;
-            sh:message "Validation of copyright failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "copyright"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_copyright ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "indicates if an SSM (System Structure Parameter Mapping) is contained in the package"@en ;
-            sh:message "Validation of hasSSM failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "hasSSM"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSM ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "indicates if an SSV (System Structure Parameter Values) is contained in the package"@en ;
-            sh:message "Validation of hasSSV failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "hasSSV"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSV ],
-        [ skos:example "1.0" ;
-            sh:datatype xsd:string ;
-            sh:description "SSP version"@en ;
-            sh:message "Validation of Version failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "Version"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_Version ],
-        [ skos:example "John Doe, Awesome Sim Ltd." ;
-            sh:datatype xsd:string ;
-            sh:description """Optional attribute giving the name and/or organization of the author of
-the contents of this file."""@en ;
-            sh:message "Validation of author failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "author"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_author ],
-        [ skos:example "5" ;
-            sh:datatype xsd:int ;
-            sh:description "Configured Models for the Simulation / Proposal: Number of elements (on the first layer) of the system"@en ;
-            sh:message "Validation of NumberOfModels_[NumberOfElements] failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "NumberOfModels_[NumberOfElements]"@en ;
-            sh:path <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Simulation-Configuration_ontologySimulation-Configuration_quality_NumberOfModels_[NumberOfElements]> ],
-        [ skos:example "AVL Model.CONNECT R2021.1" ;
-            sh:datatype xsd:boolean ;
-            sh:description """Optional attribute giving information about the tool used to generate this
-file."""@en ;
-            sh:message "Validation of generationTool failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "generationTool"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_generationTool ],
         [ skos:example "LDBV Commercial" ;
             sh:datatype xsd:string ;
             sh:description """Optional attribute giving information about licensing of the contents of
@@ -85,12 +19,78 @@ this file. """@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "license"@en ;
             sh:path Simulation-Configuration:Simulation-Configuration_quality_license ],
+        [ skos:example "OS: Windows x64, Tools: MatlabRuntime R2015a, Libraries: e.g." ;
+            sh:datatype xsd:string ;
+            sh:description "required OS, Tools, Libraries"@en ;
+            sh:message "Validation of SystemRequirements failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "SystemRequirements"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_SystemRequirements ],
+        [ skos:example "5" ;
+            sh:datatype xsd:int ;
+            sh:description "Configured Models for the Simulation / Proposal: Number of elements (on the first layer) of the system"@en ;
+            sh:message "Validation of NumberOfModels_[NumberOfElements] failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "NumberOfModels_[NumberOfElements]"@en ;
+            sh:path <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Simulation-Configuration_ontology/Simulation-Configuration_quality_NumberOfModels_[NumberOfElements]> ],
+        [ skos:example "John Doe, Awesome Sim Ltd." ;
+            sh:datatype xsd:string ;
+            sh:description """Optional attribute giving the name and/or organization of the author of
+the contents of this file."""@en ;
+            sh:message "Validation of author failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "author"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_author ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "indicates if an SSM (System Structure Parameter Mapping) is contained in the package"@en ;
+            sh:message "Validation of hasSSM failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "hasSSM"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSM ],
+        [ skos:example "copyright 2023 Awesome Sim Ltd. All rights reserved" ;
+            sh:datatype xsd:string ;
+            sh:description """Optional attribute giving information about copyrights of the contents of
+this file"""@en ;
+            sh:message "Validation of copyright failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "copyright"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_copyright ],
+        [ skos:example "1.0" ;
+            sh:datatype xsd:string ;
+            sh:description "SSP version"@en ;
+            sh:message "Validation of Version failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "Version"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_Version ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "indicated if a SSP Traceability information is appended (Simulation Task Meta Data)"@en ;
+            sh:message "Validation of hasSTMD failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "hasSTMD"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSTMD ],
+        [ skos:example "AVL Model.CONNECT R2021.1" ;
+            sh:datatype xsd:boolean ;
+            sh:description """Optional attribute giving information about the tool used to generate this
+file."""@en ;
+            sh:message "Validation of generationTool failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "generationTool"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_generationTool ],
         [ skos:example "false" ;
             sh:datatype xsd:boolean ;
             sh:description "indicates if an SSB (System Structure Signal Dictionary) is contained in the package"@en ;
             sh:message "Validation of hasSSB failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "hasSSB"@en ;
-            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSB ] ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSB ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "indicates if an SSV (System Structure Parameter Values) is contained in the package"@en ;
+            sh:message "Validation of hasSSV failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "hasSSV"@en ;
+            sh:path Simulation-Configuration:Simulation-Configuration_quality_hasSSV ] ;
     sh:targetClass Simulation-Configuration:Asset .
 

@@ -1,4 +1,4 @@
-@prefix Simulation-Configuration: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Simulation-Configuration_ontology/> .
+@prefix Simulation-Configuration: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Simulation-Configuration_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@ Simulation-Configuration: a owl:Ontology ;
     dcterms:contributor "Maurizio Ahmann (SL)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-Simulation-Configuration:Simulation-Configuration a owl:Class ;
+Simulation-Configuration:Asset a owl:Class ;
     rdfs:label "Simulation-Configuration" ;
     rdfs:comment "attributes for SSP"@en ;
     rdfs:subClassOf gax-core:Resource .
