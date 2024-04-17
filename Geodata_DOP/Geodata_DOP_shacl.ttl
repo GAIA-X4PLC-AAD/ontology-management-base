@@ -1,36 +1,36 @@
-@prefix Geodata_DOP: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Geodata_DOP_ontology> .
+@prefix Geodata_DOP: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Geodata_DOP_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 Geodata_DOP:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "2011-11-11 00:00:00" ;
-            sh:datatype xsd:string ;
-            sh:description "Creation Date"@en ;
-            sh:message "Validation of creationDate failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "creationDate"@en ;
-            sh:path Geodata_DOP:Geodata_DOP_quality_creationDate ],
-        [ skos:example "Jpeg, Tiff" ;
+    sh:property [ skos:example "Jpeg, Tiff" ;
             sh:datatype xsd:string ;
             sh:description "Data format"@en ;
             sh:message "Validation of format failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "format"@en ;
             sh:path Geodata_DOP:Geodata_DOP_quality_format ],
-        [ skos:example "1" ;
-            sh:datatype xsd:int ;
-            sh:description "Resolution of the dataset"@en ;
-            sh:message "Validation of resolution failed!"@en ;
+        [ skos:example "2011-11-11 00:00:00" ;
+            sh:datatype xsd:string ;
+            sh:description "Creation Date"@en ;
+            sh:message "Validation of creationDate failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "resolution"@en ;
-            sh:path Geodata_DOP:Geodata_DOP_quality_resolution ],
+            sh:name "creationDate"@en ;
+            sh:path Geodata_DOP:Geodata_DOP_quality_creationDate ],
         [ skos:example "LDBV Commercial" ;
             sh:datatype xsd:anyURI ;
             sh:description "License"@en ;
             sh:message "Validation of license failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "license"@en ;
-            sh:path Geodata_DOP:Geodata_DOP_quality_license ] ;
+            sh:path Geodata_DOP:Geodata_DOP_quality_license ],
+        [ skos:example "1" ;
+            sh:datatype xsd:int ;
+            sh:description "Resolution of the dataset"@en ;
+            sh:message "Validation of resolution failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "resolution"@en ;
+            sh:path Geodata_DOP:Geodata_DOP_quality_resolution ] ;
     sh:targetClass Geodata_DOP:Asset .
 
