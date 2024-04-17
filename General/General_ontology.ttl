@@ -1,4 +1,4 @@
-@prefix General: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/General_ontology/> .
+@prefix General: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/General_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@ General: a owl:Ontology ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-General:General a owl:Class ;
+General:Asset a owl:Class ;
     rdfs:label "General" ;
     rdfs:comment "general attributes for all assets"@en ;
     rdfs:subClassOf gax-core:Resource .
