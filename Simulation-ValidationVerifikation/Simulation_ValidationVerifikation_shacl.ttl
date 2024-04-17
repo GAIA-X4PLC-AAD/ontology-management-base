@@ -1,16 +1,44 @@
-@prefix Simulation_ValidationVerifikation: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Simulation_ValidationVerifikation_ontology> .
+@prefix Simulation_ValidationVerifikation: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Simulation_ValidationVerifikation_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 Simulation_ValidationVerifikation:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "1" ;
+    sh:property [ skos:example "semantic criteria check according to ISO 29148; linkage to system analysis and to evaluation results" ;
+            sh:datatype xsd:string ;
+            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of requirements"@en ;
+            sh:message "Validation of RationalesRequirements failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "RationalesRequirements"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesRequirements ],
+        [ skos:example "3" ;
+            sh:datatype xsd:int ;
+            sh:description "credibility level of implementation of the simulation or model, according to credibility assessment"@en ;
+            sh:message "Validation of CredibilityLevelImplementation failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "CredibilityLevelImplementation"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CredibilityLevelImplementation ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to document detailing the validation concepts used for model validation, if any exists"@en ;
+            sh:message "Validation of concept failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "concept"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_concept ],
+        [ skos:example "1" ;
             sh:datatype xsd:int ;
             sh:description "credibility level of specification of the simulation or model, according to credibility assessment"@en ;
             sh:message "Validation of CredibilityLevelSpecification failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "CredibilityLevelSpecification"@en ;
             sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CredibilityLevelSpecification ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to model validation report, if any exists"@en ;
+            sh:message "Validation of report failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "report"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_report ],
         [ skos:example "PMSF FMIBench 1.9.9.4 using osi3test 0.6.0 on Windows 10 1809" ;
             sh:datatype xsd:string ;
             sh:description "Specification of simulation environment used for model validation,"@en ;
@@ -20,32 +48,11 @@ Simulation_ValidationVerifikation:Asset_Shape a sh:NodeShape ;
             sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_platform ],
         [ skos:example "nan" ;
             sh:datatype xsd:anyURI ;
-            sh:description "Link to document detailing the validation concepts used for model validation, if any exists"@en ;
-            sh:message "Validation of concept failed!"@en ;
+            sh:description "Link to model verification report, if any exists"@en ;
+            sh:message "Validation of report failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "concept"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_concept ],
-        [ skos:example "2" ;
-            sh:datatype xsd:int ;
-            sh:description "credibility level of requirements of the simulation or model, according to credibility assessment"@en ;
-            sh:message "Validation of CredibilityLevelRequirements failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "CredibilityLevelRequirements"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CredibilityLevelRequirements ],
-        [ skos:example "semantic criteria check according to ISO 29148; linkage to system analysis and to evaluation results" ;
-            sh:datatype xsd:string ;
-            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of requirements"@en ;
-            sh:message "Validation of RationalesRequirements failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "RationalesRequirements"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesRequirements ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "Is the model verified"@en ;
-            sh:message "Validation of status failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "status"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Verification_status ],
+            sh:name "report"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Verification_report ],
         [ skos:example "expert agreement; TIC against benchmark; uncertainty quantification" ;
             sh:datatype xsd:string ;
             sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of evaluation"@en ;
@@ -60,20 +67,13 @@ Simulation_ValidationVerifikation:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "CrediblityLevelEvaluation"@en ;
             sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CrediblityLevelEvaluation ],
-        [ skos:example "purpose justification; traceability check; constraints and assumptions check" ;
+        [ skos:example "consistency check; convergence check; numerical error estimation; order of accuracy estimation" ;
             sh:datatype xsd:string ;
-            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of specification"@en ;
-            sh:message "Validation of RationalesSpecification failed!"@en ;
+            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of implementation"@en ;
+            sh:message "Validation of RationalesImplementation failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "RationalesSpecification"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesSpecification ],
-        [ skos:example "nan" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to model validation report, if any exists"@en ;
-            sh:message "Validation of report failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "report"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_report ],
+            sh:name "RationalesImplementation"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesImplementation ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
             sh:description "Is the model validated, according to the validation concept"@en ;
@@ -81,26 +81,26 @@ Simulation_ValidationVerifikation:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "status"@en ;
             sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Validation_status ],
-        [ skos:example "3" ;
-            sh:datatype xsd:int ;
-            sh:description "credibility level of implementation of the simulation or model, according to credibility assessment"@en ;
-            sh:message "Validation of CredibilityLevelImplementation failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "CredibilityLevelImplementation"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CredibilityLevelImplementation ],
-        [ skos:example "nan" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to model verification report, if any exists"@en ;
-            sh:message "Validation of report failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "report"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Verification_report ],
-        [ skos:example "consistency check; convergence check; numerical error estimation; order of accuracy estimation" ;
+        [ skos:example "purpose justification; traceability check; constraints and assumptions check" ;
             sh:datatype xsd:string ;
-            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of implementation"@en ;
-            sh:message "Validation of RationalesImplementation failed!"@en ;
+            sh:description "a list of metrics that have been used as proof of evidence for the mentioned credibility level of specification"@en ;
+            sh:message "Validation of RationalesSpecification failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "RationalesImplementation"@en ;
-            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesImplementation ] ;
+            sh:name "RationalesSpecification"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_RationalesSpecification ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Is the model verified"@en ;
+            sh:message "Validation of status failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "status"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Verification_status ],
+        [ skos:example "2" ;
+            sh:datatype xsd:int ;
+            sh:description "credibility level of requirements of the simulation or model, according to credibility assessment"@en ;
+            sh:message "Validation of CredibilityLevelRequirements failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "CredibilityLevelRequirements"@en ;
+            sh:path Simulation_ValidationVerifikation:Simulation_ValidationVerifikation_Credibility_CredibilityLevelRequirements ] ;
     sh:targetClass Simulation_ValidationVerifikation:Asset .
 
