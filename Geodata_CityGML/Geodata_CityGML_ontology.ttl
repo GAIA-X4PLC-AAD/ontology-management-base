@@ -1,4 +1,4 @@
-@prefix Geodata_CityGML: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Geodata_CityGML_ontology/> .
+@prefix Geodata_CityGML: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Geodata_CityGML_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@ Geodata_CityGML: a owl:Ontology ;
     dcterms:contributor "Maximilian Sindram (VCS)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-Geodata_CityGML:Geodata_CityGML a owl:Class ;
+Geodata_CityGML:Asset a owl:Class ;
     rdfs:label "Geodata_CityGML" ;
     rdfs:comment "attributes for CityGML"@en ;
     rdfs:subClassOf gax-core:Resource .
