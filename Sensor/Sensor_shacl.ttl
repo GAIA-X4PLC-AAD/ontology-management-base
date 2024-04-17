@@ -1,275 +1,16 @@
-@prefix Sensor: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Sensor_ontology> .
+@prefix Sensor: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Sensor_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 Sensor:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "+10.12378, -54.12365" ;
-            sh:datatype xsd:float ;
-            sh:description "position where the most previous calibration was successfully performed; format: +-DD.D according to ISO 6709 "@en ;
-            sh:message "Validation of calibration.localization.start.recording failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "calibration.localization.start.recording"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.localization.start.recording ],
-        [ skos:example "234" ;
-            sh:datatype xsd:int ;
-            sh:description "duration of recording (i..e. Timestamp-End minus recording.timestamp.start) in seconds w/o decimal places;"@en ;
-            sh:message "Validation of duration failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "duration"@en ;
-            sh:path Sensor:Sensor_Acquisition_duration ],
-        [ skos:example "Radarsensor 77 GHz" ;
-            sh:datatype xsd:string ;
-            sh:description "type of sensor in scope; provide information about technology and special atributes (e.g. frequency)"@en ;
-            sh:message "Validation of type failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "type"@en ;
-            sh:path Sensor:Sensor_Sensor_type ],
-        [ skos:example "Long Range Radar Sensor w/ Object Detection" ;
-            sh:datatype xsd:string ;
-            sh:description "plain short description of the main purpoese of the sensor in scope, which allows to derive a basic relation to possible use-cases;"@en ;
-            sh:message "Validation of purpose failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "purpose"@en ;
-            sh:path Sensor:Sensor_Sensor_purpose ],
-        [ skos:example "long-range" ;
+    sh:property [ skos:example "long-range" ;
             sh:datatype xsd:string ;
             sh:description "information about any dedicated technology related sensor property;"@en ;
             sh:message "Validation of technology.variant failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "technology.variant"@en ;
             sh:path Sensor:Sensor_Sensor_technology.variant ],
-        [ skos:example "IPG Carmaker V. 8.15" ;
-            sh:datatype xsd:string ;
-            sh:description "Information about the used simulation setup / tooling;"@en ;
-            sh:message "Validation of test.simulation failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "test.simulation"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.simulation ],
-        [ skos:example "none|list" ;
-            sh:datatype xsd:string ;
-            sh:description "any error information appeared in this data set;"@en ;
-            sh:message "Validation of error.status failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "error.status"@en ;
-            sh:path Sensor:Sensor_Content_error.status ],
-        [ skos:example "vehicle|lab|simulation" ;
-            sh:datatype xsd:string ;
-            sh:description "Kind of environment where the data was acquired; values vehicle and lab (i.e. laboratory) are only apply to real sensor data;"@en ;
-            sh:message "Validation of test.setup failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "test.setup"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.setup ],
-        [ skos:example "Link to other sensors SRMD(s) + excerpt of those (tbd) ..." ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to other sensors SRMD(s) + excerpt of those (tbd) ..."@en ;
-            sh:message "Validation of link failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "link"@en ;
-            sh:path Sensor:Sensor_Reference_Data_link ],
-        [ skos:example "x,y,z, pitch, yaw, roll" ;
-            sh:datatype xsd:string ;
-            sh:description "mounting coordinates of the sensor in scope according to sensor specification; e.g.ARS548: all coordinates wrt. ground projection of middle of front axle;"@en ;
-            sh:message "Validation of sensor.mounting.position failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "sensor.mounting.position"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_sensor.mounting.position ],
-        [ skos:example "GPS|..." ;
-            sh:datatype xsd:string ;
-            sh:description "type of localization applied;"@en ;
-            sh:message "Validation of localization.method failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "localization.method"@en ;
-            sh:path Sensor:Sensor_Reference_Data_localization.method ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "information whether classified objects are included in the data set; value: true|false"@en ;
-            sh:message "Validation of objects failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "objects"@en ;
-            sh:path Sensor:Sensor_Content_objects ],
-        [ skos:example "<s. object list message>" ;
-            sh:datatype xsd:string ;
-            sh:description "list of attributes assigned to object(s) recorded; see sensor specification for details;"@en ;
-            sh:message "Validation of object.attributes failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "object.attributes"@en ;
-            sh:path Sensor:Sensor_Content_object.attributes ],
-        [ skos:example "released" ;
-            sh:datatype xsd:string ;
-            sh:description "maturity of the sensor in scope; shall describe the maturity level; e.g. whether a kind of prototype (e.g. B-Sample) or a released part"@en ;
-            sh:message "Validation of status failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "status"@en ;
-            sh:path Sensor:Sensor_Sensor_status ],
-        [ skos:example "4.0.4" ;
-            sh:datatype xsd:string ;
-            sh:description "version of data recording tool used; format Major.Minor.Patch; if not available use: 0.0.0"@en ;
-            sh:message "Validation of tool.sw.version failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "tool.sw.version"@en ;
-            sh:path Sensor:Sensor_Acquisition_tool.sw.version ],
-        [ skos:example "freeway|highway|urban|country side|construction zone|free field|proving ground|..." ;
-            sh:datatype xsd:string ;
-            sh:description "description of the area, where the recording took place; it is recommended to generate recordings distinguished by the area; e.g. instead of acquireming one trace by start driving on the freeway continuing on rural roads and finally including urban traffic, generate separate data recordings for each of those areas;"@en ;
-            sh:message "Validation of area failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "area"@en ;
-            sh:path Sensor:Sensor_Environment_area ],
-        [ skos:example "tags & timestamps of special event(s) during trace recording; shall include short description" ;
-            sh:datatype xsd:string ;
-            sh:description "information about any notably event happened wthin duration; based on the provided tag, the accoriding timestamp shall be locatable; the accompanied short description, shall clearly indicate the kind of the event;"@en ;
-            sh:message "Validation of event.list failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "event.list"@en ;
-            sh:path Sensor:Sensor_Content_event.list ],
-        [ skos:example "Continental" ;
-            sh:datatype xsd:string ;
-            sh:description "sufficient information of the manufactor of the sensor, which allows tracing back to the origin of the sensor;"@en ;
-            sh:message "Validation of manufactor failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "manufactor"@en ;
-            sh:path Sensor:Sensor_Sensor_manufactor ],
-        [ skos:example "https://continental.com/doc/ARS548.pdf" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "link to specification of sensor in scope;"@en ;
-            sh:message "Validation of specification failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "specification"@en ;
-            sh:path Sensor:Sensor_Reference_Data_specification ],
-        [ skos:example "<s. detection list message>" ;
-            sh:datatype xsd:string ;
-            sh:description "list of attributes assigned to detection(s) recorded; see sensor specification for details;"@en ;
-            sh:message "Validation of detection.attributes failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "detection.attributes"@en ;
-            sh:path Sensor:Sensor_Content_detection.attributes ],
-        [ skos:example "ID/short description" ;
-            sh:datatype xsd:string ;
-            sh:description "information of the used test vehicle, which allows racebility to the detailed vehicle configuration (e.g. ID, sensor setup, and more);"@en ;
-            sh:message "Validation of test.vehicle failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "test.vehicle"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.vehicle ],
-        [ skos:example "1" ;
-            sh:datatype xsd:float ;
-            sh:description "amount of precipitation at weather.preciptation.timestamp at the location of the vehicle equipped with the sensor in scope; amount of mm per square meter per hour according to ASAM Open-Simulation-Interface definition (s. osi_environment.o) V. 3.5.0; if weather.precipitation.snow is > 0, weather.preciptation = snow-height / 10;"@en ;
-            sh:message "Validation of weather.preciptation failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "weather.preciptation"@en ;
-            sh:path Sensor:Sensor_Environment_weather.preciptation ],
-        [ skos:example "pedestrian|passenger car|truck|bicycle" ;
-            sh:datatype xsd:string ;
-            sh:description "list of available object classifications available in this data set;"@en ;
-            sh:message "Validation of object.classes.detected failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "object.classes.detected"@en ;
-            sh:path Sensor:Sensor_Content_object.classes.detected ],
-        [ skos:example "5" ;
-            sh:datatype xsd:int ;
-            sh:description "fallen snow height during duration;"@en ;
-            sh:message "Validation of weather.preciptation.snow failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "weather.preciptation.snow"@en ;
-            sh:path Sensor:Sensor_Environment_weather.preciptation.snow ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "status of calibration; shall be set to true, if either the sensor in scope indicates correct alignment or manual steps were performed to assure correctness of calibration;"@en ;
-            sh:message "Validation of calibrated failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "calibrated"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibrated ],
-        [ skos:example "WIRESHARK|TSHARK" ;
-            sh:datatype xsd:string ;
-            sh:description "distinct name of data recording tool used;"@en ;
-            sh:message "Validation of tool failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "tool"@en ;
-            sh:path Sensor:Sensor_Acquisition_tool ],
-        [ skos:example "0.1.2" ;
-            sh:datatype xsd:string ;
-            sh:description "version and/or variant information of the data format; format Major.Minor.Patch; if not available use: 0.0.0"@en ;
-            sh:message "Validation of format_version failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "format_version"@en ;
-            sh:path Sensor:Sensor_Acquisition_format_version ],
-        [ skos:example "ARS5xx" ;
-            sh:datatype xsd:string ;
-            sh:description "information about the family (i.e. generation) the sensor in scope belongs to; usually multiple sensors are derived form a so-called base development, which leads to multiple variants of that;"@en ;
-            sh:message "Validation of family failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "family"@en ;
-            sh:path Sensor:Sensor_Sensor_family ],
-        [ skos:example "37.9" ;
-            sh:datatype xsd:float ;
-            sh:description "ambient temperature at start of measurement at the location of the vehicle equipped with the sensor in scope;"@en ;
-            sh:message "Validation of weather.temperature failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "weather.temperature"@en ;
-            sh:path Sensor:Sensor_Environment_weather.temperature ],
-        [ skos:example "automated alignment|static measurents w/ poin targets|none" ;
-            sh:datatype xsd:string ;
-            sh:description "information about the applied calibration method; in case of no calibration was performed or any uncertainties about calibration the value none shall be selected;"@en ;
-            sh:message "Validation of calibration.method failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "calibration.method"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.method ],
-        [ skos:example "wet|dry" ;
-            sh:datatype xsd:string ;
-            sh:description "road surface condition(s) during duration; in case of any indication sof wetness, the value wet shall be selected, otherwise the road(s) is/are considered to be dry; if both conditions were obeserved during duration, both values shall be set;"@en ;
-            sh:message "Validation of road.condition failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "road.condition"@en ;
-            sh:path Sensor:Sensor_Environment_road.condition ],
-        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
-            sh:datatype xsd:string ;
-            sh:description "time at which preciptation measurement was performed;  format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
-            sh:message "Validation of weather.preciptation.timestamp failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "weather.preciptation.timestamp"@en ;
-            sh:path Sensor:Sensor_Environment_weather.preciptation.timestamp ],
-        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
-            sh:datatype xsd:string ;
-            sh:description "absolute time the data recordig was started; format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
-            sh:message "Validation of recording.timestamp.start failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "recording.timestamp.start"@en ;
-            sh:path Sensor:Sensor_Acquisition_recording.timestamp.start ],
-        [ skos:example "single lane|multi lane" ;
-            sh:datatype xsd:string ;
-            sh:description "road type(s) used during duration; "@en ;
-            sh:message "Validation of road.type failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "road.type"@en ;
-            sh:path Sensor:Sensor_Environment_road.type ],
-        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
-            sh:datatype xsd:string ;
-            sh:description "date/time when the most previous calibration was successfully performed; format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
-            sh:message "Validation of calibration.recording.timestamp.start failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "calibration.recording.timestamp.start"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.recording.timestamp.start ],
-        [ skos:example "radar" ;
-            sh:datatype xsd:string ;
-            sh:description "information about the general technology usd for sensor in scope; examples: radar, lidar, camera, ultrasonic"@en ;
-            sh:message "Validation of technology failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "technology"@en ;
-            sh:path Sensor:Sensor_Sensor_technology ],
-        [ skos:example "PCAPNG|OSI|..." ;
-            sh:datatype xsd:string ;
-            sh:description "format of the data recording"@en ;
-            sh:message "Validation of format failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "format"@en ;
-            sh:path Sensor:Sensor_Acquisition_format ],
-        [ skos:example "ARS548" ;
-            sh:datatype xsd:string ;
-            sh:description "name of the sensor in scope, which allows identifying the exact type of the sensor in scope;"@en ;
-            sh:message "Validation of name failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "name"@en ;
-            sh:path Sensor:Sensor_Sensor_name ],
         [ skos:example "12321" ;
             sh:datatype xsd:int ;
             sh:description "size of sensor data recording file in bytes;"@en ;
@@ -277,13 +18,20 @@ Sensor:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "size"@en ;
             sh:path Sensor:Sensor_Acquisition_size ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "information whether so-called detections (wrt. Radar technology) are included in the data set; value: true|false"@en ;
-            sh:message "Validation of detection failed!"@en ;
+        [ skos:example "GPS|..." ;
+            sh:datatype xsd:string ;
+            sh:description "type of localization applied;"@en ;
+            sh:message "Validation of localization.method failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "detection"@en ;
-            sh:path Sensor:Sensor_Content_detection ],
+            sh:name "localization.method"@en ;
+            sh:path Sensor:Sensor_Reference_Data_localization.method ],
+        [ skos:example "PCAPNG|OSI|..." ;
+            sh:datatype xsd:string ;
+            sh:description "format of the data recording"@en ;
+            sh:message "Validation of format failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "format"@en ;
+            sh:path Sensor:Sensor_Acquisition_format ],
         [ skos:example "01.23.45.67" ;
             sh:datatype xsd:string ;
             sh:description "unique part ID of sensor in scope, which allows back tracing to the origin;"@en ;
@@ -291,8 +39,260 @@ Sensor:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "partnumber"@en ;
             sh:path Sensor:Sensor_Sensor_partnumber ],
-        [ skos:example "+10.12378, -54.12365" ;
+        [ skos:example "IPG Carmaker V. 8.15" ;
+            sh:datatype xsd:string ;
+            sh:description "Information about the used simulation setup / tooling;"@en ;
+            sh:message "Validation of test.simulation failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "test.simulation"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.simulation ],
+        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
+            sh:datatype xsd:string ;
+            sh:description "absolute time the data recordig was started; format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
+            sh:message "Validation of recording.timestamp.start failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "recording.timestamp.start"@en ;
+            sh:path Sensor:Sensor_Acquisition_recording.timestamp.start ],
+        [ skos:example "https://continental.com/doc/ARS548.pdf" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "link to specification of sensor in scope;"@en ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "specification"@en ;
+            sh:path Sensor:Sensor_Reference_Data_specification ],
+        [ skos:example "Radarsensor 77 GHz" ;
+            sh:datatype xsd:string ;
+            sh:description "type of sensor in scope; provide information about technology and special atributes (e.g. frequency)"@en ;
+            sh:message "Validation of type failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "type"@en ;
+            sh:path Sensor:Sensor_Sensor_type ],
+        [ skos:example "4.0.4" ;
+            sh:datatype xsd:string ;
+            sh:description "version of data recording tool used; format Major.Minor.Patch; if not available use: 0.0.0"@en ;
+            sh:message "Validation of tool.sw.version failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "tool.sw.version"@en ;
+            sh:path Sensor:Sensor_Acquisition_tool.sw.version ],
+        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
+            sh:datatype xsd:string ;
+            sh:description "time at which preciptation measurement was performed;  format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
+            sh:message "Validation of weather.preciptation.timestamp failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "weather.preciptation.timestamp"@en ;
+            sh:path Sensor:Sensor_Environment_weather.preciptation.timestamp ],
+        [ skos:example "radar" ;
+            sh:datatype xsd:string ;
+            sh:description "information about the general technology usd for sensor in scope; examples: radar, lidar, camera, ultrasonic"@en ;
+            sh:message "Validation of technology failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "technology"@en ;
+            sh:path Sensor:Sensor_Sensor_technology ],
+        [ skos:example "1" ;
             sh:datatype xsd:float ;
+            sh:description "amount of precipitation at weather.preciptation.timestamp at the location of the vehicle equipped with the sensor in scope; amount of mm per square meter per hour according to ASAM Open-Simulation-Interface definition (s. osi_environment.o) V. 3.5.0; if weather.precipitation.snow is > 0, weather.preciptation = snow-height / 10;"@en ;
+            sh:message "Validation of weather.preciptation failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "weather.preciptation"@en ;
+            sh:path Sensor:Sensor_Environment_weather.preciptation ],
+        [ skos:example "WIRESHARK|TSHARK" ;
+            sh:datatype xsd:string ;
+            sh:description "distinct name of data recording tool used;"@en ;
+            sh:message "Validation of tool failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "tool"@en ;
+            sh:path Sensor:Sensor_Acquisition_tool ],
+        [ skos:example "ARS5xx" ;
+            sh:datatype xsd:string ;
+            sh:description "information about the family (i.e. generation) the sensor in scope belongs to; usually multiple sensors are derived form a so-called base development, which leads to multiple variants of that;"@en ;
+            sh:message "Validation of family failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "family"@en ;
+            sh:path Sensor:Sensor_Sensor_family ],
+        [ skos:example "none|list" ;
+            sh:datatype xsd:string ;
+            sh:description "any error information appeared in this data set;"@en ;
+            sh:message "Validation of error.status failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "error.status"@en ;
+            sh:path Sensor:Sensor_Content_error.status ],
+        [ skos:example "released" ;
+            sh:datatype xsd:string ;
+            sh:description "maturity of the sensor in scope; shall describe the maturity level; e.g. whether a kind of prototype (e.g. B-Sample) or a released part"@en ;
+            sh:message "Validation of status failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "status"@en ;
+            sh:path Sensor:Sensor_Sensor_status ],
+        [ skos:example "2007-08-31T16:47.123+01:00 (i.e. time 16:47:00 on August 31st, 2007 in Timzeone UTC +1 hour)" ;
+            sh:datatype xsd:string ;
+            sh:description "date/time when the most previous calibration was successfully performed; format YYYY-MM-DDThh:mm:ss.f+-hh:mm according to ISO 8601;"@en ;
+            sh:message "Validation of calibration.recording.timestamp.start failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "calibration.recording.timestamp.start"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.recording.timestamp.start ],
+        [ skos:example "<s. detection list message>" ;
+            sh:datatype xsd:string ;
+            sh:description "list of attributes assigned to detection(s) recorded; see sensor specification for details;"@en ;
+            sh:message "Validation of detection.attributes failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "detection.attributes"@en ;
+            sh:path Sensor:Sensor_Content_detection.attributes ],
+        [ skos:example "5" ;
+            sh:datatype xsd:int ;
+            sh:description "fallen snow height during duration;"@en ;
+            sh:message "Validation of weather.preciptation.snow failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "weather.preciptation.snow"@en ;
+            sh:path Sensor:Sensor_Environment_weather.preciptation.snow ],
+        [ skos:example "ID/short description" ;
+            sh:datatype xsd:string ;
+            sh:description "information of the used test vehicle, which allows racebility to the detailed vehicle configuration (e.g. ID, sensor setup, and more);"@en ;
+            sh:message "Validation of test.vehicle failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "test.vehicle"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.vehicle ],
+        [ skos:example "wet|dry" ;
+            sh:datatype xsd:string ;
+            sh:description "road surface condition(s) during duration; in case of any indication sof wetness, the value wet shall be selected, otherwise the road(s) is/are considered to be dry; if both conditions were obeserved during duration, both values shall be set;"@en ;
+            sh:message "Validation of road.condition failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "road.condition"@en ;
+            sh:path Sensor:Sensor_Environment_road.condition ],
+        [ skos:example "freeway|highway|urban|country side|construction zone|free field|proving ground|..." ;
+            sh:datatype xsd:string ;
+            sh:description "description of the area, where the recording took place; it is recommended to generate recordings distinguished by the area; e.g. instead of acquireming one trace by start driving on the freeway continuing on rural roads and finally including urban traffic, generate separate data recordings for each of those areas;"@en ;
+            sh:message "Validation of area failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "area"@en ;
+            sh:path Sensor:Sensor_Environment_area ],
+        [ skos:example "single lane|multi lane" ;
+            sh:datatype xsd:string ;
+            sh:description "road type(s) used during duration; "@en ;
+            sh:message "Validation of road.type failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "road.type"@en ;
+            sh:path Sensor:Sensor_Environment_road.type ],
+        [ skos:example "37.9" ;
+            sh:datatype xsd:float ;
+            sh:description "ambient temperature at start of measurement at the location of the vehicle equipped with the sensor in scope;"@en ;
+            sh:message "Validation of weather.temperature failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "weather.temperature"@en ;
+            sh:path Sensor:Sensor_Environment_weather.temperature ],
+        [ skos:example "vehicle|lab|simulation" ;
+            sh:datatype xsd:string ;
+            sh:description "Kind of environment where the data was acquired; values vehicle and lab (i.e. laboratory) are only apply to real sensor data;"@en ;
+            sh:message "Validation of test.setup failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "test.setup"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_test.setup ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "information whether so-called detections (wrt. Radar technology) are included in the data set; value: true|false"@en ;
+            sh:message "Validation of detection failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "detection"@en ;
+            sh:path Sensor:Sensor_Content_detection ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "information whether classified objects are included in the data set; value: true|false"@en ;
+            sh:message "Validation of objects failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "objects"@en ;
+            sh:path Sensor:Sensor_Content_objects ],
+        [ skos:example "cut-in|cut-out|following|..." ;
+            sh:datatype xsd:string ;
+            sh:description "description of common scenario type(s) occured during duration;"@en ;
+            sh:message "Validation of scenario failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "scenario"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_scenario ],
+        [ skos:example "Continental" ;
+            sh:datatype xsd:string ;
+            sh:description "sufficient information of the manufactor of the sensor, which allows tracing back to the origin of the sensor;"@en ;
+            sh:message "Validation of manufactor failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "manufactor"@en ;
+            sh:path Sensor:Sensor_Sensor_manufactor ],
+        [ skos:example "pedestrian|passenger car|truck|bicycle" ;
+            sh:datatype xsd:string ;
+            sh:description "list of available object classifications available in this data set;"@en ;
+            sh:message "Validation of object.classes.detected failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "object.classes.detected"@en ;
+            sh:path Sensor:Sensor_Content_object.classes.detected ],
+        [ skos:example "ADC GmbH, TechOffice, Lindau (Germany)" ;
+            sh:datatype xsd:string ;
+            sh:description "sufficient information to reach a person for obtaining any related information wrt. the sensor data; at least company, department and location shall be provided;"@en ;
+            sh:message "Validation of responsible.contact failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "responsible.contact"@en ;
+            sh:path Sensor:Sensor_Acquisition_responsible.contact ],
+        [ skos:example "Long Range Radar Sensor w/ Object Detection" ;
+            sh:datatype xsd:string ;
+            sh:description "plain short description of the main purpoese of the sensor in scope, which allows to derive a basic relation to possible use-cases;"@en ;
+            sh:message "Validation of purpose failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "purpose"@en ;
+            sh:path Sensor:Sensor_Sensor_purpose ],
+        [ skos:example "ARS540 HW Rev. 1.2" ;
+            sh:datatype xsd:string ;
+            sh:description "in case different hardware configurations exists of sensor.name, the exact information shall be provided here; e.g. dedicated cotors, antennas, supply voltage, and more"@en ;
+            sh:message "Validation of hardware failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "hardware"@en ;
+            sh:path Sensor:Sensor_Sensor_hardware ],
+        [ skos:example "x,y,z, pitch, yaw, roll" ;
+            sh:datatype xsd:string ;
+            sh:description "mounting coordinates of the sensor in scope according to sensor specification; e.g.ARS548: all coordinates wrt. ground projection of middle of front axle;"@en ;
+            sh:message "Validation of sensor.mounting.position failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "sensor.mounting.position"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_sensor.mounting.position ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "status of calibration; shall be set to true, if either the sensor in scope indicates correct alignment or manual steps were performed to assure correctness of calibration;"@en ;
+            sh:message "Validation of calibrated failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "calibrated"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibrated ],
+        [ skos:example "automated alignment|static measurents w/ poin targets|none" ;
+            sh:datatype xsd:string ;
+            sh:description "information about the applied calibration method; in case of no calibration was performed or any uncertainties about calibration the value none shall be selected;"@en ;
+            sh:message "Validation of calibration.method failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "calibration.method"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.method ],
+        [ skos:example "234" ;
+            sh:datatype xsd:int ;
+            sh:description "duration of recording (i..e. Timestamp-End minus recording.timestamp.start) in seconds w/o decimal places;"@en ;
+            sh:message "Validation of duration failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "duration"@en ;
+            sh:path Sensor:Sensor_Acquisition_duration ],
+        [ skos:example "+10.12378, -54.12365" ;
+            sh:datatype xsd:string ;
+            sh:description "position where the most previous calibration was successfully performed; format: +-DD.D according to ISO 6709 "@en ;
+            sh:message "Validation of calibration.localization.start.recording failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "calibration.localization.start.recording"@en ;
+            sh:path Sensor:Sensor_Test_Setup_and_Execution_calibration.localization.start.recording ],
+        [ skos:example "ARS548" ;
+            sh:datatype xsd:string ;
+            sh:description "name of the sensor in scope, which allows identifying the exact type of the sensor in scope;"@en ;
+            sh:message "Validation of name failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "name"@en ;
+            sh:path Sensor:Sensor_Sensor_name ],
+        [ skos:example "Link to other sensors SRMD(s) + excerpt of those (tbd) ..." ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to other sensors SRMD(s) + excerpt of those (tbd) ..."@en ;
+            sh:message "Validation of link failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "link"@en ;
+            sh:path Sensor:Sensor_Reference_Data_link ],
+        [ skos:example "+10.12378, -54.12365" ;
+            sh:datatype xsd:string ;
             sh:description "global position coordinates of the location where the vehicle with the sensor in scope was located at the time the recording was started; format: +-DD.D according to ISO 6709 "@en ;
             sh:message "Validation of localization.start.recording failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
@@ -305,6 +305,13 @@ Sensor:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "vdy.provided.to.sensor"@en ;
             sh:path Sensor:Sensor_Test_Setup_and_Execution_vdy.provided.to.sensor ],
+        [ skos:example "tags & timestamps of special event(s) during trace recording; shall include short description" ;
+            sh:datatype xsd:string ;
+            sh:description "information about any notably event happened wthin duration; based on the provided tag, the accoriding timestamp shall be locatable; the accompanied short description, shall clearly indicate the kind of the event;"@en ;
+            sh:message "Validation of event.list failed!"@en ;
+            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:name "event.list"@en ;
+            sh:path Sensor:Sensor_Content_event.list ],
         [ skos:example "URL1, URL2 - URLn" ;
             sh:datatype xsd:string ;
             sh:description "references to other sensor data recordings, which were recorded in parallel with the sensor in scope; this can be reference sensors and/or other DuTs (i.e. sensors);"@en ;
@@ -312,26 +319,19 @@ Sensor:Asset_Shape a sh:NodeShape ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "link.2relatedSensordata"@en ;
             sh:path Sensor:Sensor_Reference_Data_link.2relatedSensordata ],
-        [ skos:example "cut-in|cut-out|following|..." ;
+        [ skos:example "<s. object list message>" ;
             sh:datatype xsd:string ;
-            sh:description "description of common scenario type(s) occured during duration;"@en ;
-            sh:message "Validation of scenario failed!"@en ;
+            sh:description "list of attributes assigned to object(s) recorded; see sensor specification for details;"@en ;
+            sh:message "Validation of object.attributes failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "scenario"@en ;
-            sh:path Sensor:Sensor_Test_Setup_and_Execution_scenario ],
-        [ skos:example "ADC GmbH, TechOffice, Lindau (Germany)" ;
+            sh:name "object.attributes"@en ;
+            sh:path Sensor:Sensor_Content_object.attributes ],
+        [ skos:example "0.1.2" ;
             sh:datatype xsd:string ;
-            sh:description "sufficient information to reach a person for obtaining any related information wrt. the sensor data; at least company, department and location shall be provided;"@en ;
-            sh:message "Validation of responsible.contact failed!"@en ;
+            sh:description "version and/or variant information of the data format; format Major.Minor.Patch; if not available use: 0.0.0"@en ;
+            sh:message "Validation of format_version failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "responsible.contact"@en ;
-            sh:path Sensor:Sensor_Acquisition_responsible.contact ],
-        [ skos:example "ARS540 HW Rev. 1.2" ;
-            sh:datatype xsd:string ;
-            sh:description "in case different hardware configurations exists of sensor.name, the exact information shall be provided here; e.g. dedicated cotors, antennas, supply voltage, and more"@en ;
-            sh:message "Validation of hardware failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "hardware"@en ;
-            sh:path Sensor:Sensor_Sensor_hardware ] ;
+            sh:name "format_version"@en ;
+            sh:path Sensor:Sensor_Acquisition_format_version ] ;
     sh:targetClass Sensor:Asset .
 
