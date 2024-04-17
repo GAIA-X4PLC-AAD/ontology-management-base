@@ -1,4 +1,4 @@
-@prefix HD-Map: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/HD-Map_ontology/> .
+@prefix HD-Map: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/HD-Map_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@ HD-Map: a owl:Ontology ;
     dcterms:contributor "Sebastian Tuttas (3DM)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-HD-Map:HD-Map a owl:Class ;
+HD-Map:Asset a owl:Class ;
     rdfs:label "HD-Map" ;
     rdfs:comment "attributes for hd maps"@en ;
     rdfs:subClassOf gax-core:Resource .
