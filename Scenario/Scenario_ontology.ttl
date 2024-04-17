@@ -1,4 +1,4 @@
-@prefix Scenario: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/Scenario_ontology/> .
+@prefix Scenario: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Scenario_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@ Scenario: a owl:Ontology ;
     dcterms:contributor "Fin Heuer (DLR)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-Scenario:Scenario a owl:Class ;
+Scenario:Asset a owl:Class ;
     rdfs:label "Scenario" ;
     rdfs:comment "attributes for OpenScenario"@en ;
     rdfs:subClassOf gax-core:Resource .
