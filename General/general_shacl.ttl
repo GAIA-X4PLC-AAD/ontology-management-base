@@ -1,118 +1,206 @@
-@prefix General: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/General_ontology/> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-General:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "link to screenshot, video, routing" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "reference to screenshot data"@en ;
-            sh:message "Validation of media_link failed!"@en ;
+general:generalShape a sh:NodeShape ;
+    sh:property [ sh:maxCount "1"^^xsd:unsignedInt ;
             sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "media_link"@en ;
-            sh:path General:General_links_media_link ],
-        [ skos:example "TrianGraphics GmbH" ;
+            sh:node general:DescriptionShape ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:Description ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:PriceShape ;
+            sh:order "6"^^xsd:unsignedInt ;
+            sh:path general:Price ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:VendorShape ;
+            sh:order "2"^^xsd:unsignedInt ;
+            sh:path general:Vendor ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:FormatShape ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:Format ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:PositionShape ;
+            sh:order "3"^^xsd:unsignedInt ;
+            sh:path general:Position ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:LicenceShape ;
+            sh:order "5"^^xsd:unsignedInt ;
+            sh:path general:Licence ],
+        [ sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:minCount "1"^^xsd:unsignedInt ;
+            sh:node general:LinksShape ;
+            sh:order "4"^^xsd:unsignedInt ;
+            sh:path general:Links ] ;
+    sh:targetClass general:Asset .
+
+general:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:order "2"^^xsd:unsignedInt ;
+            sh:path general:xMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:order "3"^^xsd:unsignedInt ;
+            sh:path general:yMax ] ;
+    sh:targetClass general:BoundingBox .
+
+general:DescriptionShape a sh:NodeShape ;
+    sh:property [ skos:example "town district, with traffic signs" ;
             sh:datatype xsd:string ;
-            sh:description "name as registered in data space"@en ;
+            sh:description "Which category they belong to, which special characteristics, features"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of descriptionByVendor failed!"@en ;
+            sh:name "descriptionByVendor"@en ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:descriptionByVendor ],
+        [ skos:example "3D Model in Grafing" ;
+            sh:datatype xsd:string ;
+            sh:description "Name of data asset"@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
             sh:message "Validation of name failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
             sh:name "name"@en ;
-            sh:path General:General_vendor_name ],
-        [ skos:example "1.5" ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:name ] ;
+    sh:targetClass general:Description .
+
+general:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "1.5" ;
             sh:datatype xsd:string ;
-            sh:description "nan"@en ;
+            sh:description "Version of data format"@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of format_version failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "format_version"@en ;
-            sh:path General:General_format_format_version ],
-        [ skos:example "link to CRG" ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:version ],
+        [ skos:example "ASAM OpenDRIVE / ASAM OpenSCENARIO / Road5 / Here Live Map / Lanelet / DLM / road2sim / roadXML  / Shape" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:type ] ;
+    sh:targetClass general:Format .
+
+general:LicenceShape a sh:NodeShape ;
+    sh:property [ skos:example "link to licence" ;
             sh:datatype xsd:anyURI ;
-            sh:description "reference to dependent data"@en ;
-            sh:message "Validation of data_link failed!"@en ;
+            sh:description "Reference to licence"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of link failed!"@en ;
+            sh:name "link"@en ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:link ],
+        [ skos:example "MIT" ;
+            sh:datatype xsd:string ;
+            sh:description "Name of licence type"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:type ] ;
+    sh:targetClass general:Licence .
+
+general:LinksShape a sh:NodeShape ;
+    sh:property [ skos:example "link to CRG" ;
+            sh:description "Reference to dependent data"@en ;
+            sh:message "Validation of data failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "data_link"@en ;
-            sh:path General:General_links_data_link ],
-        [ skos:example "link to licence" ;
+            sh:name "data"@en ;
+            sh:node general:LinkShape ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:data ],
+        [ skos:example "link to screenshot, video, routing" ;
+            sh:description "Reference to screenshot data"@en ;
+            sh:message "Validation of media failed!"@en ;
+            sh:name "media"@en ;
+            sh:node general:LinkShape ;
+            sh:order "2"^^xsd:unsignedInt ;
+            sh:path general:media ],
+        [ skos:example "link to asset data, e.g. hd map" ;
             sh:datatype xsd:anyURI ;
-            sh:description "reference to licence"@en ;
+            sh:description "Id / url to asset file"@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of licence_link failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "licence_link"@en ;
-            sh:path General:General_licence_licence_link ],
-        [ skos:example "2022-10-01 00:00:00" ;
+            sh:message "Validation of asset failed!"@en ;
+            sh:name "asset"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:asset ] ;
+    sh:targetClass general:Links .
+
+general:PositionShape a sh:NodeShape ;
+    sh:property [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
+            sh:description "Bounding box with lat/lon values in WGS84"@en ;
+            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of bounding failed!"@en ;
+            sh:name "bounding"@en ;
+            sh:node general:BoundingBoxShape ;
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:bounding ],
+        [ skos:example "Germany, GER" ;
             sh:datatype xsd:string ;
-            sh:description "creation date"@en ;
+            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of date failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "date"@en ;
-            sh:path General:General_vendor_date ],
-        [ skos:example "1000" ;
+            sh:message "Validation of country failed!"@en ;
+            sh:name "country"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:country ;
+            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ] ;
+    sh:targetClass general:Position .
+
+general:PriceShape a sh:NodeShape ;
+    sh:property [ skos:example "1000" ;
             sh:datatype xsd:float ;
-            sh:description "in euros"@en ;
+            sh:description "Price in euros"@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
             sh:message "Validation of price failed!"@en ;
             sh:minCount "0"^^xsd:unsignedInt ;
             sh:name "price"@en ;
-            sh:path General:General_price_price ],
-        [ skos:example "3D Model in Grafing" ;
-            sh:datatype xsd:string ;
-            sh:description "name of data asset"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:price ] ;
+    sh:targetClass general:Price .
+
+general:VendorShape a sh:NodeShape ;
+    sh:property [ skos:example "2022-10-01 00:00:00" ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Creation date"@en ;
             sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of name failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "name"@en ;
-            sh:path General:General_description_name ],
-        [ skos:example "Germany, GER" ;
-            sh:datatype xsd:string ;
-            sh:description "ISO country code, ISO 3166-1, alpha-2; "@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of country failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "country"@en ;
-            sh:path General:General_position_country ],
-        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
-            sh:datatype xsd:string ;
-            sh:description "bounding box with lat/lon values in WGS84"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of bounding failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "bounding"@en ;
-            sh:path General:General_position_bounding ],
-        [ skos:example "MIT" ;
-            sh:datatype xsd:string ;
-            sh:description "name of licence type"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of licence_type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "licence_type"@en ;
-            sh:path General:General_licence_licence_type ],
-        [ skos:example "town district, with traffic signs" ;
-            sh:datatype xsd:string ;
-            sh:description "to which category to be classified, what special characteristics, features"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of description_by_vendor failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "description_by_vendor"@en ;
-            sh:path General:General_description_description_by_vendor ],
-        [ skos:example "road network, road surface, scenario, sensor model, environment model" ;
-            sh:datatype xsd:string ;
-            sh:description "short data type description"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of creationDate failed!"@en ;
+            sh:name "creationDate"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:creationDate ] ;
+    sh:targetClass general:Vendor .
+
+general:LinkShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ("Document" "Image" "Model" "Routing" "Video") ;
             sh:message "Validation of type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
             sh:name "type"@en ;
-            sh:path General:General_description_type ],
-        [ skos:example "OpenDRIVE / Road5 / Here Live Map / Lanelet / DLM / road2sim / roadXML  / Shape" ;
-            sh:datatype xsd:string ;
-            sh:description "format dedinition"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of data_format failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "data_format"@en ;
-            sh:path General:General_format_data_format ] ;
-    sh:targetClass General:Asset .
+            sh:order "1"^^xsd:unsignedInt ;
+            sh:path general:type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:message "Validation of url failed!"@en ;
+            sh:name "url"@en ;
+            sh:order "0"^^xsd:unsignedInt ;
+            sh:path general:url ] ;
+    sh:targetClass general:Link .
 
