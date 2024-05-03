@@ -6,12 +6,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 general: a owl:Ontology ;
-    rdfs:label "ontology definition for general"@en ;
+    rdfs:label "ontology definition for General"@en ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-general:Asset a owl:Class ;
-    rdfs:label "general" ;
+general:General a owl:Class ;
+    rdfs:label "class definition for General" ;
     rdfs:comment "General attributes for all assets"@en ;
     rdfs:subClassOf gax-core:Resource .
 
