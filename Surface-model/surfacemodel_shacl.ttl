@@ -1,104 +1,271 @@
-@prefix Surface-model: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Surface-model_ontology/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix surfacemodel: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surfacemodel/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-Surface-model:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "nan" ;
-            sh:datatype xsd:string ;
-            sh:description "height, friction values, grey values"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "type"@en ;
-            sh:path Surface-model:Surface-model_Data_type ],
-        [ skos:example "-3,14159" ;
-            sh:datatype xsd:float ;
-            sh:description "heading at starting position"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of orientation failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "orientation"@en ;
-            sh:path Surface-model:Surface-model_quality_orientation ],
+surfacemodel:surfaceModelShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:FormatShape ;
+            sh:order 2 ;
+            sh:path surfacemodel:Format ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:DataShape ;
+            sh:order 3 ;
+            sh:path surfacemodel:Data ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:QualityShape ;
+            sh:order 1 ;
+            sh:path surfacemodel:Quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:QuantityShape ;
+            sh:order 0 ;
+            sh:path surfacemodel:Quantity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:GeoreferenceShape ;
+            sh:order 7 ;
+            sh:path surfacemodel:Georeference ] ;
+    sh:targetClass surfacemodel:surfaceModel .
+
+surfacemodel:GeoreferenceShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:ProjectLocationShape ;
+            sh:order 0 ;
+            sh:path surfacemodel:ProjectLocation ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surfacemodel:GeodeticReferenceSystemShape ;
+            sh:order 1 ;
+            sh:path surfacemodel:GeodeticReferenceSystem ] ;
+    sh:targetClass surfacemodel:georeference .
+
+surfacemodel:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
+            sh:description "World coordinates of map origin"@en ;
+            sh:message "Validation of origin failed!"@en ;
+            sh:name "origin"@en ;
+            sh:node surfacemodel:Coordinate2DShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path surfacemodel:origin ],
         [ skos:example "EPSG 32632" ;
             sh:datatype xsd:string ;
             sh:description "EPSG code of the map"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of projection_type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "projection_type"@en ;
-            sh:path Surface-model:Surface-model_Georefencing_projection_type ],
+            sh:maxCount 1 ;
+            sh:message "Validation of coordinateSystem failed!"@en ;
+            sh:name "coordinateSystem"@en ;
+            sh:order 0 ;
+            sh:path surfacemodel:coordinateSystem ],
         [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
-            sh:description "ellipsodial height or orthometric heigt"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of height_system failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "height_system"@en ;
-            sh:path Surface-model:Surface-model_Georefencing_height_system ],
-        [ skos:example "0.01" ;
+            sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of heightSystem failed!"@en ;
+            sh:name "heightSystem"@en ;
+            sh:order 1 ;
+            sh:path surfacemodel:heightSystem ] ;
+    sh:targetClass surfacemodel:GeodeticReferenceSystem .
+
+surfacemodel:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path surfacemodel:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path surfacemodel:yMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path surfacemodel:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path surfacemodel:xMax ] ;
+    sh:targetClass surfacemodel:BoundingBox .
+
+surfacemodel:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path surfacemodel:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path surfacemodel:y ] ;
+    sh:targetClass surfacemodel:Coordinate2D .
+    
+surfacemodel:ProjectLocationShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "State of project area"@en ;
+            sh:message "Validation of state failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "state"@en ;
+            sh:order 1 ;
+            sh:path surfacemodel:state ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "nan"@en ;
+            sh:message "Validation of city failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "city"@en ;
+            sh:order 3 ;
+            sh:path surfacemodel:city ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "Region of project area"@en ;
+            sh:message "Validation of region failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "region"@en ;
+            sh:order 2 ;
+            sh:path surfacemodel:region ],
+        [ skos:example "Germany, GER" ;
+            sh:datatype xsd:string ;
+            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:name "country"@en ;
+            sh:order 0 ;
+            sh:path surfacemodel:country ;
+            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
+        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
+            sh:description "Bounding box with lat/lon values in WGS84"@en ;
+            sh:message "Validation of boundingBox failed!"@en ;
+            sh:name "boundingBox"@en ;
+            sh:node surfacemodel:BoundingBoxShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path surfacemodel:boundingBox ],
+        [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
+            sh:message "Validation of relationOrArea failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "relationOrArea"@en ;
+            sh:order 4 ;
+            sh:path surfacemodel:relationOrArea ] ;
+    sh:targetClass surfacemodel:ProjectLocation .  
+
+surfacemodel:DataShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "Height, friction values, grey values"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path surfacemodel:type ] ;
+    sh:targetClass surfacemodel:Data .
+
+surfacemodel:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "ASAM OpenCRG; DLM" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("ASAM OpenCRG" "DLM") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path surfacemodel:type ],
+        [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path surfacemodel:version ] ;
+    sh:targetClass surfacemodel:Format .
+
+surfacemodel:QualityShape a sh:NodeShape ;
+    sh:property [ skos:example "0.01" ;
             sh:datatype xsd:float ;
-            sh:description "longitudinal resolution "@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of resolution_longitudinal failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "resolution_longitudinal"@en ;
-            sh:path Surface-model:Surface-model_quality_resolution_longitudinal ],
+            sh:description "Longitudinal resolution "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of resolutionLongitudinal failed!"@en ;
+            sh:name "resolutionLongitudinal"@en ;
+            sh:order 0 ;
+            sh:path surfacemodel:resolutionLongitudinal ],
+        [ skos:example "-3,14159" ;
+            sh:datatype xsd:float ;
+            sh:description "Heading at starting position"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of orientation failed!"@en ;
+            sh:name "orientation"@en ;
+            sh:order 2 ;
+            sh:path surfacemodel:orientation ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
-            sh:description "existence of smooth ramp from platform to road"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of ramp failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "ramp"@en ;
-            sh:path Surface-model:Surface-model_quality_ramp ],
-        [ skos:example "yes" ;
-            sh:datatype xsd:boolean ;
-            sh:description "is projection system provided within the dataset"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of MapData_Field failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "MapData_Field"@en ;
-            sh:path Surface-model:Surface-model_Georefencing_MapData_Field ],
-        [ skos:example "nan" ;
+            sh:description "Existence of horizontal starting platform"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of platform failed!"@en ;
+            sh:name "platform"@en ;
+            sh:order 3 ;
+            sh:path surfacemodel:platform ],
+        [ skos:example "0.01" ;
             sh:datatype xsd:float ;
-            sh:description "world coordinates of surface model origin"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of origin failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "origin"@en ;
-            sh:path Surface-model:Surface-model_Georefencing_origin ],
+            sh:description "Lateral resolutions"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of resolutionLateral failed!"@en ;
+            sh:name "resolutionLateral"@en ;
+            sh:order 1 ;
+            sh:path surfacemodel:resolutionLateral ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Existence of smooth ramp from platform to road"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of ramp failed!"@en ;
+            sh:name "ramp"@en ;
+            sh:order 4 ;
+            sh:path surfacemodel:ramp ] ;
+    sh:targetClass surfacemodel:Quality .
+
+surfacemodel:QuantityShape a sh:NodeShape ;
+    sh:property [ skos:example "yes" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Is projection system provided within the dataset"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of mapDataField failed!"@en ;
+            sh:name "mapDataField"@en ;
+            sh:order 2 ;
+            sh:path surfacemodel:mapDataField ],
+        [ skos:example "25" ;
+            sh:datatype xsd:float ;
+            sh:description "Range of elevation values"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of elevationRange failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "elevationRange"@en ;
+            sh:order 1 ;
+            sh:path surfacemodel:elevationRange ],
         [ skos:example "1.46" ;
             sh:datatype xsd:float ;
             sh:description "Road network length in km"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:maxCount 1 ;
             sh:message "Validation of length failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
             sh:name "length"@en ;
-            sh:path Surface-model:Surface-model_quantity_length ],
-        [ skos:example "0.01" ;
-            sh:datatype xsd:float ;
-            sh:description "lateral resolutions"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of resolution_lateral failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "resolution_lateral"@en ;
-            sh:path Surface-model:Surface-model_quality_resolution_lateral ],
-        [ skos:example "25" ;
-            sh:datatype xsd:float ;
-            sh:description "nan"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of elevation_range failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "elevation_range"@en ;
-            sh:path Surface-model:Surface-model_quantity_elevation_range ],
-        [ skos:example "true" ;
-            sh:datatype xsd:boolean ;
-            sh:description "existence of horizontal starting platform"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of platform failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "platform"@en ;
-            sh:path Surface-model:Surface-model_quality_platform ] ;
-    sh:targetClass Surface-model:Asset .
+            sh:order 0 ;
+            sh:path surfacemodel:length ] ;
+    sh:targetClass surfacemodel:Quantity .
 
