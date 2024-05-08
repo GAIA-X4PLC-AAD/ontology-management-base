@@ -68,19 +68,6 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:path hdmap:levelOfDetail ] ;
     sh:targetClass hdmap:Content .
 
-hdmap:Coordinate2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of x failed!"@en ;
-            sh:name "x"@en ;
-            sh:order 0 ;
-            sh:path hdmap:x ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of y failed!"@en ;
-            sh:name "y"@en ;
-            sh:order 1 ;
-            sh:path hdmap:y ] ;
-    sh:targetClass hdmap:Coordinate2D .
-
 hdmap:DataSourceShape a sh:NodeShape ;
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
@@ -152,56 +139,14 @@ hdmap:GeoreferenceShape a sh:NodeShape ;
             sh:path hdmap:GeodeticReferenceSystem ] ;
     sh:targetClass hdmap:georeference .
 
-hdmap:BoundingBoxShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of yMin failed!"@en ;
-            sh:name "yMin"@en ;
-            sh:order 1 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:yMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of yMax failed!"@en ;
-            sh:name "yMax"@en ;
-            sh:order 3 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:yMax ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of xMin failed!"@en ;
-            sh:name "xMin"@en ;
-            sh:order 0 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:xMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of xMax failed!"@en ;
-            sh:name "xMax"@en ;
-            sh:order 2 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:xMax ] ;
-    sh:targetClass hdmap:BoundingBox .
-
-hdmap:Coordinate2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of x failed!"@en ;
-            sh:name "x"@en ;
-            sh:order 0 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:x ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of y failed!"@en ;
-            sh:name "y"@en ;
-            sh:order 1 ;
-            sh:maxCount 1 ;
-            sh:path hdmap:y ] ;
-    sh:targetClass hdmap:Coordinate2D .
-
 hdmap:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
             sh:node hdmap:Coordinate2DShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
             sh:order 2 ;
             sh:path hdmap:origin ],
         [ skos:example "EPSG 32632" ;
@@ -222,12 +167,54 @@ hdmap:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:path hdmap:heightSystem ] ;
     sh:targetClass hdmap:GeodeticReferenceSystem .
 
+hdmap:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path hdmap:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path hdmap:yMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path hdmap:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path hdmap:xMax ] ;
+    sh:targetClass hdmap:BoundingBox .
+
+hdmap:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path hdmap:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path hdmap:y ] ;
+    sh:targetClass hdmap:Coordinate2D .
+    
 hdmap:ProjectLocationShape a sh:NodeShape ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "State of project area"@en ;
             sh:message "Validation of state failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "state"@en ;
             sh:order 1 ;
             sh:path hdmap:state ],
@@ -235,7 +222,7 @@ hdmap:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "nan"@en ;
             sh:message "Validation of city failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "city"@en ;
             sh:order 3 ;
             sh:path hdmap:city ],
@@ -243,7 +230,7 @@ hdmap:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Region of project area"@en ;
             sh:message "Validation of region failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "region"@en ;
             sh:order 2 ;
             sh:path hdmap:region ],
@@ -258,22 +245,22 @@ hdmap:ProjectLocationShape a sh:NodeShape ;
             sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
         [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
             sh:description "Bounding box with lat/lon values in WGS84"@en ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:message "Validation of boundingBox failed!"@en ;
             sh:name "boundingBox"@en ;
             sh:node hdmap:BoundingBoxShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
             sh:order 5 ;
             sh:path hdmap:boundingBox ],
         [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
             sh:datatype xsd:string ;
             sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
             sh:message "Validation of relationOrArea failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
             sh:path hdmap:relationOrArea ] ;
-    sh:targetClass hdmap:ProjectLocation .    
+    sh:targetClass hdmap:ProjectLocation .     
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:property [ skos:example "0.1" ;
