@@ -36,7 +36,7 @@ general:LinksShape a sh:NodeShape ;
         [ skos:example "link to CRG" ;
             sh:description "Reference to dependent data"@en ;
             sh:message "Validation of data failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "data"@en ;
             sh:node general:LinkShape ;
             sh:order 1 ;
@@ -50,12 +50,14 @@ general:LinkShape a sh:NodeShape ;
             sh:description "Choose type of link." ;
             sh:name "type"@en ;
             sh:order 1 ;
+            sh:maxCount 1 ;
             sh:path general:type ],
         [ sh:datatype xsd:anyURI ;
             sh:message "Validation of url failed!"@en ;
             sh:description "Enter link as URL." ;
             sh:name "url"@en ;
             sh:order 0 ;
+            sh:maxCount 1 ;
             sh:path general:url ] ;
     sh:targetClass general:Link .
 
