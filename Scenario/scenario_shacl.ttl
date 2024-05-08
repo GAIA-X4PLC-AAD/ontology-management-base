@@ -1,192 +1,298 @@
-@prefix Scenario: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Scenario_ontology/> .
+@prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-Scenario:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to Catalogs"@en ;
-            sh:message "Validation of catalogs failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "catalogs"@en ;
-            sh:path Scenario:Scenario_structural_catalogs ],
-        [ skos:example "stopIfTTCLowerThan" ;
-            sh:datatype xsd:string ;
-            sh:description "Scenario/domain specific commands or actions"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of custom_commands failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "custom_commands"@en ;
-            sh:path Scenario:Scenario_participants_custom_commands ],
-        [ skos:example "2009-06-30T18:30:00+02:00	" ;
-            sh:datatype xsd:string ;
-            sh:description "Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens."@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of time_date failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "time_date"@en ;
-            sh:path Scenario:Scenario_general_time_date ],
-        [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to traffic space"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of traffic_space failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "traffic_space"@en ;
-            sh:path Scenario:Scenario_structural_traffic_space ],
-        [ skos:example "germany, not applicable" ;
-            sh:datatype xsd:string ;
-            sh:description "Country where this scenario is from"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of country failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "country"@en ;
-            sh:path Scenario:Scenario_traffic_country ],
-        [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)" ;
-            sh:datatype xsd:string ;
-            sh:description "Purpose of this scenario."@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of aim failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "aim"@en ;
-            sh:path Scenario:Scenario_general_aim ],
-        [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:datatype xsd:anyURI ;
-            sh:description "Link to 3D models"@en ;
-            sh:message "Validation of 3d_models failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "3d_models"@en ;
-            sh:path Scenario:Scenario_structural_3d_models ],
-        [ skos:example "tuk tuk" ;
-            sh:datatype xsd:string ;
-            sh:description "Country specific traffic participants"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of country_specific_tp failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "country_specific_tp"@en ;
-            sh:path Scenario:Scenario_traffic_country_specific_tp ],
-        [ skos:example "left or right hand traffic" ;
-            sh:datatype xsd:string ;
-            sh:description "On which side of the road the TP drive"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of rule_of_the_road failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "rule_of_the_road"@en ;
-            sh:path Scenario:Scenario_traffic_rule_of_the_road ],
-        [ skos:example "8" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Count of traffic permanent objects"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of permanent_traffic_objects failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "permanent_traffic_objects"@en ;
-            sh:path Scenario:Scenario_participants_permanent_traffic_objects ],
-        [ skos:example "myDriver, BestPedestrianController2000" ;
-            sh:datatype xsd:string ;
-            sh:description "Usage of simulation Core internal or external controllers."@en ;
-            sh:message "Validation of controllers failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "controllers"@en ;
-            sh:path Scenario:Scenario_participants_controllers ],
-        [ skos:example "car, truck, pedestrian" ;
-            sh:datatype xsd:string ;
-            sh:description "Types of traffic objects according to OpenSCENARIO standard."@en ;
-            sh:message "Validation of traffic_participant_types failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "traffic_participant_types"@en ;
-            sh:path Scenario:Scenario_participants_traffic_participant_types ],
-        [ skos:example "via trajectory, via support points" ;
-            sh:datatype xsd:string ;
-            sh:description "Type of movement used by traffic participants according to the OpenSCENARIO standard."@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of movement_description failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "movement_description"@en ;
-            sh:path Scenario:Scenario_participants_movement_description ],
-        [ skos:example "captured reality, synthetic" ;
+scenario:scenarioShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:EnvironmentalShape ;
+            sh:order 2 ;
+            sh:path scenario:Environmental ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:GeneralShape ;
+            sh:order 0 ;
+            sh:path scenario:General ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:Data_SourcesShape ;
+            sh:order 6 ;
+            sh:path scenario:Data_Sources ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:StructuralShape ;
+            sh:order 4 ;
+            sh:path scenario:Structural ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:TrafficShape ;
+            sh:order 3 ;
+            sh:path scenario:Traffic ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:ParticipantsShape ;
+            sh:order 1 ;
+            sh:path scenario:Participants ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:FormatShape ;
+            sh:order 5 ;
+            sh:path scenario:Format ] ;
+    sh:targetClass scenario:scenario .
+
+scenario:Data_SourcesShape a sh:NodeShape ;
+    sh:property [ skos:example "captured reality, synthetic" ;
             sh:datatype xsd:string ;
             sh:description "Capture type"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:maxCount 1 ;
             sh:message "Validation of source failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:minCount 0 ;
             sh:name "source"@en ;
-            sh:path Scenario:Scenario_Data_Sources_source ],
-        [ skos:example "Functional, Logical, Concrete" ;
-            sh:datatype xsd:string ;
-            sh:description "Pegasus type of scenario"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "type"@en ;
-            sh:path Scenario:Scenario_general_type ],
-        [ skos:example "10" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Count of traffic objects"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_traffic_objects failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_traffic_objects"@en ;
-            sh:path Scenario:Scenario_participants_number_traffic_objects ],
-        [ skos:example "32.33" ;
+            sh:order 0 ;
+            sh:path scenario:source ] ;
+    sh:targetClass scenario:Data_Sources .
+
+scenario:EnvironmentalShape a sh:NodeShape ;
+    sh:property [ skos:example "32.33" ;
             sh:datatype xsd:float ;
             sh:description "Elevation of the sun"@en ;
-            sh:message "Validation of sun_elevation failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "sun_elevation"@en ;
-            sh:path Scenario:Scenario_environmental_sun_elevation ],
-        [ skos:example "kangaroo crossing" ;
-            sh:datatype xsd:string ;
-            sh:description "Country specific traffic signs"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of country_specific_sign failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "country_specific_sign"@en ;
-            sh:path Scenario:Scenario_traffic_country_specific_sign ],
-        [ skos:example "2" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Count of traffic temporary objects"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of temporary_traffic_objects failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "temporary_traffic_objects"@en ;
-            sh:path Scenario:Scenario_participants_temporary_traffic_objects ],
-        [ skos:example "30m fog" ;
-            sh:datatype xsd:string ;
-            sh:description "List of environmental conditions"@en ;
-            sh:message "Validation of environment_conditions failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "environment_conditions"@en ;
-            sh:path Scenario:Scenario_environmental_environment_conditions ],
-        [ skos:example "cut-in, cut-out" ;
-            sh:datatype xsd:string ;
-            sh:description "Maneuver type in the sense of a functional scenario"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of maneuver failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "maneuver"@en ;
-            sh:path Scenario:Scenario_general_maneuver ],
+            sh:message "Validation of sunElevation failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "sunElevation"@en ;
+            sh:order 1 ;
+            sh:path scenario:sunElevation ],
         [ skos:example "dry, moist, wetWithPuddles, lowFlooded, highFlooded" ;
             sh:datatype xsd:string ;
             sh:description "If street is wet or not"@en ;
             sh:message "Validation of wetness failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:minCount 0 ;
             sh:name "wetness"@en ;
-            sh:path Scenario:Scenario_environmental_wetness ],
+            sh:order 3 ;
+            sh:path scenario:wetness ],
         [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Azimuth of the sun"@en ;
-            sh:message "Validation of sun_azimuth failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "sun_azimuth"@en ;
-            sh:path Scenario:Scenario_environmental_sun_azimuth ],
+            sh:message "Validation of sunAzimuth failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "sunAzimuth"@en ;
+            sh:order 2 ;
+            sh:path scenario:sunAzimuth ],
+        [ skos:example "30m fog" ;
+            sh:datatype xsd:string ;
+            sh:description "List of environmental conditions"@en ;
+            sh:message "Validation of environmentConditions failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "environmentConditions"@en ;
+            sh:order 0 ;
+            sh:path scenario:environmentConditions ] ;
+    sh:targetClass scenario:Environmental .
+
+scenario:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "ASAM OpenSCENARIO" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("ASAM OpenSCENARIO") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path scenario:type ],
+        [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path scenario:version ] ;
+    sh:targetClass scenario:Format .
+
+scenario:GeneralShape a sh:NodeShape ;
+    sh:property [ skos:example "Functional, Logical, Concrete" ;
+            sh:datatype xsd:string ;
+            sh:description "Pegasus type of scenario"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path scenario:type ],
+        [ skos:example "cut-in, cut-out" ;
+            sh:datatype xsd:string ;
+            sh:description "Maneuver type in the sense of a functional scenario"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of maneuver failed!"@en ;
+            sh:name "maneuver"@en ;
+            sh:order 1 ;
+            sh:path scenario:maneuver ],
+        [ skos:example "2009-06-30T18:30:00+02:00	" ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of timeDate failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "timeDate"@en ;
+            sh:order 2 ;
+            sh:path scenario:timeDate ],
+        [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)" ;
+            sh:datatype xsd:string ;
+            sh:description "Purpose of this scenario."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of aim failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "aim"@en ;
+            sh:order 4 ;
+            sh:path scenario:aim ],
         [ skos:example "global positions, parameter declaraions..." ;
             sh:datatype xsd:string ;
             sh:description "Use of the functionalities from the standard. E.g. which Actions are used."@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of used_standard_functions failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "used_standard_functions"@en ;
-            sh:path Scenario:Scenario_general_used_standard_functions ] ;
-    sh:targetClass Scenario:Asset .
+            sh:maxCount 1 ;
+            sh:message "Validation of usedStandardFunctions failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "usedStandardFunctions"@en ;
+            sh:order 3 ;
+            sh:path scenario:usedStandardFunctions ] ;
+    sh:targetClass scenario:General .
+
+scenario:ParticipantsShape a sh:NodeShape ;
+    sh:property [ skos:example "2" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Count of traffic temporary objects"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of temporaryTrafficObjects failed!"@en ;
+            sh:name "temporaryTrafficObjects"@en ;
+            sh:order 1 ;
+            sh:path scenario:temporaryTrafficObjects ],
+        [ skos:example "10" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Count of traffic objects"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberTrafficObjects failed!"@en ;
+            sh:name "numberTrafficObjects"@en ;
+            sh:order 0 ;
+            sh:path scenario:numberTrafficObjects ],
+        [ skos:example "car, truck, pedestrian" ;
+            sh:datatype xsd:string ;
+            sh:description "Types of traffic objects according to OpenSCENARIO standard."@en ;
+            sh:in ("car" "pedestrian" "truck") ;
+            sh:message "Validation of trafficParticipantTypes failed!"@en ;
+            sh:name "trafficParticipantTypes"@en ;
+            sh:order 3 ;
+            sh:path scenario:trafficParticipantTypes ],
+        [ skos:example "myDriver, BestPedestrianController2000" ;
+            sh:datatype xsd:string ;
+            sh:description "Usage of simulation Core internal or external controllers."@en ;
+            sh:message "Validation of controllers failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "controllers"@en ;
+            sh:order 5 ;
+            sh:path scenario:controllers ],
+        [ skos:example "8" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Count of traffic permanent objects"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of permanentTrafficObjects failed!"@en ;
+            sh:name "permanentTrafficObjects"@en ;
+            sh:order 2 ;
+            sh:path scenario:permanentTrafficObjects ],
+        [ skos:example "via trajectory, via support points" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of movement used by traffic participants according to the OpenSCENARIO standard."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of movementDescription failed!"@en ;
+            sh:name "movementDescription"@en ;
+            sh:order 4 ;
+            sh:path scenario:movementDescription ],
+        [ skos:example "stopIfTTCLowerThan" ;
+            sh:datatype xsd:string ;
+            sh:description "Scenario/domain specific commands or actions"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of customCommands failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "customCommands"@en ;
+            sh:order 6 ;
+            sh:path scenario:customCommands ] ;
+    sh:targetClass scenario:Participants .
+
+scenario:StructuralShape a sh:NodeShape ;
+    sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
+            sh:description "Link to Catalogs"@en ;
+            sh:message "Validation of catalogs failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "catalogs"@en ;
+            sh:node scenario:LinkShape ;
+            sh:order 0 ;
+            sh:path scenario:catalogs ],
+        [ skos:example "http://mywebsite.de/myModel.fbx" ;
+            sh:description "Link to 3D models"@en ;
+            sh:message "Validation of 3dModels failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "3dModels"@en ;
+            sh:node scenario:LinkShape ;
+            sh:order 1 ;
+            sh:path scenario:3dModels ],
+        [ skos:example "http://mywebsite.de/map.xodr" ;
+            sh:description "Link to traffic space"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of trafficSpace failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "trafficSpace"@en ;
+            sh:node scenario:LinkShape ;
+            sh:order 2 ;
+            sh:path scenario:trafficSpace ] ;
+    sh:targetClass scenario:Structural .
+
+scenario:TrafficShape a sh:NodeShape ;
+    sh:property [ skos:example "left or right hand traffic" ;
+            sh:datatype xsd:string ;
+            sh:description "On which side of the road the TP drive"@en ;
+            sh:in ("left-hand" "right-hand") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of ruleOfTheRoad failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "ruleOfTheRoad"@en ;
+            sh:order 1 ;
+            sh:path scenario:ruleOfTheRoad ],
+        [ skos:example "kangaroo crossing" ;
+            sh:datatype xsd:string ;
+            sh:description "Country specific traffic signs"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificSign failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "countrySpecificSign"@en ;
+            sh:order 3 ;
+            sh:path scenario:countrySpecificSign ],
+        [ skos:example "tuk tuk" ;
+            sh:datatype xsd:string ;
+            sh:description "Country specific traffic participants"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificTP failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "countrySpecificTP"@en ;
+            sh:order 2 ;
+            sh:path scenario:countrySpecificTP ],
+        [ skos:example "germany, not applicable" ;
+            sh:datatype xsd:string ;
+            sh:description "Country where this scenario is from"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country"@en ;
+            sh:order 0 ;
+            sh:path scenario:country ] ;
+    sh:targetClass scenario:Traffic .
+
+scenario:LinkShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:message "Validation of url failed!"@en ;
+            sh:name "url"@en ;
+            sh:order 0 ;
+            sh:path scenario:url ],
+        [ sh:datatype xsd:string ;
+            sh:in ("Document" "Image" "Model" "Routing" "Video") ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 1 ;
+            sh:path scenario:type ] ;
+    sh:targetClass scenario:Link .
 

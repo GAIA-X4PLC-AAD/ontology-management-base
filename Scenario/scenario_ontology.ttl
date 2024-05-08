@@ -1,17 +1,17 @@
-@prefix Scenario: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/Scenario_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-Scenario: a owl:Ontology ;
-    rdfs:label "ontology definition for Scenario"@en ;
+scenario: a owl:Ontology ;
+    rdfs:label "ontology definition for scenario"@en ;
     dcterms:contributor "Fin Heuer (DLR)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-Scenario:Asset a owl:Class ;
-    rdfs:label "Scenario" ;
-    rdfs:comment "attributes for OpenScenario"@en ;
+scenario:scenario a owl:Class ;
+    rdfs:label "class definition for scenario" ;
+    rdfs:comment "Attributes for scenario"@en ;
     rdfs:subClassOf gax-core:Resource .
 
