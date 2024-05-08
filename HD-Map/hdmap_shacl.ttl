@@ -157,21 +157,25 @@ hdmap:BoundingBoxShape a sh:NodeShape ;
             sh:message "Validation of yMin failed!"@en ;
             sh:name "yMin"@en ;
             sh:order 1 ;
+            sh:maxCount 1 ;
             sh:path hdmap:yMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of yMax failed!"@en ;
             sh:name "yMax"@en ;
             sh:order 3 ;
+            sh:maxCount 1 ;
             sh:path hdmap:yMax ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
             sh:order 0 ;
+            sh:maxCount 1 ;
             sh:path hdmap:xMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMax failed!"@en ;
             sh:name "xMax"@en ;
             sh:order 2 ;
+            sh:maxCount 1 ;
             sh:path hdmap:xMax ] ;
     sh:targetClass hdmap:BoundingBox .
 
@@ -180,11 +184,13 @@ hdmap:Coordinate2DShape a sh:NodeShape ;
             sh:message "Validation of x failed!"@en ;
             sh:name "x"@en ;
             sh:order 0 ;
+            sh:maxCount 1 ;
             sh:path hdmap:x ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of y failed!"@en ;
             sh:name "y"@en ;
             sh:order 1 ;
+            sh:maxCount 1 ;
             sh:path hdmap:y ] ;
     sh:targetClass hdmap:Coordinate2D .
 
@@ -192,6 +198,7 @@ hdmap:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
             sh:node hdmap:Coordinate2DShape ;
@@ -252,6 +259,7 @@ hdmap:ProjectLocationShape a sh:NodeShape ;
         [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
             sh:description "Bounding box with lat/lon values in WGS84"@en ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:message "Validation of boundingBox failed!"@en ;
             sh:name "boundingBox"@en ;
             sh:node hdmap:BoundingBoxShape ;
