@@ -91,21 +91,25 @@ scenario:BoundingBoxShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of yMin failed!"@en ;
             sh:name "yMin"@en ;
+            sh:maxCount 1 ;
             sh:order 1 ;
             sh:path scenario:yMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of yMax failed!"@en ;
             sh:name "yMax"@en ;
+            sh:maxCount 1 ;
             sh:order 3 ;
             sh:path scenario:yMax ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
+            sh:maxCount 1 ;
             sh:order 0 ;
             sh:path scenario:xMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMax failed!"@en ;
             sh:name "xMax"@en ;
+            sh:maxCount 1 ;
             sh:order 2 ;
             sh:path scenario:xMax ] ;
     sh:targetClass scenario:BoundingBox .
@@ -114,11 +118,13 @@ scenario:Coordinate2DShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of x failed!"@en ;
             sh:name "x"@en ;
+            sh:maxCount 1 ;
             sh:order 0 ;
             sh:path scenario:x ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of y failed!"@en ;
             sh:name "y"@en ;
+            sh:maxCount 1 ;
             sh:order 1 ;
             sh:path scenario:y ] ;
     sh:targetClass scenario:Coordinate2D .
@@ -128,7 +134,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "State of project area"@en ;
             sh:message "Validation of state failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "state"@en ;
             sh:order 1 ;
             sh:path scenario:state ],
@@ -136,7 +142,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "nan"@en ;
             sh:message "Validation of city failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "city"@en ;
             sh:order 3 ;
             sh:path scenario:city ],
@@ -144,7 +150,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Region of project area"@en ;
             sh:message "Validation of region failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "region"@en ;
             sh:order 2 ;
             sh:path scenario:region ],
@@ -170,11 +176,11 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
             sh:message "Validation of relationOrArea failed!"@en ;
-            sh:minCount 0 ;
+            sh:maxCount 1 ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
             sh:path scenario:relationOrArea ] ;
-    sh:targetClass scenario:ProjectLocation .       
+    sh:targetClass scenario:ProjectLocation .      
 
 scenario:Data_SourcesShape a sh:NodeShape ;
     sh:property [ skos:example "captured reality, synthetic" ;
