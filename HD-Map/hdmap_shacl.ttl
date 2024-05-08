@@ -1,196 +1,406 @@
-@prefix HD-Map: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/HD-Map_ontology/> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-HD-Map:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "0.1" ;
-            sh:datatype xsd:float ;
-            sh:description "accuracy of lane modell 2d"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of accuracy_lane_model_2d failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "accuracy_lane_model_2d"@en ;
-            sh:path HD-Map:HD-Map_quality_accuracy_lane_model_2d ],
-        [ skos:example "0.1" ;
-            sh:datatype xsd:float ;
-            sh:description "accuracy lane modell height"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of accuracy_lane_model_height failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "accuracy_lane_model_height"@en ;
-            sh:path HD-Map:HD-Map_quality_accuracy_lane_model_height ],
-        [ skos:example "scanner, camera, osm network, aerial images, ..." ;
+hdmap:hdmapShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:FormatShape ;
+            sh:order 5 ;
+            sh:path hdmap:Format ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:ContentShape ;
+            sh:order 2 ;
+            sh:path hdmap:Content ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:GeneralShape ;
+            sh:order 3 ;
+            sh:path hdmap:General ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:QuantityShape ;
+            sh:order 0 ;
+            sh:path hdmap:Quantity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:DataSourceShape ;
+            sh:order 6 ;
+            sh:path hdmap:DataSource ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:QualityShape ;
+            sh:order 1 ;
+            sh:path hdmap:Quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:GeoreferenceShape ;
+            sh:order 7 ;
+            sh:path hdmap:Georeference ] ;
+    sh:targetClass hdmap:hdmap .
+
+hdmap:ContentShape a sh:NodeShape ;
+    sh:property [ skos:example "[motorway, residential]" ;
             sh:datatype xsd:string ;
-            sh:description "basic data for the creation of the map"@en ;
-            sh:message "Validation of used_data_sources failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "used_data_sources"@en ;
-            sh:path HD-Map:HD-Map_Data_source_used_data_sources ],
-        [ skos:example "5" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "sum of all junctions defined in the map,  see ODR spec section 10"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_intersections failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_intersections"@en ;
-            sh:path HD-Map:HD-Map_quantity_number_intersections ],
-        [ skos:example "trees, street lamps, road patches..." ;
-            sh:datatype xsd:string ;
-            sh:description "covered object classes, see ODR spec section 11"@en ;
-            sh:message "Validation of Level_of_Detail failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "Level_of_Detail"@en ;
-            sh:path HD-Map:HD-Map_content_Level_of_Detail ],
-        [ skos:example "100" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "sum of all objects outlines in the map,  see ODR spec section 11.2"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_outlines failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_outlines"@en ;
-            sh:path HD-Map:HD-Map_quantity_number_outlines ],
-        [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
-            sh:datatype xsd:string ;
-            sh:description "main acquisition device"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of measurement_system failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "measurement_system"@en ;
-            sh:path HD-Map:HD-Map_Data_source_measurement_system ],
-        [ skos:example "[10,50] km/h" ;
-            sh:datatype xsd:string ;
-            sh:description "range of speed limits defined in the map, see ODR spec section 9.5.5. "@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of speed_limit failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "speed_limit"@en ;
-            sh:path HD-Map:HD-Map_quantity_speed_limit ],
-        [ skos:example "0.1" ;
-            sh:datatype xsd:float ;
-            sh:description "accuracy of objects in the traffic space, which do not directly affect the traffic"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of accuracy_objects failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "accuracy_objects"@en ;
-            sh:path HD-Map:HD-Map_quality_accuracy_objects ],
-        [ skos:example "0" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "sum of all traffic lights defined in the map,  see ODR spec section 12"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_traffic_lights failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_traffic_lights"@en ;
-            sh:path HD-Map:HD-Map_quantity_number_traffic_lights ],
-        [ skos:example "155" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "sum of all traffic signs in the map,  see ODR spec section 12"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_traffic_signs failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_traffic_signs"@en ;
-            sh:path HD-Map:HD-Map_quantity_number_traffic_signs ],
+            sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
+            sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
+            sh:message "Validation of roadTypes failed!"@en ;
+            sh:name "roadTypes"@en ;
+            sh:order 0 ;
+            sh:path hdmap:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
             sh:datatype xsd:string ;
-            sh:description "covered lane types, see ODR spec section 9.5.3."@en ;
-            sh:message "Validation of lane_types failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "lane_types"@en ;
-            sh:path HD-Map:HD-Map_content_lane_types ],
-        [ skos:example "2.22" ;
-            sh:datatype xsd:float ;
-            sh:description "difference of max and mit elevation, extraction from openDrive Element t_road_elevationprofile_elevation, see section 8.4"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of elevation_range failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "elevation_range"@en ;
-            sh:path HD-Map:HD-Map_quantity_elevation_range ],
+            sh:description "Covered lane types, see ODR spec section 9.5.3."@en ;
+            sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
+            sh:message "Validation of laneTypes failed!"@en ;
+            sh:name "laneTypes"@en ;
+            sh:order 1 ;
+            sh:path hdmap:laneTypes ],
+        [ skos:example "trees, street lamps, road patches..." ;
+            sh:datatype xsd:string ;
+            sh:description "Covered object classes, see ODR spec section 11"@en ;
+            sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
+            sh:message "Validation of levelOfDetail failed!"@en ;
+            sh:name "levelOfDetail"@en ;
+            sh:order 2 ;
+            sh:path hdmap:levelOfDetail ] ;
+    sh:targetClass hdmap:Content .
+
+hdmap:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:order 0 ;
+            sh:path hdmap:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:order 1 ;
+            sh:path hdmap:y ] ;
+    sh:targetClass hdmap:Coordinate2D .
+
+hdmap:DataSourceShape a sh:NodeShape ;
+    sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
+            sh:datatype xsd:string ;
+            sh:description "Main acquisition device"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of measurementSystem failed!"@en ;
+            sh:name "measurementSystem"@en ;
+            sh:order 1 ;
+            sh:path hdmap:measurementSystem ],
+        [ skos:example "scanner, camera, osm network, aerial images, ..." ;
+            sh:datatype xsd:string ;
+            sh:description "Basic data for the creation of the map"@en ;
+            sh:message "Validation of usedDataSources failed!"@en ;
+            sh:name "usedDataSources"@en ;
+            sh:order 0 ;
+            sh:path hdmap:usedDataSources ] ;
+    sh:targetClass hdmap:DataSource .
+
+hdmap:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path hdmap:version ],
+        [ skos:example "ASAM OpenDRIVE  Road5 Lanelet road2sim roadXML  Shape" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("ASAM OpenDRIVE" "Lanelet" "Road5" "Shape" "road2sim" "roadXML") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path hdmap:type ] ;
+    sh:targetClass hdmap:Format .
+
+hdmap:GeneralShape a sh:NodeShape ;
+    sh:property [ skos:example "right-hand traffic" ;
+            sh:datatype xsd:string ;
+            sh:description "Traffic direction, i.e. right-hand or left-hand traffic"@en ;
+            sh:in ("left-hand" "right-hand") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of trafficDirection failed!"@en ;
+            sh:name "trafficDirection"@en ;
+            sh:order 1 ;
+            sh:path hdmap:trafficDirection ],
+        [ skos:example "2022-04-01 00:00:00" ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Time of data acquisition used to generate the map, if partial measurement: oldest date"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of recordingTime failed!"@en ;
+            sh:name "recordingTime"@en ;
+            sh:order 0 ;
+            sh:path hdmap:recordingTime ] ;
+    sh:targetClass hdmap:General .
+
+hdmap:GeoreferenceShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:ProjectLocationShape ;
+            sh:order 0 ;
+            sh:path hdmap:ProjectLocation ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:GeodeticReferenceSystemShape ;
+            sh:order 1 ;
+            sh:path hdmap:GeodeticReferenceSystem ] ;
+    sh:targetClass hdmap:georeference .
+
+hdmap:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:order 1 ;
+            sh:path hdmap:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:order 3 ;
+            sh:path hdmap:yMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:order 0 ;
+            sh:path hdmap:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:order 2 ;
+            sh:path hdmap:xMax ] ;
+    sh:targetClass hdmap:BoundingBox .
+
+hdmap:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:order 0 ;
+            sh:path hdmap:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:order 1 ;
+            sh:path hdmap:y ] ;
+    sh:targetClass hdmap:Coordinate2D .
+
+hdmap:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
+            sh:description "World coordinates of map origin"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of origin failed!"@en ;
+            sh:name "origin"@en ;
+            sh:node hdmap:Coordinate2DShape ;
+            sh:order 2 ;
+            sh:path hdmap:origin ],
         [ skos:example "EPSG 32632" ;
             sh:datatype xsd:string ;
             sh:description "EPSG code of the map"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of projection_type failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "projection_type"@en ;
-            sh:path HD-Map:HD-Map_Georefencing_projection_type ],
-        [ skos:example "right-hand traffic" ;
-            sh:datatype xsd:string ;
-            sh:description "traffic direction, i.e. right-hand or left-hand traffic"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of traffic_direction failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "traffic_direction"@en ;
-            sh:path HD-Map:HD-Map_general_traffic_direction ],
-        [ skos:example "0.01" ;
-            sh:datatype xsd:float ;
-            sh:description "precision of measured road network (relative accuracy)"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of precision failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "precision"@en ;
-            sh:path HD-Map:HD-Map_quality_precision ],
-        [ skos:example "20" ;
-            sh:datatype xsd:float ;
-            sh:description "how wide is the area beyond the traffic space modeled"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of range_of_modeling failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "range_of_modeling"@en ;
-            sh:path HD-Map:HD-Map_quantity_range_of_modeling ],
-        [ skos:example "2022-04-01 00:00:00" ;
-            sh:datatype xsd:string ;
-            sh:description "time of data acquisition used to generate the map, if partial measurement: oldest date"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of recording_time failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "recording_time"@en ;
-            sh:path HD-Map:HD-Map_general_recording_time ],
-        [ skos:example "200" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "sum of all objects in the map,  see ODR spec section 11"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of number_objects failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "number_objects"@en ;
-            sh:path HD-Map:HD-Map_quantity_number_objects ],
-        [ skos:example "[motorway, residential]" ;
-            sh:datatype xsd:string ;
-            sh:description "covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
-            sh:message "Validation of road_types failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "road_types"@en ;
-            sh:path HD-Map:HD-Map_content_road_types ],
-        [ skos:example "0.1" ;
-            sh:datatype xsd:float ;
-            sh:description "accuracy of traffic relevant objects, signs and signals"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of accuracy_signals failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "accuracy_signals"@en ;
-            sh:path HD-Map:HD-Map_quality_accuracy_signals ],
+            sh:maxCount 1 ;
+            sh:message "Validation of coordinateSystem failed!"@en ;
+            sh:name "coordinateSystem"@en ;
+            sh:order 0 ;
+            sh:path hdmap:coordinateSystem ],
         [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
-            sh:description "ellipsodial height or orthometric height"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of height_system failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "height_system"@en ;
-            sh:path HD-Map:HD-Map_Georefencing_height_system ],
+            sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of heightSystem failed!"@en ;
+            sh:name "heightSystem"@en ;
+            sh:order 1 ;
+            sh:path hdmap:heightSystem ] ;
+    sh:targetClass hdmap:GeodeticReferenceSystem .
+
+hdmap:ProjectLocationShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "State of project area"@en ;
+            sh:message "Validation of state failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "state"@en ;
+            sh:order 1 ;
+            sh:path hdmap:state ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "nan"@en ;
+            sh:message "Validation of city failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "city"@en ;
+            sh:order 3 ;
+            sh:path hdmap:city ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "Region of project area"@en ;
+            sh:message "Validation of region failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "region"@en ;
+            sh:order 2 ;
+            sh:path hdmap:region ],
+        [ skos:example "Germany, GER" ;
+            sh:datatype xsd:string ;
+            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:name "country"@en ;
+            sh:order 0 ;
+            sh:path hdmap:country ;
+            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
+        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
+            sh:description "Bounding box with lat/lon values in WGS84"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of boundingBox failed!"@en ;
+            sh:name "boundingBox"@en ;
+            sh:node hdmap:BoundingBoxShape ;
+            sh:order 5 ;
+            sh:path hdmap:boundingBox ],
+        [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
+            sh:message "Validation of relationOrArea failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "relationOrArea"@en ;
+            sh:order 4 ;
+            sh:path hdmap:relationOrArea ] ;
+    sh:targetClass hdmap:ProjectLocation .    
+
+hdmap:QualityShape a sh:NodeShape ;
+    sh:property [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracySignals failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracySignals"@en ;
+            sh:order 3 ;
+            sh:path hdmap:accuracySignals ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of objects in the traffic space, which do not directly affect the traffic"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyObjects failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyObjects"@en ;
+            sh:order 4 ;
+            sh:path hdmap:accuracyObjects ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy lane modell height"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyLaneModelHeight failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyLaneModelHeight"@en ;
+            sh:order 2 ;
+            sh:path hdmap:accuracyLaneModelHeight ],
+        [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Precision of measured road network (relative accuracy)"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of precision failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "precision"@en ;
+            sh:order 0 ;
+            sh:path hdmap:precision ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of lane modell 2d"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyLaneModel2d failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyLaneModel2d"@en ;
+            sh:order 1 ;
+            sh:path hdmap:accuracyLaneModel2d ] ;
+    sh:targetClass hdmap:Quality .
+
+hdmap:QuantityShape a sh:NodeShape ;
+    sh:property [ skos:example "5" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Sum of all junctions defined in the map,  see ODR spec section 10"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberIntersections failed!"@en ;
+            sh:name "numberIntersections"@en ;
+            sh:order 2 ;
+            sh:path hdmap:numberIntersections ],
+        [ skos:example "0" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Sum of all traffic lights defined in the map,  see ODR spec section 12"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberTrafficLights failed!"@en ;
+            sh:name "numberTrafficLights"@en ;
+            sh:order 3 ;
+            sh:path hdmap:numberTrafficLights ],
+        [ skos:example "20" ;
+            sh:datatype xsd:float ;
+            sh:description "How wide is the area beyond the traffic space modeled"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of rangeOfModeling failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "rangeOfModeling"@en ;
+            sh:order 8 ;
+            sh:path hdmap:rangeOfModeling ],
+        [ skos:example "100" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Sum of all objects outlines in the map,  see ODR spec section 11.2"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberOutlines failed!"@en ;
+            sh:name "numberOutlines"@en ;
+            sh:order 6 ;
+            sh:path hdmap:numberOutlines ],
+        [ skos:example "[10,50] km/h" ;
+            sh:description "Range of speed limits defined in the map, see ODR spec section 9.5.5. "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of speedLimit failed!"@en ;
+            sh:name "speedLimit"@en ;
+            sh:node hdmap:Range2DShape ;
+            sh:order 7 ;
+            sh:path hdmap:speedLimit ],
         [ skos:example "40.0" ;
             sh:datatype xsd:float ;
-            sh:description "road network length in km, sum over road length; see ODR spec section 8"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:description "Road network length in km, sum over road length; see ODR spec section 8"@en ;
+            sh:maxCount 1 ;
             sh:message "Validation of length failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
             sh:name "length"@en ;
-            sh:path HD-Map:HD-Map_quantity_length ],
-        [ skos:example "Lat: 1.234; Lon 45.23" ;
-            sh:datatype xsd:string ;
-            sh:description "world coordinates of map origin"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of origin failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "origin"@en ;
-            sh:path HD-Map:HD-Map_Georefencing_origin ] ;
-    sh:targetClass HD-Map:Asset .
+            sh:order 0 ;
+            sh:path hdmap:length ],
+        [ skos:example "2.22" ;
+            sh:datatype xsd:float ;
+            sh:description "Difference of max and mit elevation, extraction from openDrive Element t_road_elevationprofile_elevation, see section 8.4"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of elevationRange failed!"@en ;
+            sh:name "elevationRange"@en ;
+            sh:order 1 ;
+            sh:path hdmap:elevationRange ],
+        [ skos:example "200" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Sum of all objects in the map,  see ODR spec section 11"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberObjects failed!"@en ;
+            sh:name "numberObjects"@en ;
+            sh:order 5 ;
+            sh:path hdmap:numberObjects ],
+        [ skos:example "155" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Sum of all traffic signs in the map,  see ODR spec section 12"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberTrafficSigns failed!"@en ;
+            sh:name "numberTrafficSigns"@en ;
+            sh:order 4 ;
+            sh:path hdmap:numberTrafficSigns ] ;
+    sh:targetClass hdmap:Quantity .
+
+hdmap:Range2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of max failed!"@en ;
+            sh:name "max"@en ;
+            sh:order 0 ;
+            sh:path hdmap:max ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of min failed!"@en ;
+            sh:name "min"@en ;
+            sh:order 0 ;
+            sh:path hdmap:min ] ;
+    sh:targetClass hdmap:Range2D .
 

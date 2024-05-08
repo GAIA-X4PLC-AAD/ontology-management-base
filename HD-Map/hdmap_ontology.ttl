@@ -1,17 +1,18 @@
-@prefix HD-Map: <https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/tools/ontologie_creator/ontologies/HD-Map_ontology/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
-HD-Map: a owl:Ontology ;
-    rdfs:label "ontology definition for HD-Map"@en ;
+hdmap: a owl:Ontology ;
+    rdfs:label "ontology definition for hdmap"@en ;
     dcterms:contributor "Sebastian Tuttas (3DM)" ;
     owl:versionInfo "0.1"^^xsd:float .
 
-HD-Map:Asset a owl:Class ;
-    rdfs:label "HD-Map" ;
-    rdfs:comment "attributes for hd maps"@en ;
-    rdfs:subClassOf gax-core:Resource .
+hdmap:hdmap a owl:Class ;
+    rdfs:label "class definition for hdmap" ;
+    rdfs:comment "Attributes for high definition maps"@en ;
+    rdfs:subClassOf gax-core:DataResource .
 
