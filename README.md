@@ -13,7 +13,7 @@ constraints.
 The repository contains a folder for each domain in the project which stores Turtle files for the domain-specific Ontologies and
 associated SHACL Shapes.
 
-Example files can be found in the folder [examples](https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples) in the this repository.
+Example files can be found in the folder [example](https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/example) in the this repository.
 
 ## Process
 
@@ -37,12 +37,13 @@ In the case you want to create a new Class which is not suitable for the existin
 that contains this class. An Ontology describes a set of classes in a specific subject area and how they are related. A
 domain may contain multiple Ontologies.
 
-1. Create a folder for the Domain, if it does not already exist. Consider to update the CODEOWNERS file if applicable (see CODEOWNERS section below)
+1. Create a folder for the Domain, if it does not already exist. 
 2. Create a Turtle file for the Ontology
 3. Describe the new type as an OWL Class in the Ontology
 4. Create a Turtle file for the SHACL Shape
 5. Describe a `NodeShape` in the SHACL file that refers to the class created in step 3 and describes its properties and their
    constraints
+6. Add a new entry to the CODEOWNERS file in the root directory of this repository and specify the owners for the new directory (see [Review process](#review-process-responsibilities) section below).
 
 ### Modify an existing Ontology & Shape
 
@@ -77,29 +78,41 @@ This section describes guidelines that _must_ be followed when applying changes 
 
 ### General
 
-* For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class
+* For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class. In addition to that there must be an example on an instance of a SHACL Shape.  
 
-### Files
+### Directories & files
 
+* Each domain has its own directory in the root of the repository.
+* Folders and filename are lowercase and words are separated by `-` (except the `_` as separator for the suffix, see below).
+* The name of the directory must match the prefix defined in the Ontology and SHACL files.
 * Ontologies are stored in Turtle files having a name in describing the purpose of the Ontology and a suffix `_ontology`.
   Example: `sensor_ontology.ttl`
 * SHACL Shapes are stored in Turtle files having the suffix `_shacl`. Example:
   `sensor_shacl.ttl`
-* Filename are lowercase and word separated by `_`
+* The example instance of a SHACL Shape is stored in json-ld format in a json file with the suffix `_instance`. Example: `sensor_instance.json`. The content stored in the json file is also called _claims_.
+  * The [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/) can be used to generate the example instance of a SHACL Shape. 
 
 ### Ontologies
 
-* Class must be a direct subclass of one of the Gaia-X base classes
-* Follow the Guidelines described in [Open Data Support - Designing and developing
-  RDF vocabularies](https://data.europa.eu/sites/default/files/d2.1.2_training_module_2.4_designing_and_developing_vocabularies_in_rdf_en_edp.pdf)
+* Class must be a subclass of one of the Gaia-X base classes
+* The name of the class must be in PascalCase. Example: `Sensor`
+* The attributes of the class must be in camelCase. Example: `sensorType`
+* The prefix of the ontology must match the prefix defined in the SHACL shape.
 
 ### SHACL Shapes
 
-* Shapes have the name of the linked Ontology class and a suffix `Shape`. Example: `ExampleServiceOfferingShape`
+* The name of the shape must be in PascalCase. Example: `SensorShape`
+* The attributes of the shape must be in camelCase. Example: `sensorType`
+* Shapes have the name of the linked Ontology class and a suffix `Shape`. Example: `SensorShape`
 * Shapes must be linked with the associated OWL Class via the property `sh:targetClass`
-* References to other Self Descriptions are specified by a property having nodeKind `sh:IRI`
+* References to other Self Descriptions are specified by a property having `sh:nodeKind sh:IRI`
+* The prefix of the SHACL shape must match the prefix defined in the ontology.
 
 ## Further information
+
+### Related repository
+* [gaia-x-compliant-claims-example](https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example)
+  * This repository contains an overview of how to instantiate the Gaia-X trust framework classes to create Gaia-X compliant claims.
 
 ### Helpful Plugins
 
