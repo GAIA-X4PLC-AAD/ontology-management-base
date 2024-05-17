@@ -1,0 +1,2463 @@
+@prefix : <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/openlabel/openlabel_ref_ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gax-trust-framework: <http://w3id.org/gaia-x/gax-trust-framework#> .
+@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/openlabel/openlabel_ref_ontology/> .
+
+<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/openlabel/openlabel_ref_ontology/> rdf:type owl:Ontology ;
+                                                                                                         <http://purl.org/dc/terms/contributor> "Rico Auerswald" ;
+                                                                                                         rdfs:comment "For details, please see https://www.asam.net/standards/detail/openlabel/"@en ;
+                                                                                                         rdfs:label "ASAM OpenLABEL Standard V1.0.0 Scenario Tagging Ontology"@en ,
+                                                                                                                    "An ontology for referencing ASAM OpenLABEL."@en ;
+                                                                                                         owl:versionInfo 0.5 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/openlabel/openlabel_ref_ontology/belongsTo
+:belongsTo rdf:type owl:ObjectProperty ;
+            rdfs:domain :OpenLabelReference ;
+            rdfs:range <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/hasTag
+<https://openlabel.asam.net/V1-0-0/ontologies/hasTag> rdf:type owl:ObjectProperty ;
+                                                      rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                      rdfs:range <https://openlabel.asam.net/V1-0-0/ontologies/Tag> .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentTypeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentTypeValue> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentType> ;
+                                                                     rdfs:range <https://openlabel.asam.net/V1-0-0/ontologies/RoadUser> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/daySunElevationValue
+<https://openlabel.asam.net/V1-0-0/ontologies/daySunElevationValue> rdf:type owl:DatatypeProperty ;
+                                                                    rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/DaySunElevation> ;
+                                                                    rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/horizontalCurvesValue
+<https://openlabel.asam.net/V1-0-0/ontologies/horizontalCurvesValue> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/HorizontalCurves> ;
+                                                                     rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/illuminationCloudinessValue
+<https://openlabel.asam.net/V1-0-0/ontologies/illuminationCloudinessValue> rdf:type owl:DatatypeProperty ;
+                                                                           rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationCloudiness> ;
+                                                                           rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationDimensionsValue
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationDimensionsValue> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationDimensions> ;
+                                                                                rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationLaneCountValue
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationLaneCountValue> rdf:type owl:DatatypeProperty ;
+                                                                               rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationLaneCount> ;
+                                                                               rdfs:range xsd:positiveInteger .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/licenseURI
+<https://openlabel.asam.net/V1-0-0/ontologies/licenseURI> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                          rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/longitudinalDownSlopeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalDownSlopeValue> rdf:type owl:DatatypeProperty ;
+                                                                          rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalDownSlope> ;
+                                                                          rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/longitudinalUpSlopeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalUpSlopeValue> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalUpSlope> ;
+                                                                        rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionAccelerateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionAccelerateValue> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/MotionAccelerate> ;
+                                                                     rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionDecelerateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDecelerateValue> rdf:type owl:DatatypeProperty ;
+                                                                     rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/MotionDecelerate> ;
+                                                                     rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionDriveValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDriveValue> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/MotionDrive> ;
+                                                                rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerEmail
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerEmail> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                          rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerName
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerName> rdf:type owl:DatatypeProperty ;
+                                                         rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                         rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerURL
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerURL> rdf:type owl:DatatypeProperty ;
+                                                        rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                        rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/particulatesWaterValue
+<https://openlabel.asam.net/V1-0-0/ontologies/particulatesWaterValue> rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesWater> ;
+                                                                      rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioCreatedDate
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioCreatedDate> rdf:type owl:DatatypeProperty ;
+                                                                   rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                   rdfs:range xsd:dateTime .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinition
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinition> rdf:type owl:DatatypeProperty ;
+                                                                  rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                  rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinitionLanguageURI
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinitionLanguageURI> rdf:type owl:DatatypeProperty ;
+                                                                             rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                             rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDescription
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDescription> rdf:type owl:DatatypeProperty ;
+                                                                   rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                   rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioName
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioName> rdf:type owl:DatatypeProperty ;
+                                                            rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                            rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioParentReference
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioParentReference> rdf:type owl:DatatypeProperty ;
+                                                                       rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                       rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioUniqueReference
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioUniqueReference> rdf:type owl:DatatypeProperty ;
+                                                                       rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                       rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioVersion
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVersion> rdf:type owl:DatatypeProperty ;
+                                                               rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                               rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioVisualisationURL
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVisualisationURL> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/Scenario> ;
+                                                                        rdfs:range rdfs:Literal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/subjectVehicleSpeedValue
+<https://openlabel.asam.net/V1-0-0/ontologies/subjectVehicleSpeedValue> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/SubjectVehicleSpeed> ;
+                                                                        rdfs:range xsd:nonNegativeInteger .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentDensityValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentDensityValue> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentDensity> ;
+                                                                        rdfs:range xsd:nonNegativeInteger .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficFlowRateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficFlowRateValue> rdf:type owl:DatatypeProperty ;
+                                                                    rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/TrafficFlowRate> ;
+                                                                    rdfs:range xsd:nonNegativeInteger .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficVolumeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficVolumeValue> rdf:type owl:DatatypeProperty ;
+                                                                  rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/TrafficVolume> ;
+                                                                  rdfs:range xsd:nonNegativeInteger .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherRainValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherRainValue> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/WeatherRain> ;
+                                                                rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherSnowValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherSnowValue> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/WeatherSnow> ;
+                                                                rdfs:range xsd:decimal .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherWindValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherWindValue> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain <https://openlabel.asam.net/V1-0-0/ontologies/WeatherWind> ;
+                                                                rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#Class
+rdfs:Class rdf:type owl:Class ;
+           rdfs:subClassOf :OpenLabelReference .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Property
+rdfs:Property rdf:type owl:Class ;
+              rdfs:subClassOf :OpenLabelReference .
+
+
+###  https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/openlabel/openlabel_ref_ontology/OpenLabelReference
+:OpenLabelReference rdf:type owl:Class ;
+                    rdfs:subClassOf gax-core:DataResource ;
+                    rdfs:comment "Describes a reference to ASAM OpenLABEL scenario tagging ontology."@en ;
+                    rdfs:label "Reference to OpenLABEL"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/AdminTag
+<https://openlabel.asam.net/V1-0-0/ontologies/AdminTag> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Tag> ;
+                                                        rdfs:comment "The base tag to use when extending the Administration tags with new classes."@en ;
+                                                        rdfs:label "Base Administration Tag"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ArtificialStreetLighting
+<https://openlabel.asam.net/V1-0-0/ontologies/ArtificialStreetLighting> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationArtificial> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.d.1"@en ;
+                                                                        rdfs:label "Streetlights"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ArtificialVehicleLighting
+<https://openlabel.asam.net/V1-0-0/ontologies/ArtificialVehicleLighting> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationArtificial> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.d.2"@en ;
+                                                                         rdfs:label "Oncoming vehicle lights"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/Behaviour
+<https://openlabel.asam.net/V1-0-0/ontologies/Behaviour> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Tag> ;
+                                                         rdfs:comment "An activity performed by a road user"@en ;
+                                                         rdfs:label "Behaviour"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication
+<https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Behaviour> ;
+                                                                      rdfs:comment "An activity in which the road user issues a communication"@en ;
+                                                                      rdfs:label "Communication"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion
+<https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Behaviour> ;
+                                                               rdfs:comment "An activity in which the road user changes position, velocity or direction"@en ;
+                                                               rdfs:label "Motion"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationHeadlightFlash
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationHeadlightFlash> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                           rdfs:comment "Headlight flashing is the act of either briefly switching on the headlights of a vehicle, or of momentarily switching between a headlight's high beams and low beams, in an effort to communicate with other road users"@en ;
+                                                                           rdfs:label "Flash headlight"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationHorn
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationHorn> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                 rdfs:comment "The noise made by a vehicle horn"@en ;
+                                                                 rdfs:label "Sound horn"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalEmergency
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalEmergency> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                            rdfs:comment "Signals made by an emergency vehicle when responding to an emergency, i.e. flashing blue lights"@en ;
+                                                                            rdfs:label "Signal emergency"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalHazard
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalHazard> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                         rdfs:comment "A signal made by a road user to warn other road users of a hazardous situation, such as when a vehicle is causing an obstruction"@en ;
+                                                                         rdfs:label "Signal hazard"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalLeft
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalLeft> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                       rdfs:comment "A signal made by a road user to indicate an intention to move or turn left"@en ;
+                                                                       rdfs:label "Signal left"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalRight
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalRight> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                        rdfs:comment "A signal made by a road user to indicate an intention to move or turn right"@en ;
+                                                                        rdfs:label "Signal right"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalSlowing
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationSignalSlowing> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                          rdfs:comment "A signal made by a road user to indicate an intention to slow down or stop"@en ;
+                                                                          rdfs:label "Signal slowing"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2i
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2i> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityCommunication> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2"@en ;
+                                                                rdfs:label "Vehicle to infrastructure communication (V2I)"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2v
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2v> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityCommunication> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1"@en ;
+                                                                rdfs:label "Vehicle to vehicle communication (V2V)"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/CommunicationWave
+<https://openlabel.asam.net/V1-0-0/ontologies/CommunicationWave> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourCommunication> ;
+                                                                 rdfs:comment "A person, including drivers, pedestrians, riders, making a waving gesture"@en ;
+                                                                 rdfs:label "Wave"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityCommunication
+<https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityCommunication> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentConnectivity> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a"@en ;
+                                                                         rdfs:label "Communication"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityPositioning
+<https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityPositioning> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentConnectivity> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b"@en ;
+                                                                       rdfs:label "Positioning"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DaySunElevation
+<https://openlabel.asam.net/V1-0-0/ontologies/DaySunElevation> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationDay> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.1"@en ;
+                                                               rdfs:label "Elevation of the sun above the horizon"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition
+<https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationDay> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+                                                              rdfs:label "Position of the sun"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.e"@en ;
+                                                                rdfs:label "Drivable area edge"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaGeometry
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaGeometry> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+                                                                    rdfs:label "Drivable area geometry"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.c"@en ;
+                                                                             rdfs:label "Drivable area lane specification"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSigns
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSigns> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.d"@en ;
+                                                                 rdfs:label "Drivable area signs"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurface
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurface> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.f"@en ;
+                                                                   rdfs:label "Drivable area surface"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurface> ;
+                                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.c"@en ;
+                                                                            rdfs:label "Drivable area induced road surface conditions"@en ;
+                                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurface> ;
+                                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.b"@en ;
+                                                                          rdfs:label "Drivable area surface features"@en ;
+                                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceType
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceType> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurface> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.a"@en ;
+                                                                       rdfs:label "Drivable area surface type"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType
+<https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2"@en ;
+                                                                rdfs:label "Drivable area type"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsSubjectVehicle
+<https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsSubjectVehicle> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddDynamicElements> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+                                                                             rdfs:label "Subject vehicle"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic
+<https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddDynamicElements> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a"@en ;
+                                                                      rdfs:label "Traffic"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeLineMarkers
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeLineMarkers> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.a"@en ;
+                                                               rdfs:label "Line markers"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeNone
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeNone> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.f"@en ;
+                                                        rdfs:label "None"@en ;
+                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeShoulderGrass
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeShoulderGrass> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.c"@en ;
+                                                                 rdfs:label "Shoulder (grass)"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeShoulderPavedOrGravel
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeShoulderPavedOrGravel> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.b"@en ;
+                                                                         rdfs:label "Shoulder (paved or gravel)"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeSolidBarriers
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeSolidBarriers> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.d"@en ;
+                                                                 rdfs:label "Solid barriers (e.g. grating, rails, curb, cones)"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EdgeTemporaryLineMarkers
+<https://openlabel.asam.net/V1-0-0/ontologies/EdgeTemporaryLineMarkers> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaEdge> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.e"@en ;
+                                                                        rdfs:label "Temporary line markers"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentConnectivity
+<https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentConnectivity> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4"@en ;
+                                                                       rdfs:label "Connectivity"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination
+<https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3"@en ;
+                                                                       rdfs:label "Illumination"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates
+<https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2"@en ;
+                                                                       rdfs:label "Particulates (obscuration by nonPrecipitating water droplets and other particulates)"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentWeather
+<https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentWeather> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1"@en ;
+                                                                  rdfs:label "Weather"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureBuilding
+<https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureBuilding> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.a"@en ;
+                                                                      rdfs:label "Buildings"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureStreetFurniture
+<https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureStreetFurniture> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.c"@en ;
+                                                                             rdfs:label "Street furniture (e.g. bollards)"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureStreetlight
+<https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureStreetlight> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.b"@en ;
+                                                                         rdfs:label "Street lights"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureVegetation
+<https://openlabel.asam.net/V1-0-0/ontologies/FixedStructureVegetation> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.d"@en ;
+                                                                        rdfs:label "Vegetation"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/GeometryHorizontal
+<https://openlabel.asam.net/V1-0-0/ontologies/GeometryHorizontal> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaGeometry> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.a"@en ;
+                                                                  rdfs:label "Horizontal plane"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/GeometryLongitudinal
+<https://openlabel.asam.net/V1-0-0/ontologies/GeometryLongitudinal> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaGeometry> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.c"@en ;
+                                                                    rdfs:label "Longitudinal plane"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse
+<https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaGeometry> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.b"@en ;
+                                                                  rdfs:label "Transverse plane"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HorizontalCurves
+<https://openlabel.asam.net/V1-0-0/ontologies/HorizontalCurves> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryHorizontal> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+                                                                rdfs:label "Curves"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HorizontalStraights
+<https://openlabel.asam.net/V1-0-0/ontologies/HorizontalStraights> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryHorizontal> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+                                                                   rdfs:label "Straight lines"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanAnimalRider
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanAnimalRider> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                                rdfs:comment "A person who is riding an animal"@en ;
+                                                                rdfs:label "Animal rider"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanCyclist
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanCyclist> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                            rdfs:comment "A person who is riding a cycle"@en ;
+                                                            rdfs:label "Cyclist"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanDriver
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanDriver> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                           rdfs:comment "A person who is operating a motorised vehicle, excluding motorcycles"@en ;
+                                                           rdfs:label "Driver"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanMotorcyclist
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanMotorcyclist> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                                 rdfs:comment "A person who is riding a motorcycle"@en ;
+                                                                 rdfs:label "Motorcyclist"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanPassenger
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanPassenger> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                              rdfs:comment "A person who is using a vehicle to travel but who is not operating the vehicle"@en ;
+                                                              rdfs:label "Passenger"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanPedestrian
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanPedestrian> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                               rdfs:comment "A person who is using a road without the use of a vehicle"@en ;
+                                                               rdfs:label "Pedestrian"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/HumanWheelchairUser
+<https://openlabel.asam.net/V1-0-0/ontologies/HumanWheelchairUser> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> ;
+                                                                   rdfs:comment "A person who is travelling in a wheelchair"@en ;
+                                                                   rdfs:label "Wheelchair user"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IlluminationArtificial
+<https://openlabel.asam.net/V1-0-0/ontologies/IlluminationArtificial> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.d"@en ;
+                                                                      rdfs:label "Artificial illumination"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IlluminationCloudiness
+<https://openlabel.asam.net/V1-0-0/ontologies/IlluminationCloudiness> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.c"@en ;
+                                                                      rdfs:label "Cloudiness"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IlluminationDay
+<https://openlabel.asam.net/V1-0-0/ontologies/IlluminationDay> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a"@en ;
+                                                               rdfs:label "Day"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IlluminationLowLight
+<https://openlabel.asam.net/V1-0-0/ontologies/IlluminationLowLight> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentIllumination> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b"@en ;
+                                                                    rdfs:label "Night or lowAmbient lighting condition"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniform
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniform> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsInformation> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                       rdfs:label "Uniform"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniformFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniformFullTime> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniform> ;
+                                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                               rdfs:label "FullTime"@en ;
+                                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniformTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniformTemporary> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsUniform> ;
+                                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                                rdfs:label "Temporary"@en ;
+                                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariable
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariable> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsInformation> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                        rdfs:label "Variable"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariableFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariableFullTime> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariable> ;
+                                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                                rdfs:label "FullTime"@en ;
+                                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariableTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariableTemporary> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/InformationSignsVariable> ;
+                                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                                 rdfs:label "Temporary"@en ;
+                                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IntersectionCrossroad
+<https://openlabel.asam.net/V1-0-0/ontologies/IntersectionCrossroad> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.iv"@en ;
+                                                                     rdfs:label "Crossroads"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IntersectionGradeSeperated
+<https://openlabel.asam.net/V1-0-0/ontologies/IntersectionGradeSeperated> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> ;
+                                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.v"@en ;
+                                                                          rdfs:label "Grade separated"@en ;
+                                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IntersectionStaggered
+<https://openlabel.asam.net/V1-0-0/ontologies/IntersectionStaggered> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.ii"@en ;
+                                                                     rdfs:label "Staggered"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IntersectionTJunction
+<https://openlabel.asam.net/V1-0-0/ontologies/IntersectionTJunction> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.i"@en ;
+                                                                     rdfs:label "TJunctions"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/IntersectionYJunction
+<https://openlabel.asam.net/V1-0-0/ontologies/IntersectionYJunction> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.iii"@en ;
+                                                                     rdfs:label "YJunction"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection
+<https://openlabel.asam.net/V1-0-0/ontologies/JunctionIntersection> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryJunction> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4"@en ;
+                                                                    rdfs:label "Intersections"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout
+<https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryJunction> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4"@en ;
+                                                                  rdfs:label "Roundabouts"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationDimensions
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationDimensions> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> ;
+                                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.a"@en ;
+                                                                           rdfs:label "Lane dimensions"@en ;
+                                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationLaneCount
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationLaneCount> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> ;
+                                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.d"@en ;
+                                                                          rdfs:label "Number of lanes"@en ;
+                                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationMarking
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationMarking> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.b"@en ;
+                                                                        rdfs:label "Lane marking"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationTravelDirection
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationTravelDirection> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> ;
+                                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+                                                                                rdfs:label "Direction of travel"@en ;
+                                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaLaneSpecification> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.c"@en ;
+                                                                     rdfs:label "Lane type"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeBus
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeBus> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                           rdfs:label "Bus lane"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeCycle
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeCycle> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                             rdfs:label "Cycle lane"@en ;
+                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeEmergency
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeEmergency> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                                 rdfs:label "Emergency lane"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeSpecial
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeSpecial> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                               rdfs:label "Special purpose lane"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeTraffic
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeTraffic> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                               rdfs:label "Traffic lane"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeTram
+<https://openlabel.asam.net/V1-0-0/ontologies/LaneTypeTram> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationType> ;
+                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+                                                            rdfs:label "Tram lane"@en ;
+                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalDownSlope
+<https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalDownSlope> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryLongitudinal> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.ii"@en ;
+                                                                     rdfs:label "Dow-slope (negativeGradient)"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalLevelPlane
+<https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalLevelPlane> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryLongitudinal> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.iii"@en ;
+                                                                      rdfs:label "Level plane"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalUpSlope
+<https://openlabel.asam.net/V1-0-0/ontologies/LongitudinalUpSlope> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryLongitudinal> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.i"@en ;
+                                                                   rdfs:label "Up-slope (positive gradient)"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LowLightAmbient
+<https://openlabel.asam.net/V1-0-0/ontologies/LowLightAmbient> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationLowLight> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b.2"@en ;
+                                                               rdfs:label "LowAmbient lighting"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/LowLightNight
+<https://openlabel.asam.net/V1-0-0/ontologies/LowLightNight> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/IlluminationLowLight> ;
+                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b.1"@en ;
+                                                             rdfs:label "Night"@en ;
+                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionAccelerate
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionAccelerate> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                                rdfs:comment "An activity where the road user increases their velocity"@en ;
+                                                                rdfs:label "Accelerate"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionAway
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionAway> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                          rdfs:comment "An activity where the rod user is further away from the object by the end of the activity"@en ;
+                                                          rdfs:label "Move away"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionCross
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionCross> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                           rdfs:comment "An activity where the trajectory of the road user crosses the trajectory of the object"@en ;
+                                                           rdfs:label "Cross"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionCutIn
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionCutIn> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                           rdfs:comment "An activity where the subject vehicle ends up directly in front of the object vehicle in such a manner as to (potentially) affect the behavior of the object vehicle"@en ;
+                                                           rdfs:label "Cut-in"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionCutOut
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionCutOut> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                            rdfs:comment "A two participant moving activity where the subject and object vehicles start in the same lane and then the object participant suddenly moves out of the lane"@en ;
+                                                            rdfs:label "Cut-out"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionDecelerate
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionDecelerate> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                                rdfs:comment "An activity where the road user decreases their velocity"@en ;
+                                                                rdfs:label "Decelerate"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionDrive
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionDrive> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                           rdfs:comment "An activity where the subject vehicle is moving in the direction in which it is facing"@en ;
+                                                           rdfs:label "Drive"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionLaneChangeLeft
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionLaneChangeLeft> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                                    rdfs:comment "An activity where the subject vehicle is in a lane left of the original lane at the end of the activity"@en ;
+                                                                    rdfs:label "Lane change left"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionLaneChangeRight
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionLaneChangeRight> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                                     rdfs:comment "An activity where the subject vehicle is in a lane right of the original lane at the end of the activity"@en ;
+                                                                     rdfs:label "Lane change right"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionOvertake
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionOvertake> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                              rdfs:comment "An activity where the subject starts behind the object and then ends up in front of the object by changing lanes twice"@en ;
+                                                              rdfs:label "Overtake"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionReverse
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionReverse> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                             rdfs:comment "An activity where the subject vehicle is moving in the opposite direction to which it is facing"@en ;
+                                                             rdfs:label "Reverse"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionRun
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionRun> rdf:type owl:Class ;
+                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                         rdfs:comment "Locomotion mode of humans (and animals) in which at a specific point in time no foot touches the ground"@en ;
+                                                         rdfs:label "Run"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionSlide
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionSlide> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                           rdfs:comment "An activity where a pedestrian is slipping/sliding on the road"@en ;
+                                                           rdfs:label "Slide"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionStop
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionStop> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                          rdfs:comment "An activity where the road user is stationary"@en ;
+                                                          rdfs:label "Stop"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionTowards
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionTowards> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                             rdfs:comment "An activity where the road user is closer to the object by the end of the activity"@en ;
+                                                             rdfs:label "Move towards"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionTurn
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionTurn> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                          rdfs:comment "An activity where the road user changes their heading"@en ;
+                                                          rdfs:label "Turn"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionTurnLeft
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionTurnLeft> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                              rdfs:comment "An activity where the subject changes direction in reference to a traffic intersection in which the subject exits the intersection on a road to the left of the original road."@en ;
+                                                              rdfs:label "Turn left"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionTurnRight
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionTurnRight> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                               rdfs:comment "A moving activity where the subject changes direction in reference to a traffic intersection in which the subject exits the intersection on a road to the right of the original road."@en ;
+                                                               rdfs:label "Turn right"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionUTurn
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionUTurn> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                           rdfs:comment "An activity where the subject peforms a turn resulting in it heading in the opposite direction to which it started the activity"@en ;
+                                                           rdfs:label "U-turn"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotionWalk
+<https://openlabel.asam.net/V1-0-0/ontologies/MotionWalk> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/BehaviourMotion> ;
+                                                          rdfs:comment "Locomotion mode of humans (and animals) in which at least one foot is always on the ground"@en ;
+                                                          rdfs:label "Walk"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotorwayManaged
+<https://openlabel.asam.net/V1-0-0/ontologies/MotorwayManaged> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMotorway> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.1"@en ;
+                                                               rdfs:label "With active traffic management (smart motorways)"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/MotorwayUnmanaged
+<https://openlabel.asam.net/V1-0-0/ontologies/MotorwayUnmanaged> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMotorway> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.2"@en ;
+                                                                 rdfs:label "Without active traffic management"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/Odd
+<https://openlabel.asam.net/V1-0-0/ontologies/Odd> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Tag> ;
+                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5"@en ;
+                                                   rdfs:label "ODD"@en ;
+                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/OddDynamicElements
+<https://openlabel.asam.net/V1-0-0/ontologies/OddDynamicElements> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Odd> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.1.c"@en ;
+                                                                  rdfs:label "Dynamic elements"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment
+<https://openlabel.asam.net/V1-0-0/ontologies/OddEnvironment> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Odd> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.1.b"@en ;
+                                                              rdfs:label "Environmental Conditions"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/OddScenery
+<https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Odd> ;
+                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.1.a"@en ;
+                                                          rdfs:label "Scenery"@en ;
+                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesDust
+<https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesDust> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.c"@en ;
+                                                                rdfs:label "Sand and dust"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesMarine
+<https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesMarine> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.a"@en ;
+                                                                  rdfs:label "Marine (coastal areas only)"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesPollution
+<https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesPollution> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.d"@en ;
+                                                                     rdfs:label "Smoke and pollution"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesVolcanic
+<https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesVolcanic> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.e"@en ;
+                                                                    rdfs:label "Volcanic ash"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesWater
+<https://openlabel.asam.net/V1-0-0/ontologies/ParticulatesWater> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentParticulates> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.b"@en ;
+                                                                 rdfs:label "Non-precipitating water droplets or ice crystals (i.e. mist/fog)"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/PositioningGalileo
+<https://openlabel.asam.net/V1-0-0/ontologies/PositioningGalileo> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityPositioning> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.1"@en ;
+                                                                  rdfs:label "Galileo"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/PositioningGlonass
+<https://openlabel.asam.net/V1-0-0/ontologies/PositioningGlonass> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityPositioning> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.2"@en ;
+                                                                  rdfs:label "GLObal NAvigation Satellite System (GLONASS)"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/PositioningGps
+<https://openlabel.asam.net/V1-0-0/ontologies/PositioningGps> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ConnectivityPositioning> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.3"@en ;
+                                                              rdfs:label "Global Positioning System (GPS)"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RainType
+<https://openlabel.asam.net/V1-0-0/ontologies/RainType> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/WeatherRain> ;
+                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+                                                        rdfs:label "Rainfall type"@en ;
+                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RainTypeConvective
+<https://openlabel.asam.net/V1-0-0/ontologies/RainTypeConvective> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RainType> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.2"@en ;
+                                                                  rdfs:label "Convective"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RainTypeDynamic
+<https://openlabel.asam.net/V1-0-0/ontologies/RainTypeDynamic> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RainType> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.1"@en ;
+                                                               rdfs:label "Dynamic"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RainTypeOrographic
+<https://openlabel.asam.net/V1-0-0/ontologies/RainTypeOrographic> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RainType> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.3"@en ;
+                                                                  rdfs:label "Orographic"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniform
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniform> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsRegulatory> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                      rdfs:label "Uniform"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniformFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniformFullTime> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniform> ;
+                                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                              rdfs:label "FullTime"@en ;
+                                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniformTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniformTemporary> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsUniform> ;
+                                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                               rdfs:label "Temporary"@en ;
+                                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariable
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariable> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsRegulatory> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                       rdfs:label "Variable"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariableFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariableFullTime> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariable> ;
+                                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                               rdfs:label "FullTime"@en ;
+                                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariableTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariableTemporary> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RegulatorySignsVariable> ;
+                                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                                rdfs:label "Temporary"@en ;
+                                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeDistributor
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeDistributor> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.c"@en ;
+                                                                   rdfs:label "Distributor roads"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMinor
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMinor> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.d"@en ;
+                                                             rdfs:label "Minor roads"@en ;
+                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMotorway
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeMotorway> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.a"@en ;
+                                                                rdfs:label "Motorways"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeParking
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeParking> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.f"@en ;
+                                                               rdfs:label "Parking"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeRadial
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeRadial> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.b"@en ;
+                                                              rdfs:label "Radial roads"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeShared
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeShared> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.g"@en ;
+                                                              rdfs:label "Shared space"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeSlip
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadTypeSlip> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaType> ;
+                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.e"@en ;
+                                                            rdfs:label "Slip roads"@en ;
+                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadUser
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadUser> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/Tag> ;
+                                                        rdfs:comment "Something which uses a road to travel"@en ;
+                                                        rdfs:label "Road user"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadUserAnimal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadUserAnimal> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUser> ;
+                                                              rdfs:comment "A non-human living organism that feeds on organic matter, typically having specialized sense organs and nervous system and able to respond rapidly to stimuli"@en ;
+                                                              rdfs:label "Animal"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadUserHuman> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUser> ;
+                                                             rdfs:comment "A person"@en ;
+                                                             rdfs:label "Human"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle
+<https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUser> ;
+                                                               rdfs:comment "A mode of transport that can be operated on a road; human or computer controlled"@en ;
+                                                               rdfs:label "Vehicle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompact
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompact> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b"@en ;
+                                                                 rdfs:label "Compact"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompactNosignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompactNosignal> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompact> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b.1"@en ;
+                                                                         rdfs:label "Signalised"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompactSignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompactSignal> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutCompact> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b.2"@en ;
+                                                                       rdfs:label "NonSignalised"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDouble
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDouble> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c"@en ;
+                                                                rdfs:label "Double"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDoubleNosignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDoubleNosignal> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDouble> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c.1"@en ;
+                                                                        rdfs:label "Signalised"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDoubleSignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDoubleSignal> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutDouble> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c.2"@en ;
+                                                                      rdfs:label "NonSignalised"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLarge
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLarge> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d"@en ;
+                                                               rdfs:label "Large"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLargeNosignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLargeNosignal> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLarge> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d.1"@en ;
+                                                                       rdfs:label "Signalised"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLargeSignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLargeSignal> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutLarge> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d.2"@en ;
+                                                                     rdfs:label "NonSignalised"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMini
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMini> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> ;
+                                                              rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e"@en ;
+                                                              rdfs:label "Mini"@en ;
+                                                              rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMiniNosignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMiniNosignal> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMini> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e.1"@en ;
+                                                                      rdfs:label "Signalised"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMiniSignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMiniSignal> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutMini> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e.2"@en ;
+                                                                    rdfs:label "NonSignalised"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormal> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/JunctionRoundabout> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a"@en ;
+                                                                rdfs:label "Normal"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormalNosignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormalNosignal> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormal> ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a.1"@en ;
+                                                                        rdfs:label "Signalised"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormalSignal
+<https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormalSignal> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoundaboutNormal> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a.2"@en ;
+                                                                      rdfs:label "NonSignalised"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/Scenario
+<https://openlabel.asam.net/V1-0-0/ontologies/Scenario> rdf:type owl:Class ;
+                                                        rdfs:subClassOf rdfs:Class .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea
+<https://openlabel.asam.net/V1-0-0/ontologies/SceneryDrivableArea> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.b"@en ;
+                                                                   rdfs:label "Drivable area"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure
+<https://openlabel.asam.net/V1-0-0/ontologies/SceneryFixedStructure> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.e"@en ;
+                                                                     rdfs:label "Fixed road structures"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SceneryJunction
+<https://openlabel.asam.net/V1-0-0/ontologies/SceneryJunction> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.c"@en ;
+                                                               rdfs:label "Junctions"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure
+<https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.d"@en ;
+                                                                       rdfs:label "Special structures"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure
+<https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.f"@en ;
+                                                                         rdfs:label "Temporary road structures"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone
+<https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/OddScenery> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.a"@en ;
+                                                           rdfs:label "Zones"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SignsInformation
+<https://openlabel.asam.net/V1-0-0/ontologies/SignsInformation> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSigns> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.a"@en ;
+                                                                rdfs:label "Information signs"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SignsRegulatory
+<https://openlabel.asam.net/V1-0-0/ontologies/SignsRegulatory> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSigns> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.b"@en ;
+                                                               rdfs:label "Regulatory signs"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SignsWarning
+<https://openlabel.asam.net/V1-0-0/ontologies/SignsWarning> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSigns> ;
+                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.c"@en ;
+                                                            rdfs:label "Warning signs"@en ;
+                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureAutoAccess
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureAutoAccess> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.a"@en ;
+                                                                          rdfs:label "Automatic access control"@en ;
+                                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureBridge
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureBridge> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.b"@en ;
+                                                                      rdfs:label "Bridges"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructurePedestrianCrossing
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructurePedestrianCrossing> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.c"@en ;
+                                                                                  rdfs:label "Pedestrian crossings"@en ;
+                                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureRailCrossing
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureRailCrossing> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.d"@en ;
+                                                                            rdfs:label "Rail crossings"@en ;
+                                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureTollPlaza
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureTollPlaza> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                         rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.f"@en ;
+                                                                         rdfs:label "Toll plaza"@en ;
+                                                                         rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureTunnel
+<https://openlabel.asam.net/V1-0-0/ontologies/SpecialStructureTunnel> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/ScenerySpecialStructure> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.e"@en ;
+                                                                      rdfs:label "Tunnels"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SubjectVehicleSpeed
+<https://openlabel.asam.net/V1-0-0/ontologies/SubjectVehicleSpeed> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsSubjectVehicle> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+                                                                   rdfs:label "Speed"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SunPositionBehind
+<https://openlabel.asam.net/V1-0-0/ontologies/SunPositionBehind> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+                                                                 rdfs:label "Behind"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SunPositionFront
+<https://openlabel.asam.net/V1-0-0/ontologies/SunPositionFront> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+                                                                rdfs:label "Front"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SunPositionLeft
+<https://openlabel.asam.net/V1-0-0/ontologies/SunPositionLeft> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+                                                               rdfs:label "Left"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SunPositionRight
+<https://openlabel.asam.net/V1-0-0/ontologies/SunPositionRight> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DaySunPosition> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+                                                                rdfs:label "Right"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionContamination
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionContamination> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.vii"@en ;
+                                                                             rdfs:label "Surface contamination"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionFlooded
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionFlooded> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.ii"@en ;
+                                                                       rdfs:label "Flooded roadways"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionIcy
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionIcy> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.i"@en ;
+                                                                   rdfs:label "Icy"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionMirage
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionMirage> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                      rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.iii"@en ;
+                                                                      rdfs:label "Mirage"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionSnow
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionSnow> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.iv"@en ;
+                                                                    rdfs:label "Snow on drivable area"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionStandingWater
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionStandingWater> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.v"@en ;
+                                                                             rdfs:label "Standing water"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionWet
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceConditionWet> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceCondition> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.vi"@en ;
+                                                                   rdfs:label "Wet road"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureCrack
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureCrack> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+                                                                   rdfs:label "Cracks"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeaturePothole
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeaturePothole> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+                                                                     rdfs:label "Potholes"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureRut
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureRut> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+                                                                 rdfs:label "Ruts"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureSwell
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceFeatureSwell> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceFeature> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+                                                                   rdfs:label "Swells"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeLoose
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeLoose> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceType> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.1"@en ;
+                                                                rdfs:label "Loose (e.g. gravel, earth, sand)"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeSegmented
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeSegmented> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceType> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.2"@en ;
+                                                                    rdfs:label "Segmented (e.g. concrete slabs, granite setts, cobblestones)"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeUniform
+<https://openlabel.asam.net/V1-0-0/ontologies/SurfaceTypeUniform> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DrivableAreaSurfaceType> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.3"@en ;
+                                                                  rdfs:label "Uniform (e.g. asphalt)"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/Tag
+<https://openlabel.asam.net/V1-0-0/ontologies/Tag> rdf:type owl:Class ;
+                                                   rdfs:subClassOf rdfs:Class ;
+                                                   rdfs:comment "The base tag"@en ;
+                                                   rdfs:label "Base Tag"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureConstructionDetour
+<https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureConstructionDetour> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure> ;
+                                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.a"@en ;
+                                                                                    rdfs:label "Construction site detours"@en ;
+                                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRefuseCollection
+<https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRefuseCollection> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure> ;
+                                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.b"@en ;
+                                                                                  rdfs:label "Refuse collection"@en ;
+                                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRoadSignage
+<https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRoadSignage> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.d"@en ;
+                                                                             rdfs:label "Road signage"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRoadWorks
+<https://openlabel.asam.net/V1-0-0/ontologies/TemporaryStructureRoadWorks> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryTemporaryStructure> ;
+                                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.c"@en ;
+                                                                           rdfs:label "Road works"@en ;
+                                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentDensity
+<https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentDensity> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.1"@en ;
+                                                                   rdfs:label "Density of agents"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentType
+<https://openlabel.asam.net/V1-0-0/ontologies/TrafficAgentType> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.4"@en ;
+                                                                rdfs:label "Agent type"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TrafficFlowRate
+<https://openlabel.asam.net/V1-0-0/ontologies/TrafficFlowRate> rdf:type owl:Class ;
+                                                               rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> ;
+                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.3"@en ;
+                                                               rdfs:label "Flow rate"@en ;
+                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TrafficSpecialVehicle
+<https://openlabel.asam.net/V1-0-0/ontologies/TrafficSpecialVehicle> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.5"@en ;
+                                                                     rdfs:label "Presence of special vehicles (e.g. ambulances or police vehicles)."@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TrafficVolume
+<https://openlabel.asam.net/V1-0-0/ontologies/TrafficVolume> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/DynamicElementsTraffic> ;
+                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.2"@en ;
+                                                             rdfs:label "Volume of traffic"@en ;
+                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TransverseBarriers
+<https://openlabel.asam.net/V1-0-0/ontologies/TransverseBarriers> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> ;
+                                                                  rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.4"@en ;
+                                                                  rdfs:label "Barriers on edges"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TransverseDivided
+<https://openlabel.asam.net/V1-0-0/ontologies/TransverseDivided> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> ;
+                                                                 rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.1"@en ;
+                                                                 rdfs:label "Divided"@en ;
+                                                                 rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TransverseLanesTogether
+<https://openlabel.asam.net/V1-0-0/ontologies/TransverseLanesTogether> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> ;
+                                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.5"@en ;
+                                                                       rdfs:label "Types of lanes together"@en ;
+                                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TransversePavements
+<https://openlabel.asam.net/V1-0-0/ontologies/TransversePavements> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.3"@en ;
+                                                                   rdfs:label "Pavements"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TransverseUndivided
+<https://openlabel.asam.net/V1-0-0/ontologies/TransverseUndivided> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/GeometryTransverse> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.2"@en ;
+                                                                   rdfs:label "Undivided"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TravelDirectionLeft
+<https://openlabel.asam.net/V1-0-0/ontologies/TravelDirectionLeft> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationTravelDirection> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+                                                                   rdfs:label "Left"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/TravelDirectionRight
+<https://openlabel.asam.net/V1-0-0/ontologies/TravelDirectionRight> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/LaneSpecificationTravelDirection> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+                                                                    rdfs:label "Right"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2iCellular
+<https://openlabel.asam.net/V1-0-0/ontologies/V2iCellular> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2i> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.i"@en ;
+                                                           rdfs:label "Cellular"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2iSatellite
+<https://openlabel.asam.net/V1-0-0/ontologies/V2iSatellite> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2i> ;
+                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.ii"@en ;
+                                                            rdfs:label "Satellite"@en ;
+                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2iWifi
+<https://openlabel.asam.net/V1-0-0/ontologies/V2iWifi> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2i> ;
+                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.iii"@en ;
+                                                       rdfs:label "802.11p-based WiFi"@en ;
+                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2vCellular
+<https://openlabel.asam.net/V1-0-0/ontologies/V2vCellular> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2v> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.i"@en ;
+                                                           rdfs:label "Cellular"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2vSatellite
+<https://openlabel.asam.net/V1-0-0/ontologies/V2vSatellite> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2v> ;
+                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.ii"@en ;
+                                                            rdfs:label "Satellite"@en ;
+                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/V2vWifi
+<https://openlabel.asam.net/V1-0-0/ontologies/V2vWifi> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/CommunicationV2v> ;
+                                                       rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.iii"@en ;
+                                                       rdfs:label "802.11p-based WiFi"@en ;
+                                                       rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleAgricultural
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleAgricultural> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                                   rdfs:comment "A motor vehicle designed for the purpose of farming, such as tractors, harvesters"@en ;
+                                                                   rdfs:label "Agricultural vehicle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleBus
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleBus> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                          rdfs:comment "A motor vehicle designed to carry many passengers, contracted from omnibus, with variants multibus, motorbus, autobus"@en ;
+                                                          rdfs:label "Bus"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleCar
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleCar> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                          rdfs:comment "A motor vehicle used primarily for the transportation of a small number of people where the occupants are protected by a safety frame"@en ;
+                                                          rdfs:label "Car"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleConstruction
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleConstruction> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                                   rdfs:comment "A motor vehicle designed for the purpose of construction, such as cranes, bulldozer"@en ;
+                                                                   rdfs:label "Construction vehicle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleCycle
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleCycle> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                            rdfs:comment "A cycle, is a human-powered or motor-assisted, pedal-driven, wheeled vehicle"@en ;
+                                                            rdfs:label "Cycle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleEmergency
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleEmergency> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                                rdfs:comment "A vehicle that is used by emergency services to respond to an incident"@en ;
+                                                                rdfs:label "Emergency vehicle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleMotorcycle
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleMotorcycle> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                                 rdfs:comment "A motorcycle, often called a motorbike, is a two- or three-wheeled motor vehicle, where the riders are not enclosed in a protective frame"@en ;
+                                                                 rdfs:label "Motorcycle"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleTrailer
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleTrailer> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                              rdfs:comment "An unpowered vehicle towed by another vehicle"@en ;
+                                                              rdfs:label "Trailer"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleTruck
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleTruck> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                            rdfs:comment "A large, heavy motor vehicle used for carrying goods and materials"@en ;
+                                                            rdfs:label "Truck"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleVan
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleVan> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                          rdfs:comment "A medium-sized motor vehicle, typically without side windows in the rear part, for transporting goods"@en ;
+                                                          rdfs:label "Van"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/VehicleWheelchair
+<https://openlabel.asam.net/V1-0-0/ontologies/VehicleWheelchair> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/RoadUserVehicle> ;
+                                                                 rdfs:comment "A chair fitted with wheels for use as a means of transport"@en ;
+                                                                 rdfs:label "Wheelchair"@en .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniform
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniform> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsWarning> ;
+                                                                   rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                   rdfs:label "Uniform"@en ;
+                                                                   rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniformFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniformFullTime> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniform> ;
+                                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                           rdfs:label "FullTime"@en ;
+                                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniformTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniformTemporary> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsUniform> ;
+                                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                            rdfs:label "Temporary"@en ;
+                                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariable
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariable> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SignsWarning> ;
+                                                                    rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+                                                                    rdfs:label "Variable"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariableFullTime
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariableFullTime> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariable> ;
+                                                                            rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+                                                                            rdfs:label "FullTime"@en ;
+                                                                            rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariableTemporary
+<https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariableTemporary> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/WarningSignsVariable> ;
+                                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+                                                                             rdfs:label "Temporary"@en ;
+                                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WeatherRain
+<https://openlabel.asam.net/V1-0-0/ontologies/WeatherRain> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentWeather> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+                                                           rdfs:label "Rainfall"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WeatherSnow
+<https://openlabel.asam.net/V1-0-0/ontologies/WeatherSnow> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentWeather> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.3"@en ;
+                                                           rdfs:label "Snowfall"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/WeatherWind
+<https://openlabel.asam.net/V1-0-0/ontologies/WeatherWind> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/EnvironmentWeather> ;
+                                                           rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.1"@en ;
+                                                           rdfs:label "Wind"@en ;
+                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ZoneGeoFenced
+<https://openlabel.asam.net/V1-0-0/ontologies/ZoneGeoFenced> rdf:type owl:Class ;
+                                                             rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> ;
+                                                             rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.a"@en ;
+                                                             rdfs:label "GeoFenced areas"@en ;
+                                                             rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ZoneInterference
+<https://openlabel.asam.net/V1-0-0/ontologies/ZoneInterference> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.e"@en ;
+                                                                rdfs:label "Interference zones"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ZoneRegion
+<https://openlabel.asam.net/V1-0-0/ontologies/ZoneRegion> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> ;
+                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.d"@en ;
+                                                          rdfs:label "Regions or states"@en ;
+                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ZoneSchool
+<https://openlabel.asam.net/V1-0-0/ontologies/ZoneSchool> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> ;
+                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.c"@en ;
+                                                          rdfs:label "School zones"@en ;
+                                                          rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ZoneTrafficManagement
+<https://openlabel.asam.net/V1-0-0/ontologies/ZoneTrafficManagement> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <https://openlabel.asam.net/V1-0-0/ontologies/SceneryZone> ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.b"@en ;
+                                                                     rdfs:label "Traffic management zones"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  https://w3id.org/gaia-x/core#DataResource
+gax-core:DataResource rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/daySunElevationValue
+<https://openlabel.asam.net/V1-0-0/ontologies/daySunElevationValue> rdf:type owl:NamedIndividual ,
+                                                                             rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/hasTag
+<https://openlabel.asam.net/V1-0-0/ontologies/hasTag> rdf:type owl:NamedIndividual ,
+                                                               rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/horizontalCurvesValue
+<https://openlabel.asam.net/V1-0-0/ontologies/horizontalCurvesValue> rdf:type owl:NamedIndividual ,
+                                                                              rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/illuminationCloudinessValue
+<https://openlabel.asam.net/V1-0-0/ontologies/illuminationCloudinessValue> rdf:type owl:NamedIndividual ,
+                                                                                    rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationDimensionsValue
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationDimensionsValue> rdf:type owl:NamedIndividual ,
+                                                                                         rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationLaneCountValue
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationLaneCountValue> rdf:type owl:NamedIndividual ,
+                                                                                        rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/licenseURI
+<https://openlabel.asam.net/V1-0-0/ontologies/licenseURI> rdf:type owl:NamedIndividual ,
+                                                                   rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/longitudinalDownSlopeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalDownSlopeValue> rdf:type owl:NamedIndividual ,
+                                                                                   rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/longitudinalUpSlopeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalUpSlopeValue> rdf:type owl:NamedIndividual ,
+                                                                                 rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionAccelerateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionAccelerateValue> rdf:type owl:NamedIndividual ,
+                                                                              rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionDecelerateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDecelerateValue> rdf:type owl:NamedIndividual ,
+                                                                              rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/motionDriveValue
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDriveValue> rdf:type owl:NamedIndividual ,
+                                                                         rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerEmail
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerEmail> rdf:type owl:NamedIndividual ,
+                                                                   rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerName
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerName> rdf:type owl:NamedIndividual ,
+                                                                  rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/ownerURL
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerURL> rdf:type owl:NamedIndividual ,
+                                                                 rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/particulatesWaterValue
+<https://openlabel.asam.net/V1-0-0/ontologies/particulatesWaterValue> rdf:type owl:NamedIndividual ,
+                                                                               rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioCreatedDate
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioCreatedDate> rdf:type owl:NamedIndividual ,
+                                                                            rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinition
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinition> rdf:type owl:NamedIndividual ,
+                                                                           rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinitionLanguageURI
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinitionLanguageURI> rdf:type owl:NamedIndividual ,
+                                                                                      rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioDescription
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDescription> rdf:type owl:NamedIndividual ,
+                                                                            rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioName
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioName> rdf:type owl:NamedIndividual ,
+                                                                     rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioParentReference
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioParentReference> rdf:type owl:NamedIndividual ,
+                                                                                rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioUniqueReference
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioUniqueReference> rdf:type owl:NamedIndividual ,
+                                                                                rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioVersion
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVersion> rdf:type owl:NamedIndividual ,
+                                                                        rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/scenarioVisualisationURL
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVisualisationURL> rdf:type owl:NamedIndividual ,
+                                                                                 rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/subjectVehicleSpeedValue
+<https://openlabel.asam.net/V1-0-0/ontologies/subjectVehicleSpeedValue> rdf:type owl:NamedIndividual ,
+                                                                                 rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentDensityValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentDensityValue> rdf:type owl:NamedIndividual ,
+                                                                                 rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentTypeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentTypeValue> rdf:type owl:NamedIndividual ,
+                                                                              rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficFlowRateValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficFlowRateValue> rdf:type owl:NamedIndividual ,
+                                                                             rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/trafficVolumeValue
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficVolumeValue> rdf:type owl:NamedIndividual ,
+                                                                           rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherRainValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherRainValue> rdf:type owl:NamedIndividual ,
+                                                                         rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherSnowValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherSnowValue> rdf:type owl:NamedIndividual ,
+                                                                         rdfs:Property .
+
+
+###  https://openlabel.asam.net/V1-0-0/ontologies/weatherWindValue
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherWindValue> rdf:type owl:NamedIndividual ,
+                                                                         rdfs:Property .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<https://openlabel.asam.net/V1-0-0/ontologies/daySunElevationValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.1"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                    rdfs:label "Sun Elevation (degrees)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/horizontalCurvesValue> rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                     rdfs:label "Curve Radius (m)"@en ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/illuminationCloudinessValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.c"@en ;
+                                                                           rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                           rdfs:label "Cloud cover (okta)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationDimensionsValue> rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                                rdfs:label "Lane width (m)"@en ;
+                                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.a"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/laneSpecificationLaneCountValue> rdfs:label "Number of lanes (Unit)"@en ;
+                                                                               rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.d"@en ;
+                                                                               rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/licenseURI> rdfs:comment "The type of license which governs usage of the scenario"@en ;
+                                                          rdfs:label "License Type"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalDownSlopeValue> rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                          rdfs:label "Gradient (%)"@en ;
+                                                                          rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.ii"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/longitudinalUpSlopeValue> rdfs:label "Gradient (%)"@en ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.i"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/motionAccelerateValue> rdfs:label "Rate of acceleration (ms-2)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDecelerateValue> rdfs:label "Rate of deceleration (ms-2)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/motionDriveValue> rdfs:label "Speed (km/h)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerEmail> rdfs:comment "The email address of the legal entity who owns the rights to the scenario"@en ;
+                                                          rdfs:label "Scenario owner email"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerName> rdfs:label "Scenario owner name"@en ;
+                                                         rdfs:comment "The name of the legal entity who owns the rights to the scenario"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/ownerURL> rdfs:label "Scenario owner URL"@en ;
+                                                        rdfs:comment "The URL of the legal entity who owns the rights to the scenario"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/particulatesWaterValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.b"@en ;
+                                                                      rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                      rdfs:label "Meteorological Optical Range(MOR) (m)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioCreatedDate> rdfs:comment "The date that the scenario was created/published"@en ;
+                                                                   rdfs:label "Scenario created date"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinition> rdfs:comment "SDL definition of the scenario"@en ;
+                                                                  rdfs:label "Scenario definition SDL"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDefinitionLanguageURI> rdfs:label "Scenario definition type"@en ;
+                                                                             rdfs:comment "URI of SDL language used for the definition of the scenario"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioDescription> rdfs:label "Scenario description"@en ;
+                                                                   rdfs:comment "A description of the scenario"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioName> rdfs:comment "The name of the scenario"@en ;
+                                                            rdfs:label "Scenario name"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioParentReference> rdfs:label "Scenario parent reference"@en ;
+                                                                       rdfs:comment "This is a universally unique identifier (UUID) which identifies the scenario which this one has been derived from."@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioUniqueReference> rdfs:label "Scenario unique reference"@en ;
+                                                                       rdfs:comment "This is a universally unique identifier (UUID) assigned to the scenario which allows the scenario to be identified."@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVersion> rdfs:comment "The version number of the scenario"@en ;
+                                                               rdfs:label "Scenario version"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/scenarioVisualisationURL> rdfs:comment "Relative or absolute URL of a static image or animation of the scenario to allow users to easily see what the scenario represents"@en ;
+                                                                        rdfs:label "Scenario visualisation"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/subjectVehicleSpeedValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+                                                                        rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                        rdfs:label "Speed (km/h)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentDensityValue> rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                        rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.1"@en ;
+                                                                        rdfs:label "Density (vehicles/km)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficAgentTypeValue> rdfs:label "Agent type"@en ;
+                                                                     rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.4"@en ;
+                                                                     rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficFlowRateValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.3"@en ;
+                                                                    rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                    rdfs:label "Rate (vehicles/h)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/trafficVolumeValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.2"@en ;
+                                                                  rdfs:label "Volume (vehicle km)"@en ;
+                                                                  rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherRainValue> rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" ;
+                                                                rdfs:label "Rainfall Intensity (mm/h)"@en .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherSnowValue> rdfs:label "Visibility (km)"@en ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.3"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+<https://openlabel.asam.net/V1-0-0/ontologies/weatherWindValue> rdfs:label "Wind Speed (m/s)"@en ;
+                                                                rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.1"@en ;
+                                                                rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
