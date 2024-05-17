@@ -1,59 +1,59 @@
-@prefix environmentmodel: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environmentmodel/> .
+@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-environmentmodel:environmentModelShape a sh:NodeShape ;
+environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:QuantityShape ;
+            sh:node environment-model:QuantityShape ;
             sh:order 2 ;
-            sh:path environmentmodel:Quantity ],
+            sh:path environment-model:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:QualityShape ;
+            sh:node environment-model:QualityShape ;
             sh:order 3 ;
-            sh:path environmentmodel:Quality ],
+            sh:path environment-model:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:ProjectShape ;
+            sh:node environment-model:ProjectShape ;
             sh:order 0 ;
-            sh:path environmentmodel:Project ],
+            sh:path environment-model:project ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:FormatShape ;
+            sh:node environment-model:FormatShape ;
             sh:order 1 ;
-            sh:path environmentmodel:Format ],
+            sh:path environment-model:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:GeoreferenceShape ;
+            sh:node environment-model:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path environmentmodel:Georeference ] ;
-    sh:targetClass environmentmodel:environmentModel .
+            sh:path environment-model:georeference ] ;
+    sh:targetClass environment-model:EnvironmentModel .
 
-    environmentmodel:GeoreferenceShape a sh:NodeShape ;
+    environment-model:GeoreferenceShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:ProjectLocationShape ;
+            sh:node environment-model:ProjectLocationShape ;
             sh:order 0 ;
-            sh:path environmentmodel:ProjectLocation ],
+            sh:path environment-model:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node environmentmodel:GeodeticReferenceSystemShape ;
+            sh:node environment-model:GeodeticReferenceSystemShape ;
             sh:order 1 ;
-            sh:path environmentmodel:GeodeticReferenceSystem ] ;
-    sh:targetClass environmentmodel:georeference .
+            sh:path environment-model:geodeticReferenceSystem ] ;
+    sh:targetClass environment-model:GeoReference .
 
-environmentmodel:GeodeticReferenceSystemShape a sh:NodeShape ;
+environment-model:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
-            sh:node environmentmodel:Coordinate2DShape ;
+            sh:node environment-model:Coordinate2DShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path environmentmodel:origin ],
+            sh:path environment-model:origin ],
         [ skos:example "EPSG 32632" ;
             sh:datatype xsd:string ;
             sh:description "EPSG code of the map"@en ;
@@ -61,7 +61,7 @@ environmentmodel:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:message "Validation of coordinateSystem failed!"@en ;
             sh:name "coordinateSystem"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:coordinateSystem ],
+            sh:path environment-model:coordinateSystem ],
         [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
@@ -69,52 +69,52 @@ environmentmodel:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:message "Validation of heightSystem failed!"@en ;
             sh:name "heightSystem"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:heightSystem ] ;
-    sh:targetClass environmentmodel:GeodeticReferenceSystem .
+            sh:path environment-model:heightSystem ] ;
+    sh:targetClass environment-model:GeodeticReferenceSystem .
 
-environmentmodel:BoundingBoxShape a sh:NodeShape ;
+environment-model:BoundingBoxShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of yMin failed!"@en ;
             sh:name "yMin"@en ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path environmentmodel:yMin ],
+            sh:path environment-model:yMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of yMax failed!"@en ;
             sh:name "yMax"@en ;
             sh:maxCount 1 ;
             sh:order 3 ;
-            sh:path environmentmodel:yMax ],
+            sh:path environment-model:yMax ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path environmentmodel:xMin ],
+            sh:path environment-model:xMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMax failed!"@en ;
             sh:name "xMax"@en ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path environmentmodel:xMax ] ;
-    sh:targetClass environmentmodel:BoundingBox .
+            sh:path environment-model:xMax ] ;
+    sh:targetClass environment-model:BoundingBox .
 
-environmentmodel:Coordinate2DShape a sh:NodeShape ;
+environment-model:Coordinate2DShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of x failed!"@en ;
             sh:name "x"@en ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path environmentmodel:x ],
+            sh:path environment-model:x ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of y failed!"@en ;
             sh:name "y"@en ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path environmentmodel:y ] ;
-    sh:targetClass environmentmodel:Coordinate2D .
+            sh:path environment-model:y ] ;
+    sh:targetClass environment-model:Coordinate2D .
     
-environmentmodel:ProjectLocationShape a sh:NodeShape ;
+environment-model:ProjectLocationShape a sh:NodeShape ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "State of project area"@en ;
@@ -122,7 +122,7 @@ environmentmodel:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "state"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:state ],
+            sh:path environment-model:state ],
         [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "nan"@en ;
@@ -130,7 +130,7 @@ environmentmodel:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "city"@en ;
             sh:order 3 ;
-            sh:path environmentmodel:city ],
+            sh:path environment-model:city ],
         [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "Region of project area"@en ;
@@ -138,7 +138,7 @@ environmentmodel:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "region"@en ;
             sh:order 2 ;
-            sh:path environmentmodel:region ],
+            sh:path environment-model:region ],
         [ skos:example "Germany, GER" ;
             sh:datatype xsd:string ;
             sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
@@ -146,17 +146,17 @@ environmentmodel:ProjectLocationShape a sh:NodeShape ;
             sh:message "Validation of country failed!"@en ;
             sh:name "country"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:country ;
+            sh:path environment-model:country ;
             sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
         [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
             sh:description "Bounding box with lat/lon values in WGS84"@en ;
             sh:message "Validation of boundingBox failed!"@en ;
             sh:name "boundingBox"@en ;
-            sh:node environmentmodel:BoundingBoxShape ;
+            sh:node environment-model:BoundingBoxShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 5 ;
-            sh:path environmentmodel:boundingBox ],
+            sh:path environment-model:boundingBox ],
         [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
             sh:datatype xsd:string ;
             sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
@@ -164,10 +164,10 @@ environmentmodel:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
-            sh:path environmentmodel:relationOrArea ] ;
-    sh:targetClass environmentmodel:ProjectLocation .     
+            sh:path environment-model:relationOrArea ] ;
+    sh:targetClass environment-model:ProjectLocation .     
 
-environmentmodel:FormatShape a sh:NodeShape ;
+environment-model:FormatShape a sh:NodeShape ;
     sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
@@ -176,7 +176,7 @@ environmentmodel:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:type ],
+            sh:path environment-model:type ],
         [ skos:example "SDK 4.25" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -184,10 +184,10 @@ environmentmodel:FormatShape a sh:NodeShape ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:version ] ;
-    sh:targetClass environmentmodel:Format .
+            sh:path environment-model:version ] ;
+    sh:targetClass environment-model:Format .
 
-environmentmodel:ProjectShape a sh:NodeShape ;
+environment-model:ProjectShape a sh:NodeShape ;
     sh:property [ skos:example "7.7" ;
             sh:datatype xsd:string ;
             sh:description "Tool for the creation of the data"@en ;
@@ -195,7 +195,7 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:message "Validation of creationVersion failed!"@en ;
             sh:name "creationVersion"@en ;
             sh:order 4 ;
-            sh:path environmentmodel:creationVersion ],
+            sh:path environment-model:creationVersion ],
         [ skos:example "Trian3DBuilder" ;
             sh:datatype xsd:string ;
             sh:description "Tool for the creation of the data"@en ;
@@ -203,7 +203,7 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:message "Validation of creationSource failed!"@en ;
             sh:name "creationSource"@en ;
             sh:order 3 ;
-            sh:path environmentmodel:creationSource ],
+            sh:path environment-model:creationSource ],
         [ skos:example "Unreal" ;
             sh:datatype xsd:string ;
             sh:description "Name of the visual system"@en ;
@@ -211,7 +211,7 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:message "Validation of softwareName failed!"@en ;
             sh:name "softwareName"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:softwareName ],
+            sh:path environment-model:softwareName ],
         [ skos:example "Epic" ;
             sh:datatype xsd:string ;
             sh:description "Name of software vendor"@en ;
@@ -219,7 +219,7 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:message "Validation of softwareVendor failed!"@en ;
             sh:name "softwareVendor"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:softwareVendor ],
+            sh:path environment-model:softwareVendor ],
         [ skos:example "4.27" ;
             sh:datatype xsd:string ;
             sh:description "Version of visual system"@en ;
@@ -227,10 +227,10 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
             sh:order 2 ;
-            sh:path environmentmodel:version ] ;
-    sh:targetClass environmentmodel:Project .
+            sh:path environment-model:version ] ;
+    sh:targetClass environment-model:Project .
 
-environmentmodel:QualityShape a sh:NodeShape ;
+environment-model:QualityShape a sh:NodeShape ;
     sh:property [ skos:example "PBR" ;
             sh:datatype xsd:string ;
             sh:description "Description of quality features"@en ;
@@ -239,7 +239,7 @@ environmentmodel:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "features"@en ;
             sh:order 2 ;
-            sh:path environmentmodel:features ],
+            sh:path environment-model:features ],
         [ skos:example "high" ;
             sh:datatype xsd:string ;
             sh:description "Category of the level of detail (High - highest level of detail with additional object enrichment, Med - directly from data sources, with environment, Low - topological representation)."@en ;
@@ -247,7 +247,7 @@ environmentmodel:QualityShape a sh:NodeShape ;
             sh:message "Validation of detailLevel failed!"@en ;
             sh:name "detailLevel"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:detailLevel ],
+            sh:path environment-model:detailLevel ],
         [ skos:example "0.1 m" ;
             sh:datatype xsd:float ;
             sh:description "Real texture resolution in meter (max?)"@en ;
@@ -256,10 +256,10 @@ environmentmodel:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "textureResolution"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:textureResolution ] ;
-    sh:targetClass environmentmodel:Quality .
+            sh:path environment-model:textureResolution ] ;
+    sh:targetClass environment-model:Quality .
 
-environmentmodel:QuantityShape a sh:NodeShape ;
+environment-model:QuantityShape a sh:NodeShape ;
     sh:property [ skos:example "12000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all geoemtries, instances are considered only once"@en ;
@@ -267,7 +267,7 @@ environmentmodel:QuantityShape a sh:NodeShape ;
             sh:message "Validation of geometryCount failed!"@en ;
             sh:name "geometryCount"@en ;
             sh:order 2 ;
-            sh:path environmentmodel:geometryCount ],
+            sh:path environment-model:geometryCount ],
         [ skos:example "16000000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all triangles, instances are considered only once"@en ;
@@ -275,7 +275,7 @@ environmentmodel:QuantityShape a sh:NodeShape ;
             sh:message "Validation of triangleCount failed!"@en ;
             sh:name "triangleCount"@en ;
             sh:order 1 ;
-            sh:path environmentmodel:triangleCount ],
+            sh:path environment-model:triangleCount ],
         [ skos:example "179" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of textures"@en ;
@@ -283,6 +283,6 @@ environmentmodel:QuantityShape a sh:NodeShape ;
             sh:message "Validation of textureMaterialCount failed!"@en ;
             sh:name "textureMaterialCount"@en ;
             sh:order 0 ;
-            sh:path environmentmodel:textureMaterialCount ] ;
-    sh:targetClass environmentmodel:Quantity .
+            sh:path environment-model:textureMaterialCount ] ;
+    sh:targetClass environment-model:Quantity .
 
