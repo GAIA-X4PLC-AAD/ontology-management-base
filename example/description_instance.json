@@ -22,7 +22,7 @@
     "@value": "value of property 2",
     "@type": "xsd:string"
   },
-  "description_ontology:belongs_to": {
+  "description_ontology:belongsTo": {
     "@id": "https://www.example.org/id"
   },
   "description_ontology:hasJunctionIntersection": {

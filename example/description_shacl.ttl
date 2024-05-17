@@ -37,7 +37,7 @@ description_ontology:ExampleServiceOfferingShape # This is the subject our predi
 	] ;
 	sh:property # This property is special in a way that it provides the possibility to link to another class. Whenever you use a property linking between classes, you need to specify the domain & range of the regarding property in an ontology (have a look into the description_ontology-file for more information).
 	[
-	  sh:path description_ontology:belongs_to ;
+	  sh:path description_ontology:belongsTo ;
 	  sh:nodeKind sh:IRI ; # This attribute is set instead of "sh:datatype". It denotes that this property needs to have a node, which is expressed in form of an IRI. This enables linkage between different classes.
 	  sh:minCount 1 ;
 	  sh:message "Validation of Identifier of related Self Description failed" ;

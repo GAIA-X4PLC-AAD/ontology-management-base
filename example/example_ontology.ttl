@@ -16,6 +16,6 @@
     rdfs:label "Example Service Offering"@en ;
     rdfs:comment "Describes an example Service Offering."@en .
 
-<belongs_to> rdf:type owl:ObjectProperty ;
+<belongsTo> rdf:type owl:ObjectProperty ;
     rdfs:domain <ExampleServiceOffering> ;
     rdfs:range <ExampleServiceOffering> .

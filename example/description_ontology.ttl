@@ -67,8 +67,8 @@
     rdfs:comment "Describes an example Service Offering."@en .
 
 # Whenever we use a property which is referencing another node, we need to specify its domain and range within the ontology
-<belongs_to> rdf:type owl:ObjectProperty ;
-    # In general terms, we use domain and range as follows: Domain Property Range. In our case: Domain belongs_to Range.
+<belongsTo> rdf:type owl:ObjectProperty ;
+    # In general terms, we use domain and range as follows: Domain Property Range. In our case: Domain belongsTo Range.
     # In our example we relate to another instance of the same class. The relation could also be made between different classes.
     # In this case we use the domain "ExampleServiceOffering", which means that this property is used to describe an ExampleServiceOffering
     rdfs:domain <ExampleServiceOffering> ;
