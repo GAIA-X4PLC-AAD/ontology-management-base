@@ -537,7 +537,7 @@
           "sh:description": "A list of physical locations.",
           "sh:minCount": 0,
           "sh:node": {
-            "@id": "http://www.w3.org/2006/vcard/ns#Address"
+            "@id": "http://www.w3.org/2006/vcard/ns#AddressShape"
           },
           "sh:order": 3,
           "sh:path": {
@@ -2784,7 +2784,7 @@
       }
     },
     {
-      "@id": "http://www.w3.org/2006/vcard/ns#Address",
+      "@id": "http://www.w3.org/2006/vcard/ns#AddressShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:description": "Full address of the entity.",
