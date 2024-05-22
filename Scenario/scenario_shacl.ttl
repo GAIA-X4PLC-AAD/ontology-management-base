@@ -1,4 +1,6 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -41,42 +43,43 @@ scenario:scenarioShape a sh:NodeShape ;
             sh:path scenario:Format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:GeoreferenceShape ;
+            sh:node georeference:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path scenario:Georeference ] ;
+            sh:path georeference:Georeference ] ;
     sh:targetClass scenario:scenario .
 
-scenario:GeoreferenceShape a sh:NodeShape ;
+georeference:GeoreferenceShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:ProjectLocationShape ;
+            sh:node georeference:ProjectLocationShape ;
             sh:order 0 ;
-            sh:path scenario:ProjectLocation ],
+            sh:path georeference:ProjectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:GeodeticReferenceSystemShape ;
+            sh:node georeference:GeodeticReferenceSystemShape ;
             sh:order 1 ;
-            sh:path scenario:GeodeticReferenceSystem ] ;
-    sh:targetClass scenario:georeference .
+            sh:path georeference:GeodeticReferenceSystem ] ;
+    sh:targetClass georeference:georeference .
 
-scenario:GeodeticReferenceSystemShape a sh:NodeShape ;
+georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
-            sh:node scenario:Coordinate2DShape ;
+            sh:node georeference:Coordinate2DShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path scenario:origin ],
+            sh:path georeference:origin ],
         [ skos:example "EPSG 32632" ;
             sh:datatype xsd:string ;
             sh:description "EPSG code of the map"@en ;
+            sh:in ("EPSG 32632" "EPSG:4326" "EPSG:3857" "EPSG:7789") ;
             sh:maxCount 1 ;
             sh:message "Validation of coordinateSystem failed!"@en ;
             sh:name "coordinateSystem"@en ;
             sh:order 0 ;
-            sh:path scenario:coordinateSystem ],
+            sh:path georeference:coordinateSystem ],
         [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
@@ -84,52 +87,52 @@ scenario:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:message "Validation of heightSystem failed!"@en ;
             sh:name "heightSystem"@en ;
             sh:order 1 ;
-            sh:path scenario:heightSystem ] ;
-    sh:targetClass scenario:GeodeticReferenceSystem .
+            sh:path georeference:heightSystem ] ;
+    sh:targetClass georeference:GeodeticReferenceSystem .
 
-scenario:BoundingBoxShape a sh:NodeShape ;
+georeference:BoundingBoxShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of yMin failed!"@en ;
             sh:name "yMin"@en ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path scenario:yMin ],
+            sh:path georeference:yMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of yMax failed!"@en ;
             sh:name "yMax"@en ;
             sh:maxCount 1 ;
             sh:order 3 ;
-            sh:path scenario:yMax ],
+            sh:path georeference:yMax ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path scenario:xMin ],
+            sh:path georeference:xMin ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of xMax failed!"@en ;
             sh:name "xMax"@en ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path scenario:xMax ] ;
-    sh:targetClass scenario:BoundingBox .
+            sh:path georeference:xMax ] ;
+    sh:targetClass georeference:BoundingBox .
 
-scenario:Coordinate2DShape a sh:NodeShape ;
+georeference:Coordinate2DShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of x failed!"@en ;
             sh:name "x"@en ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path scenario:x ],
+            sh:path georeference:x ],
         [ sh:datatype xsd:float ;
             sh:message "Validation of y failed!"@en ;
             sh:name "y"@en ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path scenario:y ] ;
-    sh:targetClass scenario:Coordinate2D .
+            sh:path georeference:y ] ;
+    sh:targetClass georeference:Coordinate2D .
     
-scenario:ProjectLocationShape a sh:NodeShape ;
+georeference:ProjectLocationShape a sh:NodeShape ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "State of project area"@en ;
@@ -137,7 +140,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "state"@en ;
             sh:order 1 ;
-            sh:path scenario:state ],
+            sh:path georeference:state ],
         [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "nan"@en ;
@@ -145,7 +148,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "city"@en ;
             sh:order 3 ;
-            sh:path scenario:city ],
+            sh:path georeference:city ],
         [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "Region of project area"@en ;
@@ -153,7 +156,7 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "region"@en ;
             sh:order 2 ;
-            sh:path scenario:region ],
+            sh:path georeference:region ],
         [ skos:example "Germany, GER" ;
             sh:datatype xsd:string ;
             sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
@@ -161,17 +164,17 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:message "Validation of country failed!"@en ;
             sh:name "country"@en ;
             sh:order 0 ;
-            sh:path scenario:country ;
+            sh:path georeference:country ;
             sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
         [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
             sh:description "Bounding box with lat/lon values in WGS84"@en ;
             sh:message "Validation of boundingBox failed!"@en ;
             sh:name "boundingBox"@en ;
-            sh:node scenario:BoundingBoxShape ;
+            sh:node georeference:BoundingBoxShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 5 ;
-            sh:path scenario:boundingBox ],
+            sh:path georeference:boundingBox ],
         [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
             sh:datatype xsd:string ;
             sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
@@ -179,10 +182,10 @@ scenario:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
-            sh:path scenario:relationOrArea ] ;
-    sh:targetClass scenario:ProjectLocation .      
+            sh:path georeference:relationOrArea ] ;
+    sh:targetClass georeference:ProjectLocation .      
 
-scenario:Data_SourcesShape a sh:NodeShape ;
+scenario:DataSourcesShape a sh:NodeShape ;
     sh:property [ skos:example "captured reality, synthetic" ;
             sh:datatype xsd:string ;
             sh:description "Capture type"@en ;
@@ -192,41 +195,17 @@ scenario:Data_SourcesShape a sh:NodeShape ;
             sh:name "source"@en ;
             sh:order 0 ;
             sh:path scenario:source ] ;
-    sh:targetClass scenario:Data_Sources .
+    sh:targetClass scenario:DataSourcesShape .
 
 scenario:EnvironmentalShape a sh:NodeShape ;
-    sh:property [ skos:example "32.33" ;
-            sh:datatype xsd:float ;
-            sh:description "Elevation of the sun"@en ;
-            sh:message "Validation of sunElevation failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "sunElevation"@en ;
-            sh:order 1 ;
-            sh:path scenario:sunElevation ],
-        [ skos:example "dry, moist, wetWithPuddles, lowFlooded, highFlooded" ;
-            sh:datatype xsd:string ;
-            sh:description "If street is wet or not"@en ;
-            sh:message "Validation of wetness failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "wetness"@en ;
-            sh:order 3 ;
-            sh:path scenario:wetness ],
-        [ skos:example "194.01" ;
+    sh:property [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Azimuth of the sun"@en ;
             sh:message "Validation of sunAzimuth failed!"@en ;
             sh:minCount 0 ;
             sh:name "sunAzimuth"@en ;
             sh:order 2 ;
-            sh:path scenario:sunAzimuth ],
-        [ skos:example "30m fog" ;
-            sh:datatype xsd:string ;
-            sh:description "List of environmental conditions"@en ;
-            sh:message "Validation of environmentConditions failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "environmentConditions"@en ;
-            sh:order 0 ;
-            sh:path scenario:environmentConditions ] ;
+            sh:path scenario:sunAzimuth ] ;
     sh:targetClass scenario:Environmental .
 
 scenario:FormatShape a sh:NodeShape ;
@@ -253,19 +232,12 @@ scenario:GeneralShape a sh:NodeShape ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:datatype xsd:string ;
             sh:description "Pegasus type of scenario"@en ;
+            sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
             sh:path scenario:type ],
-        [ skos:example "cut-in, cut-out" ;
-            sh:datatype xsd:string ;
-            sh:description "Maneuver type in the sense of a functional scenario"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of maneuver failed!"@en ;
-            sh:name "maneuver"@en ;
-            sh:order 1 ;
-            sh:path scenario:maneuver ],
         [ skos:example "2009-06-30T18:30:00+02:00	" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens."@en ;
@@ -284,9 +256,9 @@ scenario:GeneralShape a sh:NodeShape ;
             sh:name "aim"@en ;
             sh:order 4 ;
             sh:path scenario:aim ],
-        [ skos:example "global positions, parameter declaraions..." ;
+        [ skos:example "global positions, parameter declaration..." ;
             sh:datatype xsd:string ;
-            sh:description "Use of the functionalities from the standard. E.g. which Actions are used."@en ;
+            sh:description " Use of the functionalities from the standard. E.g. which Actions are used."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
             sh:minCount 0 ;
@@ -312,14 +284,6 @@ scenario:ParticipantsShape a sh:NodeShape ;
             sh:name "numberTrafficObjects"@en ;
             sh:order 0 ;
             sh:path scenario:numberTrafficObjects ],
-        [ skos:example "car, truck, pedestrian" ;
-            sh:datatype xsd:string ;
-            sh:description "Types of traffic objects according to OpenSCENARIO standard."@en ;
-            sh:in ("car" "pedestrian" "truck") ;
-            sh:message "Validation of trafficParticipantTypes failed!"@en ;
-            sh:name "trafficParticipantTypes"@en ;
-            sh:order 3 ;
-            sh:path scenario:trafficParticipantTypes ],
         [ skos:example "myDriver, BestPedestrianController2000" ;
             sh:datatype xsd:string ;
             sh:description "Usage of simulation Core internal or external controllers."@en ;
@@ -384,17 +348,7 @@ scenario:StructuralShape a sh:NodeShape ;
     sh:targetClass scenario:Structural .
 
 scenario:TrafficShape a sh:NodeShape ;
-    sh:property [ skos:example "left or right hand traffic" ;
-            sh:datatype xsd:string ;
-            sh:description "On which side of the road the TP drive"@en ;
-            sh:in ("left-hand" "right-hand") ;
-            sh:maxCount 1 ;
-            sh:message "Validation of ruleOfTheRoad failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "ruleOfTheRoad"@en ;
-            sh:order 1 ;
-            sh:path scenario:ruleOfTheRoad ],
-        [ skos:example "kangaroo crossing" ;
+    sh:property [ skos:example "kangaroo crossing" ;
             sh:datatype xsd:string ;
             sh:description "Country specific traffic signs"@en ;
             sh:maxCount 1 ;
