@@ -1,0 +1,138 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/"
+  },
+  "@id": "did:sample_number",
+  "@type": "environment-model:EnvironmentModel",
+  "environment-model:project": {
+    "@type": "environment-model:Project",
+    "environment-model:softwareName": {
+      "@value": "Unreal",
+      "@type": "xsd:string"
+    },
+    "environment-model:softwareVendor": {
+      "@value": "Epic",
+      "@type": "xsd:string"
+    },
+    "environment-model:version": {
+      "@value": "4.27",
+      "@type": "xsd:string"
+    },
+    "environment-model:creationSource": {
+      "@value": "Trian3DBuilder",
+      "@type": "xsd:string"
+    },
+    "environment-model:creationVersion": {
+      "@value": "7.7",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:format": {
+    "@type": "environment-model:Format",
+    "environment-model:type": "Unreal DataSmith",
+    "environment-model:version": {
+      "@value": "SDK 4.25",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:quantity": {
+    "@type": "environment-model:Quantity",
+    "environment-model:textureMaterialCount": {
+      "@value": "179",
+      "@type": "xsd:unsignedInt"
+    },
+    "environment-model:triangleCount": {
+      "@value": "16000000",
+      "@type": "xsd:int"
+    },
+    "environment-model:geometryCount": {
+      "@value": "12000",
+      "@type": "xsd:int"
+    }
+  },
+  "environment-model:quality": {
+    "@type": "environment-model:Quality",
+    "environment-model:detailLevel": {
+      "@value": "high",
+      "@type": "xsd:string"
+    },
+    "environment-model:textureResolution": {
+      "@value": "0.1m",
+      "@type": "xsd:float"
+    },
+    "environment-model:features": {
+      "@value": "PBR",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:georeference": {
+    "@type": "environment-model:GeoReference",
+    "environment-model:projectLocation": {
+      "@type": "environment-model:ProjectLocation",
+      "environment-model:country": {
+        "@value": "GER",
+        "@type": "xsd:string"
+      },
+      "environment-model:state": {
+        "@value": "Bayern",
+        "@type": "xsd:string"
+      },
+      "environment-model:region": {
+        "@value": "München",
+        "@type": "xsd:string"
+      },
+      "environment-model:city": {
+        "@value": "München",
+        "@type": "xsd:string"
+      },
+      "environment-model:relationOrArea": {
+        "@value": "Area Style data",
+        "@type": "xsd:string"
+      },
+      "environment-model:boundingBox": {
+        "@type": "environment-model:BoundingBox",
+        "environment-model:xMin": {
+          "@value": "1.234",
+          "@type": "xsd:float"
+        },
+        "environment-model:yMin": {
+          "@value": "1.345",
+          "@type": "xsd:float"
+        },
+        "environment-model:xMax": {
+          "@value": "45.23",
+          "@type": "xsd:float"
+        },
+        "environment-model:yMax": {
+          "@value": "45.34",
+          "@type": "xsd:float"
+        }
+      }
+    },
+    "environment-model:geodeticReferenceSystem": {
+      "@type": "environment-model:GeodeticReferenceSystem",
+      "environment-model:coordinateSystem": {
+        "@value": "EPSG 32632",
+        "@type": "xsd:string"
+      },
+      "environment-model:heightSystem": {
+        "@value": "EPSG xyz",
+        "@type": "xsd:string"
+      },
+      "environment-model:origin": {
+        "@type": "environment-model:Coordinate2D",
+        "environment-model:x": {
+          "@value": "1.234",
+          "@type": "xsd:float"
+        },
+        "environment-model:y": {
+          "@value": "45.23",
+          "@type": "xsd:float"
+        }
+      }
+    }
+  }
+}
