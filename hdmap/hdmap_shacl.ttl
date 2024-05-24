@@ -3,43 +3,43 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-hdmap:hdmapShape a sh:NodeShape ;
+hdmap:HdMapShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
             sh:order 5 ;
-            sh:path hdmap:Format ],
+            sh:path hdmap:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
             sh:order 2 ;
-            sh:path hdmap:Content ],
+            sh:path hdmap:content ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:GeneralShape ;
             sh:order 3 ;
-            sh:path hdmap:General ],
+            sh:path hdmap:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
             sh:order 0 ;
-            sh:path hdmap:Quantity ],
+            sh:path hdmap:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
             sh:order 6 ;
-            sh:path hdmap:DataSource ],
+            sh:path hdmap:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
             sh:order 1 ;
-            sh:path hdmap:Quality ],
+            sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path hdmap:Georeference ] ;
-    sh:targetClass hdmap:hdmap .
+            sh:path hdmap:georeference ] ;
+    sh:targetClass hdmap:HdMap .
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:property [ skos:example "[motorway, residential]" ;
@@ -131,12 +131,12 @@ hdmap:GeoreferenceShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node hdmap:ProjectLocationShape ;
             sh:order 0 ;
-            sh:path hdmap:ProjectLocation ],
+            sh:path hdmap:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:GeodeticReferenceSystemShape ;
             sh:order 1 ;
-            sh:path hdmap:GeodeticReferenceSystem ] ;
+            sh:path hdmap:geodeticReferenceSystem ] ;
     sh:targetClass hdmap:georeference .
 
 hdmap:GeodeticReferenceSystemShape a sh:NodeShape ;
