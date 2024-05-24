@@ -30,3 +30,6 @@
 # environment-model directory (Mirco AND Robert)
 /environment-model @robertschubert
 /environment-model @MircoNierenz
+
+#sensordata directory (Erik AND all those involved in relating classes (environment, localization, sensor, yni...))
+/sensordata @konierik
