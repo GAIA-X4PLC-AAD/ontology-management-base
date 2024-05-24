@@ -27,3 +27,6 @@
 # gx directory (Robert OR Lena)
 /gx @robertschubert @lenasauermann
 
+# environment-model directory (Mirco AND Robert)
+/environment-model @robertschubert
+/environment-model @MircoNierenz
