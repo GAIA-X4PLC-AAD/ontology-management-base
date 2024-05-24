@@ -1,0 +1,25 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix environment: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment/environment_ontology.ttl> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment/> .
+
+general: a owl:Ontology ;
+    rdfs:label "upper-ontology definition for general Environments"@en ;
+    dcterms:contributor "Erik Konietzko (FHG IPK)" ;
+    owl:versionInfo "0.1"^^xsd:float .
+
+environment:Environment a owl:Class ;
+    rdfs:label "class definition for Environments" ;
+    rdfs:comment "General attributes for all Environments"@en ;
+    rdfs:subClassOf gx:DataResource .
+
+environment:generalAttributeRef rdf:type owl:ObjectProperty ;
+    rdfs:label "object property referencing to general attributes" ;
+    rdfs:comment "General attributes for all assets"@en ;
+    rdfs:domain environment:Environment ;
+    rdfs:range general:General.
