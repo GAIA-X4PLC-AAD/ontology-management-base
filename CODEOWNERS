@@ -31,5 +31,6 @@
 /environment-model @robertschubert
 /environment-model @MircoNierenz
 
-#sensordata directory (Erik AND all those involved in relating classes (environment, localization, sensor, yni...))
+#sensordata directory (Lena OR Robert AND Erik OR all those involved in relating classes (environment, localization, sensor, yni...))
+/sensordata @lenasauermann @robertschubert
 /sensordata @konierik
