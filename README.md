@@ -112,7 +112,7 @@ This section describes guidelines that _must_ be followed when applying changes 
     ```turtle
     @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
     ```
-  * Add general shape
+  * Nest the `GeneralShape` as a node
     ```turtle
     sh:property [ sh:maxCount 1 ;
                 sh:minCount 1 ;
