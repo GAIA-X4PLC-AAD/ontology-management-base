@@ -1,0 +1,275 @@
+{
+  "@context": {
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "scenario": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+  },
+  "@id": "did:example:1234",
+  "@type": "scenario:scenario",
+  "scenario:general": {
+    "@type": "scenario:General",
+    "scenario:type": "Logical",
+    "scenario:timeDate": {
+      "@value": "2024-05-27T10:00:00",
+      "@type": "xsd:dateTime"
+    },
+    "scenario:usedStandardFunctions": {
+      "@value": "TeleportAction,  SpeedAction, FollowTrajectoryAction",
+      "@type": "xsd:string"
+    },
+    "scenario:aim": {
+      "@value": "Test sensor perception range.",
+      "@type": "xsd:string"
+    }
+  },
+  "scenario:participants": {
+    "@type": "scenario:Participants",
+    "scenario:numberTrafficObjects": {
+      "@value": "1",
+      "@type": "xsd:unsignedInt"
+    },
+    "scenario:temporaryTrafficObjects": {
+      "@value": "0",
+      "@type": "xsd:unsignedInt"
+    },
+    "scenario:permanentTrafficObjects": {
+      "@value": "1",
+      "@type": "xsd:unsignedInt"
+    },
+    "scenario:movementDescription": {
+      "@value": "FollowTrajectory",
+      "@type": "xsd:string"
+    },
+    "scenario:controllers": {
+      "@value": "SampleControler1",
+      "@type": "xsd:string"
+    },
+    "scenario:customCommands": {
+      "@value": "UserDefinedAction: TurnAround",
+      "@type": "xsd:string"
+    }
+  },
+  "scenario:environmental": {
+    "@type": "scenario:Environmental",
+    "scenario:sunAzimuth": {
+      "@value": "3.1415",
+      "@type": "xsd:float"
+    }
+  },
+  "scenario:traffic": {
+    "@type": "scenario:Traffic",
+    "scenario:country": {
+      "@value": "Germany",
+      "@type": "xsd:string"
+    },
+    "scenario:countrySpecificTP": {
+      "@value": "CustomCar",
+      "@type": "xsd:string"
+    },
+    "scenario:countrySpecificSign": {
+      "@value": "Aircraft",
+      "@type": "xsd:string"
+    }
+  },
+  "scenario:structural": {
+    "@type": "scenario:Structural",
+    "scenario:catalogs": {
+      "@type": "scenario:Link",
+      "scenario:url": {
+        "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
+        "@type": "xsd:anyURI"
+      },
+      "scenario:type": "Document"
+    },
+    "": {
+      "@type": "scenario:Link",
+      "scenario:url": {
+        "@value": "https://inavlid.link.com/my_car_model.ogb",
+        "@type": "xsd:anyURI"
+      },
+      "scenario:type": "Document"
+    },
+    "scenario:trafficSpace": {
+      "@type": "scenario:Link",
+      "scenario:url": {
+        "@value": "https://inavlid.link.com/my_map.xodr",
+        "@type": "xsd:anyURI"
+      },
+      "scenario:type": "Document"
+    }
+  },
+  "scenario:format": {
+    "@type": "scenario:Format",
+    "scenario:type": "ASAM OpenSCENARIO",
+    "scenario:version": {
+      "@value": "1.2",
+      "@type": "xsd:string"
+    }
+  },
+  "general:general": {
+    "@type": "general:General",
+    "general:DataResource": {
+      "@type": "gx:DataResource",
+      "gx:expirationDateTime": {
+        "@value": "2100-01-01T00:00:00",
+        "@type": "xsd:dateTime"
+      },
+      "gx:containsPII": false,
+      "gx:exposedThrough": {
+        "@id": "https://inavlid.link.com/my_scenario_resource.zip"
+      },
+      "gx:producedBy": {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base"
+      },
+      "gx:policy": {
+        "@value": "MPL-2.0",
+        "@type": "xsd:string"
+      },
+      "gx:name": {
+        "@value": "MyScenario",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+        "@value": "A sample description of a none existing scenario.",
+        "@type": "xsd:string"
+      }
+    },
+    "general:Links": {
+      "@type": "general:Links",
+      "general:data": {
+        "@type": "scenario:Link",
+        "scenario:url": {
+          "@value": "https://inavlid.link.com/link",
+          "@type": "xsd:anyURI"
+        },
+        "scenario:type": "Document"
+      },
+      "general:media": {
+        "@type": "scenario:Link",
+        "scenario:url": {
+          "@value": "https://inavlid.link.com/media",
+          "@type": "xsd:anyURI"
+        },
+        "scenario:type": "Document"
+      }
+    }
+  },
+  "scenario:source": {
+    "@type": "scenario:DataSourceShape",
+    "scenario:source": {
+      "@value": "Synthetically created",
+      "@type": "xsd:string"
+    }
+  },
+  "georeference:georeference": {
+    "@type": "georeference:GeoreferenceShape",
+    "georeference:projectLocation": {
+      "@type": "georeference:ProjectLocation",
+      "georeference:country": {
+        "@value": "DE",
+        "@type": "xsd:string"
+      },
+      "georeference:state": {
+        "@value": "My state",
+        "@type": "xsd:string"
+      },
+      "georeference:region": {
+        "@value": "Some region",
+        "@type": "xsd:string"
+      },
+      "georeference:city": {
+        "@value": "Any City",
+        "@type": "xsd:string"
+      },
+      "georeference:relationOrArea": {
+        "@value": "None existing area.",
+        "@type": "xsd:string"
+      },
+      "georeference:boundingBox": {
+        "@type": "georeference:BoundingBox",
+        "georeference:xMin": {
+          "@value": "0",
+          "@type": "xsd:float"
+        },
+        "georeference:yMin": {
+          "@value": "10",
+          "@type": "xsd:float"
+        },
+        "georeference:xMax": {
+          "@value": "0",
+          "@type": "xsd:float"
+        },
+        "georeference:yMax": {
+          "@value": "20",
+          "@type": "xsd:float"
+        }
+      }
+    },
+    "georeference:geodeticReferenceSystem": {
+      "@type": "georeference:GeodeticReferenceSystem",
+      "georeference:coordinateSystem": {
+        "@value": "EPSG:32632",
+        "@type": "xsd:string"
+      },
+      "georeference:origin": {
+        "@type": "georeference:Coordinate2D",
+        "georeference:x": {
+          "@value": "0",
+          "@type": "xsd:float"
+        },
+        "georeference:y": {
+          "@value": "0",
+          "@type": "xsd:float"
+        }
+      },
+      "georeference:heightSystem": {
+        "@value": "Ellipsodial height",
+        "@type": "xsd:string"
+      }
+    }
+  },
+  "scenario:catalogs": {
+    "@type": "scenario:Link",
+    "scenario:url": {
+      "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
+      "@type": "xsd:anyURI"
+    },
+    "scenario:type": "Document"
+  },
+  "": {
+    "@type": "scenario:Link",
+    "scenario:url": {
+      "@value": "https://inavlid.link.com/my_car_model.ogb",
+      "@type": "xsd:anyURI"
+    },
+    "scenario:type": "Document"
+  },
+  "scenario:trafficSpace": {
+    "@type": "scenario:Link",
+    "scenario:url": {
+      "@value": "https://inavlid.link.com/my_map.xodr",
+      "@type": "xsd:anyURI"
+    },
+    "scenario:type": "Document"
+  },
+  "general:data": {
+    "@type": "scenario:Link",
+    "scenario:url": {
+      "@value": "https://inavlid.link.com/link",
+      "@type": "xsd:anyURI"
+    },
+    "scenario:type": "Document"
+  },
+  "general:media": {
+    "@type": "scenario:Link",
+    "scenario:url": {
+      "@value": "https://inavlid.link.com/media",
+      "@type": "xsd:anyURI"
+    },
+    "scenario:type": "Document"
+  }
+}
