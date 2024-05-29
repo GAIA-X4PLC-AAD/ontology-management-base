@@ -131,3 +131,4 @@ gx:DataResource a sh:NodeShape ;
             sh:name "obsolete date time" ;
             sh:path gx:obsoleteDateTime ] ;
     sh:targetClass gx:DataResource .
+	
