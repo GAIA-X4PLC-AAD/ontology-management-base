@@ -78,7 +78,7 @@
   "scenario:structural": {
     "@type": "scenario:Structural",
     "scenario:catalogs": {
-      "@type": "scenario:Link",
+      "@type": "general:Link",
       "scenario:url": {
         "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
         "@type": "xsd:anyURI"
@@ -86,7 +86,7 @@
       "scenario:type": "Document"
     },
     "": {
-      "@type": "scenario:Link",
+      "@type": "general:Link",
       "scenario:url": {
         "@value": "https://inavlid.link.com/my_car_model.ogb",
         "@type": "xsd:anyURI"
@@ -94,7 +94,7 @@
       "scenario:type": "Document"
     },
     "scenario:trafficSpace": {
-      "@type": "scenario:Link",
+      "@type": "general:Link",
       "scenario:url": {
         "@value": "https://inavlid.link.com/my_map.xodr",
         "@type": "xsd:anyURI"
@@ -141,7 +141,7 @@
     "general:Links": {
       "@type": "general:Links",
       "general:data": {
-        "@type": "scenario:Link",
+        "@type": "general:Link",
         "scenario:url": {
           "@value": "https://inavlid.link.com/link",
           "@type": "xsd:anyURI"
@@ -149,7 +149,7 @@
         "scenario:type": "Document"
       },
       "general:media": {
-        "@type": "scenario:Link",
+        "@type": "general:Link",
         "scenario:url": {
           "@value": "https://inavlid.link.com/media",
           "@type": "xsd:anyURI"
@@ -233,7 +233,7 @@
     }
   },
   "scenario:catalogs": {
-    "@type": "scenario:Link",
+    "@type": "general:Link",
     "scenario:url": {
       "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
       "@type": "xsd:anyURI"
@@ -241,7 +241,7 @@
     "scenario:type": "Document"
   },
   "": {
-    "@type": "scenario:Link",
+    "@type": "general:Link",
     "scenario:url": {
       "@value": "https://inavlid.link.com/my_car_model.ogb",
       "@type": "xsd:anyURI"
@@ -249,7 +249,7 @@
     "scenario:type": "Document"
   },
   "scenario:trafficSpace": {
-    "@type": "scenario:Link",
+    "@type": "general:Link",
     "scenario:url": {
       "@value": "https://inavlid.link.com/my_map.xodr",
       "@type": "xsd:anyURI"
@@ -257,7 +257,7 @@
     "scenario:type": "Document"
   },
   "general:data": {
-    "@type": "scenario:Link",
+    "@type": "general:Link",
     "scenario:url": {
       "@value": "https://inavlid.link.com/link",
       "@type": "xsd:anyURI"
@@ -265,7 +265,7 @@
     "scenario:type": "Document"
   },
   "general:media": {
-    "@type": "scenario:Link",
+    "@type": "general:Link",
     "scenario:url": {
       "@value": "https://inavlid.link.com/media",
       "@type": "xsd:anyURI"
