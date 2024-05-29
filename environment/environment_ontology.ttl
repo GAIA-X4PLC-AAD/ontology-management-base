@@ -8,7 +8,7 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment/> .
 
-general: a owl:Ontology ;
+environment: a owl:Ontology ;
     rdfs:label "upper-ontology definition for general Environments"@en ;
     dcterms:contributor "Erik Konietzko (FHG IPK)" ;
     owl:versionInfo "0.1"^^xsd:float .
@@ -18,8 +18,5 @@ environment:Environment a owl:Class ;
     rdfs:comment "General attributes for all Environments"@en ;
     rdfs:subClassOf gx:DataResource .
 
-environment:generalAttributeRef rdf:type owl:ObjectProperty ;
-    rdfs:label "object property referencing to general attributes" ;
-    rdfs:comment "General attributes for all assets"@en ;
-    rdfs:domain environment:Environment ;
-    rdfs:range general:General.
+general:generalAttributeRef rdf:type owl:ObjectProperty ;
+    rdfs:domain environment:Environment.
