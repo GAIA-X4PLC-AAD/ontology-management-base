@@ -11,7 +11,7 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:order 5 ;
-            sh:path general:general ],
+            sh:path scenario:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:EnvironmentalShape ;
@@ -194,7 +194,7 @@ scenario:StructuralShape a sh:NodeShape ;
             sh:message "Validation of catalogs failed!"@en ;
             sh:minCount 0 ;
             sh:name "catalogs"@en ;
-            sh:node scenario:LinkShape ;
+            sh:node general:LinkShape ;
             sh:order 0 ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
@@ -202,7 +202,7 @@ scenario:StructuralShape a sh:NodeShape ;
             sh:message "Validation of 3dModels failed!"@en ;
             sh:minCount 0 ;
             sh:name "3dModels"@en ;
-            sh:node scenario:LinkShape ;
+            sh:node general:LinkShape ;
             sh:order 1 ;
             sh:path scenario:3dModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
@@ -211,7 +211,7 @@ scenario:StructuralShape a sh:NodeShape ;
             sh:message "Validation of trafficSpace failed!"@en ;
             sh:minCount 0 ;
             sh:name "trafficSpace"@en ;
-            sh:node scenario:LinkShape ;
+            sh:node general:LinkShape ;
             sh:order 2 ;
             sh:path scenario:trafficSpace ] ;
     sh:targetClass scenario:Structural .
@@ -245,18 +245,3 @@ scenario:TrafficShape a sh:NodeShape ;
             sh:order 0 ;
             sh:path scenario:country ] ;
     sh:targetClass scenario:Traffic .
-
-scenario:LinkShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:anyURI ;
-            sh:message "Validation of url failed!"@en ;
-            sh:name "url"@en ;
-            sh:order 0 ;
-            sh:path scenario:url ],
-        [ sh:datatype xsd:string ;
-            sh:in ("Document" "Image" "Model" "Routing" "Video") ;
-            sh:message "Validation of type failed!"@en ;
-            sh:name "type"@en ;
-            sh:order 1 ;
-            sh:path scenario:type ] ;
-    sh:targetClass scenario:Link .
-
