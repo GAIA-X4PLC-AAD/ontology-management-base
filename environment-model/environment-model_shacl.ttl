@@ -1,4 +1,6 @@
 @prefix environmentmodel: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environmentmodel/> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -28,144 +30,8 @@ environmentmodel:environmentModelShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node environmentmodel:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path environmentmodel:Georeference ] ;
-    sh:targetClass environmentmodel:environmentModel .
-
-    environmentmodel:GeoreferenceShape a sh:NodeShape ;
-    sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node environmentmodel:ProjectLocationShape ;
-            sh:order 0 ;
-            sh:path environmentmodel:ProjectLocation ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node environmentmodel:GeodeticReferenceSystemShape ;
-            sh:order 1 ;
-            sh:path environmentmodel:GeodeticReferenceSystem ] ;
-    sh:targetClass environmentmodel:georeference .
-
-environmentmodel:GeodeticReferenceSystemShape a sh:NodeShape ;
-    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
-            sh:description "World coordinates of map origin"@en ;
-            sh:message "Validation of origin failed!"@en ;
-            sh:name "origin"@en ;
-            sh:node environmentmodel:Coordinate2DShape ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path environmentmodel:origin ],
-        [ skos:example "EPSG 32632" ;
-            sh:datatype xsd:string ;
-            sh:description "EPSG code of the map"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of coordinateSystem failed!"@en ;
-            sh:name "coordinateSystem"@en ;
-            sh:order 0 ;
-            sh:path environmentmodel:coordinateSystem ],
-        [ skos:example "EPSG xyz" ;
-            sh:datatype xsd:string ;
-            sh:description "Ellipsodial height or orthometric height"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of heightSystem failed!"@en ;
-            sh:name "heightSystem"@en ;
-            sh:order 1 ;
-            sh:path environmentmodel:heightSystem ] ;
-    sh:targetClass environmentmodel:GeodeticReferenceSystem .
-
-environmentmodel:BoundingBoxShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of yMin failed!"@en ;
-            sh:name "yMin"@en ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path environmentmodel:yMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of yMax failed!"@en ;
-            sh:name "yMax"@en ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path environmentmodel:yMax ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of xMin failed!"@en ;
-            sh:name "xMin"@en ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path environmentmodel:xMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of xMax failed!"@en ;
-            sh:name "xMax"@en ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path environmentmodel:xMax ] ;
-    sh:targetClass environmentmodel:BoundingBox .
-
-environmentmodel:Coordinate2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of x failed!"@en ;
-            sh:name "x"@en ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path environmentmodel:x ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of y failed!"@en ;
-            sh:name "y"@en ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path environmentmodel:y ] ;
-    sh:targetClass environmentmodel:Coordinate2D .
-    
-environmentmodel:ProjectLocationShape a sh:NodeShape ;
-    sh:property [ skos:example "nan" ;
-            sh:datatype xsd:string ;
-            sh:description "State of project area"@en ;
-            sh:message "Validation of state failed!"@en ;
-            sh:maxCount 1 ;
-            sh:name "state"@en ;
-            sh:order 1 ;
-            sh:path environmentmodel:state ],
-        [ skos:example "nan" ;
-            sh:datatype xsd:string ;
-            sh:description "nan"@en ;
-            sh:message "Validation of city failed!"@en ;
-            sh:maxCount 1 ;
-            sh:name "city"@en ;
-            sh:order 3 ;
-            sh:path environmentmodel:city ],
-        [ skos:example "nan" ;
-            sh:datatype xsd:string ;
-            sh:description "Region of project area"@en ;
-            sh:message "Validation of region failed!"@en ;
-            sh:maxCount 1 ;
-            sh:name "region"@en ;
-            sh:order 2 ;
-            sh:path environmentmodel:region ],
-        [ skos:example "Germany, GER" ;
-            sh:datatype xsd:string ;
-            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of country failed!"@en ;
-            sh:name "country"@en ;
-            sh:order 0 ;
-            sh:path environmentmodel:country ;
-            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
-        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
-            sh:description "Bounding box with lat/lon values in WGS84"@en ;
-            sh:message "Validation of boundingBox failed!"@en ;
-            sh:name "boundingBox"@en ;
-            sh:node environmentmodel:BoundingBoxShape ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path environmentmodel:boundingBox ],
-        [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
-            sh:datatype xsd:string ;
-            sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
-            sh:message "Validation of relationOrArea failed!"@en ;
-            sh:maxCount 1 ;
-            sh:name "relationOrArea"@en ;
-            sh:order 4 ;
-            sh:path environmentmodel:relationOrArea ] ;
-    sh:targetClass environmentmodel:ProjectLocation .     
+            sh:path georeference:Georeference ] ;
+    sh:targetClass environmentmodel:environmentModel .   
 
 environmentmodel:FormatShape a sh:NodeShape ;
     sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph" ;
@@ -212,7 +78,7 @@ environmentmodel:ProjectShape a sh:NodeShape ;
             sh:name "softwareName"@en ;
             sh:order 0 ;
             sh:path environmentmodel:softwareName ],
-        [ skos:example "Epic" ;
+        [ skos:example "Epic Games" ;
             sh:datatype xsd:string ;
             sh:description "Name of software vendor"@en ;
             sh:maxCount 1 ;
