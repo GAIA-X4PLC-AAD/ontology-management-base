@@ -1,136 +1,288 @@
-@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix environmentmodel: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environmentmodel/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-environment-model:Asset_Shape a sh:NodeShape ;
-    sh:property [ skos:example "0.1 m" ;
-            sh:datatype xsd:float ;
-            sh:description "real texture resolution in meter (max?)"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of texture_resolution failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "texture_resolution"@en ;
-            sh:path environment-model:environment-model_quality_texture_resolution ],
-        [ skos:example "Trian3DBuilder, version 7.7" ;
+environmentmodel:environmentModelShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:QuantityShape ;
+            sh:order 2 ;
+            sh:path environmentmodel:Quantity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:QualityShape ;
+            sh:order 3 ;
+            sh:path environmentmodel:Quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:ProjectShape ;
+            sh:order 0 ;
+            sh:path environmentmodel:Project ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:FormatShape ;
+            sh:order 1 ;
+            sh:path environmentmodel:Format ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:GeoreferenceShape ;
+            sh:order 7 ;
+            sh:path environmentmodel:Georeference ] ;
+    sh:targetClass environmentmodel:environmentModel .
+
+    environmentmodel:GeoreferenceShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:ProjectLocationShape ;
+            sh:order 0 ;
+            sh:path environmentmodel:ProjectLocation ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node environmentmodel:GeodeticReferenceSystemShape ;
+            sh:order 1 ;
+            sh:path environmentmodel:GeodeticReferenceSystem ] ;
+    sh:targetClass environmentmodel:georeference .
+
+environmentmodel:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
+            sh:description "World coordinates of map origin"@en ;
+            sh:message "Validation of origin failed!"@en ;
+            sh:name "origin"@en ;
+            sh:node environmentmodel:Coordinate2DShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path environmentmodel:origin ],
+        [ skos:example "EPSG 32632" ;
             sh:datatype xsd:string ;
-            sh:description "tool for the creation of the data"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of creation_version failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "creation_version"@en ;
-            sh:path environment-model:environment-model_project_creation_version ],
-        [ skos:example "high" ;
+            sh:description "EPSG code of the map"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of coordinateSystem failed!"@en ;
+            sh:name "coordinateSystem"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:coordinateSystem ],
+        [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
-            sh:description "category of the level of detail (High - highest level of detail with additional object enrichment, Med - directly from data sources, with environment, Low - topological representation)."@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of detail_level failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "detail_level"@en ;
-            sh:path environment-model:environment-model_quality_detail_level ],
-        [ skos:example "12000" ;
-            sh:datatype xsd:int ;
-            sh:description "Total number of all geoemtries, instances are considered only once"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of geometry_count failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "geometry_count"@en ;
-            sh:path environment-model:environment-model_quantity_geometry_count ],
-        [ skos:example "512m" ;
-            sh:datatype xsd:float ;
-            sh:description "tile size in meter"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of tile_size failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "tile_size"@en ;
-            sh:path environment-model:environment-model_quantity_tile_size ],
-        [ skos:example "DataSmith" ;
+            sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of heightSystem failed!"@en ;
+            sh:name "heightSystem"@en ;
+            sh:order 1 ;
+            sh:path environmentmodel:heightSystem ] ;
+    sh:targetClass environmentmodel:GeodeticReferenceSystem .
+
+environmentmodel:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path environmentmodel:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path environmentmodel:yMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path environmentmodel:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path environmentmodel:xMax ] ;
+    sh:targetClass environmentmodel:BoundingBox .
+
+environmentmodel:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path environmentmodel:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path environmentmodel:y ] ;
+    sh:targetClass environmentmodel:Coordinate2D .
+    
+environmentmodel:ProjectLocationShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
-            sh:description "format type for visual system"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of format failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "format"@en ;
-            sh:path environment-model:environment-model_data_format ],
-        [ skos:example "4.27" ;
-            sh:datatype xsd:string ;
-            sh:description "version of visual system"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of version failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "version"@en ;
-            sh:path environment-model:environment-model_project_version ],
-        [ skos:example "1" ;
-            sh:datatype xsd:int ;
-            sh:description "number of tiles as row"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of tile_count_x failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "tile_count_x"@en ;
-            sh:path environment-model:environment-model_quantity_tile_count_x ],
-        [ skos:example "Trian3DBuilder, version 7.7" ;
-            sh:datatype xsd:string ;
-            sh:description "tool for the creation of the data"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of creation_source failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "creation_source"@en ;
-            sh:path environment-model:environment-model_project_creation_source ],
-        [ skos:example "SDK 4.25" ;
+            sh:description "State of project area"@en ;
+            sh:message "Validation of state failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "state"@en ;
+            sh:order 1 ;
+            sh:path environmentmodel:state ],
+        [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "nan"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:message "Validation of city failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "city"@en ;
+            sh:order 3 ;
+            sh:path environmentmodel:city ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "Region of project area"@en ;
+            sh:message "Validation of region failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "region"@en ;
+            sh:order 2 ;
+            sh:path environmentmodel:region ],
+        [ skos:example "Germany, GER" ;
+            sh:datatype xsd:string ;
+            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:name "country"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:country ;
+            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
+        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
+            sh:description "Bounding box with lat/lon values in WGS84"@en ;
+            sh:message "Validation of boundingBox failed!"@en ;
+            sh:name "boundingBox"@en ;
+            sh:node environmentmodel:BoundingBoxShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path environmentmodel:boundingBox ],
+        [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
+            sh:message "Validation of relationOrArea failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "relationOrArea"@en ;
+            sh:order 4 ;
+            sh:path environmentmodel:relationOrArea ] ;
+    sh:targetClass environmentmodel:ProjectLocation .     
+
+environmentmodel:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("Autodesk FBX" "GLTF" "OpenSceneGraph" "Unreal DataSmith") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:type ],
+        [ skos:example "SDK 4.25" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
             sh:message "Validation of version failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
             sh:name "version"@en ;
-            sh:path environment-model:environment-model_data_version ],
+            sh:order 1 ;
+            sh:path environmentmodel:version ] ;
+    sh:targetClass environmentmodel:Format .
+
+environmentmodel:ProjectShape a sh:NodeShape ;
+    sh:property [ skos:example "7.7" ;
+            sh:datatype xsd:string ;
+            sh:description "Tool for the creation of the data"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of creationVersion failed!"@en ;
+            sh:name "creationVersion"@en ;
+            sh:order 4 ;
+            sh:path environmentmodel:creationVersion ],
+        [ skos:example "Trian3DBuilder" ;
+            sh:datatype xsd:string ;
+            sh:description "Tool for the creation of the data"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of creationSource failed!"@en ;
+            sh:name "creationSource"@en ;
+            sh:order 3 ;
+            sh:path environmentmodel:creationSource ],
+        [ skos:example "Unreal" ;
+            sh:datatype xsd:string ;
+            sh:description "Name of the visual system"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of softwareName failed!"@en ;
+            sh:name "softwareName"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:softwareName ],
         [ skos:example "Epic" ;
             sh:datatype xsd:string ;
-            sh:description "name of software vendor"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of software_vendor failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "software_vendor"@en ;
-            sh:path environment-model:environment-model_project_software_vendor ],
-        [ skos:example "PBR" ;
+            sh:description "Name of software vendor"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of softwareVendor failed!"@en ;
+            sh:name "softwareVendor"@en ;
+            sh:order 1 ;
+            sh:path environmentmodel:softwareVendor ],
+        [ skos:example "4.27" ;
             sh:datatype xsd:string ;
-            sh:description "description of quality features"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
+            sh:description "Version of visual system"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 2 ;
+            sh:path environmentmodel:version ] ;
+    sh:targetClass environmentmodel:Project .
+
+environmentmodel:QualityShape a sh:NodeShape ;
+    sh:property [ skos:example "PBR" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of quality features"@en ;
+            sh:maxCount 1 ;
             sh:message "Validation of features failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
+            sh:minCount 0 ;
             sh:name "features"@en ;
-            sh:path environment-model:environment-model_quality_features ],
-        [ skos:example "2" ;
+            sh:order 2 ;
+            sh:path environmentmodel:features ],
+        [ skos:example "high" ;
+            sh:datatype xsd:string ;
+            sh:description "Category of the level of detail (High - highest level of detail with additional object enrichment, Med - directly from data sources, with environment, Low - topological representation)."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of detailLevel failed!"@en ;
+            sh:name "detailLevel"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:detailLevel ],
+        [ skos:example "0.1 m" ;
+            sh:datatype xsd:float ;
+            sh:description "Real texture resolution in meter (max?)"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of textureResolution failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "textureResolution"@en ;
+            sh:order 1 ;
+            sh:path environmentmodel:textureResolution ] ;
+    sh:targetClass environmentmodel:Quality .
+
+environmentmodel:QuantityShape a sh:NodeShape ;
+    sh:property [ skos:example "12000" ;
             sh:datatype xsd:int ;
-            sh:description "number of tiles as column"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of tile_count_y failed!"@en ;
-            sh:minCount "0"^^xsd:unsignedInt ;
-            sh:name "tile_count_y"@en ;
-            sh:path environment-model:environment-model_quantity_tile_count_y ],
-        [ skos:example "179" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "number of textures"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of texture_material_count failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "texture_material_count"@en ;
-            sh:path environment-model:environment-model_quantity_texture_material_count ],
+            sh:description "Total number of all geoemtries, instances are considered only once"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of geometryCount failed!"@en ;
+            sh:name "geometryCount"@en ;
+            sh:order 2 ;
+            sh:path environmentmodel:geometryCount ],
         [ skos:example "16000000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all triangles, instances are considered only once"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of triangle_count failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "triangle_count"@en ;
-            sh:path environment-model:environment-model_quantity_triangle_count ],
-        [ skos:example "Unreal" ;
-            sh:datatype xsd:string ;
-            sh:description "name of the visual system"@en ;
-            sh:maxCount "1"^^xsd:unsignedInt ;
-            sh:message "Validation of software_name failed!"@en ;
-            sh:minCount "1"^^xsd:unsignedInt ;
-            sh:name "software_name"@en ;
-            sh:path environment-model:environment-model_project_software_name ] ;
-    sh:targetClass environment-model:Asset .
+            sh:maxCount 1 ;
+            sh:message "Validation of triangleCount failed!"@en ;
+            sh:name "triangleCount"@en ;
+            sh:order 1 ;
+            sh:path environmentmodel:triangleCount ],
+        [ skos:example "179" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Number of textures"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of textureMaterialCount failed!"@en ;
+            sh:name "textureMaterialCount"@en ;
+            sh:order 0 ;
+            sh:path environmentmodel:textureMaterialCount ] ;
+    sh:targetClass environmentmodel:Quantity .
 
