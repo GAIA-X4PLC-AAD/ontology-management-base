@@ -9,22 +9,22 @@ general:GeneralShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
             sh:order 1 ;
-            sh:path general:Description ], 
+            sh:path general:description ], 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node gx:DataResource ;
             sh:order 2 ;
-            sh:path general:DataResource ],            
+            sh:path general:dataResource ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:LinksShape ;
             sh:order 3 ;
-            sh:path general:Links ],         
+            sh:path general:links ],         
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:BundleDataShape ;
             sh:order 4 ;
-            sh:path general:BundleData ];
+            sh:path general:bundleData ];
     sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
