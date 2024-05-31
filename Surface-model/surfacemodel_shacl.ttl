@@ -10,27 +10,27 @@ surfacemodel:surfaceModelShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node surfacemodel:FormatShape ;
             sh:order 2 ;
-            sh:path surfacemodel:Format ],
+            sh:path surfacemodel:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surfacemodel:DataShape ;
             sh:order 3 ;
-            sh:path surfacemodel:Data ],
+            sh:path surfacemodel:data ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surfacemodel:QualityShape ;
             sh:order 1 ;
-            sh:path surfacemodel:Quality ],
+            sh:path surfacemodel:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surfacemodel:QuantityShape ;
             sh:order 0 ;
-            sh:path surfacemodel:Quantity ],
+            sh:path surfacemodel:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node surfacemodel:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path georeference:Georeference ] ;
+            sh:path georeference:georeference ] ;
     sh:targetClass surfacemodel:surfaceModel .
 
 surfacemodel:DataShape a sh:NodeShape ;
