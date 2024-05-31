@@ -9,11 +9,11 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| environmentModelShape | environmentmodel | Quantity | 1 | 1 |  |  | environment-model_shacl.ttl |
-| environmentModelShape | environmentmodel | Quality | 1 | 1 |  |  | environment-model_shacl.ttl |
-| environmentModelShape | environmentmodel | Project | 1 | 1 |  |  | environment-model_shacl.ttl |
-| environmentModelShape | environmentmodel | Format | 1 | 1 |  |  | environment-model_shacl.ttl |
-| environmentModelShape | georeference | Georeference | 0 | 1 |  |  | environment-model_shacl.ttl |
+| environmentModelShape | environmentmodel | quantity | 1 | 1 |  |  | environment-model_shacl.ttl |
+| environmentModelShape | environmentmodel | quality | 1 | 1 |  |  | environment-model_shacl.ttl |
+| environmentModelShape | environmentmodel | project | 1 | 1 |  |  | environment-model_shacl.ttl |
+| environmentModelShape | environmentmodel | format | 1 | 1 |  |  | environment-model_shacl.ttl |
+| environmentModelShape | georeference | georeference | 0 | 1 |  |  | environment-model_shacl.ttl |
 | FormatShape | environmentmodel | type |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | FormatShape | environmentmodel | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ProjectShape | environmentmodel | creationVersion |  | 1 | Tool for the creation of the data | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
