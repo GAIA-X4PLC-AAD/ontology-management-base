@@ -48,7 +48,7 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:order 5 ;
             sh:path scenario:format ],
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
+            sh:minCount 0 ;
             sh:node georeference:GeoreferenceShape ;
             sh:order 7 ;
             sh:path georeference:georeference ] ;
