@@ -14,16 +14,21 @@ general:GeneralShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node gx:DataResource ;
             sh:order 2 ;
-            sh:path general:dataResource ],            
+            sh:path general:dataResource ],      
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:Data ;
+            sh:order 3 ;
+            sh:path general:data ],               
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:LinksShape ;
-            sh:order 3 ;
+            sh:order 4 ;
             sh:path general:links ],         
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:BundleDataShape ;
-            sh:order 4 ;
+            sh:order 5 ;
             sh:path general:bundleData ];
     sh:targetClass general:General .
     
@@ -45,6 +50,25 @@ general:DescriptionShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path gx:description ];
     sh:targetClass general:Description .    
+    
+general:DataShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:description "Size of the file to be downloaded in MB." ;
+            skos:example "5.8" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "size" ;
+            sh:order 1 ;
+            sh:path gx:size ],
+        [ sh:datatype xsd:string ;
+            sh:description "Contract information in regards to the data exchange component." ;
+            skos:example "??? TODO" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "contractID" ;
+            sh:order 2 ;
+            sh:path gx:contractID ];
+    sh:targetClass general:Data .     
     
 general:BundleDataShape a sh:NodeShape ;
     sh:property [ sh:node general:LinkShape ;
