@@ -13,5 +13,5 @@ hdmap: a owl:Ontology ;
 hdmap:hdmap a owl:Class ;
     rdfs:label "class definition for hdmap" ;
     rdfs:comment "Attributes for high definition maps"@en ;
-    rdfs:subClassOf gax-core:DataResource .
+    rdfs:subClassOf gx:DataResource .
 
