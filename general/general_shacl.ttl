@@ -106,7 +106,7 @@ general:LinksShape a sh:NodeShape ;
 
 general:LinkShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
-            sh:in ("Document" "Image" "Model" "Routing" "Video", "3DPreview", "Asset") ;
+            sh:in ("Document" "Image" "Model" "Routing" "Video" "3DPreview" "Asset") ;
             sh:message "Validation of type failed!"@en ;
             sh:description "Choose type of link." ;
             sh:name "type"@en ;
