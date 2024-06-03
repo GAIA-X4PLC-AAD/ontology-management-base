@@ -10,9 +10,9 @@
   },
   "@id": "did:example:1234",
   "@type": "scenario:scenario",
-  "scenario:general": {
-    "@type": "scenario:General",
-    "scenario:type": "Logical",
+  "scenario:common": {
+    "@type": "scenario:Common",
+    "scenario:abstractionLevel": "Logical",
     "scenario:timeDate": {
       "@value": "2024-05-27T10:00:00",
       "@type": "xsd:dateTime"
@@ -26,8 +26,8 @@
       "@type": "xsd:string"
     }
   },
-  "scenario:participants": {
-    "@type": "scenario:Participants",
+  "scenario:trafficParticipants": {
+    "@type": "scenario:TrafficParticipants",
     "scenario:numberTrafficObjects": {
       "@value": "1",
       "@type": "xsd:unsignedInt"
@@ -104,7 +104,7 @@
   },
   "scenario:format": {
     "@type": "scenario:Format",
-    "scenario:type": "ASAM OpenSCENARIO",
+    "scenario:dataFormat": "ASAM OpenSCENARIO",
     "scenario:version": {
       "@value": "1.2",
       "@type": "xsd:string"

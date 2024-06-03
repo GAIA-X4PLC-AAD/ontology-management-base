@@ -19,9 +19,9 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:path scenario:environmental ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:ScenarioGeneralShape ;
+            sh:node scenario:ScenarioCommonShape ;
             sh:order 0 ;
-            sh:path scenario:general ],
+            sh:path scenario:common ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:DataSourceShape ;
@@ -39,9 +39,9 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:path scenario:traffic ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:ParticipantsShape ;
+            sh:node scenario:TrafficParticipantsShape ;
             sh:order 1 ;
-            sh:path scenario:participants ],
+            sh:path scenario:trafficParticipants ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
@@ -84,9 +84,9 @@ scenario:FormatShape a sh:NodeShape ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "type"@en ;
+            sh:name "dataFormat"@en ;
             sh:order 0 ;
-            sh:path scenario:type ],
+            sh:path scenario:dataFormat ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -97,16 +97,16 @@ scenario:FormatShape a sh:NodeShape ;
             sh:path scenario:version ] ;
     sh:targetClass scenario:Format .
 
-scenario:ScenarioGeneralShape a sh:NodeShape ;
+scenario:ScenarioCommonShape a sh:NodeShape ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:datatype xsd:string ;
             sh:description "Pegasus type of scenario"@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "type"@en ;
+            sh:name "abstractionLevel"@en ;
             sh:order 0 ;
-            sh:path scenario:type ],
+            sh:path scenario:abstractionLevel ],
         [ skos:example "2009-06-30T18:30:00+02:00	" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens."@en ;
@@ -134,9 +134,9 @@ scenario:ScenarioGeneralShape a sh:NodeShape ;
             sh:name "usedStandardFunctions"@en ;
             sh:order 3 ;
             sh:path scenario:usedStandardFunctions ] ;
-    sh:targetClass scenario:General .
+    sh:targetClass scenario:Common .
 
-scenario:ParticipantsShape a sh:NodeShape ;
+scenario:TrafficParticipantsShape a sh:NodeShape ;
     sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Count of traffic temporary objects"@en ;
@@ -186,7 +186,7 @@ scenario:ParticipantsShape a sh:NodeShape ;
             sh:name "customCommands"@en ;
             sh:order 6 ;
             sh:path scenario:customCommands ] ;
-    sh:targetClass scenario:Participants .
+    sh:targetClass scenario:TrafficParticipants .
 
 scenario:StructuralShape a sh:NodeShape ;
     sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
