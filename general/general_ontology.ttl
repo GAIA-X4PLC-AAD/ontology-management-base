@@ -16,6 +16,3 @@ general:General a owl:Class ;
     rdfs:comment "General attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
 
-general:generalAttributeRef a owl:ObjectProperty;
-    rdfs:label "property to reference a General class"@en;
-    rdfs:range general:General.
