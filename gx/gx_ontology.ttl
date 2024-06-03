@@ -1,0 +1,1597 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://creativecommons.org/ns#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:license a owl:AnnotationProperty .
+
+dcterms:abstract a owl:AnnotationProperty .
+
+dcterms:contributor a owl:AnnotationProperty .
+
+dcterms:created a owl:AnnotationProperty .
+
+dcterms:creator a owl:AnnotationProperty .
+
+dcterms:modified a owl:AnnotationProperty .
+
+dcterms:title a owl:AnnotationProperty .
+
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+void:vocabulary a owl:AnnotationProperty .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> a <http://purl.org/vocommons/voaf#Vocabulary>,
+        owl:NamedIndividual,
+        owl:Ontology ;
+    rdfs:label "Gaia-X gax-trust-framework Ontology"@en ;
+    ns1:license <http://www.apache.org/licenses/LICENSE-2.0> ;
+    dcterms:abstract "todo" ;
+    dcterms:contributor "Akyürek, Haydar",
+        "Bader, Sebastian",
+        "Baum, Hannes",
+        "Blanch, Josep",
+        "Frömberg, Jan",
+        "Gronlier, Pierre",
+        "Hermsen, Felix",
+        "Lange, Christoph",
+        "Langkau, Jörg",
+        "Leberecht, Markus",
+        "Meinke, Kai",
+        "Moosmann, Paul",
+        "Niessen, Thomas",
+        "Ogel, Frederic",
+        "Ottradovetz, Klaus",
+        "Qin, Chang",
+        "Rubina, Alina",
+        "Staginus, Judith",
+        "Strunk, Anja",
+        "Theissen-Lipp, Johannes" ;
+    dcterms:created "2021-10-18T12:00:00+01:00"^^xsd:dateTimeStamp ;
+    dcterms:creator "Working Group Service Characteristics" ;
+    dcterms:modified "2022-11-24T18:57:22+01:00"^^xsd:dateTimeStamp ;
+    dcterms:title "Gaia-X gax-trust-framework Ontology"@en ;
+    vann:preferredNamespacePrefix "gax-trust-framework" ;
+    vann:preferredNamespaceUri "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#" ;
+    void:vocabulary dcterms:,
+        vann:,
+        <http://purl.org/vocommons/voaf#>,
+        void: ;
+    owl:versionInfo "22.04" .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#BigData> a owl:Class ;
+    rdfs:label "Big Data"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Platform> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CircuitType> a owl:DatatypeProperty ;
+    rdfs:label "circuit type"@en ;
+    rdfs:comment "type of access medium: wired medium access or wireless medium access" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Database> a owl:Class ;
+    rdfs:label "Database"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Platform> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DestinationAccessPoint> a owl:DatatypeProperty ;
+    rdfs:label "destination access point"@en ;
+    rdfs:comment "defined via interconnection point identifier of the destination",
+        "defined via interconnection point identifier of the destination and references a network" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkConnectivity>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DigitalIdentityWallet> a owl:Class ;
+    rdfs:label "Digital Identity Wallet"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Wallet> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GpuPassThrough> a owl:DatatypeProperty ;
+    rdfs:label "gpu pass through"@en ;
+    rdfs:comment "Default: False. True, if GPU Pass-Through is activated. Either set numberOfvGPU or GpuPassThrough=true. Both options are prohibitted." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityFederation> a owl:Class ;
+    rdfs:label "Identity Federation"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityProvider> a owl:Class ;
+    rdfs:label "Identity Provider"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiationRequirements> a owl:DatatypeProperty ;
+    rdfs:label "instantiation requirements"@en ;
+    rdfs:comment "" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InterfaceType> a owl:DatatypeProperty ;
+    rdfs:label "interface type"@en ;
+    rdfs:comment "for the chosen circuit type, one should know the interface type in case the interoperability is required" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalNode> a owl:Class ;
+    rdfs:label "Physical Node"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ProtocolType> a owl:DatatypeProperty ;
+    rdfs:label "protocol type"@en ;
+    rdfs:comment "Link protocol type" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#RoundTripTimeRTT> a owl:ObjectProperty ;
+    rdfs:label "round trip time rtt"@en ;
+    rdfs:comment "Contractual latency defined in the SLA." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#SoftwareOffering> a owl:Class ;
+    rdfs:label "Software Offering"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#SourceAccessPoint> a owl:DatatypeProperty ;
+    rdfs:label "source access point"@en ;
+    rdfs:comment "defined via interconnection point identifier of the source" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkConnectivity>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VLANEtherType> a owl:DatatypeProperty ;
+    rdfs:label "vl ether type"@en ;
+    rdfs:comment "The ethertype of the vlan in hexadecimal notation." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VLANTag> a owl:ObjectProperty ;
+    rdfs:label "vl tag"@en ;
+    rdfs:comment "Vlan Tag ID that range between 1 and 4094. In case qinq connection type is chosen tow vlan tag, namely outer and innter should be provided" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VLANType> a owl:DatatypeProperty ;
+    rdfs:label "vl type"@en ;
+    rdfs:comment "the chosen types of vlan types" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#accessType> a owl:DatatypeProperty ;
+    rdfs:label "access type"@en ;
+    rdfs:comment "type of data support: digital, physical." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataAccountExport> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#additionalDisk> a owl:ObjectProperty ;
+    rdfs:label "additional disk"@en ;
+    rdfs:comment "Detailed information about additional disks of this flavor." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#aggregationOf> a owl:ObjectProperty ;
+    rdfs:label "aggregation of"@en ;
+    rdfs:comment "Resources related to the resource and that can exist independently of it." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#allowedSocket> a owl:DatatypeProperty ;
+    rdfs:label "allowed socket"@en ;
+    rdfs:comment "Socket the CPU fits into." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#architecture> a owl:DatatypeProperty ;
+    rdfs:label "architecture"@en ;
+    rdfs:comment "CPU Architecture required to instantiate this image." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#authKind> a owl:DatatypeProperty ;
+    rdfs:label "auth kind"@en ;
+    rdfs:comment "Indicate, which kind of authentication is used. \"credentials\": Authentication with username and password. \"ssl-cert\": Authentication with X.509 certificates." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#availability> a owl:ObjectProperty ;
+    rdfs:label "availability"@en ;
+    rdfs:comment "Contractual availability of connection defined in the SLA agreement. Availability is measured in the pseudo-unit \"percent\".",
+        "Contractual availability of connection defined in the SLA agreement. If not specified, then best effort is assumed. Availability is measured in the pseudo-unit \"percent\"." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#backupsSupported> a owl:DatatypeProperty ;
+    rdfs:label "backups supported"@en ;
+    rdfs:comment "Default: False. True is storage service supports backus." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#bandwidth> a owl:ObjectProperty ;
+    rdfs:label "bandwidth"@en ;
+    rdfs:comment "Contractual bandwidth defined in the service level agreement (SLA)",
+        "Contractual bandwidth defined in the service level agreement (SLA). Bandwidth is usually measured in dimension of bits per second." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#boostFrequency> a owl:ObjectProperty ;
+    rdfs:label "boost frequency"@en ;
+    rdfs:comment "Boost frequency of the CPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cRValidFrom> a owl:DatatypeProperty ;
+    rdfs:label "valid from"@en ;
+    rdfs:comment "Indicates the first date when the compliance reference goes into effect" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:dateTime .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cRValidUntil> a owl:DatatypeProperty ;
+    rdfs:label "valid until"@en ;
+    rdfs:comment "Indicates the last date when the compliance reference is no more into effect" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:dateTime .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cacheSize> a owl:ObjectProperty ;
+    rdfs:label "cache size"@en ;
+    rdfs:comment "Cache size of the CPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#canCertifyThirdPartyComplianceCertificationScheme> a owl:ObjectProperty ;
+    rdfs:label "can certify third party compliance certification scheme"@en ;
+    rdfs:comment "IDs of the Third Party Compliance Certification Scheme this Compliance Assessment Body can certify." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificationScheme> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#canHostServiceOffering> a owl:ObjectProperty ;
+    rdfs:label "can host service offering"@en ;
+    rdfs:comment "List of references of Service Offering that may be hosted on this location" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#certificateAuthority> a owl:DatatypeProperty ;
+    rdfs:label "certificate authority"@en ;
+    rdfs:comment "Certificate authority for this service or its certificate" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#certificateDocument> a owl:DatatypeProperty ;
+    rdfs:label "certificate document"@en ;
+    rdfs:comment "Document that contains a certificate copy" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#certificateName> a owl:DatatypeProperty ;
+    rdfs:label "certificate name"@en ;
+    rdfs:comment "Relevant certificate for the service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#certificateType> a owl:DatatypeProperty ;
+    rdfs:label "certificate type"@en ;
+    rdfs:comment "Type of the certificates" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#checkSum> a owl:DatatypeProperty ;
+    rdfs:label "check sum"@en ;
+    rdfs:comment "Checksum of this image." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectedNetwork_A> a owl:DatatypeProperty ;
+    rdfs:label "connected network a"@en ;
+    rdfs:comment "autonomous system (AS) number (ASN) of the side A" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:decimal .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectedNetwork_Z> a owl:DatatypeProperty ;
+    rdfs:label "connected network z"@en ;
+    rdfs:comment "autonomous system (AS) number (ASN) of the side Z" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:decimal .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connection> a owl:DatatypeProperty ;
+    rdfs:label "connection"@en ;
+    rdfs:comment "Interconnection of the GPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectionPointA> a owl:DatatypeProperty ;
+    rdfs:label "connection point a"@en ;
+    rdfs:comment "The ID of the source of the connection." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectionPointZ> a owl:DatatypeProperty ;
+    rdfs:label "connection point z"@en ;
+    rdfs:comment "The ID of the destination of the connection." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectionType> a owl:DatatypeProperty ;
+    rdfs:label "connection type"@en ;
+    rdfs:comment "the supported types of connection, preferably specified as a controlled vocabulary entry" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#consolePort> a owl:DatatypeProperty ;
+    rdfs:label "console port"@en ;
+    rdfs:comment "A dedicated port for console tasks." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#containerFormat> a owl:DatatypeProperty ;
+    rdfs:label "container format"@en ;
+    rdfs:comment "Container format. Default: bare" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#containsPII> a owl:DatatypeProperty ;
+    rdfs:label "contains pii"@en ;
+    rdfs:comment "Boolean determined by Participant owning the Data Resource." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#content> a owl:DatatypeProperty ;
+    rdfs:label "content"@en ;
+    rdfs:comment "a resolvable link to document" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#TermsAndConditions> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#copyrightOwnedBy> a owl:ObjectProperty ;
+    rdfs:label "copyright owned by"@en ;
+    rdfs:comment "The copyright owner(s), given as a Gaia-X Participant or as some other agent, possibly also a person outside of Gaia-X. A copyright owner is a person or organization, that has the right to exploit the resource. Copyright owner does not necessary refer to the author of the resource, who is a natural person and may differ from copyright owner. A simple name string can be referenced as a blank node whose foaf:name attribute has that string value." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> ;
+    rdfs:range foaf:Agent .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cpu> a owl:ObjectProperty ;
+    rdfs:label "cpu"@en ;
+    rdfs:comment "Description of CPU(s) of this node",
+        "Detailed information about CPU used by this flavor." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cpuArchitecture> a owl:DatatypeProperty ;
+    rdfs:label "cpu architecture"@en ;
+    rdfs:comment "Basic CPU architecture." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cpuCount> a owl:ObjectProperty ;
+    rdfs:label "cpu count"@en ;
+    rdfs:comment "Number of available CPUs." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cpuFlag> a owl:DatatypeProperty ;
+    rdfs:label "cpu flag"@en ;
+    rdfs:comment "CPU flags as documented by lscpu and defined in https://github.com/torvalds/linux/blob/master/tools/arch/x86/include/asm/cpufeatures.h ." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#cpuGeneration> a owl:DatatypeProperty ;
+    rdfs:label "cpu generation"@en ;
+    rdfs:comment "CPU instruction set generation. Determines basic feature set and migration compatibility." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#creationTime> a owl:DatatypeProperty ;
+    rdfs:label "creation time"@en ;
+    rdfs:comment "Timestamp the service has been created." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> ;
+    rdfs:range xsd:dateTimeStamp .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#credentialSubject> a owl:ObjectProperty ;
+    rdfs:label "credential subject"@en ;
+    rdfs:comment "ID of the claim to be signed in a verifiable credential build with all the information that are bound in the claim. In case of third party credential the ID is the ID of the third party",
+        "Id of the claim to be signed in a verifiable credential build with all the information that are bound in the claim. In case of third party credential the id is the id of the third party" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateCredential>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateCredential> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateClaim> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#dataAccountExport> a owl:ObjectProperty ;
+    rdfs:label "data account export"@en ;
+    rdfs:comment "a list of methods to export data out of the service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataAccountExport> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#dataProtectionRegime> a owl:DatatypeProperty ;
+    rdfs:label "data protection regime"@en ;
+    rdfs:comment "a list of data protection regime from the list available below" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#description> a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:comment "Textual description of this organization." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#descriptionOfTestScope> a owl:DatatypeProperty ;
+    rdfs:label "description of test scope"@en ;
+    rdfs:comment "Description of the scope of testing for this service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#disableUserAccountDaysInactive> a owl:DatatypeProperty ;
+    rdfs:label "disable user account days inactive"@en ;
+    rdfs:comment "Days of account inactivity before a user account is disabled." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#disk> a owl:ObjectProperty ;
+    rdfs:label "disk"@en ;
+    rdfs:comment "Description of disk(s) of this nodes" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#diskFormat> a owl:DatatypeProperty ;
+    rdfs:label "disk format"@en ;
+    rdfs:comment "Disk format. Default: RAW" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#encryption> a owl:ObjectProperty ;
+    rdfs:label "encryption"@en ;
+    rdfs:comment "Details on encryption capabilities of this image registry." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Encryption> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#encryptionAlgorithm> a owl:DatatypeProperty ;
+    rdfs:label "encryption algorithm"@en ;
+    rdfs:comment "Supported algorithm used to encrypt." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Encryption> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#encryptionMethod> a owl:DatatypeProperty ;
+    rdfs:label "encryption method"@en ;
+    rdfs:comment "Default: None. Define encryption method of storage service. None: means no encryption art all. managed: Virtual storage is encrypted by key managed provider. byok: Virtual storage  " ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#endPointURL> a owl:DatatypeProperty ;
+    rdfs:label "end point url"@en ;
+    rdfs:comment "The URL of the endpoint where it can be accessed" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Endpoint> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#endpoint> a owl:ObjectProperty ;
+    rdfs:label "endpoint"@en ;
+    rdfs:comment "Endpoint through which the Service Offering can be accessed" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Endpoint> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#endpointDescription> a owl:DatatypeProperty ;
+    rdfs:label "endpoint description"@en ;
+    rdfs:comment "The Description (e.g. openAPI Description) of the endpoint" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Endpoint> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#expirationDate> a owl:DatatypeProperty ;
+    rdfs:label "expiration date"@en ;
+    rdfs:comment "Date on which the certificate expires" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:date .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#expirationDateTime> a owl:DatatypeProperty ;
+    rdfs:label "expiration date time"@en ;
+    rdfs:comment "Date time in ISO 8601 format after which data is expired and shall be deleted." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range xsd:dateTime .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#exposedThrough> a owl:ObjectProperty ;
+    rdfs:label "exposed through"@en ;
+    rdfs:comment "A resolvable link to the data exchange component that exposes the data resource." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#fileSystem> a owl:DatatypeProperty ;
+    rdfs:label "file system"@en ;
+    rdfs:comment "File system of storage service.",
+        "File system of storage services provides." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FileStorage>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ObjectStorage> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#flavor> a owl:ObjectProperty ;
+    rdfs:label "flavor"@en ;
+    rdfs:comment "Detailed description of available flavors. A flavor describes the size of the server. " ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#formatType> a owl:DatatypeProperty ;
+    rdfs:label "format type"@en ;
+    rdfs:comment "type of Media Types (formerly known as MIME types) as defined by the IANA." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataAccountExport> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#fpga> a owl:ObjectProperty ;
+    rdfs:label "fpga"@en ;
+    rdfs:comment "Detailed information about FPGA used by this flavor." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FPGA> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#frequency> a owl:ObjectProperty ;
+    rdfs:label "frequency"@en ;
+    rdfs:comment "Frequency of the CPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#generation> a owl:DatatypeProperty ;
+    rdfs:label "generation"@en ;
+    rdfs:comment "FPGA generation." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FPGA> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#getVerifiableCredentialsIDs> a owl:DatatypeProperty ;
+    rdfs:label "get verifiable credentials ds"@en ;
+    rdfs:comment "A route used to synchronize catalogues and retrieve the list of Verifiable Credentials (issuer, id)." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Catalogue> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#gpu> a owl:ObjectProperty ;
+    rdfs:label "gpu"@en ;
+    rdfs:comment "Description of GPU(s) of this node.",
+        "Detailed information about GPU used by this flavor." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#gpuGeneration> a owl:DatatypeProperty ;
+    rdfs:label "gpu generation"@en ;
+    rdfs:comment "GPU generation." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#grantsComplianceCriteriaCombination> a owl:ObjectProperty ;
+    rdfs:label "grants compliance criteria combination"@en ;
+    rdfs:comment "ID of Compliance Criterion Combination granted by the scheme in case of certification" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriteriaCombination> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasAdministrativeLocation> a owl:DatatypeProperty ;
+    rdfs:label "has administrative location"@en ;
+    rdfs:comment "ISO 3166-2 5 digit string for location" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceAssessmentBodies> a owl:ObjectProperty ;
+    rdfs:label "has compliance assessment bodies"@en ;
+    rdfs:comment "Unordered list of IDs of ComplianceAssessmentBody (participant) endorsed having a Compliance Assessment Body role by the Compliance Reference. This unordered list is managed and validated by the Compliance Reference Manager" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificationScheme> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceAssessmentBody> a owl:ObjectProperty ;
+    rdfs:label "has compliance assessment body"@en ;
+    rdfs:comment "Id of the Participant (self-description) endorsed having a Compliance Assessment Body role that claims the compliance" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateClaim> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceCertificateClaim> a owl:ObjectProperty ;
+    rdfs:label "has compliance certificate claim"@en ;
+    rdfs:comment "Ids of the compliance reference claims claimed by the provider for the located service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceCertificateCredential> a owl:ObjectProperty ;
+    rdfs:label "has compliance certificate credential"@en ;
+    rdfs:comment "Ids of the compliance reference claim claimed by the provider for the located service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateCredential> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceCertificationScheme> a owl:ObjectProperty ;
+    rdfs:label "has compliance certification scheme"@en ;
+    rdfs:comment "ID of the Compliance Certification Scheme (self-description) involved in the certification" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceCertificationSchemes> a owl:ObjectProperty ;
+    rdfs:label "has compliance certification schemes"@en ;
+    rdfs:comment "List of schemes that grants certification. This list is managed by a reference manager." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceReference> a owl:ObjectProperty ;
+    rdfs:label "has compliance reference"@en ;
+    rdfs:comment "ID of Compliance Reference (self-description) to be certified by any means defined in the Certification Scheme" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceReferenceManager> a owl:ObjectProperty ;
+    rdfs:label "has compliance reference manager"@en ;
+    rdfs:comment "ID of Participant (self-description) in charge of managing this Compliance Reference" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReferenceManager> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceReferenceTitle> a owl:DatatypeProperty ;
+    rdfs:label "has compliance reference title"@en ;
+    rdfs:comment "Name of the Compliance Reference" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasComplianceReferences> a owl:ObjectProperty ;
+    rdfs:label "has compliance references"@en ;
+    rdfs:comment "Unordered list of Ids of ComplianceReferences (self-description) managed by this ComplianceReferenceManager" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReferenceManager> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasLevel> a owl:DatatypeProperty ;
+    rdfs:label "has level"@en ;
+    rdfs:comment "A description in natural language of the Gaia-X Label Level as defined in TF document",
+        "A description in natural language of the Label level. The level ordering is done by alphanumeric order." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriterion>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceLabel> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasLocatedServiceOffering> a owl:ObjectProperty ;
+    rdfs:label "has located service offering"@en ;
+    rdfs:comment "Ids of Located Service Offerings on this location" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasLocations> a owl:ObjectProperty ;
+    rdfs:label "has locations"@en ;
+    rdfs:comment "Ids of available Locations for this provider" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Provider> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasName> a owl:DatatypeProperty ;
+    rdfs:label "has name"@en ;
+    rdfs:comment "Name of the Gaia-X Criterion",
+        "Name of the Gaia-X Label",
+        "Name of the Gaia-X criteria combination" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriteriaCombination>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriterion>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceLabel> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasProvider> a owl:ObjectProperty ;
+    rdfs:label "has provider"@en ;
+    rdfs:comment "Id of the participant who operates the Location Unit that implements the Service Offering" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Provider> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasReferenceUrl> a owl:DatatypeProperty ;
+    rdfs:label "has reference url"@en ;
+    rdfs:comment "URI to reference the content of the compliance reference in a single PDF file" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasRequiredCriteriaCombinations> a owl:ObjectProperty ;
+    rdfs:label "has required criteria combinations"@en ;
+    rdfs:comment "List of Criteria Combinations. If one of these Combinations is valid the Label is Granted" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceLabel> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriteriaCombination> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasServiceOffering> a owl:ObjectProperty ;
+    rdfs:label "has service offering"@en ;
+    rdfs:comment "ID of the Service Offering (self-description) certified for the compliance",
+        "Ids of the ServiceOffering managed by this provider." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Provider> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasSha256> a owl:DatatypeProperty ;
+    rdfs:label "has sha"@en ;
+    rdfs:comment "SHA256 of PDF document referenced by hasReferenceUrl." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasThirdPartyComplianceCertificateClaim> a owl:ObjectProperty ;
+    rdfs:label "has third party compliance certificate claim"@en ;
+    rdfs:comment "IDs of Certificate claims issued by this Compliance Assessment Body." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateClaim> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasThirdPartyComplianceCredential> a owl:ObjectProperty ;
+    rdfs:label "has third party compliance credential"@en ;
+    rdfs:comment "IDs of the Certificate claims VC certified by this Compliance Assessment Body." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateCredential> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hasVersion> a owl:DatatypeProperty ;
+    rdfs:label "has version"@en ;
+    rdfs:comment "versioning according to [semver](https://semver.org/)." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hash> a owl:DatatypeProperty ;
+    rdfs:label "hash"@en ;
+    rdfs:comment "sha256 hash of the above document." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#TermsAndConditions> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#headquarterAddress> a owl:ObjectProperty ;
+    rdfs:label "headquarter address"@en ;
+    rdfs:comment "The full legal address of the organization." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#host> a owl:DatatypeProperty ;
+    rdfs:label "host"@en ;
+    rdfs:comment "Host of the access point" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hostedOn> a owl:ObjectProperty ;
+    rdfs:label "hosted on"@en ;
+    rdfs:comment "a resource where the instance of this virtual resource is being executed on." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hypervisor> a owl:DatatypeProperty ;
+    rdfs:label "hypervisor"@en ;
+    rdfs:comment "Ability to lable high-performance CPUs, disks, network. Choose one of the following classes: CPU, GPU, disk, network, none. Default value none" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#identity> a owl:ObjectProperty ;
+    rdfs:label "identity"@en ;
+    rdfs:comment "Reference to identity access management service  storage service offing to create disks used within this compute service." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#image> a owl:ObjectProperty ;
+    rdfs:label "image"@en ;
+    rdfs:comment "Images available in this image registry." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#imageRegistry> a owl:ObjectProperty ;
+    rdfs:label "image registry"@en ;
+    rdfs:comment "Reference to image registry of this compute service." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#imageType> a owl:DatatypeProperty ;
+    rdfs:label "image type"@en ;
+    rdfs:comment "Type of this image. Default: virtual machine" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#instanceOf> a owl:ObjectProperty ;
+    rdfs:label "instance of"@en ;
+    rdfs:comment "A virtual resource (normally a software resource) this process is an instance of." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#interface.type> a owl:DatatypeProperty ;
+    rdfs:label "interface type"@en ;
+    rdfs:comment "a type of physical interface" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ipVersion> a owl:DatatypeProperty ;
+    rdfs:label "ip version"@en ;
+    rdfs:comment "Version of IP address supported. IPv4: only ipV4 addresses are supported. IPv6: both version iIPV4 and IPv6 are supported." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#isHostedOn> a owl:ObjectProperty ;
+    rdfs:label "is hosted on"@en ;
+    rdfs:comment "Id of the Location where this located service is hosted on" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#isImplementationOf> a owl:ObjectProperty ;
+    rdfs:label "is implementation of"@en ;
+    rdfs:comment "Id of the Service Offering referenced by this located service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#isPartOfScalingGroup> a owl:DatatypeProperty ;
+    rdfs:label "is part of scaling group"@en ;
+    rdfs:comment "lists autoscaling group that this VM belongs to." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#jitter> a owl:ObjectProperty ;
+    rdfs:label "jitter"@en ;
+    rdfs:comment "Contractual jitter defined in the SLA. If not specified, then best effort is assumed.",
+        "Contractual jitterdefined in the SLA. If not specified, then best effort is assumed. Jitter is measured in dimension of time." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#keyManagement> a owl:DatatypeProperty ;
+    rdfs:label "key management"@en ;
+    rdfs:comment "Define key management method. \"managed\": Keys are created by and stored in key manager of cloud. \"byok\": bring-your-own-key: Keys created by user and stored in key manager of cloud. \"hyok\" hold-your-own-key Key created by user and kept by user" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Encryption>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Signing> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#latency> a owl:ObjectProperty ;
+    rdfs:label "latency"@en ;
+    rdfs:comment "Contractual latency defined in the SLA. If not specified, then best effort is assumed. Latency is usually measured in dimension of time." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalAddress> a owl:ObjectProperty ;
+    rdfs:label "legal address"@en ;
+    rdfs:comment "The full legal address of the organization." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalBasis> a owl:DatatypeProperty ;
+    rdfs:label "legal basis"@en ;
+    rdfs:comment "NOTE: Mandatory if containsPII is true. One of the reasons as detailed in the identified Personal Data Protection Regimes, such as [GDPR2018]. Potential Legal Bases can be [article 6], article 7, (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e1888-1-1) or article 9. It shall be expressed as a string matching 6.1.[a-f], 6.1.4, 7 or 9.2.[a-j]. (Note: this list is not final, as GDPR and Member State Law may provide for additional legal basis. Those will be implemented as options in future iterations.)" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalForm> a owl:DatatypeProperty ;
+    rdfs:label "legal form"@en ;
+    rdfs:comment "Legal form" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalName> a owl:DatatypeProperty ;
+    rdfs:label "legal name"@en ;
+    rdfs:comment "Legally binding name" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#leiCode> a owl:DatatypeProperty ;
+    rdfs:label "lei code"@en ;
+    rdfs:comment "Unique LEI number as defined by https://www.gleif.org." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#license> a owl:DatatypeProperty ;
+    rdfs:label "license"@en ;
+    rdfs:comment "A list of SPDX license identifiers or URL to license document" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#location> a owl:ObjectProperty ;
+    rdfs:label "location"@en ;
+    rdfs:comment "A vcard:Address Object containing the physical location in ISO 3166-1 alpha2, alpha-3 or numeric format with at least the both ends of the connection." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#locationAddress> a owl:ObjectProperty ;
+    rdfs:label "location address"@en ;
+    rdfs:comment "A vcard:Address object that contains the physical location in ISO 3166-1 alpha2, alpha-3 or numeric format." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
+    rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#locationGPS> a owl:DatatypeProperty ;
+    rdfs:label "location gps"@en ;
+    rdfs:comment "A list of physical GPS in ISO 6709:2008/Cor 1:2009 format." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#maintainedBy> a owl:ObjectProperty ;
+    rdfs:label "maintained by"@en ;
+    rdfs:comment "Participant maintaining the resource in operational condition and thus have physical access to it.",
+        "a list of participants  maintaining the resource in operational condition." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#managementPort> a owl:DatatypeProperty ;
+    rdfs:label "management port"@en ;
+    rdfs:comment "A dedicated port for management tasks." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#manufacturedBy> a owl:ObjectProperty ;
+    rdfs:label "manufactured by"@en ;
+    rdfs:comment "Participant manufacturing the resource." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#memorySize> a owl:ObjectProperty ;
+    rdfs:label "memory size"@en ;
+    rdfs:comment "Memory of the GPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#memoryType> a owl:DatatypeProperty ;
+    rdfs:label "memory type"@en ;
+    rdfs:comment "Memory type of the GPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#minRamSize> a owl:ObjectProperty ;
+    rdfs:label "min ram size"@en ;
+    rdfs:comment "Mininal size of ram required to instantiate this image." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#name> a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "A human readable name of the component",
+        "Name of resource.",
+        "Name of the access point",
+        "Procuct name of the hardware resource.",
+        "Unique name of this flavor.",
+        "Unique name of this volume type." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VolumeType> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#network> a owl:ObjectProperty ;
+    rdfs:label "network"@en ;
+    rdfs:comment "Reference to network service offing for this compute service." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#networkAdress> a owl:DatatypeProperty ;
+    rdfs:label "network adress"@en ;
+    rdfs:comment "IP address of the netowrking device" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:float .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#nic> a owl:ObjectProperty ;
+    rdfs:label "nic"@en ;
+    rdfs:comment "Description of network interface card(s) of this node" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#numberOfCores> a owl:DatatypeProperty ;
+    rdfs:label "number of cores"@en ;
+    rdfs:comment "Number of Cores of the CPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#numberOfThreads> a owl:DatatypeProperty ;
+    rdfs:label "number of threads"@en ;
+    rdfs:comment "Number of Threads of the CPU" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#numberOfvCPUs> a owl:DatatypeProperty ;
+    rdfs:label "number ofv us"@en ;
+    rdfs:comment "Number of virtual CPUs." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#numberOfvGPUs> a owl:DatatypeProperty ;
+    rdfs:label "number ofv us"@en ;
+    rdfs:comment "Number of virtual GPUs. Either set numberOfvGPU or GpuPassThrough=true. Using both options are prohibitted." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#obsoleteDateTime> a owl:DatatypeProperty ;
+    rdfs:label "obsolete date time"@en ;
+    rdfs:comment "Date time in ISO 8601 format after which data is obsolete." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range xsd:dateTime .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#openAPI> a owl:DatatypeProperty ;
+    rdfs:label "open api"@en ;
+    rdfs:comment "URL of the OpenAPI documentation" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ownedBy> a owl:ObjectProperty ;
+    rdfs:label "owned by"@en ;
+    rdfs:comment "Participant owning the resource." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#packetLoss> a owl:ObjectProperty ;
+    rdfs:label "packet loss"@en ;
+    rdfs:comment "Contractual packet loss of connection defined in the SLA agreement. If not specified, then best effort is assumed. PackageLoss s measured in the pseudo-unit \"percent\"-" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#parentOrganization> a owl:ObjectProperty ;
+    rdfs:label "parent organization"@en ;
+    rdfs:comment "A list of direct participant that this entity is a subOrganization of, if any." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#passwordExpiresDays> a owl:DatatypeProperty ;
+    rdfs:label "password expires days"@en ;
+    rdfs:comment "Days until a user must renew their password. This attribute is only allowed with authKind=credentials." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#performanceClass> a owl:DatatypeProperty ;
+    rdfs:label "performance class"@en ;
+    rdfs:comment "Ability to lable high-performance CPUs, disks, network. Choose one of the following classes: CPU, GPU, disk, network, none. Default value none" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#physicalResource> a owl:ObjectProperty ;
+    rdfs:label "physical resource"@en ;
+    rdfs:comment "a list of resource with information of where the data is located" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#policies> a owl:DatatypeProperty ;
+    rdfs:label "policies"@en ;
+    rdfs:comment "a list of policy expressed using a DSL used by the data connector policy engine leveraging Gaia-X Self-descriptions as both data inputs and policy inputs" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#policy> a owl:DatatypeProperty ;
+    rdfs:label "policy"@en ;
+    rdfs:comment "A list of policy expressed using a DSL (e.g., Rego or ODRL) (access control, throttling, usage, retention, …)",
+        "a list of policy expressed using a DSL (e.g., Rego or ODRL)" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#port> a owl:DatatypeProperty ;
+    rdfs:label "port"@en ;
+    rdfs:comment "Port of the access point" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#portCapacity_A> a owl:DatatypeProperty ;
+    rdfs:label "port capacity a"@en ;
+    rdfs:comment "The assigned capacity of ports." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:float .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#portCapacity_A_Count> a owl:DatatypeProperty ;
+    rdfs:label "port capacity count"@en ;
+    rdfs:comment "The assigned number of ports." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:integer .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#prefixSet_A> a owl:DatatypeProperty ;
+    rdfs:label "prefix set a"@en ;
+    rdfs:comment "CIDR Provider Identifier of network on the side A" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#prefixSet_Z> a owl:DatatypeProperty ;
+    rdfs:label "prefix set z"@en ;
+    rdfs:comment "CIDR Provider Identifier of network on the side Z" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#privateImagesAllowed> a owl:DatatypeProperty ;
+    rdfs:label "private images allowed"@en ;
+    rdfs:comment "Default: \"true\". \"true\" means that the image registry supports upload of private user images." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#privateKeyExportFormat> a owl:DatatypeProperty ;
+    rdfs:label "private key export format"@en ;
+    rdfs:comment "a list of machine readable format used to export private keys." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VerifiableCredentialWallet> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#producedBy> a owl:ObjectProperty ;
+    rdfs:label "produced by"@en ;
+    rdfs:comment "A resolvable link to the participant self-description legally enabling the data usage." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#protocol> a owl:DatatypeProperty ;
+    rdfs:label "protocol"@en ;
+    rdfs:comment "Protocol of the access point" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#provisionType> a owl:DatatypeProperty ;
+    rdfs:label "provision type"@en ;
+    rdfs:comment "Provision type of the service" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#publicIpAddressProvisioning> a owl:DatatypeProperty ;
+    rdfs:label "public ip address provisioning"@en ;
+    rdfs:comment "Defines how public IP address are provided. Floating: floating ips are supported ." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#publisher> a owl:DatatypeProperty ;
+    rdfs:label "publisher"@en ;
+    rdfs:comment "Publisher of the standard." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Standard> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ramSize> a owl:ObjectProperty ;
+    rdfs:label "ram size"@en ;
+    rdfs:comment "Amount of memory available for the server.",
+        "Ram size of the networking device" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ramsize> a owl:ObjectProperty ;
+    rdfs:label "ramsize"@en ;
+    rdfs:comment "Size of RAM of this node" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#redundantPowerSupply> a owl:DatatypeProperty ;
+    rdfs:label "redundant power supply"@en ;
+    rdfs:comment "Availability of redundant power supply for the cases of emergency." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#registrationNumber> a owl:DatatypeProperty ;
+    rdfs:label "registration number"@en ;
+    rdfs:comment "Country’s registration number which identifies one specific entity. Valid formats are local, EUID, EORI, vatID, leiCode." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#regularAudits> a owl:DatatypeProperty ;
+    rdfs:label "regular audits"@en ;
+    rdfs:comment "Is the certificate regularly audited?" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#requestType> a owl:DatatypeProperty ;
+    rdfs:label "request type"@en ;
+    rdfs:comment "the mean to request data retrieval: API, email, webform, unregisteredLetter, registeredLetter, supportCenter." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataAccountExport> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#requiredOrGrantedCriteria> a owl:ObjectProperty ;
+    rdfs:label "required or granted criteria"@en ;
+    rdfs:comment "List of Required Criteria to be granted for the label or list of granted Criteria by the compliance. All the Criteria have to be granted (logic AND)" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriteriaCombination> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriterion> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#rootDisk> a owl:ObjectProperty ;
+    rdfs:label "root disk"@en ;
+    rdfs:comment "Detailed information about root disk of this flavor." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#serviceAccessPoint> a owl:ObjectProperty ;
+    rdfs:label "service access point"@en ;
+    rdfs:comment "a list of Service Access Point which can be an endpoint as a mean to access and interact with the resource" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#serviceType> a owl:DatatypeProperty ;
+    rdfs:label "service type"@en ;
+    rdfs:comment "Type of Service Offering. Choose one of the following: virtual, bare-metal, mixed" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#signatureAlgo> a owl:DatatypeProperty ;
+    rdfs:label "signature algo"@en ;
+    rdfs:comment "Defines algorithm used to sign" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Signing> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#signing> a owl:ObjectProperty ;
+    rdfs:label "signing"@en ;
+    rdfs:comment "Details on signing capabilities of this image registry." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Signing> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#size> a owl:ObjectProperty ;
+    rdfs:label "size"@en ;
+    rdfs:comment "Size of this image ",
+        "The size of that hard drive." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#smtIsEnabled> a owl:DatatypeProperty ;
+    rdfs:label "smt is enabled"@en ;
+    rdfs:comment "Is simultaneous multithreading (SMT) or hyper threading (HT) active in this CPU? Default False." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#snapshotSupported> a owl:DatatypeProperty ;
+    rdfs:label "snapshot supported"@en ;
+    rdfs:comment "Default: False. True is storage service supports snapshots." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> ;
+    rdfs:range xsd:boolean .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#standardConformity> a owl:ObjectProperty ;
+    rdfs:label "standard conformity"@en ;
+    rdfs:comment "Provides information about applied standards." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Endpoint> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Standard> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#standardReference> a owl:DatatypeProperty ;
+    rdfs:label "standard reference"@en ;
+    rdfs:comment "Provides a link to schemas or details about applied standards." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Standard> ;
+    rdfs:range xsd:anyURI .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#storage> a owl:ObjectProperty ;
+    rdfs:label "storage"@en ;
+    rdfs:comment "Reference to storage service offing to create disks used within this compute service." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#subOrganization> a owl:ObjectProperty ;
+    rdfs:label "sub organization"@en ;
+    rdfs:comment "A list of direct participant with an legal mandate on this entity, e.g., as a subsidiary." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#supportedProtocols> a owl:DatatypeProperty ;
+    rdfs:label "supported protocols"@en ;
+    rdfs:comment "List of  supported protocols among used layers should be specified." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#targetPercentile> a owl:ObjectProperty ;
+    rdfs:label "target percentile"@en ;
+    rdfs:comment "Contractual percentile in the SLA. Usually referred to the nubmer of frames the SLA metrics such as availability, latency and jitter can bbe guaranteed." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#tenantOwnedBy> a owl:ObjectProperty ;
+    rdfs:label "tenant owned by"@en ;
+    rdfs:comment "A list of participant with contractual relation with the resource." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
+    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#tenantSeparation> a owl:DatatypeProperty ;
+    rdfs:label "tenant separation"@en ;
+    rdfs:comment "Default: virtual. How compute resources of different tenants are separated.",
+        "Default: virtual. How networks of different tenants are separated." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#termsAndConditions> a owl:ObjectProperty ;
+    rdfs:label "terms and conditions"@en ;
+    rdfs:comment "a resolvable link to the Terms and Conditions applying to that service." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#TermsAndConditions> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#title> a owl:DatatypeProperty ;
+    rdfs:label "title"@en ;
+    rdfs:comment "Name of the standard." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Standard> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#type> a owl:DatatypeProperty ;
+    rdfs:label "type"@en ;
+    rdfs:comment "The type of that hard drive.",
+        "Type of networking device",
+        "Type of the data asset, which helps discovery.  Preferably a controlled vocabulary entry referenced by URI",
+        "Type of this Orchestration Service Offering, such as kubernetes.",
+        "Type of virtual node" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Orchestration>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualNode> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#unit> a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:comment "The unit of this measurement" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#value> a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:comment "The value of this measurement." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> ;
+    rdfs:range xsd:float .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#vendor> a owl:DatatypeProperty ;
+    rdfs:label "vendor"@en ;
+    rdfs:comment "Vendor of this hardware." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#verifiableCredentialExportFormat> a owl:DatatypeProperty ;
+    rdfs:label "verifiable credential export format"@en ;
+    rdfs:comment "a list of machine readable format used to export verifiable credentials." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VerifiableCredentialWallet> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#version> a owl:DatatypeProperty ;
+    rdfs:label "version"@en ;
+    rdfs:comment "Version of the access point",
+        "Version of this image." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#virtualResource> a owl:ObjectProperty ;
+    rdfs:label "virtual resource"@en ;
+    rdfs:comment "a list of resource with information of who owns the data." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#vlanEtherType> a owl:DatatypeProperty ;
+    rdfs:label "vlan ether type"@en ;
+    rdfs:comment "The ethertype of the vlan in hexadecimal notation." ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#vlanTag> a owl:ObjectProperty ;
+    rdfs:label "vlan tag"@en ;
+    rdfs:comment "Vlan Tag ID that range between 1 and 4094. In case qinq connection type is chosen tow vlan tag, namely outer and innter should be provided" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#vlanType> a owl:DatatypeProperty ;
+    rdfs:label "vlan type"@en ;
+    rdfs:comment "the chosen types of vlan types" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
+    rdfs:range xsd:string .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#volumeTypes> a owl:ObjectProperty ;
+    rdfs:label "volume types"@en ;
+    rdfs:comment "List of volume types supported by this block storage" ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#BlockStorage> ;
+    rdfs:range <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VolumeType> .
+
+<http://purl.org/vocommons/voaf#Vocabulary> a owl:Class .
+
+<http://w3id.org/gaia-x/core#ServiceOffering> a owl:Class .
+
+xsd:date a rdfs:Datatype .
+
+org:Organization a owl:Class .
+
+foaf:Agent a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#BlockStorage> a owl:Class ;
+    rdfs:label "Block Storage"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Catalogue> a owl:Class ;
+    rdfs:label "Catalogue"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComputationalResource> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FileStorage> a owl:Class ;
+    rdfs:label "File Storage"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ObjectStorage> a owl:Class ;
+    rdfs:label "Object Storage"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Orchestration> a owl:Class ;
+    rdfs:label "Orchestration"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Platform> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Software> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#SoftwareResource> a owl:Class ;
+    rdfs:label "Software Resource"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualNode> a owl:Class ;
+    rdfs:label "Virtual Node"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource>,
+        <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> .
+
+<https://www.w3.org/2018/credentials#VerifiableCredential> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReferenceManager> a owl:Class ;
+    rdfs:label "Compliance Reference Manager"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FPGA> a owl:Class ;
+    rdfs:label "FPGA"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkConnectivity> a owl:Class ;
+    rdfs:label "Network Connectivity"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateCredential> a owl:Class ;
+    rdfs:label "Third Party Compliance Certificate Credential"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateCredential> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificationScheme> a owl:Class ;
+    rdfs:label "Third Party Compliance Certification Scheme"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VerifiableCredentialWallet> a owl:Class ;
+    rdfs:label "Verifiable Credential Wallet"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Wallet> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VolumeType> a owl:Class ;
+    rdfs:label "Volume Type"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Wallet> a owl:Class ;
+    rdfs:label "Wallet"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Software> .
+
+<http://w3id.org/gaia-x/core#Resource> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateCredential> a owl:Class ;
+    rdfs:label "Compliance Certificate Credential"@en ;
+    rdfs:subClassOf <https://www.w3.org/2018/credentials#VerifiableCredential> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriterion> a owl:Class ;
+    rdfs:label "Compliance Criterion"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceLabel> a owl:Class ;
+    rdfs:label "Compliance Label"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Encryption> a owl:Class ;
+    rdfs:label "Encryption"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Platform> a owl:Class ;
+    rdfs:label "Platform"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Provider> a owl:Class ;
+    rdfs:label "Provider"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Signing> a owl:Class ;
+    rdfs:label "Signing"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#TermsAndConditions> a owl:Class ;
+    rdfs:label "Terms And Conditions"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ThirdPartyComplianceCertificateClaim> a owl:Class ;
+    rdfs:label "Third Party Compliance Certificate Claim"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim> .
+
+<http://www.w3.org/2006/vcard/ns#Address> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCriteriaCombination> a owl:Class ;
+    rdfs:label "Compliance Criteria Combination"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> a owl:Class ;
+    rdfs:label "Connectivity"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataAccountExport> a owl:Class ;
+    rdfs:label "Data Account Export"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Endpoint> a owl:Class ;
+    rdfs:label "Endpoint"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalConnectivity> a owl:Class ;
+    rdfs:label "Physical Connectivity"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Standard> a owl:Class ;
+    rdfs:label "Standard"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> a owl:Class ;
+    rdfs:label "Compliance Assessment Body"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim> a owl:Class ;
+    rdfs:label "Compliance Certificate Claim"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificationScheme> a owl:Class ;
+    rdfs:label "Compliance Certification Scheme"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Disk> a owl:Class ;
+    rdfs:label "Disk"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#GPU> a owl:Class ;
+    rdfs:label "GPU"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ImageRegistry> a owl:Class ;
+    rdfs:label "Image Registry"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> a owl:Class ;
+    rdfs:label "Infrastructure"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> a owl:Class ;
+    rdfs:label "Resource"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> a owl:Class ;
+    rdfs:label "Data Connector"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> a owl:Class ;
+    rdfs:label "Data Resource"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> a owl:Class ;
+    rdfs:label "Hardware Spec"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#IdentityAccessManagement> a owl:Class ;
+    rdfs:label "Identity Access Management"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> a owl:Class ;
+    rdfs:label "Instantiated Virtual Resource"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LocatedServiceOffering> a owl:Class ;
+    rdfs:label "Located Service Offering"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Location> a owl:Class ;
+    rdfs:label "Location"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> a owl:Class ;
+    rdfs:label "Network"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> a owl:Class ;
+    rdfs:label "Certificates"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Compute> a owl:Class ;
+    rdfs:label "Compute"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Node> a owl:Class ;
+    rdfs:label "Node"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> a owl:Class ;
+    rdfs:label "Physical Resource"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceAccessPoint> a owl:Class ;
+    rdfs:label "Service Access Point"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#VirtualResource> a owl:Class ;
+    rdfs:label "Virtual Resource"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Image> a owl:Class ;
+    rdfs:label "Image"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#SoftwareResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> a owl:Class ;
+    rdfs:label "Legal Person"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant>,
+        org:Organization .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> a owl:Class ;
+    rdfs:label "Storage"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Infrastructure> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReference> a owl:Class ;
+    rdfs:label "Compliance Reference"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#NetworkingDevice> a owl:Class ;
+    rdfs:label "Networking Device"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComputationalResource> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#CPU> a owl:Class ;
+    rdfs:label "CPU"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#HardwareSpec> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LinkConnectivity> a owl:Class ;
+    rdfs:label "Link Connectivity"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> .
+
+<http://w3id.org/gaia-x/core#Participant> a owl:Class .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> a owl:Class ;
+    rdfs:label "Flavor"@en .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> a owl:Class ;
+    rdfs:label "Service Offering"@en ;
+    rdfs:subClassOf <http://w3id.org/gaia-x/core#ServiceOffering> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> a owl:Class ;
+    rdfs:label "Interconnection"@en ;
+    rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Network> .
+
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Measure> a owl:Class ;
+    rdfs:label "Measure"@en .
+
