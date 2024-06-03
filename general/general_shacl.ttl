@@ -54,7 +54,7 @@ general:DataShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "size" ;
             sh:order 1 ;
-            sh:path gx:size ],
+            sh:path general:size ],
         [ sh:datatype xsd:string ;
             sh:description "Contract information in regards to the data exchange component." ;
             skos:example "??? TODO" ;
@@ -62,7 +62,7 @@ general:DataShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "contractID" ;
             sh:order 2 ;
-            sh:path gx:contractID ];
+            sh:path general:contractID ];
     sh:targetClass general:Data .     
     
 general:BundleDataShape a sh:NodeShape ;
@@ -71,13 +71,13 @@ general:BundleDataShape a sh:NodeShape ;
             skos:example "for scenario, link to required hd map" ;
             sh:name "requiredData" ;
             sh:order 1 ;
-            sh:path gx:requiredData ],
+            sh:path general:requiredData ],
         [ sh:node general:LinkShape ;
             sh:description "Reference to optional related assets" ;
             skos:example "at hd map, link to optional surface map" ;
             sh:name "releatedData" ;
             sh:order 2 ;
-            sh:path gx:releatedData ];
+            sh:path general:releatedData ];
     sh:targetClass general:BundleData .    
 
 general:LinksShape a sh:NodeShape ;
