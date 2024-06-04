@@ -158,7 +158,7 @@ surface-model:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 5 ;
             sh:path surface-model:boundingBox ],
-        [ skos:example "Autobahn A8, Groﬂraum Ingolstadt" ;
+        [ skos:example "Autobahn A8, Gro√üraum Ingolstadt" ;
             sh:datatype xsd:string ;
             sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
             sh:message "Validation of relationOrArea failed!"@en ;
