@@ -9,7 +9,7 @@
 surface-model: a owl:Ontology ;
     rdfs:label "ontology definition for surface-model"@en ;
     dcterms:contributor "Sebastian Tuttas (3DM)" ;
-    owl:versionInfo "0.1"^^xsd:float .
+    owl:versionInfo "0.1" .
 
 surface-model:surfaceModel a owl:Class ;
     rdfs:label "class definition for surface-model" ;
