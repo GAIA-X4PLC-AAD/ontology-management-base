@@ -176,7 +176,7 @@ surface-model:DataShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path surface-model:type ] ;
+            sh:path surface-model:dataType ] ;
     sh:targetClass surface-model:Data .
 
 surface-model:FormatShape a sh:NodeShape ;
@@ -188,7 +188,7 @@ surface-model:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path surface-model:type ],
+            sh:path surface-model:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
