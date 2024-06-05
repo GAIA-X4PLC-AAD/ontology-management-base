@@ -1,5 +1,4 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
