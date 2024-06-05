@@ -30,3 +30,7 @@
 # environment-model directory (Mirco AND Robert)
 /environment-model @robertschubert
 /environment-model @MircoNierenz
+
+# hdmap directory (Sebastian AND Robert)
+/hdmap @robertschubert
+/hdmap @3Dbastian
