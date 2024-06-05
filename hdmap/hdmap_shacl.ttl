@@ -253,3 +253,15 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:numberTrafficSigns ] ;
     sh:targetClass hdmap:Quantity .
 
+hdmap:Range2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of max failed!"@en ;
+            sh:name "max"@en ;
+            sh:order 0 ;
+            sh:path hdmap:max ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of min failed!"@en ;
+            sh:name "min"@en ;
+            sh:order 0 ;
+            sh:path hdmap:min ] ;
+    sh:targetClass hdmap:Range2D .
