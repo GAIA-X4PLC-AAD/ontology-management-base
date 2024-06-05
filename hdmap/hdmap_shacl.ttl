@@ -4,39 +4,39 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 hdmap:HdMapShape a sh:NodeShape ;
-    sh:property [ sh:maxCount 1 ;
+    sh:property 
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:GeneralShape ;
+            sh:order 1 ;
+            sh:path hdmap:general ],
+        [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
-            sh:order 5 ;
+            sh:order 2 ;
             sh:path hdmap:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
-            sh:order 2 ;
-            sh:path hdmap:content ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node hdmap:GeneralShape ;
             sh:order 3 ;
-            sh:path hdmap:general ],
+            sh:path hdmap:content ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
-            sh:order 0 ;
-            sh:path hdmap:quantity ],
+            sh:order 4 ;
+            sh:path hdmap:quantity ],            
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node hdmap:QualityShape ;
+            sh:order 5 ;
+            sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
             sh:order 6 ;
             sh:path hdmap:dataSource ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node hdmap:QualityShape ;
-            sh:order 1 ;
-            sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node georeference:GeoreferenceShape ;
@@ -68,7 +68,16 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:message "Validation of levelOfDetail failed!"@en ;
             sh:name "levelOfDetail"@en ;
             sh:order 2 ;
-            sh:path hdmap:levelOfDetail ] ;
+            sh:path hdmap:levelOfDetail ], 
+        [ skos:example "right-hand traffic" ;
+            sh:datatype xsd:string ;
+            sh:description "Traffic direction, i.e. right-hand or left-hand traffic"@en ;
+            sh:in ("left-hand" "right-hand") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of trafficDirection failed!"@en ;
+            sh:name "trafficDirection"@en ;
+            sh:order 3 ;
+            sh:path hdmap:trafficDirection ] ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
@@ -98,7 +107,7 @@ hdmap:FormatShape a sh:NodeShape ;
             sh:name "version"@en ;
             sh:order 1 ;
             sh:path hdmap:version ],
-        [ skos:example "ASAM OpenDRIVE  Road5 Lanelet road2sim roadXML  Shape" ;
+        [ skos:example "ASAM OpenDRIVE  Road5 Lanelet road2sim roadXML Shape" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
             sh:in ("ASAM OpenDRIVE" "Lanelet" "Road5" "Shape" "road2sim" "roadXML") ;
@@ -108,26 +117,6 @@ hdmap:FormatShape a sh:NodeShape ;
             sh:order 0 ;
             sh:path hdmap:type ] ;
     sh:targetClass hdmap:Format .
-
-hdmap:GeneralShape a sh:NodeShape ;
-    sh:property [ skos:example "right-hand traffic" ;
-            sh:datatype xsd:string ;
-            sh:description "Traffic direction, i.e. right-hand or left-hand traffic"@en ;
-            sh:in ("left-hand" "right-hand") ;
-            sh:maxCount 1 ;
-            sh:message "Validation of trafficDirection failed!"@en ;
-            sh:name "trafficDirection"@en ;
-            sh:order 1 ;
-            sh:path hdmap:trafficDirection ],
-        [ skos:example "2022-04-01 00:00:00" ;
-            sh:datatype xsd:dateTime ;
-            sh:description "Time of data acquisition used to generate the map, if partial measurement: oldest date"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of recordingTime failed!"@en ;
-            sh:name "recordingTime"@en ;
-            sh:order 0 ;
-            sh:path hdmap:recordingTime ] ;
-    sh:targetClass hdmap:General .   
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:property [ skos:example "0.1" ;
@@ -252,16 +241,3 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:order 4 ;
             sh:path hdmap:numberTrafficSigns ] ;
     sh:targetClass hdmap:Quantity .
-
-hdmap:Range2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of max failed!"@en ;
-            sh:name "max"@en ;
-            sh:order 0 ;
-            sh:path hdmap:max ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of min failed!"@en ;
-            sh:name "min"@en ;
-            sh:order 0 ;
-            sh:path hdmap:min ] ;
-    sh:targetClass hdmap:Range2D .
