@@ -39,9 +39,9 @@ hdmap:HdMapShape a sh:NodeShape ;
             sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;
-            sh:node hdmap:GeoreferenceShape ;
+            sh:node georeference:GeoreferenceShape ;
             sh:order 7 ;
-            sh:path georeference:georeference ] ;
+            sh:path hdmap:georeference ] ;
     sh:targetClass hdmap:HdMap .
 
 hdmap:ContentShape a sh:NodeShape ;
