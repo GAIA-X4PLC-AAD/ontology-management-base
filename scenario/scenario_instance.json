@@ -110,7 +110,7 @@
       "@type": "xsd:string"
     }
   },
-  "general:general": {
+  "scenario:general": {
     "@type": "general:General",
     "general:DataResource": {
       "@type": "gx:DataResource",
