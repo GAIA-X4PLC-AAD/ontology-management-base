@@ -220,10 +220,10 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:datatype xsd:boolean ;
             sh:description "Existence of horizontal starting platform"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of platform failed!"@en ;
-            sh:name "platform"@en ;
+            sh:message "Validation of platformExists failed!"@en ;
+            sh:name "platformExists"@en ;
             sh:order 3 ;
-            sh:path surface-model:platform ],
+            sh:path surface-model:platformExists ],
         [ skos:example "0.01" ;
             sh:datatype xsd:float ;
             sh:description "Lateral resolutions"@en ;
@@ -236,10 +236,10 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:datatype xsd:boolean ;
             sh:description "Existence of smooth ramp from platform to road"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of ramp failed!"@en ;
-            sh:name "ramp"@en ;
+            sh:message "Validation of rampExists failed!"@en ;
+            sh:name "rampExists"@en ;
             sh:order 4 ;
-            sh:path surface-model:ramp ] ;
+            sh:path surface-model:rampExists ] ;
     sh:targetClass surface-model:Quality .
 
 surface-model:QuantityShape a sh:NodeShape ;
