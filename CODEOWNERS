@@ -9,9 +9,10 @@
 # examples directory (Robert OR Justin)
 /examples @robertschubert @JustinDxx
 
-# scenario directory (Rico AND Robert)
+# scenario directory (Rico AND Robert AND Fin)
 /scenario @rcrswld
 /scenario @robertschubert
+/scenario @heuerfin
 
 # sensor directory (Rico AND Justin)
 /sensor @rcrswld
