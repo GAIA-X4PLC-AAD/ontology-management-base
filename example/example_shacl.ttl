@@ -1,0 +1,53 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix example_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+
+example_ontology:ExampleServiceOfferingShape
+	a sh:NodeShape ;
+	sh:targetClass example_ontology:ExampleServiceOffering ;
+	sh:property
+	[
+		  sh:path example_ontology:property1 ;
+		  sh:datatype xsd:string ;
+		  skos:example "Property 1 Value" ;
+		  sh:minCount 1 ;
+		  sh:message "Validation of property1 failed" ;
+		  sh:name "Property 1" ;
+		  sh:description "A description that describes property 1."@en ;
+		  sh:order 1 ;
+	] ;
+	sh:property
+	[
+		  sh:path example_ontology:property2 ;
+		  sh:datatype xsd:string ;
+		  skos:example "Property 2 Value" ;
+		  sh:minCount 1 ;
+		  sh:message "Validation of property2 failed" ;
+		  sh:name "Property 2" ;
+		  sh:description "A description that describes property 2."@en ;
+		  sh:order 2 ;
+	] ;
+	sh:property
+	[
+		  sh:path example_ontology:belongsTo ;
+		  sh:nodeKind sh:IRI ;
+		  sh:minCount 1 ;
+		  sh:message "Validation of Identifier of related Self Description failed" ;
+		  sh:message "Validation of Identifier of related Self Description failed" ;
+		  sh:name "Belongs to" ;
+		  sh:description "Identifier of related Self Description."@en ;
+		  sh:order 3 ;
+	] ;
+	sh:property
+			[
+		  sh:path example_ontology:hasJunctionIntersection ;
+		  sh:nodeKind sh:IRI ;
+		  sh:in (openlabel:IntersectionTJunction openlabel:IntersectionStaggered openlabel:IntersectionYJunction openlabel:IntersectionCrossroad openlabel:IntersectionGradeSeperated) ;
+		  sh:minCount 1 ;
+		  sh:maxCount 1 ;
+		  sh:message "Error in validating JunctionIntersection attribute." ;
+		  sh:description "Further description of the content of the scenario"@en ;
+		  sh:order 4 ;
+	] .

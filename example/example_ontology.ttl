@@ -1,0 +1,21 @@
+@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gax-trust-framework: <http://w3id.org/gaia-x/gax-trust-framework#> .
+
+<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/> rdf:type owl:Ontology ;
+    <http://purl.org/dc/terms/contributor> "Max Mustermann" ;
+    rdfs:label "An example Ontology for demonstration purposes."@en ;
+    owl:versionInfo 0.5 .
+
+<ExampleServiceOffering> rdf:type owl:Class ;
+    rdfs:subClassOf gax-core:ServiceOffering ;
+    rdfs:label "Example Service Offering"@en ;
+    rdfs:comment "Describes an example Service Offering."@en .
+
+<belongsTo> rdf:type owl:ObjectProperty ;
+    rdfs:domain <ExampleServiceOffering> ;
+    rdfs:range <ExampleServiceOffering> .

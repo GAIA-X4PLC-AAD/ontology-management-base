@@ -3,8 +3,8 @@
 # https://docs.github.com/de/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 # Each line is a file pattern followed by one or more owners.
 
-# root directory and default handling (Robert OR Justin). Subsequent definitions will overwrite a previous definition.
-/* @robertschubert @JustinDxx
+# root directory and default handling (Robert OR Lena). Subsequent definitions will overwrite a previous definition.
+/* @robertschubert @lenasauermann
 
 # examples directory (Robert OR Justin)
 /examples @robertschubert @JustinDxx
@@ -25,3 +25,9 @@
 /survey @robertschubert
 /survey @phi981
 
+# gx directory (Robert OR Lena)
+/gx @robertschubert @lenasauermann
+
+# environment-model directory (Mirco AND Robert)
+/environment-model @robertschubert
+/environment-model @MircoNierenz
