@@ -2,7 +2,6 @@
 
 ## Prefixes
 
-- georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/>
 - hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/>
 
 ## List of SHACL Properties
@@ -15,7 +14,7 @@
 | HdMapShape | hdmap | quantity | 1 | 1 |  |  | hdmap_shacl.ttl |
 | HdMapShape | hdmap | dataSource | 1 | 1 |  |  | hdmap_shacl.ttl |
 | HdMapShape | hdmap | quality | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | georeference | georeference | 0 | 1 |  |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | georeference | 0 | 1 |  |  | hdmap_shacl.ttl |
 | ContentShape | hdmap | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | levelOfDetail |  |  | Covered object classes, see ODR spec section 11 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
@@ -39,3 +38,5 @@
 | QuantityShape | hdmap | elevationRange |  | 1 | Difference of max and mit elevation, extraction from openDrive Element t_road_elevationprofile_elevation, see section 8.4 | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | numberObjects |  | 1 | Sum of all objects in the map,  see ODR spec section 11 | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | numberTrafficSigns |  | 1 | Sum of all traffic signs in the map,  see ODR spec section 12 | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| Range2DShape | hdmap | max |  |  |  | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
+| Range2DShape | hdmap | min |  |  |  | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
