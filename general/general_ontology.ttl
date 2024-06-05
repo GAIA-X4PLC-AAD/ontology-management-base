@@ -9,7 +9,7 @@
 general: a owl:Ontology ;
     rdfs:label "ontology definition for General"@en ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
-    owl:versionInfo "0.1"^^xsd:float .
+    owl:versionInfo "0.1" .
 
 general:General a owl:Class ;
     rdfs:label "class definition for General" ;
