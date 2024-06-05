@@ -27,3 +27,7 @@
 # gx directory (Robert OR Lena)
 /gx @robertschubert @lenasauermann
 
+# georeference directory (Robert AND (Sebastian OR Mirco))
+/georeference @robertschubert
+/georeference @3Dbastian @MircoNierenz
+
