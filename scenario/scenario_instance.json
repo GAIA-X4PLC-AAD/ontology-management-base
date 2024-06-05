@@ -79,27 +79,27 @@
     "@type": "scenario:Structural",
     "scenario:catalogs": {
       "@type": "general:Link",
-      "scenario:url": {
+      "general:url": {
         "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
         "@type": "xsd:anyURI"
       },
-      "scenario:type": "Document"
+      "general:type": "Document"
     },
     "": {
       "@type": "general:Link",
-      "scenario:url": {
+      "general:url": {
         "@value": "https://inavlid.link.com/my_car_model.ogb",
         "@type": "xsd:anyURI"
       },
-      "scenario:type": "Document"
+      "general:type": "Document"
     },
     "scenario:trafficSpace": {
       "@type": "general:Link",
-      "scenario:url": {
+      "general:url": {
         "@value": "https://inavlid.link.com/my_map.xodr",
         "@type": "xsd:anyURI"
       },
-      "scenario:type": "Document"
+      "general:type": "Document"
     }
   },
   "scenario:format": {
@@ -142,19 +142,19 @@
       "@type": "general:Links",
       "general:data": {
         "@type": "general:Link",
-        "scenario:url": {
+        "general:url": {
           "@value": "https://inavlid.link.com/link",
           "@type": "xsd:anyURI"
         },
-        "scenario:type": "Document"
+        "general:type": "Document"
       },
       "general:media": {
         "@type": "general:Link",
-        "scenario:url": {
+        "general:url": {
           "@value": "https://inavlid.link.com/media",
           "@type": "xsd:anyURI"
         },
-        "scenario:type": "Document"
+        "general:type": "Document"
       }
     }
   },
@@ -234,42 +234,42 @@
   },
   "scenario:catalogs": {
     "@type": "general:Link",
-    "scenario:url": {
+    "general:url": {
       "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
       "@type": "xsd:anyURI"
     },
-    "scenario:type": "Document"
+    "general:type": "Document"
   },
   "": {
     "@type": "general:Link",
-    "scenario:url": {
+    "general:url": {
       "@value": "https://inavlid.link.com/my_car_model.ogb",
       "@type": "xsd:anyURI"
     },
-    "scenario:type": "Document"
+    "general:type": "Document"
   },
   "scenario:trafficSpace": {
     "@type": "general:Link",
-    "scenario:url": {
+    "general:url": {
       "@value": "https://inavlid.link.com/my_map.xodr",
       "@type": "xsd:anyURI"
     },
-    "scenario:type": "Document"
+    "general:type": "Document"
   },
   "general:data": {
     "@type": "general:Link",
-    "scenario:url": {
+    "general:url": {
       "@value": "https://inavlid.link.com/link",
       "@type": "xsd:anyURI"
     },
-    "scenario:type": "Document"
+    "general:type": "Document"
   },
   "general:media": {
     "@type": "general:Link",
-    "scenario:url": {
+    "general:url": {
       "@value": "https://inavlid.link.com/media",
       "@type": "xsd:anyURI"
     },
-    "scenario:type": "Document"
+    "general:type": "Document"
   }
 }
