@@ -83,9 +83,9 @@ general:BundleDataShape a sh:NodeShape ;
         [ sh:node general:LinkShape ;
             sh:description "Reference to optional related assets" ;
             skos:example "at hd map, link to optional surface map" ;
-            sh:name "releatedData" ;
+            sh:name "relatedData" ;
             sh:order 2 ;
-            sh:path general:releatedData ];
+            sh:path general:relatedData ];
     sh:targetClass general:BundleData .    
 
 general:LinksShape a sh:NodeShape ;
