@@ -69,7 +69,7 @@ general:DataShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of recordingTime failed!"@en ;
             sh:name "recordingTime"@en ;
-            sh:order 0 ;
+            sh:order 3 ;
             sh:path general:recordingTime ] ;
     sh:targetClass general:Data .     
     
@@ -138,4 +138,4 @@ general:Range2DShape a sh:NodeShape ;
             sh:name "min"@en ;
             sh:order 0 ;
             sh:path general:min ] ;
-    sh:targetClass hdmap:Range2D .    
+    sh:targetClass general:Range2D .    
