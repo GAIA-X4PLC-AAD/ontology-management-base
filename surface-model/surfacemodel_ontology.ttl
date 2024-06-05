@@ -13,6 +13,6 @@ surface-model: a owl:Ontology ;
 
 surface-model:surfaceModel a owl:Class ;
     rdfs:label "class definition for surface-model" ;
-    rdfs:comment "Attributes for surface model"@en ;
+    rdfs:comment "Attributes for surface-model"@en ;
     rdfs:subClassOf gx:DataResource .
 
