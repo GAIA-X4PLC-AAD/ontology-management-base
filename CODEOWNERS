@@ -30,3 +30,7 @@
 # environment-model directory (Mirco AND Robert)
 /environment-model @robertschubert
 /environment-model @MircoNierenz
+
+# surface-model directory (Sebastian AND Robert)
+/surface-model @robertschubert
+/surface-model @3Dbastian
