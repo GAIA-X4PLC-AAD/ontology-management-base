@@ -20,7 +20,7 @@
     }
   },
   "general:data": {
-    "@type": "undefined",
+    "@type": "general:Data",
     "general:size": {
       "@value": "5.8",
       "@type": "xsd:float"

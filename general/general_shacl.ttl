@@ -12,7 +12,7 @@ general:GeneralShape a sh:NodeShape ;
             sh:path general:description ],     
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node general:Data ;
+            sh:node general:DataShape ;
             sh:order 2 ;
             sh:path general:data ],               
         [ sh:maxCount 1 ;
