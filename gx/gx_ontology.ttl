@@ -28,6 +28,12 @@ vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 void:vocabulary a owl:AnnotationProperty .
 
+<http://w3id.org/gaia-x/core#Participant> a owl:Class .
+
+<http://w3id.org/gaia-x/core#Resource> a owl:Class .
+
+<http://w3id.org/gaia-x/core#ServiceOffering> a owl:Class .
+
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> a <http://purl.org/vocommons/voaf#Vocabulary>,
         owl:NamedIndividual,
         owl:Ontology ;
@@ -497,7 +503,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "exposed through"@en ;
     rdfs:comment "A resolvable link to the data exchange component that exposes the data resource." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#fileSystem> a owl:DatatypeProperty ;
     rdfs:label "file system"@en ;
@@ -732,7 +738,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "hosted on"@en ;
     rdfs:comment "a resource where the instance of this virtual resource is being executed on." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Resource> .
+    rdfs:range <https://w3id.org/gaia-x/core#Resource> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#hypervisor> a owl:DatatypeProperty ;
     rdfs:label "hypervisor"@en ;
@@ -768,7 +774,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "instance of"@en ;
     rdfs:comment "A virtual resource (normally a software resource) this process is an instance of." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Resource> .
+    rdfs:range <https://w3id.org/gaia-x/core#Resource> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#interface.type> a owl:DatatypeProperty ;
     rdfs:label "interface type"@en ;
@@ -881,7 +887,7 @@ void:vocabulary a owl:AnnotationProperty .
         "a list of participants  maintaining the resource in operational condition." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource>,
         <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#managementPort> a owl:DatatypeProperty ;
     rdfs:label "management port"@en ;
@@ -893,7 +899,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "manufactured by"@en ;
     rdfs:comment "Participant manufacturing the resource." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#memorySize> a owl:ObjectProperty ;
     rdfs:label "memory size"@en ;
@@ -987,7 +993,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "owned by"@en ;
     rdfs:comment "Participant owning the resource." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#packetLoss> a owl:ObjectProperty ;
     rdfs:label "packet loss"@en ;
@@ -1000,7 +1006,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "parent organization"@en ;
     rdfs:comment "A list of direct participant that this entity is a subOrganization of, if any." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#passwordExpiresDays> a owl:DatatypeProperty ;
     rdfs:label "password expires days"@en ;
@@ -1080,7 +1086,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "produced by"@en ;
     rdfs:comment "A resolvable link to the participant self-description legally enabling the data usage." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#protocol> a owl:DatatypeProperty ;
     rdfs:label "protocol"@en ;
@@ -1224,7 +1230,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "sub organization"@en ;
     rdfs:comment "A list of direct participant with an legal mandate on this entity, e.g., as a subsidiary." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#supportedProtocols> a owl:DatatypeProperty ;
     rdfs:label "supported protocols"@en ;
@@ -1242,7 +1248,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "tenant owned by"@en ;
     rdfs:comment "A list of participant with contractual relation with the resource." ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#InstantiatedVirtualResource> ;
-    rdfs:range <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:range <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#tenantSeparation> a owl:DatatypeProperty ;
     rdfs:label "tenant separation"@en ;
@@ -1342,8 +1348,6 @@ void:vocabulary a owl:AnnotationProperty .
 
 <http://purl.org/vocommons/voaf#Vocabulary> a owl:Class .
 
-<http://w3id.org/gaia-x/core#ServiceOffering> a owl:Class .
-
 xsd:date a rdfs:Datatype .
 
 org:Organization a owl:Class .
@@ -1387,7 +1391,7 @@ foaf:Agent a owl:Class .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceReferenceManager> a owl:Class ;
     rdfs:label "Compliance Reference Manager"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#FPGA> a owl:Class ;
     rdfs:label "FPGA"@en ;
@@ -1416,8 +1420,6 @@ foaf:Agent a owl:Class .
     rdfs:label "Wallet"@en ;
     rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Software> .
 
-<http://w3id.org/gaia-x/core#Resource> a owl:Class .
-
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateCredential> a owl:Class ;
     rdfs:label "Compliance Certificate Credential"@en ;
     rdfs:subClassOf <https://www.w3.org/2018/credentials#VerifiableCredential> .
@@ -1437,7 +1439,7 @@ foaf:Agent a owl:Class .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Provider> a owl:Class ;
     rdfs:label "Provider"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Signing> a owl:Class ;
     rdfs:label "Signing"@en .
@@ -1473,7 +1475,7 @@ foaf:Agent a owl:Class .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceAssessmentBody> a owl:Class ;
     rdfs:label "Compliance Assessment Body"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> .
+    rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ComplianceCertificateClaim> a owl:Class ;
     rdfs:label "Compliance Certificate Claim"@en .
@@ -1499,7 +1501,7 @@ foaf:Agent a owl:Class .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Resource> a owl:Class ;
     rdfs:label "Resource"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#Resource> .
+    rdfs:subClassOf <https://w3id.org/gaia-x/core#Resource> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#DataConnector> a owl:Class ;
     rdfs:label "Data Connector"@en ;
@@ -1557,8 +1559,8 @@ foaf:Agent a owl:Class .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> a owl:Class ;
     rdfs:label "Legal Person"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant>,
-        org:Organization .
+    rdfs:subClassOf org:Organization,
+        <https://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Storage> a owl:Class ;
     rdfs:label "Storage"@en ;
@@ -1579,14 +1581,12 @@ foaf:Agent a owl:Class .
     rdfs:label "Link Connectivity"@en ;
     rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Connectivity> .
 
-<http://w3id.org/gaia-x/core#Participant> a owl:Class .
-
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Flavor> a owl:Class ;
     rdfs:label "Flavor"@en .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#ServiceOffering> a owl:Class ;
     rdfs:label "Service Offering"@en ;
-    rdfs:subClassOf <http://w3id.org/gaia-x/core#ServiceOffering> .
+    rdfs:subClassOf <https://w3id.org/gaia-x/core#ServiceOffering> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> a owl:Class ;
     rdfs:label "Interconnection"@en ;

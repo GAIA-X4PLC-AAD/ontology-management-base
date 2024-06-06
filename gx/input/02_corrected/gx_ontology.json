@@ -341,7 +341,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -447,7 +447,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -953,7 +953,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       },
       {
         "@id": "http://www.w3.org/ns/org#Organization"
@@ -1221,7 +1221,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -1238,7 +1238,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -1294,7 +1294,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#ServiceOffering"
+        "@id": "https://w3id.org/gaia-x/core#ServiceOffering"
       }
     ]
   },
@@ -3120,7 +3120,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -4158,7 +4158,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -4320,7 +4320,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -4821,7 +4821,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -4875,7 +4875,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5283,7 +5283,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5340,7 +5340,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5697,7 +5697,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -6336,7 +6336,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -6417,7 +6417,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
