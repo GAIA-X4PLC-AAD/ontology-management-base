@@ -11,7 +11,7 @@ environment-model: a owl:Ontology ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
     owl:versionInfo "0.1" .
 
-environment-model:environmentModel a owl:Class ;
+environment-model:EnvironmentModel a owl:Class ;
     rdfs:label "class definition for environment-model" ;
     rdfs:comment "Attributes for 3d environment-model"@en ;
     rdfs:subClassOf gx:DataResource .

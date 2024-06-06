@@ -5,7 +5,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-environment-model:environmentModelShape a sh:NodeShape ;
+environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -33,10 +33,10 @@ environment-model:environmentModelShape a sh:NodeShape ;
             sh:path environment-model:format ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;            
-            sh:node environment-model:GeoreferenceShape ;
+            sh:node georeference:GeoreferenceShape ;
             sh:order 6 ;
-            sh:path georeference:georeference ] ;
-    sh:targetClass environment-model:environmentModel .   
+            sh:path environment-model:georeference ] ;
+    sh:targetClass environment-model:EnvironmentModel .   
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph, GLTF" ;
@@ -98,7 +98,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
             sh:order 2 ;
-            sh:path environment-model:version ] ;
+            sh:path environment-model:softwareVersion ] ;
     sh:targetClass environment-model:Project .
 
 environment-model:QualityShape a sh:NodeShape ;
@@ -113,7 +113,8 @@ environment-model:QualityShape a sh:NodeShape ;
             sh:path environment-model:features ],
         [ skos:example "high" ;
             sh:datatype xsd:string ;
-            sh:description "Category of the level of detail (High - highest level of detail with additional object enrichment, Med - directly from data sources, with environment, Low - topological representation)."@en ;
+            sh:description "Category of the level of detail (High - highest level of detail with additional object enrichment, Medium - directly from data sources, with environment, Low - topological representation)."@en ;
+            sh:in ("High" "Medium" "Low") ;
             sh:maxCount 1 ;
             sh:message "Validation of detailLevel failed!"@en ;
             sh:name "detailLevel"@en ;
