@@ -70,6 +70,18 @@ def correct_address_shape(filepath):
     print(f"  Address shape in file {filepath} was successfully corrected.")
 
 
+def correct_legal_participant(filepath):
+    with open(filepath, 'r') as file:
+        filedata = file.read()
+
+    # Replace the target strings
+    filedata = filedata.replace('#LegalPerson', '#LegalParticipant')
+    # Write the file out again
+    with open(filepath, 'w') as file:
+        file.write(filedata)
+    print(f"  LegalPerson to LegalParticipant in file {filepath} were successfully corrected.")
+
+
 def process_file(json_file, correction_functions):
     print("")
     print(f"File {json_file}: start process.")
@@ -86,7 +98,7 @@ def process_file(json_file, correction_functions):
 
 
 # process ontology
-process_file(ONTOLOGY_JSON_FILE, [correct_namespace])
+process_file(ONTOLOGY_JSON_FILE, [correct_namespace, correct_legal_participant])
 
 # process SHACL
 process_file(SHACL_JSON_FILE, [correct_shape_suffix, correct_address_shape])

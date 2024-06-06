@@ -418,7 +418,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#description> a owl:DatatypeProperty ;
     rdfs:label "description"@en ;
     rdfs:comment "Textual description of this organization." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#descriptionOfTestScope> a owl:DatatypeProperty ;
@@ -719,7 +719,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#headquarterAddress> a owl:ObjectProperty ;
     rdfs:label "headquarter address"@en ;
     rdfs:comment "The full legal address of the organization." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#host> a owl:DatatypeProperty ;
@@ -824,7 +824,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalAddress> a owl:ObjectProperty ;
     rdfs:label "legal address"@en ;
     rdfs:comment "The full legal address of the organization." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range <http://www.w3.org/2006/vcard/ns#Address> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalBasis> a owl:DatatypeProperty ;
@@ -836,19 +836,19 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalForm> a owl:DatatypeProperty ;
     rdfs:label "legal form"@en ;
     rdfs:comment "Legal form" ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalName> a owl:DatatypeProperty ;
     rdfs:label "legal name"@en ;
     rdfs:comment "Legally binding name" ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#leiCode> a owl:DatatypeProperty ;
     rdfs:label "lei code"@en ;
     rdfs:comment "Unique LEI number as defined by https://www.gleif.org." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#license> a owl:DatatypeProperty ;
@@ -999,7 +999,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#parentOrganization> a owl:ObjectProperty ;
     rdfs:label "parent organization"@en ;
     rdfs:comment "A list of direct participant that this entity is a subOrganization of, if any." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range <http://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#passwordExpiresDays> a owl:DatatypeProperty ;
@@ -1129,7 +1129,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#registrationNumber> a owl:DatatypeProperty ;
     rdfs:label "registration number"@en ;
     rdfs:comment "Country’s registration number which identifies one specific entity. Valid formats are local, EUID, EORI, vatID, leiCode." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#regularAudits> a owl:DatatypeProperty ;
@@ -1223,7 +1223,7 @@ void:vocabulary a owl:AnnotationProperty .
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#subOrganization> a owl:ObjectProperty ;
     rdfs:label "sub organization"@en ;
     rdfs:comment "A list of direct participant with an legal mandate on this entity, e.g., as a subsidiary." ;
-    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> ;
+    rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range <http://w3id.org/gaia-x/core#Participant> .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#supportedProtocols> a owl:DatatypeProperty ;
@@ -1555,7 +1555,7 @@ foaf:Agent a owl:Class .
     rdfs:label "Image"@en ;
     rdfs:subClassOf <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#SoftwareResource> .
 
-<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson> a owl:Class ;
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> a owl:Class ;
     rdfs:label "Legal Person"@en ;
     rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant>,
         org:Organization .
