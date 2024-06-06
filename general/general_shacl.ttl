@@ -57,7 +57,7 @@ general:DataShape a sh:NodeShape ;
             sh:path general:size ],
         [ sh:datatype xsd:string ;
             sh:description "Contract information in regards to the data exchange component." ;
-            skos:example "??? TODO" ;
+            skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:name "contractId" ;
