@@ -38,6 +38,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
         [ skos:example "EPSG xyz" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:in ("Ellipsodial height" "Orthometric height") ;
             sh:maxCount 1 ;
             sh:message "Validation of heightSystem failed!"@en ;
             sh:name "heightSystem"@en ;
