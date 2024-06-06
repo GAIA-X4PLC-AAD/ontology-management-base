@@ -88,7 +88,7 @@ georeference:Coordinate2DShape a sh:NodeShape ;
     sh:targetClass georeference:Coordinate2D .
     
 georeference:ProjectLocationShape a sh:NodeShape ;
-    sh:property [ skos:example "nan" ;
+    sh:property [ skos:example "Bavaria" ;
             sh:datatype xsd:string ;
             sh:description "State of project area"@en ;
             sh:message "Validation of state failed!"@en ;
@@ -96,15 +96,15 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:name "state"@en ;
             sh:order 1 ;
             sh:path georeference:state ],
-        [ skos:example "nan" ;
+        [ skos:example "Munich" ;
             sh:datatype xsd:string ;
-            sh:description "nan"@en ;
+            sh:description "Main city oj project area"@en ;
             sh:message "Validation of city failed!"@en ;
             sh:maxCount 1 ;
             sh:name "city"@en ;
             sh:order 3 ;
             sh:path georeference:city ],
-        [ skos:example "nan" ;
+        [ skos:example "Upper Bavaria" ;
             sh:datatype xsd:string ;
             sh:description "Region of project area"@en ;
             sh:message "Validation of region failed!"@en ;
