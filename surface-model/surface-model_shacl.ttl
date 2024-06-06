@@ -5,7 +5,7 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 
-surface-model:surfaceModelShape a sh:NodeShape ;
+surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -36,7 +36,7 @@ surface-model:surfaceModelShape a sh:NodeShape ;
             sh:node georeference:GeoreferenceShape ;
             sh:order 6 ;
             sh:path surface-model:Georeference ] ;
-    sh:targetClass surface-model:surface-model .
+    sh:targetClass surface-model:SurfaceModel .
     
 surface-model:DataShape a sh:NodeShape ;
     sh:property [ skos:example "nan" ;

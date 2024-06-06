@@ -11,7 +11,7 @@ surface-model: a owl:Ontology ;
     dcterms:contributor "Sebastian Tuttas (3DM)" ;
     owl:versionInfo "0.1" .
 
-surface-model:surfaceModel a owl:Class ;
+surface-model:SurfaceModel a owl:Class ;
     rdfs:label "class definition for surface-model" ;
     rdfs:comment "Attributes for surface-model"@en ;
     rdfs:subClassOf gx:DataResource .
