@@ -14,7 +14,7 @@
 | HdMapShape | hdmap | quantity | 1 | 1 |  |  | hdmap_shacl.ttl |
 | HdMapShape | hdmap | quality | 1 | 1 |  |  | hdmap_shacl.ttl |
 | HdMapShape | hdmap | dataSource | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | georeference | 0 | 1 |  |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | georeference | 1 | 1 |  |  | hdmap_shacl.ttl |
 | ContentShape | hdmap | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | levelOfDetail |  |  | Covered object classes, see ODR spec section 11 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
