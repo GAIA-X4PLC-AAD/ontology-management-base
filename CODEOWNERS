@@ -31,3 +31,7 @@
 # environment-model directory (Mirco AND Robert)
 /environment-model @robertschubert
 /environment-model @MircoNierenz
+
+# general directory (Mirco AND Robert)
+/general @robertschubert
+/general @MircoNierenz
