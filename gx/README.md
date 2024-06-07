@@ -30,6 +30,8 @@ The conversion tool also corrects some issues in the original JSON-LD files and 
 - change namespace in ontology from `http://w3id.org/gaia-x/gax-trust-framework` to `https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework` so it fits to the referenced namespace in the shapes. Otherwise the ontology and the shapes would not have a relation.
 - append the suffix `Shape` to certain Shapes where this suffix is missing. This is necessary because of a name clash between ontology and shacl shapes if the names are equal.
 - Correction of the `http://www.w3.org/2006/vcard/ns#Address`: The node becomes `AddressShape` and the link to this shape as a node also references the `AddressShape` instead of the `Address` node. 
+- change LegalPerson to LegalParticipant in the ontology since LegalPerson is not existing the shacl shape and [gx wizard](https://wizard.lab.gaia-x.eu/) generates participant credentials as LegalParticipant.
+- change the subClassOf relation of Participant, Resource and ServiceOffering subclasses in the ontology since they point to rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> and not rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> (http instead of https). The http prefix will not be considered as a valid gaia-x prefix.
 
 The concrete changes can be made visible by comparing the original and corrected files.
 
@@ -39,7 +41,7 @@ A python installation is mandatory to execute the python script. No additional l
 ## Usage
 
 ```bash
-cd src
+cd gx/src
 py jsonldtottlconverter.py
 ```
 

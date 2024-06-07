@@ -61,13 +61,40 @@ def correct_address_shape(filepath):
     # replace the shape definition
     pattern = r'\s*"@id": "http://www.w3.org/2006/vcard/ns#Address",\s*\n\s*"@type": "sh:NodeShape",'
     replacement = '\n      "@id": "http://www.w3.org/2006/vcard/ns#AddressShape",\n      "@type": "sh:NodeShape",'
-
     filedata = re.sub(pattern, replacement, filedata, flags=re.MULTILINE)
 
     # Write the file out again
     with open(filepath, 'w') as file:
         file.write(filedata)
     print(f"  Address shape in file {filepath} was successfully corrected.")
+
+
+def correct_legal_participant(filepath):
+    with open(filepath, 'r') as file:
+        filedata = file.read()
+
+    # Replace the target strings
+    filedata = filedata.replace('#LegalPerson', '#LegalParticipant')
+
+    # Write the file out again
+    with open(filepath, 'w') as file:
+        file.write(filedata)
+    print(f"  LegalPerson to LegalParticipant in file {filepath} were successfully corrected.")
+
+
+def correct_sub_class_of_attribute(filepath):
+    with open(filepath, 'r') as file:
+        filedata = file.read()
+
+    # Replace the target strings, for sub class as well as range attributes
+    filedata = filedata.replace('        "@id": "http://w3id.org/gaia-x/core#Participant"',     '        "@id": "https://w3id.org/gaia-x/core#Participant"')
+    filedata = filedata.replace('        "@id": "http://w3id.org/gaia-x/core#Resource"',        '        "@id": "https://w3id.org/gaia-x/core#Resource"')
+    filedata = filedata.replace('        "@id": "http://w3id.org/gaia-x/core#ServiceOffering"', '        "@id": "https://w3id.org/gaia-x/core#ServiceOffering"')
+
+    # Write the file out again
+    with open(filepath, 'w') as file:
+        file.write(filedata)
+    print(f"  subClassOf attribute file {filepath} were successfully corrected.")
 
 
 def process_file(json_file, correction_functions):
@@ -86,7 +113,7 @@ def process_file(json_file, correction_functions):
 
 
 # process ontology
-process_file(ONTOLOGY_JSON_FILE, [correct_namespace])
+process_file(ONTOLOGY_JSON_FILE, [correct_namespace, correct_legal_participant, correct_sub_class_of_attribute])
 
 # process SHACL
 process_file(SHACL_JSON_FILE, [correct_shape_suffix, correct_address_shape])
