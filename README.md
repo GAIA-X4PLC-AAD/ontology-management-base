@@ -107,6 +107,19 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Shapes must be linked with the associated OWL Class via the property `sh:targetClass`
 * References to other Self Descriptions are specified by a property having `sh:nodeKind sh:IRI`
 * The prefix of the SHACL shape must match the prefix defined in the ontology.
+* Every shape linking to an ontology must **nest** the `general` shape. Example:
+  * Add prefix 
+    ```turtle
+    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
+    ```
+  * Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology
+    ```turtle
+    sh:property [ sh:maxCount 1 ;
+                sh:minCount 1 ;
+                sh:node general:GeneralShape ;
+                # some other attributes
+                sh:path <your_prefix>:general ],
+    ```
 
 ## Further information
 

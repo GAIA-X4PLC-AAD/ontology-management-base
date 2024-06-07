@@ -341,7 +341,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -447,7 +447,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -941,7 +941,7 @@
     ]
   },
   {
-    "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson",
+    "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant",
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ],
@@ -953,7 +953,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       },
       {
         "@id": "http://www.w3.org/ns/org#Organization"
@@ -1221,7 +1221,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -1238,7 +1238,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -1294,7 +1294,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
       {
-        "@id": "http://w3id.org/gaia-x/core#ServiceOffering"
+        "@id": "https://w3id.org/gaia-x/core#ServiceOffering"
       }
     ]
   },
@@ -2758,7 +2758,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -3120,7 +3120,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -4093,7 +4093,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -4158,7 +4158,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -4320,7 +4320,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Resource"
+        "@id": "https://w3id.org/gaia-x/core#Resource"
       }
     ]
   },
@@ -4561,7 +4561,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -4615,7 +4615,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -4642,7 +4642,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -4669,7 +4669,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -4821,7 +4821,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -4875,7 +4875,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5283,7 +5283,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5329,7 +5329,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -5340,7 +5340,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5697,7 +5697,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -5908,7 +5908,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -6325,7 +6325,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
       {
-        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalPerson"
+        "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant"
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
@@ -6336,7 +6336,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },
@@ -6417,7 +6417,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://w3id.org/gaia-x/core#Participant"
+        "@id": "https://w3id.org/gaia-x/core#Participant"
       }
     ]
   },

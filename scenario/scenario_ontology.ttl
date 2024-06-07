@@ -1,0 +1,23 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+scenario: a owl:Ontology ;
+    rdfs:label "Ontology definition for scenario"@en ;
+    dcterms:contributor "Fin Heuer (DLR), Rico Auerswald (FhG IVI)" ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
+    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" ;
+    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/Ontology_Scenario/scenario/scenario_ontology.ttl> ;
+    owl:versionInfo "0.1.
+
+scenario:Scenario a owl:Class ;
+    rdfs:label "GXScenario"@en ;
+    rdfs:comment "Class definition for a scenario"@en ;
+    rdfs:subClassOf gx:DataResource ,
+                    openlabel:Scenario .
