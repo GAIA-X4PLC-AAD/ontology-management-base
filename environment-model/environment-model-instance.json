@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+  "@type": "environment-model:EnvironmentModel",
+  "environment-model:general": {
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "gx:name": {
+        "@value": "3d model example",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+        "@value": "simple 3d model example",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "512",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "123465798",
+        "@type": "xsd:string"
+      },
+      "general:recordingTime": {
+        "@value": "2024-03-21T08:34:19",
+        "@type": "xsd:dateTime"
+      }
+    },
+    "general:links": {
+      "@type": "general:Links",
+      "general:data": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Asset"
+      },
+      "general:media": [
+        {
+          "@type": "general:Link"
+        },
+        {
+          "@type": "general:Link"
+        },
+        {
+          "@type": "general:Link"
+        },
+        {
+          "@type": "general:Link"
+        }
+      ]
+    },
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": [
+        {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Asset"
+        },
+        {
+          "@type": "general:Link"
+        }
+      ],
+      "general:relatedData": {
+        "@type": "general:Link"
+      }
+    }
+  },
+  "environment-model:quantity": {
+    "@type": "environment-model:Quantity",
+    "environment-model:textureMaterialCount": {
+      "@value": "179",
+      "@type": "xsd:unsignedInt"
+    },
+    "environment-model:triangleCount": {
+      "@value": "12456",
+      "@type": "xsd:int"
+    },
+    "environment-model:geometryCount": {
+      "@value": "5000",
+      "@type": "xsd:int"
+    }
+  },
+  "environment-model:quality": {
+    "@type": "environment-model:Quality",
+    "environment-model:detailLevel": "High",
+    "environment-model:textureResolution": {
+      "@value": "0,1",
+      "@type": "xsd:float"
+    },
+    "environment-model:features": {
+      "@value": "PBR",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:project": {
+    "@type": "environment-model:Project",
+    "environment-model:softwareName": {
+      "@value": "Unreal",
+      "@type": "xsd:string"
+    },
+    "environment-model:softwareVendor": {
+      "@value": "Epic Games",
+      "@type": "xsd:string"
+    },
+    "environment-model:softwareVersion": {
+      "@value": "4.27",
+      "@type": "xsd:string"
+    },
+    "environment-model:creationSource": {
+      "@value": "Trian3DBuilder",
+      "@type": "xsd:string"
+    },
+    "environment-model:creationVersion": {
+      "@value": "7.7",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:format": {
+    "@type": "environment-model:Format",
+    "environment-model:dataType": "Unreal DataSmith",
+    "environment-model:version": {
+      "@value": "SDK 4.25",
+      "@type": "xsd:string"
+    }
+  },
+  "environment-model:georeference": {
+    "@type": "georeference:GeoreferenceShape",
+    "georeference:projectLocation": {
+      "@type": "georeference:ProjectLocation",
+      "georeference:country": {
+        "@value": "DE",
+        "@type": "xsd:string"
+      },
+      "georeference:state": {
+        "@value": "Bavaria",
+        "@type": "xsd:string"
+      },
+      "georeference:region": {
+        "@value": "Upper Bavaria",
+        "@type": "xsd:string"
+      },
+      "georeference:city": {
+        "@value": "Grafing",
+        "@type": "xsd:string"
+      },
+      "georeference:relationOrArea": {
+        "@value": "Town of Grafing",
+        "@type": "xsd:string"
+      },
+      "georeference:boundingBox": {
+        "@type": "georeference:BoundingBox",
+        "georeference:xMin": {
+          "@value": "5",
+          "@type": "xsd:float"
+        },
+        "georeference:yMin": {
+          "@value": "5",
+          "@type": "xsd:float"
+        },
+        "georeference:xMax": {
+          "@value": "10",
+          "@type": "xsd:float"
+        },
+        "georeference:yMax": {
+          "@value": "10",
+          "@type": "xsd:float"
+        }
+      }
+    },
+    "georeference:geodeticReferenceSystem": {
+      "@type": "georeference:GeodeticReferenceSystem",
+      "georeference:coordinateSystem": {
+        "@value": "451989",
+        "@type": "xsd:string"
+      },
+      "georeference:origin": {
+        "@type": "georeference:Coordinate2D",
+        "georeference:x": {
+          "@value": "7,5",
+          "@type": "xsd:float"
+        },
+        "georeference:y": {
+          "@value": "7,5",
+          "@type": "xsd:float"
+        }
+      },
+      "georeference:heightSystem": "Ellipsodial height"
+    }
+  },
+  "general:requiredData": {
+    "@type": "general:Link",
+    "general:url": {
+      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+      "@type": "xsd:anyURI"
+    },
+    "general:type": "Asset"
+  }
+}
