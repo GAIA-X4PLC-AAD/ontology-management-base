@@ -6864,5 +6864,17 @@
     "@type": [
       "http://www.w3.org/2002/07/owl#Class"
     ]
+  },
+  {
+    "@id": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalRegistrationNumber",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Legal Registration Number"
+      }
+    ]
   }
 ]
