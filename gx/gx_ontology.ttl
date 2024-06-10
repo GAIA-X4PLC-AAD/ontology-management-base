@@ -851,6 +851,9 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#LegalParticipant> ;
     rdfs:range xsd:string .
 
+<https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#legalRegistrationNumber> a owl:Class ;
+    rdfs:label "Legal Registration Number"@en .
+
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#leiCode> a owl:DatatypeProperty ;
     rdfs:label "lei code"@en ;
     rdfs:comment "Unique LEI number as defined by https://www.gleif.org." ;
