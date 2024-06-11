@@ -7,7 +7,7 @@
 
 hdmap: a owl:Ontology ;
     rdfs:label "ontology definition for hdmap"@en ;
-    dcterms:contributor "Sebastian Tuttas (3DM)" ;
+    dcterms:contributor "Sebastian Tuttas (3DMS)" ;
     owl:versionInfo "0.1" .
 
 hdmap:hdmap a owl:Class ;
