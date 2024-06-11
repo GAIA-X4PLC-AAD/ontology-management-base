@@ -35,10 +35,10 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:name "coordinateSystem"@en ;
             sh:order 0 ;
             sh:path georeference:coordinateSystem ],
-        [ skos:example "EPSG xyz" ;
+        [ skos:example "Ellipsodial height" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
-            sh:in ("Ellipsodial height" "Orthometric height") ;
+            sh:in ("Ellipsodial height" "Orthometric height" "local height") ;
             sh:maxCount 1 ;
             sh:message "Validation of heightSystem failed!"@en ;
             sh:name "heightSystem"@en ;
@@ -99,7 +99,7 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:path georeference:state ],
         [ skos:example "Munich" ;
             sh:datatype xsd:string ;
-            sh:description "Main city oj project area"@en ;
+            sh:description "Main city of project area"@en ;
             sh:message "Validation of city failed!"@en ;
             sh:maxCount 1 ;
             sh:name "city"@en ;
@@ -131,9 +131,9 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 5 ;
             sh:path georeference:boundingBox ],
-        [ skos:example "Autobahn A8, Großraum Ingolstadt" ;
+        [ skos:example "Highway A8, Greater Area Ingolstadt" ;
             sh:datatype xsd:string ;
-            sh:description "Description of the location, dependen if it is a more trajectory style data or area style data"@en ;
+            sh:description "Description of the mapped area as relation for a certain road, or alternatively a region"@en ;
             sh:message "Validation of relationOrArea failed!"@en ;
             sh:maxCount 1 ;
             sh:name "relationOrArea"@en ;
