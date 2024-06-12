@@ -40,3 +40,6 @@
 /georeference @robertschubert
 /georeference @3Dbastian @MircoNierenz
 
+# surface-model directory (Sebastian AND Robert)
+/surface-model @robertschubert
+/surface-model @3Dbastian
