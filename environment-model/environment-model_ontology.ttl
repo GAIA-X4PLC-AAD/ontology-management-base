@@ -4,14 +4,15 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 environment-model: a owl:Ontology ;
     rdfs:label "ontology definition for environment-model"@en ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
-    owl:versionInfo "0.1"^^xsd:float .
+    owl:versionInfo "0.1" .
 
-environment-model:Asset a owl:Class ;
-    rdfs:label "environment-model" ;
-    rdfs:comment "attributes for 3d environment models"@en ;
-    rdfs:subClassOf gax-core:Resource .
+environment-model:EnvironmentModel a owl:Class ;
+    rdfs:label "class definition for environment-model" ;
+    rdfs:comment "Attributes for 3d environment-model"@en ;
+    rdfs:subClassOf gx:DataResource .
 
