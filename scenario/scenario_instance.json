@@ -8,7 +8,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
-  "@id": "did:example:1234",
+  "@id": "did:web:registry.gaia-x.eu:Scenario:ERXl1TxE2xQjGodfoKZ9TbPiYnQ-yybNhCu8",
   "@type": "scenario:scenario",
   "scenario:common": {
     "@type": "scenario:Common",
@@ -96,7 +96,7 @@
     "scenario:trafficSpace": {
       "@type": "general:Link",
       "general:url": {
-        "@value": "https://inavlid.link.com/my_map.xodr",
+        "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
         "@type": "xsd:anyURI"
       },
       "general:type": "Document"
