@@ -93,11 +93,11 @@
   "hdmap:quantity": {
     "@type": "hdmap:Quantity",
     "hdmap:length": {
-      "@value": "1,46",
+      "@value": "1.46",
       "@type": "xsd:float"
     },
     "hdmap:elevationRange": {
-      "@value": "2,22",
+      "@value": "2.22",
       "@type": "xsd:float"
     },
     "hdmap:numberIntersections": {
