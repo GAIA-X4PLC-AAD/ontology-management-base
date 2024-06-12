@@ -35,3 +35,8 @@
 # general directory (Mirco AND Robert)
 /general @robertschubert
 /general @MircoNierenz
+
+# georeference directory (Robert AND (Sebastian OR Mirco))
+/georeference @robertschubert
+/georeference @3Dbastian @MircoNierenz
+
