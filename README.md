@@ -65,6 +65,8 @@ this class to the existing Ontology.
     * Check whether the shacl file fulfills the rules of the SHACL format.
   * Semantical check (reviewer 2)
     * Check whether the recommended changes make sense (Is there a real need for these changes? Are there probably better solutions?).
+* After the review is done, the reviewer assigns the PR back to the author for incorporation.
+* After incorporation is done, the author assigns the PR back to the reviewer for final review (and so forth).
 
 ### Generating VARIABLES.md (overview of used properties in the SHACL files)
 
@@ -107,6 +109,19 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Shapes must be linked with the associated OWL Class via the property `sh:targetClass`
 * References to other Self Descriptions are specified by a property having `sh:nodeKind sh:IRI`
 * The prefix of the SHACL shape must match the prefix defined in the ontology.
+* Every shape linking to an ontology must **nest** the `general` shape. Example:
+  * Add prefix 
+    ```turtle
+    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
+    ```
+  * Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology
+    ```turtle
+    sh:property [ sh:maxCount 1 ;
+                sh:minCount 1 ;
+                sh:node general:GeneralShape ;
+                # some other attributes
+                sh:path <your_prefix>:general ],
+    ```
 
 ## Further information
 
