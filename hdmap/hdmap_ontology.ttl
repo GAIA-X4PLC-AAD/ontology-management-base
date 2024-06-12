@@ -10,7 +10,7 @@ hdmap: a owl:Ontology ;
     dcterms:contributor "Sebastian Tuttas (3DMS)" ;
     owl:versionInfo "0.1" .
 
-hdmap:hdmap a owl:Class ;
+hdmap:HdMap a owl:Class ;
     rdfs:label "class definition for hdmap" ;
     rdfs:comment "Attributes for high definition maps"@en ;
     rdfs:subClassOf gx:DataResource .
