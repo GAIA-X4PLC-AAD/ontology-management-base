@@ -1,0 +1,142 @@
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+georeference:GeoreferenceShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node georeference:ProjectLocationShape ;
+            sh:order 0 ;
+            sh:path georeference:projectLocation ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node georeference:GeodeticReferenceSystemShape ;
+            sh:order 1 ;
+            sh:path georeference:geodeticReferenceSystem ] ;
+    sh:targetClass georeference:GeoreferenceShape .
+
+georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
+            sh:description "World coordinates of map origin"@en ;
+            sh:message "Validation of origin failed!"@en ;
+            sh:name "origin"@en ;
+            sh:node georeference:Coordinate2DShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path georeference:origin ],
+        [ skos:example "EPSG::32632" ;
+            sh:datatype xsd:string ;
+            sh:description "EPSG code of the map"@en ;
+            sh:minCount 0 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of coordinateSystem failed!"@en ;
+            sh:name "coordinateSystem"@en ;
+            sh:order 0 ;
+            sh:path georeference:coordinateSystem ],
+        [ skos:example "Ellipsodial height" ;
+            sh:datatype xsd:string ;
+            sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:in ("Ellipsodial height" "Orthometric height" "local height") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of heightSystem failed!"@en ;
+            sh:name "heightSystem"@en ;
+            sh:order 1 ;
+            sh:path georeference:heightSystem ] ;
+    sh:targetClass georeference:GeodeticReferenceSystem .
+
+georeference:BoundingBoxShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path georeference:yMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path georeference:yMax ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMin failed!"@en ;
+            sh:name "xMin"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path georeference:xMin ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path georeference:xMax ] ;
+    sh:targetClass georeference:BoundingBox .
+
+georeference:Coordinate2DShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:message "Validation of x failed!"@en ;
+            sh:name "x"@en ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path georeference:x ],
+        [ sh:datatype xsd:float ;
+            sh:message "Validation of y failed!"@en ;
+            sh:name "y"@en ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path georeference:y ] ;
+    sh:targetClass georeference:Coordinate2D .
+    
+georeference:ProjectLocationShape a sh:NodeShape ;
+    sh:property [ skos:example "Bavaria" ;
+            sh:datatype xsd:string ;
+            sh:description "State of project area"@en ;
+            sh:message "Validation of state failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "state"@en ;
+            sh:order 1 ;
+            sh:path georeference:state ],
+        [ skos:example "Munich" ;
+            sh:datatype xsd:string ;
+            sh:description "Main city of project area"@en ;
+            sh:message "Validation of city failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "city"@en ;
+            sh:order 3 ;
+            sh:path georeference:city ],
+        [ skos:example "Upper Bavaria" ;
+            sh:datatype xsd:string ;
+            sh:description "Region of project area"@en ;
+            sh:message "Validation of region failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "region"@en ;
+            sh:order 2 ;
+            sh:path georeference:region ],
+        [ skos:example "Germany, GER" ;
+            sh:datatype xsd:string ;
+            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:name "country"@en ;
+            sh:order 0 ;
+            sh:path georeference:country ;
+            sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ],
+        [ skos:example "Lat: 1.234- 1.345; Lon 45.23-45.34" ;
+            sh:description "Bounding box with lat/lon values in WGS84"@en ;
+            sh:message "Validation of boundingBox failed!"@en ;
+            sh:name "boundingBox"@en ;
+            sh:node georeference:BoundingBoxShape ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path georeference:boundingBox ],
+        [ skos:example "Highway A8, Greater Area Ingolstadt" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of the mapped area as relation for a certain road, or alternatively a region"@en ;
+            sh:message "Validation of relationOrArea failed!"@en ;
+            sh:maxCount 1 ;
+            sh:name "relationOrArea"@en ;
+            sh:order 4 ;
+            sh:path georeference:relationOrArea ] ;
+    sh:targetClass georeference:ProjectLocation .     

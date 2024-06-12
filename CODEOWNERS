@@ -3,15 +3,16 @@
 # https://docs.github.com/de/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 # Each line is a file pattern followed by one or more owners.
 
-# root directory and default handling (Robert OR Justin). Subsequent definitions will overwrite a previous definition.
-/* @robertschubert @JustinDxx
+# root directory and default handling (Robert OR Lena). Subsequent definitions will overwrite a previous definition.
+/* @robertschubert @lenasauermann
 
 # examples directory (Robert OR Justin)
 /examples @robertschubert @JustinDxx
 
-# scenario directory (Rico AND Justin)
+# scenario directory (Rico AND Robert AND Fin)
 /scenario @rcrswld
-/scenario @JustinDxx
+/scenario @robertschubert
+/scenario @heuerfin
 
 # sensor directory (Rico AND Justin)
 /sensor @rcrswld
@@ -30,3 +31,15 @@
 # environment-model directory (Mirco AND Robert)
 /environment-model @robertschubert
 /environment-model @MircoNierenz
+
+# general directory (Mirco AND Robert)
+/general @robertschubert
+/general @MircoNierenz
+
+# georeference directory (Robert AND (Sebastian OR Mirco))
+/georeference @robertschubert
+/georeference @3Dbastian @MircoNierenz
+
+# surface-model directory (Sebastian AND Robert)
+/surface-model @robertschubert
+/surface-model @3Dbastian
