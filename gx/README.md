@@ -32,6 +32,8 @@ The conversion tool also corrects some issues in the original JSON-LD files and 
 - Correction of the `http://www.w3.org/2006/vcard/ns#Address`: The node becomes `AddressShape` and the link to this shape as a node also references the `AddressShape` instead of the `Address` node. 
 - change LegalPerson to LegalParticipant in the ontology since LegalPerson is not existing the shacl shape and [gx wizard](https://wizard.lab.gaia-x.eu/) generates participant credentials as LegalParticipant.
 - change the subClassOf relation of Participant, Resource and ServiceOffering subclasses in the ontology since they point to rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> and not rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> (http instead of https). The http prefix will not be considered as a valid gaia-x prefix.
+- change how legalRegistrationNumber is embedded in the LegalParticipantShape (not nested but linked via IRI).
+- added legalRegistrationNumber as ontology class since it is missing in the ontology.
 
 The concrete changes can be made visible by comparing the original and corrected files.
 

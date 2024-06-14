@@ -65,6 +65,8 @@ this class to the existing Ontology.
     * Check whether the shacl file fulfills the rules of the SHACL format.
   * Semantical check (reviewer 2)
     * Check whether the recommended changes make sense (Is there a real need for these changes? Are there probably better solutions?).
+* After the review is done, the reviewer assigns the PR back to the author for incorporation.
+* After incorporation is done, the author assigns the PR back to the reviewer for final review (and so forth).
 
 ### Generating VARIABLES.md (overview of used properties in the SHACL files)
 
