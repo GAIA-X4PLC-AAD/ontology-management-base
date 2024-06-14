@@ -32,6 +32,10 @@
 /environment-model @robertschubert
 /environment-model @MircoNierenz
 
+# hdmap directory (Sebastian AND Robert)
+/hdmap @robertschubert
+/hdmap @3Dbastian
+
 # general directory (Mirco AND Robert)
 /general @robertschubert
 /general @MircoNierenz
@@ -43,3 +47,4 @@
 # surface-model directory (Sebastian AND Robert)
 /surface-model @robertschubert
 /surface-model @3Dbastian
+

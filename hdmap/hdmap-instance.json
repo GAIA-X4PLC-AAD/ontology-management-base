@@ -1,0 +1,264 @@
+{
+  "@context": {
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "hdmap": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+  "@type": "hdmap:HdMap",
+  "hdmap:general": {
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "gx:name": {
+        "@value": "hdmap example",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+        "@value": "simple hdmap example file",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "5",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "123456789",
+        "@type": "xsd:string"
+      },
+      "general:recordingTime": {
+        "@value": "2024-05-15T08:18:17",
+        "@type": "xsd:dateTime"
+      }
+    },
+    "general:links": {
+      "@type": "general:Links",
+      "general:data": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Asset"
+      },
+      "general:media": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      }
+    },
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": {
+        "@type": "general:Link"
+      },
+      "general:relatedData": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      }
+    }
+  },
+  "hdmap:format": {
+    "@type": "hdmap:Format",
+    "hdmap:type": "ASAM OpenDRIVE",
+    "hdmap:version": {
+      "@value": "1.6",
+      "@type": "xsd:string"
+    }
+  },
+  "hdmap:content": {
+    "@type": "hdmap:Content",
+    "hdmap:roadTypes": "Town",
+    "hdmap:laneTypes": [
+      "driving",
+      "walking"
+    ],
+    "hdmap:levelOfDetail": "crosswalk",
+    "hdmap:trafficDirection": "right-hand"
+  },
+  "hdmap:quantity": {
+    "@type": "hdmap:Quantity",
+    "hdmap:length": {
+      "@value": "1.46",
+      "@type": "xsd:float"
+    },
+    "hdmap:elevationRange": {
+      "@value": "2.22",
+      "@type": "xsd:float"
+    },
+    "hdmap:numberIntersections": {
+      "@value": "5",
+      "@type": "xsd:unsignedInt"
+    },
+    "hdmap:numberTrafficLights": {
+      "@value": "0",
+      "@type": "xsd:unsignedInt"
+    },
+    "hdmap:numberTrafficSigns": {
+      "@value": "155",
+      "@type": "xsd:unsignedInt"
+    },
+    "hdmap:numberObjects": {
+      "@value": "200",
+      "@type": "xsd:unsignedInt"
+    },
+    "hdmap:numberOutlines": {
+      "@value": "100",
+      "@type": "xsd:unsignedInt"
+    },
+    "hdmap:speedLimit": {
+      "@type": "general:Range2D",
+      "general:min": {
+        "@value": "10",
+        "@type": "xsd:float"
+      },
+      "general:max": {
+        "@value": "50",
+        "@type": "xsd:float"
+      }
+    },
+    "hdmap:rangeOfModeling": {
+      "@value": "20",
+      "@type": "xsd:float"
+    }
+  },
+  "hdmap:quality": {
+    "@type": "hdmap:Quality",
+    "hdmap:precision": {
+      "@value": "0.01",
+      "@type": "xsd:float"
+    },
+    "hdmap:accuracyLaneModel2d": {
+      "@value": "0.1",
+      "@type": "xsd:float"
+    },
+    "hdmap:accuracyLaneModelHeight": {
+      "@value": "0.1",
+      "@type": "xsd:float"
+    },
+    "hdmap:accuracySignals": {
+      "@value": "0.1",
+      "@type": "xsd:float"
+    },
+    "hdmap:accuracyObjects": {
+      "@value": "0.1",
+      "@type": "xsd:float"
+    }
+  },
+  "hdmap:dataSource": {
+    "@type": "hdmap:DataSource",
+    "hdmap:usedDataSources": {
+      "@value": "scanner",
+      "@type": "xsd:string"
+    },
+    "hdmap:measurementSystem": {
+      "@value": "3DMS system",
+      "@type": "xsd:string"
+    }
+  },
+  "hdmap:georeference": {
+    "@type": "georeference:GeoreferenceShape",
+    "georeference:projectLocation": {
+      "@type": "georeference:ProjectLocation",
+      "georeference:country": {
+        "@value": "DE",
+        "@type": "xsd:string"
+      },
+      "georeference:state": {
+        "@value": "Bavaria",
+        "@type": "xsd:string"
+      },
+      "georeference:region": {
+        "@value": "Upper Bavaria",
+        "@type": "xsd:string"
+      },
+      "georeference:city": {
+        "@value": "Grafing",
+        "@type": "xsd:string"
+      },
+      "georeference:relationOrArea": {
+        "@value": "Town of Grafing",
+        "@type": "xsd:string"
+      },
+      "georeference:boundingBox": {
+        "@type": "georeference:BoundingBox",
+        "georeference:xMin": {
+          "@value": "5",
+          "@type": "xsd:float"
+        },
+        "georeference:yMin": {
+          "@value": "5",
+          "@type": "xsd:float"
+        },
+        "georeference:xMax": {
+          "@value": "10",
+          "@type": "xsd:float"
+        },
+        "georeference:yMax": {
+          "@value": "10",
+          "@type": "xsd:float"
+        }
+      }
+    },
+    "georeference:geodeticReferenceSystem": {
+      "@type": "georeference:GeodeticReferenceSystem",
+      "georeference:coordinateSystem": {
+        "@value": "32632",
+        "@type": "xsd:string"
+      },
+      "georeference:origin": {
+        "@type": "georeference:Coordinate2D",
+        "georeference:x": {
+          "@value": "7.5",
+          "@type": "xsd:float"
+        },
+        "georeference:y": {
+          "@value": "7.5",
+          "@type": "xsd:float"
+        }
+      },
+      "georeference:heightSystem": "Ellipsodial height"
+    }
+  },
+  "general:media": {
+    "@type": "general:Link",
+    "general:url": {
+      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
+      "@type": "xsd:anyURI"
+    },
+    "general:type": "Document"
+  },
+  "general:relatedData": {
+    "@type": "general:Link",
+    "general:url": {
+      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
+      "@type": "xsd:anyURI"
+    },
+    "general:type": "Document"
+  },
+  "hdmap:speedLimit": {
+    "@type": "general:Range2D",
+    "general:min": {
+      "@value": "10",
+      "@type": "xsd:float"
+    },
+    "general:max": {
+      "@value": "50",
+      "@type": "xsd:float"
+    }
+  }
+}
