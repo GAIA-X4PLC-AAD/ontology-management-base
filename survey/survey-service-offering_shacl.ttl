@@ -1,0 +1,72 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix survey: <http://semanticweb.org/metadatasurveylogy/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+general:GeneralShape a sh:NodeShape ;
+    sh:description "my description..." ;
+    sh:name "HdMap ..." ;
+    sh:property [
+            sh:path gx:description ;
+            sh:datatype xsd:string ;
+            sh:description "A free text description of the entity." ;
+            sh:minCount 1 ;
+            sh:name "description" 
+        ],
+        [
+            sh:path gx:name ;
+            sh:datatype xsd:string ;
+            sh:description "A human readable name of the entity." ;
+            sh:minCount 1 ;
+            sh:name "name" 
+        ] ;
+    sh:targetClass general:GeneralShape .
+
+survey:SurveyServiceOfferingShape
+	a sh:NodeShape ; 
+	sh:targetClass survey:SurveyServiceOffering ; 
+	sh:property [
+		sh:path survey:surveyId ; 
+		sh:datatype xsd:string ; 
+		skos:example "'Example ID'" ;
+		sh:minCount 1 ; 
+		sh:message "Validation of survey survey ID failed." ;
+		sh:name "Survey ID" ;
+	] ; 
+	sh:property [
+		sh:path survey:surveyUrl ; 
+		sh:datatype xsd:string ; 
+		skos:example "'Example URL'" ; 
+		sh:minCount 1 ;
+		sh:message "Validation of survey URL failed." ;
+		sh:name "Survey URL" ;
+	] ; 
+	sh:property [
+		sh:path survey:surveyCreationTime ; 
+		sh:datatype xsd:dateTime ;  
+		skos:example "'Date 1'" ; 
+		sh:minCount 1 ; 
+		sh:message "Validation of survey creation time failed." ;
+		sh:name "Survey creation time" ;
+		sh:description "When the survey was created" ;
+	] ; 
+	sh:property [
+		sh:path survey:surveyEndTime ; 
+		sh:datatype xsd:dateTime ; 
+		skos:example "'Date 3'" ; 
+		sh:minCount 1 ;
+		sh:message "Validation of survey end time failed." ;
+		sh:name "Survey end time" ;
+		sh:description "When the survey will end automatically" ;
+	] ;
+	sh:property [
+		sh:path surveyonto:surveyCreator ; 
+		sh:datatype xsd:string ;  
+		skos:example "'Example Creator'" ; 
+		sh:minCount 1 ; 
+		sh:message "Validation of survey creator failed." ;
+		sh:name "Survey creator" ;
+		sh:description "Who created the survey" ;
+	] .
