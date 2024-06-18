@@ -1,11 +1,11 @@
 # Ontology management
 
-## Description
+## Purpose
 
 This repository is used to maintain the custom Ontologies and associated SHACL Shapes that are used within a specific Scope. It's also used to ensure a unified process for handling the Ontologies & Shapes.
 
 **Ontologies** are required, when there is a need to introduce a custom type for a Self Description which should be expressed
-as an OWL Class. For each Class a **SHACL Shape** _must_ be defined, which defines the properties for the class and optional
+as an OWL class. For each class a **SHACL Shape** _must_ be defined, which defines the properties for the class and optional
 constraints.
 
 ## Repository structure
@@ -68,12 +68,6 @@ this class to the existing Ontology.
 * After the review is done, the reviewer assigns the PR back to the author for incorporation.
 * After incorporation is done, the author assigns the PR back to the reviewer for final review (and so forth).
 
-### Generating VARIABLES.md (overview of used properties in the SHACL files)
-
-The file VARIABLES.md will be generated automatically when a push to a non main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
-
-NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. For further information, see "GITHUB_ACTIONS.md" file in the root directory.
-
 ## Modeling Guidelines
 
 This section describes guidelines that _must_ be followed when applying changes to this repository.
@@ -99,7 +93,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Class must be a subclass of one of the Gaia-X base classes
 * The name of the class must be in PascalCase. Example: `Sensor`
 * The attributes of the class must be in camelCase. Example: `sensorType`
-* The prefix of the ontology must match the prefix defined in the SHACL shape.
+* The prefix of the ontology must match the prefix defined in the SHACL Shape.
 
 ### SHACL Shapes
 
@@ -108,8 +102,8 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Shapes have the name of the linked Ontology class and a suffix `Shape`. Example: `SensorShape`
 * Shapes must be linked with the associated OWL Class via the property `sh:targetClass`
 * References to other Self Descriptions are specified by a property having `sh:nodeKind sh:IRI`
-* The prefix of the SHACL shape must match the prefix defined in the ontology.
-* Every shape linking to an ontology must **nest** the `general` shape. Example:
+* The prefix of the SHACL Shape must match the prefix defined in the ontology.
+* Every Shape linking to an ontology must **nest** the `general` Shape. Example:
   * Add prefix 
     ```turtle
     @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
@@ -122,6 +116,18 @@ This section describes guidelines that _must_ be followed when applying changes 
                 # some other attributes
                 sh:path <your_prefix>:general ],
     ```
+
+## CI/CD pipeline
+
+The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. 
+ 
+### Generate VARIABLES.md (overview of used properties in the SHACL files)
+The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
+
+>NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. 
+
+### Check syntax of Turtle files
+- The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF graph. If the Turtle file is not correct the pipeline fails with a detailed error message.
 
 ## Further information
 

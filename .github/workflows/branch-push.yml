@@ -45,3 +45,39 @@ jobs:
         git commit -s -m "Add VARIABLES.md files"
         git push
       working-directory: ${{ github.workspace }}
+
+  parse-turtle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes in .ttl files
+        id: check_ttl
+        run: |
+          CHANGED_TTL=$(git diff --name-only HEAD^ HEAD -- '*.ttl')
+          if [[ -n "$CHANGED_TTL" ]]; then
+            echo "TTL_HAS_CHANGED=true" >> $GITHUB_ENV
+            echo "CHANGED_TTL=$CHANGED_TTL" >> $GITHUB_ENV
+          else
+            echo "TTL_HAS_CHANGED=false" >> $GITHUB_ENV
+            ech0 "Subsequent steps will run but they will be skipped as no .ttl files have changed."
+          fi
+
+      - name: Set up Python
+        if: env.TTL_HAS_CHANGED == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.0
+
+      - name: Install rdflib
+        if: env.TTL_HAS_CHANGED == 'true'
+        run: pip install rdflib
+
+      - name: Run Python script for each changed .ttl file
+        if: env.TTL_HAS_CHANGED == 'true'
+        run: |
+          for FILE in $CHANGED_TTL; do
+            echo "Processing changed file: $FILE"
+            python3 src/check_ttl_syntax.py $FILE
