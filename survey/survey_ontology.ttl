@@ -21,7 +21,7 @@ survey:belongs_to rdf:type owl:ObjectProperty ;
 
 ###  http://semanticweb.org/metadatasurveylogy/SurveyResultDataOffering
 survey:SurveyResultDataOffering rdf:type owl:Class ; 
-      rdfs:subClassOf gx:VirtualResource ;
+      rdfs:subClassOf gx:InstantiatedVirtualResource ;
       rdfs:label "Survey result data offering" ; 
       rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey." .
 
