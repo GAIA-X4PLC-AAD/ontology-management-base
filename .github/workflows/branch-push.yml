@@ -83,4 +83,43 @@ jobs:
         run: |
           for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
-            python3 src/check_ttl_syntax.py "${FILE}"
+            python3 -u src/check_ttl_syntax.py "${FILE}"
+
+  check-jsonld-against-schema:
+    name: Check if jsonld files are valid against schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes in .ttl and .json files
+        id: check_ttl_or_instance
+        run: |
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only origin/main -- '*shacl.ttl' '*instance.json')
+          if [[ -n "$CHANGED_FILES" ]]; then
+            CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -n1 dirname | sort -u) # just save the directory names
+            echo "FILES_HAVE_CHANGED=true" >> $GITHUB_ENV
+            echo "CHANGED_DIRS=$CHANGED_DIRS" >> $GITHUB_ENV
+          else
+            echo "FILES_HAVE_CHANGED=false" >> $GITHUB_ENV
+            echo "Subsequent steps will be skipped as no .ttl or .json files have changed."
+          fi
+
+      - name: Set up Python
+        if: env.FILES_HAVE_CHANGED == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.0
+
+      - name: Install rdflib
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: pip install rdflib rdflib-jsonld pyshacl
+
+      - name: Run Python script for each directory that is affected (either shacl or instance file was changed).
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: |
+          for DIRECTORY in ${CHANGED_DIRS}; do
+            echo "Processing changed file: ${DIRECTORY}"
+            python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
