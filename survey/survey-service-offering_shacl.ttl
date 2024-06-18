@@ -5,25 +5,6 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
-general:GeneralShape a sh:NodeShape ;
-    sh:description "my description..." ;
-    sh:name "HdMap ..." ;
-    sh:property [
-            sh:path gx:description ;
-            sh:datatype xsd:string ;
-            sh:description "A free text description of the entity." ;
-            sh:minCount 1 ;
-            sh:name "description" 
-        ],
-        [
-            sh:path gx:name ;
-            sh:datatype xsd:string ;
-            sh:description "A human readable name of the entity." ;
-            sh:minCount 1 ;
-            sh:name "name" 
-        ] ;
-    sh:targetClass general:GeneralShape .
-
 survey:SurveyServiceOfferingShape
 	a sh:NodeShape ; 
 	sh:targetClass survey:SurveyServiceOffering ; 
@@ -61,12 +42,34 @@ survey:SurveyServiceOfferingShape
 		sh:name "Survey end time" ;
 		sh:description "When the survey will end automatically" ;
 	] ;
-	sh:property [
-		sh:path surveyonto:surveyCreator ; 
-		sh:datatype xsd:string ;  
+	sh:property [ 
+        sh:node general:GeneralShape ;
+        sh:path gx:providedBy ;
+		sh:datatype xsd:string ;
 		skos:example "'Example Creator'" ; 
 		sh:minCount 1 ; 
+		sh:maxCount 1 ;
 		sh:message "Validation of survey creator failed." ;
 		sh:name "Survey creator" ;
 		sh:description "Who created the survey" ;
+	] ;
+	sh:property [ 
+        sh:node general:GeneralShape ;
+        sh:path gx:name ;
+		sh:datatype xsd:string ;
+		skos:example "'Example Title of Survey'" ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "Validation of survey title failed." ;
+		sh:name "Survey title" ;
+	] ;
+	sh:property [ 
+        sh:node general:GeneralShape ;
+        sh:path gx:description ;
+		sh:datatype xsd:string ;
+		skos:example "'Example Description of Survey'" ; 
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "Validation of survey description failed." ;
+		sh:name "Survey description" ;
 	] .
