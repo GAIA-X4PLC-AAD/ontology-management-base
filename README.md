@@ -127,7 +127,7 @@ The file VARIABLES.md will be generated automatically when a push to a non-main 
 >NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. 
 
 ### Check syntax of Turtle files
-- The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF graph. If the Turtle file is not correct the pipeline fails with a detailed error message.
+The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF graph. If the Turtle file is not correct the pipeline fails with a detailed error message.
 
 ## Further information
 

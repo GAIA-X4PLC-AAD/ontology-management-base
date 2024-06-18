@@ -7,7 +7,7 @@ gx:DataResourceShape a sh:NodeShape ;
     sh:closed false ;
     sh:description "A data resource is extending the DCAT-3 Dataset class and primarily refers to an analytical dataset exposed via one or more InstantiatedVirtualResource service access points." ;
     sh:name "Data Resource" ;
-    sh:property [ sh:datatype xsd:dateTime .
+    sh:property [ sh:datatype xsd:dateTime ;
             sh:description "date time in ISO 8601 format after which data is obsolete." ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
