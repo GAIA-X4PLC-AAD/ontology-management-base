@@ -56,13 +56,14 @@ jobs:
       - name: Check for changes in .ttl files
         id: check_ttl
         run: |
-          CHANGED_TTL=$(git diff --name-only HEAD^ HEAD -- '*.ttl')
+          git fetch origin main
+          CHANGED_TTL=$(git diff --name-only origin/main -- '*.ttl')
           if [[ -n "$CHANGED_TTL" ]]; then
             echo "TTL_HAS_CHANGED=true" >> $GITHUB_ENV
             echo "CHANGED_TTL=$CHANGED_TTL" >> $GITHUB_ENV
           else
             echo "TTL_HAS_CHANGED=false" >> $GITHUB_ENV
-            ech0 "Subsequent steps will run but they will be skipped as no .ttl files have changed."
+            echo "Subsequent steps will run but they will be skipped as no .ttl files have changed."
           fi
 
       - name: Set up Python
