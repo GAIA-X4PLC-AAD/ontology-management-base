@@ -86,7 +86,7 @@ jobs:
             python3 -u src/check_ttl_syntax.py "${FILE}"
 
   check-jsonld-against-schema:
-    name: Check if jsonld files are valid against schema
+    name: Check jsonld against schema for all changed directories
     runs-on: ubuntu-latest
 
     steps:
