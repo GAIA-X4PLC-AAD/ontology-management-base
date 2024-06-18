@@ -117,7 +117,7 @@ This section describes guidelines that _must_ be followed when applying changes 
                 sh:path <your_prefix>:general ],
     ```
 
-## CI/CD pipeline
+## CI pipeline
 
 The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. 
  

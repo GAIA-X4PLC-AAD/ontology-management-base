@@ -63,7 +63,7 @@ jobs:
             echo "CHANGED_TTL=$CHANGED_TTL" >> $GITHUB_ENV
           else
             echo "TTL_HAS_CHANGED=false" >> $GITHUB_ENV
-            echo "Subsequent steps will run but they will be skipped as no .ttl files have changed."
+            echo "Subsequent steps will be skipped as no .ttl files have changed."
           fi
 
       - name: Set up Python
