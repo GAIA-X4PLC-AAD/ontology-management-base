@@ -4,7 +4,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 gx:DataResourceShape a sh:NodeShape ;
-    sh:closed false .
+    sh:closed false ;
     sh:description "A data resource is extending the DCAT-3 Dataset class and primarily refers to an analytical dataset exposed via one or more InstantiatedVirtualResource service access points." ;
     sh:name "Data Resource" ;
     sh:property [ sh:datatype xsd:dateTime ;
