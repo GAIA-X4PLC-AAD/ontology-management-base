@@ -79,6 +79,6 @@ jobs:
       - name: Run Python script for each changed .ttl file
         if: env.TTL_HAS_CHANGED == 'true'
         run: |
-          for FILE in "${CHANGED_TTL}"; do
+          for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
             python3 src/check_ttl_syntax.py "${FILE}"
