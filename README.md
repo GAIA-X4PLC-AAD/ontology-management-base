@@ -25,11 +25,12 @@ This section describes the general process to apply changes to the Ontologies & 
 2. Create a local feature branch that will store the changes
 3. Perform changes (see [Modeling Guidelines](#modeling-guidelines), [Creating a new Ontology & Shape](#creating-a-new-ontology--shape) or [Modify an existing Ontology & Shape](#modify-an-existing-ontology--shape))
 4. Push the branch to remote
-5. Open a _Pull Request_ and describe the changes according to the provided template which should help the Reviewer to
+5. Check the [CI pipeline](#ci-pipeline) status.
+6. Open a _Pull Request_ and describe the changes according to the provided template which should help the Reviewer to
    understand why the changes are important from you point of view
-6. [Review process](#review-process-responsibilities) performed by _Reviewers
-7. (optional) Apply changes recommended by the Reviewer
-8. Reviewer merges _Pull Request_ to `main` branch and adds the changes (SHACL file and/or Ontology file) to the Federated Catalogue via its API (supported by Github Action)
+7. [Review process](#review-process-responsibilities) performed by Reviewers
+8. (optional) Apply changes recommended by the Reviewer
+9. Reviewer merges _Pull Request_ to `main` branch and adds the changes (SHACL file and/or Ontology file) to the Federated Catalogue via its API (supported by Github Action)
 
 ### Creating a new Ontology & Shape
 
@@ -62,7 +63,7 @@ this class to the existing Ontology.
 * Two reviewers should be defined. One for the syntactical part and one for the semantical part.
   * Syntactical check (reviewer 1)
     * Check whether modeling guidelines described in this README are followed.
-    * Check whether the shacl file fulfills the rules of the SHACL format.
+    * Check the [CI pipeline](#ci-pipeline) status.
   * Semantical check (reviewer 2)
     * Check whether the recommended changes make sense (Is there a real need for these changes? Are there probably better solutions?).
 * After the review is done, the reviewer assigns the PR back to the author for incorporation.
@@ -119,7 +120,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 
 ## CI pipeline
 
-The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. 
+The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. The result can be seen in the `Actions` tab in the github repository.
  
 ### Generate VARIABLES.md (overview of used properties in the SHACL files)
 The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.

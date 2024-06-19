@@ -44,14 +44,16 @@ def main():
         print(f"The directory {directory} does not exist. Abort.")
         sys.exit(2)
 
-    jsonld_file = next((f for f in glob.glob(f'{directory}/*instance.json')), None)
-    if jsonld_file is None:
-        print(f"No *instance.json file found in directory: {directory}. Abort.")
+    jsonld_files = glob.glob(f'{directory}/*_instance.json')
+    if not jsonld_files:
+        print(f"No *instance.json files found in directory: {directory}. Abort.")
         sys.exit(2)
 
     shacl_graph = load_shacl_files('.')
-    data_graph = load_jsonld_file(jsonld_file)
-    validate_jsonld_against_shacl(data_graph, shacl_graph)
+
+    for jsonld_file in jsonld_files:
+        data_graph = load_jsonld_file(jsonld_file)
+        validate_jsonld_against_shacl(data_graph, shacl_graph)
 
 
 if __name__ == "__main__":
