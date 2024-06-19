@@ -31,23 +31,23 @@ def validate_jsonld_against_shacl(data_graph, shacl_graph):
         print(v_text)
         print('Validation graph:')
         print(v_graph.serialize(format='turtle'))
-        sys.exit(3)
+        sys.exit(400)
 
 
 def main():
     if len(sys.argv) != 2:
         print("Usage: python check_jsonld_against_shacl_schema.py <directory>")
-        sys.exit(1)
+        sys.exit(100)
 
     directory = sys.argv[1]
     if not os.path.isdir(directory):
         print(f"The directory {directory} does not exist. Abort.")
-        sys.exit(2)
+        sys.exit(200)
 
     jsonld_files = glob.glob(f'{directory}/*_instance.json')
     if not jsonld_files:
         print(f"No *_instance.json files found in directory: {directory}. Abort.")
-        sys.exit(2)
+        sys.exit(300)
 
     shacl_graph = load_shacl_files('.')
 
