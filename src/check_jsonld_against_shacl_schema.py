@@ -46,7 +46,7 @@ def main():
 
     jsonld_files = glob.glob(f'{directory}/*_instance.json')
     if not jsonld_files:
-        print(f"No *instance.json files found in directory: {directory}. Abort.")
+        print(f"No *_instance.json files found in directory: {directory}. Abort.")
         sys.exit(2)
 
     shacl_graph = load_shacl_files('.')
