@@ -27,9 +27,10 @@ def validate_jsonld_against_shacl(data_graph, shacl_graph):
     conforms, v_graph, v_text = validate(data_graph, shacl_graph=shacl_graph, data_graph_format='json-ld', inference='rdfs', debug=False)
     print(f'Conforms: {conforms}')
     if not conforms:
-        print('Validation errors:')
+        print('####### Validation errors: #######')
         print(v_text)
-        print('Validation graph:')
+        print('')
+        print('####### Validation graph: #######')
         print(v_graph.serialize(format='turtle'))
         sys.exit(400)
 

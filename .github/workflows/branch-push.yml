@@ -122,6 +122,6 @@ jobs:
         if: env.FILES_HAVE_CHANGED == 'true'
         run: |
           for DIRECTORY in ${CHANGED_DIRS}; do
-            echo "Processing changed file: ${DIRECTORY}"
+            echo "Processing changed directory: ${DIRECTORY}"
             python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
           done
