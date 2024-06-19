@@ -120,14 +120,38 @@ This section describes guidelines that _must_ be followed when applying changes 
 ## CI pipeline
 
 The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. The result can be seen in the `Actions` tab in the github repository.
+
+### Steps
  
-### Generate VARIABLES.md (overview of used properties in the SHACL files)
+#### Generate VARIABLES.md (overview of used properties in the SHACL files)
 The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
 
 >NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. 
 
-### Check syntax of Turtle files
+#### Check syntax of Turtle files
 The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF graph. If the Turtle file is not correct the pipeline fails with a detailed error message.
+
+#### Check if `_instance.json` file is conform to the SHACL Shape(s)
+The pipeline checks if the `_instance.json` file is conform to the SHACL Shape(s) defined in the corresponding SHACL file. For this all `*_shacl.ttl` files in this repository are collected to be able to check against a schema not defined in the current SHACL Shape. If the instance is not conform the pipeline fails with a detailed error message.
+
+### Run the pipeline scripts locally
+```bash
+# prepare venv (optional)
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+(.venv) $ python3 -m pip install --upgrade pip
+(.venv) $ python3 -m pip install -r src/requirements_ci.txt
+# execute check from CI
+python3 src/check_ttl_syntax.py <path_to_ttl_file>
+python3 src/check_jsonld_against_shacl_schema.py <directory name>
+```
+Example:
+```bash
+python3 src/check_ttl_syntax.py scenario_ontology.ttl
+python3 src/check_jsonld_against_shacl_schema.py scenario
+```
+
+>You might use `py` or `python` instead of `python3` depending on your system.
 
 ## Further information
 

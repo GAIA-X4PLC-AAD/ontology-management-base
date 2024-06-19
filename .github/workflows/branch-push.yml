@@ -19,8 +19,8 @@ jobs:
       with:
         python-version: 3.12.0
 
-    - name: Install rdflib
-      run: pip install rdflib
+    - name: Install additional libraries
+      run: pip install -r src/requirements_ci.txt
 
     - name: Run Python script
       run: python3 src/readme_generator.py
@@ -74,9 +74,9 @@ jobs:
         with:
           python-version: 3.12.0
 
-      - name: Install rdflib
+      - name: Install additional libraries
         if: env.TTL_HAS_CHANGED == 'true'
-        run: pip install rdflib
+        run: pip install -r src/requirements_ci.txt
 
       - name: Run Python script for each changed .ttl file
         if: env.TTL_HAS_CHANGED == 'true'
@@ -114,9 +114,9 @@ jobs:
         with:
           python-version: 3.12.0
 
-      - name: Install rdflib
+      - name: Install additional libraries
         if: env.FILES_HAVE_CHANGED == 'true'
-        run: pip install rdflib rdflib-jsonld pyshacl
+        run: pip install -r src/requirements_ci.txt
 
       - name: Run Python script for each directory that is affected (either shacl or instance file was changed).
         if: env.FILES_HAVE_CHANGED == 'true'
