@@ -35,8 +35,7 @@ This section describes the general process to apply changes to the Ontologies & 
 ### Creating a new Ontology & Shape
 
 In the case you want to create a new Class which is not suitable for the existing Ontologies, you should create a new Ontology
-that contains this class. An Ontology describes a set of classes in a specific subject area and how they are related. A
-domain may contain multiple Ontologies.
+that contains this class. An Ontology describes a set of classes in a specific subject area and how they are related. A domain may contain multiple Ontologies.
 
 1. Create a folder for the Domain, if it does not already exist. 
 2. Create a Turtle file for the Ontology
