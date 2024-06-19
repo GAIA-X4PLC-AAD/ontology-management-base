@@ -84,6 +84,7 @@ jobs:
           for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
             python3 -u src/check_ttl_syntax.py "${FILE}"
+          done
 
   check-jsonld-against-schema:
     name: Check jsonld against schema for all changed directories
@@ -123,3 +124,4 @@ jobs:
           for DIRECTORY in ${CHANGED_DIRS}; do
             echo "Processing changed file: ${DIRECTORY}"
             python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
+          done
