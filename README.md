@@ -147,7 +147,7 @@ python3 src/check_jsonld_against_shacl_schema.py <directory name>
 ```
 Example:
 ```bash
-python3 src/check_ttl_syntax.py scenario_ontology.ttl
+python3 src/check_ttl_syntax.py scenario/scenario_ontology.ttl
 python3 src/check_jsonld_against_shacl_schema.py scenario
 ```
 
