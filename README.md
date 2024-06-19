@@ -141,3 +141,24 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 
 * VS Code: "Stardog RDF Grammars"
 * IntelliJ: "LNKD.tech Editor"
+
+### Known issues
+#### Issues with [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/)
+* The wizard does not support the creation of a SHACL Shape with a nested external Shape, e. g. `GeneralShape` in `SensorShape`. To do this you have to temporarily copy the `GeneralShape` into the `SensorShape` file. This applies to all external Shapes which are not defined in the file which is loaded into the wizard.
+* The wizard may generate a non conform `_instance` file when having optional structures which have mandatory attributes. 
+  Example: `relatedData` in `GeneralShape`:
+  ```turtle
+        [ sh:node general:LinkShape ;
+            sh:description "Reference to optional related assets" ;
+            skos:example "at hd map, link to optional surface map" ;
+            sh:name "relatedData" ;
+            sh:order 2 ;
+            sh:path general:relatedData ];
+  ```
+  If `relatedData` is not filled in the wizard, following block will be generated:
+  ```json
+      "general:relatedData": {
+        "@type": "general:Link"
+      }
+  ```
+  This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This bug will be fixed in the future.

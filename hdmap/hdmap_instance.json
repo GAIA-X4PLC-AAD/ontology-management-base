@@ -60,15 +60,39 @@
     "general:bundleData": {
       "@type": "general:BundleData",
       "general:requiredData": {
-        "@type": "general:Link"
-      },
-      "general:relatedData": {
         "@type": "general:Link",
         "general:url": {
           "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
           "@type": "xsd:anyURI"
         },
         "general:type": "Document"
+      }
+    },
+    "general:media": {
+      "@type": "general:Link",
+      "general:url": {
+        "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
+        "@type": "xsd:anyURI"
+      },
+      "general:type": "Document"
+    },
+    "general:requiredData": {
+      "@type": "general:Link",
+      "general:url": {
+        "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
+        "@type": "xsd:anyURI"
+      },
+      "general:type": "Document"
+    },
+    "hdmap:speedLimit": {
+      "@type": "general:Range2D",
+      "general:min": {
+        "@value": "10",
+        "@type": "xsd:float"
+      },
+      "general:max": {
+        "@value": "50",
+        "@type": "xsd:float"
       }
     }
   },
@@ -175,7 +199,7 @@
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
-        "@value": "DE",
+        "@value": "DE-BY",
         "@type": "xsd:string"
       },
       "georeference:state": {
@@ -232,33 +256,6 @@
         }
       },
       "georeference:heightSystem": "Ellipsodial height"
-    }
-  },
-  "general:media": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "general:relatedData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "hdmap:speedLimit": {
-    "@type": "general:Range2D",
-    "general:min": {
-      "@value": "10",
-      "@type": "xsd:float"
-    },
-    "general:max": {
-      "@value": "50",
-      "@type": "xsd:float"
     }
   }
 }
