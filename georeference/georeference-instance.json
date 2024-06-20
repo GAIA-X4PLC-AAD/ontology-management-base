@@ -14,7 +14,7 @@
       "@type": "xsd:string"
     },
     "georeference:state": {
-      "@value": "Bavaria",
+      "@value": "DE-BY",
       "@type": "xsd:string"
     },
     "georeference:region": {
@@ -26,7 +26,7 @@
       "@type": "xsd:string"
     },
     "georeference:relationOrArea": {
-      "@value": "Autobahn A8, Großraum Ingolstadt",
+      "@value": "motorway A8, Greater Area of Ingolstadt",
       "@type": "xsd:string"
     },
     "georeference:boundingBox": {
@@ -58,11 +58,11 @@
     "georeference:origin": {
       "@type": "georeference:Coordinate2D",
       "georeference:x": {
-        "@value": "2,5",
+        "@value": "2.5",
         "@type": "xsd:float"
       },
       "georeference:y": {
-        "@value": "2,5",
+        "@value": "2.5",
         "@type": "xsd:float"
       }
     },
