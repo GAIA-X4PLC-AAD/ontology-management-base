@@ -34,6 +34,8 @@ The conversion tool also corrects some issues in the original JSON-LD files and 
 - change the subClassOf relation of Participant, Resource and ServiceOffering subclasses in the ontology since they point to rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> and not rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> (http instead of https). The http prefix will not be considered as a valid gaia-x prefix.
 - change how legalRegistrationNumber is embedded in the LegalParticipantShape (not nested but linked via IRI).
 - added legalRegistrationNumber as ontology class since it is missing in the ontology.
+- change linkage between `DataResource`, `PhysicalResource`, `InstantiatedVirtualResource` and `LegalParticipant` from `sh:class` and nodeKind:IRI to `sh:node`. Same correction for the linkage between `DataResource` and `ServiceOffering` (via `exposedThrough`). 
+  > Note: this change is necessary because of an issue in the federated catalogue. Even onboarded participants cannot be resolved. This is NOT an issue of the vocabulary! Reason to change: we want the semantic and schema verifications enabled in the catalogue in general. So we 'only' **disable** the check of the links described (which are done by the compliance service anyway).
 
 The concrete changes can be made visible by comparing the original and corrected files.
 
