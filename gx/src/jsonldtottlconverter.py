@@ -142,6 +142,27 @@ def correct_missing_legal_registration_number(filepath):
     print(f"   Legal registration number in file {filepath} was successfully added.")
 
 
+def correct_link_from_class_to_node(filepath):
+    with open(filepath, 'r') as file:
+        filedata = file.read()
+
+        # Replace the sh:class part with sh:node for gx:ServiceOffering
+    pattern_service_offering = r'"sh:class": {\s*"@id": "gx:ServiceOffering"\s*},\s*"sh:description": "A resolvable link to the data exchange component that exposes the data resource.",'
+    replacement_service_offering = '"sh:node": {\n            "@id": "gx:ServiceOffering"\n          },\n          "sh:description": "A resolvable link to the data exchange component that exposes the data resource.",'
+    filedata = re.sub(pattern_service_offering, replacement_service_offering, filedata, flags=re.MULTILINE)
+
+    # Replace the sh:class part with sh:node for gx:LegalParticipant
+    pattern_legal_participant = r'"sh:class": {\s*"@id": "gx:LegalParticipant"\s*},'
+    replacement_legal_participant = '"sh:node": {\n            "@id": "gx:LegalParticipant"\n          },'
+    filedata = re.sub(pattern_legal_participant, replacement_legal_participant, filedata, flags=re.MULTILINE)
+
+    # Write the file out again
+    with open(filepath, 'w') as file:
+        file.write(filedata)
+
+    print(f"  sh:class to sh:node in file {filepath} was successfully corrected.")
+
+
 def process_file(json_file, correction_functions):
     print("")
     print(f"File {json_file}: start process.")
@@ -162,4 +183,7 @@ process_file(ONTOLOGY_JSON_FILE, [correct_namespace, correct_legal_participant, 
                                   correct_missing_legal_registration_number])
 
 # process SHACL
-process_file(SHACL_JSON_FILE, [correct_shape_suffix, correct_address_shape, correct_legal_registration_number])
+process_file(SHACL_JSON_FILE, [correct_shape_suffix, correct_address_shape, correct_legal_registration_number,
+                               correct_link_from_class_to_node])
+
+
