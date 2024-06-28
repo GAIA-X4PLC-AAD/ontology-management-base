@@ -93,6 +93,9 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Class must be a subclass of one of the Gaia-X base classes
 * The name of the class must be in PascalCase. Example: `Sensor`
 * The attributes of the class must be in camelCase. Example: `sensorType`
+* The prefix of the ontology must point to this repository. Example for `sensor`:
+  ```turtle
+  @prefix sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/sensor/> .
 * The prefix of the ontology must match the prefix defined in the SHACL Shape.
 
 ### SHACL Shapes
