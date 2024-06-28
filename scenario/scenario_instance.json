@@ -85,14 +85,6 @@
       },
       "general:type": "Document"
     },
-    "": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://inavlid.link.com/my_car_model.ogb",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Document"
-    },
     "scenario:trafficSpace": {
       "@type": "general:Link",
       "general:url": {
@@ -130,7 +122,31 @@
         "@type": "xsd:string"
       },
       "gx:name": {
-        "@value": "MyScenario",
+        "@value": "Scenario Example",
+        "@type": "xsd:string"
+      },
+      "gx:copyrightOwnedBy": "Sample Entity",
+      "gx:license": "Some License"
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "1.0",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "1234567890",
+        "@type": "xsd:string"
+      },
+      "general:recordingTime": {
+        "@value": "2024-06-26T09:00:00",
+        "@type": "xsd:dateTime"
+      }
+    },
+    "general:description": {
+      "@type": "general:Description",
+      "gx:name": {
+        "@value": "Scenario Example",
         "@type": "xsd:string"
       },
       "gx:description": {
@@ -138,7 +154,18 @@
         "@type": "xsd:string"
       }
     },
-    "general:Links": {
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      }
+    },
+    "general:links": {
       "@type": "general:Links",
       "general:data": {
         "@type": "general:Link",
@@ -174,7 +201,7 @@
         "@type": "xsd:string"
       },
       "georeference:state": {
-        "@value": "My state",
+        "@value": "DE-NDS",
         "@type": "xsd:string"
       },
       "georeference:region": {
@@ -196,11 +223,11 @@
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "10",
+          "@value": "0",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "0",
+          "@value": "10",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
@@ -226,10 +253,7 @@
           "@type": "xsd:float"
         }
       },
-      "georeference:heightSystem": {
-        "@value": "Ellipsodial height",
-        "@type": "xsd:string"
-      }
+      "georeference:heightSystem": "Ellipsodial height"
     }
   },
   "scenario:catalogs": {
@@ -240,26 +264,10 @@
     },
     "general:type": "Document"
   },
-  "": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/my_car_model.ogb",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
   "scenario:trafficSpace": {
     "@type": "general:Link",
     "general:url": {
       "@value": "https://inavlid.link.com/my_map.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "general:data": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/link",
       "@type": "xsd:anyURI"
     },
     "general:type": "Document"
