@@ -185,4 +185,5 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
         "@type": "general:Link"
       }
   ```
-  This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This bug will be fixed in the future.
+  This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
+  > Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).
