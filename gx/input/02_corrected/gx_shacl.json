@@ -30,13 +30,16 @@
       },
       "sh:property": [
         {
-          "sh:path": {
+          "sh:class": {
             "@id": "gx:legalRegistrationNumber"
           },
-          "sh:node": {
-            "@id": "gx:legalRegistrationNumberShape"
+          "sh:minCount": 1,
+          "sh:nodeKind": {
+            "@id": "sh:IRI"
           },
-          "sh:minCount": 1
+          "sh:path": {
+            "@id": "gx:legalRegistrationNumber"
+          }
         },
         {
           "sh:path": {
@@ -495,7 +498,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "A list of resolvable links to Gaia-X Credentials of participant manufacturing the resource.",
@@ -556,7 +559,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "A list of resolvable links to Gaia-X Credentials of participant owning the resource.",
@@ -570,7 +573,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "A list of resolvable links to Gaia-X Credentials of participants maintaining the resource in operational condition and thus having physical access to it.",
@@ -1891,7 +1894,7 @@
       "sh:name": "Instantiated Virtual Resource",
       "sh:property": [
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "A list of participant maintaining the resource in operational condition.",
@@ -1969,7 +1972,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "A list of participant with contractual relation with the resource.",
@@ -2713,7 +2716,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:LegalParticipant"
           },
           "sh:description": "a resolvable link to the participant self-description legally enabling the data usage.",
@@ -2729,7 +2732,7 @@
           }
         },
         {
-          "sh:class": {
+          "sh:node": {
             "@id": "gx:ServiceOffering"
           },
           "sh:description": "A resolvable link to the data exchange component that exposes the data resource.",

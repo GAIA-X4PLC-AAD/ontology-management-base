@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:GeoreferenceShape:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
+  "@type": "georeference:GeoreferenceShape",
+  "georeference:projectLocation": {
+    "@type": "georeference:ProjectLocation",
+    "georeference:country": {
+      "@value": "DE",
+      "@type": "xsd:string"
+    },
+    "georeference:state": {
+      "@value": "DE-BY",
+      "@type": "xsd:string"
+    },
+    "georeference:region": {
+      "@value": "Upper Bavaria",
+      "@type": "xsd:string"
+    },
+    "georeference:city": {
+      "@value": "Munich",
+      "@type": "xsd:string"
+    },
+    "georeference:relationOrArea": {
+      "@value": "motorway A8, Greater Area of Ingolstadt",
+      "@type": "xsd:string"
+    },
+    "georeference:boundingBox": {
+      "@type": "georeference:BoundingBox",
+      "georeference:xMin": {
+        "@value": "0",
+        "@type": "xsd:float"
+      },
+      "georeference:yMin": {
+        "@value": "0",
+        "@type": "xsd:float"
+      },
+      "georeference:xMax": {
+        "@value": "5",
+        "@type": "xsd:float"
+      },
+      "georeference:yMax": {
+        "@value": "5",
+        "@type": "xsd:float"
+      }
+    }
+  },
+  "georeference:geodeticReferenceSystem": {
+    "@type": "georeference:GeodeticReferenceSystem",
+    "georeference:coordinateSystem": {
+      "@value": "32632",
+      "@type": "xsd:string"
+    },
+    "georeference:origin": {
+      "@type": "georeference:Coordinate2D",
+      "georeference:x": {
+        "@value": "2.5",
+        "@type": "xsd:float"
+      },
+      "georeference:y": {
+        "@value": "2.5",
+        "@type": "xsd:float"
+      }
+    },
+    "georeference:heightSystem": "Ellipsodial height"
+  }
+}

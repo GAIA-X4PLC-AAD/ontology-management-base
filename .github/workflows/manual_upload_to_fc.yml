@@ -27,7 +27,7 @@ jobs:
         python-version: 3.12.0
 
     - name: Install required python libraries
-      run: pip install -r src/requirements.txt
+      run: pip install -r src/requirements_fc.txt
 
     - name: Run Python upload into FC
       run: python3 src/fc_upload.py

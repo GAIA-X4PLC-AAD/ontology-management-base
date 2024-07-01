@@ -1,0 +1,141 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix surface-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+
+surface-model:SurfaceModelShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:GeneralShape ;
+            sh:order 1 ;
+            sh:path surface-model:general ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surface-model:FormatShape ;
+            sh:order 2 ;
+            sh:path surface-model:Format ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surface-model:DataShape ;
+            sh:order 3 ;
+            sh:path surface-model:Data ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surface-model:QualityShape ;
+            sh:order 4 ;
+            sh:path surface-model:Quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node surface-model:QuantityShape ;
+            sh:order 5 ;
+            sh:path surface-model:Quantity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node georeference:GeoreferenceShape ;
+            sh:order 6 ;
+            sh:path surface-model:Georeference ] ;
+    sh:targetClass surface-model:SurfaceModel .
+    
+surface-model:DataShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
+            sh:datatype xsd:string ;
+            sh:description "Height, friction values, grey values"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path surface-model:dataType ] ;
+    sh:targetClass surface-model:Data .
+
+surface-model:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "ASAM OpenCRG; DLM" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("ASAM OpenCRG" "DLM") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path surface-model:formatType ],
+        [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path surface-model:version ] ;
+    sh:targetClass surface-model:Format .
+
+surface-model:QualityShape a sh:NodeShape ;
+    sh:property [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Longitudinal resolution "@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of resolutionLongitudinal failed!"@en ;
+            sh:name "resolutionLongitudinal"@en ;
+            sh:order 0 ;
+            sh:path surface-model:resolutionLongitudinal ],
+        [ skos:example "-3,14159" ;
+            sh:datatype xsd:float ;
+            sh:description "Heading at starting position"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of orientation failed!"@en ;
+            sh:name "orientation"@en ;
+            sh:order 2 ;
+            sh:path surface-model:orientation ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Existence of horizontal starting platform"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of platformExists failed!"@en ;
+            sh:name "platformExists"@en ;
+            sh:order 3 ;
+            sh:path surface-model:platformExists ],
+        [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Lateral resolutions"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of resolutionLateral failed!"@en ;
+            sh:name "resolutionLateral"@en ;
+            sh:order 1 ;
+            sh:path surface-model:resolutionLateral ],
+        [ skos:example "true" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Existence of smooth ramp from platform to road"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of rampExists failed!"@en ;
+            sh:name "rampExists"@en ;
+            sh:order 4 ;
+            sh:path surface-model:rampExists ] ;
+    sh:targetClass surface-model:Quality .
+
+surface-model:QuantityShape a sh:NodeShape ;
+    sh:property [ skos:example "yes" ;
+            sh:datatype xsd:boolean ;
+            sh:description "Is projection system provided within the dataset"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of mapDataField failed!"@en ;
+            sh:name "mapDataField"@en ;
+            sh:order 2 ;
+            sh:path surface-model:mapDataField ],
+        [ skos:example "25" ;
+            sh:datatype xsd:float ;
+            sh:description "Range of elevation values"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of elevationRange failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "elevationRange"@en ;
+            sh:order 1 ;
+            sh:path surface-model:elevationRange ],
+        [ skos:example "1.46" ;
+            sh:datatype xsd:float ;
+            sh:description "Road network length in km"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of length failed!"@en ;
+            sh:name "length"@en ;
+            sh:order 0 ;
+            sh:path surface-model:length ] ;
+    sh:targetClass surface-model:Quantity .
