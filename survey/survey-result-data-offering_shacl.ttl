@@ -1,6 +1,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix survey: <http://semanticweb.org/metadatasurveylogy/> .
+@prefix survey: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
@@ -25,16 +25,6 @@ survey:SurveyResultDataOfferingShape
 		sh:message "Validation of survey close time failed." ;
 		sh:name "Survey close time" ;
 		sh:description "When the survey was closed." ;
-	] ; 
-	sh:property [ 
-        sh:node general:GeneralShape ;
-        sh:path gx:contractId ;
-		sh:datatype xsd:string ;
-		skos:example "'Example ID'" ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "Validation of survey contract ID failed." ;
-		sh:name "Contract ID" ;
 	] ;
 	sh:property [
 		sh:path survey:belongsTo ; 
@@ -44,4 +34,10 @@ survey:SurveyResultDataOfferingShape
 		sh:message "Validation of assigned survey service offering failed." ; 
 		sh:name "Survey service offering" ;
 		sh:description "Accompanied survey service offering." ;
-	] . 
+	] ;
+	sh:property [ 
+		sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:node general:GeneralShape ;
+        sh:path survey:general ;
+	] .

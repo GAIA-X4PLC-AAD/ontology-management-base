@@ -1,6 +1,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix survey: <http://semanticweb.org/metadatasurveylogy/> .
+@prefix survey: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
@@ -8,14 +8,6 @@
 survey:SurveyServiceOfferingShape
 	a sh:NodeShape ; 
 	sh:targetClass survey:SurveyServiceOffering ; 
-	sh:property [
-		sh:path survey:surveyId ; 
-		sh:datatype xsd:string ; 
-		skos:example "'Example ID'" ;
-		sh:minCount 1 ; 
-		sh:message "Validation of survey survey ID failed." ;
-		sh:name "Survey ID" ;
-	] ; 
 	sh:property [
 		sh:path survey:surveyUrl ; 
 		sh:datatype xsd:string ; 
@@ -43,33 +35,8 @@ survey:SurveyServiceOfferingShape
 		sh:description "When the survey will end automatically" ;
 	] ;
 	sh:property [ 
-        sh:node general:GeneralShape ;
-        sh:path gx:providedBy ;
-		sh:datatype xsd:string ;
-		skos:example "'Example Creator'" ; 
-		sh:minCount 1 ; 
 		sh:maxCount 1 ;
-		sh:message "Validation of survey creator failed." ;
-		sh:name "Survey creator" ;
-		sh:description "Who created the survey" ;
-	] ;
-	sh:property [ 
+        sh:minCount 1 ;
         sh:node general:GeneralShape ;
-        sh:path gx:name ;
-		sh:datatype xsd:string ;
-		skos:example "'Example Title of Survey'" ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "Validation of survey title failed." ;
-		sh:name "Survey title" ;
-	] ;
-	sh:property [ 
-        sh:node general:GeneralShape ;
-        sh:path gx:description ;
-		sh:datatype xsd:string ;
-		skos:example "'Example Description of Survey'" ; 
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "Validation of survey description failed." ;
-		sh:name "Survey description" ;
+        sh:path survey:general
 	] .

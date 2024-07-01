@@ -15,7 +15,7 @@
       owl:versionInfo 0.5 .
 
 ###  http://semanticweb.org/metadatasurveylogy/belongs_to
-survey:belongs_to rdf:type owl:ObjectProperty ;
+survey:belongsTo rdf:type owl:ObjectProperty ;
       rdfs:domain survey:SurveyResultDataOffering ;
       rdfs:range survey:SurveyServiceOffering .
 
@@ -27,6 +27,6 @@ survey:SurveyResultDataOffering rdf:type owl:Class ;
 
 ###  http://semanticweb.org/metadatasurveylogy/SurveyServiceOffering
 survey:SurveyServiceOffering rdf:type owl:Class ; 
-      rdfs:subClassOf gx:ServiceOffering ;
+      rdfs:subClassOf gx:SoftwareResource ;
       rdfs:label "Survey service offering" ; 
       rdfs:comment "The survey service offering refers to the invitation to a participate in a survey." .
