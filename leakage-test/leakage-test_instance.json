@@ -1,0 +1,74 @@
+{
+	"@context": {
+		"xsd": "http://www.w3.org/2001/XMLSchema#",
+		"skos": "http://www.w3.org/2004/02/skos/core#",
+		"openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+		"sh": "http://www.w3.org/ns/shacl#",
+		"leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/"
+	},
+	"@id": "did:web:registry.gaia-x.eu:leakage-testLeakageTest:6uWoxbNbeJhCeGTqe1nM797qFnuamfhPhfgS",
+	"@type": "leakage-test:LeakageTest",
+	"leakage-test:Maschinenparameter": {
+		"leakage-test:MaximalerDruck": {
+			"@type": "leakage-test:MaximalerDruck",
+			"leakage-test:hatEinheit": {
+				"@value": "bar",
+				"@type": "xsd:string"
+			},
+			"leakage-test:hatObereToleranz": {
+				"@value": 0,
+				"@type": "xsd:decimal"
+			},
+			"leakage-test:hatSollwert": {
+				"@value": 2.7,
+				"@type": "xsd:decimal"
+			},
+			"leakage-test:hatUnterToleranz": {
+				"@value": 0,
+				"@type": "xsd:decimal"
+			}
+		},
+		"leakage-test:MinimalerDruck": {
+			"@type": "leakage-test:MinimalerDruck",
+			"leakage-test:hatEinheit": {
+				"@value": "bar",
+				"@type": "xsd:string"
+			},
+			"leakage-test:hatObereToleranz": {
+				"@value": 0,
+				"@type": "xsd:decimal"
+			},
+			"leakage-test:hatSollwert": {
+				"@value": 0.2,
+				"@type": "xsd:decimal"
+			},
+			"leakage-test:hatUnterToleranz": {
+				"@value": 0,
+				"@type": "xsd:decimal"
+			}
+		},
+		"leakage-test:Prozessparameter": {
+			"leakage-test:CodierungNiederhalter": {
+				"@type": "leakage-test:CodierungNiederhalter",
+				"leakage-test:hatSollwert": {
+					"@value": 1,
+					"@type": "xsd:integer"
+				}
+			},
+			"leakage-test:CodierungPruefadapter": {
+				"@type": "leakage-test:CodierungPuefadapter",
+				"leakage-test:hatSollwert": {
+					"@value": 1,
+					"@type": "xsd:integer"
+				}
+			},
+			"leakage-test:CodierungRFID": {
+				"@type": "leakage-test:CodierungRFID",
+				"leakage-test:hatSollwert": {
+					"@value": 16,
+					"@type": "xsd:integer"
+				}
+			}
+		}
+	}
+}

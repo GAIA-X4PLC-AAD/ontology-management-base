@@ -1,0 +1,149 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+
+leakage-test:LeakageTestShape
+    a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:MaschinenparameterShape ;
+        sh:path leakage-test:Maschinenparameter ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:ProzessparameterShape ;
+        sh:path leakage-test:Prozessparameter ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:CodierungNiederhalterShape ;
+        sh:path leakage-test:CodierungNiederhalter ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:CodierungPruefadapterShape ;
+        sh:path leakage-test:CodierungPruefadapter ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:CodierungRFIDShape ;
+        sh:path leakage-test:CodierungRFID ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:MaximalerDruckShape;
+        sh:path leakage-test:MaximalerDruck ] ,
+    [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:MinimalerDruckShape;
+        sh:path leakage-test:MinimalerDruck ]; 
+    sh:targetClass leakage-test:LeakageTest .
+
+leakage-test:CodierungNiederhalterShape
+    a sh:NodeShape ;
+    sh:targetClass leakage-test:CodierungNiederhalter ;
+    sh:property [
+    sh:path leakage-test:hatSollwert ;
+    sh:datatype xsd:integer ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] .
+
+leakage-test:CodierungPruefadapterShape
+    a sh:NodeShape ;
+    sh:targetClass leakage-test:CodierungPruefadapter ;
+    sh:property [
+    sh:path leakage-test:hatSollwert ;
+    sh:datatype xsd:integer ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] .
+
+leakage-test:CodierungRFIDShape
+    a sh:NodeShape ;
+    sh:targetClass leakage-test:CodierungRFID ;
+    sh:property [
+    sh:path leakage-test:hatSollwert ;
+    sh:datatype xsd:integer ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] .
+
+leakage-test:MaximalerDruckShape
+    a sh:NodeShape ;
+    sh:targetClass leakage-test:MaximalerDruck ;
+    sh:property [
+    sh:path leakage-test:hatEinheit ;
+    sh:datatype xsd:string ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatObereToleranz ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatSollwert ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatUnterToleranz ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] .
+    
+leakage-test:MinimalerDruckShape
+    a sh:NodeShape ;
+    sh:targetClass leakage-test:MinimalerDruck ;
+    sh:property [
+    sh:path leakage-test:hatEinheit ;
+    sh:datatype xsd:string ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatObereToleranz ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatSollwert ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] ;
+    sh:property [
+    sh:path leakage-test:hatUnterToleranz ;
+    sh:datatype xsd:decimal ;
+	sh:minCount 1 ;
+    sh:maxCount 1 ;
+    ] .
+	
+leakage-test:CodierungNiederhalter
+    a leakage-test:CodierungNiederhalterShape ;
+    leakage-test:hatSollwert "1"^^xsd:integer .
+
+leakage-test:CodierungPruefadapter
+    a leakage-test:CodierungPruefadapterShape ;
+    leakage-test:hatSollwert "1"^^xsd:integer .
+
+leakage-test:CodierungRFID
+    a leakage-test:CodierungRFIDShape ;
+    leakage-test:hatSollwert "16"^^xsd:integer .
+
+leakage-test:MaximalerDruck
+    a leakage-test:MaximalerDruckShape ;
+    leakage-test:hatEinheit "bar" ;
+    leakage-test:hatObereToleranz "0"^^xsd:decimal ;
+    leakage-test:hatSollwert "2.7"^^xsd:decimal ;
+    leakage-test:hatUnterToleranz "0"^^xsd:decimal .
+
+leakage-test:MinimalerDruck
+    a leakage-test:MinimalerDruckShape ;
+    leakage-test:hatEinheit "bar" ;
+    leakage-test:hatObereToleranz "0"^^xsd:decimal ;
+    leakage-test:hatSollwert "0.2"^^xsd:decimal ;
+    leakage-test:hatUnterToleranz "0"^^xsd:decimal .
