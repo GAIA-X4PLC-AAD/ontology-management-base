@@ -53,6 +53,7 @@ def main():
     shacl_graph = load_shacl_files('.')
 
     for jsonld_file in jsonld_files:
+        print(f'Validating {jsonld_file}.')
         data_graph = load_jsonld_file(jsonld_file)
         validate_jsonld_against_shacl(data_graph, shacl_graph)
 
