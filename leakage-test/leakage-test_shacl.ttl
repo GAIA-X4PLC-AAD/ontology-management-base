@@ -99,7 +99,7 @@ leakage-test:MaximalerDruckShape
         sh:message "Validation of hatUnterToleranz failed!"@en ;
         sh:name "hatUntereToleranz" ;
         sh:path leakage-test:hatUnterToleranz ] ; 
-    sh:targetClass leakage-test:MaximalerDruck.
+    sh:targetClass leakage-test:MaximalerDruck .
     
 leakage-test:MinimalerDruckShape
     a sh:NodeShape ;
