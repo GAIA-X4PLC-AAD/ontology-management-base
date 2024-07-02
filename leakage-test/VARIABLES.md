@@ -8,6 +8,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| LeakageTestShape | leakage-test | general | 1 | 1 |  |  | leakage-test_shacl.ttl |
 | LeakageTestShape | leakage-test | Maschinenparameter | 1 | 1 |  |  | leakage-test_shacl.ttl |
 | LeakageTestShape | leakage-test | Prozessparameter | 1 | 1 |  |  | leakage-test_shacl.ttl |
 | LeakageTestShape | leakage-test | CodierungNiederhalter | 1 | 1 |  |  | leakage-test_shacl.ttl |
