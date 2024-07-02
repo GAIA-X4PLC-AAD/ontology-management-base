@@ -16,3 +16,19 @@ surface-model:SurfaceModel a owl:Class ;
     rdfs:comment "Attributes for surface-model"@en ;
     rdfs:subClassOf gx:DataResource .
 
+
+surface-model:Data a owl:Class ;
+    rdfs:label "class definition for Data" ;
+    rdfs:comment "Attributes for Data"@en .
+
+surface-model:Format a owl:Class ;
+    rdfs:label "class definition for Format" ;
+    rdfs:comment "Attributes for Format"@en .
+
+surface-model:Quality a owl:Class ;
+    rdfs:label "class definition for Quality" ;
+    rdfs:comment "Attributes for Quality"@en .
+
+surface-model:Quantity a owl:Class ;
+    rdfs:label "class definition for Quantity" ;
+    rdfs:comment "Attributes for Quantity"@en .

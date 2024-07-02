@@ -12,7 +12,31 @@ general: a owl:Ontology ;
     owl:versionInfo "0.1" .
 
 general:General a owl:Class ;
-    rdfs:label "class definition for General" ;
+    rdfs:label "Class definition for General" ;
     rdfs:comment "General attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
 
+
+general:Description a owl:Class ;
+    rdfs:label "Description definition for General" ;
+    rdfs:comment "Description attributes for all assets"@en .
+
+general:Data a owl:Class ;
+    rdfs:label "Data definition for General" ;
+    rdfs:comment "Data attributes for all assets"@en .
+
+general:BundleData a owl:Class ;
+    rdfs:label "BundleData definition for General" ;
+    rdfs:comment "BundleData attributes for all assets"@en .
+
+general:Links a owl:Class ;
+    rdfs:label "Links definition for General" ;
+    rdfs:comment "Links attributes for all assets"@en .
+
+general:Link a owl:Class ;
+    rdfs:label "Link definition for General" ;
+    rdfs:comment "Link attributes for all assets"@en .
+
+general:Range2D a owl:Class ;
+    rdfs:label "Range2D definition for General" ;
+    rdfs:comment "Range2D attributes for all assets"@en .
