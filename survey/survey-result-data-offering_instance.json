@@ -1,8 +1,8 @@
 {
        "@context":{
           "xsd":"http://www.w3.org/2001/XMLSchema#",
-          "survey":"http://semanticweb.org/metadatasurveylogy/",
-          "gx": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/"     
+          "survey":"https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/",
+          "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#" 
          },
        "@id":"did:example:survey_result_data_offering_0xy5vhw3heyjqb4d347hc9zrkw",
        "@type":"survey:SurveyResultDataOffering",
