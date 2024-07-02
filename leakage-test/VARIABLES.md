@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test>
+- leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/leakage-test/leakage-test>
 
 ## List of SHACL Properties
 
