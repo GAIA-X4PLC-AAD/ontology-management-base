@@ -1,6 +1,6 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix survey: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey> .
+@prefix survey: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
@@ -13,6 +13,7 @@ survey:SurveyResultDataOfferingShape
 		sh:datatype xsd:dateTime ;  
 		skos:example "'Date 1'" ; 
 		sh:minCount 1 ; 
+		sh:maxCount 1 ;
 		sh:message "Validation of survey start time failed." ;
 		sh:name "Survey start time" ;
 		sh:description "When the survey was started." ;
@@ -22,6 +23,7 @@ survey:SurveyResultDataOfferingShape
 		sh:datatype xsd:dateTime ;  
 		skos:example "'Date 1'" ; 
 		sh:minCount 1 ; 
+		sh:maxCount 1 ;
 		sh:message "Validation of survey close time failed." ;
 		sh:name "Survey close time" ;
 		sh:description "When the survey was closed." ;
@@ -31,6 +33,7 @@ survey:SurveyResultDataOfferingShape
 		sh:class survey:SurveyServiceOffering ;
 		sh:nodeKind sh:IRI ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
 		sh:message "Validation of assigned survey service offering failed." ; 
 		sh:name "Survey service offering" ;
 		sh:description "Accompanied survey service offering." ;

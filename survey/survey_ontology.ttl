@@ -1,4 +1,4 @@
-@prefix survey: <http://semanticweb.org/metadatasurveylogy/> .
+@prefix survey: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -14,7 +14,7 @@
       rdfs:label "Semiconductor Survey Metadata Ontology"@en ;
       owl:versionInfo 0.5 .
 
-###  http://semanticweb.org/metadatasurveylogy/belongs_to
+###  http://semanticweb.org/metadatasurveylogy/belongsTo
 survey:belongsTo rdf:type owl:ObjectProperty ;
       rdfs:domain survey:SurveyResultDataOffering ;
       rdfs:range survey:SurveyServiceOffering .
