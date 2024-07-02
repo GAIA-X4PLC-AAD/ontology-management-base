@@ -32,3 +32,4 @@ surface-model:Quality a owl:Class ;
 surface-model:Quantity a owl:Class ;
     rdfs:label "class definition for Quantity" ;
     rdfs:comment "Attributes for Quantity"@en .
+    
