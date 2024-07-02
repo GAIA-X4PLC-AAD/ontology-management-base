@@ -51,7 +51,7 @@ leakage-test:CodierungPruefadapterShape
     a sh:NodeShape ;
     sh:property [ skos:example "1" ;
         sh:datatype xsd:integer ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatSollwert failed!"@en ;
         sh:name "hatSollwert" ;
@@ -62,7 +62,7 @@ leakage-test:CodierungRFIDShape
     a sh:NodeShape ;
     sh:property [ skos:example "16" ;
         sh:datatype xsd:integer ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatSollwert failed!"@en ;
         sh:name "hatSollwert" ;
@@ -73,28 +73,28 @@ leakage-test:MaximalerDruckShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatEinheit failed!"@en ;
         sh:name "hatEinheit" ;
         sh:path leakage-test:hatEinheit ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatObereToleranz failed!"@en ;
         sh:name "hatObereToleranz" ;
         sh:path leakage-test:hatObereToleranz ] ,
      [ skos:example "2.7";
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatSollwert failed!"@en ;
         sh:name "hatSollwert" ;
         sh:path leakage-test:hatSollwert ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatUnterToleranz failed!"@en ;
         sh:name "hatUntereToleranz" ;
@@ -105,28 +105,28 @@ leakage-test:MinimalerDruckShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatEinheit failed!"@en ;
         sh:name "hatEinheit" ;
         sh:path leakage-test:hatEinheit ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatObereToleranz failed!"@en ;
         sh:name "hatObereToleranz" ;
         sh:path leakage-test:hatObereToleranz ] ,
     [ skos:example "2.7";
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatSollwert failed!"@en ;
         sh:name "hatSollwert" ;
         sh:path leakage-test:hatSollwert ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of hatUnterToleranz failed!"@en ; 
         sh:name "hatUntereToleranz" ;
