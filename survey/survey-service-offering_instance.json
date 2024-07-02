@@ -3,8 +3,9 @@
        "@context":{
           "xsd":"http://www.w3.org/2001/XMLSchema#",
           "survey":"https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/",
-          "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
-       },
+          "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+          "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
+        },
        "@id":"did:example:survey_service_offering_0xy5vhw3heyjqb4d347hc9zrkw",
        "@type":"survey:SurveyServiceOffering",
        "survey:surveyUrl":{
@@ -28,7 +29,7 @@
           "@type":"xsd:string"
        },
        "survey:general":{
-         "@id": "did:example:survey_service_offering_0xy5vhw3heyjqb4d347hc9zrkw",
+         "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
          "@type": "general:General",
          "general:description": {
            "@type": "general:Description",
