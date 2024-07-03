@@ -7,12 +7,12 @@
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 	
-leakage-test a owl:Ontology ;
+leakage-test:LeakageTest a owl:Ontology ;
 	rdfs:label "Ontology for Leakage Test"@en ;
 	dcterms:contributor "Selcan Karadag (Continental)" ;
 	owl:versionInfo "0.1" .
 
 leakage-test:LeakageTest a owl:Class ;
-	rdfs:label "Class definition for Leakage Test" ;
+	rdfs:label "Class definition for Leakage Test"@en ;
 	rdfs:comment "Describes a Leakage Test."@en ;
-	rdfs:subClassOf gx:ServiceOffering .
+	rdfs:subClassOf gax-core:ServiceOffering .
