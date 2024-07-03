@@ -1,21 +1,18 @@
-@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/leakage-test> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
-@prefix gax-trust-framework: <http://w3id.org/gaia-x/gax-trust-framework#> .
-
-<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/leakage-test_ontology/> rdf:type owl:Ontology ;
-	<http://purl.org/dc/terms/contributor> "Selcan Karadag (Continental)" ;
-	rdfs:label "An ontology for a Leakage Test". @en ;
-	owl:versionInfo "0.1".
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 	
-	<LeakageTest> rdf:type owl:Class ;
-		rdfs:subClassOf gax-core:ServiceOffering ;
-		rdfs:label "Leakage Test"@en ;
-		rdfs:comment "Describes a Leakage Test."@en . 	
-		
-	<belongsTo> rdf:type owl:ObjectProperty ;
-		rdfs:domain <LeakageTest> ;
-		rdfs:range <LeakageTest> .
+leakage-test a owl:Ontology ;
+	rdfs:label "Ontology fpr Leakage Test"@en ;
+	dcterms:contributor "Selcan Karadag (Continental)" ;
+	owl:versionInfo "0.1" .
+
+leakage-test:LeakageTest a owl:Class ;
+	rdfs:label "class definition for Leakage Test" ;
+	rdfs:comment "Describes a Leakage Test."@en ;
+	rdfs:subClassOf gx:ServiceOffering .
