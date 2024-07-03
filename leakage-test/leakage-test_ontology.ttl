@@ -18,4 +18,4 @@
 		
 	<belongsTo> rdf:type owl:ObjectProperty ;
 		rdfs:domain <LeakageTest> ;
-		rdfs:range <LeakageTest> ;
+		rdfs:range <LeakageTest> .
