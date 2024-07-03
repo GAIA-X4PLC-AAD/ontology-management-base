@@ -8,11 +8,11 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 	
 leakage-test a owl:Ontology ;
-	rdfs:label "Ontology fpr Leakage Test"@en ;
+	rdfs:label "Ontology for Leakage Test"@en ;
 	dcterms:contributor "Selcan Karadag (Continental)" ;
 	owl:versionInfo "0.1" .
 
 leakage-test:LeakageTest a owl:Class ;
-	rdfs:label "class definition for Leakage Test" ;
+	rdfs:label "Class definition for Leakage Test" ;
 	rdfs:comment "Describes a Leakage Test."@en ;
 	rdfs:subClassOf gx:ServiceOffering .
