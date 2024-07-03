@@ -62,7 +62,7 @@ jobs:
           CHANGED_TTL=$(git diff --name-only origin/main -- '*.ttl')
           if [[ -n "$CHANGED_TTL" ]]; then
             echo "TTL_HAS_CHANGED=true" >> $GITHUB_ENV
-            echo "CHANGED_TTL=$CHANGED_TTL" >> $GITHUB_ENV
+            echo "CHANGED_TTL=$(echo "$CHANGED_TTL" | tr '\n' ' ')" >> $GITHUB_ENV
           else
             echo "TTL_HAS_CHANGED=false" >> $GITHUB_ENV
             echo "Subsequent steps will be skipped as no .ttl files have changed."
@@ -81,6 +81,7 @@ jobs:
       - name: Run Python script for each changed .ttl file
         if: env.TTL_HAS_CHANGED == 'true'
         run: |
+          IFS=' ' # Set the Internal Field Separator to a space
           for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
             python3 -u src/check_ttl_syntax.py "${FILE}"
