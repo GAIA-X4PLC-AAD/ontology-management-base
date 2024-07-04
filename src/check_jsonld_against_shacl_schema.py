@@ -18,6 +18,7 @@ def load_shacl_files(root_dir):
 def load_jsonld_files(jsonld_files):
     data_graph = Graph()
     for jsonld_file in jsonld_files:
+        print(f'adding jsonld file to data graph: {jsonld_file}.')
         with open(jsonld_file) as f:
             data = json.load(f)
         data_graph.parse(data=json.dumps(data), format='json-ld')
