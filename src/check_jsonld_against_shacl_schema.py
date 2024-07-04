@@ -15,11 +15,13 @@ def load_shacl_files(root_dir):
     return shacl_graph
 
 
-def load_jsonld_file(jsonld_file):
+def load_jsonld_files(jsonld_files):
     data_graph = Graph()
-    with open(jsonld_file) as f:
-        data = json.load(f)
-    data_graph.parse(data=data, format='json-ld')
+    for jsonld_file in jsonld_files:
+        print(f'adding jsonld file to data graph: {jsonld_file}.')
+        with open(jsonld_file) as f:
+            data = json.load(f)
+        data_graph.parse(data=json.dumps(data), format='json-ld')
     return data_graph
 
 
@@ -50,12 +52,11 @@ def main():
         print(f"No *_instance.json files found in directory: {directory}. Abort.")
         sys.exit(300)
 
+    # load all jsonld files into the graph since they might reference each other
+    data_graph = load_jsonld_files(jsonld_files)
     shacl_graph = load_shacl_files('.')
 
-    for jsonld_file in jsonld_files:
-        print(f'Validating {jsonld_file}.')
-        data_graph = load_jsonld_file(jsonld_file)
-        validate_jsonld_against_shacl(data_graph, shacl_graph)
+    validate_jsonld_against_shacl(data_graph, shacl_graph)
 
 
 if __name__ == "__main__":
