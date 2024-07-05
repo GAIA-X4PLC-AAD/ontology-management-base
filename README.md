@@ -191,4 +191,6 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
   ```
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This bug will be fixed in the future.
 
+  * f you integrate an "external" shape, e.g. Range2DShape, you should check whether it has been correctly attached to the instance file and is not duplicated. If an attribute in the claims instance is defined more than once and the creation of the self description is done with the [SD-Creator](sd-creator.gxfs.gx4fm.org), the signature validation of the federated catalogue fails.
+
 
