@@ -118,8 +118,6 @@ This section describes guidelines that _must_ be followed when applying changes 
                 sh:path <your_prefix>:general ],
     ```
 
-### Instance files
-  * Make sure that every attribute is only defined once in the instance claims.
 
 ## CI pipeline
 
