@@ -75,6 +75,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 ### General
 
 * For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class. In addition to that there must be an example on an instance of a SHACL Shape.  
+* Class and attributes names must be in English.
 
 ### Directories & files
 
@@ -116,6 +117,7 @@ This section describes guidelines that _must_ be followed when applying changes 
                 # some other attributes
                 sh:path <your_prefix>:general ],
     ```
+
 
 ## CI pipeline
 
@@ -186,4 +188,7 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
       }
   ```
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
-  > Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).
+
+* If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 
+
+> Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).
