@@ -187,8 +187,8 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
         "@type": "general:Link"
       }
   ```
-  This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This bug will be fixed in the future.
+  This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
 
-  * f you integrate an "external" shape, e.g. Range2DShape, you should check whether it has been correctly attached to the instance file and is not duplicated. If an attribute in the claims instance is defined more than once and the creation of the self description is done with the [SD-Creator](sd-creator.gxfs.gx4fm.org), the signature validation of the federated catalogue fails.
+* If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 
 
-
+> Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).
