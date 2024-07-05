@@ -75,6 +75,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 ### General
 
 * For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class. In addition to that there must be an example on an instance of a SHACL Shape.  
+* Class and attributes names must be in english.
 
 ### Directories & files
 
@@ -116,6 +117,9 @@ This section describes guidelines that _must_ be followed when applying changes 
                 # some other attributes
                 sh:path <your_prefix>:general ],
     ```
+
+### Instance
+  * Make sure that every attribute is only defined once in the instance claims.
 
 ## CI pipeline
 
@@ -186,3 +190,7 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
       }
   ```
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This bug will be fixed in the future.
+
+### Issues with Signature Validation in [Federated Catalogue](fc-server.gxfs.gx4fm.org)
+
+* If an attribute in the claims is defined more than once and the creation of the self description is done with the [SD-Creator](sd-creator.gxfs.gx4fm.org), the signature validation of the federated catalogue fails.
