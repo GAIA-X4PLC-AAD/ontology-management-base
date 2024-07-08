@@ -8,63 +8,63 @@
 	},
 	"@id": "did:web:registry.gaia-x.eu:leakage-testLeakageTest:6uWoxbNbeJhCeGTqe1nM797qFnuamfhPhfgS",
 	"@type": "leakage-test:LeakageTest",
-	"leakage-test:Maschinenparameter": {
-		"leakage-test:MaximalerDruck": {
-			"@type": "leakage-test:MaximalerDruck",
-			"leakage-test:hatEinheit": {
+	"leakage-test:MachineParameter": {
+		"leakage-test:MaximumPressure": {
+			"@type": "leakage-test:MaximumPressure",
+			"leakage-test:unit": {
 				"@value": "bar",
 				"@type": "xsd:string"
 			},
-			"leakage-test:hatObereToleranz": {
+			"leakage-test:upperTolerance": {
 				"@value": 0,
 				"@type": "xsd:decimal"
 			},
-			"leakage-test:hatSollwert": {
+			"leakage-test:setpoint": {
 				"@value": 2.7,
 				"@type": "xsd:decimal"
 			},
-			"leakage-test:hatUnterToleranz": {
+			"leakage-test:lowerTolerance": {
 				"@value": 0,
 				"@type": "xsd:decimal"
 			}
 		},
-		"leakage-test:MinimalerDruck": {
-			"@type": "leakage-test:MinimalerDruck",
-			"leakage-test:hatEinheit": {
+		"leakage-test:MinimumPressure": {
+			"@type": "leakage-test:MinimumPressure",
+			"leakage-test:unit": {
 				"@value": "bar",
 				"@type": "xsd:string"
 			},
-			"leakage-test:hatObereToleranz": {
+			"leakage-test:upperTolerance": {
 				"@value": 0,
 				"@type": "xsd:decimal"
 			},
-			"leakage-test:hatSollwert": {
+			"leakage-test:setpoint": {
 				"@value": 0.2,
 				"@type": "xsd:decimal"
 			},
-			"leakage-test:hatUnterToleranz": {
+			"leakage-test:lowerTolerance": {
 				"@value": 0,
 				"@type": "xsd:decimal"
 			}
 		},
-		"leakage-test:Prozessparameter": {
-			"leakage-test:CodierungNiederhalter": {
-				"@type": "leakage-test:CodierungNiederhalter",
-				"leakage-test:hatSollwert": {
+		"leakage-test:ProcessParameter": {
+			"leakage-test:CodingDownholder": {
+				"@type": "leakage-test:CodingDownholder",
+				"leakage-test:setpoint": {
 					"@value": 1,
 					"@type": "xsd:integer"
 				}
 			},
-			"leakage-test:CodierungPruefadapter": {
-				"@type": "leakage-test:CodierungPuefadapter",
-				"leakage-test:hatSollwert": {
+			"leakage-test:CodingTestAdapterShape": {
+				"@type": "leakage-test:CodingTestAdapterShape",
+				"leakage-test:setpoint": {
 					"@value": 1,
 					"@type": "xsd:integer"
 				}
 			},
-			"leakage-test:CodierungRFID": {
-				"@type": "leakage-test:CodierungRFID",
-				"leakage-test:hatSollwert": {
+			"leakage-test:CodingRFID": {
+				"@type": "leakage-test:CodingRFID",
+				"leakage-test:setpoint": {
 					"@value": 16,
 					"@type": "xsd:integer"
 				}
