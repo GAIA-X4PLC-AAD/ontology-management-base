@@ -10,7 +10,7 @@
 leakage-test:LeakageTest a owl:Ontology ;
 	rdfs:label "Ontology for Leakage Test"@en ;
 	dcterms:contributor "Selcan Karadag (Continental)" ;
-	owl:versionInfo "0.1" .
+	owl:versionInfo "0.5" .
 
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for Leakage Test"@en ;
