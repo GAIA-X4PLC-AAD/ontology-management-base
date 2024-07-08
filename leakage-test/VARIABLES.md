@@ -16,8 +16,8 @@
 | LeakageTestShape | leakage-test | MaximumPressure | 1 | 1 |  |  | leakage-test_shacl.ttl |
 | LeakageTestShape | leakage-test | MinimumPressure | 1 | 1 |  |  | leakage-test_shacl.ttl |
 | DownholderShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#integer> | leakage-test_shacl.ttl |
-| CodierungPruefadapterShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#integer> | leakage-test_shacl.ttl |
-| CodierungRFIDShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#integer> | leakage-test_shacl.ttl |
+| CodingTestAdapterShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#integer> | leakage-test_shacl.ttl |
+| CodingRFIDShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#integer> | leakage-test_shacl.ttl |
 | MaximumPressureShape | leakage-test | unit | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | leakage-test_shacl.ttl |
 | MaximumPressureShape | leakage-test | upperTolerance | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#decimal> | leakage-test_shacl.ttl |
 | MaximumPressureShape | leakage-test | setpoint | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#decimal> | leakage-test_shacl.ttl |
