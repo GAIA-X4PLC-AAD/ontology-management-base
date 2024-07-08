@@ -7,127 +7,139 @@ leakage-test:LeakageTestShape
     a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:MaschinenparameterShape ;
-        sh:path leakage-test:Maschinenparameter ] ,
+        sh:node leakage-test:MachineParameterShape ;
+        sh:path leakage-test:MachineParameter ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:ProzessparameterShape ;
-        sh:path leakage-test:Prozessparameter ] ,
+        sh:node leakage-test:ProcessParameterShape ;
+        sh:path leakage-test:ProcessParameter ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:CodierungNiederhalterShape ;
-        sh:path leakage-test:CodierungNiederhalter ] ,
+        sh:node leakage-test:CodingDownholderShape ;
+        sh:path leakage-test:CodingDownholder ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:CodierungPruefadapterShape ;
-        sh:path leakage-test:CodierungPruefadapter ] ,
+        sh:node leakage-test:CodingTestAdapterShape ;
+        sh:path leakage-test:CodingTestAdapter ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:CodierungRFIDShape ;
-        sh:path leakage-test:CodierungRFID ] ,
+        sh:node leakage-test:CodingRFIDShape ;
+        sh:path leakage-test:CodingRFID ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:MaximalerDruckShape;
-        sh:path leakage-test:MaximalerDruck ] ,
+        sh:node leakage-test:MaximumPressureShape;
+        sh:path leakage-test:MaximumPressure ] ,
     [ sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:node leakage-test:MinimalerDruckShape;
-        sh:path leakage-test:MinimalerDruck ]; 
+        sh:node leakage-test:MinimumPressureShape;
+        sh:path leakage-test:MinimumPressure ]; 
     sh:targetClass leakage-test:LeakageTest .
 
-leakage-test:CodierungNiederhalterShape
+leakage-test:MachineParameterShape
+    a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+        sh:maxCount 1 ] ;
+    sh:targetClass leakage-test:MachineParameter .
+
+    leakage-test:ProcessParameterShape
+    a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+        sh:maxCount 1 ] ;
+    sh:targetClass leakage-test:ProcessParameter .
+
+leakage-test:DownholderShape
     a sh:NodeShape ;
     sh:property [ skos:example "1" ;
         sh:datatype xsd:integer ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatSollwert failed!"@en ;
-        sh:name "hatSollwert" ;
-        sh:path leakage-test:hatSollwert ] ;
-    sh:targetClass leakage-test:CodierungNiederhalter .
+        sh:message "Validation of setpoint failed!"@en ;
+        sh:name "setpoint"@en ;
+        sh:path leakage-test:setpoint ] ;
+    sh:targetClass leakage-test:Downholder .
 
 leakage-test:CodierungPruefadapterShape
     a sh:NodeShape ;
     sh:property [ skos:example "1" ;
         sh:datatype xsd:integer ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatSollwert failed!"@en ;
-        sh:name "hatSollwert" ;
-        sh:path leakage-test:hatSollwert ] ; 
+        sh:message "Validation of setpoint failed!"@en ;
+        sh:name "setpoint"@en ;
+        sh:path leakage-test:setpoint ] ; 
     sh:targetClass leakage-test:CodierungPruefadapter .
 
 leakage-test:CodierungRFIDShape
     a sh:NodeShape ;
     sh:property [ skos:example "16" ;
         sh:datatype xsd:integer ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatSollwert failed!"@en ;
-        sh:name "hatSollwert" ;
-        sh:path leakage-test:hatSollwert ] ; 
+        sh:message "Validation of setpoint failed!"@en ;
+        sh:name "setpoint"@en ;
+        sh:path leakage-test:setpoint ] ; 
     sh:targetClass leakage-test:CodierungRFID .
 
-leakage-test:MaximalerDruckShape
+leakage-test:MaximumPressureShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatEinheit failed!"@en ;
-        sh:name "hatEinheit" ;
-        sh:path leakage-test:hatEinheit ] ,
+        sh:message "Validation of unit failed!"@en ;
+        sh:name "unit"@en ;
+        sh:path leakage-test:unit ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatObereToleranz failed!"@en ;
-        sh:name "hatObereToleranz" ;
-        sh:path leakage-test:hatObereToleranz ] ,
+        sh:message "Validation of upperTolerance failed!"@en ;
+        sh:name "upperTolerance"@en ;
+        sh:path leakage-test:upperTolerance ] ,
      [ skos:example "2.7";
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatSollwert failed!"@en ;
-        sh:name "hatSollwert" ;
-        sh:path leakage-test:hatSollwert ] ,
+        sh:message "Validation of setpoint failed!"@en ;
+        sh:name "setpoint"@en ;
+        sh:path leakage-test:setpoint ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatUnterToleranz failed!"@en ;
-        sh:name "hatUntereToleranz" ;
-        sh:path leakage-test:hatUnterToleranz ] ; 
-    sh:targetClass leakage-test:MaximalerDruck .
+        sh:message "Validation of lowerTolerance failed!"@en ;
+        sh:name "lowerTolerance"@en ;
+        sh:path leakage-test:lowerTolerance ] ; 
+    sh:targetClass leakage-test:MaximumPressure .
     
-leakage-test:MinimalerDruckShape
+leakage-test:MinimumPressureShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatEinheit failed!"@en ;
-        sh:name "hatEinheit" ;
-        sh:path leakage-test:hatEinheit ] ,
+        sh:message "Validation of unit failed!"@en ;
+        sh:name "unit"@en ;
+        sh:path leakage-test:unit ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatObereToleranz failed!"@en ;
-        sh:name "hatObereToleranz" ;
-        sh:path leakage-test:hatObereToleranz ] ,
+        sh:message "Validation of upperTolerance failed!"@en ;
+        sh:name "upperTolerance"@en ;
+        sh:path leakage-test:upperTolerance ] ,
     [ skos:example "2.7";
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatSollwert failed!"@en ;
-        sh:name "hatSollwert" ;
-        sh:path leakage-test:hatSollwert ] ,
+        sh:message "Validation of setpoint failed!"@en ;
+        sh:name "setpoint"@en ;
+        sh:path leakage-test:setpoint ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	sh:minCount 1 ;
+	    sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Validation of hatUnterToleranz failed!"@en ; 
-        sh:name "hatUntereToleranz" ;
-        sh:path leakage-test:hatUnterToleranz ] ;
-    sh:targetClass leakage-test:MinimalerDruck .
+        sh:message "Validation of lowerTolerance failed!"@en ; 
+        sh:name "lowerTolerance"@en ;
+        sh:path leakage-test:lowerTolerance ] ;
+    sh:targetClass leakage-test:MinimumPressure .
