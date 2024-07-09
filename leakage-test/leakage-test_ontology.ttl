@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+	
+leakage-test:LeakageTest a owl:Ontology ;
+	rdfs:label "Ontology for Leakage Test"@en ;
+	dcterms:contributor "Selcan Karadag (Continental)" ;
+	owl:versionInfo "0.1" .
+
+leakage-test:LeakageTest a owl:Class ;
+	rdfs:label "Class definition for Leakage Test"@en ;
+	rdfs:comment "Describes a Leakage Test."@en ;
+	rdfs:subClassOf gax-core:ServiceOffering .
