@@ -19,7 +19,6 @@ hdmap:Content a owl:Class ;
     rdfs:label "class definition for Content" ;
     rdfs:comment "Attributes for Content"@en .
 
-
 hdmap:DataSource a owl:Class ;
     rdfs:label "class definition for DataSource" ;
     rdfs:comment "Attributes for DataSource"@en .
@@ -31,7 +30,6 @@ hdmap:Format a owl:Class ;
 hdmap:Quality a owl:Class ;
     rdfs:label "class definition for Quality" ;
     rdfs:comment "Attributes for Quality"@en .
-
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "class definition for Quantity" ;

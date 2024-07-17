@@ -16,7 +16,6 @@ general:General a owl:Class ;
     rdfs:comment "General attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
 
-
 general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;
     rdfs:comment "Description attributes for all assets"@en .

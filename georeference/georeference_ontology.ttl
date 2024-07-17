@@ -16,7 +16,6 @@ georeference:Georeference a owl:Class ;
     rdfs:comment "Attributes for location and georeference information"@en ;
     rdfs:subClassOf gx:DataResource .
 
-
 georeference:GeodeticReferenceSystem a owl:Class ;
     rdfs:label "class definition for GeodeticReferenceSystem" ;
     rdfs:comment "Attributes for GeodeticReferenceSystem"@en .
