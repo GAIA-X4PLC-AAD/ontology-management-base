@@ -15,4 +15,4 @@ leakage-test:LeakageTest a owl:Ontology ;
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for Leakage Test"@en ;
 	rdfs:comment "Describes a Leakage Test."@en ;
-	rdfs:subClassOf gax-core:ServiceOffering .
+	rdfs:subClassOf gx:ServiceOffering .
