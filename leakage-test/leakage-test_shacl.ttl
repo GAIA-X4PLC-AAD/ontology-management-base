@@ -116,28 +116,28 @@ leakage-test:MinimumPressureShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of unit failed!"@en ;
         sh:name "unit"@en ;
         sh:path leakage-test:unit ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of upperTolerance failed!"@en ;
         sh:name "upperTolerance"@en ;
         sh:path leakage-test:upperTolerance ] ,
     [ skos:example "2.7";
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of setpoint failed!"@en ;
         sh:name "setpoint"@en ;
         sh:path leakage-test:setpoint ] ,
     [ skos:example "0" ;
         sh:datatype xsd:decimal ;
-	    sh:minCount 1 ;
+	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of lowerTolerance failed!"@en ; 
         sh:name "lowerTolerance"@en ;
