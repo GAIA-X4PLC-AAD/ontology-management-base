@@ -1,12 +1,18 @@
 @prefix : <http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix gax-tbd: <http://www.BestimmtGibtsHierzuEineGAXKlasse.org/findeSie#> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix sen-dat: <http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix plcaad-tbd: <http://www.WirSchauenNachPassendenVokabeln.org/platzhalter#> .
+@prefix environment: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @base <http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#> .
 
 <http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata> rdf:type owl:Ontology ;
@@ -34,9 +40,20 @@
 <http://purl.org/dc/terms/source> rdf:type owl:AnnotationProperty .
 
 
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#srdm-tag
+sen-dat:srdm-tag rdf:type owl:AnnotationProperty .
+
+
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://schema.org/memberOf
+<http://schema.org/memberOf> rdf:type owl:ObjectProperty ;
+                             rdfs:domain sen-dat:Author ,
+                                         schema:Person ;
+                             rdfs:range schema:Organization .
+
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#belongsTo
 sen-dat:belongsTo rdf:type owl:ObjectProperty ;
@@ -44,22 +61,51 @@ sen-dat:belongsTo rdf:type owl:ObjectProperty ;
                   rdfs:range sen-dat:SensorFamily .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#hasAuthor
-sen-dat:hasAuthor rdf:type owl:ObjectProperty ;
-                  rdfs:range sen-dat:Author ;
-                  rdfs:comment "clearly standard vocabulary, change it @konierik" .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#contentEvent
+sen-dat:contentEvent rdf:type owl:ObjectProperty ;
+                     rdfs:domain sen-dat:Content ;
+                     rdfs:range sen-dat:Event .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#contentInterface
+sen-dat:contentInterface rdf:type owl:ObjectProperty ;
+                         rdfs:domain sen-dat:Content ;
+                         rdfs:range sen-dat:Interface .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#contentTarget
+sen-dat:contentTarget rdf:type owl:ObjectProperty ;
+                      rdfs:domain sen-dat:Content ;
+                      rdfs:range sen-dat:Target .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#documentLink
+sen-dat:documentLink rdf:type owl:ObjectProperty ;
+                     rdfs:range sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#environmentModel
+sen-dat:environmentModel rdf:type owl:ObjectProperty ;
+                         rdfs:domain general:Environment ;
+                         rdfs:range general:EnvironmentModel .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#gpsTraceDocumentLink
+sen-dat:gpsTraceDocumentLink rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf sen-dat:documentLink ;
+                             rdfs:range sen-dat:GPSTraceDocument .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#groundTruthDocumentLink
+sen-dat:groundTruthDocumentLink rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf sen-dat:documentLink ;
+                                rdfs:range sen-dat:GroundTruthDocument .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#hasSensorConfiguration
 sen-dat:hasSensorConfiguration rdf:type owl:ObjectProperty ;
                                rdfs:domain sen-dat:Sensor ;
                                rdfs:range sen-dat:SensorConfiguration .
-
-
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#hasSpec
-sen-dat:hasSpec rdf:type owl:ObjectProperty ;
-                rdfs:domain sen-dat:Sensor ;
-                rdfs:range sen-dat:SensorSpecification .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#inEnvironment
@@ -72,6 +118,12 @@ sen-dat:inEnvironment rdf:type owl:ObjectProperty ;
 sen-dat:inLocalization rdf:type owl:ObjectProperty ;
                        rdfs:domain sen-dat:SensorData ;
                        rdfs:range sen-dat:SRMD_Localization .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#interfaceSpecificationDocumentLink
+sen-dat:interfaceSpecificationDocumentLink rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf sen-dat:documentLink ;
+                                           rdfs:range sen-dat:InterfaceSpecificationDocument .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#producedBySensor
@@ -87,28 +139,56 @@ sen-dat:producesSensorData rdf:type owl:ObjectProperty ;
                            rdfs:range sen-dat:SensorData .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#relatedGPSTrace
-sen-dat:relatedGPSTrace rdf:type owl:ObjectProperty ;
-                        rdfs:domain sen-dat:SensorData ;
-                        rdfs:range sen-dat:GPSTraceFile .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#referenceSensorTraceDocumentLink
+sen-dat:referenceSensorTraceDocumentLink rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf sen-dat:documentLink ;
+                                         rdfs:range sen-dat:SensorTraceDocument .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#relatedReferenceSensorTrace
-sen-dat:relatedReferenceSensorTrace rdf:type owl:ObjectProperty ;
-                                    rdfs:domain sen-dat:SensorData ;
-                                    rdfs:range sen-dat:SensorTraceFile .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#referencesTool
+sen-dat:referencesTool rdf:type owl:ObjectProperty ;
+                       rdfs:domain sen-dat:Toolchain ;
+                       rdfs:range sen-dat:Tool .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorDataFile
-sen-dat:sensorDataFile rdf:type owl:ObjectProperty ;
-                       rdfs:domain sen-dat:SensorData ;
-                       rdfs:range sen-dat:SensorDataFile .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorDataContent
+sen-dat:sensorDataContent rdf:type owl:ObjectProperty ;
+                          rdfs:domain sen-dat:SensorData ;
+                          rdfs:range sen-dat:Content .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorManufacturer
-sen-dat:sensorManufacturer rdf:type owl:ObjectProperty ;
-                           rdfs:domain sen-dat:Sensor ;
-                           rdfs:range sen-dat:Manufacturer .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorDataDocumentLink
+sen-dat:sensorDataDocumentLink rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf sen-dat:documentLink ;
+                               rdfs:domain sen-dat:SensorData ;
+                               rdfs:range sen-dat:SensorDataDocument .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorDataRawDocumentLink
+sen-dat:sensorDataRawDocumentLink rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf sen-dat:documentLink .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorDataTraceDocumentLink
+sen-dat:sensorDataTraceDocumentLink rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf sen-dat:documentLink ;
+                                    rdfs:range sen-dat:SensorDataTraceDocument ;
+                                    sen-dat:srdm-tag "testsetup.calibration.sensordata" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorMetadataDocumentLink
+sen-dat:sensorMetadataDocumentLink rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf sen-dat:documentLink ;
+                                   rdfs:range sen-dat:SensorMetadataDocument ;
+                                   sen-dat:srdm-tag "sensor.metadata" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorSpecificationDocumentLink
+sen-dat:sensorSpecificationDocumentLink rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf sen-dat:documentLink ;
+                                        rdfs:domain sen-dat:Sensor ;
+                                        rdfs:range sen-dat:SensorSpecificationDocument ;
+                                        sen-dat:srdm-tag "sensor.specification" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorTestsetup
@@ -122,26 +202,110 @@ sen-dat:sensorTestsetup rdf:type owl:ObjectProperty ;
                         rdfs:comment "check if sensor and sensordata need seperated properties to Testsetup class @konierik" .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#setupVehicle
-sen-dat:setupVehicle rdf:type owl:ObjectProperty ;
-                     rdfs:domain sen-dat:Testsetup ;
-                     rdfs:range sen-dat:Vehicle .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#succeedsTool
+sen-dat:succeedsTool rdf:type owl:ObjectProperty ;
+                     rdfs:domain sen-dat:Tool ;
+                     rdfs:range sen-dat:Tool .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#testsetupCalibration
+sen-dat:testsetupCalibration rdf:type owl:ObjectProperty ;
+                             rdfs:domain sen-dat:Testsetup ;
+                             rdfs:range sen-dat:Calibration .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#testsetupVehicle
+sen-dat:testsetupVehicle rdf:type owl:ObjectProperty ;
+                         rdfs:domain sen-dat:Testsetup ;
+                         rdfs:range sen-dat:Vehicle ;
+                         sen-dat:srdm-tag "testsetup.vehicle" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#usedToolchain
+sen-dat:usedToolchain rdf:type owl:ObjectProperty ;
+                      rdfs:domain sen-dat:SensorData ;
+                      rdfs:range sen-dat:Toolchain .
+
+
+###  https://schema.org/author
+schema:author rdf:type owl:ObjectProperty ;
+              rdfs:range sen-dat:Author ,
+                         schema:Organization ,
+                         schema:Person ;
+              rdfs:comment "clearly standard vocabulary, change it @konierik" .
+
+
+###  https://schema.org/manufacturer
+schema:manufacturer rdf:type owl:ObjectProperty ;
+                    rdfs:domain sen-dat:Sensor ;
+                    rdfs:range schema:Organization .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
+###  http://schema.org/email
+<http://schema.org/email> rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf sen-dat:authorContact ;
+                          rdfs:domain sen-dat:Author ,
+                                      schema:Person ;
+                          rdfs:range xsd:string .
+
+
+###  http://schema.org/familyName
+<http://schema.org/familyName> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain sen-dat:Author ,
+                                           schema:Person ;
+                               rdfs:range xsd:string .
+
+
+###  http://schema.org/givenName
+<http://schema.org/givenName> rdf:type owl:DatatypeProperty ;
+                              rdfs:domain sen-dat:Author ,
+                                          schema:Person ;
+                              rdfs:range xsd:string .
+
+
+###  http://schema.org/telephone
+<http://schema.org/telephone> rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf sen-dat:authorContact ;
+                              rdfs:domain sen-dat:Author ,
+                                          schema:Person ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#accelerationLateralCog
+sen-dat:accelerationLateralCog rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                               sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#accelerationLongitudinalCog
+sen-dat:accelerationLongitudinalCog rdf:type owl:DatatypeProperty ;
+                                    rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                                    sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#accuracy
+sen-dat:accuracy rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "testsetup.calibration.accuracy" .
+
+
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#authorCompany
 sen-dat:authorCompany rdf:type owl:DatatypeProperty ;
                       rdfs:domain sen-dat:Author ;
-                      rdfs:range xsd:string .
+                      rdfs:range xsd:string ;
+                      sen-dat:srdm-tag "author.company" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#authorContact
 sen-dat:authorContact rdf:type owl:DatatypeProperty ;
-                      rdfs:domain sen-dat:Author ;
-                      rdfs:range xsd:string .
+                      rdfs:domain sen-dat:Author ,
+                                  schema:Person ;
+                      rdfs:range xsd:string ;
+                      sen-dat:srdm-tag "author.contact" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#authorName
@@ -151,11 +315,25 @@ sen-dat:authorName rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:string .
 
 
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#calibrationLocalization
+sen-dat:calibrationLocalization rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf sen-dat:localizationAttribute ;
+                                rdfs:range xsd:string ;
+                                sen-dat:srdm-tag "testsetup.calibration.localization" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#characteristicSpeed
+sen-dat:characteristicSpeed rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                            sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#checksum
 sen-dat:checksum rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf sen-dat:documentAttribute ;
-                 rdfs:domain sen-dat:SensorDataFile ;
+                 rdfs:domain sen-dat:SensorDataDocument ;
                  rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "file.checksum" ;
                  rdfs:comment "check if domain is SensorDataFile or just generic Document class @konierik" .
 
 
@@ -166,43 +344,63 @@ sen-dat:configurationAttribute rdf:type owl:DatatypeProperty .
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationCycleOffset
 sen-dat:configurationCycleOffset rdf:type owl:DatatypeProperty ;
                                  rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                                 rdfs:range xsd:string .
+                                 rdfs:range xsd:string ;
+                                 sen-dat:srdm-tag "sensor.configuration.cycleoffset" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationCycletime
 sen-dat:configurationCycletime rdf:type owl:DatatypeProperty ;
                                rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                               rdfs:range xsd:string .
+                               rdfs:range xsd:string ;
+                               sen-dat:srdm-tag "sensor.configuration.cycletime" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationFrequency
 sen-dat:configurationFrequency rdf:type owl:DatatypeProperty ;
                                rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                               rdfs:range xsd:string .
+                               rdfs:range xsd:string ;
+                               sen-dat:srdm-tag "sensor.configuration.frequency" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationGeneric
 sen-dat:configurationGeneric rdf:type owl:DatatypeProperty ;
                              rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                             rdfs:range xsd:string .
+                             rdfs:range xsd:string ;
+                             sen-dat:srdm-tag "sensor.configuration.generic" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationIP
 sen-dat:configurationIP rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                        rdfs:range xsd:string .
+                        rdfs:range xsd:string ;
+                        sen-dat:srdm-tag "sensor.configuration.ip" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#configurationWheelbase
 sen-dat:configurationWheelbase rdf:type owl:DatatypeProperty ;
                                rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                               rdfs:range xsd:string .
+                               rdfs:range xsd:string ;
+                               sen-dat:srdm-tag "sensor.configuration.wheelbase" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#contentLimitation
+sen-dat:contentLimitation rdf:type owl:DatatypeProperty ;
+                          rdfs:domain sen-dat:Content ;
+                          rdfs:range xsd:string .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#contentNumberOfFrames
+sen-dat:contentNumberOfFrames rdf:type owl:DatatypeProperty ;
+                              rdfs:domain sen-dat:Content ;
+                              rdfs:range xsd:int ;
+                              sen-dat:srdm-tag "content.numberofframes" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#country
 sen-dat:country rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf sen-dat:localizationAttribute ;
                 rdfs:range xsd:string ;
+                sen-dat:srdm-tag "localization.country" ;
                 rdfs:comment "check with sensorConfigurationAttribute \"CountryCode\" "@konierik .
 
 
@@ -210,30 +408,62 @@ sen-dat:country rdf:type owl:DatatypeProperty ;
 sen-dat:countrycode rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
                     rdfs:range xsd:string ;
+                    sen-dat:srdm-tag "sensor.configuration.countrycode" ;
                     rdfs:comment "check with LocalisationAttribue  \"Country\" @konierik" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#description
 sen-dat:description rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf sen-dat:localizationAttribute ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
                     rdfs:range xsd:string ;
-                    rdfs:comment "this is a generic attribute or we need to rename it "@konierik .
+                    sen-dat:srdm-tag "author.toolchain" ,
+                                     "content.description" ,
+                                     "content.event.description" ,
+                                     "content.interface" ,
+                                     "content.target.description" ,
+                                     "localization.description" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#detectionlist
+sen-dat:detectionlist rdf:type owl:DatatypeProperty ;
+                      rdfs:domain sen-dat:Interface ;
+                      rdfs:range xsd:boolean ;
+                      sen-dat:srdm-tag "content.interface.detectionlist" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#documentAttribute
-sen-dat:documentAttribute rdf:type owl:DatatypeProperty .
+sen-dat:documentAttribute rdf:type owl:DatatypeProperty ;
+                          rdfs:domain sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#documentLocation
+sen-dat:documentLocation rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf sen-dat:documentAttribute ;
+                         rdfs:range [ rdf:type rdfs:Datatype ;
+                                      owl:unionOf ( xsd:anyURI
+                                                    xsd:string
+                                                  )
+                                    ] .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#drivingDirection
+sen-dat:drivingDirection rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                         sen-dat:srdm-tag "testsetup.vehicledynamics" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#endCoordinates
 sen-dat:endCoordinates rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf sen-dat:localizationAttribute ;
-                       rdfs:range xsd:string .
+                       rdfs:range xsd:string ;
+                       sen-dat:srdm-tag "localization.end" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#environmentArea
 sen-dat:environmentArea rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf sen-dat:environmentAttribute ;
                         rdfs:range xsd:string ;
+                        sen-dat:srdm-tag "environment.area" ;
                         rdfs:comment "or class maybe "@konierik .
 
 
@@ -245,35 +475,59 @@ sen-dat:environmentAttribute rdf:type owl:DatatypeProperty ;
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#fileName
 sen-dat:fileName rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf sen-dat:documentAttribute ;
-                 rdfs:domain sen-dat:SensorDataFile ;
+                 rdfs:domain sen-dat:Document ;
                  rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "file.name" ;
                  rdfs:comment "check if domain is SensorDataFile or just generic Document class "@konierik .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#fileSize
 sen-dat:fileSize rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf sen-dat:documentAttribute ;
-                 rdfs:domain sen-dat:SensorDataFile ;
+                 rdfs:domain sen-dat:Document ;
                  rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "file.size" ;
                  rdfs:comment "check if domain is SensorDataFile or just generic Document class @konierik" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#geodeticReferenceSystem
 sen-dat:geodeticReferenceSystem rdf:type owl:DatatypeProperty ;
                                 rdfs:subPropertyOf sen-dat:localizationAttribute ;
-                                rdfs:range xsd:string .
+                                rdfs:range xsd:string ;
+                                sen-dat:srdm-tag "localization.geodeticreferrncesystem" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#gpsOffset
 sen-dat:gpsOffset rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf sen-dat:localizationAttribute ;
-                  rdfs:range xsd:string .
+                  rdfs:range xsd:string ;
+                  sen-dat:srdm-tag "localization.country" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#id
+sen-dat:id rdf:type owl:DatatypeProperty ;
+           rdfs:domain owl:Thing ;
+           sen-dat:srdm-tag "content.target.identifier" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#localizationAttribute
 sen-dat:localizationAttribute rdf:type owl:DatatypeProperty ;
                               rdfs:domain sen-dat:SRMD_Localization ;
                               rdfs:comment "BE or AE? "@konierik .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#localizationOffset
+sen-dat:localizationOffset rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf sen-dat:localizationAttribute ;
+                           rdfs:range xsd:string ;
+                           sen-dat:srdm-tag "testsetup.calibration.localization.offset" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#localizationReferencePoint
+sen-dat:localizationReferencePoint rdf:type owl:DatatypeProperty ;
+                                   rdfs:subPropertyOf sen-dat:localizationAttribute ;
+                                   rdfs:range xsd:string ;
+                                   sen-dat:srdm-tag "testsetup.calibration.localization.referencepoint" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#manufacturerName
@@ -284,34 +538,56 @@ sen-dat:manufacturerName rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#manufacturerPartnumber
 sen-dat:manufacturerPartnumber rdf:type owl:DatatypeProperty ;
-                               rdfs:subPropertyOf sen-dat:manufacturerName ;
-                               rdfs:domain sen-dat:Manufacturer ;
-                               rdfs:range xsd:string .
+                               rdfs:subPropertyOf sen-dat:sensorAttribute ;
+                               rdfs:domain sen-dat:Sensor ;
+                               rdfs:range xsd:string ;
+                               sen-dat:srdm-tag "sensor.manufacturer.partnumber" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#mimeType
 sen-dat:mimeType rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf sen-dat:documentAttribute ;
-                 rdfs:domain sen-dat:SensorDataFile ;
-                 rdfs:range xsd:string .
+                 rdfs:domain sen-dat:SensorDataDocument ;
+                 rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "file.mimetype" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#modelLink
 sen-dat:modelLink rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf sen-dat:environmentAttribute ;
-                  rdfs:range xsd:anyURI .
+                  rdfs:range [ rdf:type rdfs:Datatype ;
+                               owl:unionOf ( xsd:anyURI
+                                             xsd:string
+                                           )
+                             ] ;
+                  sen-dat:srdm-tag "related.environment" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#mountingPosition
+sen-dat:mountingPosition rdf:type owl:DatatypeProperty ;
+                         rdfs:domain sen-dat:Testsetup ;
+                         rdfs:range xsd:string ;
+                         sen-dat:srdm-tag "testsetup.mountingposition" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#objectlist
+sen-dat:objectlist rdf:type owl:DatatypeProperty ;
+                   rdfs:domain sen-dat:Interface ;
+                   rdfs:range xsd:boolean ;
+                   sen-dat:srdm-tag "content.interface.objectlist" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#roadCondition
+sen-dat:roadCondition rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf sen-dat:environmentAttribute ;
+                      rdfs:range xsd:string ;
+                      sen-dat:srdm-tag "environment.road.condition" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#roadType
 sen-dat:roadType rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf sen-dat:environmentAttribute ;
-                 rdfs:range xsd:string .
-
-
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#roadTypeCondition
-sen-dat:roadTypeCondition rdf:type owl:DatatypeProperty ;
-                          rdfs:subPropertyOf sen-dat:environmentAttribute ;
-                          rdfs:range xsd:string .
+                 rdfs:range xsd:string ;
+                 sen-dat:srdm-tag "environment.road.type" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorAttribute
@@ -337,62 +613,74 @@ sen-dat:sensorDataAttribute rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorFirmwareVersion
 sen-dat:sensorFirmwareVersion rdf:type owl:DatatypeProperty ;
-                              rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                              rdfs:range xsd:string .
+                              rdfs:subPropertyOf sen-dat:sensorAttribute ,
+                                                 sen-dat:version ;
+                              rdfs:range xsd:string ;
+                              sen-dat:srdm-tag "sensor.firmwareversion" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorHardwareVersion
 sen-dat:sensorHardwareVersion rdf:type owl:DatatypeProperty ;
-                              rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                              rdfs:range xsd:string .
+                              rdfs:subPropertyOf sen-dat:sensorAttribute ,
+                                                 sen-dat:version ;
+                              rdfs:range xsd:string ;
+                              sen-dat:srdm-tag "sensor.hardwareversion" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorName
 sen-dat:sensorName rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                   rdfs:range xsd:string .
+                   rdfs:range xsd:string ;
+                   sen-dat:srdm-tag "sensor.name" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorPositionNative
 sen-dat:sensorPositionNative rdf:type owl:DatatypeProperty ;
                              rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                             rdfs:range xsd:string .
+                             rdfs:range xsd:string ;
+                             sen-dat:srdm-tag "sensor.configuration.sensorposition.native" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorPositionOSI
 sen-dat:sensorPositionOSI rdf:type owl:DatatypeProperty ;
                           rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                          rdfs:range xsd:string .
+                          rdfs:range xsd:string ;
+                          sen-dat:srdm-tag "sensor.configuration.sensorposition.osi" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorPurpose
 sen-dat:sensorPurpose rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                      rdfs:range xsd:string .
+                      rdfs:range xsd:string ;
+                      sen-dat:srdm-tag "sensor.purpose" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorStatus
 sen-dat:sensorStatus rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                     rdfs:range xsd:string .
+                     rdfs:range xsd:string ;
+                     sen-dat:srdm-tag "sensor.status" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorTechnology
 sen-dat:sensorTechnology rdf:type owl:DatatypeProperty ;
                          rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                         rdfs:range xsd:string .
+                         rdfs:range xsd:string ;
+                         sen-dat:srdm-tag "sensor.technology" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorTechnologyVariant
 sen-dat:sensorTechnologyVariant rdf:type owl:DatatypeProperty ;
                                 rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                                rdfs:range xsd:string .
+                                rdfs:range xsd:string ;
+                                sen-dat:srdm-tag "sensor.technology.variant" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#sensorType
 sen-dat:sensorType rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf sen-dat:sensorAttribute ;
-                   rdfs:range xsd:string .
+                   rdfs:range xsd:string ;
+                   sen-dat:srdm-tag "sensor.type" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#srmd.test.road.type
@@ -406,66 +694,113 @@ be careful with equivalentTo expressions if they are interpreted as mutual @koni
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#startCoordinates
 sen-dat:startCoordinates rdf:type owl:DatatypeProperty ;
                          rdfs:subPropertyOf sen-dat:localizationAttribute ;
-                         rdfs:range xsd:string .
+                         rdfs:range xsd:string ;
+                         sen-dat:srdm-tag "localization.start" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#steeringAngleFrontAxle
+sen-dat:steeringAngleFrontAxle rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                               sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#tag
+sen-dat:tag rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            sen-dat:srdm-tag "content.event.tag" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#testsetupOptions
+sen-dat:testsetupOptions rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain sen-dat:Testsetup ;
+                         rdfs:range xsd:string ;
+                         sen-dat:srdm-tag "testsetup.options" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#timeDuration
 sen-dat:timeDuration rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf sen-dat:sensorDataAttribute ;
+                     sen-dat:srdm-tag "time.duration" ;
                      rdfs:comment "check if prefix \"Time\" is necessary @konierik" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#timeReferenceFrame
 sen-dat:timeReferenceFrame rdf:type owl:DatatypeProperty ;
                            rdfs:subPropertyOf sen-dat:sensorDataAttribute ;
+                           sen-dat:srdm-tag "time.referenceframe" ;
                            rdfs:comment "check if prefix \"Time\" is necessary @konierik" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#timeStartTime
 sen-dat:timeStartTime rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf sen-dat:sensorDataAttribute ;
+                      sen-dat:srdm-tag "time.start" ;
                       rdfs:comment "check if prefix \"Time\" is necessary @konierik" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#timeSynchronisation
 sen-dat:timeSynchronisation rdf:type owl:DatatypeProperty ;
                             rdfs:subPropertyOf sen-dat:sensorConfigurationAttribute ;
-                            rdfs:range xsd:string .
+                            rdfs:range xsd:string ;
+                            sen-dat:srdm-tag "sensor.configuration.timesynchronization" .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#toolChain
-sen-dat:toolChain rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf sen-dat:sensorDataAttribute ;
-                  rdfs:range xsd:string .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#timestamp
+sen-dat:timestamp rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:dateTimeStamp ;
+                  sen-dat:srdm-tag "content.event.timestamp" ,
+                                   "testsetup.calibration.timestamp" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#vehicleDynamics
+sen-dat:vehicleDynamics rdf:type owl:DatatypeProperty ;
+                        rdfs:domain sen-dat:Vehicle ;
+                        sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#velocityVehicle
+sen-dat:velocityVehicle rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                        sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#version
+sen-dat:version rdf:type owl:DatatypeProperty ;
+                sen-dat:srdm-tag "content.interface.version" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#weatherPrecipation
 sen-dat:weatherPrecipation rdf:type owl:DatatypeProperty ;
                            rdfs:subPropertyOf sen-dat:environmentAttribute ;
-                           rdfs:range xsd:string .
+                           rdfs:range xsd:string ;
+                           sen-dat:srdm-tag "environment.weather.precipitation" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#weatherTemperature
 sen-dat:weatherTemperature rdf:type owl:DatatypeProperty ;
                            rdfs:subPropertyOf sen-dat:environmentAttribute ;
-                           rdfs:range xsd:string .
+                           rdfs:range xsd:string ;
+                           sen-dat:srdm-tag "environment.weather.temperature" .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#yawRate
+sen-dat:yawRate rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf sen-dat:vehicleDynamics ;
+                sen-dat:srdm-tag "testsetup.vehicledynamics" .
+
+
+###  https://schema.org/mpn
+schema:mpn rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain schema:Product ;
+           rdfs:range xsd:string ;
+           rdfs:label "manufacturer partnumber" .
 
 
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.BestimmtGibtsHierzuEineGAXKlasse.org/findeSie#Document
-gax-tbd:Document rdf:type owl:Class .
-
-
-###  http://www.BestimmtGibtsHierzuEineGAXKlasse.org/findeSie#Organisation
-gax-tbd:Organisation rdf:type owl:Class .
-
-
-###  http://www.WirSchauenNachPassendenVokabeln.org/platzhalter#Environment
-plcaad-tbd:Environment rdf:type owl:Class .
-
 
 ###  http://www.WirSchauenNachPassendenVokabeln.org/platzhalter#Localization
 plcaad-tbd:Localization rdf:type owl:Class ;
@@ -493,17 +828,94 @@ sen-dat:ARS5xx rdf:type owl:Class ;
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Author
 sen-dat:Author rdf:type owl:Class ;
+               rdfs:subClassOf schema:Organization ,
+                               schema:Person ;
                rdfs:comment "clearly a standard class, change it @konierik" .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#GPSTraceFile
-sen-dat:GPSTraceFile rdf:type owl:Class ;
-                     rdfs:subClassOf gax-tbd:Document .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Calibration
+sen-dat:Calibration rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:sensorDataTraceDocumentLink ;
+                                      owl:someValuesFrom sen-dat:SensorDataTraceDocument
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:accuracy ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:calibrationLocalization ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:localizationOffset ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:localizationReferencePoint ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty sen-dat:timestamp ;
+                                      owl:someValuesFrom xsd:dateTimeStamp
+                                    ] .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Content
+sen-dat:Content rdf:type owl:Class .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Document
+sen-dat:Document rdf:type owl:Class .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Event
+sen-dat:Event rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty sen-dat:description ;
+                                owl:someValuesFrom xsd:string
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty sen-dat:tag ;
+                                owl:someValuesFrom xsd:string
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty sen-dat:timestamp ;
+                                owl:someValuesFrom xsd:dateTimeStamp
+                              ] .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#GPSTraceDocument
+sen-dat:GPSTraceDocument rdf:type owl:Class ;
+                         rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#GroundTruthDocument
+sen-dat:GroundTruthDocument rdf:type owl:Class ;
+                            rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Interface
+sen-dat:Interface rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty sen-dat:description ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty sen-dat:version ;
+                                    owl:someValuesFrom xsd:string
+                                  ] .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#InterfaceSpecificationDocument
+sen-dat:InterfaceSpecificationDocument rdf:type owl:Class ;
+                                       rdfs:subClassOf sen-dat:SpecificationDocument .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Manufacturer
 sen-dat:Manufacturer rdf:type owl:Class ;
-                     rdfs:subClassOf gax-tbd:Organisation .
+                     rdfs:subClassOf schema:Organization ;
+                     sen-dat:srdm-tag "sensor.manufacturer" .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#RadarSensor
@@ -517,7 +929,7 @@ sen-dat:RadarSensor rdf:type owl:Class ;
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SRMD_Environment
 sen-dat:SRMD_Environment rdf:type owl:Class ;
-                         rdfs:subClassOf plcaad-tbd:Environment .
+                         rdfs:subClassOf general:Environment .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SRMD_Localization
@@ -526,7 +938,13 @@ sen-dat:SRMD_Localization rdf:type owl:Class ;
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Sensor
-sen-dat:Sensor rdf:type owl:Class .
+sen-dat:Sensor rdf:type owl:Class ;
+               rdfs:subClassOf gx:PhysicalResource ,
+                               schema:Product ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty sen-dat:sensorMetadataDocumentLink ;
+                                 owl:someValuesFrom sen-dat:SensorMetadataDocument
+                               ] .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorConfiguration
@@ -536,34 +954,86 @@ sen-dat:SensorConfiguration rdf:type owl:Class .
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorData
 sen-dat:SensorData rdf:type owl:Class ;
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty sen-dat:hasAuthor ;
+                                     owl:onProperty sen-dat:gpsTraceDocumentLink ;
+                                     owl:someValuesFrom sen-dat:GPSTraceDocument
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty sen-dat:groundTruthDocumentLink ;
+                                     owl:someValuesFrom sen-dat:GroundTruthDocument
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty sen-dat:referenceSensorTraceDocumentLink ;
+                                     owl:someValuesFrom sen-dat:SensorTraceDocument
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty sen-dat:sensorDataRawDocumentLink ;
+                                     owl:someValuesFrom sen-dat:SensorDataRawDocument
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty sen-dat:usedToolchain ;
+                                     owl:someValuesFrom sen-dat:Toolchain
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty schema:author ;
                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                     owl:onClass sen-dat:Author
+                                     owl:onClass [ rdf:type owl:Class ;
+                                                   owl:unionOf ( schema:Organization
+                                                                 schema:Person
+                                                               )
+                                                 ]
                                    ] .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorDataFile
-sen-dat:SensorDataFile rdf:type owl:Class ;
-                       rdfs:subClassOf gax-tbd:Document .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorDataDocument
+sen-dat:SensorDataDocument rdf:type owl:Class ;
+                           rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorDataRawDocument
+sen-dat:SensorDataRawDocument rdf:type owl:Class ;
+                              rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorDataTraceDocument
+sen-dat:SensorDataTraceDocument rdf:type owl:Class ;
+                                rdfs:subClassOf sen-dat:Document .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorFamily
-sen-dat:SensorFamily rdf:type owl:Class .
+sen-dat:SensorFamily rdf:type owl:Class ;
+                     sen-dat:srdm-tag "sensor.family" .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorSpecification
-sen-dat:SensorSpecification rdf:type owl:Class ;
-                            rdfs:subClassOf sen-dat:Specification .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorMetadataDocument
+sen-dat:SensorMetadataDocument rdf:type owl:Class ;
+                               rdfs:subClassOf sen-dat:Document .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorTraceFile
-sen-dat:SensorTraceFile rdf:type owl:Class ;
-                        rdfs:subClassOf gax-tbd:Document .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorSpecificationDocument
+sen-dat:SensorSpecificationDocument rdf:type owl:Class ;
+                                    rdfs:subClassOf sen-dat:SpecificationDocument .
 
 
-###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Specification
-sen-dat:Specification rdf:type owl:Class ;
-                      rdfs:subClassOf gax-tbd:Document .
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SensorTraceDocument
+sen-dat:SensorTraceDocument rdf:type owl:Class ;
+                            rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#SpecificationDocument
+sen-dat:SpecificationDocument rdf:type owl:Class ;
+                              rdfs:subClassOf sen-dat:Document .
+
+
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Target
+sen-dat:Target rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty sen-dat:description ;
+                                 owl:someValuesFrom xsd:string
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty sen-dat:id ;
+                                 owl:someValuesFrom xsd:string
+                               ] .
 
 
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Testsetup
@@ -574,8 +1044,41 @@ sen-dat:Testsetup rdf:type owl:Class .
 sen-dat:Tool rdf:type owl:Class .
 
 
+###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Toolchain
+sen-dat:Toolchain rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty sen-dat:description ;
+                                    owl:someValuesFrom xsd:string
+                                  ] .
+
+
 ###  http://www.ipk-semantics.org/konierik/ontologies/SensorDataMetadata#Vehicle
-sen-dat:Vehicle rdf:type owl:Class .
+sen-dat:Vehicle rdf:type owl:Class ;
+                rdfs:subClassOf gx:PhysicalResource .
+
+
+###  https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/Environment
+general:Environment rdf:type owl:Class .
+
+
+###  https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/EnvironmentModel
+general:EnvironmentModel rdf:type owl:Class .
+
+
+###  https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#PhysicalResource
+gx:PhysicalResource rdf:type owl:Class .
+
+
+###  https://schema.org/Organization
+schema:Organization rdf:type owl:Class .
+
+
+###  https://schema.org/Person
+schema:Person rdf:type owl:Class .
+
+
+###  https://schema.org/Product
+schema:Product rdf:type owl:Class .
 
 
 [ <http://purl.org/dc/terms/creator> "konierik"
