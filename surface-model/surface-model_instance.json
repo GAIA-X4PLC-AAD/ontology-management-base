@@ -127,7 +127,7 @@
         "@type": "xsd:string"
       },
       "georeference:state": {
-        "@value": "Bavaria",
+        "@value": "DE-BY",
         "@type": "xsd:string"
       },
       "georeference:region": {
