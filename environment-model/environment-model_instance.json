@@ -48,39 +48,33 @@
         },
         "general:type": "Asset"
       },
-      "general:media": [
-        {
-          "@type": "general:Link"
-        },
-        {
-          "@type": "general:Link"
-        },
-        {
-          "@type": "general:Link"
-        },
-        {
-          "@type": "general:Link"
-        }
-      ]
+      "general:media": {
+      "@type": "general:Link",
+      "general:url": {
+        "@value": "https://github.com/image.png",
+        "@type": "xsd:anyURI"
+      },
+      "general:type": "Image"
+    }
     },
-    "general:bundleData": {
-      "@type": "general:BundleData",
-      "general:requiredData": [
-        {
-          "@type": "general:Link",
-          "general:url": {
-            "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-            "@type": "xsd:anyURI"
-          },
-          "general:type": "Asset"
-        },
-        {
-          "@type": "general:Link"
-        }
-      ],
-      "general:relatedData": {
-        "@type": "general:Link"
-      }
+	"general:bundleData": {
+		"@type": "general:BundleData",
+		"general:requiredData": {
+		  "@type": "general:Link",
+		  "general:url": {
+			"@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+			"@type": "xsd:anyURI"
+		  },
+		  "general:type": "Asset"
+		},
+		"general:relatedData": {
+		  "@type": "general:Link",
+		  "general:url": {
+			"@value": "https://github.com/scenario.xosc",
+			"@type": "xsd:anyURI"
+		  },
+		  "general:type": "Asset"
+		}
     }
   },
   "environment-model:quantity": {
@@ -204,13 +198,5 @@
       },
       "georeference:heightSystem": "Ellipsodial height"
     }
-  },
-  "general:requiredData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Asset"
   }
 }
