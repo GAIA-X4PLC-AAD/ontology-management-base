@@ -11,6 +11,34 @@ ositrace: a owl:Ontology ;
     owl:versionInfo "0.1" .
 
 ositrace:OSITrace a owl:Class ;
-    rdfs:label "class definition for OSI Trace Files" ;
+    rdfs:label "Class definition for OSI Trace Files" ;
     rdfs:comment "Attributes for OSI Trace Files"@en ;
     rdfs:subClassOf gx:DataResource .
+
+ositrace:Content a owl:Class ;
+    rdfs:label "Class definition for Content" ;
+    rdfs:comment "Attributes for Content"@en .
+
+ositrace:DataSource a owl:Class ;
+    rdfs:label "Class definition for DataSource" ;
+    rdfs:comment "Attributes for DataSource"@en .
+
+ositrace:Format a owl:Class ;
+    rdfs:label "Class definition for Format" ;
+    rdfs:comment "Attributes for Format"@en .
+
+ositrace:Quality a owl:Class ;
+    rdfs:label "Class definition for Quality" ;
+    rdfs:comment "Attributes for Quality"@en .
+
+ositrace:Quantity a owl:Class ;
+    rdfs:label "Class definition for Quantity" ;
+    rdfs:comment "Attributes for Quantity"@en .
+
+ositrace:MovingObject a owl:Class ;
+    rdfs:label "Class definition for MovingObject" ;
+    rdfs:comment "Attributes for MovingObject"@en .
+
+ositrace:Event a owl:Class ;
+    rdfs:label "Class definition for Event" ;
+    rdfs:comment "Attributes for Event"@en .

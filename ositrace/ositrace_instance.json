@@ -26,7 +26,7 @@
     "general:data": {
       "@type": "general:Data",
       "general:size": {
-        "@value": "126",
+        "@value": "126.6",
         "@type": "xsd:float"
       },
       "general:contractId": {
@@ -60,10 +60,12 @@
     "general:bundleData": {
       "@type": "general:BundleData",
       "general:requiredData": {
-        "@type": "general:Link"
-      },
-      "general:relatedData": {
-        "@type": "general:Link"
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/LICENSE.md",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
       }
     }
   },
@@ -142,11 +144,11 @@
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
-        "@value": "DE-NI",
+        "@value": "DE",
         "@type": "xsd:string"
       },
       "georeference:state": {
-        "@value": "Lower Saxony",
+        "@value": "DE-NI",
         "@type": "xsd:string"
       },
       "georeference:region": {
