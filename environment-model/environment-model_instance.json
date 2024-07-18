@@ -102,7 +102,7 @@
     "@type": "environment-model:Quality",
     "environment-model:detailLevel": "High",
     "environment-model:textureResolution": {
-      "@value": "0,1",
+      "@value": "0.1",
       "@type": "xsd:float"
     },
     "environment-model:features": {
@@ -194,11 +194,11 @@
       "georeference:origin": {
         "@type": "georeference:Coordinate2D",
         "georeference:x": {
-          "@value": "7,5",
+          "@value": "7.5",
           "@type": "xsd:float"
         },
         "georeference:y": {
-          "@value": "7,5",
+          "@value": "7.5",
           "@type": "xsd:float"
         }
       },
