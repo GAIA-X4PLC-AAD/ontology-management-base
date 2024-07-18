@@ -31,9 +31,9 @@ sen-dat:SensorDataShape
 		sh:path sen-dat:timeReferenceFrame ;
 		sh:datatype xsd:string;
 		skos:example "???" ; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one timestamp";
+		sh:message "Optional: Add a timestamp";
 		sh:name "Reference Frame" ; 
 		sh:description "Internal timestamp relative to start or absolute."@en ; 
 	] ; 
@@ -42,9 +42,9 @@ sen-dat:SensorDataShape
 		sh:path sen-dat:timeDuration ;
 		sh:datatype xsd:float;
 		skos:example "12.0" ; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one duration period";
+		sh:message "Optional: Add a duration period";
 		sh:name "Duration (in ms)" ; 
 		sh:description "Duration of sensor data trace (ms)"@en ; 
 	] ; 
@@ -53,22 +53,11 @@ sen-dat:SensorDataShape
 		sh:path sen-dat:timeStartTime ;
 		sh:datatype xsd:string; ### We need to check if ISO8601 time format is available
 		skos:example "2023-06-19T15-24-30.400491149Z" ; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one start time";
+		sh:message "Optional: Add a start time";
 		sh:name "Start time" ; 
 		sh:description "Timestamp of first frame incl. timezone (ISO 8601)"@en ; 
-	] ; 
-	sh:property
-	[
-		sh:path sen-dat:toolChain ;
-		sh:datatype xsd:string; ### We need to check if ISO8601 time format is available
-		skos:example "Captured by Tool X as rosbag" ; 
-		sh:minCount 1 ;
-		###sh:maxCount 1 ; 
-		sh:message "Add min one tool chain element";
-		sh:name "Tool Chain" ; 
-		sh:description "Listings of tools, that where used to create and modify the sensor data"@en ; 
 	] ; 
 
 
@@ -89,18 +78,6 @@ sen-dat:SensorDataShape
 		sh:message "You need to add exactly one IRI of an author." @en;
 		skos:example "prefix:AuthorIRI";		
 	];	
-	
-	### SensorData has exactly 1 SensorDataFile
-	sh:property[ 
-		sh:path sen-dat:sensorDataFile;
-		sh:node sen-dat:SensorDataFileShape;
-		sh:minCount 1;
-		sh:maxCount 1;
-		sh:name "Sensor Data File";
-		sh:description "File containing the sensordata" @en;
-		sh:message "Add a reference to one sensor data file" @en;
-		skos:example "prefix:SensorDataFileIRI";
-	];
 	
 	### SensorData has exactly 1 Localization
 	sh:property[ 
@@ -136,7 +113,247 @@ sen-dat:SensorDataShape
 		sh:description "Reference to a sensor individual that created the data" @en;
 		sh:message "Add a reference to one Sensor object" @en;
 		skos:example "prefix:SensorIRI";
-	].	### close SensorDataShape
+	];
+	### SensorData refers to min 0 Toolchain
+	sh:property[ 
+		sh:path sen-dat:usedToolchain;
+		sh:node sen-dat:ToolchainShape;
+		sh:minCount 0;
+		sh:maxCount 1;
+		sh:name "Toolchain";
+		sh:description "Used toolchain to process the sensor data" @en;
+		sh:message "Optional: Add a reference to a toolchain object" @en;
+		skos:example "prefix:ToolchainIRI";
+	];
+	### SensorData refers to min 0 Testsetup
+	sh:property[ 
+		sh:path sen-dat:sensorTestsetup;
+		sh:node sen-dat:TestsetupShape;
+		sh:minCount 0;
+		sh:maxCount 1;
+		sh:name "Testsetup";
+		sh:description "Used testsetup for sensor data capture" @en;
+		sh:message "Optional: Add a reference to a testsetup object" @en;
+		skos:example "prefix:TestsetupIRI";
+	];	
+	### SensorData refers to min 0 Content
+	sh:property[ 
+		sh:path sen-dat:sensorDataContent;
+		sh:node sen-dat:ContentShape;
+		sh:minCount 0;
+		sh:maxCount 1;
+		sh:name "Sensordata Content";
+		sh:description "Content of sensor data " @en;
+		sh:message "Optional: Add a reference to a content object" @en;
+		skos:example "prefix:ContentIRI";
+	];	
+	
+#########################################
+###
+###		SensorData Document links
+###
+#########################################
+	
+	### SensorDataFile link
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  SensorDataFile
+			sh:property[ 
+				sh:path sen-dat:sensorDataDocumentLink;
+				sh:node sen-dat:SensorDataDocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Sensor Data File";
+				sh:description "File containing the sensordata" @en;
+				sh:message "Optional: Add a reference to one sensor data file object" @en;
+				skos:example "prefix:SensorDataFileIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### SensorData has modellink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Link to Sensor Data File";
+				sh:description "link to sensordata" @en;
+				sh:message "Optional: Add a link to a sensor data file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Sensor Data Document Object";
+	
+	###gpsTraceDocumentLink
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  GPSTraceDocument
+			sh:property[ 
+				sh:path sen-dat:gpsTraceDocumentLink;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "GPS trace file";
+				sh:description "link to gps trace file" @en;
+				sh:message "Optional: Add a reference to a GPSTraceDocument object" @en;
+				skos:example "prefix:GPSTraceDocumentIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### SensorData has modellink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Link to gps trace file";
+				sh:description "link to gps trace file" @en;
+				sh:message "Optional: Add a link to a gps trace file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a GPS Trace Document Object";
+
+	###SensorTraceDocumentLink
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  SensorTraceDocument
+			sh:property[ 
+				sh:path sen-dat:sensorTraceDocumentLink;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "sensor trace file";
+				sh:description "link to sensor trace file" @en;
+				sh:message "Optional: Add a reference to a SensorTraceDocument object" @en;
+				skos:example "prefix:SensorTraceDocumentIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### SensorData has modellink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Link to sensor trace file";
+				sh:description "link to sensor trace file" @en;
+				sh:message "Optional: Add a link to a sensor trace file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Sensor Trace Document Object";	
+	
+	###sensorDataRawDocumentLink
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  SensorDataRawDocument
+			sh:property[ 
+				sh:path sen-dat:sensorDataRawDocumentLink;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "file of sensor raw data capture";
+				sh:description "link to raw data file" @en;
+				sh:message "Optional: Add a reference to a SensorRawDataDocument object" @en;
+				skos:example "prefix:SensorRawDocumentIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### SensorData has modelLink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Link to raw data file";
+				sh:description "link to raw data file" @en;
+				sh:message "Optional: Add a link to a raw data file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Sensor Raw Data Document Object";
+
+	###groundTruthDocumentLink
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  GroundTruthDocument
+			sh:property[ 
+				sh:path sen-dat:groundTruthDocumentLink;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Ground Truth Data";
+				sh:description "Link to Ground Truth Data Object" @en;
+				sh:message "Optional: Add a reference to a GroundTruthDocument object" @en;
+				skos:example "prefix:GroundTruthDocumentIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### SensorData has modelLink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Ground truth data file";
+				sh:description "link to ground truth data file" @en;
+				sh:message "Optional: Add a link to a ground truth data file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Ground Truth Document Object"
+	.	### close SensorDataShape
 	
 	
 ########################################
@@ -149,8 +366,10 @@ sen-dat:SensorDataShape
 sen-dat:AuthorShape
 	a sh:NodeShape;
 	sh:targetClass sen-dat:Author;
+	### add either email or telephone number of author
 	sh:or(
 		[
+			### telephone number of author
 			sh:property[
 				sh:path schema:telephone;
 				sh:datatype xsd:string;
@@ -163,6 +382,7 @@ sen-dat:AuthorShape
 			]
 		]
 		[
+			### email of author
 			sh:property[
 				sh:path schema:email;
 				sh:datatype xsd:string;
@@ -175,41 +395,47 @@ sen-dat:AuthorShape
 			]
 		]
 	);
-	sh:property[
-		sh:path schema:memberOf ;
-		sh:node sen-dat:OrganizationShape;
-		skos:example "Umbrella" ; 
-		sh:minCount 1 ;
-		sh:maxCount 1 ; 
-		sh:message "Add the company IRI the author was working for during creation of the dataset" @en;
-		sh:name "Author Company" ; 
-		sh:description "Company responsible for sensor data trace"@en ; 
-	];
+	###given name of author
 	sh:property[
 		sh:path schema:givenName ;
 		sh:datatype xsd:string;
 		skos:example "Peter" ; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add the first name of the author" @en;
+		sh:message "Optional: Add the first name of the author" @en;
 		sh:name "Author fist name" ; 
 		sh:description "First Name of author"@en ; 
 	];
+	###family name of author
 	sh:property[
 		sh:path schema:familyName ;
 		sh:datatype xsd:string;
 		skos:example "Peterson" ; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add the family name of the author" @en;
+		sh:message "Optional: Add the family name of the author" @en;
 		sh:name "Author family name" ; 
 		sh:description "Family Name of author"@en ; 
+	];
+	
+	###Author Object Properties
+	
+	###Author is member of organisation
+	sh:property[
+		sh:path schema:memberOf ;
+		sh:node sen-dat:OrganizationShape;
+		skos:example "Umbrella" ; 
+		sh:minCount 0 ;
+		sh:maxCount 1 ; 
+		sh:message "Optional: Add the company IRI the author was working for during creation of the dataset" @en;
+		sh:name "Author Company" ; 
+		sh:description "Company responsible for sensor data trace"@en ; 
 	].
 	
-###SensorDataFile
-sen-dat:SensorDataFileShape
+###SensorDataDocument
+sen-dat:SensorDataDocumentShape
 	a sh:NodeShape;
-	sh:targetClass sen-dat:SensorDataFile;
+	sh:targetClass sen-dat:SensorDataDocument;
 	sh:property[
 		sh:path sen-dat:fileName;
 		sh:datatype xsd:string;
@@ -224,9 +450,9 @@ sen-dat:SensorDataFileShape
 		sh:path sen-dat:fileSize;
 		sh:datatype xsd:int;
 		skos:example "700 KB"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add file size in KB.";
+		sh:message "Optional: Add file size in KB.";
 		sh:name "Sensor Data File Size (in KB)" ; 
 		sh:description "Size of file containing referenced sensordata"@en ; 
 	];
@@ -234,9 +460,9 @@ sen-dat:SensorDataFileShape
 		sh:path sen-dat:checksum; 
 		sh:datatype xsd:string;
 		skos:example "???"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one file checksum.";
+		sh:message "Optional: Add a file checksum.";
 		sh:name "Sensor Data File Checksum" ; 
 		sh:description "???"@en ; 
 	];
@@ -244,11 +470,21 @@ sen-dat:SensorDataFileShape
 		sh:path sen-dat:mimetype;
 		sh:datatype xsd:string;
 		skos:example "osi, pcapng, ..."; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one file mimetype.";
+		sh:message "Optional: Add a file mimetype.";
 		sh:name "Sensor Data File Mimetype" ; 
 		sh:description "Mimetype of sensor data file"@en ; 
+	];
+	sh:property[
+		sh:path sen-dat:modelLink;
+		sh:datatype xsd:string;
+		skos:example "https://www.hierLiegtEinDocument.org/document..."; 
+		sh:minCount 1 ;
+		sh:maxCount 1 ; 
+		sh:message "Add a link to a sensor data document.";
+		sh:name "Sensor Data Document Link" ; 
+		sh:description "link to sensor data file"@en ; 
 	].
 	
 ###Sensor
@@ -259,9 +495,9 @@ sen-dat:SensorShape
 	sh:path sen-dat:sensorType;
 		sh:datatype xsd:string;
 		skos:example "Radarsensor 77GHz"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one Sensor type.";
+		sh:message "Optional: Add a Sensor type.";
 		sh:name "Sensor Type" ; 
 		sh:description "Sensor type"@en ; 
 	];
@@ -279,9 +515,9 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorHardwareVersion;
 		sh:datatype xsd:string;
 		skos:example "ARS540 HW Rev. x.y"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one sensor hardware version.";
+		sh:message "Optional: Add a sensor hardware version.";
 		sh:name "Sensor Hardware Version" ; 
 		sh:description "Sensor Hardware Version"@en ; 
 	];
@@ -289,19 +525,19 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorFirmwareVersion;
 		sh:datatype xsd:string;
 		skos:example "05.48.06"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one firmware version.";
+		sh:message "Optional: Add a firmware version.";
 		sh:name "Sensor Firmware Version" ; 
 		sh:description "Sensor Firmware Version"@en ; 
 	];
 	sh:property[
-		sh:path schema:mpn;
+		sh:path sen-dat:manufacturerPartnumber;
 		sh:datatype xsd:string;
 		skos:example "xx-xx-xx-xx"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one partnumber.";
+		sh:message "Optional: Add a partnumber.";
 		sh:name "Sensor Manufacturer Partnumber" ; 
 		sh:description "Manufacturer Partnumber of sensor"@en ; 
 	];
@@ -309,9 +545,9 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorTechnology;
 		sh:datatype xsd:string;
 		skos:example "Radar"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one technology.";
+		sh:message "Optional: Add a sensor technology.";
 		sh:name "Sensor Technoloy" ; 
 		sh:description "Technology the sensor uses"@en ; 
 	];
@@ -319,9 +555,9 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorTechnologyVariant;
 		sh:datatype xsd:string;
 		skos:example "long-range"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one technology variant.";
+		sh:message "Optional: Add a technology variant.";
 		sh:name "Sensor Technology Variant" ; 
 		sh:description "Name sensor technology variant"@en ; 
 	];
@@ -329,9 +565,9 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorStatus;
 		sh:datatype xsd:string;
 		skos:example "Released"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one sensor status.";
+		sh:message "Optional: Add a sensor status.";
 		sh:name "Sensor Status" ; 
 		sh:description "Sensor Status"@en ; 
 	];	
@@ -339,59 +575,176 @@ sen-dat:SensorShape
 		sh:path sen-dat:sensorPurpose;
 		sh:datatype xsd:string;
 		skos:example "Long Range Radar Sensor w/ Object Detection"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
-		sh:message "Add at exactly one sensor purpose.";
+		sh:message "Optional: Add a sensor purpose.";
 		sh:name "Sensor Purpose" ; 
 		sh:description "Sensor Purpose"@en ; 
 	];
-	### Sensor has exactly 1 SensorSpecification
-	sh:property[ 
-		sh:path sen-dat:hasSpec;
-		sh:node sen-dat:SensorSpecificationShape;
-		sh:minCount 1;
-		sh:maxCount 1;
-		sh:name "Sensor Specification";
-		sh:description "Reference to a sensor specification individual for the sensor" @en;
-		sh:message "Add a reference to one Sensor Specification object" @en;
-		skos:example "prefix:SensorSpecificationIRI";
-	];
-	### Sensor has min 1 SensorConfiguration
+	###Sensor Object Properties
+	### Sensor has SensorSpecification
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  SensorSpecificationDocument
+			sh:property[ 
+				sh:path sen-dat:sensorSpecificationDocumentLink;
+				sh:node sen-dat:SensorSpecificationShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Sensor Specification";
+				sh:description "Reference to a sensor specification individual for the sensor" @en;
+				sh:message "Optional: Add a reference to one Sensor Specification object" @en;
+				skos:example "prefix:SensorSpecificationIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### Sensor has modelLink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Sensor specification file";
+				sh:description "link sensor specification file" @en;
+				sh:message "Optional: Add a link to a sensor spefication file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Sensor Specification Document Object";
+	### Sensor has SensorMetadata
+	sh:or(
+		[
+			### either document link to a Document object
+			### SensorData has  SensorMetadata
+			sh:property[ 
+				sh:path sen-dat:SensorMetadataDocument;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Sensor Metadata";
+				sh:description "Reference to a document object of the sensor metadata" @en;
+				sh:message "Optional: Add a reference to one Sensor Metadata object" @en;
+				skos:example "prefix:SensorMetadataDocumentIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### Sensor has modelLink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Sensor metadata file";
+				sh:description "link sensor metadata file" @en;
+				sh:message "Optional: Add a link to a sensor metadata file " @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to a Sensor Metadata Document Object";
+	### Sensor has SensorConfiguration
 	sh:property[ 
 		sh:path sen-dat:hasSensorConfiguration;
 		sh:node sen-dat:SensorConfigurationShape;
-		sh:minCount 1;
-		###sh:maxCount 1;
+		sh:minCount 0;
+		sh:maxCount 1;
 		sh:name "Sensor Configuration";
 		sh:description "Reference to a sensor configuration individual for the sensor" @en;
-		sh:message "Add a reference to one Sensor Configuration object" @en;
+		sh:message "Optional: Add a reference to one Sensor Configuration object" @en;
 		skos:example "prefix:SensorConfigurationIRI";
 	];
-	### Sensor has exactly 1 sensorManufacturer
+	### Sensor has sensorManufacturer
 	sh:property[ 
 		sh:path sen-dat:sensorManufacturer;
 		sh:node sen-dat:ManufacturerShape;
-		sh:minCount 1;
+		sh:minCount 0;
 		sh:maxCount 1;
 		sh:name "Sensor Manufacturer";
 		sh:description "Reference to a manufacturer individual for the sensor" @en;
-		sh:message "Add a reference to one Sensor Manufacturer object" @en;
+		sh:message "Optional: Add a reference to one Sensor Manufacturer object" @en;
 		skos:example "prefix:SensorManufacturerIRI";
-	].
+	];
+	### Sensor has Sensor family
+	sh:property[ 
+		sh:path sen-dat:SensorFamily;
+		sh:node sen-dat:SensorFamilyShape;
+		sh:minCount 0;
+		sh:maxCount 1;
+		sh:name "Sensor Family";
+		sh:description "Reference to a family class for the sensor" @en;
+		sh:message "Optional: Add a reference to a Sensor family object" @en;
+		skos:example "prefix:SensorFamilyIRI";
+	];
+	sh:property[ 
+		sh:path sen-dat:producesSensorData;
+		sh:node sen-dat:SensorDataShape;
+		sh:minCount 0;
+		###sh:maxCount 1;
+		sh:name "Sensor Data";
+		sh:description "Reference to a sensor data class for the sensor" @en;
+		sh:message "Optional: Add a reference to a Sensor Data object" @en;
+		skos:example "prefix:SensorDataIRI";
+	]
+	###sh:property[ 
+	###	sh:path sen-dat:sensorMetadataDocumentLink;
+	###	sh:node sen-dat:SensorMetadataDocumentShape;
+	###	sh:minCount 0;
+	###	sh:maxCount 1;
+	###	sh:name "Sensor Metadata";
+	###	sh:description "Reference to a metadata document class for the sensor" @en;
+	###	sh:message "Optional: Add a reference to a Sensor metadata document object" @en;
+	###	skos:example "prefix:SensorMetadataDocumentIRI";
+	###];
+	.
 	
-###Sensor Specification
-sen-dat:SensorSpecificationShape
+###Sensor Specification Document
+sen-dat:SensorSpecificationDocumentShape
 	a sh:NodeShape;
-	sh:targetClass sen-dat:SensorSpecification;
+	sh:targetClass sen-dat:SensorSpecificationDocument;
 	sh:property[
 		sh:path sen-dat:doumentLink;
-		sh:datatype xsd:anyURI;
+		sh:or(
+			[
+				sh:datatype xsd:anyURI;
+			]
+			[
+				sh:datatype xsd:string;
+			]
+		);
 		skos:example "https://www.linkToSomething.org/"; 
 		sh:minCount 1 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one Link to specification document.";
 		sh:name "Sensor Specification Link" ; 
 		sh:description "Add link to sensor specification document"@en ; 
+	];
+	sh:property[
+		sh:path sen-dat:fileName;
+		sh:datatype xsd:string;		
+		skos:example "ARS548 Sensor Spec"; 
+		sh:minCount 1 ;
+		sh:maxCount 1 ; 
+		sh:message "Add the name of specification document.";
+		sh:name "Sensor Specification Document Name" ; 
+		sh:description "Add name to sensor specification document"@en ; 
 	].
 	
 ###Sensor Configuration
@@ -402,7 +755,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationFrequency;
 		sh:datatype xsd:string;
 		skos:example "76.23 GHz"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one Frequency.";
 		sh:name "Configuration Frequency" ; 
@@ -412,7 +765,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationCycletime;
 		sh:datatype xsd:string;
 		skos:example "50 ms"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add the cycle time in ms.";
 		sh:name "Configuration cycle time" ; 
@@ -422,7 +775,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationCycleOffset;
 		sh:datatype xsd:string;
 		skos:example "25 ms"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add the configuration cycle offset.";
 		sh:name "Configuration cycle offset" ; 
@@ -432,7 +785,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:countrycode;
 		sh:datatype xsd:string;
 		skos:example "Worldwide"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one countrycode.";
 		sh:name "Configuration^countrycode" ; 
@@ -442,7 +795,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:sensorPositionNative;
 		sh:datatype xsd:string;
 		skos:example "e.g. ARS548 lateral position, longitudinal position, vertical position, yaw, pitch, plug orientatio"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add the native sensor position.";
 		sh:name "Native sensor position" ; 
@@ -451,8 +804,8 @@ sen-dat:SensorConfigurationShape
 	sh:property[
 		sh:path sen-dat:sensorPositionOSI;
 		sh:datatype xsd:string;
-		skos:example "76.23 GHz"; 
-		sh:minCount 1 ;
+		skos:example "???"; 
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one sensor position (OSI).";
 		sh:name "Sensor Position OSI " ; 
@@ -462,7 +815,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationWheelbase;
 		sh:datatype xsd:string;
 		skos:example "???"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add one wheelbase.";
 		sh:name "Configuration wheelbase" ; 
@@ -472,7 +825,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationIP;
 		sh:datatype xsd:string;
 		skos:example "xxx.xxx.xxx.xxx"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add IP address of sensor.";
 		sh:name "Sensor IP address" ; 
@@ -482,7 +835,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:configurationGeneric;
 		sh:datatype xsd:string;
 		skos:example "further configurations"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		###sh:maxCount 1 ; 
 		sh:message "Add further descriptions for configuration.";
 		sh:name "Configuration Generic" ; 
@@ -492,7 +845,7 @@ sen-dat:SensorConfigurationShape
 		sh:path sen-dat:timeSynchronization;
 		sh:datatype xsd:string;
 		skos:example "PTP Synchronization with device X"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add time synchronization.";
 		sh:name "Configuration Time Synchronization" ; 
@@ -542,7 +895,7 @@ sen-dat:SRMD_LocalizationShape
 		sh:path sen-dat:geodeticReferenceSystem;
 		sh:datatype xsd:string;
 		skos:example "WGS 84 / UTM zone 32N (s. https://epsg.io/32632); or WGS84 1984 (s. https://epsg.io/4326)"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one geodetic reference system.";
 		sh:name "Geodetic Reference System" ; 
@@ -552,7 +905,7 @@ sen-dat:SRMD_LocalizationShape
 		sh:path sen-dat:startCoordinates;
 		sh:datatype xsd:string; ###???--> Check range format
 		skos:example "???"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one set of start coordinates.";
 		sh:name "Start Coordinates" ; 
@@ -562,7 +915,7 @@ sen-dat:SRMD_LocalizationShape
 		sh:path sen-dat:endCoordinates;
 		sh:datatype xsd:string; ###???--> Check range format
 		skos:example "???"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one set of end coordinates.";
 		sh:name "End Coordinates" ; 
@@ -572,7 +925,7 @@ sen-dat:SRMD_LocalizationShape
 		sh:path sen-dat:gpsOffset;
 		sh:datatype xsd:string; ###???--> Check range format
 		skos:example "???"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one GPS Offset.";
 		sh:name "GPS Offset" ; 
@@ -587,7 +940,7 @@ sen-dat:SRMD_EnvironmentShape
 		sh:path sen-dat:environmentArea;
 		sh:datatype xsd:string;
 		skos:example "urban|country side|proving ground (road regulations/no road regulations)"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one Area.";
 		sh:name "Environment Area" ; 
@@ -597,17 +950,17 @@ sen-dat:SRMD_EnvironmentShape
 		sh:path sen-dat:roadType;
 		sh:datatype xsd:string;
 		skos:example "freeway|highway|urban road|rural road|..."; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one road type.";
 		sh:name "Road Type" ; 
 		sh:description "Road Type"@en ; 
 	];
 	sh:property[
-		sh:path sen-dat:roadTypeCondition;
+		sh:path sen-dat:roadCondition;
 		sh:datatype xsd:string;
 		skos:example "wet | dry | ice | snow"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one road type condition.";
 		sh:name "Road Type Condition" ; 
@@ -617,7 +970,7 @@ sen-dat:SRMD_EnvironmentShape
 		sh:path sen-dat:weatherTemperature;
 		sh:datatype xsd:string;
 		skos:example "20 °C"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one temperature with units.";
 		sh:name "Weather Temperature" ; 
@@ -627,21 +980,104 @@ sen-dat:SRMD_EnvironmentShape
 		sh:path sen-dat:weatherPrecipation;
 		sh:datatype xsd:string;
 		skos:example "mm/m^2 or classification"; 
-		sh:minCount 1 ;
+		sh:minCount 0 ;
 		sh:maxCount 1 ; 
 		sh:message "Add exactly one weather precipation.";
 		sh:name "Weather Precipation" ; 
 		sh:description "Specification of precipitation conditions during data capture"@en ; 
 	];
-	sh:property[ ###should be an object property to a ModelDocument Class
-		sh:path sen-dat:modelLink;
-		sh:datatype xsd:anyURI;
-		skos:example "e.g. Link to OpenDrive map"; 
+	### Environment has Environment model
+	sh:or(
+		[
+			### either document link to a Document object
+			### Envionment has  Envionment model
+			sh:property[ 
+				sh:path sen-dat:environmentModel;
+				sh:node sen-dat:DocumentShape;
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Environment Model";
+				sh:description "Reference to an environment model of the environment description" @en;
+				sh:message "Optional: Add a reference to one Environment Model object" @en;
+				skos:example "prefix:EnvironmentModelIRI";
+			]
+		]
+		[
+			### or fill attribute modelLink with link to document
+			### Environment has modelLink
+			sh:property[ 
+				sh:path sen-dat:modelLink;
+				sh:or(
+					[
+						sh:datatype xsd:string;
+					]
+					[
+						sh:datatype xsd:anyURI;
+					]
+				);
+				sh:minCount 0;
+				sh:maxCount 1;
+				sh:name "Environment model ";
+				sh:description "link to environment model" @en;
+				sh:message "Optional: Add a link to an environment model" @en;
+				skos:example "https://www.linkToElsewhere.org";
+			]
+		]	
+	);
+	sh:message "Optional: Add either modelLink attribute or refer to an Environment Model Object" 
+	].
+
+###  Generic  Document Shape
+sen-dat:DocumentShape
+	a sh:NodeShape;
+	sh:closed false;
+	sh:targetClass sen-dat:Document;
+	sh:property[
+		sh:path sen-dat:fileName;
+		sh:datatype xsd:string;
+		skos:example "Document Name"; 
 		sh:minCount 1 ;
 		sh:maxCount 1 ; 
-		sh:message "Add exactly one link to environment model.";
-		sh:name "Model Link" ; 
-		sh:description "Link to environment model"@en ; 
+		sh:message "Add exactly one document name.";
+		sh:name "Document Name" ; 
+		sh:description "name of referenced document"@en ; 
+	];
+	sh:property[
+		sh:path sen-dat:checksum;
+		sh:datatype xsd:string;
+		skos:example ""; 
+		sh:minCount 0 ;
+		sh:maxCount 1 ; 
+		sh:message "Optional: Add a checksum.";
+		sh:name "Checksum" ; 
+		sh:description "checksum of document"@en ; 
+	];
+	sh:property[
+		sh:path sen-dat:fileSize;
+		sh:datatype xsd:string;
+		skos:example "700 KB"; 
+		sh:minCount 0 ;
+		sh:maxCount 1 ; 
+		sh:message "Optional: Add file size.";
+		sh:name "File Size" ; 
+		sh:description "Size of referenced document"@en ; 
+	];
+	sh:property[
+		sh:path sen-dat:modelLink;
+		sh:or(
+			[
+				sh:datatype xsd:string;
+			]
+			[
+				sh:datatype xsd:anyURI;
+			]
+		);
+		skos:example "www.documentlink.org"; 
+		sh:minCount 1 ;
+		sh:maxCount 1 ; 
+		sh:message "Add a link to the document.";
+		sh:name "Document Link" ; 
+		sh:description "link referring to an online document"@en ; 
 	].
 	
 ###############################################################
@@ -683,18 +1119,3 @@ plcaad-tbd:EnvironmentShape
 		sh:description "Add a dummy string. This Shape checks if we can use it for general properties"@en ; 
 	].
 	
-###  Generic GAX Document Shape
-gax-tbd:DocumentShape
-	a sh:NodeShape;
-	sh:closed false;
-	sh:targetClass gax-tbd:Document;
-	sh:property[
-		sh:path plcaad-tbd:tag;
-		sh:datatype xsd:string;
-		skos:example "something"; 
-		sh:minCount 1 ;
-		sh:maxCount 1 ; 
-		sh:message "Add exactly one tag.";
-		sh:name "PLCAAD-Tag" ; 
-		sh:description "Add a dummy string. This Shape checks if we can use it for general properties"@en ; 
-	].
