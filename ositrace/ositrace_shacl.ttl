@@ -1,0 +1,286 @@
+@prefix ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ositrace:OSITraceShape a sh:NodeShape ;
+    sh:property 
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:GeneralShape ;
+            sh:order 1 ;
+            sh:path ositrace:general ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node ositrace:FormatShape ;
+            sh:order 2 ;
+            sh:path ositrace:format ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node ositrace:ContentShape ;
+            sh:order 3 ;
+            sh:path ositrace:content ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node ositrace:QualityShape ;
+            sh:order 4 ;
+            sh:path ositrace:quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node ositrace:QuantityShape ;
+            sh:order 5 ;
+            sh:path ositrace:quantity ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node ositrace:DataSourceShape ;
+            sh:order 6 ;
+            sh:path ositrace:dataSource ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node georeference:GeoreferenceShape ;
+            sh:order 7 ;
+            sh:path ositrace:georeference ] ;
+    sh:targetClass ositrace:OSITrace .
+
+ositrace:ContentShape a sh:NodeShape ;
+    sh:property [ skos:example "[motorway, residential]" ;
+            sh:datatype xsd:string ;
+            sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
+            sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
+            sh:message "Validation of roadTypes failed!"@en ;
+            sh:name "roadTypes"@en ;
+            sh:order 0 ;
+            sh:path ositrace:roadTypes ],
+        [ skos:example "shoulder, curb, ..." ;
+            sh:datatype xsd:string ;
+            sh:description "Covered lane types, see ODR spec section 9.5.3."@en ;
+            sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
+            sh:message "Validation of laneTypes failed!"@en ;
+            sh:name "laneTypes"@en ;
+            sh:order 1 ;
+            sh:path ositrace:laneTypes ],
+        [ skos:example "trees, street lamps, road patches..." ;
+            sh:datatype xsd:string ;
+            sh:description "Covered object classes, see ODR spec section 11"@en ;
+            sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
+            sh:message "Validation of levelOfDetail failed!"@en ;
+            sh:name "levelOfDetail"@en ;
+            sh:order 2 ;
+            sh:path ositrace:levelOfDetail ], 
+        [ skos:example "right-hand traffic" ;
+            sh:datatype xsd:string ;
+            sh:description "Traffic direction, i.e. right-hand or left-hand traffic"@en ;
+            sh:in ("left-hand" "right-hand") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of trafficDirection failed!"@en ;
+            sh:name "trafficDirection"@en ;
+            sh:order 3 ;
+            sh:path ositrace:trafficDirection ],
+        [ skos:example "object list, detection list" ;
+            sh:datatype xsd:string ;
+            sh:description "Level of granularity of sensor data"@en ;
+            sh:in ("object list" "detection list") ;
+            sh:message "Validation of granularity failed!"@en ;
+            sh:minCount 1 ;
+            sh:name "granularity"@en ;
+            sh:order 4 ;
+            sh:path ositrace:granularity ],
+        [ skos:example "119" ;
+            sh:datatype xsd:string ;
+            sh:description "Identifier of scenario performed in the trace file"@en ;
+            sh:message "Validation of scenarioIdentifier failed!"@en ;
+            sh:name "scenarioIdentifier"@en ;
+            sh:order 5 ;
+            sh:path ositrace:scenarioIdentifier ],
+        [ skos:example "2024-05-11T13:20:03.250320Z" ;
+            sh:datatype xsd:dateTimeStamp ;
+            sh:description "Exact start timestamp of the recorded trace"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of startTime failed!"@en ;
+            sh:minCount 1 ;
+            sh:name "startTime"@en ;
+            sh:order 6 ;
+            sh:path ositrace:startTime ],
+        [ skos:example "2024-05-11T13:20:05.250120Z" ;
+            sh:datatype xsd:dateTimeStamp ;
+            sh:description "Exact stop timestamp of the recorded trace"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of stopTime failed!"@en ;
+            sh:minCount 1 ;
+            sh:name "stopTime"@en ;
+            sh:order 7 ;
+            sh:path ositrace:stopTime ],
+        [ sh:description "Host moving object in trace file"@en ;
+            sh:maxCount 1 ;
+            sh:name "hostMovingObject"@en ;
+            sh:node ositrace:MovingObjectShape ;
+            sh:order 8 ;
+            sh:path ositrace:hostMovingObject ],
+        [ sh:description "Target moving object in trace file"@en ;
+            sh:name "targetMovingObject"@en ;
+            sh:node ositrace:MovingObjectShape ;
+            sh:order 9 ;
+            sh:path ositrace:targetMovingObject ],
+        [ sh:description "Description of event of interest in trace file"@en ;
+            sh:name "event"@en ;
+            sh:node ositrace:EventShape ;
+            sh:order 10 ;
+            sh:path ositrace:event ] ;
+    sh:targetClass ositrace:Content .
+
+ositrace:DataSourceShape a sh:NodeShape ;
+    sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
+            sh:datatype xsd:string ;
+            sh:description "Main acquisition device"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of measurementSystem failed!"@en ;
+            sh:name "measurementSystem"@en ;
+            sh:order 1 ;
+            sh:path ositrace:measurementSystem ],
+        [ skos:example "scanner, camera, osm network, aerial images, ..." ;
+            sh:datatype xsd:string ;
+            sh:description "Basic data for the creation of the trace "@en ;
+            sh:message "Validation of usedDataSources failed!"@en ;
+            sh:name "usedDataSources"@en ;
+            sh:order 0 ;
+            sh:path ositrace:usedDataSources ] ;
+    sh:targetClass ositrace:DataSource .
+
+ositrace:FormatShape a sh:NodeShape ;
+    sh:property [ skos:example "3.7.0" ;
+            sh:datatype xsd:string ;
+            sh:description "Version of data format"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path ositrace:version ],
+        [ skos:example "ASAM OSI GroundTruth; ASAM OSI SensorView; ASAM OSI SensorData" ;
+            sh:datatype xsd:string ;
+            sh:description "Format type definition"@en ;
+            sh:in ("ASAM OSI GroundTruth" "ASAM OSI SensorView" "ASAM OSI SensorData") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 0 ;
+            sh:path ositrace:type ] ;
+    sh:targetClass ositrace:Format .
+
+ositrace:QualityShape a sh:NodeShape ;
+    sh:property [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracySignals failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracySignals"@en ;
+            sh:order 3 ;
+            sh:path ositrace:accuracySignals ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of objects in the traffic space, which do not directly affect the traffic"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyObjects failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyObjects"@en ;
+            sh:order 4 ;
+            sh:path ositrace:accuracyObjects ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy lane modell height"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyLaneModelHeight failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyLaneModelHeight"@en ;
+            sh:order 2 ;
+            sh:path ositrace:accuracyLaneModelHeight ],
+        [ skos:example "0.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Precision of measured road network (relative accuracy)"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of precision failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "precision"@en ;
+            sh:order 0 ;
+            sh:path ositrace:precision ],
+        [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of lane modell 2d"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyLaneModel2d failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracyLaneModel2d"@en ;
+            sh:order 1 ;
+            sh:path ositrace:accuracyLaneModel2d ],
+        [ skos:example "Calibration performed at origin" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of any calibration steps performed prior to measurement"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of calibration failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "calibration"@en ;
+            sh:order 5 ;
+            sh:path ositrace:calibration ] ;
+    sh:targetClass ositrace:Quality .
+
+ositrace:QuantityShape a sh:NodeShape ;
+    sh:property [ skos:example "1000" ;
+            sh:datatype xsd:unsignedInt ;
+            sh:description "Number of frames/messages in the trace file"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberFrames failed!"@en ;
+            sh:name "numberFrames"@en ;
+            sh:order 2 ;
+            sh:path ositrace:numberFrames ] ;
+    sh:targetClass ositrace:Quantity .
+
+ositrace:MovingObjectShape a sh:NodeShape ;
+    sh:property [ skos:example "42" ;
+            sh:datatype xsd:unsignedLong ;
+            sh:description "Moving object identifier in trace file"@en ;
+            sh:mincount 1 ;
+            sh:maxcount 1 ;
+            sh:message "Validation of identifier failed!"@en ;
+            sh:name "identifier"@en ;
+            sh:order 1 ;
+            sh:path ositrace:identifier ],
+        [ skos:example "PMSF Mercedes CLS Ego Vehicle" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of moving object in the trace file"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 2 ;
+            sh:path ositrace:description ] ;
+    sh:targetClass ositrace:MovingObject .
+
+ositrace:EventShape a sh:NodeShape ;
+    sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
+            sh:datatype xsd:dateTimeStamp ;
+            sh:description "Exact timestamp of the event in the recorded trace"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of time failed!"@en ;
+            sh:minCount 1 ;
+            sh:name "time"@en ;
+            sh:order 1 ;
+            sh:path ositrace:time ],
+        [ skos:example "42" ;
+            sh:datatype xsd:string ;
+            sh:description "Unique tag of the event in trace file"@en ;
+            sh:mincount 1 ;
+            sh:maxcount 1 ;
+            sh:message "Validation of tag failed!"@en ;
+            sh:name "tag"@en ;
+            sh:order 2 ;
+            sh:path ositrace:tag ],
+        [ skos:example "Beginning of cut-in manoever" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of event in the trace file"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 3 ;
+            sh:path ositrace:description ] ;
+    sh:targetClass ositrace:Event .

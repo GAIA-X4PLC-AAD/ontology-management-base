@@ -1,0 +1,16 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+ositrace: a owl:Ontology ;
+    rdfs:label "ontology definition for OSI Trace Files"@en ;
+    dcterms:contributor "Pierre R. Mai (PMSF)" ;
+    owl:versionInfo "0.1" .
+
+ositrace:OSITrace a owl:Class ;
+    rdfs:label "class definition for OSI Trace Files" ;
+    rdfs:comment "Attributes for OSI Trace Files"@en ;
+    rdfs:subClassOf gx:DataResource .
