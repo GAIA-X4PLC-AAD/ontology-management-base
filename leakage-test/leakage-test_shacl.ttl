@@ -1,11 +1,16 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 leakage-test:LeakageTestShape
     a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node general:GeneralShape ;
+        sh:path leakage-test:general ],
+	[ sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:node leakage-test:MachineParameterShape ;
         sh:path leakage-test:MachineParameter ] ,
