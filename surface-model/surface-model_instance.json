@@ -85,6 +85,10 @@
       "@type": "xsd:string"
     }
   },
+  "surface-model:Data": {
+    "@type": "surface-model:Data",
+    "surface-model:type": "Height"
+  },
   "surface-model:Quality": {
     "@type": "surface-model:Quality",
     "surface-model:resolutionLongitudinal": {
@@ -96,7 +100,7 @@
       "@type": "xsd:float"
     },
     "surface-model:orientation": {
-      "@value": "-3,14159",
+      "@value": "-3.14159",
       "@type": "xsd:float"
     },
     "surface-model:platformExists": true,
@@ -105,11 +109,11 @@
   "surface-model:Quantity": {
     "@type": "surface-model:Quantity",
     "surface-model:length": {
-      "@value": "1,46",
+      "@value": "1.46",
       "@type": "xsd:float"
     },
     "surface-model:elevationRange": {
-      "@value": "25,00",
+      "@value": "25.00",
       "@type": "xsd:float"
     },
     "surface-model:mapDataField": true
