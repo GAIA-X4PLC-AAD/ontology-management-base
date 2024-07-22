@@ -38,9 +38,9 @@ survey:SurveyResultDataOfferingShape
 		sh:name "Survey service offering" ;
 		sh:description "Accompanied survey service offering." ;
 	] ;
-	sh:property [ 
-		sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:node general:GeneralShape ;
-        sh:path survey:general ;
+	sh:property [
+		sh:maxCount 1 ;	
+		sh:minCount 1 ;	
+		sh:node general:GeneralShape ;	
+		sh:path survey:general ;
 	] .
