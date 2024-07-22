@@ -16,3 +16,31 @@ leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for Leakage Test"@en ;
 	rdfs:comment "Describes a Leakage Test."@en ;
 	rdfs:subClassOf gx:ServiceOffering .
+
+leakage-test:MachineParameter a owl:Class ;
+	rdfs:label "Class definition for Machine Parameter"@en ;
+	rdfs:comment "Attributes for Machine Parameter"@en .
+
+leakage-test:ProcessParameter a owl:Class ;
+	rdfs:label "Class definition for Process Parameter"@en ;
+	rdfs:comment "Attributes for Process Parameter"@en .
+
+leakage-test:CodingDownholder a owl:Class ;
+	rdfs:label "Class definition for Coding Downholder"@en ;
+	rdfs:comment "Attributes for Coding Downholder"@en .
+
+leakage-test:CodingTestAdapter a owl:Class ;
+	rdfs:label "Class definition for Coding Test Adapter"@en ;
+	rdfs:comment "Attributes for Coding Test Adapter"@en .
+
+leakage-test:CodingRFID a owl:Class ;
+	rdfs:label "Class definition for Coding RFID"@en ;
+	rdfs:comment "Attributes for Coding RFID"@en .
+
+leakage-test:MaximumPressure a owl:Class ;
+	rdfs:label "Class definition for Maximum Pressure"@en ;
+	rdfs:comment "Attributes for Maximum Pressure"@en .
+
+leakage-test:MinimumPressure a owl:Class ;
+	rdfs:label "Class definition for Minimum Pressure"@en ;
+	rdfs:comment "Attributes for Minimum Pressure"@en .
