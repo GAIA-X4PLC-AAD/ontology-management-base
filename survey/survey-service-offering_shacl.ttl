@@ -37,9 +37,9 @@ survey:SurveyServiceOfferingShape
 		sh:name "Survey end time" ;
 		sh:description "When the survey will end automatically" ;
 	] ;
-	sh:property [ 
-		sh:maxCount 1 ;
-		sh:minCount 1 ;
-		sh:node general:GeneralShape ;
-		sh:path survey:general
+	sh:property [
+		sh:maxCount 1 ;	
+		sh:minCount 1 ;	
+		sh:node general:GeneralShape ;	
+		sh:path survey:general ;
 	] .
