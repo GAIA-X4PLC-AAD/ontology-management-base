@@ -89,6 +89,7 @@ leakage-test:MaximumPressureShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
+	sh:in ("bar") ;
 	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of unit failed!"@en ;
@@ -121,6 +122,7 @@ leakage-test:MinimumPressureShape
     a sh:NodeShape ;
     sh:property [ skos:example "bar" ;
         sh:datatype xsd:string ;
+	sh:in ("bar") ;
 	sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Validation of unit failed!"@en ;
