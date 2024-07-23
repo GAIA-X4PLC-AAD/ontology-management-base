@@ -19,9 +19,9 @@
 | BoundingBoxShape | georeference | xMax |  | 1 |  | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
 | Coordinate2DShape | georeference | x |  | 1 |  | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
 | Coordinate2DShape | georeference | y |  | 1 |  | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | state |  | 1 | State Country code as ISO 3166-2 of project area | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | state |  | 1 | Code of federal state or province as ISO 3166-2 | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | ProjectLocationShape | georeference | city |  | 1 | Main city of project area | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | ProjectLocationShape | georeference | region |  | 1 | Region of project area | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | country |  | 1 | Country code as ISO 3166-1, alpha-2;  | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | country |  | 1 | Country code as ISO 3166-1, alpha-2 | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | ProjectLocationShape | georeference | boundingBox | 1 | 1 | Bounding box with lat/lon values in WGS84 |  | georeference_shacl.ttl |
 | ProjectLocationShape | georeference | relationOrArea |  | 1 | Description of the mapped area as relation for a certain road, or alternatively a region | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
