@@ -14,7 +14,7 @@ georeference:GeoreferenceShape a sh:NodeShape ;
             sh:node georeference:GeodeticReferenceSystemShape ;
             sh:order 1 ;
             sh:path georeference:geodeticReferenceSystem ] ;
-    sh:targetClass georeference:GeoreferenceShape .
+    sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
@@ -89,9 +89,9 @@ georeference:Coordinate2DShape a sh:NodeShape ;
     sh:targetClass georeference:Coordinate2D .
     
 georeference:ProjectLocationShape a sh:NodeShape ;
-    sh:property [ skos:example "Bavaria" ;
+    sh:property [ skos:example "DE-BY" ;
             sh:datatype xsd:string ;
-            sh:description "State Country code as ISO 3166-2 of project area"@en ;
+            sh:description "Code of federal state or province as ISO 3166-2"@en ;
             sh:message "Validation of state failed!"@en ;
             sh:maxCount 1 ;
             sh:name "state"@en ;
@@ -114,9 +114,9 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:name "region"@en ;
             sh:order 2 ;
             sh:path georeference:region ],
-        [ skos:example "Germany, GER" ;
+        [ skos:example "DE" ;
             sh:datatype xsd:string ;
-            sh:description "Country code as ISO 3166-1, alpha-2; "@en ;
+            sh:description "Country code as ISO 3166-1, alpha-2"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of country failed!"@en ;
             sh:name "country"@en ;

@@ -199,11 +199,11 @@
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
-        "@value": "DE-BY",
+        "@value": "DE",
         "@type": "xsd:string"
       },
       "georeference:state": {
-        "@value": "Bavaria",
+        "@value": "DE-BY",
         "@type": "xsd:string"
       },
       "georeference:region": {
