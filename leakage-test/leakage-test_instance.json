@@ -1,6 +1,6 @@
 {
-	"@context": {
-		"xsd": "http://www.w3.org/2001/XMLSchema#",
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
 		"skos": "http://www.w3.org/2004/02/skos/core#",
 		"openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
 		"sh": "http://www.w3.org/ns/shacl#",
@@ -68,6 +68,65 @@
 					"@value": 16,
 					"@type": "xsd:integer"
 				}
+			}
+		}
+	},
+  "leakage:general": {
+		"@type": "general:General",
+		"general:description": {
+			"@type": "general:Description",
+			"gx:name": {
+				"@value": "Leakage Test",
+				"@type": "xsd:string"
+			},
+			"gx:description": {
+				"@value": "Leakage Test",
+				"@type": "xsd:string"
+			}
+		},
+		"general:data": {
+			"@type": "general:Data",
+			"general:size": {
+				"@value": "1.0",
+				"@type": "xsd:float"
+			},
+			"general:contractId": {
+				"@value": "12345",
+				"@type": "xsd:string"
+			},
+			"general:recordingTime": {
+				"@value": "2024-08-04T09:00:00",
+				"@type": "xsd:dateTime"
+			}
+		},
+		"general:links": {
+			"@type": "general:Links",
+			"general:data": {
+				"@type": "general:Link",
+				"general:url": {
+					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+					"@type": "xsd:anyURI"
+				},
+				"general:type": "Document"
+			},
+			"general:media": {
+				"@type": "general:Link",
+				"general:url": {
+					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+					"@type": "xsd:anyURI"
+				},
+				"general:type": "Document"
+			}
+		},
+		"general:bundleData": {
+			"@type": "general:BundleData",
+			"general:requiredData": {
+				"@type": "general:Link",
+				"general:url": {
+					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+					"@type": "xsd:anyURI"
+				},
+        "general:type": "Document"
 			}
 		}
 	}
