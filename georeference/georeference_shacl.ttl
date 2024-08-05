@@ -14,7 +14,7 @@ georeference:GeoreferenceShape a sh:NodeShape ;
             sh:node georeference:GeodeticReferenceSystemShape ;
             sh:order 1 ;
             sh:path georeference:geodeticReferenceSystem ] ;
-    sh:targetClass georeference:GeoreferenceShape .
+    sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
