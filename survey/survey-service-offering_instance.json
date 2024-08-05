@@ -6,10 +6,10 @@
           "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
           "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
         },
-       "@id":"did:example:survey_service_offering_0xy5vhw3heyjqb4d347hc9zrkw",
+       "@id":"did:example:0xy5vhw3heyjqb4d347hc9zrkw",
        "@type":"survey:SurveyServiceOffering",
        "survey:surveyUrl":{
-          "@value":"undefined?session=0xy5vhw3heyjqb4d347hc9zrkw",
+          "@value":"https://web-mpc.gxfs.gx4fm.org/?session=0xy5vhw3heyjqb4d347hc9zrkw",
           "@type":"xsd:string"
        },
        "survey:surveyCreationTime":{
@@ -21,11 +21,11 @@
           "@type":"xsd:dateTime"
        },
        "gx:description":{
-          "@value":"asdwescxvf",
+          "@value":"End to end supply chain survey on important leading and lagging indicators for semiconductor supply chains such as demand & sales development and inventory metrics to forecast market development",
           "@type":"xsd:string"
        },
        "gx:name":{
-          "@value":"asdfdfdfeacxx",
+          "@value":"Semiconductor True Demand Survey",
           "@type":"xsd:string"
        },
        "survey:general":{
@@ -34,11 +34,11 @@
          "general:description": {
            "@type": "general:Description",
            "gx:name": {
-             "@value": "3D Model in Grafing",
+             "@value": "Semiconductor True Demand Survey",
              "@type": "xsd:string"
            },
            "gx:description": {
-             "@value": "town district, with traffic signs",
+             "@value": "End to end supply chain survey on important leading and lagging indicators for semiconductor supply chains such as demand & sales development and inventory metrics to forecast market development",
              "@type": "xsd:string"
            }
          },
@@ -51,10 +51,6 @@
            "general:contractId": {
              "@value": "contract_zcdkr7kqd47y0w5b4tg91w1etw",
              "@type": "xsd:string"
-           },
-           "general:recordingTime": {
-             "@value": "2024-04-01T00:00:00",
-             "@type": "xsd:dateTime"
            }
          },
          "general:links": {
@@ -66,39 +62,12 @@
                "@type": "xsd:anyURI"
              },
              "general:type": "Video"
-           },
-           "general:media": {
-             "@type": "general:Link",
-             "general:url": {
-               "@value": "https://example.com/model.png",
-               "@type": "xsd:anyURI"
-             },
-             "general:type": "Model"
-           }
-         },
-         "general:bundleData": {
-           "@type": "general:BundleData",
-           "general:requiredData": {
-             "@type": "general:Link",
-             "general:url": {
-               "@value": "https://example.com/requiredData",
-               "@type": "xsd:anyURI"
-             },
-             "general:type": "3DPreview"
-           },
-           "general:relatedData": {
-             "@type": "general:Link",
-             "general:url": {
-               "@value": "https://example.com/relatedData.mpg",
-               "@type": "xsd:anyURI"
-             },
-             "general:type": "Video"
            }
          },
          "general:media": {
            "@type": "general:Link",
            "general:url": {
-             "@value": "https://example.com/model.png",
+             "@value": "https://edcdb-pr.gxfs.gx4fm.org/",
              "@type": "xsd:anyURI"
            },
            "general:type": "Model"
