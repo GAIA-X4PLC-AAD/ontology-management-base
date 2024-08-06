@@ -232,7 +232,7 @@ ositrace:QuantityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of numberFrames failed!"@en ;
             sh:name "numberFrames"@en ;
-            sh:order 2 ;
+            sh:order 0 ;
             sh:path ositrace:numberFrames ] ;
     sh:targetClass ositrace:Quantity .
 
