@@ -1,133 +1,133 @@
 {
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-		"skos": "http://www.w3.org/2004/02/skos/core#",
-		"openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
-		"sh": "http://www.w3.org/ns/shacl#",
-		"leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/"
-	},
-	"@id": "did:web:registry.gaia-x.eu:leakage-testLeakageTest:6uWoxbNbeJhCeGTqe1nM797qFnuamfhPhfgS",
-	"@type": "leakage-test:LeakageTest",
-	"leakage-test:MachineParameter": {
-		"leakage-test:MaximumPressure": {
-			"@type": "leakage-test:MaximumPressure",
-			"leakage-test:unit": {
-				"@value": "bar",
-				"@type": "xsd:string"
-			},
-			"leakage-test:upperTolerance": {
-				"@value": 0,
-				"@type": "xsd:decimal"
-			},
-			"leakage-test:setpoint": {
-				"@value": 2.7,
-				"@type": "xsd:decimal"
-			},
-			"leakage-test:lowerTolerance": {
-				"@value": 0,
-				"@type": "xsd:decimal"
-			}
-		},
-		"leakage-test:MinimumPressure": {
-			"@type": "leakage-test:MinimumPressure",
-			"leakage-test:unit": {
-				"@value": "bar",
-				"@type": "xsd:string"
-			},
-			"leakage-test:upperTolerance": {
-				"@value": 0,
-				"@type": "xsd:decimal"
-			},
-			"leakage-test:setpoint": {
-				"@value": 0.2,
-				"@type": "xsd:decimal"
-			},
-			"leakage-test:lowerTolerance": {
-				"@value": 0,
-				"@type": "xsd:decimal"
-			}
-		},
-		"leakage-test:ProcessParameter": {
-			"leakage-test:CodingDownholder": {
-				"@type": "leakage-test:CodingDownholder",
-				"leakage-test:setpoint": {
-					"@value": 1,
-					"@type": "xsd:integer"
-				}
-			},
-			"leakage-test:CodingTestAdapterShape": {
-				"@type": "leakage-test:CodingTestAdapterShape",
-				"leakage-test:setpoint": {
-					"@value": 1,
-					"@type": "xsd:integer"
-				}
-			},
-			"leakage-test:CodingRFID": {
-				"@type": "leakage-test:CodingRFID",
-				"leakage-test:setpoint": {
-					"@value": 16,
-					"@type": "xsd:integer"
-				}
-			}
-		}
-	},
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:leakage-testLeakageTest:6uWoxbNbeJhCeGTqe1nM797qFnuamfhPhfgS",
+  "@type": "leakage-test:LeakageTest",
+  "leakage-test:MachineParameter": {
+    "leakage-test:MaximumPressure": {
+      "@type": "leakage-test:MaximumPressure",
+      "leakage-test:unit": {
+        "@value": "bar",
+        "@type": "xsd:string"
+      },
+      "leakage-test:upperTolerance": {
+        "@value": 0,
+        "@type": "xsd:decimal"
+      },
+      "leakage-test:setpoint": {
+        "@value": 2.7,
+        "@type": "xsd:decimal"
+      },
+      "leakage-test:lowerTolerance": {
+        "@value": 0,
+        "@type": "xsd:decimal"
+      }
+    },
+    "leakage-test:MinimumPressure": {
+      "@type": "leakage-test:MinimumPressure",
+      "leakage-test:unit": {
+        "@value": "bar",
+        "@type": "xsd:string"
+      },
+      "leakage-test:upperTolerance": {
+        "@value": 0,
+        "@type": "xsd:decimal"
+      },
+      "leakage-test:setpoint": {
+        "@value": 0.2,
+        "@type": "xsd:decimal"
+      },
+      "leakage-test:lowerTolerance": {
+        "@value": 0,
+        "@type": "xsd:decimal"
+      }
+    },
+    "leakage-test:ProcessParameter": {
+      "leakage-test:CodingDownholder": {
+        "@type": "leakage-test:CodingDownholder",
+        "leakage-test:setpoint": {
+          "@value": 1,
+          "@type": "xsd:integer"
+        }
+      },
+      "leakage-test:CodingTestAdapterShape": {
+        "@type": "leakage-test:CodingTestAdapterShape",
+        "leakage-test:setpoint": {
+          "@value": 1,
+          "@type": "xsd:integer"
+        }
+      },
+      "leakage-test:CodingRFID": {
+        "@type": "leakage-test:CodingRFID",
+        "leakage-test:setpoint": {
+          "@value": 16,
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  },
   "leakage:general": {
-		"@type": "general:General",
-		"general:description": {
-			"@type": "general:Description",
-			"gx:name": {
-				"@value": "Leakage Test",
-				"@type": "xsd:string"
-			},
-			"gx:description": {
-				"@value": "Leakage Test",
-				"@type": "xsd:string"
-			}
-		},
-		"general:data": {
-			"@type": "general:Data",
-			"general:size": {
-				"@value": "1.0",
-				"@type": "xsd:float"
-			},
-			"general:contractId": {
-				"@value": "123456789",
-				"@type": "xsd:string"
-			},
-			"general:recordingTime": {
-				"@value": "2024-08-04T09:00:00",
-				"@type": "xsd:dateTime"
-			}
-		},
-		"general:links": {
-			"@type": "general:Links",
-			"general:data": {
-				"@type": "general:Link",
-				"general:url": {
-					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
-					"@type": "xsd:anyURI"
-				},
-				"general:type": "Document"
-			},
-			"general:media": {
-				"@type": "general:Link",
-				"general:url": {
-					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
-					"@type": "xsd:anyURI"
-				},
-				"general:type": "Document"
-			}
-		},
-		"general:bundleData": {
-			"@type": "general:BundleData",
-			"general:requiredData": {
-				"@type": "general:Link",
-				"general:url": {
-					"@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
-					"@type": "xsd:anyURI"
-				},
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "gx:name": {
+        "@value": "Leakage Test",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+        "@value": "Leakage Test",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "1.0",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "123456789",
+        "@type": "xsd:string"
+      },
+      "general:recordingTime": {
+        "@value": "2024-08-04T09:00:00",
+        "@type": "xsd:dateTime"
+      }
+    },
+    "general:links": {
+      "@type": "general:Links",
+      "general:data": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+          "@type": "xsd:anyURI"
+        },
         "general:type": "Document"
-			}
-		}
-	}
+      },
+      "general:media": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      }
+    },
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      }
+    }
+  }
 }
