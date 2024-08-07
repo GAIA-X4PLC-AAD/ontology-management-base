@@ -80,7 +80,7 @@
         "@type": "xsd:string"
       },
       "gx:description": {
-        "@value": "Leakage Test",
+        "@value": "parameters for a leakage test",
         "@type": "xsd:string"
       }
     },
