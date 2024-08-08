@@ -104,6 +104,8 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Shapes must be linked with the associated OWL Class via the property `sh:targetClass`
 * References to other Self Descriptions are specified by a property having `sh:nodeKind sh:IRI`
 * The prefix of the SHACL Shape must match the prefix defined in the ontology.
+* If worth explaining, examples should be given. Specify concrete valid input here. Values should match with sh:In. Separate multiple entries with a comma. Example: '3DMS system, Trimble xyz, Riegl xyz'
+* If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
 * Every Shape linking to an ontology must **nest** the `general` Shape. Example:
   * Add prefix 
     ```turtle
