@@ -2,73 +2,59 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
-    "sh": "http://www.w3.org/ns/shacl#",
-    "leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/"
+    "leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+    "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:leakage-testLeakageTest:6uWoxbNbeJhCeGTqe1nM797qFnuamfhPhfgS",
+  "@id": "did:web:registry.gaia-x.eu:LeakageTest:ToPMmddr1jaiN7BOeLS-NdyioTxnZVcjwZnJ",
   "@type": "leakage-test:LeakageTest",
-  "leakage-test:MachineParameter": {
-    "leakage-test:MaximumPressure": {
-      "@type": "leakage-test:MaximumPressure",
-      "leakage-test:unit": {
-        "@value": "bar",
-        "@type": "xsd:string"
-      },
-      "leakage-test:upperTolerance": {
-        "@value": 0,
-        "@type": "xsd:decimal"
-      },
-      "leakage-test:setpoint": {
-        "@value": 2.7,
-        "@type": "xsd:decimal"
-      },
-      "leakage-test:lowerTolerance": {
-        "@value": 0,
-        "@type": "xsd:decimal"
-      }
+  "leakage-test:processParameter": {
+    "@type": "leakage-test:processParameter",
+    "leakage-test:codingRFID": {
+      "@type": "leakage-test:CodingRFID",
+      "leakage-test:setpoint": 16
     },
-    "leakage-test:MinimumPressure": {
+    "leakage-test:codingTestAdapter": {
+      "@type": "leakage-test:CodingTestAdapter",
+      "leakage-test:setpoint": 1
+    },
+    "leakage-test:codingDownholder": {
+      "@type": "leakage-test:CodingDownholder",
+      "leakage-test:setpoint": 1
+    }
+  },
+  "leakage-test:machineParameter": {
+    "@type": "leakage-test:MachineParameter",
+    "leakage-test:minimumPressure": {
       "@type": "leakage-test:MinimumPressure",
-      "leakage-test:unit": {
-        "@value": "bar",
-        "@type": "xsd:string"
-      },
-      "leakage-test:upperTolerance": {
-        "@value": 0,
+      "leakage-test:lowerTolerance": {
+        "@value": "0",
         "@type": "xsd:decimal"
       },
       "leakage-test:setpoint": {
-        "@value": 0.2,
+        "@value": "0.2",
         "@type": "xsd:decimal"
       },
-      "leakage-test:lowerTolerance": {
-        "@value": 0,
+      "leakage-test:upperTolerance": {
+        "@value": "0",
         "@type": "xsd:decimal"
-      }
+      },
+      "leakage-test:unit": "bar"
     },
-    "leakage-test:ProcessParameter": {
-      "leakage-test:CodingDownholder": {
-        "@type": "leakage-test:CodingDownholder",
-        "leakage-test:setpoint": {
-          "@value": 1,
-          "@type": "xsd:integer"
-        }
+    "leakage-test:maximumPressure": {
+      "@type": "leakage-test:MaximumPressure",
+      "leakage-test:lowerTolerance": {
+        "@value": "0",
+        "@type": "xsd:decimal"
       },
-      "leakage-test:CodingTestAdapterShape": {
-        "@type": "leakage-test:CodingTestAdapterShape",
-        "leakage-test:setpoint": {
-          "@value": 1,
-          "@type": "xsd:integer"
-        }
+      "leakage-test:setpoint": {
+        "@value": "2.7",
+        "@type": "xsd:decimal"
       },
-      "leakage-test:CodingRFID": {
-        "@type": "leakage-test:CodingRFID",
-        "leakage-test:setpoint": {
-          "@value": 16,
-          "@type": "xsd:integer"
-        }
-      }
+      "leakage-test:upperTolerance": {
+        "@value": "0",
+        "@type": "xsd:decimal"
+      },
+      "leakage-test:unit": "bar"
     }
   },
   "leakage:general": {
@@ -80,7 +66,7 @@
         "@type": "xsd:string"
       },
       "gx:description": {
-        "@value": "parameters for a leakage test",
+        "@value": "Leakage Test",
         "@type": "xsd:string"
       }
     },
@@ -91,7 +77,7 @@
         "@type": "xsd:float"
       },
       "general:contractId": {
-        "@value": "123456789",
+        "@value": "12345",
         "@type": "xsd:string"
       },
       "general:recordingTime": {
@@ -102,6 +88,14 @@
     "general:links": {
       "@type": "general:Links",
       "general:data": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Document"
+      },
+      "general:media": {
         "@type": "general:Link",
         "general:url": {
           "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
