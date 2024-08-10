@@ -1,86 +1,53 @@
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 leakage-test:LeakageTestShape a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node general:GeneralShape ;
-            sh:path leakage-test:general ],
+            sh:path leakage-test:general ] ,
         [ sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node leakage-test:MachineParameterShape ;
-            sh:path leakage-test:MachineParameter ] ,
+            sh:path leakage-test:machineParameter ] ,
         [ sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node leakage-test:ProcessParameterShape ;
-            sh:path leakage-test:ProcessParameter ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:CodingDownholderShape ;
-            sh:path leakage-test:CodingDownholder ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:CodingTestAdapterShape ;
-            sh:path leakage-test:CodingTestAdapter ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:CodingRFIDShape ;
-            sh:path leakage-test:CodingRFID ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:MaximumPressureShape;
-            sh:path leakage-test:MaximumPressure ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:MinimumPressureShape;
-            sh:path leakage-test:MinimumPressure ]; 
+            sh:path leakage-test:processParameter ] ;
     sh:targetClass leakage-test:LeakageTest .
 
 leakage-test:MachineParameterShape a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
-            sh:maxCount 1 ] ;
+            sh:maxCount 1 ;
+            sh:node leakage-test:MaximumPressureShape;
+            sh:path leakage-test:maximumPressure ] ,
+        [ sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:node leakage-test:MinimumPressureShape;
+            sh:path leakage-test:minimumPressure ] ; 
     sh:targetClass leakage-test:MachineParameter .
 
 leakage-test:ProcessParameterShape a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
-            sh:maxCount 1 ] ;
-    sh:targetClass leakage-test:ProcessParameter .
-
-leakage-test:DownholderShape a sh:NodeShape ;
-    sh:property [ skos:example "1" ;
-            sh:datatype xsd:integer ;
-            sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:message "Validation of setpoint failed!"@en ;
-            sh:name "setpoint"@en ;
-            sh:path leakage-test:setpoint ] ;
-    sh:targetClass leakage-test:Downholder .
-
-leakage-test:CodingTestAdapterShape a sh:NodeShape ;
-    sh:property [ skos:example "1" ;
-            sh:datatype xsd:integer ;
-            sh:minCount 1 ;
+            sh:node leakage-test:CodingDownholderShape ;
+            sh:path leakage-test:codingDownholder ] ,
+        [ sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:message "Validation of setpoint failed!"@en ;
-            sh:name "setpoint"@en ;
-            sh:path leakage-test:setpoint ] ; 
-    sh:targetClass leakage-test:CodingTestAdapter .
-
-leakage-test:CodingRFIDShape a sh:NodeShape ;
-    sh:property [ skos:example "16" ;
-            sh:datatype xsd:integer ;
-            sh:minCount 1 ;
+            sh:node leakage-test:CodingTestAdapterShape ;
+            sh:path leakage-test:codingTestAdapter ] ,
+        [ sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:message "Validation of setpoint failed!"@en ;
-            sh:name "setpoint"@en ;
-            sh:path leakage-test:setpoint ] ; 
-    sh:targetClass leakage-test:CodingRFID .
+            sh:node leakage-test:CodingRFIDShape ;
+            sh:path leakage-test:codingRFID ] ;
+    sh:targetClass leakage-test:processParameter .
 
 leakage-test:MaximumPressureShape a sh:NodeShape ;
-    sh:property [ skos:example "bar" ;
+    sh:property 
+        [ skos:example "bar" ;
             sh:datatype xsd:string ;
             sh:in ("bar") ;
             sh:minCount 1 ;
@@ -110,9 +77,10 @@ leakage-test:MaximumPressureShape a sh:NodeShape ;
             sh:name "lowerTolerance"@en ;
             sh:path leakage-test:lowerTolerance ] ; 
     sh:targetClass leakage-test:MaximumPressure .
-    
+
 leakage-test:MinimumPressureShape a sh:NodeShape ;
-    sh:property [ skos:example "bar" ;
+    sh:property 
+        [ skos:example "bar" ;
             sh:datatype xsd:string ;
             sh:in ("bar") ;
             sh:minCount 1 ;
@@ -127,7 +95,7 @@ leakage-test:MinimumPressureShape a sh:NodeShape ;
             sh:message "Validation of upperTolerance failed!"@en ;
             sh:name "upperTolerance"@en ;
             sh:path leakage-test:upperTolerance ] ,
-        [ skos:example "2.7";
+        [ skos:example "0.2";
             sh:datatype xsd:decimal ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -138,7 +106,37 @@ leakage-test:MinimumPressureShape a sh:NodeShape ;
             sh:datatype xsd:decimal ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:message "Validation of lowerTolerance failed!"@en ; 
+            sh:message "Validation of lowerTolerance failed!"@en ;
             sh:name "lowerTolerance"@en ;
-            sh:path leakage-test:lowerTolerance ] ;
+            sh:path leakage-test:lowerTolerance ] ; 
     sh:targetClass leakage-test:MinimumPressure .
+
+leakage-test:CodingDownholderShape a sh:NodeShape ;
+    sh:property [ skos:example "1" ;
+            sh:datatype xsd:integer ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of setpoint failed!"@en ;
+            sh:name "setpoint"@en ;
+            sh:path leakage-test:setpoint ] ;
+    sh:targetClass leakage-test:CodingDownholder .
+
+leakage-test:CodingTestAdapterShape a sh:NodeShape ;
+    sh:property [ skos:example "1" ;
+            sh:datatype xsd:integer ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of setpoint failed!"@en ;
+            sh:name "setpoint"@en ;
+            sh:path leakage-test:setpoint ] ;
+    sh:targetClass leakage-test:CodingTestAdapter .
+
+leakage-test:CodingRFIDShape a sh:NodeShape ;
+    sh:property [ skos:example "16" ;
+            sh:datatype xsd:integer ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of setpoint failed!"@en ;
+            sh:name "setpoint"@en ;
+            sh:path leakage-test:setpoint ] ;
+    sh:targetClass leakage-test:CodingRFID .
