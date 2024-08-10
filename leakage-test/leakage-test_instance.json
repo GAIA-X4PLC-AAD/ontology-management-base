@@ -77,7 +77,7 @@
         "@type": "xsd:float"
       },
       "general:contractId": {
-        "@value": "123456789",
+        "@value": "12345",
         "@type": "xsd:string"
       },
       "general:recordingTime": {
@@ -94,7 +94,8 @@
           "@type": "xsd:anyURI"
         },
         "general:type": "Document"
-      },
+      }
+    },
     "general:bundleData": {
       "@type": "general:BundleData",
       "general:requiredData": {
