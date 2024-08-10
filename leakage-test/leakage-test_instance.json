@@ -77,7 +77,7 @@
         "@type": "xsd:float"
       },
       "general:contractId": {
-        "@value": "12345",
+        "@value": "123456",
         "@type": "xsd:string"
       },
       "general:recordingTime": {
