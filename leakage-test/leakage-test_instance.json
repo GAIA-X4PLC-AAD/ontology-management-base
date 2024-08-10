@@ -3,6 +3,8 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "leakage-test": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/",
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
   "@id": "did:web:registry.gaia-x.eu:LeakageTest:ToPMmddr1jaiN7BOeLS-NdyioTxnZVcjwZnJ",
