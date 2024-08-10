@@ -57,7 +57,7 @@
       "leakage-test:unit": "bar"
     }
   },
-  "leakage:general": {
+  "leakage-test:general": {
     "@type": "general:General",
     "general:description": {
       "@type": "general:Description",
@@ -77,7 +77,7 @@
         "@type": "xsd:float"
       },
       "general:contractId": {
-        "@value": "123456",
+        "@value": "12345",
         "@type": "xsd:string"
       },
       "general:recordingTime": {
