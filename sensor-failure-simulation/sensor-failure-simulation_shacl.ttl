@@ -1,0 +1,110 @@
+@prefix sensor-failure-simulation: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/sensor-failure-simulation/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sensor-failure-simulation:sensor-failure-simulationShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node sensor-failure-simulation:SensorFailureModelShape ;
+            sh:order 1 ;
+            sh:path sensor-failure-simulation:sensorfailuremodel ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node sensor-failure-simulation:SensorSpecificationShape ;
+            sh:order 0 ;
+            sh:path sensor-failure-simulation:sensorspecification ] ;
+    sh:targetClass sensor-failure-simulation:sensor-failure-simulation .
+
+sensor-failure-simulation:SensorFailureModelShape a sh:NodeShape ;
+    sh:property [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of shiftingSensor failed!"@en ;
+            sh:name "shiftingSensor"@en ;
+            sh:order 6 ;
+            sh:path sensor-failure-simulation:shiftingSensor ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of rangeReduction failed!"@en ;
+            sh:name "rangeReduction"@en ;
+            sh:order 4 ;
+            sh:path sensor-failure-simulation:rangeReduction ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of detectionPointShift failed!"@en ;
+            sh:name "detectionPointShift"@en ;
+            sh:order 2 ;
+            sh:path sensor-failure-simulation:detectionPointShift ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of packageLoss failed!"@en ;
+            sh:name "packageLoss"@en ;
+            sh:order 0 ;
+            sh:path sensor-failure-simulation:packageLoss ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of velocityPointShift failed!"@en ;
+            sh:name "velocityPointShift"@en ;
+            sh:order 3 ;
+            sh:path sensor-failure-simulation:velocityPointShift ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of packageDelay failed!"@en ;
+            sh:name "packageDelay"@en ;
+            sh:order 1 ;
+            sh:path sensor-failure-simulation:packageDelay ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of detectNonexistingPoints failed!"@en ;
+            sh:name "detectNonexistingPoints"@en ;
+            sh:order 5 ;
+            sh:path sensor-failure-simulation:detectNonexistingPoints ],
+        [ skos:example "nan" ;
+            sh:description "nan"@en ;
+            sh:message "Validation of sensorBlockage failed!"@en ;
+            sh:name "sensorBlockage"@en ;
+            sh:order 7 ;
+            sh:path sensor-failure-simulation:sensorBlockage ] ;
+    sh:targetClass sensor-failure-simulation:SensorFailureModel .
+
+sensor-failure-simulation:SensorSpecificationShape a sh:NodeShape ;
+    sh:property [ skos:example " " ;
+            sh:description "RADAR:  Horizontal and vertical angles that are covered by this sensor | LIDAR: Horizontal FoV, Upper FoV and lower FoV"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of fieldOfView failed!"@en ;
+            sh:name "fieldOfView"@en ;
+            sh:order 4 ;
+            sh:path sensor-failure-simulation:fieldOfView ],
+        [ skos:example "Radar / Lidar" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of Sensor used in the simulation"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorType failed!"@en ;
+            sh:name "sensorType"@en ;
+            sh:order 0 ;
+            sh:path sensor-failure-simulation:sensorType ],
+        [ skos:example "nan" ;
+            sh:description "Position of the Sensor on the vehicle"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of mountingPosition failed!"@en ;
+            sh:name "mountingPosition"@en ;
+            sh:order 1 ;
+            sh:path sensor-failure-simulation:mountingPosition ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:int ;
+            sh:description "The distance covered by the RADAR or LIDAR beams in meters"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of distance failed!"@en ;
+            sh:name "distance"@en ;
+            sh:order 3 ;
+            sh:path sensor-failure-simulation:distance ],
+        [ skos:example "nan" ;
+            sh:datatype xsd:int ;
+            sh:description "Number of beams the radar or lidar sensor shall send"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberOfBeams failed!"@en ;
+            sh:name "numberOfBeams"@en ;
+            sh:order 2 ;
+            sh:path sensor-failure-simulation:numberOfBeams ] ;
+    sh:targetClass sensor-failure-simulation:SensorSpecification .
+

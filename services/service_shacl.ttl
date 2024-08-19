@@ -1,0 +1,72 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix service: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+
+service:ServiceShape a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+            sh:node service:RequiredFileShape ;
+            sh:order 0 ;
+            sh:path service:requiredfile ],
+        [ sh:minCount 1 ;
+            sh:node service:ResultingFileShape ;
+            sh:order 1 ;
+            sh:path service:resultingfile ] ;
+    sh:targetClass service:service .
+
+service:RequiredFileShape a sh:NodeShape ;
+    sh:property [ skos:example "link to ASAM OpenSCENARIO, link to json/ttl" ;
+            sh:description "Link to specification"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:name "specification"@en ;
+            sh:node service:LinkShape ;
+            sh:order 1 ;
+            sh:path service:specification ],
+        [ skos:example ".xosc, .json-config file" ;
+            sh:datatype xsd:string ;
+            sh:description "Human readable description"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 0 ;
+            sh:path service:description ] ;
+    sh:targetClass service:RequiredFile .
+
+service:ResultingFileShape a sh:NodeShape ;
+    sh:property [ skos:example ".osi" ;
+            sh:datatype xsd:string ;
+            sh:description "Human readable description"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 0 ;
+            sh:path service:description ],
+        [ skos:example "link to ASM .osi spec" ;
+            sh:description "Link to specification"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:name "specification"@en ;
+            sh:node service:LinkShape ;
+            sh:order 1 ;
+            sh:path service:specification ] ;
+    sh:targetClass service:ResultingFile .
+
+service:LinkShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "Validation of url failed!"@en ;
+            sh:name "url"@en ;
+            sh:order 0 ;
+            sh:path service:url ],
+        [ sh:datatype xsd:string ;
+            sh:in ("Document" "Image" "Model" "Routing" "Video") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 1 ;
+            sh:path service:type ] ;
+    sh:targetClass service:Link .
+
