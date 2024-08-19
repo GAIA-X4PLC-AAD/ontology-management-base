@@ -1,0 +1,67 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/ns#> .
+
+ex:SimulatedSensor
+    a sh:NodeShape ;
+    sh:targetClass ex:SimulatedSensor ;
+    # sensorType (String, mandatory)
+    sh:property [
+        sh:path ex:sensorType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:description "Type of Sensor used in the simulation" ;
+    ] ;
+    # mountingPosition (Tuple of three floats, mandatory)
+    sh:property [
+        sh:path ex:mountingPosition ;
+        sh:datatype xsd:float ;
+        sh:minCount 3 ;
+        sh:maxCount 3 ;
+        sh:description "Position of the sensor on the vehicle (x, y, z)" ;
+    ] ;
+    # numberOfBeams (Integer, mandatory)
+    sh:property [
+        sh:path ex:numberOfBeams ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
+        sh:description "Number of beams the radar or lidar sensor shall send" ;
+    ] ;
+    # distance (Integer, mandatory)
+    sh:property [
+        sh:path ex:distance ;
+        sh:datatype xsd:float ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
+        sh:description "Covered distance or range in meters" ;
+    ] ;
+    # fieldOfView (Tuple of three floats, mandatory)
+    sh:property [
+        sh:path ex:fieldOfView ;
+        sh:nodeKind sh:List ;
+        sh:datatype xsd:float ;
+        sh:minCount 3 ;
+        sh:maxCount 3 ;
+        sh:description "For RADAR: horizontal and vertical angles; For LIDAR: horizontal FoV, upper FoV, lower FoV" ;
+    ] ;
+    # Ensure at least one failure model is present
+    sh:property [
+        sh:path ex:hasFailureModel ;
+        sh:minCount 1 ;
+        sh:or (
+            [ sh:node ex:PackageLossShape ]
+            [ sh:node ex:PackageDelayShape ]
+            [ sh:node ex:DetectionPointShift ]
+            [ sh:node ex:VelocityPointShift ]
+            [ sh:node ex:RangeReduction ]
+            [ sh:node ex:DetectNonExistingPoints ]
+            [ sh:node ex:CollisionSensorShift ]
+            [ sh:node ex:ConstantSensorShift ]
+            [ sh:node ex:SensorBlockageRandomLifetime ]
+            [ sh:node ex:SensorBlockageDefinedLifetime ]
+        ) ;
+        sh:description "Failure model(s) of the sensor. Each definition will lead to another independent simulation. Note that always one reference simulation with a non-manipulated sensor is performed." ;
+    ] .

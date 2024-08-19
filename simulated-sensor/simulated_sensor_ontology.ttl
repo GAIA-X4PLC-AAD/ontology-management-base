@@ -1,0 +1,22 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+simulated-sensor: a owl:Ontology ;
+    rdfs:label "Ontology definition for simulated_sensor"@en ;
+    dcterms:contributor "Rhea C. Rinaldo (IQZ), Aaron Blickle (IQZ), Johannes Heinrich (IQZ)" ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
+    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/" ;
+    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/simulated_sensor_uc1_2/simulated-sensor/simulated_sensor_ontology.ttl> ;
+    owl:versionInfo "0.1" .
+
+simulated-sensor:SimulatedSensor a owl:Class ;
+    rdfs:label "class definition simulated sensor"@en ; 
+    rdfs:comment "A simulated RADAR or LIDAR sensor in CARLA"@en ;
+    rdfs:subClassOf gx:DataResource .
