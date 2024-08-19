@@ -1,0 +1,70 @@
+{
+    "@context": {
+      "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+      "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+      "service": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    },
+    "@id": "did:web:registry.gaia-x.eu:Service:ocneDSjk294DNJe7dh893Djndj93DN89jhDj",
+    "@type": "service:Service",
+    "service:general": {
+      "@type": "general:General",
+      "general:description": {
+        "@type": "general:Description",
+        "gx:name": {
+          "@value": "Example Service",
+          "@type": "xsd:string"
+        },
+        "gx:description": {
+          "@value": "Example Service",
+          "@type": "xsd:string"
+        }
+      },
+      "general:data": {
+        "@type": "general:Data",
+        "general:size": {
+          "@value": "0.0",
+          "@type": "xsd:float"
+        },
+        "general:contractId": {
+          "@value": "contract_928u0397402",
+          "@type": "xsd:string"
+        },
+        "general:recordingTime": {
+          "@value": "2024-08-019T18:05:00",
+          "@type": "xsd:dateTime"
+        }
+      },
+      "general:links": {
+        "@type": "general:Links",
+        "general:data": {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://example.edc/",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Service"
+        }
+      },
+      "general:bundleData": {
+        "@type": "general:BundleData"
+      }
+    },
+    "service:RequiredFile": {
+      "@type": "service:RequiredFile",
+      "service:description": ".xosc",
+      "service:specification": "ASAM xosc"
+    },
+    "service:RequiredFile": {
+      "@type": "service:RequiredFile",
+      "service:description": ".xodr",
+      "service:specification": "ASAM xodr"
+    },
+    "service:ResultFile": {
+      "@type": "service:ResultFile",
+      "service:description": ".osi",
+      "service:specification": "ASAM osi"
+    }
+  }
