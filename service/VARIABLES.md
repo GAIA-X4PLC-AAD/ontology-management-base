@@ -11,7 +11,7 @@
 | ServiceShape | service | general | 1 | 1 |  |  | service_shacl.ttl |
 | ServiceShape | service | requiredFile | 1 |  |  |  | service_shacl.ttl |
 | ServiceShape | service | resultingFile | 1 |  |  |  | service_shacl.ttl |
-| RequiredFileShape | service | specification |  | 1 | Link to specification |  | service_shacl.ttl |
-| RequiredFileShape | service | description |  | 1 | Human readable description | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
-| ResultingFileShape | service | description |  | 1 | Human readable description | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
-| ResultingFileShape | service | specification |  | 1 | Link to specification |  | service_shacl.ttl |
+| RequiredFileShape | service | specification | 1 | 1 | Link to specification | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
+| RequiredFileShape | service | description | 1 | 1 | Human readable description | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
+| ResultingFileShape | service | description | 1 | 1 | Human readable description | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
+| ResultingFileShape | service | specification | 1 | 1 | Link to specification | <http://www.w3.org/2001/XMLSchema#string> | service_shacl.ttl |
