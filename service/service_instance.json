@@ -45,25 +45,27 @@
             "@value": "https://example.edc/",
             "@type": "xsd:anyURI"
           },
-          "general:type": "Service"
+          "general:type": "Asset"
         }
       },
       "general:bundleData": {
         "@type": "general:BundleData"
       }
     },
-    "service:RequiredFile": {
-      "@type": "service:RequiredFile",
-      "service:description": ".xosc",
-      "service:specification": "ASAM xosc"
-    },
-    "service:RequiredFile": {
-      "@type": "service:RequiredFile",
-      "service:description": ".xodr",
-      "service:specification": "ASAM xodr"
-    },
-    "service:ResultFile": {
-      "@type": "service:ResultFile",
+    "service:RequiredFile": [
+      {
+        "@type": "service:RequiredFile",
+        "service:description": ".xosc",
+        "service:specification": "ASAM xosc"
+      },
+      {
+        "@type": "service:RequiredFile",
+        "service:description": ".xodr",
+        "service:specification": "ASAM xodr"
+      }
+    ],
+    "service:ResultingFile": {
+      "@type": "service:ResultingFile",
       "service:description": ".osi",
       "service:specification": "ASAM osi"
     }

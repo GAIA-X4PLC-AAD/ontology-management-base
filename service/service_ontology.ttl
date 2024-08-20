@@ -12,5 +12,13 @@ service: a owl:Ontology ;
 
 service:Service a owl:Class ;
     rdfs:label "Class definition for simulation services" ;
-    rdfs:comment "Attributes for simulation services"@en ;
+    rdfs:comment "Attributes for services"@en ;
     rdfs:subClassOf gx:SoftwareResource .
+
+service:RequiredFile a owl:Class ;
+    rdfs:label "Class definition for required files" ;
+    rdfs:comment "Attributes for required files"@en .
+
+service:ResultingFile a owl:Class ;
+    rdfs:label "Class definition for resulting files" ;
+    rdfs:comment "Attributes for resulting files"@en .
