@@ -23,16 +23,18 @@ service:ServiceShape a sh:NodeShape ;
 
 service:RequiredFileShape a sh:NodeShape ;
     sh:property [ skos:example "link to ASAM OpenSCENARIO, link to json/ttl" ;
+            sh:datatype xsd:string ;
             sh:description "Link to specification"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of specification failed!"@en ;
             sh:name "specification"@en ;
-            sh:node service:LinkShape ;
             sh:order 1 ;
             sh:path service:specification ],
         [ skos:example ".xosc, .json-config file" ;
             sh:datatype xsd:string ;
             sh:description "Human readable description"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of description failed!"@en ;
             sh:name "description"@en ;
@@ -44,17 +46,19 @@ service:ResultingFileShape a sh:NodeShape ;
     sh:property [ skos:example ".osi" ;
             sh:datatype xsd:string ;
             sh:description "Human readable description"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of description failed!"@en ;
             sh:name "description"@en ;
             sh:order 1 ;
             sh:path service:description ],
         [ skos:example "link to ASM .osi spec" ;
+            sh:datatype xsd:string ;
             sh:description "Link to specification"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of specification failed!"@en ;
             sh:name "specification"@en ;
-            sh:node service:LinkShape ;
             sh:order 2 ;
             sh:path service:specification ] ;
     sh:targetClass service:ResultingFile .

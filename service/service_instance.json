@@ -52,21 +52,39 @@
         "@type": "general:BundleData"
       }
     },
-    "service:RequiredFile": [
-      {
-        "@type": "service:RequiredFile",
-        "service:description": ".xosc",
-        "service:specification": "ASAM xosc"
+    "service:requiredFile": [
+    {
+      "@type": "service:RequiredFile",
+      "service:specification": {
+        "@value": "ASAM OpenScenario",
+        "@type": "xsd:string"
       },
-      {
-        "@type": "service:RequiredFile",
-        "service:description": ".xodr",
-        "service:specification": "ASAM xodr"
+      "service:description": {
+        "@value": ".xosc file",
+        "@type": "xsd:string"
       }
-    ],
-    "service:ResultingFile": {
-      "@type": "service:ResultingFile",
-      "service:description": ".osi",
-      "service:specification": "ASAM osi"
+    },
+    {
+      "@type": "service:RequiredFile",
+      "service:specification": {
+        "@value": "ASAM OpenDrive",
+        "@type": "xsd:string"
+      },
+      "service:description": {
+        "@value": ".xodr file",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "service:resultingFile": {
+    "@type": "service:ResultingFile",
+    "service:description": {
+      "@value": ".osi File",
+      "@type": "xsd:string"
+    },
+    "service:specification": {
+      "@value": "ASAM OSI",
+      "@type": "xsd:string"
     }
   }
+}
