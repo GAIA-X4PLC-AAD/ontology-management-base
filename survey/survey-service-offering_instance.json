@@ -5,10 +5,10 @@
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
   },
-  "@id": "did:example:survey_service_offering_0xy5vhw3heyjqb4d347hc9zrkw",
+  "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw",
   "@type": "survey:SurveyServiceOffering",
   "survey:surveyUrl": {
-    "@value": "https://web-mpc.gxfs.gx4fm.org/?session=0xy5vhw3heyjqb4d347hc9zrkw",
+    "@value": "https://web-mpc.gxfs.gx4fm.org/?session=qrsg5sp6n1cs1172kd8q80q0e8&participationCode=7ab1ch5r8gc7e299zb0psa0t0c",
     "@type": "xsd:string"
   },
   "survey:surveyCreationTime": {
@@ -64,23 +64,7 @@
       }
     },
     "general:bundleData": {
-      "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://web-mpc.gxfs.gx4fm.org/?session=0xy5vhw3heyjqb4d347hc9zrkw",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "3DPreview"
-      },
-      "general:relatedData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://web-mpc.gxfs.gx4fm.org/?session=0xy5vhw3heyjqb4d347hc9zrkw",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Video"
-      }
+      "@type": "general:BundleData"
     }
   }
 }
