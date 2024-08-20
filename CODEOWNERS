@@ -47,3 +47,6 @@
 /surface-model @robertschubert
 /surface-model @3Dbastian
 
+# ositrace directory (Pierre AND Robert)
+/ositrace @robertschubert
+/ositrace @pmai
