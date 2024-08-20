@@ -47,10 +47,6 @@
 /service @robertschubert
 /service @ValentinFischerTT
 
-# sensor-failure-simulation directory (Valentin AND Robert)
-/sensor-failure-simulation @robertschubert
-/sensor-failure-simulation @ValentinFischerTT
-
 # surface-model directory (Sebastian AND Robert)
 /surface-model @robertschubert
 /surface-model @3Dbastian
