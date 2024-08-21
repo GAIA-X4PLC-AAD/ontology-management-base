@@ -1,0 +1,34 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "simulated-sensor": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/",
+    "sh": "http://www.w3.org/ns/shacl#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:SimulatedSensor:B6gYmAU2PiHe8c3aqSbazCkrE7sUfCkRPFv2",
+  "@type": "simulated-sensor:SimulatedSensor",
+  "simulated-sensor:sensorType": {
+    "@value": "RADAR",
+    "@type": "xsd:string"
+  },
+  "simulated-sensor:mountingPosition": "Front-mid",
+  "simulated-sensor:numberOfBeams": 1500,
+  "simulated-sensor:distance": {
+    "@value": "100",
+    "@type": "xsd:float"
+  },
+  "simulated-sensor:fieldOfView": [
+    {
+      "@value": "60",
+      "@type": "xsd:float"
+    },
+    {
+      "@value": "30",
+      "@type": "xsd:float"
+    },
+    {
+      "@value": "0",
+      "@type": "xsd:float"
+    }
+  ]
+}
