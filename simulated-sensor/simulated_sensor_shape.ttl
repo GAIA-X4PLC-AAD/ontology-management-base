@@ -63,12 +63,12 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:order 4 ;
         sh:description "For RADAR: horizontal and vertical angles; For LIDAR: horizontal FoV, upper FoV, lower FoV" ;
     ] ;
-    # Ensure at least one failure model is present
+    # Ensure at least one failure/attack model is present
     sh:property [
         skos:example "PackageLossShape" ;
-        sh:path simulated-sensor:hasFailureModel ;
+        sh:path simulated-sensor:manipulationModel ;
         sh:minCount 1 ;
-        sh:name "definedFailureModel"@en ;
+        sh:name "definedManipulationModel"@en ;
         sh:or (
             [ sh:node simulated-sensor:PackageLossShape ]
             [ sh:node simulated-sensor:PackageDelayShape ]
@@ -82,11 +82,11 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
             [ sh:node simulated-sensor:SensorBlockageDefinedLifetimeShape ]
         ) ;
         sh:order 5 ;
-        sh:description "Failure model(s) of the sensor. Each definition will lead to another independent simulation. Note that always one reference simulation with a non-manipulated sensor is performed." ;
+        sh:description "Manipulation (failure and attack patterns) model(s) of the sensor. Each definition will lead to another independent simulation. Note that always one reference simulation with a non-manipulated sensor is performed." ;
     ] .
 
-# Available Failuremodels:
-# Failure Model: packageLoss
+# Available manipulation models:
+# Model: packageLoss
 simulated-sensor:PackageLossShape
     a sh:NodeShape ;
     sh:targetClass simulated-sensor:PackageLoss ;
@@ -96,7 +96,7 @@ simulated-sensor:PackageLossShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -104,7 +104,7 @@ simulated-sensor:PackageLossShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -112,24 +112,24 @@ simulated-sensor:PackageLossShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; 
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure";    
+        sh:description "Change/worsening (decrease) of the time of re-occurrence";    
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
     ] .
 
-# Failure Model: packageDelay
+# Model: packageDelay
 simulated-sensor:PackageDelayShape
     a sh:NodeShape ;
     sh:targetClass simulated-sensor:PackageDelay ;
@@ -139,7 +139,7 @@ simulated-sensor:PackageDelayShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -147,7 +147,7 @@ simulated-sensor:PackageDelayShape
         sh:minCount 1 ;
         sh:maxCount 1 ; 
         sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:delaySize ;
@@ -175,7 +175,7 @@ simulated-sensor:PackageDelayShape
         sh:description "Amount of raw data packages that fit into the ringbuffer before it overflows and causes package loss" ;
     ] .
 
-# Failure Model: detectionPointShift -> Shift of single detection points for simulating vibration effects
+# Model: detectionPointShift -> Shift of single detection points for simulating vibration effects
 simulated-sensor:DetectionPointShiftShape
     a sh:NodeShape ;
     sh:targetClass simulated-sensor:DetectionPointShift ;
@@ -185,7 +185,7 @@ simulated-sensor:DetectionPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -193,7 +193,7 @@ simulated-sensor:DetectionPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -201,21 +201,21 @@ simulated-sensor:DetectionPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; 
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure";
+        sh:description "Change/worsening (decrease) of the time of re-occurrence";
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences";
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences";
     ] ;
     sh:property [
         sh:path simulated-sensor:maxDepthDisturbance ;
@@ -249,7 +249,7 @@ simulated-sensor:DetectionPointShiftShape
     ] .
 
 
-# Failure Model: velocityPointShift
+# Model: velocityPointShift
 simulated-sensor:VelocityPointShiftShape
     a sh:NodeShape ;
     sh:targetClass simulated-sensor:VelocityPointShift ;
@@ -259,7 +259,7 @@ simulated-sensor:VelocityPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -267,7 +267,7 @@ simulated-sensor:VelocityPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -275,21 +275,21 @@ simulated-sensor:VelocityPointShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure" ;
+        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:maxVelocityDisturbance ;
@@ -318,7 +318,7 @@ simulated-sensor:RangeReductionShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -326,7 +326,7 @@ simulated-sensor:RangeReductionShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -334,21 +334,21 @@ simulated-sensor:RangeReductionShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure" ;
+        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:rangeReductionValue;
@@ -369,7 +369,7 @@ simulated-sensor:DetectNonExistingPointsShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -377,7 +377,7 @@ simulated-sensor:DetectNonExistingPointsShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -385,21 +385,21 @@ simulated-sensor:DetectNonExistingPointsShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure" ;
+        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:amountDetections ;
@@ -439,7 +439,7 @@ simulated-sensor:CollisionSensorShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:yaw ;
@@ -482,7 +482,7 @@ simulated-sensor:ConstantSensorShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -490,7 +490,7 @@ simulated-sensor:ConstantSensorShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:duration ;
@@ -498,21 +498,21 @@ simulated-sensor:ConstantSensorShiftShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Time the failure is active in seconds" ;
+        sh:description "Time the pattern of manipulation is active in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure";
+        sh:description "Change/worsening (decrease) of the time of re-occurrence";
     ] ;
     sh:property [
         sh:path simulated-sensor:durationDegradation ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:yaw ;
@@ -565,7 +565,7 @@ simulated-sensor:SensorBlockageRandomLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -573,7 +573,7 @@ simulated-sensor:SensorBlockageRandomLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
@@ -581,7 +581,7 @@ simulated-sensor:SensorBlockageRandomLifetimeShape
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure" ;
+        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:amountOfBlockingObjects ;
@@ -589,7 +589,7 @@ simulated-sensor:SensorBlockageRandomLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Change (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:type ;
@@ -652,7 +652,7 @@ simulated-sensor:SensorBlockageDefinedLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "Start of the failure in the simulation in seconds" ;
+        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:interval ;
@@ -660,7 +660,7 @@ simulated-sensor:SensorBlockageDefinedLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the failure in seconds" ;
+        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:intervalDegradation ;
@@ -668,7 +668,7 @@ simulated-sensor:SensorBlockageDefinedLifetimeShape
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence of the failure" ;
+        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:amountOfBlockingObjects ;
@@ -676,7 +676,7 @@ simulated-sensor:SensorBlockageDefinedLifetimeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:description "Change (decrease) of the duration between failure ocurrences" ;
+        sh:description "Change (decrease) of the duration between re-ocurrences" ;
     ] ;
     sh:property [
         sh:path simulated-sensor:type ;
