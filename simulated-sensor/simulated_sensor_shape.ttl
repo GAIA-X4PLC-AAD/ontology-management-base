@@ -18,14 +18,15 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
     ] ;
     # mountingPosition (Tuple of three floats, mandatory)
     sh:property [
-        skos:example "25.0" ;
+        skos:example "Front-mid" ;
         sh:path simulated-sensor:mountingPosition ;
-        sh:datatype xsd:float ;
-        sh:minCount 3 ;
-        sh:maxCount 3 ;
+        sh:datatype xsd:string ;
+        sh:in ("Front-left" "Front-right" "Front-mid" "Top-left" "Top-right" "Top-mid" "Back-left" "Back-right" "Back-mid") ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:name "mountingPosition"@en ;
         sh:order 1 ;
-        sh:description "Position of the sensor on the vehicle (x, y, z)" ;
+        sh:description "Position of the sensor on the vehicle. The precise coordinates are calculated in the world-coordinate system. Note that any back options will also induce a rotation of the sensor so that its field of view covers the vehicle rear." ;
     ] ;
     # numberOfBeams (Integer, mandatory)
     sh:property [
