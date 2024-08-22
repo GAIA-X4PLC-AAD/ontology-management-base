@@ -50,3 +50,10 @@
 # ositrace directory (Pierre AND Robert)
 /ositrace @robertschubert
 /ositrace @pmai
+
+# simulated-sensor directory (Rhea)
+/simulated-sensor @telina
+
+# manipulated-sensor-simulation directory (Rhea AND Valentin)
+/manipulated-sensor-simulation @telina
+/manipulated-sensor-simulation @ValentinFischerTT
