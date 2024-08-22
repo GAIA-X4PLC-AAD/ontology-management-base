@@ -1,0 +1,68 @@
+@prefix manipulated-sensor-simulation: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manipulated-sensor-simulation/> .
+@prefix service: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
+
+
+manipulated-sensor-simulation:ManipulatedSensorSimulationShape a sh:NodeShape;
+    sh:property 
+    [ 
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:node service:Service ;
+        sh:order 1 ;
+        sh:path manipulated-sensor-simulation:service ],
+    [ 
+        sh:minCount 1 ;
+        sh:node simulated-sensor:SimulatedSensor ;
+        sh:order 2 ;
+        sh:path manipulated-sensor-simulation:simulatedSensor ],
+    [  
+        sh:minCount 1 ;
+        sh:node manipulated-sensor-simulation:Scenario ;
+        sh:order 3 ;
+        sh:path manipulated-sensor-simulation:sensorSpecification ] ,
+    [ 
+        sh:maxCount 1 ;
+        sh:minCount 0 ;
+        sh:node manipulated-sensor-simulation:VehicleModel ;
+        sh:order 4 ;
+        sh:path manipulated-sensor-simulation:sensorSpecification ] ,
+    [ 
+        sh:minCount 1 ;
+        sh:maxCount 3 ;
+        sh:node manipulated-sensor-simulation:KeyPerformanceIndicator ;
+        sh:order 5 ;
+        sh:path manipulated-sensor-simulation:keyPerformanceIndicator ] ;
+    sh:targetClass manipulated-sensor-simulation:ManipulatedSensorSimulation .
+
+
+manipulated-sensor-simulation:ScenarioShape a sh:NodeShape ;
+    sh:property [
+        skos:example "FollowLeadingVehicle" ;
+        sh:path manipulated-sensor-simulation:scenario ;
+        sh:datatype xsd:string ;
+        sh:description "Identifier string of CARLAs ScenarioRUNNER scenario" ;
+    ] ;
+sh:targetClass manipulated-sensor-simulation:Scenario .
+
+manipulated-sensor-simulation:VehicleModelShape a sh:NodeShape ;
+    sh:property [
+        skos:example "vehicle.audi.tt" ;
+        sh:path manipulated-sensor-simulation:vehicleModel ;
+        sh:datatype xsd:string ;
+        sh:description "Desired vehicle model provided as the identifier in CARLAs blueprint library" ;
+    ] ;
+sh:targetClass manipulated-sensor-simulation:VehicleModel .
+
+manipulated-sensor-simulation:KeyPerformanceIndicatorShape a sh:NodeShape ;
+    sh:property [
+        skos:example "TTC" ;
+        sh:path manipulated-sensor-simulation:keyPerformanceIndicator ;
+        sh:datatype xsd:string ;
+        sh:in ("TTC" "THW" "VAC") ;
+        sh:description "ecu.test KPI for ALKS simulation" ;
+    ] ;
+sh:targetClass manipulated-sensor-simulation:KeyPerformanceIndicator .
