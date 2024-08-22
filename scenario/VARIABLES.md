@@ -20,7 +20,7 @@
 | ScenarioShape | georeference | georeference | 0 | 1 |  |  | scenario_shacl.ttl |
 | DataSourceShape | scenario | source | 0 | 1 | Capture type | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | EnvironmentalShape | scenario | sunAzimuth | 0 |  | Azimuth of the sun | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
-| FormatShape | scenario | dataFormat |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| FormatShape | scenario | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | FormatShape | scenario | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ScenarioCommonShape | scenario | abstractionLevel |  | 1 | Pegasus type of scenario | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ScenarioCommonShape | scenario | timeDate | 0 | 1 | Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens. | <http://www.w3.org/2001/XMLSchema#dateTime> | scenario_shacl.ttl |
