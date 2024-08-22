@@ -129,7 +129,7 @@
   },
   "environment-model:format": {
     "@type": "environment-model:Format",
-    "environment-model:dataType": "Unreal DataSmith",
+    "environment-model:formatType": "Unreal DataSmith",
     "environment-model:version": {
       "@value": "SDK 4.25",
       "@type": "xsd:string"

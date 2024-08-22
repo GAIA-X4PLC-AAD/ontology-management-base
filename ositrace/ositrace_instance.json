@@ -71,7 +71,7 @@
   },
   "ositrace:format": {
     "@type": "ositrace:Format",
-    "ositrace:type": "ASAM OSI SensorData",
+    "ositrace:formatType": "ASAM OSI SensorData",
     "ositrace:version": {
       "@value": "3.6.0/3.20.0",
       "@type": "xsd:string"

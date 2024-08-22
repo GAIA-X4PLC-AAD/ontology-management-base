@@ -96,7 +96,7 @@
   },
   "scenario:format": {
     "@type": "scenario:Format",
-    "scenario:dataFormat": "ASAM OpenSCENARIO",
+    "scenario:formatType": "ASAM OpenSCENARIO",
     "scenario:version": {
       "@value": "1.2",
       "@type": "xsd:string"
