@@ -18,51 +18,35 @@
       },
       "dataResourceExtension:type": "Video"
     },
-    "dataResourceExtension:media": [
-      {
+    "dataResourceExtension:media": {
         "@type": "dataResourceExtension:Url",
         "dataResourceExtension:url": {
           "@value": "https://example.com/model.png",
           "@type": "xsd:anyURI"
         },
         "dataResourceExtension:type": "Model"
-      },
-      {
-        "@type": "dataResourceExtension:Url",
-        "dataResourceExtension:url": {
-          "@value": "https://example.com/model.png",
-          "@type": "xsd:anyURI"
-        },
-        "dataResourceExtension:type": "Image"
       }
-    ]
   },
   "dataResourceExtension:bundleData": {
     "@type": "dataResourceExtension:BundleData",
-    "dataResourceExtension:requiredData": [
-      {
+    "dataResourceExtension:requiredData": {
         "@type": "dataResourceExtension:Link",
         "dataResourceExtension:link": {
-          "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+          "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
           "@type": "xsd:anyURI"
         },
         "dataResourceExtension:type": "surface-model"
       },
-      {
-        "@type": "dataResourceExtension:Link"
-      }
-    ],
     "dataResourceExtension:relatedData": {
       "@type": "dataResourceExtension:Link",
       "dataResourceExtension:link": {
-        "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+        "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
         "@type": "xsd:anyURI"
       },
       "dataResourceExtension:type": "environment-model"
     }
   },
-  "dataResourceExtension:media": [
-    {
+  "dataResourceExtension:media": {
       "@type": "dataResourceExtension:Url",
       "dataResourceExtension:url": {
         "@value": "https://example.com/model.png",
@@ -70,19 +54,10 @@
       },
       "dataResourceExtension:type": "Model"
     },
-    {
-      "@type": "dataResourceExtension:Url",
-      "dataResourceExtension:url": {
-        "@value": "https://example.com/model.png",
-        "@type": "xsd:anyURI"
-      },
-      "dataResourceExtension:type": "Image"
-    }
-  ],
   "dataResourceExtension:requiredData": {
     "@type": "dataResourceExtension:Link",
     "dataResourceExtension:link": {
-      "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+      "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-12345-p",
       "@type": "xsd:anyURI"
     },
     "dataResourceExtension:type": "surface-model"
@@ -90,9 +65,9 @@
   "dataResourceExtension:relatedData": {
     "@type": "dataResourceExtension:Link",
     "dataResourceExtension:link": {
-      "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+      "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-12345-p",
       "@type": "xsd:anyURI"
     },
-    "dataResourceExtension:type": "environment-model"
+    "dataResourceExtension:type": "surface-model"
   }
 }
