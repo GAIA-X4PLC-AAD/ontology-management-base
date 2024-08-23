@@ -1,0 +1,72 @@
+@prefix dataResourceExtension: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/dataResourceExtension/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dataResourceExtension:DataResourceExtensionShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node dataResourceExtension:LinksShape ;
+            sh:order 1 ;
+            sh:path dataResourceExtension:links ],         
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node dataResourceExtension:BundleDataShape ;
+            sh:order 2 ;
+            sh:path dataResourceExtension:bundleData ];
+    sh:targetClass dataResourceExtension:DataResourceExtension .
+  
+dataResourceExtension:BundleDataShape a sh:NodeShape ;
+    sh:property [ sh:node dataResourceExtension:LinkShape ;
+            sh:description "Reference to required assets" ;
+            skos:example "for scenario, link to required hd map" ;
+            sh:name "requiredData" ;
+            sh:order 1 ;
+            sh:path dataResourceExtension:requiredData ],
+        [ sh:node dataResourceExtension:LinkShape ;
+            sh:description "Reference to optional related assets" ;
+            skos:example "at hd map, link to optional surface map" ;
+            sh:name "relatedData" ;
+            sh:order 2 ;
+            sh:path dataResourceExtension:relatedData ];
+    sh:targetClass dataResourceExtension:BundleData .    
+
+dataResourceExtension:LinksShape a sh:NodeShape ;
+    sh:property [ skos:example "link to bundle data, screenshot, video, routing, 3d preview" ;
+            sh:description "Reference to media data"@en ;
+            sh:message "Validation of media failed!"@en ;
+            sh:name "media"@en ;
+            sh:node dataResourceExtension:LinkShape ;
+            sh:order 2 ;
+            sh:path dataResourceExtension:media ],
+        [ skos:example "link to data asset, e.g. hd map" ;
+            sh:description "Reference to the data asset as url/uri of the EDC"@en ;
+            sh:message "Validation of data failed!"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "data"@en ;
+            sh:node dataResourceExtension:LinkShape ;
+            sh:order 1 ;
+            sh:path dataResourceExtension:data ];
+    sh:targetClass dataResourceExtension:Links .
+
+dataResourceExtension:LinkShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ("Document" "Image" "Model" "Routing" "Video" "3DPreview" "Asset") ;
+            sh:message "Validation of type failed!"@en ;
+            sh:description "Choose type of link." ;
+            sh:name "type"@en ;
+            sh:order 1 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dataResourceExtension:type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:message "Validation of url failed!"@en ;
+            sh:description "Enter link as URL or DID." ;
+            sh:name "url"@en ;
+            sh:order 0 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dataResourceExtension:url ] ;
+    sh:targetClass dataResourceExtension:Link .

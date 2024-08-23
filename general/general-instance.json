@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
+  "@type": "general:General",
+  "general:description": {
+    "@type": "general:Description",
+    "general:name": {
+      "@value": "3D Model in Grafing",
+      "@type": "xsd:string"
+    },
+    "general:description": {
+      "@value": "town district, with traffic signs",
+      "@type": "xsd:string"
+    }
+  },
+  "general:data": {
+    "@type": "general:Data",
+    "general:size": {
+      "@value": "5.8",
+      "@type": "xsd:float"
+    },
+    "general:recordingTime": {
+      "@value": "2024-04-01T00:00:00",
+      "@type": "xsd:dateTime"
+    }
+  },
+  "general:range2D": {
+    "@type": "general:Range2D",
+    "general:min": {
+      "@value": "30",
+      "@type": "xsd:float"
+    },
+    "general:max": {
+      "@value": "50",
+      "@type": "xsd:float"
+    }
+  }
+}
