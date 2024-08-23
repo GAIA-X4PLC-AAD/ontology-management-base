@@ -4,7 +4,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dataResourceExtension: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/dataResourceExtension/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 general: a owl:Ontology ;
     rdfs:label "ontology definition for General"@en ;
@@ -14,7 +14,7 @@ general: a owl:Ontology ;
 general:General a owl:Class ;
     rdfs:label "Class definition for General" ;
     rdfs:comment "General attributes for all assets"@en ;
-    rdfs:subClassOf DataResourceExtension:DataResourceExtension .
+    rdfs:subClassOf gx:DataResourceExtension .
 
 general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;
