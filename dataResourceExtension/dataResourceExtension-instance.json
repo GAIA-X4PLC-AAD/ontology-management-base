@@ -11,7 +11,7 @@
   "dataResourceExtension:links": {
     "@type": "dataResourceExtension:Links",
     "dataResourceExtension:data": {
-      "@type": "dataResourceExtension:Link",
+      "@type": "dataResourceExtension:Url",
       "dataResourceExtension:url": {
         "@value": "https://example.com/video.mpg",
         "@type": "xsd:anyURI"
@@ -20,7 +20,7 @@
     },
     "dataResourceExtension:media": [
       {
-        "@type": "dataResourceExtension:Link",
+        "@type": "dataResourceExtension:Url",
         "dataResourceExtension:url": {
           "@value": "https://example.com/model.png",
           "@type": "xsd:anyURI"
@@ -28,7 +28,7 @@
         "dataResourceExtension:type": "Model"
       },
       {
-        "@type": "dataResourceExtension:Link",
+        "@type": "dataResourceExtension:Url",
         "dataResourceExtension:url": {
           "@value": "https://example.com/model.png",
           "@type": "xsd:anyURI"
@@ -39,55 +39,60 @@
   },
   "dataResourceExtension:bundleData": {
     "@type": "dataResourceExtension:BundleData",
-    "dataResourceExtension:requiredData": {
-      "@type": "dataResourceExtension:Link",
-      "dataResourceExtension:url": {
-        "@value": "https://example.com/requiredData",
-        "@type": "xsd:anyURI"
+    "dataResourceExtension:requiredData": [
+      {
+        "@type": "dataResourceExtension:Link",
+        "dataResourceExtension:link": {
+          "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+          "@type": "xsd:anyURI"
+        },
+        "dataResourceExtension:type": "surface-model"
       },
-      "dataResourceExtension:type": "3DPreview"
-    },
+      {
+        "@type": "dataResourceExtension:Link"
+      }
+    ],
     "dataResourceExtension:relatedData": {
       "@type": "dataResourceExtension:Link",
-      "dataResourceExtension:url": {
-        "@value": "https://example.com/relatedData.mpg",
+      "dataResourceExtension:link": {
+        "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
         "@type": "xsd:anyURI"
       },
-      "dataResourceExtension:type": "Video"
+      "dataResourceExtension:type": "environment-model"
     }
-  },
-  "dataResourceExtension:requiredData": {
-    "@type": "dataResourceExtension:Link",
-    "dataResourceExtension:url": {
-      "@value": "https://example.com/requiredData",
-      "@type": "xsd:anyURI"
-    },
-    "dataResourceExtension:type": "3DPreview"
-  },
-  "dataResourceExtension:relatedData": {
-    "@type": "dataResourceExtension:Link",
-    "dataResourceExtension:url": {
-      "@value": "https://example.com/relatedData.mpg",
-      "@type": "xsd:anyURI"
-    },
-    "dataResourceExtension:type": "Video"
   },
   "dataResourceExtension:media": [
     {
-      "@type": "dataResourceExtension:Link",
-      "dataResourceExtension:url": {
-        "@value": "https://example.com/model.png",
-        "@type": "xsd:anyURI"
-      },
-      "dataResourceExtension:type": "Image"
-    },
-    {
-      "@type": "dataResourceExtension:Link",
+      "@type": "dataResourceExtension:Url",
       "dataResourceExtension:url": {
         "@value": "https://example.com/model.png",
         "@type": "xsd:anyURI"
       },
       "dataResourceExtension:type": "Model"
+    },
+    {
+      "@type": "dataResourceExtension:Url",
+      "dataResourceExtension:url": {
+        "@value": "https://example.com/model.png",
+        "@type": "xsd:anyURI"
+      },
+      "dataResourceExtension:type": "Image"
     }
-  ]
+  ],
+  "dataResourceExtension:requiredData": {
+    "@type": "dataResourceExtension:Link",
+    "dataResourceExtension:link": {
+      "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+      "@type": "xsd:anyURI"
+    },
+    "dataResourceExtension:type": "surface-model"
+  },
+  "dataResourceExtension:relatedData": {
+    "@type": "dataResourceExtension:Link",
+    "dataResourceExtension:link": {
+      "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-123456-p",
+      "@type": "xsd:anyURI"
+    },
+    "dataResourceExtension:type": "environment-model"
+  }
 }
