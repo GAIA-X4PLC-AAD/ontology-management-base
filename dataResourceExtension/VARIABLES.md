@@ -14,5 +14,7 @@
 | BundleDataShape | dataResourceExtension | relatedData |  |  | Reference to optional related assets |  | dataResourceExtension_shacl.ttl |
 | LinksShape | dataResourceExtension | media |  |  | Reference to media data |  | dataResourceExtension_shacl.ttl |
 | LinksShape | dataResourceExtension | data | 1 | 1 | Reference to the data asset as url/uri of the EDC |  | dataResourceExtension_shacl.ttl |
+| UrlShape | dataResourceExtension | type | 1 | 1 | Choose type of link. | <http://www.w3.org/2001/XMLSchema#string> | dataResourceExtension_shacl.ttl |
+| UrlShape | dataResourceExtension | url | 1 | 1 | Enter link as URL or DID. | <http://www.w3.org/2001/XMLSchema#anyURI> | dataResourceExtension_shacl.ttl |
 | LinkShape | dataResourceExtension | type | 1 | 1 | Choose type of link. | <http://www.w3.org/2001/XMLSchema#string> | dataResourceExtension_shacl.ttl |
-| LinkShape | dataResourceExtension | url | 1 | 1 | Enter link as URL or DID. | <http://www.w3.org/2001/XMLSchema#anyURI> | dataResourceExtension_shacl.ttl |
+| LinkShape | dataResourceExtension | link | 1 | 1 | Enter the DID . | <http://www.w3.org/2001/XMLSchema#anyURI> | dataResourceExtension_shacl.ttl |
