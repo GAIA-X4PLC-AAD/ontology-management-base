@@ -8,13 +8,13 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| OSITraceShape | ositrace | general | 1 | 1 | general object with properties for descriptions, data, links, bundle |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | format | 1 | 1 | format object with properties for format information |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | content | 1 | 1 | content object with properties for road types, lane type, object type and traffic direction |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | quality | 1 | 1 | quality object with properties for quality information |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | quantity | 1 | 1 | quantity object with properties for quantity information |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | dataSource | 1 | 1 | dataSource object with properties for data sources |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | georeference | 1 | 1 | georeference object with properties for georeference information |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | general | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | format | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | content | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | quality | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | quantity | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | dataSource | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | georeference | 1 | 1 |  |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | ContentShape | ositrace | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | ContentShape | ositrace | levelOfDetail |  |  | Covered object classes, see ODR spec section 11 | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |

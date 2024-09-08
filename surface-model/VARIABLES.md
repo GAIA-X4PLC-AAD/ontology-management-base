@@ -8,12 +8,12 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SurfaceModelShape | surface-model | general | 1 | 1 | general object with properties for descriptions, data, links, bundle |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | Format | 1 | 1 | format object with properties for format information |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | Data | 1 | 1 | Data object with property for type of data |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | Quality | 1 | 1 | quality object with properties for quality information |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | Quantity | 1 | 1 | quantity object with properties for quantity information |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | Georeference | 1 | 1 | georeference object with properties for georeference information |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | general | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | Format | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | Data | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | Quality | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | Quantity | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | Georeference | 1 | 1 |  |  | surface-model_shacl.ttl |
 | DataShape | surface-model | dataType |  | 1 | Height, friction values, grey values | <http://www.w3.org/2001/XMLSchema#string> | surface-model_shacl.ttl |
 | FormatShape | surface-model | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | surface-model_shacl.ttl |
 | FormatShape | surface-model | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | surface-model_shacl.ttl |

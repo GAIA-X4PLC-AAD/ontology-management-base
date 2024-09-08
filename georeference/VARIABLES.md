@@ -8,8 +8,8 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GeoreferenceShape | georeference | projectLocation | 1 | 1 | projectLocation object with property for locations and description |  | georeference_shacl.ttl |
-| GeoreferenceShape | georeference | geodeticReferenceSystem | 1 | 1 | geodeticReferenceSystem object with properties for projection informations |  | georeference_shacl.ttl |
+| GeoreferenceShape | georeference | projectLocation | 1 | 1 |  |  | georeference_shacl.ttl |
+| GeoreferenceShape | georeference | geodeticReferenceSystem | 1 | 1 |  |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | origin | 1 | 1 | World coordinates of map origin |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | coordinateSystem | 0 | 1 | EPSG code of the map | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Ellipsodial height or orthometric height | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
