@@ -8,12 +8,12 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| EnvironmentModelShape | environment-model | general | 1 | 1 |  |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | quantity | 1 | 1 |  |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | quality | 1 | 1 |  |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | project | 1 | 1 |  |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | format | 1 | 1 |  |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | georeference | 0 | 1 |  |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | general | 1 | 1 | general object with properties for descriptions, data, links, bundles |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | quantity | 1 | 1 | quantity object with properties for quatity values |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | quality | 1 | 1 | quality object with properties for quality values |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | project | 1 | 1 | project object with properties for project information |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | format | 1 | 1 | format object with properties for format information |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | georeference | 0 | 1 | georeference object with properties for georeference information |  | environment-model_shacl.ttl |
 | FormatShape | environment-model | dataType |  | 1 | Data type definition | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | FormatShape | environment-model | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ProjectShape | environment-model | creationVersion |  | 1 | Tool for the creation of the data | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
