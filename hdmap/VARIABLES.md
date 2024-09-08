@@ -8,13 +8,13 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| HdMapShape | hdmap | general | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | format | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | content | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | quantity | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | quality | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | dataSource | 1 | 1 |  |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | georeference | 1 | 1 |  |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | general | 1 | 1 | general object with properties for descriptions, data, links, bundle |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | format | 1 | 1 | format object with properties for format information |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | content | 1 | 1 | content object with properties for road types, lane type, object type and traffic direction |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | quantity | 1 | 1 | quantity object with properties for quantity information |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | quality | 1 | 1 | quality object with properties for quality information |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | dataSource | 1 | 1 | dataSource object with properties for data sources |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | georeference | 1 | 1 | georeference object with properties for georeference information |  | hdmap_shacl.ttl |
 | ContentShape | hdmap | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | levelOfDetail |  |  | Covered object classes, see ODR spec section 11 | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
