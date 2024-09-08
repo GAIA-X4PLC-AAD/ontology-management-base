@@ -10,36 +10,50 @@ hdmap:HdMapShape a sh:NodeShape ;
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
+            sh:name "generalObject" ;
+            sh:description "general object with properties for descriptions, data, links, bundle";	
             sh:order 1 ;
             sh:path hdmap:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
+            sh:name "formatObject" ;
+            sh:description "format object with properties for format information";	
             sh:order 2 ;
             sh:path hdmap:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
+            sh:name "contentObject" ;
+            sh:description "content object with properties for road types, lane type, object type and traffic direction";	
             sh:order 3 ;
             sh:path hdmap:content ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
+            sh:name "quantityObject" ;
+            sh:description "quantity object with properties for quantity information";	            
             sh:order 4 ;
             sh:path hdmap:quantity ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
+            sh:name "qualityObject" ;
+            sh:description "quality object with properties for quality information";            
             sh:order 5 ;
             sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
+            sh:name "dataSourceObject" ;
+            sh:description "dataSource object with properties for data sources";
             sh:order 6 ;
             sh:path hdmap:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
+            sh:name "georeferenceObject" ;
+            sh:description "georeference object with properties for georeference information";
             sh:order 7 ;
             sh:path hdmap:georeference ] ;
     sh:targetClass hdmap:HdMap .
