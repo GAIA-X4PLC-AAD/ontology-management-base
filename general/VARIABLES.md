@@ -9,10 +9,10 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GeneralShape | general | description | 1 | 1 |  |  | general_shacl.ttl |
-| GeneralShape | general | data | 1 | 1 |  |  | general_shacl.ttl |
-| GeneralShape | general | links | 1 | 1 |  |  | general_shacl.ttl |
-| GeneralShape | general | bundleData | 1 | 1 |  |  | general_shacl.ttl |
+| GeneralShape | general | description | 1 | 1 | description object with property for name and description |  | general_shacl.ttl |
+| GeneralShape | general | data | 1 | 1 | data object with property for size, id and record time |  | general_shacl.ttl |
+| GeneralShape | general | links | 1 | 1 | link object with links to asset and media files |  | general_shacl.ttl |
+| GeneralShape | general | bundleData | 1 | 1 | bundle object with links to required and optional related data |  | general_shacl.ttl |
 | DescriptionShape | gx | name | 1 | 1 | A human readable name of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DescriptionShape | gx | description | 1 | 1 | A free text description of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DataShape | general | size | 1 | 1 | Size of the file to be downloaded in MB. | <http://www.w3.org/2001/XMLSchema#float> | general_shacl.ttl |
