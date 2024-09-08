@@ -13,7 +13,7 @@ georeference: a owl:Ontology ;
 
 georeference:Georeference a owl:Class ;
     rdfs:label "class definition for Georeference" ;
-    rdfs:comment "Attributes for location and georeference information"@en ;
+    rdfs:comment "Attributes for location and georeference information"@en .
 
 georeference:GeodeticReferenceSystem a owl:Class ;
     rdfs:label "class definition for GeodeticReferenceSystem" ;
