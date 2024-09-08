@@ -10,36 +10,50 @@ ositrace:OSITraceShape a sh:NodeShape ;
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
+            sh:name "generalObject" ;
+            sh:description "general object with properties for descriptions, data, links, bundle";
             sh:order 1 ;
             sh:path ositrace:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:FormatShape ;
+            sh:name "formatObject" ;
+            sh:description "format object with properties for format information";
             sh:order 2 ;
             sh:path ositrace:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:ContentShape ;
+            sh:name "contentObject" ;
+            sh:description "content object with properties for road types, lane type, object type and traffic direction";
             sh:order 3 ;
             sh:path ositrace:content ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:QualityShape ;
+            sh:name "qualityObject" ;
+            sh:description "quality object with properties for quality information"; 
             sh:order 4 ;
             sh:path ositrace:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:QuantityShape ;
+            sh:name "quantityObject" ;
+            sh:description "quantity object with properties for quantity information";	 
             sh:order 5 ;
             sh:path ositrace:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:DataSourceShape ;
+            sh:name "dataSourceObject" ;
+            sh:description "dataSource object with properties for data sources";
             sh:order 6 ;
             sh:path ositrace:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
+            sh:name "georeferenceObject" ;
+            sh:description "georeference object with properties for georeference information";
             sh:order 7 ;
             sh:path ositrace:georeference ] ;
     sh:targetClass ositrace:OSITrace .
