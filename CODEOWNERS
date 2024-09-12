@@ -50,3 +50,7 @@
 # ositrace directory (Pierre AND Robert)
 /ositrace @robertschubert
 /ositrace @pmai
+
+# leakage-test directory (Selcan AND Robert Or Lena)
+/leakage-test @selcan-k
+/leakage-test @robertschubert @lenasauermann
