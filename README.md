@@ -196,4 +196,7 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 
 * If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 
 
+* SD-Wizard does not process Logical Constraint Components. For example, if I use sh:xone in the shacl, all combinations are possible in the SD wizard, although only one field needs to be entered explicitly.
+I would expect that saving in export format is only enabled if the condition is met. See [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/27).
+
 > Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).
