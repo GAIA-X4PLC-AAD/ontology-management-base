@@ -57,14 +57,11 @@
       "general:data": {
         "@type": "general:Link",
         "general:url": {
-          "@value": "https://edcdb-pr.gxfs.gx4fm.org/",
+          "@value": "https://web-mpc.gxfs.gx4fm.org/?session=qrsg5sp6n1cs1172kd8q80q0e8&participationCode=7ab1ch5r8gc7e299zb0psa0t0c",
           "@type": "xsd:anyURI"
         },
-        "general:type": "Video"
+        "general:type": "Asset"
       }
-    },
-    "general:bundleData": {
-      "@type": "general:BundleData"
     }
   }
 }
