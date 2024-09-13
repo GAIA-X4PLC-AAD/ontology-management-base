@@ -21,7 +21,6 @@ general:GeneralShape a sh:NodeShape ;
             sh:order 3 ;
             sh:path general:links ],         
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:node general:BundleDataShape ;
             sh:order 4 ;
             sh:path general:bundleData ];
