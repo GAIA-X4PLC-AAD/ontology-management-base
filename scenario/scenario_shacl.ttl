@@ -83,9 +83,9 @@ scenario:FormatShape a sh:NodeShape ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "dataFormat"@en ;
+            sh:name "type"@en ;
             sh:order 0 ;
-            sh:path scenario:dataFormat ],
+            sh:path scenario:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;

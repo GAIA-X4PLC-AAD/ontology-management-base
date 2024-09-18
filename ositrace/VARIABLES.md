@@ -29,7 +29,7 @@
 | DataSourceShape | ositrace | measurementSystem |  | 1 | Main acquisition device | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | DataSourceShape | ositrace | usedDataSources |  |  | Basic data for the creation of the trace  | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | FormatShape | ositrace | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
-| FormatShape | ositrace | type |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
+| FormatShape | ositrace | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | QualityShape | ositrace | accuracySignals | 0 | 1 | Accuracy of traffic relevant objects, signs and signals | <http://www.w3.org/2001/XMLSchema#float> | ositrace_shacl.ttl |
 | QualityShape | ositrace | accuracyObjects | 0 | 1 | Accuracy of objects in the traffic space, which do not directly affect the traffic | <http://www.w3.org/2001/XMLSchema#float> | ositrace_shacl.ttl |
 | QualityShape | ositrace | accuracyLaneModelHeight | 0 | 1 | Accuracy lane modell height | <http://www.w3.org/2001/XMLSchema#float> | ositrace_shacl.ttl |

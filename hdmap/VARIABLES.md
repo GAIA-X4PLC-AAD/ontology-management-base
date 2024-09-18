@@ -22,7 +22,7 @@
 | DataSourceShape | hdmap | measurementSystem |  | 1 | Main acquisition device | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | DataSourceShape | hdmap | usedDataSources |  |  | Basic data for the creation of the map | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | FormatShape | hdmap | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
-| FormatShape | hdmap | type |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
+| FormatShape | hdmap | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | QualityShape | hdmap | accuracySignals | 0 | 1 | Accuracy of traffic relevant objects, signs and signals | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | accuracyObjects | 0 | 1 | Accuracy of objects in the traffic space, which do not directly affect the traffic | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | accuracyLaneModelHeight | 0 | 1 | Accuracy lane modell height | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |

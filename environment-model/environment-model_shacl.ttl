@@ -44,10 +44,10 @@ environment-model:FormatShape a sh:NodeShape ;
             sh:description "Data type definition"@en ;
             sh:in ("Autodesk FBX" "GLTF" "OpenSceneGraph" "Unreal DataSmith") ;
             sh:maxCount 1 ;
-            sh:message "Validation of dataType failed!"@en ;
-            sh:name "dataType"@en ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
             sh:order 0 ;
-            sh:path environment-model:dataType ],
+            sh:path environment-model:formatType ],
         [ skos:example "SDK 4.25" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
