@@ -47,9 +47,6 @@
           },
           "general:type": "Asset"
         }
-      },
-      "general:bundleData": {
-        "@type": "general:BundleData"
       }
     },
     "service:requiredFile": [
@@ -76,6 +73,17 @@
       }
     }
   ],
+  "service:requiredInput": {
+    "@type": "service:RequiredInput",
+    "service:specification": {
+      "@value": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/simulated_sensor_uc1_2/simulated-sensor/simulated_sensor_ontology.ttl",
+      "@type": "xsd:string"
+    },
+    "service:description": {
+        "@value": "simulated sensor specification neede as input",
+        "@type": "xsd:string"
+    }
+  },
   "service:resultingFile": {
     "@type": "service:ResultingFile",
     "service:description": {

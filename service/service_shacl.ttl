@@ -11,10 +11,12 @@ service:ServiceShape a sh:NodeShape ;
             sh:node general:GeneralShape ;
             sh:order 1 ;
             sh:path service:general ],
-        [ sh:minCount 1 ;
-            sh:node service:RequiredFileShape ;
+        [ sh:node service:RequiredFileShape ;
             sh:order 2 ;
             sh:path service:requiredFile ],
+        [ sh:node service:RequiredInputShape ;
+            sh:order 2 ;
+            sh:path service:requiredInput ],
         [ sh:minCount 1 ;
             sh:node service:ResultingFileShape ;
             sh:order 3 ;
@@ -22,7 +24,7 @@ service:ServiceShape a sh:NodeShape ;
     sh:targetClass service:Service .
 
 service:RequiredFileShape a sh:NodeShape ;
-    sh:property [ skos:example "link to ASAM OpenSCENARIO, link to json/ttl" ;
+    sh:property [ skos:example "link to ASAM OpenSCENARIO specification" ;
             sh:datatype xsd:string ;
             sh:description "Link to specification"@en ;
             sh:minCount 1 ;
@@ -31,7 +33,7 @@ service:RequiredFileShape a sh:NodeShape ;
             sh:name "specification"@en ;
             sh:order 1 ;
             sh:path service:specification ],
-        [ skos:example ".xosc, .json-config file" ;
+        [ skos:example ".xosc, .xodr" ;
             sh:datatype xsd:string ;
             sh:description "Human readable description"@en ;
             sh:minCount 1 ;
@@ -41,6 +43,27 @@ service:RequiredFileShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path service:description ] ;
     sh:targetClass service:RequiredFile .
+
+service:RequiredInputShape a sh:NodeShape ;
+    sh:property [ skos:example "link to .ttl/shape" ;
+            sh:datatype xsd:string ;
+            sh:description "Link to Shape"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:name "specification"@en ;
+            sh:order 1 ;
+            sh:path service:specification ],
+        [ skos:example "Sensor Sepcification Shape" ;
+            sh:datatype xsd:string ;
+            sh:description "Human readable description"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 2 ;
+            sh:path service:description ] ;
+    sh:targetClass service:RequiredInput .
 
 service:ResultingFileShape a sh:NodeShape ;
     sh:property [ skos:example ".osi" ;
