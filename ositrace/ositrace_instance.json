@@ -88,7 +88,7 @@
       "detection list"
     ],
     "ositrace:startTime": {
-      "@value": "2024-06-03 16:37:10.835792+02:00",
+      "@value": "2024-06-03T16:37:10.835792+02:00",
       "@type": "xsd:dateTimeStamp"
     },
     "ositrace:stopTime": {
