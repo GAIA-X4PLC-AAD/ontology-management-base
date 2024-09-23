@@ -20,3 +20,43 @@ simulated-sensor:SimulatedSensor a owl:Class ;
     rdfs:label "class definition simulated sensor"@en ; 
     rdfs:comment "A simulated RADAR or LIDAR sensor in CARLA"@en ;
     rdfs:subClassOf gx:DataResource .
+
+simulated-sensor:PackageLoss a owl:Class ;
+    rdfs:label "class definition for the package loss manipulation model"@en ; 
+    rdfs:comment "Package loss manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:PackageDelay a owl:Class ;
+    rdfs:label "class definition for the package delay manipulation model"@en ; 
+    rdfs:comment "Package delay manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:DetectionPointShift a owl:Class ;
+    rdfs:label "class definition for the detection point shift manipulation model"@en ; 
+    rdfs:comment "Detection point shift manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:VelocityPointShift a owl:Class ;
+    rdfs:label "class definition for the velocity point shift manipulation model"@en ; 
+    rdfs:comment "Velocity point shift manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:RangeReduction a owl:Class ;
+    rdfs:label "class definition for the range reduction manipulation model"@en ; 
+    rdfs:comment "Range reduction manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:DetectNonExistingPoints a owl:Class ;
+    rdfs:label "class definition for the detect non-existant points manipulation model"@en ; 
+    rdfs:comment "Detect non-existing points manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:CollisionSensorShift a owl:Class ;
+    rdfs:label "class definition for the collision shift manipulation model"@en ; 
+    rdfs:comment "Collision shift manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:ConstantSensorShift a owl:Class ;
+    rdfs:label "class definition for the constant shift manipulation model"@en ; 
+    rdfs:comment "Constant shift manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:SensorBlockageRandomLifetime a owl:Class ;
+    rdfs:label "class definition for the random lifetime blockage manipulation model"@en ; 
+    rdfs:comment "Random lifetime blockage manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
+
+simulated-sensor:SensorBlockageDefinedLifetime a owl:Class ;
+    rdfs:label "class definition for the defined lifetime blockage manipulation model"@en ; 
+    rdfs:comment "Defined lifetime blockage manipulation model for a simulated RADAR/LIDAR sensor in CARLA"@en ;
