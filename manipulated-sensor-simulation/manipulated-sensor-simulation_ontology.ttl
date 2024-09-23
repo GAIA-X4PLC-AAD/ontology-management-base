@@ -14,3 +14,16 @@ manipulated-sensor-simulation:ManipulatedSensorSimulation a owl:Class ;
     rdfs:label "class definition for ManipulatedSensorSimulation" ;
     rdfs:comment "Service for sensor failure and attack simulation"@en ;
     rdfs:subClassOf gx:SoftwareResource .
+
+manipulated-sensor-simulation:Scenario a owl:Class ;
+    rdfs:label "class definition for the simulated scenario" ;
+    rdfs:comment "The scenario that shall be simulated via CARLAs scenario runner"@en ;
+
+manipulated-sensor-simulation:VehicleModel a owl:Class ;
+    rdfs:label "class definition for the vehicle model used in the simulation" ;
+    rdfs:comment "The vehicle model (as CARLA blueprint identifier) that shall be used for the simulations"@en ;
+
+manipulated-sensor-simulation:KeyPerformanceIndicator a owl:Class ;
+    rdfs:label "class definition for the Key Performance Indicators (KPIs) that shall be evaluated" ;
+    rdfs:comment "The Key Performance Indicators (KPIs) that shall be evaluated during the scenario simulation"@en ;
+
