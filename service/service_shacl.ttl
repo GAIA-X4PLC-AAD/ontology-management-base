@@ -45,24 +45,14 @@ service:RequiredFileShape a sh:NodeShape ;
     sh:targetClass service:RequiredFile .
 
 service:RequiredInputShape a sh:NodeShape ;
-    sh:property [ skos:example "link to .ttl/shape" ;
-            sh:datatype xsd:string ;
+    sh:property [ sh:nodeKind sh:IRI ;
             sh:description "Link to Shape"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:message "Validation of specification failed!"@en ;
-            sh:name "specification"@en ;
+            sh:message "Validation of inputNode failed!"@en ;
+            sh:name "node"@en ;
             sh:order 1 ;
-            sh:path service:specification ],
-        [ skos:example "Sensor Sepcification Shape" ;
-            sh:datatype xsd:string ;
-            sh:description "Human readable description"@en ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:message "Validation of description failed!"@en ;
-            sh:name "description"@en ;
-            sh:order 2 ;
-            sh:path service:description ] ;
+            sh:path service:inputNode ];
     sh:targetClass service:RequiredInput .
 
 service:ResultingFileShape a sh:NodeShape ;
@@ -85,3 +75,15 @@ service:ResultingFileShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path service:specification ] ;
     sh:targetClass service:ResultingFile .
+
+service:ExampleInputShape a sh:NodeShape ;
+    sh:property [ skos:example "example input" ;
+            sh:datatype xsd:string ;
+            sh:description "Example input"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of example input failed!"@en ;
+            sh:name "example"@en ;
+            sh:order 1 ;
+            sh:path service:example ];
+    sh:targetClass service:ExampleInput .

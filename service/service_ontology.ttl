@@ -25,3 +25,7 @@ service:RequiredInput a owl:Class ;
 service:ResultingFile a owl:Class ;
     rdfs:label "Class definition for resulting files" ;
     rdfs:comment "Attributes for resulting files"@en .
+
+service:ExampleInput a owl:Class ;
+    rdfs:label "Class definition for an example input" ;
+    rdfs:comment "Attributes for an example input"@en .
