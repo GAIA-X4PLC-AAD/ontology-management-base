@@ -18,14 +18,6 @@ service:RequiredFile a owl:Class ;
     rdfs:label "Class definition for required files" ;
     rdfs:comment "Attributes for required files"@en .
 
-service:RequiredInput a owl:Class ;
-    rdfs:label "Class definition for required input" ;
-    rdfs:comment "Attributes for required input"@en .
-
 service:ResultingFile a owl:Class ;
     rdfs:label "Class definition for resulting files" ;
     rdfs:comment "Attributes for resulting files"@en .
-
-service:ExampleInput a owl:Class ;
-    rdfs:label "Class definition for an example input" ;
-    rdfs:comment "Attributes for an example input"@en .

@@ -52,44 +52,36 @@
     "service:requiredFile": [
     {
       "@type": "service:RequiredFile",
-      "service:specification": {
-        "@value": "ASAM OpenScenario",
+      "service:description": {
+        "@value": "A scenario following the ASAM OpenSCENARIO version 2.0.0 standard as a .osc file",
         "@type": "xsd:string"
       },
-      "service:description": {
-        "@value": ".xosc file",
-        "@type": "xsd:string"
+      "service:specification": {
+        "@value": "https://www.asam.net/standards/detail/openscenario/v200/",
+        "@type": "xsd:anyURI"
       }
     },
     {
       "@type": "service:RequiredFile",
-      "service:specification": {
-        "@value": "ASAM OpenDrive",
+      "service:description": {
+        "@value": "A road network following the ASAM OpenDRIVE v1.8.0 standard as a .xodr file",
         "@type": "xsd:string"
       },
-      "service:description": {
-        "@value": ".xodr file",
-        "@type": "xsd:string"
+      "service:specification": {
+        "@value": "https://www.asam.net/standards/detail/opendrive/",
+        "@type": "xsd:anyURI"
       }
     }
   ],
-  "service:requiredInput": {
-    "@type": "service:RequiredInput",
-    "service:inputNode": {
-      "@id": "service:ExampleInputShape",
-      "@type": "service:ExampleInput",
-      "service:example": "Example Input"
-    }
-  },
   "service:resultingFile": {
     "@type": "service:ResultingFile",
     "service:description": {
-      "@value": ".osi File",
+      "@value": "The ground-truth data of the executed simulation following the ASAM OSI v3.7.0 standard as a .osi file",
       "@type": "xsd:string"
     },
     "service:specification": {
-      "@value": "ASAM OSI",
-      "@type": "xsd:string"
+      "@value": "https://www.asam.net/standards/detail/osi/",
+      "@type": "xsd:anyURI"
     }
   }
 }
