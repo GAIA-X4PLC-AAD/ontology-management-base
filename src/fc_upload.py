@@ -4,13 +4,13 @@ import requests
 import authhelper.keycloakhandling
 
 
-### ENVIRONMENT VARIABLES
+# ENVIRONMENT VARIABLES
 ROOT_DIRECTORY = os.getcwd()
 FOLDER_TO_UPLOAD = os.environ.get("FOLDER_TO_UPLOAD")
 FEDERATED_CATALOGUE_URL = os.environ.get("FEDERATED_CATALOGUE_URL", default="https://fc-server.gxfs.gx4fm.org")
 
 
-### FUNCTIONS
+# FUNCTIONS
 def main():
     """
     The main function controls the overall program flow.
@@ -24,7 +24,8 @@ def main():
                 if filename.endswith(".ttl"):
                     with open(full_filepath, "r") as new_turtle_file:
                         new_turtle_file_text = new_turtle_file.read()
-                        print(post_to_catalogue("/schemas", request_body = new_turtle_file_text))
+                        print(post_to_catalogue("/schemas", request_body=new_turtle_file_text))
+
 
 def post_to_catalogue(endpoint: str, request_body: str) -> requests.Response:
     """Perform a http-post-request on the Federated Catalogue
