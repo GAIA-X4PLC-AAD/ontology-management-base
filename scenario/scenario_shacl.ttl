@@ -9,63 +9,63 @@ scenario:ScenarioShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
-            sh:name "generalObject" ;
+            sh:name "general object" ;
             sh:description "general object with properties for descriptions, data, links, bundle" ;
             sh:order 5 ;
             sh:path scenario:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:EnvironmentalShape ;
-            sh:name "environmentalObject" ;
+            sh:name "environmental object" ;
             sh:description "environmental object with property for sunAzimuth" ;
             sh:order 2 ;
             sh:path scenario:environmental ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:ScenarioCommonShape ;
-            sh:name "commonObject" ;
+            sh:name "common object" ;
             sh:description "common object with property for common values" ;
             sh:order 0 ;
             sh:path scenario:common ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:DataSourceShape ;
-            sh:name "sourceObject" ;
+            sh:name "source object" ;
             sh:description "source object with properties for data sources" ;
             sh:order 6 ;
             sh:path scenario:source ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:StructuralShape ;
-            sh:name "structuralObject" ;
+            sh:name "structural object" ;
             sh:description "structural object with links to dependend data" ;
             sh:order 4 ;
             sh:path scenario:structural ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:TrafficShape ;
-            sh:name "trafficObject" ;
+            sh:name "traffic object" ;
             sh:description "traffic object with properties for country specific informations" ;
             sh:order 3 ;
             sh:path scenario:traffic ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:TrafficParticipantsShape ;
-            sh:name "trafficParticipantsObject" ;
+            sh:name "trafficParticipants object" ;
             sh:description "trafficParticipants object with properties for traffic participants" ;
             sh:order 1 ;
             sh:path scenario:trafficParticipants ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
-            sh:name "formatObject" ;
+            sh:name "format object" ;
             sh:description "format object with properties for format informations" ;
             sh:order 5 ;
             sh:path scenario:format ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeferenceObject" ;
+            sh:name "georeference object" ;
             sh:description "georeference object with properties for georeference informations" ;
             sh:order 7 ;
             sh:path georeference:georeference ] ;

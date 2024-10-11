@@ -8,28 +8,28 @@ general:GeneralShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
-            sh:name "descriptionObject" ;
+            sh:name "description object" ;
             sh:description "description object with property for name and description" ;
             sh:order 1 ;
             sh:path general:description ],     
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
-            sh:name "dataObject" ;
+            sh:name "data object" ;
             sh:description "data object with property for size, id and record time" ;
             sh:order 2 ;
             sh:path general:data ],               
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:LinksShape ;
-            sh:name "linkObject" ;
+            sh:name "link object" ;
             sh:description "link object with links to asset and media files" ;
             sh:order 3 ;
             sh:path general:links ],         
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:BundleDataShape ;
-            sh:name "bundleObject" ;
+            sh:name "bundle object" ;
             sh:description "bundle object with links to required and optional related data" ;
             sh:order 4 ;
             sh:path general:bundleData ];
