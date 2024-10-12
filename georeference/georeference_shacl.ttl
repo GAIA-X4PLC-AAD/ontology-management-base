@@ -17,6 +17,8 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
+	sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
+			[ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
@@ -26,15 +28,22 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:origin ],
-        [ skos:example "EPSG::32632" ;
-            sh:datatype xsd:string ;
+		[ skos:example "32632" ;
+            sh:datatype xsd:int ;
             sh:description "EPSG code of the map"@en ;
-            sh:minCount 0 ;
-            sh:maxCount 1 ;
-            sh:message "Validation of coordinateSystem failed!"@en ;
-            sh:name "coordinateSystem"@en ;
+            sh:message "Validation of codeEPSG failed!"@en ;
+            sh:name "EPSG code"@en ;
+			sh:maxCount 1 ; 
             sh:order 0 ;
-            sh:path georeference:coordinateSystem ],
+            sh:path georeference:codeEPSG ],
+		[ skos:example "UTM, None" ;
+            sh:datatype xsd:string ;
+            sh:description "coordinate system name of the map"@en ;
+            sh:message "Validation of coordinateSystemName failed!"@en ;
+            sh:name "coordinate system name"@en ;
+			sh:maxCount 1 ; 
+            sh:order 0 ;
+            sh:path georeference:coordinateSystemName ],
         [ skos:example "Ellipsodial height" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
