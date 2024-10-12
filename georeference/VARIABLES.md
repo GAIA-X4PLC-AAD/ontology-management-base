@@ -11,7 +11,8 @@
 | GeoreferenceShape | georeference | projectLocation | 1 | 1 |  |  | georeference_shacl.ttl |
 | GeoreferenceShape | georeference | geodeticReferenceSystem | 1 | 1 |  |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | origin | 1 | 1 | World coordinates of map origin |  | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | coordinateSystem | 0 | 1 | EPSG code of the map | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | EPSG code of the map | <http://www.w3.org/2001/XMLSchema#int> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | coordinateSystemName |  | 1 | coordinate system name of the map | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Ellipsodial height or orthometric height | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | yMin |  | 1 |  | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | yMax |  | 1 |  | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
