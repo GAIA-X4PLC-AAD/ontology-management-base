@@ -98,7 +98,7 @@
   },
   "hdmap:format": {
     "@type": "hdmap:Format",
-    "hdmap:type": "ASAM OpenDRIVE",
+    "hdmap:formatType": "ASAM OpenDRIVE",
     "hdmap:version": {
       "@value": "1.6",
       "@type": "xsd:string"

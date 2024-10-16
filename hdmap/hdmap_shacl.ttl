@@ -59,7 +59,7 @@ hdmap:HdMapShape a sh:NodeShape ;
     sh:targetClass hdmap:HdMap .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:property [ skos:example "[motorway, residential]" ;
+    sh:property [ skos:example "[Motorway, Rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
@@ -129,7 +129,7 @@ hdmap:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path hdmap:type ] ;
+            sh:path hdmap:formatType ] ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;

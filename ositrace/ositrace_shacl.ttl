@@ -179,7 +179,7 @@ ositrace:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path ositrace:type ] ;
+            sh:path ositrace:formatType ] ;
     sh:targetClass ositrace:Format .
 
 ositrace:QualityShape a sh:NodeShape ;
