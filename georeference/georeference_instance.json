@@ -51,9 +51,9 @@
   },
   "georeference:geodeticReferenceSystem": {
     "@type": "georeference:GeodeticReferenceSystem",
-    "georeference:coordinateSystem": {
+    "georeference:codeEPSG": {
       "@value": "32632",
-      "@type": "xsd:string"
+      "@type": "xsd:int"
     },
     "georeference:origin": {
       "@type": "georeference:Coordinate2D",
