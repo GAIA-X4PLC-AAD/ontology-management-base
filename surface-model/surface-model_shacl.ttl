@@ -9,42 +9,42 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
-            sh:name "generalObject" ;
+            sh:name "general object" ;
             sh:description "general object with properties for descriptions, data, links, bundle" ;
             sh:order 1 ;
             sh:path surface-model:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:FormatShape ;
-            sh:name "formatObject" ;
+            sh:name "format object" ;
             sh:description "format object with properties for format informations" ;
             sh:order 2 ;
             sh:path surface-model:Format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:DataShape ;
-            sh:name "DataObject" ;
+            sh:name "data object" ;
             sh:description "Data object with property for type of data" ;
             sh:order 3 ;
             sh:path surface-model:Data ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QualityShape ;
-            sh:name "qualityObject" ;
+            sh:name "quality object" ;
             sh:description "quality object with properties for quality informations" ;
             sh:order 4 ;
             sh:path surface-model:Quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QuantityShape ;
-            sh:name "quantityObject" ;
+            sh:name "quantity object" ;
             sh:description "quantity object with properties for quantity informations" ;
             sh:order 5 ;
             sh:path surface-model:Quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeferenceObject" ;
+            sh:name "georeference object" ;
             sh:description "georeference object with properties for georeference informations" ;
             sh:order 6 ;
             sh:path surface-model:Georeference ] ;
