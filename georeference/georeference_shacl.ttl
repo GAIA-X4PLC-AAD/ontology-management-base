@@ -7,11 +7,15 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:ProjectLocationShape ;
+            sh:name "projectLocation object" ;
+            sh:description "projectLocation object with property for locations and description" ;
             sh:order 0 ;
             sh:path georeference:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeodeticReferenceSystemShape ;
+            sh:name "geodeticReferenceSystem object" ;
+            sh:description "geodeticReferenceSystem object with properties for projection informations" ;
             sh:order 1 ;
             sh:path georeference:geodeticReferenceSystem ] ;
     sh:targetClass georeference:Georeference .
