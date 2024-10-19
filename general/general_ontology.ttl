@@ -13,16 +13,11 @@ general: a owl:Ontology ;
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General" ;
-    rdfs:comment "General attributes for all assets"@en ;
-    rdfs:subClassOf gx:DataResourceExtension .
+    rdfs:comment "General attributes for all assets"@en .
 
 general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;
     rdfs:comment "Description attributes for all assets"@en .
-
-general:Data a owl:Class ;
-    rdfs:label "Data definition for General" ;
-    rdfs:comment "Data attributes for all assets"@en .
 
 general:Range2D a owl:Class ;
     rdfs:label "Range2D definition for General" ;

@@ -2,10 +2,11 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
+  "@id": "did:web:registry.gaia-x.eu:General:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
   "@type": "general:General",
   "general:description": {
     "@type": "general:Description",
@@ -24,20 +25,13 @@
       "@value": "5.8",
       "@type": "xsd:float"
     },
+    "general:contractId": {
+      "@value": "ntract_zcdkr7kqd47y0w5b4tg91w1etw",
+      "@type": "xsd:string"
+    },
     "general:recordingTime": {
       "@value": "2024-04-01T00:00:00",
       "@type": "xsd:dateTime"
-    }
-  },
-  "general:range2D": {
-    "@type": "general:Range2D",
-    "general:min": {
-      "@value": "30",
-      "@type": "xsd:float"
-    },
-    "general:max": {
-      "@value": "50",
-      "@type": "xsd:float"
     }
   }
 }

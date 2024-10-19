@@ -1,4 +1,5 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -7,19 +8,24 @@ general:GeneralShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
+            sh:name "description object" ;
+            sh:description "description object with property for name and description" ;
             sh:order 1 ;
             sh:path general:description ],     
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
+            sh:name "data object" ;
+            sh:description "data object with property for size, id and record time" ;
             sh:order 2 ;
             sh:path general:data ],
-         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
+        [ sh:maxCount 1 ;
             sh:node general:Range2DShape ;
+            sh:name "range2D object" ;
+            sh:description "min and max value of range2D object" ;
             sh:order 3 ;
-            sh:path general:range2D ];                          
-          sh:targetClass general:General .
+            sh:path general:range2D ];                  
+    sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
@@ -49,25 +55,33 @@ general:DataShape a sh:NodeShape ;
             sh:name "size" ;
             sh:order 1 ;
             sh:path general:size ],
+ # contractId ?          
+        [ sh:datatype xsd:string ;
+            sh:description "Contract information in regards to the data exchange component." ;
+            skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "contractId" ;
+            sh:order 2 ;
+            sh:path general:contractId ], 
+ #           
         [ skos:example "2022-04-01 00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of recordingTime failed!"@en ;
             sh:name "recordingTime"@en ;
-            sh:order 2 ;
+            sh:order 3 ;
             sh:path general:recordingTime ] ;
     sh:targetClass general:Data .     
-       
+  
 general:Range2DShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:float ;
-            sh:description "Max speed limits defined in the map, see ODR spec section 9.5.5. "@en ;
             sh:message "Validation of max failed!"@en ;
             sh:name "max"@en ;
             sh:order 0 ;
             sh:path general:max ],
         [ sh:datatype xsd:float ;
-            sh:description "Max speed limits defined in the map, see ODR spec section 9.5.5. "@en ;
             sh:message "Validation of min failed!"@en ;
             sh:name "min"@en ;
             sh:order 0 ;
