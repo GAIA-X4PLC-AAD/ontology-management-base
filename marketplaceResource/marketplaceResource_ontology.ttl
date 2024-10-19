@@ -1,0 +1,38 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix marketplaceResource: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/marketplaceResource/> .
+@prefix bundleData: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/bundleData/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+marketplaceResource: a owl:Ontology ;
+    rdfs:label "ontology definition for MarketplaceResource"@en ;
+    dcterms:contributor "Johannes Demer (ASCS)" ;
+    owl:versionInfo "0.1" .
+
+marketplaceResource:MarketplaceResource a owl:Class ;
+    rdfs:label "Class definition for MarketplaceResource" ;
+    rdfs:comment "MarketplaceResource attributes for all assets"@en ;
+    rdfs:subClassOf gx:DataResource .
+
+marketplaceResource:ContentData a owl:Class ;
+    rdfs:label "ContentData definition for MarketplaceResource" ;
+    rdfs:comment "ContentData attributes for all assets"@en .
+
+bundleData:RequiredData a owl:Class ;
+    rdfs:label "RequiredData definition for MarketplaceResource" ;
+    rdfs:comment "RequiredData attributes for all assets"@en .
+
+bundleData:RelatedData a owl:Class ;
+    rdfs:label "RelatedData definition for MarketplaceResource" ;
+    rdfs:comment "RelatedData attributes for all assets"@en .
+
+marketplaceResource:Domain a owl:Class ;
+    rdfs:label "Domain definition for MarketplaceResource" ;
+    rdfs:comment "Domain attributes for all assets"@en .
+
+marketplaceResource:Link a owl:Class ;
+    rdfs:label "Link definition for MarketplaceResource" ;
+    rdfs:comment "Link attributes for all assets"@en .
