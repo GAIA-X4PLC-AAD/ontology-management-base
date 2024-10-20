@@ -1,0 +1,40 @@
+{
+    "@context": {
+      "marketplaceResource": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/marketplaceResource/",
+      "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+      "bundleData": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/bundleData/",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    },
+    "@id": "did:web:registry.gaia-x.eu:BundleData:3YqjJQEzNemoMz6TC54w3PhleEkaHaVTIXEw",
+    "@type": "bundleData:BundleData",
+    "bundleData:requiredData": {
+      "@type": "bundleData:RequiredData",
+      "bundleData:domain": {
+        "@type": "marketplaceResource:Domain",
+        "marketplaceResource:domainType": "environment-model"
+      },
+      "bundleData:requiredDataLink": {
+        "@type": "marketplaceResource:Link",
+        "marketplaceResource:link": {
+          "@value": "did:web:registry.gaia-x.eu:environment-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
+          "@type": "xsd:anyURI"
+        }
+      }
+    },
+    "bundleData:relatedData": {
+      "@type": "bundleData:RelatedData",
+      "bundleData:domain": {
+        "@type": "marketplaceResource:Domain",
+        "marketplaceResource:domainType": "surface-model"
+      },
+      "bundleData:relatedDataLink": {
+        "@type": "marketplaceResource:Link",
+        "marketplaceResource:link": {
+          "@value": "did:web:registry.gaia-x.eu:surface-model:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-12345-p",
+          "@type": "xsd:anyURI"
+        }
+      }
+    }
+  }

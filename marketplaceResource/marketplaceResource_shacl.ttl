@@ -1,0 +1,113 @@
+@prefix marketplaceResource: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/marketplaceResource/> .
+@prefix bundleData: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/bundleData/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+marketplaceResource:MarketplaceResourceShape a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+                  sh:node marketplaceResource:ContentDataShape ;
+                  sh:order 1 ;
+                  sh:path marketplaceResource:contentData ],         
+                [ sh:node bundleData:BundleDataShape ;
+                  sh:order 2 ;
+                  sh:path marketplaceResource:bundleData ] ;
+    sh:targetClass marketplaceResource:MarketplaceResource .
+
+
+marketplaceResource:ContentDataShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+                  sh:in ("Documentation" "Metadata" "Report" "Image" "Video" "3DPreview" "Asset") ;
+                  sh:message "Validation of type failed!"@en ;
+                  sh:description "Choose type of link."@en ;
+                  sh:name "type"@en ;
+                  sh:order 1 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path marketplaceResource:dataType ],
+                [ skos:example "link to content data, screenshot, video, routing, 3d preview"@en ;
+                  sh:description "Reference to content data"@en ;
+                  sh:message "Validation of content failed!"@en ;
+                  sh:name "link"@en ;
+                  sh:node marketplaceResource:LinkShape ;
+                  sh:order 2 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path marketplaceResource:contentData ] ;
+    sh:targetClass marketplaceResource:ContentData .
+
+    marketplaceResource:DomainShape a sh:NodeShape ;
+    sh:property  [ sh:datatype xsd:string ;
+                  sh:in ("hdmap" "environment-model" "ositrace" "scenario" "surface-model") ;
+                  sh:message "Validation of domain type failed!"@en ;
+                  sh:description "Choose domain type."@en ;
+                  sh:name "domain"@en ;
+                  sh:order 0 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path marketplaceResource:domainType ];
+    sh:targetClass marketplaceResource:Domain .
+
+    marketplaceResource:LinkShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:anyURI ;
+                  sh:message "Validation of link failed!"@en ;
+                  sh:description "Enter a link or DID."@en ;
+                  sh:name "link"@en ;
+                  sh:order 0 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path marketplaceResource:link ] ;
+    sh:targetClass marketplaceResource:Link .
+
+### bundleData
+
+bundleData:BundleDataShape a sh:NodeShape ;
+    sh:property [ sh:minCount 1 ;
+                  sh:node bundleData:RequiredDataShape ;
+                  sh:order 1 ;
+                  sh:path bundleData:requiredData ],         
+                [ sh:node bundleData:RelatedDataShape ;
+                  sh:order 2 ;
+                  sh:path bundleData:relatedData ] ;
+    sh:targetClass bundleData:BundleData .
+
+bundleData:RequiredDataShape a sh:NodeShape ;
+    sh:property [ sh:node marketplaceResource:DomainShape ;
+                  sh:description "Reference to required assets"@en ;
+                  skos:example "for scenario, link to required hd map"@en ;
+                  sh:name "domain"@en ;
+                  sh:order 1 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path bundleData:domain ], 
+                [ skos:example "link to required data"@en ;
+                  sh:description "Reference to required data"@en ;
+                  sh:message "Validation of required data failed!"@en ;
+                  sh:name "link"@en ;
+                  sh:node marketplaceResource:LinkShape ;
+                  sh:order 2 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path bundleData:requiredDataLink ] ;
+    sh:targetClass bundleData:RequiredData .
+
+    bundleData:RelatedDataShape a sh:NodeShape ;
+    sh:property [ sh:node marketplaceResource:DomainShape ;
+                  sh:description "Reference to related assets"@en ;
+                  skos:example "at hd map, link to surface map"@en ;
+                  sh:name "domain"@en ;
+                  sh:order 1 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path bundleData:domain ], 
+                [ skos:example "link to related data"@en ;
+                  sh:description "Reference to related data"@en ;
+                  sh:message "Validation of related data failed!"@en ;
+                  sh:name "link"@en ;
+                  sh:node marketplaceResource:LinkShape ;
+                  sh:order 2 ;
+                  sh:maxCount 1 ;
+                  sh:minCount 1 ;
+                  sh:path bundleData:relatedDataLink ] ;
+    sh:targetClass bundleData:RelatedData .
