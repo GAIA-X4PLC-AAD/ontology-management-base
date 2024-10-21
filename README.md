@@ -141,6 +141,9 @@ The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF gr
 #### Check if `_instance.json` file is conform to the SHACL Shape(s)
 The pipeline checks if the `_instance.json` file is conform to the SHACL Shape(s) defined in the corresponding SHACL file. For this all `*_shacl.ttl` files in this repository are collected to be able to check against a schema not defined in the current SHACL Shape. If the instance is not conform the pipeline fails with a detailed error message.
 
+#### Check if all target classes of a SHACL file are specified in the corresponding ontology file
+The pipeline checks if all target classes of a SHACL file are specified in the corresponding ontology file. If a target class is not specified in the ontology file the pipeline fails with a detailed error message.
+
 ### Run the pipeline scripts locally
 ```bash
 # prepare venv (optional)
@@ -151,11 +154,13 @@ $ source .venv/bin/activate
 # execute check from CI
 python3 src/check_ttl_syntax.py <path_to_ttl_file>
 python3 src/check_jsonld_against_shacl_schema.py <directory name>
+python3 src/check_target_classes_against_owl_classes.py <directory name>
 ```
 Example:
 ```bash
 python3 src/check_ttl_syntax.py scenario/scenario_ontology.ttl
 python3 src/check_jsonld_against_shacl_schema.py scenario
+python3 src/check_target_classes_against_owl_classes.py scenario
 ```
 
 >You might use `py` or `python` instead of `python3` depending on your system.

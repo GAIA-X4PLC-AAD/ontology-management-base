@@ -1,4 +1,4 @@
-name: Upload files into FC on manual trigger
+name: Upload files into FC on manual trigger (supports both create and update)
 
 on:
   workflow_dispatch:
@@ -6,9 +6,14 @@ on:
       folder_to_upload:
         description: 'Folder to upload .ttl files from'
         required: true
+      dry_run:
+        description: 'Indicates if the upload is a dry run (no changes will be made to FC)'
+        default: true
+        required: true
 
 env:
   FOLDER_TO_UPLOAD: ${{ github.event.inputs.folder_to_upload }} # Folder to upload, this variable is specified by the user
+  DRY_RUN: ${{ github.event.inputs.dry_run }} # dry run or not, this variable is specified by the user
   KEYCLOAK_USER: ${{ secrets.KEYCLOAK_USER }} # Keycloak Username, this is defined in a secret within github
   KEYCLOAK_PASSWORD: ${{ secrets.KEYCLOAK_PASSWORD }} # Keycloak Password, this is defined in a secret within github
   KEYCLOAK_CLIENT_SECRET_KEY: ${{ secrets.KEYCLOAK_CLIENT_SECRET_KEY }} # Keycloak Client Secret Key, this is defined in a secret within github
@@ -30,5 +35,5 @@ jobs:
       run: pip install -r src/requirements_fc.txt
 
     - name: Run Python upload into FC
-      run: python3 src/fc_upload.py
+      run: python3 src/fc_upload_with_update.py
       working-directory: ${{ github.workspace }}
