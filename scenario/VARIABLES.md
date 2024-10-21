@@ -9,15 +9,15 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ScenarioShape | scenario | general | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | environmental | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | common | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | source | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | structural | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | traffic | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | trafficParticipants | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | format | 1 | 1 |  |  | scenario_shacl.ttl |
-| ScenarioShape | georeference | georeference | 0 | 1 |  |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | general | 1 | 1 | general object with properties for descriptions, data, links, bundle |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | environmental | 1 | 1 | environmental object with property for sunAzimuth |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | common | 1 | 1 | common object with property for common values |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | source | 1 | 1 | source object with properties for data sources |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | structural | 1 | 1 | structural object with links to dependend data |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | traffic | 1 | 1 | traffic object with properties for country specific informations |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | trafficParticipants | 1 | 1 | trafficParticipants object with properties for traffic participants |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | format | 1 | 1 | format object with properties for format informations |  | scenario_shacl.ttl |
+| ScenarioShape | georeference | georeference | 0 | 1 | georeference object with properties for georeference informations |  | scenario_shacl.ttl |
 | DataSourceShape | scenario | source | 0 | 1 | Capture type | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | EnvironmentalShape | scenario | sunAzimuth | 0 |  | Azimuth of the sun | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | FormatShape | scenario | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |

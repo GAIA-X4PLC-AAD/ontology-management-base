@@ -1,0 +1,77 @@
+@prefix service: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+service:ServiceShape a sh:NodeShape ;
+    sh:property 
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:GeneralShape ;
+            sh:order 1 ;
+			sh:name "general object" ;
+			sh:description "general object with properties for name and description" ;
+            sh:path service:general ],
+        [ sh:node service:RequiredFileShape ;
+            sh:order 2 ;
+			sh:name "required file object" ;
+			sh:description "required file object with properties for urls and description" ;			
+            sh:path service:requiredFile ],
+        [ sh:minCount 1 ;
+            sh:node service:ResultingFileShape ;
+            sh:order 3 ;
+			sh:name "resulting file object" ;
+			sh:description "resulting file object with properties for url and description" ;	
+            sh:path service:resultingFile ] ;
+    sh:targetClass service:Service .
+
+service:RequiredFileShape a sh:NodeShape ;
+    sh:property [ skos:example "A scenario following the ASAM OpenSCENARIO 2.0.0 standard as an .osc file" ;
+            sh:datatype xsd:string ;
+            sh:description "Human readable description of the required file"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 1 ;
+            sh:path service:description ] ,
+        [ skos:example "https://www.asam.net/standards/detail/openscenario/v200/" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to a formal specification of the file"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:name "specification"@en ;
+            sh:order 2 ;
+            sh:path service:specification ] ,
+        [ skos:example "https://sd-creation-wizard.gxfs.gx4fm.org/" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to a tool to help create the file"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of tooling failed!"@en ;
+            sh:name "tooling"@en ;
+            sh:order 3 ;
+            sh:path service:tooling ];
+
+    sh:targetClass service:RequiredFile .
+
+service:ResultingFileShape a sh:NodeShape ;
+    sh:property [ skos:example "The ground-truth data of the executed simulation following the ASAM OSI v3.7.0 standard as a .osi file" ;
+            sh:datatype xsd:string ;
+            sh:description "Human readable description"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of description failed!"@en ;
+            sh:name "description"@en ;
+            sh:order 1 ;
+            sh:path service:description ],
+        [ skos:example "https://www.asam.net/standards/detail/osi/" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to specification"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:message "Validation of specification failed!"@en ;
+            sh:name "specification"@en ;
+            sh:order 2 ;
+            sh:path service:specification ] ;
+    sh:targetClass service:ResultingFile .
