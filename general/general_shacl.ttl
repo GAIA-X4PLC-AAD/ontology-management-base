@@ -16,7 +16,7 @@ general:GeneralShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
             sh:name "data object" ;
-            sh:description "data object with property for size, id and record time" ;
+            sh:description "data object with property for size and record time" ;
             sh:order 2 ;
             sh:path general:data ],
         [ sh:maxCount 1 ;
@@ -55,23 +55,13 @@ general:DataShape a sh:NodeShape ;
             sh:name "size" ;
             sh:order 1 ;
             sh:path general:size ],
- # contractId ?          
-        [ sh:datatype xsd:string ;
-            sh:description "Contract information in regards to the data exchange component." ;
-            skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "contractId" ;
-            sh:order 2 ;
-            sh:path general:contractId ], 
- #           
         [ skos:example "2022-04-01 00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of recordingTime failed!"@en ;
             sh:name "recordingTime"@en ;
-            sh:order 3 ;
+            sh:order 2 ;
             sh:path general:recordingTime ] ;
     sh:targetClass general:Data .     
   
