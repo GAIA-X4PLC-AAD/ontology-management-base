@@ -51,11 +51,9 @@
 /ositrace @robertschubert
 /ositrace @pmai
 
-# marketplaceResource directory (Robert AND Johannes)
-/marketplaceResource @robertschubert
-/marketplaceResource @jtdemer
+# marketplace-info directory (Robert AND Johannes)
+/marketplace-info @robertschubert
+/marketplace-info @jtdemer
 
-# bundleData directory (Robert AND Johannes)
-/bundleData @robertschubert
-/bundleData @jtdemer
+
 
