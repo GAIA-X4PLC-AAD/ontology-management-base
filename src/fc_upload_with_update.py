@@ -183,6 +183,15 @@ def all_classes_exist_in_ontology(ontology_graph: rdflib.Graph, target_classes: 
     """
     Check if all target classes exist in the ontology.
     """
+    ontology_classes = extract_owl_classnames(ontology_graph)
+
+    return all(target_class in ontology_classes for target_class in target_classes)
+
+
+def extract_owl_classnames(ontology_graph):
+    """
+    Extract all owl:Class names from the ontology graph.
+    """
     query = """
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     SELECT ?cls WHERE {
@@ -191,8 +200,7 @@ def all_classes_exist_in_ontology(ontology_graph: rdflib.Graph, target_classes: 
     """
     results = ontology_graph.query(query)
     ontology_classes = {str(row.cls) for row in results}
-
-    return all(target_class in ontology_classes for target_class in target_classes)
+    return ontology_classes
 
 
 def get_schema_details(auth_header: dict, schema_id: str) -> str:
@@ -234,7 +242,8 @@ def find_and_check_corresponding_shapes_from_filesystem(ontology_graph: rdflib.G
     Find SHACL shapes that correspond to the given ontology from the filesystem.
     Returns a map of filename and shape_data.
     """
-    corresponding_shapes, ontology_name = find_corresponding_shapes_from_filesystem(directory_path, ontology_graph)
+    corresponding_shapes, ontology_name = find_corresponding_shapes_from_filesystem(directory_path, ontology_graph,
+                                                                                    False)
 
     if not corresponding_shapes:
         raise ValueError(f"No corresponding shapes found in filesystem for {ontology_name}. Please check your SHACL "
@@ -247,7 +256,11 @@ def find_and_check_corresponding_shapes_from_filesystem(ontology_graph: rdflib.G
     return corresponding_shapes
 
 
-def find_corresponding_shapes_from_filesystem(directory_path, ontology_graph):
+def find_corresponding_shapes_from_filesystem(directory_path: str, ontology_graph: rdflib.Graph,
+                                              print_classes_if_not_found: bool):
+    """
+    Find SHACL shapes that correspond to the given ontology from the filesystem.
+    """
     corresponding_shapes = {}
     ontology_name = extract_ontology_name(ontology_graph)
     for filename in os.listdir(directory_path):
@@ -262,7 +275,20 @@ def find_corresponding_shapes_from_filesystem(directory_path, ontology_graph):
                 if all_classes_exist_in_ontology(ontology_graph, shape_target_classes):
                     corresponding_shapes[filename] = shape_data
                     print(f"Found corresponding local SHACL shape: {filename} for ontology: {ontology_name}")
+                else:
+                    if print_classes_if_not_found:
+                        print_classes(ontology_graph, shape_target_classes)
     return corresponding_shapes, ontology_name
+
+
+def print_classes(ontology_graph: rdflib.Graph, shape_target_classes: List[str]):
+    """
+    prints all owl classes of the given ontology as well as all shape target classes
+    """
+    ontology_classes = sorted(extract_owl_classnames(ontology_graph))
+    target_classes = sorted(shape_target_classes)
+    print(f"Classes in the ontology      : {', '.join(ontology_classes)}")
+    print(f"Target classes in SHACL shape: {', '.join(target_classes)}")
 
 
 def post_to_catalogue(auth_header: dict, endpoint: str, request_body: str) -> Optional[requests.Response]:
