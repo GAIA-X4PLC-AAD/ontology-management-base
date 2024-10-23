@@ -1,3 +1,4 @@
 rdflib==7.0.0
 rdflib-jsonld==0.6.2
 pyshacl==0.26.0
+requests==2.32.3
