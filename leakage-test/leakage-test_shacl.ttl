@@ -44,7 +44,7 @@ leakage-test:ProcessParameterShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:node leakage-test:CodingRFIDShape ;
             sh:path leakage-test:codingRFID ] ;
-    sh:targetClass leakage-test:processParameter .
+    sh:targetClass leakage-test:ProcessParameter .
 
 leakage-test:MaximumPressureShape a sh:NodeShape ;
     sh:property 

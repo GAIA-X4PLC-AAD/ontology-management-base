@@ -156,9 +156,13 @@ jobs:
         with:
           python-version: 3.12.0
 
-      - name: Install additional libraries
+      - name: Install additional libraries for ci
         if: env.FILES_HAVE_CHANGED == 'true'
         run: pip install -r src/requirements_ci.txt
+
+      - name: Install additional libraries for federated catalogue script that is being called.
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: pip install -r src/requirements_fc.txt
 
       - name: Run Python script for each directory that is affected (ttl file was changed).
         if: env.FILES_HAVE_CHANGED == 'true'
