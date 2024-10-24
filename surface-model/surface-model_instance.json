@@ -48,33 +48,39 @@
         },
         "general:type": "Asset"
       },
-      "general:media": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/CRG-3DM/LICENSE.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:media": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/CRG-3DM/LICENSE.md",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
     },
     "general:bundleData": {
       "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/ODR-3DM/data/A39_TestfeldNiedersachsen_CremlingenSurface_offset.xodr",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
-      },
-      "general:relatedData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/003_A39_TestfeldNiedersachsen_CremlingenLoop/3DModel-TG/data/Unreal/Readme.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:requiredData": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/ODR-3DM/data/A39_TestfeldNiedersachsen_CremlingenSurface_offset.xodr",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Asset"
+		  }
+	  ],
+      "general:relatedData": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/003_A39_TestfeldNiedersachsen_CremlingenLoop/3DModel-TG/data/Unreal/Readme.md",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
     }
   },
   "surface-model:Format": {
@@ -87,7 +93,7 @@
   },
   "surface-model:Data": {
     "@type": "surface-model:Data",
-    "surface-model:type": "Height"
+    "surface-model:dataType": "Height"
   },
   "surface-model:Quality": {
     "@type": "surface-model:Quality",
@@ -145,19 +151,19 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "0",
+          "@value": "11.95546",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "0",
+          "@value": "48.03990",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "5",
+          "@value": "11.97518",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "5",
+          "@value": "48.04697",
           "@type": "xsd:float"
         }
       }
@@ -171,39 +177,15 @@
       "georeference:origin": {
         "@type": "georeference:Coordinate2D",
         "georeference:x": {
-          "@value": "2.5",
+          "@value": "11.96533",
           "@type": "xsd:float"
         },
         "georeference:y": {
-          "@value": "2.5",
+          "@value": "48.04375",
           "@type": "xsd:float"
         }
       },
       "georeference:heightSystem": "Ellipsodial height"
     }
-  },
-  "general:media": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/CRG-3DM/LICENSE.md",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "general:requiredData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/ODR-3DM/data/A39_TestfeldNiedersachsen_CremlingenSurface_offset.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Asset"
-  },
-  "general:relatedData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/003_A39_TestfeldNiedersachsen_CremlingenLoop/3DModel-TG/data/Unreal/Readme.md",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
   }
 }
