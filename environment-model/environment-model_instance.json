@@ -98,10 +98,15 @@
     "environment-model:textureResolution": {
       "@value": "0.1",
       "@type": "xsd:float"
-    },
-    "environment-model:features": {
-      "@value": "PBR",
-      "@type": "xsd:string"
+    }
+  },
+  "environment-model:content": {
+    "@type": "environment-model:Content",
+    "environment-model:elements": "profile roads, extrude buildings, powerlines",
+	"environment-model:useCase": "driving",
+    "environment-model:textureResolution": {
+      "@value": "0.1",
+      "@type": "xsd:float"
     }
   },
   "environment-model:project": {

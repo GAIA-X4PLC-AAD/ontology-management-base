@@ -29,24 +29,31 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
             sh:path environment-model:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
+            sh:node environment-model:ContentShape ;
+            sh:name "content object" ;
+            sh:description "content object with properties for content informations" ;
+            sh:order 4 ;
+            sh:path environment-model:content ],
+		[ sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:node environment-model:ProjectShape ;
             sh:name "project object" ;
             sh:description "project object with properties for project informations" ;
-            sh:order 4 ;
+            sh:order 5;
             sh:path environment-model:project ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:FormatShape ;
             sh:name "format object" ;
             sh:description "format object with properties for format informations" ;
-            sh:order 5 ;
+            sh:order 6 ;
             sh:path environment-model:format ],
         [ sh:maxCount 1 ;
-            sh:minCount 0 ;            
+            sh:minCount 1 ;            
             sh:node georeference:GeoreferenceShape ;
             sh:name "georeference object" ;
             sh:description "georeference object with properties for georeference informations" ;
-            sh:order 6 ;
+            sh:order 7 ;
             sh:path environment-model:georeference ] ;
     sh:targetClass environment-model:EnvironmentModel .   
 
@@ -70,6 +77,25 @@ environment-model:FormatShape a sh:NodeShape ;
             sh:path environment-model:version ] ;
     sh:targetClass environment-model:Format .
 
+environment-model:ContentShape a sh:NodeShape ;
+    sh:property [ skos:example "profile roads, extrude buildings, forests, trees, river, powerlines" ;
+			sh:maxCount 1 ;
+            sh:datatype xsd:string ;
+            sh:description "Listing, description of visual elements in the environment model"@en ;
+            sh:message "Validation of elements failed!"@en ;
+            sh:name "elements"@en ;
+            sh:order 0 ;
+            sh:path environment-model:elements ],
+        [ skos:example "driving, offroad, flight" ;
+            sh:maxCount 1 ;
+			sh:datatype xsd:string ;
+            sh:description "the possible usages of the environment model"@en ;
+            sh:message "Validation of useCase failed!"@en ;
+            sh:name "use case"@en ;
+            sh:order 1 ;
+            sh:path environment-model:useCase ];
+    sh:targetClass environment-model:Content .
+	
 environment-model:ProjectShape a sh:NodeShape ;
     sh:property [ skos:example "7.7" ;
             sh:datatype xsd:string ;
