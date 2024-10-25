@@ -125,7 +125,7 @@
     "surface-model:mapDataField": true
   },
   "surface-model:Georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
