@@ -16,9 +16,9 @@ marketplace-info:Marketplace-Info a owl:Class ;
     rdfs:comment "Marketplace-Info attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
 
-marketplace-info:Data a owl:Class ;
-    rdfs:label "Data definition for Marketplace-Info" ;
-    rdfs:comment "Data attributes for all assets"@en .
+marketplace-info:Contract a owl:Class ;
+    rdfs:label "Contract definition for Marketplace-Info" ;
+    rdfs:comment "Contract attributes for all assets"@en .
 
 marketplace-info:ContentData a owl:Class ;
     rdfs:label "ContentData definition for Marketplace-Info" ;

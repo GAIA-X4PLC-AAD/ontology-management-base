@@ -23,8 +23,8 @@
         }
       }
     },
-    "marketplace-info:data": {
-      "@type": "marketplace-info:Data",
+    "marketplace-info:contract": {
+      "@type": "marketplace-info:Contract",
       "marketplace-info:contractId": {
         "@value": "contract_zcdkr7kqd47y0w5b4tg91w1etw",
         "@type": "xsd:string"

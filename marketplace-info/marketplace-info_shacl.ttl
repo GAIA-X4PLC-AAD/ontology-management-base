@@ -18,11 +18,11 @@ marketplace-info:MarketplaceInfoShape a sh:NodeShape ;
                   sh:path marketplace-info:contentData ],
                 [ sh:maxCount 1 ;
                   sh:minCount 1 ;
-                  sh:node marketplace-info:DataShape ;
-                  sh:name "data object" ;
-                  sh:description "data object with property for, id" ;
+                  sh:node marketplace-info:ContractShape  ;
+                  sh:name "contract object" ;
+                  sh:description "contract object with property for, id" ;
                   sh:order 2 ;
-                  sh:path marketplace-info:data ],           
+                  sh:path marketplace-info:contract ],           
                 [ sh:node marketplace-info:BundleDataShape ;
                   sh:description "bundle object with links to required and / or related data" ;
                   sh:order 3 ;
@@ -62,7 +62,7 @@ marketplace-info:ContentDataShape a sh:NodeShape ;
                   sh:path marketplace-info:contentData ] ;
     sh:targetClass marketplace-info:ContentData .
 
-marketplace-info:DataShape a sh:NodeShape ;
+marketplace-info:ContractShape a sh:NodeShape ;
     sh:property  [ sh:datatype xsd:string ;
             sh:description "Contract information in regards to the data exchange component." ;
             skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
@@ -71,7 +71,7 @@ marketplace-info:DataShape a sh:NodeShape ;
             sh:name "contractId" ;
             sh:order 1 ;
             sh:path marketplace-info:contractId ];
-    sh:targetClass marketplace-info:Data .  
+    sh:targetClass marketplace-info:Contract .  
 
 marketplace-info:LinkShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:anyURI ;
