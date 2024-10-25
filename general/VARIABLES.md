@@ -10,7 +10,6 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | GeneralShape | general | description | 1 | 1 | description object with property for name and description |  | general_shacl.ttl |
 | GeneralShape | general | data | 1 | 1 | data object with property for size and record time |  | general_shacl.ttl |
-| GeneralShape | general | range2D |  | 1 | min and max value of range2D object |  | general_shacl.ttl |
 | DescriptionShape | general | name | 1 | 1 | A human readable name of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DescriptionShape | general | description | 1 | 1 | A free text description of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DataShape | general | size | 1 | 1 | Size of the file to be downloaded in MB. | <http://www.w3.org/2001/XMLSchema#float> | general_shacl.ttl |
