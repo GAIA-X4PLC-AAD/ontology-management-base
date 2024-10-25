@@ -18,13 +18,7 @@ general:GeneralShape a sh:NodeShape ;
             sh:name "data object" ;
             sh:description "data object with property for size and record time" ;
             sh:order 2 ;
-            sh:path general:data ],
-        [ sh:maxCount 1 ;
-            sh:node general:Range2DShape ;
-            sh:name "range2D object" ;
-            sh:description "min and max value of range2D object" ;
-            sh:order 3 ;
-            sh:path general:range2D ];                  
+            sh:path general:data ];              
     sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
