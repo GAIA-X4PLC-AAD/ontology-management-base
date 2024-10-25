@@ -11,7 +11,7 @@ marketplace-info: a owl:Ontology ;
     dcterms:contributor "Johannes Demer (ASCS)" ;
     owl:versionInfo "0.1" .
 
-marketplace-info:Marketplace-Info a owl:Class ;
+marketplace-info:MarketplaceInfo a owl:Class ;
     rdfs:label "Class definition for Marketplace-Info" ;
     rdfs:comment "Marketplace-Info attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
