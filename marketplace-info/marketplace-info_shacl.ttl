@@ -8,10 +8,12 @@ marketplace-info:MarketplaceInfoShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
                   sh:minCount 1 ;
                   sh:node marketplace-info:DomainShape ;
+                  sh:description "Marketplace compatible domain types" ;
                   sh:order 0 ;
                   sh:path marketplace-info:domain ],  
                 [  sh:minCount 1 ;
                   sh:node marketplace-info:ContentDataShape ;
+                  sh:description "ContentData with direct links to the storage" ;
                   sh:order 1 ;
                   sh:path marketplace-info:contentData ],
                 [ sh:maxCount 1 ;
@@ -20,8 +22,9 @@ marketplace-info:MarketplaceInfoShape a sh:NodeShape ;
                   sh:name "data object" ;
                   sh:description "data object with property for, id" ;
                   sh:order 2 ;
-                   sh:path marketplace-info:data ],           
+                  sh:path marketplace-info:data ],           
                 [ sh:node marketplace-info:BundleDataShape ;
+                  sh:description "bundle object with links to required and / or related data" ;
                   sh:order 3 ;
                   sh:path marketplace-info:bundleData ] ;
     sh:targetClass marketplace-info:MarketplaceInfo .
@@ -59,8 +62,6 @@ marketplace-info:ContentDataShape a sh:NodeShape ;
                   sh:path marketplace-info:contentData ] ;
     sh:targetClass marketplace-info:ContentData .
 
-
-
 marketplace-info:DataShape a sh:NodeShape ;
     sh:property  [ sh:datatype xsd:string ;
             sh:description "Contract information in regards to the data exchange component." ;
@@ -83,13 +84,15 @@ marketplace-info:LinkShape a sh:NodeShape ;
                   sh:path marketplace-info:link ] ;
     sh:targetClass marketplace-info:Link .
 
-
 marketplace-info:BundleDataShape a sh:NodeShape ;
-    sh:property [ sh:minCount 1 ;
+    sh:property [ sh:minCount 0 ;
                   sh:node marketplace-info:RequiredDataShape ;
+                  sh:description "links to required data" ;
                   sh:order 1 ;
                   sh:path marketplace-info:requiredData ],         
-                [ sh:node marketplace-info:RelatedDataShape ;
+                [ sh:minCount 0 ;
+                  sh:node marketplace-info:RelatedDataShape ;
+                  sh:description "links to related data" ;
                   sh:order 2 ;
                   sh:path marketplace-info:relatedData ] ;
     sh:targetClass marketplace-info:BundleData .
