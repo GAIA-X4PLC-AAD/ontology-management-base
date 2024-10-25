@@ -4,7 +4,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 georeference:GeoreferenceShape a sh:NodeShape ;
-    sh:property [ sh:maxCount 1 ;
+    sh:closed false ;
+	sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:ProjectLocationShape ;
             sh:name "projectLocation object" ;
@@ -21,7 +22,8 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
-    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
+    sh:closed false ;
+	sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
@@ -51,7 +53,8 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of yMin failed!"@en ;
             sh:name "yMin"@en ;
             sh:maxCount 1 ;
@@ -78,7 +81,8 @@ georeference:BoundingBoxShape a sh:NodeShape ;
     sh:targetClass georeference:BoundingBox .
 
 georeference:Coordinate2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of x failed!"@en ;
             sh:name "x"@en ;
             sh:maxCount 1 ;
@@ -93,7 +97,8 @@ georeference:Coordinate2DShape a sh:NodeShape ;
     sh:targetClass georeference:Coordinate2D .
     
 georeference:ProjectLocationShape a sh:NodeShape ;
-    sh:property [ skos:example "DE-BY" ;
+    sh:closed false ;
+	sh:property [ skos:example "DE-BY" ;
             sh:datatype xsd:string ;
             sh:description "Code of federal state or province as ISO 3166-2"@en ;
             sh:message "Validation of state failed!"@en ;

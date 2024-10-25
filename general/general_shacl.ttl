@@ -5,6 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 general:GeneralShape a sh:NodeShape ;
+	sh:closed false ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
@@ -35,7 +36,8 @@ general:GeneralShape a sh:NodeShape ;
     sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:string ;
             sh:description "A human readable name of the entity." ;
             skos:example "3D Model in Grafing" ;
             sh:maxCount 1 ;
@@ -54,7 +56,8 @@ general:DescriptionShape a sh:NodeShape ;
     sh:targetClass general:Description .    
     
 general:DataShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:float ;
             sh:description "Size of the file to be downloaded in MB." ;
             skos:example "5.8" ;
             sh:maxCount 1 ;
@@ -81,7 +84,8 @@ general:DataShape a sh:NodeShape ;
     sh:targetClass general:Data .     
     
 general:BundleDataShape a sh:NodeShape ;
-    sh:property [ sh:node general:LinkShape ;
+    sh:closed false ;
+	sh:property [ sh:node general:LinkShape ;
             sh:description "Reference to required assets" ;
             skos:example "for scenario, link to required hd map" ;
             sh:name "requiredData" ;
@@ -96,7 +100,8 @@ general:BundleDataShape a sh:NodeShape ;
     sh:targetClass general:BundleData .    
 
 general:LinksShape a sh:NodeShape ;
-    sh:property [ skos:example "link to bundle data, screenshot, video, routing, 3d preview" ;
+    sh:closed false ;
+	sh:property [ skos:example "link to bundle data, screenshot, video, routing, 3d preview" ;
             sh:description "Reference to media data"@en ;
             sh:message "Validation of media failed!"@en ;
             sh:name "media"@en ;
@@ -115,7 +120,8 @@ general:LinksShape a sh:NodeShape ;
     sh:targetClass general:Links .
 
 general:LinkShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:string ;
             sh:in ("Document" "Image" "Model" "Routing" "Video" "3DPreview" "Asset") ;
             sh:message "Validation of type failed!"@en ;
             sh:description "Choose type of link." ;
@@ -135,7 +141,8 @@ general:LinkShape a sh:NodeShape ;
     sh:targetClass general:Link .
     
 general:Range2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:closed false ;
+	sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of max failed!"@en ;
             sh:name "max"@en ;
             sh:order 0 ;

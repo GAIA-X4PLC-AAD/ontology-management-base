@@ -6,7 +6,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 hdmap:HdMapShape a sh:NodeShape ;
-    sh:property 
+    sh:closed false ;
+	sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -59,7 +60,8 @@ hdmap:HdMapShape a sh:NodeShape ;
     sh:targetClass hdmap:HdMap .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:property [ skos:example "[Motorway, Rural]" ;
+    sh:closed false ;
+	sh:property [ skos:example "[Motorway, Rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
@@ -95,7 +97,8 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
-    sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
+    sh:closed false ;
+	sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
             sh:maxCount 1 ;
@@ -113,7 +116,8 @@ hdmap:DataSourceShape a sh:NodeShape ;
     sh:targetClass hdmap:DataSource .
 
 hdmap:FormatShape a sh:NodeShape ;
-    sh:property [ skos:example "1.5" ;
+    sh:closed false ;
+	sh:property [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
             sh:maxCount 1 ;
@@ -133,7 +137,8 @@ hdmap:FormatShape a sh:NodeShape ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;
-    sh:property [ skos:example "0.1" ;
+    sh:closed false ;
+	sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
             sh:maxCount 1 ;
@@ -181,7 +186,8 @@ hdmap:QualityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quality .
 
 hdmap:QuantityShape a sh:NodeShape ;
-    sh:property [ skos:example "5" ;
+    sh:closed false ;
+	sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Sum of all junctions defined in the map,  see ODR spec section 10"@en ;
             sh:maxCount 1 ;

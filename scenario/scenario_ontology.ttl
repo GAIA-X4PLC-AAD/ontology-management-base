@@ -21,3 +21,31 @@ scenario:Scenario a owl:Class ;
     rdfs:comment "Class definition for a scenario"@en ;
     rdfs:subClassOf gx:DataResource ,
                     openlabel:Scenario .
+
+scenario:DataSource a owl:Class ;
+    rdfs:label "class definition for DataSource" ;
+    rdfs:comment "Attributes for DataSource"@en .
+	
+scenario:Environmental a owl:Class ;
+    rdfs:label "class definition for Environmental" ;
+    rdfs:comment "Attributes for Environmental"@en .	
+	
+scenario:Format a owl:Class ;
+    rdfs:label "class definition for Format" ;
+    rdfs:comment "Attributes for Format"@en .		
+	
+scenario:Common a owl:Class ;
+    rdfs:label "class definition for Common" ;
+    rdfs:comment "Attributes for Common"@en .		
+	
+scenario:TrafficParticipants a owl:Class ;
+    rdfs:label "class definition for TrafficParticipants" ;
+    rdfs:comment "Attributes for TrafficParticipants"@en .		
+	
+scenario:Structural a owl:Class ;
+    rdfs:label "class definition for Structural" ;
+    rdfs:comment "Attributes for Structural"@en .	
+	
+scenario:Traffic a owl:Class ;
+    rdfs:label "class definition for Traffic" ;
+    rdfs:comment "Attributes for Traffic"@en .	

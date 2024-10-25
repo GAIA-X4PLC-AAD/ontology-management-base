@@ -6,7 +6,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 scenario:ScenarioShape a sh:NodeShape ;
-    sh:property [ sh:maxCount 1 ;
+    sh:closed false ;
+	sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
@@ -72,7 +73,8 @@ scenario:ScenarioShape a sh:NodeShape ;
     sh:targetClass scenario:scenario .
  
 scenario:DataSourceShape a sh:NodeShape ;
-    sh:property [ skos:example "captured reality, synthetic" ;
+    sh:closed false ;
+	sh:property [ skos:example "captured reality, synthetic" ;
             sh:datatype xsd:string ;
             sh:description "Capture type"@en ;
             sh:maxCount 1 ;
@@ -81,10 +83,11 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:name "source"@en ;
             sh:order 0 ;
             sh:path scenario:source ] ;
-    sh:targetClass scenario:DataSourceShape .
+    sh:targetClass scenario:DataSource .
 
 scenario:EnvironmentalShape a sh:NodeShape ;
-    sh:property [ skos:example "194.01" ;
+    sh:closed false ;
+	sh:property [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Azimuth of the sun"@en ;
             sh:message "Validation of sunAzimuth failed!"@en ;
@@ -95,7 +98,8 @@ scenario:EnvironmentalShape a sh:NodeShape ;
     sh:targetClass scenario:Environmental .
 
 scenario:FormatShape a sh:NodeShape ;
-    sh:property [ skos:example "ASAM OpenSCENARIO" ;
+    sh:closed false ;
+	sh:property [ skos:example "ASAM OpenSCENARIO" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
             sh:in ("ASAM OpenSCENARIO") ;
@@ -115,7 +119,8 @@ scenario:FormatShape a sh:NodeShape ;
     sh:targetClass scenario:Format .
 
 scenario:ScenarioCommonShape a sh:NodeShape ;
-    sh:property [ skos:example "Functional, Logical, Concrete" ;
+    sh:closed false ;
+	sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:datatype xsd:string ;
             sh:description "Pegasus type of scenario"@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
@@ -154,7 +159,8 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
     sh:targetClass scenario:Common .
 
 scenario:TrafficParticipantsShape a sh:NodeShape ;
-    sh:property [ skos:example "2" ;
+    sh:closed false ;
+	sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Count of traffic temporary objects"@en ;
             sh:maxCount 1 ;
@@ -206,7 +212,8 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
     sh:targetClass scenario:TrafficParticipants .
 
 scenario:StructuralShape a sh:NodeShape ;
-    sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
+    sh:closed false ;
+	sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
             sh:description "Link to Catalogs"@en ;
             sh:message "Validation of catalogs failed!"@en ;
             sh:minCount 0 ;
@@ -234,7 +241,8 @@ scenario:StructuralShape a sh:NodeShape ;
     sh:targetClass scenario:Structural .
 
 scenario:TrafficShape a sh:NodeShape ;
-    sh:property [ skos:example "kangaroo crossing" ;
+    sh:closed false ;
+	sh:property [ skos:example "kangaroo crossing" ;
             sh:datatype xsd:string ;
             sh:description "Country specific traffic signs"@en ;
             sh:maxCount 1 ;

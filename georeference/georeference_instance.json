@@ -6,9 +6,9 @@
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
   "@id": "did:web:registry.gaia-x.eu:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
-  "@type": "georeference:Georeference",
+  "@type": "georeference:GeoreferenceShape",
   "georeference:projectLocation": {
-    "@type": "georeference:ProjectLocation",
+    "@type": "georeference:ProjectLocationShape",
     "georeference:country": {
       "@value": "DE",
       "@type": "xsd:string"
@@ -30,7 +30,7 @@
       "@type": "xsd:string"
     },
     "georeference:boundingBox": {
-      "@type": "georeference:BoundingBox",
+      "@type": "georeference:BoundingBoxShape",
       "georeference:xMin": {
         "@value": "0",
         "@type": "xsd:float"
@@ -50,13 +50,13 @@
     }
   },
   "georeference:geodeticReferenceSystem": {
-    "@type": "georeference:GeodeticReferenceSystem",
+    "@type": "georeference:GeodeticReferenceSystemShape",
     "georeference:coordinateSystem": {
       "@value": "32632",
       "@type": "xsd:string"
     },
     "georeference:origin": {
-      "@type": "georeference:Coordinate2D",
+      "@type": "georeference:Coordinate2DShape",
       "georeference:x": {
         "@value": "2.5",
         "@type": "xsd:float"

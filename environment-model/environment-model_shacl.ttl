@@ -6,7 +6,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 environment-model:EnvironmentModelShape a sh:NodeShape ;
-    sh:property [ sh:maxCount 1 ;
+    sh:closed false ;
+	sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
@@ -51,7 +52,8 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:targetClass environment-model:EnvironmentModel .   
 
 environment-model:FormatShape a sh:NodeShape ;
-    sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph, GLTF" ;
+    sh:closed false ;
+	sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph, GLTF" ;
             sh:datatype xsd:string ;
             sh:description "Data type definition"@en ;
             sh:in ("Autodesk FBX" "GLTF" "OpenSceneGraph" "Unreal DataSmith") ;
@@ -71,7 +73,8 @@ environment-model:FormatShape a sh:NodeShape ;
     sh:targetClass environment-model:Format .
 
 environment-model:ProjectShape a sh:NodeShape ;
-    sh:property [ skos:example "7.7" ;
+    sh:closed false ;
+	sh:property [ skos:example "7.7" ;
             sh:datatype xsd:string ;
             sh:description "Tool for the creation of the data"@en ;
             sh:maxCount 1 ;
@@ -114,7 +117,8 @@ environment-model:ProjectShape a sh:NodeShape ;
     sh:targetClass environment-model:Project .
 
 environment-model:QualityShape a sh:NodeShape ;
-    sh:property [ skos:example "PBR" ;
+    sh:closed false ;
+	sh:property [ skos:example "PBR" ;
             sh:datatype xsd:string ;
             sh:description "Description of quality features"@en ;
             sh:maxCount 1 ;
@@ -144,7 +148,8 @@ environment-model:QualityShape a sh:NodeShape ;
     sh:targetClass environment-model:Quality .
 
 environment-model:QuantityShape a sh:NodeShape ;
-    sh:property [ skos:example "12000" ;
+    sh:closed false ;
+	sh:property [ skos:example "12000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all geoemtries(all triangles with a material assignment), instances are considered only once"@en ;
             sh:maxCount 1 ;
