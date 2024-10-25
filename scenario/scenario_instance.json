@@ -156,44 +156,48 @@
     },
     "general:bundleData": {
       "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:requiredData": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
     },
     "general:links": {
       "@type": "general:Links",
       "general:data": {
         "@type": "general:Link",
         "general:url": {
-          "@value": "https://inavlid.link.com/link",
+          "@value": "https://github.com/GAIA-X4PLC-AAD/scenario-asset-example/blob/main/Data/scenario_data/ALKS_Scenario_4.4_1_CutInNoCollision_TEMPLATE.xosc",
           "@type": "xsd:anyURI"
         },
-        "general:type": "Document"
+        "general:type": "Asset"
       },
-      "general:media": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://inavlid.link.com/media",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:media": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "https://inavlid.link.com/media",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
     }
   },
   "scenario:source": {
-    "@type": "scenario:DataSourceShape",
+    "@type": "scenario:DataSource",
     "scenario:source": {
       "@value": "Synthetically created",
       "@type": "xsd:string"
     }
   },
-  "georeference:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+  "scenario:georeference": {
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
@@ -219,19 +223,19 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "0",
+          "@value": "11.95546",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "0",
+          "@value": "48.03990",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "10",
+          "@value": "11.97518",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "20",
+          "@value": "48.04697",
           "@type": "xsd:float"
         }
       }
@@ -239,17 +243,17 @@
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
       "georeference:coordinateSystem": {
-        "@value": "EPSG:32632",
+        "@value": "32632",
         "@type": "xsd:string"
       },
       "georeference:origin": {
         "@type": "georeference:Coordinate2D",
         "georeference:x": {
-          "@value": "0",
+          "@value": "11.96533",
           "@type": "xsd:float"
         },
         "georeference:y": {
-          "@value": "0",
+          "@value": "48.04375",
           "@type": "xsd:float"
         }
       },
@@ -268,14 +272,6 @@
     "@type": "general:Link",
     "general:url": {
       "@value": "https://inavlid.link.com/my_map.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "general:media": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/media",
       "@type": "xsd:anyURI"
     },
     "general:type": "Document"
