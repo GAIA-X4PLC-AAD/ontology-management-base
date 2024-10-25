@@ -9,11 +9,11 @@
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
   "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-  "@type": "environment-model:EnvironmentModel",
+  "@type": "environment-model:EnvironmentModelShape",
   "environment-model:general": {
-    "@type": "general:General",
+    "@type": "general:GeneralShape",
     "general:description": {
-      "@type": "general:Description",
+      "@type": "general:DescriptionShape",
       "gx:name": {
         "@value": "3d model example",
         "@type": "xsd:string"
@@ -24,7 +24,7 @@
       }
     },
     "general:data": {
-      "@type": "general:Data",
+      "@type": "general:DataShape",
       "general:size": {
         "@value": "512",
         "@type": "xsd:float"
@@ -39,9 +39,9 @@
       }
     },
     "general:links": {
-      "@type": "general:Links",
+      "@type": "general:LinksShape",
       "general:data": {
-        "@type": "general:Link",
+        "@type": "general:LinkShape",
         "general:url": {
           "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
           "@type": "xsd:anyURI"
@@ -49,7 +49,7 @@
         "general:type": "Asset"
       },
       "general:media": {
-      "@type": "general:Link",
+      "@type": "general:LinkShape",
       "general:url": {
         "@value": "https://github.com/image.png",
         "@type": "xsd:anyURI"
@@ -58,9 +58,9 @@
     }
     },
 	"general:bundleData": {
-		"@type": "general:BundleData",
+		"@type": "general:BundleDataShape",
 		"general:requiredData": {
-		  "@type": "general:Link",
+		  "@type": "general:LinkShape",
 		  "general:url": {
 			"@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
 			"@type": "xsd:anyURI"
@@ -68,7 +68,7 @@
 		  "general:type": "Asset"
 		},
 		"general:relatedData": {
-		  "@type": "general:Link",
+		  "@type": "general:LinkShape",
 		  "general:url": {
 			"@value": "https://github.com/scenario.xosc",
 			"@type": "xsd:anyURI"
@@ -78,7 +78,7 @@
     }
   },
   "environment-model:quantity": {
-    "@type": "environment-model:Quantity",
+    "@type": "environment-model:QuantityShape",
     "environment-model:textureMaterialCount": {
       "@value": "179",
       "@type": "xsd:unsignedInt"
@@ -93,7 +93,7 @@
     }
   },
   "environment-model:quality": {
-    "@type": "environment-model:Quality",
+    "@type": "environment-model:QualityShape",
     "environment-model:detailLevel": "High",
     "environment-model:textureResolution": {
       "@value": "0.1",
@@ -105,7 +105,7 @@
     }
   },
   "environment-model:project": {
-    "@type": "environment-model:Project",
+    "@type": "environment-model:ProjectShape",
     "environment-model:softwareName": {
       "@value": "Unreal",
       "@type": "xsd:string"
@@ -128,7 +128,7 @@
     }
   },
   "environment-model:format": {
-    "@type": "environment-model:Format",
+    "@type": "environment-model:FormatShape",
     "environment-model:formatType": "Unreal DataSmith",
     "environment-model:version": {
       "@value": "SDK 4.25",
@@ -136,9 +136,9 @@
     }
   },
   "environment-model:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+	  "@type": "georeference:GeoreferenceShape",
     "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocation",
+      "@type": "georeference:ProjectLocationShape",
       "georeference:country": {
         "@value": "DE",
         "@type": "xsd:string"
@@ -160,7 +160,7 @@
         "@type": "xsd:string"
       },
       "georeference:boundingBox": {
-        "@type": "georeference:BoundingBox",
+        "@type": "georeference:BoundingBoxShape",
         "georeference:xMin": {
           "@value": "5",
           "@type": "xsd:float"
@@ -180,13 +180,13 @@
       }
     },
     "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystem",
+      "@type": "georeference:GeodeticReferenceSystemShape",
       "georeference:coordinateSystem": {
         "@value": "451989",
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2D",
+        "@type": "georeference:Coordinate2DShape",
         "georeference:x": {
           "@value": "7.5",
           "@type": "xsd:float"
