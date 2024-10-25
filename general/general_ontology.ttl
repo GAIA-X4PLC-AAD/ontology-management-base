@@ -20,7 +20,7 @@ general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;
     rdfs:comment "Description attributes for all assets"@en .
 
-general:Data a owl:Class ;
+general:Contract a owl:Class ;
     rdfs:label "Data definition for General" ;
     rdfs:comment "Data attributes for all assets"@en .
 
