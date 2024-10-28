@@ -7,12 +7,20 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 manifest: a owl:Ontology ;
-    rdfs:label "ontology definition for manifest"@en ;
+    rdfs:label "ontology definition for Manifest"@en ;
     dcterms:contributor "Johannes Demer (ASCS)" ;
     owl:versionInfo "0.1" .
 
 manifest:Manifest a owl:Class ;
-    rdfs:label "class definition for manifest" ;
-    rdfs:comment "manifest attributes for all assets"@en ;
+    rdfs:label "class definition for Manifest" ;
+    rdfs:comment "Manifest attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
+
+manifest:Data a owl:Class ;
+    rdfs:label "Class definition for Data" ;
+    rdfs:comment "Data attributes for all assets"@en .
+
+manifest:Link a owl:Class ;
+    rdfs:label "Class definition for Link" ;
+    rdfs:comment "Link attributes for all assets"@en .
 
