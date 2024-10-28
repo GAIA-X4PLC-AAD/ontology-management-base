@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix manifest: <https://github.com/ASCS-eV/EVES/tree/onboarding/ontologyManifest/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+manifest: a owl:Ontology ;
+    rdfs:label "ontology definition for manifest"@en ;
+    dcterms:contributor "Johannes Demer (ASCS)" ;
+    owl:versionInfo "0.1" .
+
+manifest:Manifest a owl:Class ;
+    rdfs:label "class definition for manifest" ;
+    rdfs:comment "manifest attributes for all assets"@en ;
+    rdfs:subClassOf gx:DataResource .
+

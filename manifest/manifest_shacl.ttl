@@ -1,0 +1,99 @@
+@prefix manifest: <https://github.com/ASCS-eV/EVES/tree/onboarding/ontologyManifest/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+manifest:ManifestShape a sh:NodeShape ;
+    sh:property             
+        [   sh:description "Description of the content and filestructure of the uploaded asset.zip"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node manifest:DataShape ;
+            sh:order 1 ;
+            sh:path manifest:data ];         
+    sh:targetClass manifest:Manifest .
+    
+manifest:DataShape a sh:NodeShape ;
+    sh:property 
+        [   skos:example "link to valuable data, e.g. ./data/hdmap.xodr" ;
+            sh:description "Reference to valuable data/asset as relativePath or link"@en ;
+            sh:message "Validation of data failed!"@en ;
+            sh:minCount 1 ;
+            sh:name "assetData"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 1 ;
+            sh:path manifest:assetData
+        ],
+        [   skos:example "license type" ;
+            sh:in ("openSource" "providerSpecific") ;
+            sh:message "Validation of license type failed!"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:name "licenseType"@en ;
+            sh:order 2 ;
+            sh:path manifest:licenseType 
+        ],      
+        [   skos:example "link to licenseData" ;
+            sh:description "link to licenseData as relativePath"@en ;
+            sh:message "Validation of licenseData failed!"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:name "licenseData"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 3 ;
+            sh:path manifest:licenseData 
+        ],
+        [   skos:example "screenshot, video, routing, 3d preview" ;
+            sh:description "Reference to content data as relativePath"@en ;
+            sh:message "Validation of content failed!"@en ;
+            sh:name "contentData"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 4 ;
+            sh:path manifest:contentData 
+        ];
+    sh:targetClass manifest:Data .
+
+manifest:LinkShape a sh:NodeShape ;
+    sh:property 
+       [    sh:datatype xsd:string ;
+            sh:in ("owner" "registeredUser" "publicUser") ;
+            sh:message "Validation of accessRole failed!"@en ;
+            sh:description "Choose an accessRole." ;
+            sh:name "accessRole"@en ;
+            sh:order 0 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path manifest:accessRole 
+        ],
+        [    sh:datatype xsd:string ;
+            sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
+            sh:message "Validation of type failed!"@en ;
+            sh:description "Choose type of link." ;
+            sh:name "type"@en ;
+            sh:order 1 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path manifest:type 
+        ],
+        [    sh:datatype xsd:string ;
+            sh:in ("pdf" "png" "mp4" "geojson" "zip" "json" "txt" "xodr" "md" "other") ;
+            sh:message "Validation of format failed!"@en ;
+            sh:description "Choose an format." ;
+            sh:name "format"@en ;
+            sh:order 2 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path manifest:format 
+        ],
+        [   sh:datatype xsd:anyURI ;
+            sh:message "Validation of relativePath failed!"@en ;
+            sh:description "Enter link as URL or DID." ;
+            sh:name "relativePath"@en ;
+            sh:order 3 ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path manifest:relativePath 
+        ] ;
+    sh:targetClass manifest:Link .
+    
