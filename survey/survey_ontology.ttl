@@ -16,7 +16,7 @@ survey: rdf:type owl:Ontology ;
 
 survey:belongsTo rdf:type owl:ObjectProperty ;
       rdfs:domain survey:SurveyResultDataOffering ;
-      rdfs:range gx:SoftwareResource .
+      rdfs:range survey:SurveyServiceOffering .
 
 survey:SurveyResultDataOffering rdf:type owl:Class ;
       rdfs:subClassOf gx:DataResource ;
