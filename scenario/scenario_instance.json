@@ -163,30 +163,6 @@
 			"general:type": "Document"
 		  }
 	  ]
-    },
-	"general:DataResource": {
-      "@type": "gx:DataResource",
-      "gx:expirationDateTime": {
-        "@value": "2100-01-01T00:00:00",
-        "@type": "xsd:dateTime"
-      },
-      "gx:containsPII": false,
-      "gx:exposedThrough": {
-        "@id": "https://inavlid.link.com/my_scenario_resource.zip"
-      },
-      "gx:producedBy": {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base"
-      },
-      "gx:policy": {
-        "@value": "MPL-2.0",
-        "@type": "xsd:string"
-      },
-      "gx:name": {
-        "@value": "Scenario Example",
-        "@type": "xsd:string"
-      },
-      "gx:copyrightOwnedBy": "Sample Entity",
-      "gx:license": "Some License"
     }
   },
   "scenario:source": {
