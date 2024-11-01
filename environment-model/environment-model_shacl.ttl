@@ -4,9 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -53,6 +55,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph, GLTF" ;
             sh:datatype xsd:string ;
             sh:description "Data type definition"@en ;
@@ -74,6 +77,7 @@ environment-model:FormatShape a sh:NodeShape ;
 
 environment-model:ProjectShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "7.7" ;
             sh:datatype xsd:string ;
             sh:description "Tool for the creation of the data"@en ;
@@ -118,6 +122,7 @@ environment-model:ProjectShape a sh:NodeShape ;
 
 environment-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "PBR" ;
             sh:datatype xsd:string ;
             sh:description "Description of quality features"@en ;
@@ -149,6 +154,7 @@ environment-model:QualityShape a sh:NodeShape ;
 
 environment-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "12000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all geoemtries(all triangles with a material assignment), instances are considered only once"@en ;

@@ -4,9 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ositrace:OSITraceShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -61,6 +63,7 @@ ositrace:OSITraceShape a sh:NodeShape ;
 
 ositrace:ContentShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "[motorway, residential]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
@@ -148,6 +151,7 @@ ositrace:ContentShape a sh:NodeShape ;
 
 ositrace:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
@@ -167,6 +171,7 @@ ositrace:DataSourceShape a sh:NodeShape ;
 
 ositrace:FormatShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -188,6 +193,7 @@ ositrace:FormatShape a sh:NodeShape ;
 
 ositrace:QualityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
@@ -246,6 +252,7 @@ ositrace:QualityShape a sh:NodeShape ;
 
 ositrace:QuantityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of frames/messages in the trace file"@en ;
@@ -258,6 +265,7 @@ ositrace:QuantityShape a sh:NodeShape ;
 
 ositrace:MovingObjectShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file"@en ;
@@ -279,6 +287,7 @@ ositrace:MovingObjectShape a sh:NodeShape ;
 
 ositrace:EventShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;
             sh:description "Exact timestamp of the event in the recorded trace"@en ;

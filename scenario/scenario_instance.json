@@ -9,9 +9,9 @@
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
   "@id": "did:web:registry.gaia-x.eu:Scenario:ERXl1TxE2xQjGodfoKZ9TbPiYnQ-yybNhCu8",
-  "@type": "scenario:scenarioShape",
+  "@type": "scenario:scenario",
   "scenario:common": {
-    "@type": "scenario:CommonShape",
+    "@type": "scenario:Common",
     "scenario:abstractionLevel": "Logical",
     "scenario:timeDate": {
       "@value": "2024-05-27T10:00:00",
@@ -27,7 +27,7 @@
     }
   },
   "scenario:trafficParticipants": {
-    "@type": "scenario:TrafficParticipantsShape",
+    "@type": "scenario:TrafficParticipants",
     "scenario:numberTrafficObjects": {
       "@value": "1",
       "@type": "xsd:unsignedInt"
@@ -54,14 +54,14 @@
     }
   },
   "scenario:environmental": {
-    "@type": "scenario:EnvironmentalShape",
+    "@type": "scenario:Environmental",
     "scenario:sunAzimuth": {
       "@value": "3.1415",
       "@type": "xsd:float"
     }
   },
   "scenario:traffic": {
-    "@type": "scenario:TrafficShape",
+    "@type": "scenario:Traffic",
     "scenario:country": {
       "@value": "Germany",
       "@type": "xsd:string"
@@ -76,9 +76,9 @@
     }
   },
   "scenario:structural": {
-    "@type": "scenario:StructuralShape",
+    "@type": "scenario:Structural",
     "scenario:catalogs": {
-      "@type": "general:LinkShape",
+      "@type": "general:Link",
       "general:url": {
         "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
         "@type": "xsd:anyURI"
@@ -86,7 +86,7 @@
       "general:type": "Document"
     },
     "scenario:trafficSpace": {
-      "@type": "general:LinkShape",
+      "@type": "general:Link",
       "general:url": {
         "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
         "@type": "xsd:anyURI"
@@ -95,7 +95,7 @@
     }
   },
   "scenario:format": {
-    "@type": "scenario:FormatShape",
+    "@type": "scenario:Format",
     "scenario:formatType": "ASAM OpenSCENARIO",
     "scenario:version": {
       "@value": "1.2",
@@ -103,8 +103,68 @@
     }
   },
   "scenario:general": {
-    "@type": "general:GeneralShape",
-    "general:DataResource": {
+    "@type": "general:General",
+    "general:description": {
+		"@type": "general:Description",
+      "gx:name": {
+        "@value": "Scenario Example",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+        "@value": "A sample description of a none existing scenario.",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "1.0",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "1234567890",
+        "@type": "xsd:string"
+      },
+      "general:recordingTime": {
+        "@value": "2024-06-26T09:00:00",
+        "@type": "xsd:dateTime"
+      }
+    },
+    "general:links": {
+      "@type": "general:Links",
+      "general:data": {
+        "@type": "general:Link",
+        "general:url": {
+          "@value": "https://github.com/GAIA-X4PLC-AAD/scenario-asset-example/blob/main/Data/scenario_data/ALKS_Scenario_4.4_1_CutInNoCollision_TEMPLATE.xosc",
+          "@type": "xsd:anyURI"
+        },
+        "general:type": "Asset"
+      },
+      "general:media": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "https://inavlid.link.com/media",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
+    },
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": [
+		  {
+			"@type": "general:Link",
+			"general:url": {
+			  "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+			  "@type": "xsd:anyURI"
+			},
+			"general:type": "Document"
+		  }
+	  ]
+    },
+	"general:DataResource": {
       "@type": "gx:DataResource",
       "gx:expirationDateTime": {
         "@value": "2100-01-01T00:00:00",
@@ -127,79 +187,19 @@
       },
       "gx:copyrightOwnedBy": "Sample Entity",
       "gx:license": "Some License"
-    },
-    "general:data": {
-      "@type": "general:DataShape",
-      "general:size": {
-        "@value": "1.0",
-        "@type": "xsd:float"
-      },
-      "general:contractId": {
-        "@value": "1234567890",
-        "@type": "xsd:string"
-      },
-      "general:recordingTime": {
-        "@value": "2024-06-26T09:00:00",
-        "@type": "xsd:dateTime"
-      }
-    },
-    "general:description": {
-      "@type": "general:DescriptionShape",
-      "gx:name": {
-        "@value": "Scenario Example",
-        "@type": "xsd:string"
-      },
-      "gx:description": {
-        "@value": "A sample description of a none existing scenario.",
-        "@type": "xsd:string"
-      }
-    },
-    "general:bundleData": {
-      "@type": "general:BundleDataShape",
-      "general:requiredData": [
-		  {
-			"@type": "general:LinkShape",
-			"general:url": {
-			  "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-			  "@type": "xsd:anyURI"
-			},
-			"general:type": "Document"
-		  }
-	  ]
-    },
-    "general:links": {
-      "@type": "general:LinksShape",
-      "general:data": {
-        "@type": "general:LinkShape",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/scenario-asset-example/blob/main/Data/scenario_data/ALKS_Scenario_4.4_1_CutInNoCollision_TEMPLATE.xosc",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
-      },
-      "general:media": [
-		  {
-			"@type": "general:LinkShape",
-			"general:url": {
-			  "@value": "https://inavlid.link.com/media",
-			  "@type": "xsd:anyURI"
-			},
-			"general:type": "Document"
-		  }
-	  ]
     }
   },
   "scenario:source": {
-    "@type": "scenario:DataSourceShape",
+    "@type": "scenario:DataSource",
     "scenario:source": {
       "@value": "Synthetically created",
       "@type": "xsd:string"
     }
   },
   "scenario:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocationShape",
+      "@type": "georeference:ProjectLocation",
       "georeference:country": {
         "@value": "DE",
         "@type": "xsd:string"
@@ -221,7 +221,7 @@
         "@type": "xsd:string"
       },
       "georeference:boundingBox": {
-        "@type": "georeference:BoundingBoxShape",
+        "@type": "georeference:BoundingBox",
         "georeference:xMin": {
           "@value": "11.95546",
           "@type": "xsd:float"
@@ -241,13 +241,13 @@
       }
     },
     "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystemShape",
-      "georeference:coordinateSystemShape": {
+      "@type": "georeference:GeodeticReferenceSystem",
+      "georeference:coordinateSystem": {
         "@value": "32632",
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2DShape",
+        "@type": "georeference:Coordinate2D",
         "georeference:x": {
           "@value": "11.96533",
           "@type": "xsd:float"
@@ -259,21 +259,5 @@
       },
       "georeference:heightSystem": "Ellipsodial height"
     }
-  },
-  "scenario:catalogs": {
-    "@type": "general:LinkShape",
-    "general:url": {
-      "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "scenario:trafficSpace": {
-    "@type": "general:LinkShape",
-    "general:url": {
-      "@value": "https://inavlid.link.com/my_map.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
   }
 }

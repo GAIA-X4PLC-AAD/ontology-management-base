@@ -9,11 +9,11 @@
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
   "@id": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-  "@type": "ositrace:OSITraceShape",
+  "@type": "ositrace:OSITrace",
   "ositrace:general": {
-    "@type": "general:GeneralShape",
+    "@type": "general:General",
     "general:description": {
-      "@type": "general:DescriptionShape",
+      "@type": "general:Description",
       "gx:name": {
         "@value": "Cut-out scenario on testing ground",
         "@type": "xsd:string"
@@ -24,7 +24,7 @@
       }
     },
     "general:data": {
-      "@type": "general:DataShape",
+      "@type": "general:Data",
       "general:size": {
         "@value": "126.6",
         "@type": "xsd:float"
@@ -39,9 +39,9 @@
       }
     },
     "general:links": {
-      "@type": "general:LinksShape",
+      "@type": "general:Links",
       "general:data": {
-        "@type": "general:LinkShape",
+        "@type": "general:Link",
         "general:url": {
           "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143710.835792Z_sd_360_3200_1448_pmsf_ars548_054814_119_cutout.osi",
           "@type": "xsd:anyURI"
@@ -50,7 +50,7 @@
       },
       "general:media": [
 		  {
-			"@type": "general:LinkShape",
+			"@type": "general:Link",
 			"general:url": {
 			  "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143715.300000Z_position_pmsf_zedf9p_119_cutout.gpx",
 			  "@type": "xsd:anyURI"
@@ -60,10 +60,10 @@
 	  ]
     },
     "general:bundleData": {
-      "@type": "general:BundleDataShape",
+      "@type": "general:BundleData",
       "general:requiredData": [
 		  {
-			"@type": "general:LinkShape",
+			"@type": "general:Link",
 			"general:url": {
 			  "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/LICENSE.md",
 			  "@type": "xsd:anyURI"
@@ -74,7 +74,7 @@
     }
   },
   "ositrace:format": {
-    "@type": "ositrace:FormatShape",
+    "@type": "ositrace:Format",
     "ositrace:formatType": "ASAM OSI SensorData",
     "ositrace:version": {
       "@value": "3.6.0/3.20.0",
@@ -82,7 +82,7 @@
     }
   },
   "ositrace:content": {
-    "@type": "ositrace:ContentShape",
+    "@type": "ositrace:Content",
     "ositrace:roadTypes": "Rural",
     "ositrace:laneTypes": "driving",
     "ositrace:levelOfDetail": "car",
@@ -100,7 +100,7 @@
       "@type": "xsd:dateTimeStamp"
     },
     "ositrace:hostMovingObject": {
-      "@type": "ositrace:MovingObjectShape",
+      "@type": "ositrace:MovingObject",
       "ositrace:identifier": {
         "@value": "1",
         "@type": "xsd:unsignedLong"
@@ -111,7 +111,7 @@
       }
     },
     "ositrace:targetMovingObject": {
-      "@type": "ositrace:MovingObjectShape",
+      "@type": "ositrace:MovingObject",
       "ositrace:identifier": {
         "@value": "2",
         "@type": "xsd:unsignedLong"
@@ -123,17 +123,17 @@
     }  
   },
   "ositrace:quality": {
-    "@type": "ositrace:QualityShape"
+    "@type": "ositrace:Quality"
   },
   "ositrace:quantity": {
-    "@type": "ositrace:QuantityShape",
+    "@type": "ositrace:Quantity",
     "ositrace:numberFrames": {
       "@value": "1448",
       "@type": "xsd:unsignedInt"
     }
   },
   "ositrace:dataSource": {
-    "@type": "ositrace:DataSourceShape",
+    "@type": "ositrace:DataSource",
     "ositrace:usedDataSources": {
       "@value": "Direct Sensor Capture ARS 548 FW05.38.14 on PMSF MB CLS 500",
       "@type": "xsd:string"
@@ -144,9 +144,9 @@
     }
   },
   "ositrace:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocationShape",
+      "@type": "georeference:ProjectLocation",
       "georeference:country": {
         "@value": "DE",
         "@type": "xsd:string"
@@ -168,7 +168,7 @@
         "@type": "xsd:string"
       },
       "georeference:boundingBox": {
-        "@type": "georeference:BoundingBoxShape",
+        "@type": "georeference:BoundingBox",
         "georeference:xMin": {
           "@value": "52.40177964666667",
           "@type": "xsd:float"
@@ -188,13 +188,13 @@
       }
     },
     "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystemShape",
+      "@type": "georeference:GeodeticReferenceSystem",
       "georeference:coordinateSystem": {
         "@value": "EPSG::4326",
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2DShape",
+        "@type": "georeference:Coordinate2D",
         "georeference:x": {
           "@value": "52.40177964666667",
           "@type": "xsd:float"

@@ -7,9 +7,9 @@
     "sh": "http://www.w3.org/ns/shacl#"
   },
   "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
-  "@type": "general:GeneralShape",
+  "@type": "general:General",
   "general:description": {
-    "@type": "general:DescriptionShape",
+    "@type": "general:Description",
     "gx:name": {
       "@value": "3D Model in Grafing",
       "@type": "xsd:string"
@@ -20,7 +20,7 @@
     }
   },
   "general:data": {
-    "@type": "general:DataShape",
+    "@type": "general:Data",
     "general:size": {
       "@value": "5.8",
       "@type": "xsd:float"
@@ -35,9 +35,9 @@
     }
   },
   "general:links": {
-    "@type": "general:LinksShape",
+    "@type": "general:Links",
     "general:data": {
-      "@type": "general:LinkShape",
+      "@type": "general:Link",
       "general:url": {
         "@value": "https://example.com/video.mpg",
         "@type": "xsd:anyURI"
@@ -46,7 +46,7 @@
     },
     "general:media": [
 		{
-		  "@type": "general:LinkShape",
+		  "@type": "general:Link",
 		  "general:url": {
 			"@value": "https://example.com/model.png",
 			"@type": "xsd:anyURI"
@@ -56,10 +56,10 @@
 	]
   },
   "general:bundleData": {
-    "@type": "general:BundleDataShape",
+    "@type": "general:BundleData",
     "general:requiredData": [
 		{
-		  "@type": "general:LinkShape",
+		  "@type": "general:Link",
 		  "general:url": {
 			"@value": "https://example.com/requiredData",
 			"@type": "xsd:anyURI"
@@ -69,7 +69,7 @@
 	],
     "general:relatedData": [
 		{
-		  "@type": "general:LinkShape",
+		  "@type": "general:Link",
 		  "general:url": {
 			"@value": "https://example.com/relatedData.mpg",
 			"@type": "xsd:anyURI"

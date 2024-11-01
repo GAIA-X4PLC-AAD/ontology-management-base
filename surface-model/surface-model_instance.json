@@ -9,11 +9,11 @@
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
   },
   "@id": "did:web:registry.gaia-x.eu:SurfaceModel:ERXl1TxE2xQjGodfoKoi1lgYULTW5dCbtfcL",
-  "@type": "surface-model:SurfaceModelShape",
+  "@type": "surface-model:SurfaceModel",
   "surface-model:general": {
-    "@type": "general:GeneralShape",
+    "@type": "general:General",
     "general:description": {
-      "@type": "general:DescriptionShape",
+      "@type": "general:Description",
       "gx:name": {
         "@value": "My surface model",
         "@type": "xsd:string"
@@ -24,7 +24,7 @@
       }
     },
     "general:data": {
-      "@type": "general:DataShape",
+      "@type": "general:Data",
       "general:size": {
         "@value": "50",
         "@type": "xsd:float"
@@ -39,9 +39,9 @@
       }
     },
     "general:links": {
-      "@type": "general:LinksShape",
+      "@type": "general:Links",
       "general:data": {
-        "@type": "general:LinkShape",
+        "@type": "general:Link",
         "general:url": {
           "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/CRG-3DM/data/Achse02f3a967-3850-4614-b884-6a3f3b9034bc_0.1m.crg",
           "@type": "xsd:anyURI"
@@ -50,7 +50,7 @@
       },
       "general:media": [
 		  {
-			"@type": "general:LinkShape",
+			"@type": "general:Link",
 			"general:url": {
 			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/CRG-3DM/LICENSE.md",
 			  "@type": "xsd:anyURI"
@@ -60,10 +60,10 @@
 	  ]
     },
     "general:bundleData": {
-      "@type": "general:BundleDataShape",
+      "@type": "general:BundleData",
       "general:requiredData": [
 		  {
-			"@type": "general:LinkShape",
+			"@type": "general:Link",
 			"general:url": {
 			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/004_A39_TestfeldNiedersachsen_CremlingenSurface/ODR-3DM/data/A39_TestfeldNiedersachsen_CremlingenSurface_offset.xodr",
 			  "@type": "xsd:anyURI"
@@ -73,7 +73,7 @@
 	  ],
       "general:relatedData": [
 		  {
-			"@type": "general:LinkShape",
+			"@type": "general:Link",
 			"general:url": {
 			  "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/003_A39_TestfeldNiedersachsen_CremlingenLoop/3DModel-TG/data/Unreal/Readme.md",
 			  "@type": "xsd:anyURI"
@@ -84,7 +84,7 @@
     }
   },
   "surface-model:Format": {
-    "@type": "surface-model:FormatShape",
+    "@type": "surface-model:Format",
     "surface-model:formatType": "ASAM OpenCRG",
     "surface-model:version": {
       "@value": "1.1",
@@ -92,11 +92,11 @@
     }
   },
   "surface-model:Data": {
-    "@type": "surface-model:DataShape",
+    "@type": "surface-model:Data",
     "surface-model:dataType": "Height"
   },
   "surface-model:Quality": {
-    "@type": "surface-model:QualityShape",
+    "@type": "surface-model:Quality",
     "surface-model:resolutionLongitudinal": {
       "@value": "0.01",
       "@type": "xsd:float"
@@ -113,7 +113,7 @@
     "surface-model:rampExists": true
   },
   "surface-model:Quantity": {
-    "@type": "surface-model:QuantityShape",
+    "@type": "surface-model:Quantity",
     "surface-model:length": {
       "@value": "1.46",
       "@type": "xsd:float"
@@ -125,9 +125,9 @@
     "surface-model:mapDataField": true
   },
   "surface-model:Georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocationShape",
+      "@type": "georeference:ProjectLocation",
       "georeference:country": {
         "@value": "DE",
         "@type": "xsd:string"
@@ -149,7 +149,7 @@
         "@type": "xsd:string"
       },
       "georeference:boundingBox": {
-        "@type": "georeference:BoundingBoxShape",
+        "@type": "georeference:BoundingBox",
         "georeference:xMin": {
           "@value": "11.95546",
           "@type": "xsd:float"
@@ -169,13 +169,13 @@
       }
     },
     "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystemShape",
+      "@type": "georeference:GeodeticReferenceSystem",
       "georeference:coordinateSystem": {
         "@value": "451989",
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2DShape",
+        "@type": "georeference:Coordinate2D",
         "georeference:x": {
           "@value": "11.96533",
           "@type": "xsd:float"

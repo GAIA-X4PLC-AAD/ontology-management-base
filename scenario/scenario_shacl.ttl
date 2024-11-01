@@ -4,9 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -69,11 +71,12 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:name "georeference object" ;
             sh:description "georeference object with properties for georeference informations" ;
             sh:order 7 ;
-            sh:path georeference:georeference ] ;
+            sh:path scenario:georeference ] ;
     sh:targetClass scenario:scenario .
  
 scenario:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "captured reality, synthetic" ;
             sh:datatype xsd:string ;
             sh:description "Capture type"@en ;
@@ -87,6 +90,7 @@ scenario:DataSourceShape a sh:NodeShape ;
 
 scenario:EnvironmentalShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Azimuth of the sun"@en ;
@@ -99,6 +103,7 @@ scenario:EnvironmentalShape a sh:NodeShape ;
 
 scenario:FormatShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "ASAM OpenSCENARIO" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
@@ -120,6 +125,7 @@ scenario:FormatShape a sh:NodeShape ;
 
 scenario:ScenarioCommonShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:datatype xsd:string ;
             sh:description "Pegasus type of scenario"@en ;
@@ -160,6 +166,7 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
 
 scenario:TrafficParticipantsShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Count of traffic temporary objects"@en ;
@@ -213,6 +220,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
 
 scenario:StructuralShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
             sh:description "Link to Catalogs"@en ;
             sh:message "Validation of catalogs failed!"@en ;
@@ -242,6 +250,7 @@ scenario:StructuralShape a sh:NodeShape ;
 
 scenario:TrafficShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "kangaroo crossing" ;
             sh:datatype xsd:string ;
             sh:description "Country specific traffic signs"@en ;

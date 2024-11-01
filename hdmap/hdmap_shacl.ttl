@@ -4,9 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -61,6 +63,7 @@ hdmap:HdMapShape a sh:NodeShape ;
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "[Motorway, Rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
@@ -98,6 +101,7 @@ hdmap:ContentShape a sh:NodeShape ;
 
 hdmap:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
@@ -117,6 +121,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
 
 hdmap:FormatShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -138,6 +143,7 @@ hdmap:FormatShape a sh:NodeShape ;
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
@@ -187,6 +193,7 @@ hdmap:QualityShape a sh:NodeShape ;
 
 hdmap:QuantityShape a sh:NodeShape ;
     sh:closed false ;
+	sh:ignoredProperties ( rdf:type ) ;
 	sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Sum of all junctions defined in the map,  see ODR spec section 10"@en ;
