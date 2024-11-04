@@ -6,17 +6,23 @@
 
 manifest:ManifestShape a sh:NodeShape ;
     sh:property             
-        [   sh:description "description of the content and filestructure of the uploaded asset"@en ;
+        [   sh:description "Description of the content and filestructure of the uploaded asset"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:DataShape ;
             sh:order 1 ;
-            sh:path manifest:data ];         
+            sh:path manifest:data ],  
+        [   sh:description "Description of the license of the uploaded asset"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node manifest:LicenseShape ;
+            sh:order 2 ;
+            sh:path manifest:license ];                   
     sh:targetClass manifest:Manifest .
     
 manifest:DataShape a sh:NodeShape ;
     sh:property 
-        [   sh:description "reference and description to asset data and other data not falling under content data"@en ;
+        [   sh:description "Reference and description to asset data and other data not falling under content data"@en ;
             skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr";
             sh:message "Validation of asset data failed!"@en ;
             sh:minCount 1 ;
@@ -25,39 +31,43 @@ manifest:DataShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path manifest:assetData
         ],
-        [   sh:description "any spdx identifier or LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-ContractReference"@en ;
-            skos:example "any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract" ;
+        [   sh:description "Reference and description to content data"@en ;
+            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json" ;
+            sh:message "Validation of content failed!"@en ;
+            sh:name "content data"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 2 ;
+            sh:path manifest:contentData 
+        ];
+    sh:targetClass manifest:Data .
+
+manifest:LicenseShape a sh:NodeShape ;
+    sh:property 
+        [   sh:description "Any spdx identifier or LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract"@en ;
+            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract" ;
             sh:datatype xsd:string ;
             sh:message "Validation of spdx identifier failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:name "spdx identifier"@en ;
-            sh:order 2 ;
+            sh:order 1 ;
             sh:path manifest:spdxIdentifier 
         ],      
-        [   sh:description "reference and description to license data"@en ;
+        [   sh:description "Reference and description to license data"@en ;
             skos:example "accessRole: publicUser, type: license, format: html, path: https://opensource.org/license/mit" ;
             sh:message "Validation of licenseData failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:name "license data"@en ;
             sh:node manifest:LinkShape ;
-            sh:order 3 ;
+            sh:order 2 ;
             sh:path manifest:licenseData 
-        ],
-        [   sh:description "reference and description to content data"@en ;
-            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json" ;
-            sh:message "Validation of content failed!"@en ;
-            sh:name "content data"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 4 ;
-            sh:path manifest:contentData 
         ];
-    sh:targetClass manifest:Data .
+    sh:targetClass manifest:License .
 
 manifest:LinkShape a sh:NodeShape ;
     sh:property 
-       [    sh:description "access role which is related to the corresponding data" ;
+       [    sh:description "Access role which is related to the corresponding data" ;
             skos:example "publicUser";
             sh:in ("owner" "registeredUser" "publicUser") ;
             sh:datatype xsd:string ;
@@ -68,7 +78,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
         ],
-        [   sh:description "type of patch which is related to the corresponding data" ;
+        [   sh:description "Type of patch which is related to the corresponding data" ;
             skos:example "metadata";
             sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
             sh:datatype xsd:string ;
@@ -79,9 +89,9 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:type 
         ],
-        [   sh:description "format of the file from the corresponding path" ;
+        [   sh:description "Format of the file from the corresponding path" ;
             
-            sh:in ("pdf" "png" "mp4" "geojson" "zip" "json" "txt" "xodr" "md" "html" "DID" "other") ;
+            sh:in ("pdf" "png" "mp4" "geojson" "zip" "json" "txt" "xodr" "md" "html" "did" "other") ;
             sh:datatype xsd:string ;
             sh:message "Validation of format failed!"@en ;
             sh:name "format"@en ;
@@ -90,7 +100,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:format 
         ],
-        [   sh:description "Enter path as URL or DID." ;
+        [   sh:description "Enter path as url or did." ;
             skos:example "./metadata/gxMetadata.json";
             sh:datatype xsd:anyURI ;
             sh:message "Validation of path failed!"@en ;

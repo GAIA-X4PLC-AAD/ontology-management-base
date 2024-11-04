@@ -20,6 +20,10 @@ manifest:Data a owl:Class ;
     rdfs:label "Class definition for Data" ;
     rdfs:comment "Data attributes for all assets"@en .
 
+manifest:License a owl:Class ;
+    rdfs:label "Class definition for License" ;
+    rdfs:comment "License attributes for all assets"@en .
+
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link" ;
     rdfs:comment "Link attributes for all assets"@en .
