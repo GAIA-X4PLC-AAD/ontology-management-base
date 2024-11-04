@@ -9,31 +9,43 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
+            sh:name "general object" ;
+            sh:description "general object with properties for description, data, links, bundles" ;
             sh:order 1 ;
             sh:path environment-model:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:QuantityShape ;
+            sh:name "quantity object" ;
+            sh:description "quantity object with properties for quatity values" ;
             sh:order 2 ;
             sh:path environment-model:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:QualityShape ;
+            sh:name "quality object" ;
+            sh:description "quality object with properties for quality values" ;
             sh:order 3 ;
             sh:path environment-model:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:ProjectShape ;
+            sh:name "project object" ;
+            sh:description "project object with properties for project informations" ;
             sh:order 4 ;
             sh:path environment-model:project ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:FormatShape ;
+            sh:name "format object" ;
+            sh:description "format object with properties for format informations" ;
             sh:order 5 ;
             sh:path environment-model:format ],
         [ sh:maxCount 1 ;
             sh:minCount 0 ;            
             sh:node georeference:GeoreferenceShape ;
+            sh:name "georeference object" ;
+            sh:description "georeference object with properties for georeference informations" ;
             sh:order 6 ;
             sh:path environment-model:georeference ] ;
     sh:targetClass environment-model:EnvironmentModel .   

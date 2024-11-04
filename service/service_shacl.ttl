@@ -10,13 +10,19 @@ service:ServiceShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:order 1 ;
+			sh:name "general object" ;
+			sh:description "general object with properties for name and description" ;
             sh:path service:general ],
         [ sh:node service:RequiredFileShape ;
             sh:order 2 ;
+			sh:name "required file object" ;
+			sh:description "required file object with properties for urls and description" ;			
             sh:path service:requiredFile ],
         [ sh:minCount 1 ;
             sh:node service:ResultingFileShape ;
             sh:order 3 ;
+			sh:name "resulting file object" ;
+			sh:description "resulting file object with properties for url and description" ;	
             sh:path service:resultingFile ] ;
     sh:targetClass service:Service .
 

@@ -127,3 +127,48 @@ jobs:
             echo "Processing changed directory: ${DIRECTORY}"
             python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
           done
+
+  check_target_classes_agains_owl_classes:
+    name: Check target classes in SHACL files against owl classes for all changed directories
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes in .ttl
+        id: check_ttl
+        run: |
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only origin/main -- '*.ttl')
+          if [[ -n "$CHANGED_FILES" ]]; then
+            CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -n1 dirname | sort -u) # just save the directory names
+            echo "FILES_HAVE_CHANGED=true" >> $GITHUB_ENV
+            echo "CHANGED_DIRS=$(echo "$CHANGED_DIRS" | tr '\n' ' ')" >> $GITHUB_ENV # save directories in one line
+          else
+            echo "FILES_HAVE_CHANGED=false" >> $GITHUB_ENV
+            echo "Subsequent steps will be skipped as no .ttl files have changed."
+          fi
+
+      - name: Set up Python
+        if: env.FILES_HAVE_CHANGED == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.0
+
+      - name: Install additional libraries for ci
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: pip install -r src/requirements_ci.txt
+
+      - name: Install additional libraries for federated catalogue script that is being called.
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: pip install -r src/requirements_fc.txt
+
+      - name: Run Python script for each directory that is affected (ttl file was changed).
+        if: env.FILES_HAVE_CHANGED == 'true'
+        run: |
+          IFS=' ' # Set the Internal Field Separator to a space
+          for DIRECTORY in ${CHANGED_DIRS}; do
+            echo "Processing changed directory: ${DIRECTORY}"
+            python3 -u src/check_target_classes_against_owl_classes.py "${DIRECTORY}"
+          done
