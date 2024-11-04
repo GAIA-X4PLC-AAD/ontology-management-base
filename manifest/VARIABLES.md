@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- manifest: <https://github.com/ASCS-eV/EVES/tree/onboarding/ontologyManifest/>
+- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
 
 ## List of SHACL Properties
 
