@@ -4,7 +4,7 @@
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+    "manifest": "https://github.com/ASCS-eV/EVES/tree/onboarding/ontologyManifest/"
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:ZNh9Z-tHQpkpxJhNobhUVmauYxrfTAZdQy9L",
   "@type": "manifest:Manifest",
@@ -16,7 +16,7 @@
         "manifest:accessRole": "owner",
         "manifest:type": "assetData",
         "manifest:format": "xodr",
-        "manifest:relativePath": {
+        "manifest:path": {
           "@value": "./data/TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
           "@type": "xsd:anyURI"
         }
@@ -26,20 +26,23 @@
         "manifest:accessRole": "owner",
         "manifest:type": "assetData",
         "manifest:format": "xodr",
-        "manifest:relativePath": {
+        "manifest:path": {
           "@value": "./data/TestfeldNiedersachsen_ALKS_ODR_sample_offset.xodr",
           "@type": "xsd:anyURI"
         }
       }
     ],
-    "manifest:licenseType": "providerSpecific",
+    "manifest:spdxIdentifier": {
+      "@value": "MIT",
+      "@type": "xsd:string"
+    },
     "manifest:licenseData": {
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
       "manifest:type": "license",
-      "manifest:format": "md",
-      "manifest:relativePath": {
-        "@value": "./LICENSE",
+      "manifest:format": "html",
+      "manifest:path": {
+        "@value": "https://opensource.org/license/mit",
         "@type": "xsd:anyURI"
       }
     },
@@ -49,7 +52,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "metadata",
       "manifest:format": "json",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./metadata/domainMetadata.json",
         "@type": "xsd:anyURI"
       }
@@ -59,7 +62,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "metadata",
       "manifest:format": "json",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./metadata/gxMetadata.json",
         "@type": "xsd:anyURI"
       }
@@ -69,7 +72,7 @@
       "manifest:accessRole": "registeredUser",
       "manifest:type": "documentation",
       "manifest:format": "pdf",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./documentation/TestfeldNiedersachsen_ALKS_ODR_sample_Documentation.pdf",
         "@type": "xsd:anyURI"
       }
@@ -79,7 +82,7 @@
       "manifest:accessRole": "registeredUser",
       "manifest:type": "documentation",
       "manifest:format": "txt",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./documentation/TestfeldNiedersachsen_ALKS_ODR_sample_Documentation_stats.txt",
         "@type": "xsd:anyURI"
       }
@@ -89,7 +92,7 @@
       "manifest:accessRole": "registeredUser",
       "manifest:type": "validation",
       "manifest:format": "txt",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./validation/qcReport.txt",
         "@type": "xsd:anyURI"
       }
@@ -99,7 +102,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "visualization",
       "manifest:format": "png",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
         "@type": "xsd:anyURI"
       }
@@ -109,7 +112,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "visualization",
       "manifest:format": "png",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_02.png",
         "@type": "xsd:anyURI"
       }
@@ -119,7 +122,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "visualization",
       "manifest:format": "png",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_03.png",
         "@type": "xsd:anyURI"
       }
@@ -129,7 +132,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "visualization",
       "manifest:format": "geojson",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/bbox.geojson",
         "@type": "xsd:anyURI"
       }
@@ -139,7 +142,7 @@
       "manifest:accessRole": "publicUser",
       "manifest:type": "visualization",
       "manifest:format": "geojson",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/roadNetwork.geojson",
         "@type": "xsd:anyURI"
       }
@@ -149,7 +152,7 @@
       "manifest:accessRole": "registeredUser",
       "manifest:type": "visualization",
       "manifest:format": "geojson",
-      "manifest:relativePath": {
+      "manifest:path": {
         "@value": "./visualization/detailRoadNetwork.geojson",
         "@type": "xsd:anyURI"
       }

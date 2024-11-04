@@ -1,4 +1,4 @@
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix manifest: <https://github.com/ASCS-eV/EVES/tree/onboarding/ontologyManifest/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -6,7 +6,7 @@
 
 manifest:ManifestShape a sh:NodeShape ;
     sh:property             
-        [   sh:description "Description of the content and filestructure of the uploaded asset.zip"@en ;
+        [   sh:description "description of the content and filestructure of the uploaded asset"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:DataShape ;
@@ -16,38 +16,39 @@ manifest:ManifestShape a sh:NodeShape ;
     
 manifest:DataShape a sh:NodeShape ;
     sh:property 
-        [   skos:example "link to valuable data, e.g. ./data/hdmap.xodr" ;
-            sh:description "Reference to valuable data/asset as relativePath or link"@en ;
-            sh:message "Validation of data failed!"@en ;
+        [   sh:description "reference and description to asset data and other data not falling under content data"@en ;
+            skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr";
+            sh:message "Validation of asset data failed!"@en ;
             sh:minCount 1 ;
-            sh:name "assetData"@en ;
+            sh:name "asset data"@en ;
             sh:node manifest:LinkShape ;
             sh:order 1 ;
             sh:path manifest:assetData
         ],
-        [   skos:example "license type" ;
-            sh:in ("openSource" "providerSpecific") ;
-            sh:message "Validation of license type failed!"@en ;
+        [   sh:description "any spdx identifier or LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-ContractReference"@en ;
+            skos:example "any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract" ;
+            sh:datatype xsd:string ;
+            sh:message "Validation of spdx identifier failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:name "licenseType"@en ;
+            sh:name "spdx identifier"@en ;
             sh:order 2 ;
-            sh:path manifest:licenseType 
+            sh:path manifest:spdxIdentifier 
         ],      
-        [   skos:example "link to licenseData" ;
-            sh:description "link to licenseData as relativePath"@en ;
+        [   sh:description "reference and description to license data"@en ;
+            skos:example "accessRole: publicUser, type: license, format: html, path: https://opensource.org/license/mit" ;
             sh:message "Validation of licenseData failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
-            sh:name "licenseData"@en ;
+            sh:name "license data"@en ;
             sh:node manifest:LinkShape ;
             sh:order 3 ;
             sh:path manifest:licenseData 
         ],
-        [   skos:example "screenshot, video, routing, 3d preview" ;
-            sh:description "Reference to content data as relativePath"@en ;
+        [   sh:description "reference and description to content data"@en ;
+            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json" ;
             sh:message "Validation of content failed!"@en ;
-            sh:name "contentData"@en ;
+            sh:name "content data"@en ;
             sh:node manifest:LinkShape ;
             sh:order 4 ;
             sh:path manifest:contentData 
@@ -56,44 +57,48 @@ manifest:DataShape a sh:NodeShape ;
 
 manifest:LinkShape a sh:NodeShape ;
     sh:property 
-       [    sh:datatype xsd:string ;
+       [    sh:description "access role which is related to the corresponding data" ;
+            skos:example "publicUser";
             sh:in ("owner" "registeredUser" "publicUser") ;
+            sh:datatype xsd:string ;
             sh:message "Validation of accessRole failed!"@en ;
-            sh:description "Choose an accessRole." ;
-            sh:name "accessRole"@en ;
+            sh:name "access role"@en ;
             sh:order 0 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
         ],
-        [    sh:datatype xsd:string ;
+        [   sh:description "type of patch which is related to the corresponding data" ;
+            skos:example "metadata";
             sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
+            sh:datatype xsd:string ;
             sh:message "Validation of type failed!"@en ;
-            sh:description "Choose type of link." ;
             sh:name "type"@en ;
             sh:order 1 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:type 
         ],
-        [    sh:datatype xsd:string ;
-            sh:in ("pdf" "png" "mp4" "geojson" "zip" "json" "txt" "xodr" "md" "other") ;
+        [   sh:description "format of the file from the corresponding path" ;
+            
+            sh:in ("pdf" "png" "mp4" "geojson" "zip" "json" "txt" "xodr" "md" "html" "DID" "other") ;
+            sh:datatype xsd:string ;
             sh:message "Validation of format failed!"@en ;
-            sh:description "Choose an format." ;
             sh:name "format"@en ;
             sh:order 2 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:format 
         ],
-        [   sh:datatype xsd:anyURI ;
-            sh:message "Validation of relativePath failed!"@en ;
-            sh:description "Enter link as URL or DID." ;
-            sh:name "relativePath"@en ;
+        [   sh:description "Enter path as URL or DID." ;
+            skos:example "./metadata/gxMetadata.json";
+            sh:datatype xsd:anyURI ;
+            sh:message "Validation of path failed!"@en ;
+            sh:name "path"@en ;
             sh:order 3 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path manifest:relativePath 
+            sh:path manifest:path 
         ] ;
     sh:targetClass manifest:Link .
     
