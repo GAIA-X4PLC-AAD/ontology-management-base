@@ -6,7 +6,7 @@
 georeference:GeoreferenceShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:node georeference:ProjectLocationShape ;
             sh:name "projectLocation object" ;
             sh:description "projectLocation object with property for locations and description" ;
@@ -14,7 +14,7 @@ georeference:GeoreferenceShape a sh:NodeShape ;
             sh:path georeference:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:node georeference:GeodeticReferenceSystemShape ;
             sh:name "geodeticReferenceSystem object" ;
             sh:description "geodeticReferenceSystem object with properties for projection informations" ;
@@ -23,8 +23,8 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
-	sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
-			[ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
+    sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
+            [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
@@ -34,7 +34,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:origin ],
-		[ skos:example "Lat: 1.234; Lon 45.23" ;
+        [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of view point"@en ;
             sh:message "Validation of view point failed!"@en ;
             sh:name "view point"@en ;
@@ -42,20 +42,20 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path georeference:viewPoint ],
-		[ skos:example "32632" ;
+        [ skos:example "32632" ;
             sh:datatype xsd:int ;
             sh:description "EPSG code of the map"@en ;
             sh:message "Validation of codeEPSG failed!"@en ;
             sh:name "EPSG code"@en ;
-			sh:maxCount 1 ; 
+            sh:maxCount 1 ; 
             sh:order 2 ;
             sh:path georeference:codeEPSG ],
-		[ skos:example "UTM, None" ;
+        [ skos:example "UTM, None" ;
             sh:datatype xsd:string ;
             sh:description "coordinate system name of the map"@en ;
             sh:message "Validation of coordinateSystemName failed!"@en ;
             sh:name "coordinate system name"@en ;
-			sh:maxCount 1 ; 
+            sh:maxCount 1 ; 
             sh:order 3 ;
             sh:path georeference:coordinateSystemName ],
         [ skos:example "Ellipsodial height" ;
@@ -70,49 +70,61 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of yMin failed!"@en ;
-            sh:name "yMin"@en ;
-            sh:minCount 1 ;
-			sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path georeference:yMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of yMax failed!"@en ;
-            sh:name "yMax"@en ;
-            sh:minCount 1 ;
-			sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path georeference:yMax ],
-        [ sh:datatype xsd:float ;
+    sh:property [ skos:example "1.0" ;
+            sh:datatype xsd:float ;
+            sh:description "minimum bounding value in x axis"@en ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
             sh:minCount 1 ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:xMin ],
-        [ sh:datatype xsd:float ;
+        [ skos:example "2.0" ;
+            sh:datatype xsd:float ;
+            sh:description "minimum bounding value in y axis"@en ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path georeference:yMin ],
+        [ skos:example "11.0" ;
+            sh:datatype xsd:float ;
+            sh:description "maximum bounding value in x axis"@en ;
             sh:message "Validation of xMax failed!"@en ;
             sh:name "xMax"@en ;
-			sh:minCount 1 ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path georeference:xMax ] ;
+            sh:path georeference:xMax ],
+        [ skos:example "12.0" ;
+            sh:datatype xsd:float ;
+            sh:description "maximum bounding value in y axis"@en ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path georeference:yMax ];
     sh:targetClass georeference:BoundingBox .
 
 georeference:LatLonCoordinateShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:property [ skos:example "52.540721" ;
+            sh:datatype xsd:float ;
+            sh:description "latitude value - y axis"@en ;
             sh:message "Validation of lat failed!"@en ;
             sh:name "lat"@en ;
             sh:minCount 1 ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:lat ],
-        [ sh:datatype xsd:float ;
+        [ skos:example "13.412511" ;
+            sh:datatype xsd:float ;
+            sh:description "longitude value - x axis"@en ;
             sh:message "Validation of lon failed!"@en ;
             sh:name "lon"@en ;
             sh:minCount 1 ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:order 1 ;
             sh:path georeference:lon ] ;
     sh:targetClass georeference:LatLonCoordinate .
@@ -169,4 +181,4 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
             sh:path georeference:relationOrArea ] ;
-    sh:targetClass georeference:ProjectLocation .     
+    sh:targetClass georeference:ProjectLocation .

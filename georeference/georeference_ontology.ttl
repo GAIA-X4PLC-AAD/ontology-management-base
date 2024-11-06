@@ -23,9 +23,9 @@ georeference:BoundingBox a owl:Class ;
     rdfs:label "class definition for BoundingBox" ;
     rdfs:comment "Attributes for BoundingBox"@en .
 
-georeference:Coordinate2D a owl:Class ;
-    rdfs:label "class definition for Coordinate2D" ;
-    rdfs:comment "Attributes for Coordinate2D"@en .
+georeference:LatLonCoordinateShape a owl:Class ;
+    rdfs:label "class definition for LatLonCoordinate" ;
+    rdfs:comment "Attributes for LatLonCoordinate"@en .
 
 georeference:ProjectLocation a owl:Class ;
     rdfs:label "class definition for Georeference" ;
