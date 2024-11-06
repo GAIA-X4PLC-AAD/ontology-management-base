@@ -56,7 +56,7 @@
       "@type": "xsd:int"
     },
     "georeference:origin": {
-      "@type": "georeference:Coordinate2D",
+      "@type": "georeference:LatLonCoordinate",
       "georeference:lat": {
         "@value": "52.275329463992996",
         "@type": "xsd:float"

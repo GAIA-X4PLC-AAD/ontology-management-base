@@ -145,19 +145,19 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "0",
+          "@value": "11.608111",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "0",
+          "@value": "48.331035",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "5",
+          "@value": "11.610954",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "5",
+          "@value": "48.341742",
           "@type": "xsd:float"
         }
       }
@@ -179,6 +179,28 @@
           "@type": "xsd:float"
         }
       },
+      "georeference:origin": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.335628",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.609693",
+          "@type": "xsd:float"
+        }
+      },
+	  "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.335628",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.609693",
+          "@type": "xsd:float"
+        }
+      },       
       "georeference:heightSystem": "Ellipsodial height"
     }
   },

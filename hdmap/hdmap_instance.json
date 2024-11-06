@@ -221,19 +221,19 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "5",
+          "@value": "11.964",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "5",
+          "@value": "48.043",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "10",
+          "@value": "11.968274",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "10",
+          "@value": "48.046836",
           "@type": "xsd:float"
         }
       }
@@ -245,13 +245,24 @@
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2D",
-        "georeference:x": {
-          "@value": "7.5",
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.045414",
           "@type": "xsd:float"
         },
-        "georeference:y": {
-          "@value": "7.5",
+        "georeference:lon": {
+          "@value": "11.966206",
+          "@type": "xsd:float"
+        }
+      },
+	  "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.045414",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.966206",
           "@type": "xsd:float"
         }
       },
