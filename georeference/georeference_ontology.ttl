@@ -23,7 +23,7 @@ georeference:BoundingBox a owl:Class ;
     rdfs:label "class definition for BoundingBox" ;
     rdfs:comment "Attributes for BoundingBox"@en .
 
-georeference:LatLonCoordinateShape a owl:Class ;
+georeference:LatLonCoordinate a owl:Class ;
     rdfs:label "class definition for LatLonCoordinate" ;
     rdfs:comment "Attributes for LatLonCoordinate"@en .
 
