@@ -238,9 +238,9 @@
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
-        "@value": "EPSG:32632",
-        "@type": "xsd:string"
+      "georeference:codeEPSG": {
+        "@value": "32632",
+        "@type": "xsd:int"
       },
       "georeference:origin": {
         "@type": "georeference:LatLonCoordinate",

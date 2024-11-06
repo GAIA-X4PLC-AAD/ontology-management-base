@@ -186,17 +186,17 @@
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
-        "@value": "451989",
+      "georeference:coordinateSystemName": {
+        "@value": "UTM",
         "@type": "xsd:string"
       },
       "georeference:origin": {
         "@type": "georeference:LatLonCoordinate",
-        "georeference:x": {
+        "georeference:lat": {
           "@value": "52.300",
           "@type": "xsd:float"
         },
-        "georeference:y": {
+        "georeference:lon": {
           "@value": "10.7250",
           "@type": "xsd:float"
         }
