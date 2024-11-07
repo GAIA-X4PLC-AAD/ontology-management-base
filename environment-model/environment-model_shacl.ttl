@@ -83,6 +83,8 @@ environment-model:FormatShape a sh:NodeShape ;
     sh:targetClass environment-model:Format .
 
 environment-model:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "profile roads, extrude buildings, forests, trees, river, powerlines" ;
             sh:maxCount 1 ;
             sh:datatype xsd:string ;
