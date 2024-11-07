@@ -151,28 +151,28 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "11.95546",
+          "@value": "11.608111",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "48.03990",
+          "@value": "48.331035",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "11.97518",
+          "@value": "11.610954",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "48.04697",
+          "@value": "48.341742",
           "@type": "xsd:float"
         }
       }
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
+      "georeference:codeEPSG": {
         "@value": "451989",
-        "@type": "xsd:string"
+        "@type": "xsd:int"
       },
       "georeference:origin": {
         "@type": "georeference:Coordinate2D",
@@ -185,6 +185,28 @@
           "@type": "xsd:float"
         }
       },
+      "georeference:origin": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.335628",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.609693",
+          "@type": "xsd:float"
+        }
+      },
+	  "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.335628",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.609693",
+          "@type": "xsd:float"
+        }
+      },       
       "georeference:heightSystem": "Ellipsodial height"
     }
   }

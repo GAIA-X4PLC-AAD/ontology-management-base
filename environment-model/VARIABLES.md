@@ -11,11 +11,14 @@
 | EnvironmentModelShape | environment-model | general | 1 | 1 | general object with properties for description, data, links, bundles |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | quantity | 1 | 1 | quantity object with properties for quatity values |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | quality | 1 | 1 | quality object with properties for quality values |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | content | 1 | 1 | content object with properties for content informations |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | project | 1 | 1 | project object with properties for project informations |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | format | 1 | 1 | format object with properties for format informations |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | georeference | 0 | 1 | georeference object with properties for georeference informations |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | georeference | 1 | 1 | georeference object with properties for georeference informations |  | environment-model_shacl.ttl |
 | FormatShape | environment-model | formatType |  | 1 | Data type definition | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | FormatShape | environment-model | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
+| ContentShape | environment-model | elements |  | 1 | Listing, description of visual elements in the environment model | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
+| ContentShape | environment-model | useCase |  | 1 | the possible usages of the environment model | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ProjectShape | environment-model | creationVersion |  | 1 | Tool for the creation of the data | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ProjectShape | environment-model | creationSource |  | 1 | Tool for the creation of the data | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ProjectShape | environment-model | softwareName |  | 1 | Name of the graphics engine | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
