@@ -103,11 +103,7 @@
   "environment-model:content": {
     "@type": "environment-model:Content",
     "environment-model:elements": "profile roads, extrude buildings, powerlines",
-    "environment-model:useCase": "driving",
-    "environment-model:textureResolution": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    }
+    "environment-model:useCase": "driving"
   },
   "environment-model:project": {
     "@type": "environment-model:Project",
