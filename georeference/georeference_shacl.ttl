@@ -28,7 +28,6 @@ georeference:GeoreferenceShape a sh:NodeShape ;
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
     sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
             [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
@@ -78,7 +77,6 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
 georeference:BoundingBoxShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:float ;
     sh:property [ skos:example "1.0" ;
             sh:datatype xsd:float ;
             sh:description "minimum bounding value in x axis"@en ;
