@@ -8,8 +8,8 @@
 
 surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ sh:maxCount 1 ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
@@ -55,8 +55,8 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     
 surface-model:DataShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "nan" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "Height, friction values, grey values"@en ;
             sh:maxCount 1 ;
@@ -68,8 +68,8 @@ surface-model:DataShape a sh:NodeShape ;
 
 surface-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "ASAM OpenCRG; DLM" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "ASAM OpenCRG; DLM" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
             sh:in ("ASAM OpenCRG" "DLM") ;
@@ -90,8 +90,8 @@ surface-model:FormatShape a sh:NodeShape ;
 
 surface-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "0.01" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "0.01" ;
             sh:datatype xsd:float ;
             sh:description "Longitudinal resolution "@en ;
             sh:maxCount 1 ;
@@ -135,8 +135,8 @@ surface-model:QualityShape a sh:NodeShape ;
 
 surface-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "yes" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "yes" ;
             sh:datatype xsd:boolean ;
             sh:description "Is projection system provided within the dataset"@en ;
             sh:maxCount 1 ;

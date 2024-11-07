@@ -66,7 +66,7 @@
         "@type": "xsd:float"
       }
     },
-	"georeference:viewPoint": {
+    "georeference:viewPoint": {
       "@type": "georeference:LatLonCoordinate",
       "georeference:lat": {
         "@value": "52.30626250948862",

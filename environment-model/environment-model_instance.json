@@ -57,24 +57,24 @@
       "general:type": "Image"
     }
     },
-	"general:bundleData": {
-		"@type": "general:BundleData",
-		"general:requiredData": {
-		  "@type": "general:Link",
-		  "general:url": {
-			"@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-			"@type": "xsd:anyURI"
-		  },
-		  "general:type": "Asset"
-		},
-		"general:relatedData": {
-		  "@type": "general:Link",
-		  "general:url": {
-			"@value": "https://github.com/scenario.xosc",
-			"@type": "xsd:anyURI"
-		  },
-		  "general:type": "Asset"
-		}
+    "general:bundleData": {
+        "@type": "general:BundleData",
+        "general:requiredData": {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Asset"
+        },
+        "general:relatedData": {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://github.com/scenario.xosc",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Asset"
+        }
     }
   },
   "environment-model:quantity": {
@@ -103,7 +103,7 @@
   "environment-model:content": {
     "@type": "environment-model:Content",
     "environment-model:elements": "profile roads, extrude buildings, powerlines",
-	"environment-model:useCase": "driving",
+    "environment-model:useCase": "driving",
     "environment-model:textureResolution": {
       "@value": "0.1",
       "@type": "xsd:float"

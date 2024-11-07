@@ -8,8 +8,8 @@
 
 ositrace:OSITraceShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property 
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -42,7 +42,7 @@ ositrace:OSITraceShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node ositrace:QuantityShape ;
             sh:name "quantity object" ;
-            sh:description "quantity object with properties for quantity informations" ;	
+            sh:description "quantity object with properties for quantity informations" ;    
             sh:order 5 ;
             sh:path ositrace:quantity ],
         [ sh:maxCount 1 ;
@@ -63,8 +63,8 @@ ositrace:OSITraceShape a sh:NodeShape ;
 
 ositrace:ContentShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "[motorway, residential]" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "[motorway, residential]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
@@ -151,8 +151,8 @@ ositrace:ContentShape a sh:NodeShape ;
 
 ositrace:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
             sh:maxCount 1 ;
@@ -171,8 +171,8 @@ ositrace:DataSourceShape a sh:NodeShape ;
 
 ositrace:FormatShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "3.7.0" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
             sh:maxCount 1 ;
@@ -193,8 +193,8 @@ ositrace:FormatShape a sh:NodeShape ;
 
 ositrace:QualityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "0.1" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
             sh:maxCount 1 ;
@@ -252,8 +252,8 @@ ositrace:QualityShape a sh:NodeShape ;
 
 ositrace:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "1000" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of frames/messages in the trace file"@en ;
             sh:maxCount 1 ;
@@ -265,8 +265,8 @@ ositrace:QuantityShape a sh:NodeShape ;
 
 ositrace:MovingObjectShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "42" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file"@en ;
             sh:mincount 1 ;
@@ -287,8 +287,8 @@ ositrace:MovingObjectShape a sh:NodeShape ;
 
 ositrace:EventShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;
             sh:description "Exact timestamp of the event in the recorded trace"@en ;
             sh:maxCount 1 ;

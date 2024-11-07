@@ -105,7 +105,7 @@
   "scenario:general": {
     "@type": "general:General",
     "general:description": {
-		"@type": "general:Description",
+        "@type": "general:Description",
       "gx:name": {
         "@value": "Scenario Example",
         "@type": "xsd:string"
@@ -141,28 +141,28 @@
         "general:type": "Asset"
       },
       "general:media": [
-		  {
-			"@type": "general:Link",
-			"general:url": {
-			  "@value": "https://inavlid.link.com/media",
-			  "@type": "xsd:anyURI"
-			},
-			"general:type": "Document"
-		  }
-	  ]
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://inavlid.link.com/media",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
     },
     "general:bundleData": {
       "@type": "general:BundleData",
       "general:requiredData": [
-		  {
-			"@type": "general:Link",
-			"general:url": {
-			  "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-			  "@type": "xsd:anyURI"
-			},
-			"general:type": "Document"
-		  }
-	  ]
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
     }
   },
   "scenario:source": {
@@ -233,7 +233,7 @@
           "@type": "xsd:float"
         }
       },
-	  "georeference:viewPoint": {
+      "georeference:viewPoint": {
         "@type": "georeference:LatLonCoordinate",
         "georeference:lat": {
           "@value": "52.315173",

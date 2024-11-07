@@ -8,8 +8,8 @@
 
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property 
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -63,8 +63,8 @@ hdmap:HdMapShape a sh:NodeShape ;
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "[Motorway, Rural]" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "[Motorway, Rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
@@ -101,8 +101,8 @@ hdmap:ContentShape a sh:NodeShape ;
 
 hdmap:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
             sh:maxCount 1 ;
@@ -121,8 +121,8 @@ hdmap:DataSourceShape a sh:NodeShape ;
 
 hdmap:FormatShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "1.5" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
             sh:maxCount 1 ;
@@ -143,8 +143,8 @@ hdmap:FormatShape a sh:NodeShape ;
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "0.1" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
             sh:maxCount 1 ;
@@ -193,8 +193,8 @@ hdmap:QualityShape a sh:NodeShape ;
 
 hdmap:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-	sh:ignoredProperties ( rdf:type ) ;
-	sh:property [ skos:example "5" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Sum of all junctions defined in the map,  see ODR spec section 10"@en ;
             sh:maxCount 1 ;
