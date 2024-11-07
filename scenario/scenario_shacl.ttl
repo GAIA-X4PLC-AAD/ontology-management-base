@@ -72,7 +72,7 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:description "georeference object with properties for georeference informations" ;
             sh:order 7 ;
             sh:path scenario:georeference ] ;
-    sh:targetClass scenario:scenario .
+    sh:targetClass scenario:Scenario .
  
 scenario:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
