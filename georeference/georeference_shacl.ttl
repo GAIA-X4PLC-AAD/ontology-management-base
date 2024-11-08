@@ -115,7 +115,6 @@ georeference:BoundingBoxShape a sh:NodeShape ;
             sh:path georeference:yMax ];
     sh:targetClass georeference:BoundingBox .
 
-
 georeference:LatLonCoordinateShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
