@@ -96,7 +96,7 @@ scenario:EnvironmentalShape a sh:NodeShape ;
             sh:description "Azimuth of the sun"@en ;
             sh:message "Validation of sunAzimuth failed!"@en ;
             sh:minCount 0 ;
-            sh:name "sunAzimuth"@en ;
+            sh:name "sun azimuth"@en ;
             sh:order 2 ;
             sh:path scenario:sunAzimuth ] ;
     sh:targetClass scenario:Environmental .
@@ -132,7 +132,7 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
             sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "abstractionLevel"@en ;
+            sh:name "abstraction level"@en ;
             sh:order 0 ;
             sh:path scenario:abstractionLevel ],
         [ skos:example "2009-06-30T18:30:00+02:00   " ;
@@ -141,7 +141,7 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of timeDate failed!"@en ;
             sh:minCount 0 ;
-            sh:name "timeDate"@en ;
+            sh:name "time date"@en ;
             sh:order 2 ;
             sh:path scenario:timeDate ],
         [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)" ;
@@ -159,7 +159,7 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
             sh:minCount 0 ;
-            sh:name "usedStandardFunctions"@en ;
+            sh:name "used standard functions"@en ;
             sh:order 3 ;
             sh:path scenario:usedStandardFunctions ] ;
     sh:targetClass scenario:Common .
@@ -172,7 +172,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:description "Count of traffic temporary objects"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of temporaryTrafficObjects failed!"@en ;
-            sh:name "temporaryTrafficObjects"@en ;
+            sh:name "temporary traffic objects"@en ;
             sh:order 1 ;
             sh:path scenario:temporaryTrafficObjects ],
         [ skos:example "10" ;
@@ -180,7 +180,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:description "Count of traffic objects"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficObjects failed!"@en ;
-            sh:name "numberTrafficObjects"@en ;
+            sh:name "number traffic objects"@en ;
             sh:order 0 ;
             sh:path scenario:numberTrafficObjects ],
         [ skos:example "myDriver, BestPedestrianController2000" ;
@@ -196,7 +196,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:description "Count of traffic permanent objects"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of permanentTrafficObjects failed!"@en ;
-            sh:name "permanentTrafficObjects"@en ;
+            sh:name "permanent traffic objects"@en ;
             sh:order 2 ;
             sh:path scenario:permanentTrafficObjects ],
         [ skos:example "via trajectory, via support points" ;
@@ -204,7 +204,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:description "Type of movement used by traffic participants according to the OpenSCENARIO standard."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of movementDescription failed!"@en ;
-            sh:name "movementDescription"@en ;
+            sh:name "movement description"@en ;
             sh:order 4 ;
             sh:path scenario:movementDescription ],
         [ skos:example "stopIfTTCLowerThan" ;
@@ -213,7 +213,7 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of customCommands failed!"@en ;
             sh:minCount 0 ;
-            sh:name "customCommands"@en ;
+            sh:name "custom commands"@en ;
             sh:order 6 ;
             sh:path scenario:customCommands ] ;
     sh:targetClass scenario:TrafficParticipants .
@@ -242,7 +242,7 @@ scenario:StructuralShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of trafficSpace failed!"@en ;
             sh:minCount 0 ;
-            sh:name "trafficSpace"@en ;
+            sh:name "traffic space"@en ;
             sh:node general:LinkShape ;
             sh:order 2 ;
             sh:path scenario:trafficSpace ] ;
@@ -257,7 +257,7 @@ scenario:TrafficShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of countrySpecificSign failed!"@en ;
             sh:minCount 0 ;
-            sh:name "countrySpecificSign"@en ;
+            sh:name "country specific sign"@en ;
             sh:order 3 ;
             sh:path scenario:countrySpecificSign ],
         [ skos:example "tuk tuk" ;
@@ -266,7 +266,7 @@ scenario:TrafficShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of countrySpecificTP failed!"@en ;
             sh:minCount 0 ;
-            sh:name "countrySpecificTP"@en ;
+            sh:name "country specific TP"@en ;
             sh:order 2 ;
             sh:path scenario:countrySpecificTP ],
         [ skos:example "germany, not applicable" ;
