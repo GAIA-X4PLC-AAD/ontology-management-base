@@ -62,7 +62,7 @@ general:DataShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
-            sh:description "Size of the file to be downloaded in MB." ;
+            sh:description "Size of the asset file(e.g. xodr, 3d model zip) to be downloaded in MB." ;
             skos:example "5.8" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
