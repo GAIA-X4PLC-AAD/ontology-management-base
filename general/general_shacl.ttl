@@ -74,7 +74,7 @@ general:DataShape a sh:NodeShape ;
             skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:name "contractId" ;
+            sh:name "contract Id" ;
             sh:order 2 ;
             sh:path general:contractId ], 
         [ skos:example "2022-04-01 00:00:00" ;
@@ -82,7 +82,7 @@ general:DataShape a sh:NodeShape ;
             sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of recordingTime failed!"@en ;
-            sh:name "recordingTime"@en ;
+            sh:name "recording time"@en ;
             sh:order 3 ;
             sh:path general:recordingTime ] ;
     sh:targetClass general:Data .     
@@ -93,13 +93,13 @@ general:BundleDataShape a sh:NodeShape ;
     sh:property [ sh:node general:LinkShape ;
             sh:description "Reference to required assets" ;
             skos:example "for scenario, link to required hd map" ;
-            sh:name "requiredData" ;
+            sh:name "required data" ;
             sh:order 1 ;
             sh:path general:requiredData ],
         [ sh:node general:LinkShape ;
             sh:description "Reference to optional related assets" ;
             skos:example "at hd map, link to optional surface map" ;
-            sh:name "relatedData" ;
+            sh:name "related data" ;
             sh:order 2 ;
             sh:path general:relatedData ];
     sh:targetClass general:BundleData .    
