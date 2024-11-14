@@ -83,7 +83,7 @@
   },
   "ositrace:content": {
     "@type": "ositrace:Content",
-    "ositrace:roadTypes": "Rural",
+    "ositrace:roadTypes": "rural",
     "ositrace:laneTypes": "driving",
     "ositrace:levelOfDetail": "car",
     "ositrace:trafficDirection": "right-hand",
