@@ -44,56 +44,38 @@
       },
       "general:type": "Video"
     },
-    "general:media": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://example.com/model.png",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Model"
-    }
+    "general:media": [
+        {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://example.com/model.png",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Image"
+        }
+    ]
   },
   "general:bundleData": {
     "@type": "general:BundleData",
-    "general:requiredData": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://example.com/requiredData",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "3DPreview"
-    },
-    "general:relatedData": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://example.com/relatedData.mpg",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Video"
-    }
-  },
-  "general:media": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://example.com/model.png",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Model"
-  },
-  "general:requiredData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://example.com/requiredData",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "3DPreview"
-  },
-  "general:relatedData": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://example.com/relatedData.mpg",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Video"
+    "general:requiredData": [
+        {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://example.com/requiredData",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "3DPreview"
+        }
+    ],
+    "general:relatedData": [
+        {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://example.com/relatedData.mpg",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Video"
+        }
+    ]
   }
 }

@@ -48,25 +48,29 @@
         },
         "general:type": "Asset"
       },
-      "general:media": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143715.300000Z_position_pmsf_zedf9p_119_cutout.gpx",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Routing"
-      }
+      "general:media": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143715.300000Z_position_pmsf_zedf9p_119_cutout.gpx",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Routing"
+          }
+      ]
     },
     "general:bundleData": {
       "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/LICENSE.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:requiredData": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/LICENSE.md",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
     }
   },
   "ositrace:format": {
@@ -140,7 +144,7 @@
     }
   },
   "ositrace:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
@@ -200,7 +204,7 @@
           "@type": "xsd:float"
         }
       },
-	  "georeference:viewPoint": {
+      "georeference:viewPoint": {
         "@type": "georeference:LatLonCoordinate",
         "georeference:lat": {
           "@value": "52.40177964666667",

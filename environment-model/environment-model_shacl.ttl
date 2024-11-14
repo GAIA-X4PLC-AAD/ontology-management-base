@@ -4,8 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 environment-model:EnvironmentModelShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -34,7 +37,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
             sh:description "content object with properties for content informations" ;
             sh:order 4 ;
             sh:path environment-model:content ],
-		[ sh:maxCount 1 ;
+        [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node environment-model:ProjectShape ;
             sh:name "project object" ;
@@ -58,6 +61,8 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:targetClass environment-model:EnvironmentModel .   
 
 environment-model:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Unreal DataSmith, Autodesk FBX, OpenSceneGraph, GLTF" ;
             sh:datatype xsd:string ;
             sh:description "Data type definition"@en ;
@@ -78,8 +83,10 @@ environment-model:FormatShape a sh:NodeShape ;
     sh:targetClass environment-model:Format .
 
 environment-model:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "profile roads, extrude buildings, forests, trees, river, powerlines" ;
-			sh:maxCount 1 ;
+            sh:maxCount 1 ;
             sh:datatype xsd:string ;
             sh:description "Listing, description of visual elements in the environment model"@en ;
             sh:message "Validation of elements failed!"@en ;
@@ -88,15 +95,17 @@ environment-model:ContentShape a sh:NodeShape ;
             sh:path environment-model:elements ],
         [ skos:example "driving, offroad, flight" ;
             sh:maxCount 1 ;
-			sh:datatype xsd:string ;
+            sh:datatype xsd:string ;
             sh:description "the possible usages of the environment model"@en ;
             sh:message "Validation of useCase failed!"@en ;
             sh:name "use case"@en ;
             sh:order 1 ;
             sh:path environment-model:useCase ];
     sh:targetClass environment-model:Content .
-	
+    
 environment-model:ProjectShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "7.7" ;
             sh:datatype xsd:string ;
             sh:description "Tool for the creation of the data"@en ;
@@ -140,6 +149,8 @@ environment-model:ProjectShape a sh:NodeShape ;
     sh:targetClass environment-model:Project .
 
 environment-model:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "PBR" ;
             sh:datatype xsd:string ;
             sh:description "Description of quality features"@en ;
@@ -170,6 +181,8 @@ environment-model:QualityShape a sh:NodeShape ;
     sh:targetClass environment-model:Quality .
 
 environment-model:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "12000" ;
             sh:datatype xsd:int ;
             sh:description "Total number of all geoemtries(all triangles with a material assignment), instances are considered only once"@en ;

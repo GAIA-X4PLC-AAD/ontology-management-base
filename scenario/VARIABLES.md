@@ -2,7 +2,6 @@
 
 ## Prefixes
 
-- georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/>
 - scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/>
 
 ## List of SHACL Properties
@@ -17,7 +16,7 @@
 | ScenarioShape | scenario | traffic | 1 | 1 | traffic object with properties for country specific informations |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | trafficParticipants | 1 | 1 | trafficParticipants object with properties for traffic participants |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | format | 1 | 1 | format object with properties for format informations |  | scenario_shacl.ttl |
-| ScenarioShape | georeference | georeference | 0 | 1 | georeference object with properties for georeference informations |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | georeference | 0 | 1 | georeference object with properties for georeference informations |  | scenario_shacl.ttl |
 | DataSourceShape | scenario | source | 0 | 1 | Capture type | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | EnvironmentalShape | scenario | sunAzimuth | 0 |  | Azimuth of the sun | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | FormatShape | scenario | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |

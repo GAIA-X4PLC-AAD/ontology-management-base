@@ -2,8 +2,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 georeference:GeoreferenceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -23,6 +26,8 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
             [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
@@ -70,6 +75,8 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1.0" ;
             sh:datatype xsd:float ;
             sh:description "minimum bounding value in x axis"@en ;
@@ -109,6 +116,8 @@ georeference:BoundingBoxShape a sh:NodeShape ;
     sh:targetClass georeference:BoundingBox .
 
 georeference:LatLonCoordinateShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "52.540721" ;
             sh:datatype xsd:float ;
             sh:description "latitude value - y axis"@en ;
@@ -130,6 +139,8 @@ georeference:LatLonCoordinateShape a sh:NodeShape ;
     sh:targetClass georeference:LatLonCoordinate .
     
 georeference:ProjectLocationShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "DE-BY" ;
             sh:datatype xsd:string ;
             sh:description "Code of federal state or province as ISO 3166-2"@en ;

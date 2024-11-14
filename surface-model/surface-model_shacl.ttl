@@ -4,8 +4,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 surface-model:SurfaceModelShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -51,6 +54,8 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:targetClass surface-model:SurfaceModel .
     
 surface-model:DataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "Height, friction values, grey values"@en ;
@@ -62,6 +67,8 @@ surface-model:DataShape a sh:NodeShape ;
     sh:targetClass surface-model:Data .
 
 surface-model:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "ASAM OpenCRG; DLM" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
@@ -82,6 +89,8 @@ surface-model:FormatShape a sh:NodeShape ;
     sh:targetClass surface-model:Format .
 
 surface-model:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.01" ;
             sh:datatype xsd:float ;
             sh:description "Longitudinal resolution "@en ;
@@ -125,6 +134,8 @@ surface-model:QualityShape a sh:NodeShape ;
     sh:targetClass surface-model:Quality .
 
 surface-model:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "yes" ;
             sh:datatype xsd:boolean ;
             sh:description "Is projection system provided within the dataset"@en ;
