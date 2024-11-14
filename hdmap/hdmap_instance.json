@@ -91,7 +91,7 @@
   },
   "hdmap:content": {
     "@type": "hdmap:Content",
-    "hdmap:roadTypes": "Town",
+    "hdmap:roadTypes": "town",
     "hdmap:laneTypes": [
       "driving",
       "walking"
