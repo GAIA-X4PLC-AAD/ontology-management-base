@@ -1,0 +1,23 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix validation: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/validation/> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+validation: a owl:Ontology ;
+    rdfs:label "Ontology definition for validation"@en ;
+    dcterms:contributor "Fin Heuer (DLR)" ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
+    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/validation/" ;
+    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/validation/validation_ontology.ttl> ;
+    owl:versionInfo "0.1" .
+
+validation:Validation a owl:Class ;
+    rdfs:label "Class definition for Validation" ;
+    rdfs:comment "Includes attributes for validation information"@en .
+
+validation:ValidationResult a owl:Class ;
+    rdfs:label "Class definition for a validation report result" ;
+    rdfs:comment "Includes attributes for validation report results"@en .

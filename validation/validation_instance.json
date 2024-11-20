@@ -1,0 +1,40 @@
+{
+    "@context": {
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "validation": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/validation/"
+    },
+    "@id": "did:example:abcdefg1234567890",
+    "@type": "validation:Validation",
+    "validation:validationReport": {
+        "@value": "./validation/scenarioReport.xqar",
+        "@type": "xsd:anyURI"
+    },
+    "validation:reportType": {
+        "@value": "QualityChecker v0.0.1 with CheckerBundle qc-openscenarioxml v0.0.1 and qc-opendrive v0.0.1",
+        "@type": "xsd:string"
+    },
+    "validation:sourceType": "self-provided",
+    "validation:results": [
+        {
+            "@type": "validation:ValidationResult",
+            "validation:valdiationName": {
+                "@value": "check_asam_xosc_xml_valid_xml_document",
+                "@type": "xsd:string"
+            },
+            "validation:validationResult": "PASSED",
+            "validation:severity": "ERROR"
+        },
+        {
+            "@type": "validation:ValidationResult",
+            "validation:valdiationName": {
+                "@value": "check_asam_xosc_xml_valid_schema",
+                "@type": "xsd:string"
+            },
+            "validation:validationResult": "PASSED",
+            "validation:severity": "ERROR"
+        }
+    ]
+}
