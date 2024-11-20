@@ -24,7 +24,7 @@
       }
     },
     "general:data": {
-      "@type": "general:Data",
+        "@type": "general:Data",
       "general:size": {
         "@value": "5",
         "@type": "xsd:float"
@@ -48,52 +48,37 @@
         },
         "general:type": "Asset"
       },
-      "general:media": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:media": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://github.com/GAIA-X4PLC-AAD/hd-map-asset-example/blob/main/asset/TestfeldNiedersachsen_ALKS_ODR_sample/LICENSE",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          },
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://github.com/GAIA-X4PLC-AAD/hd-map-asset-example/blob/main/asset/TestfeldNiedersachsen_ALKS_ODR_sample/visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Image"
+          }
+      ]
     },
     "general:bundleData": {
       "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
-    },
-    "general:media": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/LICENSE.md",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Document"
-    },
-    "general:requiredData": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Document"
-    },
-    "hdmap:speedLimit": {
-      "@type": "general:Range2D",
-      "general:min": {
-        "@value": "10",
-        "@type": "xsd:float"
-      },
-      "general:max": {
-        "@value": "50",
-        "@type": "xsd:float"
-      }
+      "general:requiredData": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
     }
   },
   "hdmap:format": {
@@ -106,7 +91,7 @@
   },
   "hdmap:content": {
     "@type": "hdmap:Content",
-    "hdmap:roadTypes": "Town",
+    "hdmap:roadTypes": "town",
     "hdmap:laneTypes": [
       "driving",
       "walking"
@@ -195,7 +180,7 @@
     }
   },
   "hdmap:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
@@ -221,37 +206,48 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "5",
+          "@value": "11.964",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "5",
+          "@value": "48.043",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "10",
+          "@value": "11.968274",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "10",
+          "@value": "48.046836",
           "@type": "xsd:float"
         }
       }
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
+      "georeference:codeEPSG": {
         "@value": "32632",
-        "@type": "xsd:string"
+        "@type": "xsd:int"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2D",
-        "georeference:x": {
-          "@value": "7.5",
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.045414",
           "@type": "xsd:float"
         },
-        "georeference:y": {
-          "@value": "7.5",
+        "georeference:lon": {
+          "@value": "11.966206",
+          "@type": "xsd:float"
+        }
+      },
+      "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "48.045414",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "11.966206",
           "@type": "xsd:float"
         }
       },

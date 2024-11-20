@@ -4,8 +4,11 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 surface-model:SurfaceModelShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -51,6 +54,8 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:targetClass surface-model:SurfaceModel .
     
 surface-model:DataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
             sh:description "Height, friction values, grey values"@en ;
@@ -62,6 +67,8 @@ surface-model:DataShape a sh:NodeShape ;
     sh:targetClass surface-model:Data .
 
 surface-model:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "ASAM OpenCRG; DLM" ;
             sh:datatype xsd:string ;
             sh:description "Format type definition"@en ;
@@ -82,12 +89,14 @@ surface-model:FormatShape a sh:NodeShape ;
     sh:targetClass surface-model:Format .
 
 surface-model:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.01" ;
             sh:datatype xsd:float ;
             sh:description "Longitudinal resolution "@en ;
             sh:maxCount 1 ;
             sh:message "Validation of resolutionLongitudinal failed!"@en ;
-            sh:name "resolutionLongitudinal"@en ;
+            sh:name "resolution longitudinal"@en ;
             sh:order 0 ;
             sh:path surface-model:resolutionLongitudinal ],
         [ skos:example "-3,14159" ;
@@ -103,7 +112,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:description "Existence of horizontal starting platform"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of platformExists failed!"@en ;
-            sh:name "platformExists"@en ;
+            sh:name "platform exists"@en ;
             sh:order 3 ;
             sh:path surface-model:platformExists ],
         [ skos:example "0.01" ;
@@ -111,7 +120,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:description "Lateral resolutions"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of resolutionLateral failed!"@en ;
-            sh:name "resolutionLateral"@en ;
+            sh:name "resolution lateral"@en ;
             sh:order 1 ;
             sh:path surface-model:resolutionLateral ],
         [ skos:example "true" ;
@@ -119,18 +128,20 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:description "Existence of smooth ramp from platform to road"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of rampExists failed!"@en ;
-            sh:name "rampExists"@en ;
+            sh:name "ramp exists"@en ;
             sh:order 4 ;
             sh:path surface-model:rampExists ] ;
     sh:targetClass surface-model:Quality .
 
 surface-model:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "yes" ;
             sh:datatype xsd:boolean ;
             sh:description "Is projection system provided within the dataset"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of mapDataField failed!"@en ;
-            sh:name "mapDataField"@en ;
+            sh:name "map data field"@en ;
             sh:order 2 ;
             sh:path surface-model:mapDataField ],
         [ skos:example "25" ;
@@ -139,7 +150,7 @@ surface-model:QuantityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of elevationRange failed!"@en ;
             sh:minCount 0 ;
-            sh:name "elevationRange"@en ;
+            sh:name "elevation range"@en ;
             sh:order 1 ;
             sh:path surface-model:elevationRange ],
         [ skos:example "1.46" ;

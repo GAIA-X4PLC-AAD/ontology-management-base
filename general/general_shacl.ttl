@@ -3,8 +3,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 general:GeneralShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
@@ -22,6 +25,8 @@ general:GeneralShape a sh:NodeShape ;
     sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "A human readable name of the entity." ;
             skos:example "3D Model in Grafing" ;
@@ -41,8 +46,10 @@ general:DescriptionShape a sh:NodeShape ;
     sh:targetClass general:Description .    
     
 general:DataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
-            sh:description "Size of the file to be downloaded in MB." ;
+            sh:description "Size of the asset file(e.g. xodr, 3d model zip) to be downloaded in MB." ;
             skos:example "5.8" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -57,9 +64,11 @@ general:DataShape a sh:NodeShape ;
             sh:name "recordingTime"@en ;
             sh:order 2 ;
             sh:path general:recordingTime ] ;
-    sh:targetClass general:Data .     
-  
+    sh:targetClass general:Data . 
+
 general:Range2DShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
             sh:message "Validation of max failed!"@en ;
             sh:name "max"@en ;

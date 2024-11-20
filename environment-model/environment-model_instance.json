@@ -57,24 +57,24 @@
       "general:type": "Image"
     }
     },
-	"general:bundleData": {
-		"@type": "general:BundleData",
-		"general:requiredData": {
-		  "@type": "general:Link",
-		  "general:url": {
-			"@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-			"@type": "xsd:anyURI"
-		  },
-		  "general:type": "Asset"
-		},
-		"general:relatedData": {
-		  "@type": "general:Link",
-		  "general:url": {
-			"@value": "https://github.com/scenario.xosc",
-			"@type": "xsd:anyURI"
-		  },
-		  "general:type": "Asset"
-		}
+    "general:bundleData": {
+        "@type": "general:BundleData",
+        "general:requiredData": {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Asset"
+        },
+        "general:relatedData": {
+          "@type": "general:Link",
+          "general:url": {
+            "@value": "https://github.com/scenario.xosc",
+            "@type": "xsd:anyURI"
+          },
+          "general:type": "Asset"
+        }
     }
   },
   "environment-model:quantity": {
@@ -98,11 +98,12 @@
     "environment-model:textureResolution": {
       "@value": "0.1",
       "@type": "xsd:float"
-    },
-    "environment-model:features": {
-      "@value": "PBR",
-      "@type": "xsd:string"
     }
+  },
+  "environment-model:content": {
+    "@type": "environment-model:Content",
+    "environment-model:elements": "profile roads, extrude buildings, powerlines",
+    "environment-model:useCase": "driving"
   },
   "environment-model:project": {
     "@type": "environment-model:Project",
@@ -136,7 +137,7 @@
     }
   },
   "environment-model:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
@@ -162,37 +163,48 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "5",
+          "@value": "10.720740862799195",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "5",
+          "@value": "52.29672229543727",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "10",
+          "@value": "10.730432209669724",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "10",
+          "@value": "52.31580272353997",
           "@type": "xsd:float"
         }
       }
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
-        "@value": "451989",
+      "georeference:coordinateSystemName": {
+        "@value": "UTM",
         "@type": "xsd:string"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2D",
-        "georeference:x": {
-          "@value": "7.5",
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "52.300",
           "@type": "xsd:float"
         },
-        "georeference:y": {
-          "@value": "7.5",
+        "georeference:lon": {
+          "@value": "10.7250",
+          "@type": "xsd:float"
+        }
+      },      
+      "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "52.30626250948862",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "10.72558653623446",
           "@type": "xsd:float"
         }
       },

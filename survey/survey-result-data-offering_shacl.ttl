@@ -30,7 +30,6 @@ survey:SurveyResultDataOfferingShape
 	] ;
 	sh:property [
 		sh:path survey:belongsTo ; 
-		sh:class survey:SurveyServiceOffering ;
 		sh:nodeKind sh:IRI ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;

@@ -16,3 +16,22 @@ environment-model:EnvironmentModel a owl:Class ;
     rdfs:comment "Attributes for 3d environment-model"@en ;
     rdfs:subClassOf gx:DataResource .
 
+environment-model:Format a owl:Class ;
+    rdfs:label "class definition for Format" ;
+    rdfs:comment "Attributes for Format"@en .
+
+environment-model:Content a owl:Class ;
+    rdfs:label "class definition for Content" ;
+    rdfs:comment "Attributes for Content"@en .	
+
+environment-model:Project a owl:Class ;
+    rdfs:label "class definition for Project" ;
+    rdfs:comment "Attributes for Project"@en .		
+
+environment-model:Quality a owl:Class ;
+    rdfs:label "class definition for Quality" ;
+    rdfs:comment "Attributes for Quality"@en .		
+
+environment-model:Quantity a owl:Class ;
+    rdfs:label "class definition for Quantity" ;
+    rdfs:comment "Attributes for Quantity"@en .		

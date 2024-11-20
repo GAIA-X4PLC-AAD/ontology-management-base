@@ -4,8 +4,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ositrace:OSITraceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -39,7 +42,7 @@ ositrace:OSITraceShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node ositrace:QuantityShape ;
             sh:name "quantity object" ;
-            sh:description "quantity object with properties for quantity informations" ;	
+            sh:description "quantity object with properties for quantity informations" ;    
             sh:order 5 ;
             sh:path ositrace:quantity ],
         [ sh:maxCount 1 ;
@@ -59,12 +62,14 @@ ositrace:OSITraceShape a sh:NodeShape ;
     sh:targetClass ositrace:OSITrace .
 
 ositrace:ContentShape a sh:NodeShape ;
-    sh:property [ skos:example "[motorway, residential]" ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "[motorway, rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
-            sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
+            sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
             sh:message "Validation of roadTypes failed!"@en ;
-            sh:name "roadTypes"@en ;
+            sh:name "road types"@en ;
             sh:order 0 ;
             sh:path ositrace:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
@@ -72,7 +77,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:description "Covered lane types, see ODR spec section 9.5.3."@en ;
             sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
             sh:message "Validation of laneTypes failed!"@en ;
-            sh:name "laneTypes"@en ;
+            sh:name "lane types"@en ;
             sh:order 1 ;
             sh:path ositrace:laneTypes ],
         [ skos:example "trees, street lamps, road patches..." ;
@@ -80,7 +85,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:description "Covered object classes, see ODR spec section 11"@en ;
             sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
             sh:message "Validation of levelOfDetail failed!"@en ;
-            sh:name "levelOfDetail"@en ;
+            sh:name "level of detail"@en ;
             sh:order 2 ;
             sh:path ositrace:levelOfDetail ], 
         [ skos:example "right-hand traffic" ;
@@ -89,7 +94,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:in ("left-hand" "right-hand") ;
             sh:maxCount 1 ;
             sh:message "Validation of trafficDirection failed!"@en ;
-            sh:name "trafficDirection"@en ;
+            sh:name "traffic direction"@en ;
             sh:order 3 ;
             sh:path ositrace:trafficDirection ],
         [ skos:example "object list, detection list" ;
@@ -105,7 +110,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Identifier of scenario performed in the trace file"@en ;
             sh:message "Validation of scenarioIdentifier failed!"@en ;
-            sh:name "scenarioIdentifier"@en ;
+            sh:name "scenario identifier"@en ;
             sh:order 5 ;
             sh:path ositrace:scenarioIdentifier ],
         [ skos:example "2024-05-11T13:20:03.250320Z" ;
@@ -114,7 +119,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of startTime failed!"@en ;
             sh:minCount 1 ;
-            sh:name "startTime"@en ;
+            sh:name "start time"@en ;
             sh:order 6 ;
             sh:path ositrace:startTime ],
         [ skos:example "2024-05-11T13:20:05.250120Z" ;
@@ -123,17 +128,17 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of stopTime failed!"@en ;
             sh:minCount 1 ;
-            sh:name "stopTime"@en ;
+            sh:name "stop time"@en ;
             sh:order 7 ;
             sh:path ositrace:stopTime ],
         [ sh:description "Host moving object in trace file"@en ;
             sh:maxCount 1 ;
-            sh:name "hostMovingObject"@en ;
+            sh:name "host moving object"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 8 ;
             sh:path ositrace:hostMovingObject ],
         [ sh:description "Target moving object in trace file"@en ;
-            sh:name "targetMovingObject"@en ;
+            sh:name "target moving object"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 9 ;
             sh:path ositrace:targetMovingObject ],
@@ -145,24 +150,28 @@ ositrace:ContentShape a sh:NodeShape ;
     sh:targetClass ositrace:Content .
 
 ositrace:DataSourceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of measurementSystem failed!"@en ;
-            sh:name "measurementSystem"@en ;
+            sh:name "measurement system"@en ;
             sh:order 1 ;
             sh:path ositrace:measurementSystem ],
         [ skos:example "scanner, camera, osm network, aerial images, ..." ;
             sh:datatype xsd:string ;
             sh:description "Basic data for the creation of the trace "@en ;
             sh:message "Validation of usedDataSources failed!"@en ;
-            sh:name "usedDataSources"@en ;
+            sh:name "used data sources"@en ;
             sh:order 0 ;
             sh:path ositrace:usedDataSources ] ;
     sh:targetClass ositrace:DataSource .
 
 ositrace:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -183,13 +192,15 @@ ositrace:FormatShape a sh:NodeShape ;
     sh:targetClass ositrace:Format .
 
 ositrace:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of accuracySignals failed!"@en ;
             sh:minCount 0 ;
-            sh:name "accuracySignals"@en ;
+            sh:name "accuracy signals"@en ;
             sh:order 3 ;
             sh:path ositrace:accuracySignals ],
         [ skos:example "0.1" ;
@@ -198,7 +209,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of accuracyObjects failed!"@en ;
             sh:minCount 0 ;
-            sh:name "accuracyObjects"@en ;
+            sh:name "accuracy objects"@en ;
             sh:order 4 ;
             sh:path ositrace:accuracyObjects ],
         [ skos:example "0.1" ;
@@ -207,7 +218,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of accuracyLaneModelHeight failed!"@en ;
             sh:minCount 0 ;
-            sh:name "accuracyLaneModelHeight"@en ;
+            sh:name "accuracy lane model height"@en ;
             sh:order 2 ;
             sh:path ositrace:accuracyLaneModelHeight ],
         [ skos:example "0.01" ;
@@ -225,7 +236,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of accuracyLaneModel2d failed!"@en ;
             sh:minCount 0 ;
-            sh:name "accuracyLaneModel2d"@en ;
+            sh:name "accuracy lane model 2d"@en ;
             sh:order 1 ;
             sh:path ositrace:accuracyLaneModel2d ],
         [ skos:example "Calibration performed at origin" ;
@@ -240,17 +251,21 @@ ositrace:QualityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of frames/messages in the trace file"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberFrames failed!"@en ;
-            sh:name "numberFrames"@en ;
+            sh:name "number frames"@en ;
             sh:order 0 ;
             sh:path ositrace:numberFrames ] ;
     sh:targetClass ositrace:Quantity .
 
 ositrace:MovingObjectShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file"@en ;
@@ -271,6 +286,8 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:targetClass ositrace:MovingObject .
 
 ositrace:EventShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;
             sh:description "Exact timestamp of the event in the recorded trace"@en ;
