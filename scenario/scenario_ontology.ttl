@@ -13,7 +13,7 @@ scenario: a owl:Ontology ;
     dcterms:contributor "Fin Heuer (DLR), Rico Auerswald (FhG IVI)" ;
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
     dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" ;
-    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/Ontology_Scenario/scenario/scenario_ontology.ttl> ;
+    owl:versionIRI <https://raw.githubusercontent.com/GAIA-X4PLC-AAD/ontology-management-base/refs/heads/main/scenario/scenario_ontology.ttl> ;
     owl:versionInfo "0.1" .
 
 scenario:Scenario a owl:Class ;
