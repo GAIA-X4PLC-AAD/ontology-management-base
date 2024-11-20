@@ -58,3 +58,10 @@
 # leakage-test directory (Selcan AND Robert Or Lena)
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
+
+# marketplace-info directory (Robert AND Johannes)
+/marketplace-info @robertschubert
+/marketplace-info @jtdemer
+
+
+

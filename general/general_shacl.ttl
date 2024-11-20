@@ -19,22 +19,9 @@ general:GeneralShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
             sh:name "data object" ;
-            sh:description "data object with property for size, id and record time" ;
+            sh:description "data object with property for size and record time" ;
             sh:order 2 ;
-            sh:path general:data ],               
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:LinksShape ;
-            sh:name "link object" ;
-            sh:description "link object with links to asset and media files" ;
-            sh:order 3 ;
-            sh:path general:links ],         
-        [ sh:maxCount 1 ;
-            sh:node general:BundleDataShape ;
-            sh:name "bundle object" ;
-            sh:description "bundle object with links to required and optional related data" ;
-            sh:order 4 ;
-            sh:path general:bundleData ];
+            sh:path general:data ];              
     sh:targetClass general:General .
     
 general:DescriptionShape a sh:NodeShape ;
@@ -47,7 +34,7 @@ general:DescriptionShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "name" ;
             sh:order 1 ;
-            sh:path gx:name ],
+            sh:path general:name ],
         [ sh:datatype xsd:string ;
             sh:description "A free text description of the entity." ;
             skos:example "town district, with traffic signs" ;
@@ -55,7 +42,7 @@ general:DescriptionShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "description" ;
             sh:order 2 ;
-            sh:path gx:description ];
+            sh:path general:description ];
     sh:targetClass general:Description .    
     
 general:DataShape a sh:NodeShape ;
@@ -69,84 +56,16 @@ general:DataShape a sh:NodeShape ;
             sh:name "size" ;
             sh:order 1 ;
             sh:path general:size ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contract information in regards to the data exchange component." ;
-            skos:example "contract_zcdkr7kqd47y0w5b4tg91w1etw" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "contract Id" ;
-            sh:order 2 ;
-            sh:path general:contractId ], 
         [ skos:example "2022-04-01 00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of recordingTime failed!"@en ;
-            sh:name "recording time"@en ;
-            sh:order 3 ;
+            sh:name "recordingTime"@en ;
+            sh:order 2 ;
             sh:path general:recordingTime ] ;
-    sh:targetClass general:Data .     
-    
-general:BundleDataShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:node general:LinkShape ;
-            sh:description "Reference to required assets" ;
-            skos:example "for scenario, link to required hd map" ;
-            sh:name "required data" ;
-            sh:order 1 ;
-            sh:path general:requiredData ],
-        [ sh:node general:LinkShape ;
-            sh:description "Reference to optional related assets" ;
-            skos:example "at hd map, link to optional surface map" ;
-            sh:name "related data" ;
-            sh:order 2 ;
-            sh:path general:relatedData ];
-    sh:targetClass general:BundleData .    
+    sh:targetClass general:Data . 
 
-general:LinksShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "link to bundle data, screenshot, video, routing, 3d preview" ;
-            sh:description "Reference to media data"@en ;
-            sh:message "Validation of media failed!"@en ;
-            sh:name "media"@en ;
-            sh:node general:LinkShape ;
-            sh:order 2 ;
-            sh:path general:media ],
-        [ skos:example "link to data asset, e.g. hd map" ;
-            sh:description "Reference to the data asset as url/uri of the EDC"@en ;
-            sh:message "Validation of data failed!"@en ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:name "data"@en ;
-            sh:node general:LinkShape ;
-            sh:order 1 ;
-            sh:path general:data ];
-    sh:targetClass general:Links .
-
-general:LinkShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:in ("Document" "Image" "Model" "Routing" "Video" "3DPreview" "Asset") ;
-            sh:message "Validation of type failed!"@en ;
-            sh:description "Choose type of link." ;
-            sh:name "type"@en ;
-            sh:order 1 ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path general:type ],
-        [ sh:datatype xsd:anyURI ;
-            sh:message "Validation of url failed!"@en ;
-            sh:description "Enter link as URL or DID." ;
-            sh:name "url"@en ;
-            sh:order 0 ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path general:url ] ;
-    sh:targetClass general:Link .
-    
 general:Range2DShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
