@@ -280,7 +280,7 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:path scenario:sourceType ],
         [ skos:example "Test drives on proving ground XYZ and system ABC" ;
             sh:datatype xsd:string ;
-            sh:description "Source description"@en ;
+            sh:description "Source description that details the selected sourceType. As sourceType only describes the overall category, this attribute allows a free description of the source method/source type used in sourceType."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of source description failed!"@en ;
             sh:minCount 0 ;
