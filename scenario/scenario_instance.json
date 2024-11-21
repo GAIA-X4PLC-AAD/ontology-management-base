@@ -16,11 +16,11 @@
         "@type": "general:General",
         "general:description": {
             "@type": "general:Description",
-            "gx:name": {
+            "general:name": {
                 "@value": "Scenario Example",
                 "@type": "xsd:string"
             },
-            "gx:description": {
+            "general:description": {
                 "@value": "A sample description of a none existing scenario.",
                 "@type": "xsd:string"
             }
