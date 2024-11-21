@@ -119,10 +119,10 @@
             "general:type": "Asset"
         },
         "scenario:sunAzimuth": {
-            "@value": "3.1415",
+            "@value": "180",
             "@type": "xsd:float"
         },
-        "scenario:countrySpecificTP": {
+        "scenario:countrySpecificTrafficParticipants": {
             "@value": "CustomCar",
             "@type": "xsd:string"
         },
@@ -179,7 +179,8 @@
     },
     "scenario:dataSource": {
         "@type": "scenario:DataSource",
-        "scenario:source": {
+        "scenario:sourceType": "Real World Data",
+        "scenario:sourceDescription": {
             "@value": "Sensor capture using detection system of the testbed lower Saxony.",
             "@type": "xsd:string"
         }
