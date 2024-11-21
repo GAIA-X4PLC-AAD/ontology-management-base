@@ -37,4 +37,4 @@
 | QualityShape | scenario | accuracyObjects | 0 | 1 | Accuracy of moving objects (only applicable if scenario is based on real measurments). | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | QualityShape | scenario | calibration | 0 | 1 | Description of any calibration steps performed prior to measurement | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | DataSourceShape | scenario | sourceType | 0 | 1 | Source type | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| DataSourceShape | scenario | sourceDescription | 0 | 1 | Source description | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| DataSourceShape | scenario | sourceDescription | 0 | 1 | Source description that details the selected sourceType. As sourceType only describes the overall category, this attribute allows a free description of the source method/source type used in sourceType. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
