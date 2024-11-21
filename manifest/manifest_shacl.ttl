@@ -3,8 +3,11 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 manifest:ManifestShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property             
         [   sh:description "Description of the content and filestructure of the uploaded asset"@en ;
             sh:maxCount 1 ;
@@ -21,6 +24,8 @@ manifest:ManifestShape a sh:NodeShape ;
     sh:targetClass manifest:Manifest .
     
 manifest:DataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [   sh:description "Reference and description to asset data and other data not falling under content data"@en ;
             skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr";
@@ -42,6 +47,8 @@ manifest:DataShape a sh:NodeShape ;
     sh:targetClass manifest:Data .
 
 manifest:LicenseShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [   sh:description "Any spdx identifier or LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract"@en ;
             skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract" ;
@@ -66,6 +73,8 @@ manifest:LicenseShape a sh:NodeShape ;
     sh:targetClass manifest:License .
 
 manifest:LinkShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
        [    sh:description "Access role which is related to the corresponding data" ;
             skos:example "publicUser";
