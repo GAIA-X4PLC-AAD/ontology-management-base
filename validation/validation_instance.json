@@ -4,10 +4,40 @@
         "skos": "http://www.w3.org/2004/02/skos/core#",
         "sh": "http://www.w3.org/ns/shacl#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "validation": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/validation/"
+        "validation": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/validation/",
+        "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
     },
     "@id": "did:example:abcdefg1234567890",
     "@type": "validation:Validation",
+    "validation:general": {
+        "@type": "general:General",
+        "general:description": {
+            "@type": "general:Description",
+            "general:name": {
+                "@value": "Validation Report Example",
+                "@type": "xsd:string"
+            },
+            "general:description": {
+                "@value": "Simple validation report",
+                "@type": "xsd:string"
+            }
+        },
+        "general:data": {
+            "@type": "general:Data",
+            "general:size": {
+                "@value": "5",
+                "@type": "xsd:float"
+            },
+            "general:contractId": {
+                "@value": "123456789",
+                "@type": "xsd:string"
+            },
+            "general:recordingTime": {
+                "@value": "2024-05-15T08:18:17",
+                "@type": "xsd:dateTime"
+            }
+        }
+    },
     "validation:validationReport": {
         "@value": "./validation/scenarioReport.xqar",
         "@type": "xsd:anyURI"
