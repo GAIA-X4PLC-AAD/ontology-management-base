@@ -247,7 +247,16 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "calibration"@en ;
             sh:order 5 ;
-            sh:path ositrace:calibration ] ;
+            sh:path ositrace:calibration ],
+        [ skos:example "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to the validation report. E.g. DID of the report asset or other link types."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of validationReport failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "validationReport"@en ;
+            sh:order 6 ;
+            sh:path ositrace:validationReport ] ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
