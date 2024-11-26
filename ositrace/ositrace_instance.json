@@ -123,7 +123,11 @@
     }  
   },
   "ositrace:quality": {
-    "@type": "ositrace:Quality"
+    "@type": "ositrace:Quality",
+    "ositrace:validationReport": {
+      "@value": "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+      "@type": "xsd:anyURI"
+    }
   },
   "ositrace:quantity": {
     "@type": "ositrace:Quantity",
