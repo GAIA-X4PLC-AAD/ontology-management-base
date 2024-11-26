@@ -13,6 +13,13 @@
 | DescriptionShape | general | name | 1 | 1 | A human readable name of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DescriptionShape | general | description | 1 | 1 | A free text description of the entity. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DataShape | general | size | 1 | 1 | Size of the asset file(e.g. xodr, 3d model zip) to be downloaded in MB. | <http://www.w3.org/2001/XMLSchema#float> | general_shacl.ttl |
+| DataShape | general | contractId | 1 | 1 | Contract information in regards to the data exchange component. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | DataShape | general | recordingTime |  | 1 | Time of data acquisition used to generate the asset, if partial measurement: oldest date | <http://www.w3.org/2001/XMLSchema#dateTime> | general_shacl.ttl |
+| BundleDataShape | general | requiredData |  |  | Reference to required assets |  | general_shacl.ttl |
+| BundleDataShape | general | relatedData |  |  | Reference to optional related assets |  | general_shacl.ttl |
+| LinksShape | general | media |  |  | Reference to media data |  | general_shacl.ttl |
+| LinksShape | general | data | 1 | 1 | Reference to the data asset as url/uri of the EDC |  | general_shacl.ttl |
+| LinkShape | general | type | 1 | 1 | Choose type of link. | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
+| LinkShape | general | url | 1 | 1 | Enter link as URL or DID. | <http://www.w3.org/2001/XMLSchema#anyURI> | general_shacl.ttl |
 | Range2DShape | general | max |  |  |  | <http://www.w3.org/2001/XMLSchema#float> | general_shacl.ttl |
 | Range2DShape | general | min |  |  |  | <http://www.w3.org/2001/XMLSchema#float> | general_shacl.ttl |
