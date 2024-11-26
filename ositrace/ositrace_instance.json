@@ -29,114 +29,14 @@
                 "@value": "126.6",
                 "@type": "xsd:float"
             },
-            "general:type": "Document"
-          }
-      ]
-    }
-  },
-  "ositrace:format": {
-    "@type": "ositrace:Format",
-    "ositrace:formatType": "ASAM OSI SensorData",
-    "ositrace:version": {
-      "@value": "3.6.0/3.20.0",
-      "@type": "xsd:string"
-    }
-  },
-  "ositrace:content": {
-    "@type": "ositrace:Content",
-    "ositrace:roadTypes": "Rural",
-    "ositrace:laneTypes": "driving",
-    "ositrace:levelOfDetail": "car",
-    "ositrace:trafficDirection": "right-hand",
-    "ositrace:granularity": [
-      "object list",
-      "detection list"
-    ],
-    "ositrace:startTime": {
-      "@value": "2024-06-03T16:37:10.835792+02:00",
-      "@type": "xsd:dateTimeStamp"
-    },
-    "ositrace:stopTime": {
-      "@value": "2024-06-03T16:38:28.636671+02:00",
-      "@type": "xsd:dateTimeStamp"
-    },
-    "ositrace:hostMovingObject": {
-      "@type": "ositrace:MovingObject",
-      "ositrace:identifier": {
-        "@value": "1",
-        "@type": "xsd:unsignedLong"
-      },
-      "ositrace:description": {
-        "@value": "PMSF MB CLS 500 Host Vehicle",
-        "@type": "xsd:string"
-      }
-    },
-    "ositrace:targetMovingObject": {
-      "@type": "ositrace:MovingObject",
-      "ositrace:identifier": {
-        "@value": "2",
-        "@type": "xsd:unsignedLong"
-      },
-      "ositrace:description": {
-        "@value": "ADC Target Vehicle",
-        "@type": "xsd:string"
-      }
-    }  
-  },
-  "ositrace:quality": {
-    "@type": "ositrace:Quality",
-    "ositrace:validationReport": {
-      "@value": "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-      "@type": "xsd:anyURI"
-    }
-  },
-  "ositrace:quantity": {
-    "@type": "ositrace:Quantity",
-    "ositrace:numberFrames": {
-      "@value": "1448",
-      "@type": "xsd:unsignedInt"
-    }
-  },
-  "ositrace:dataSource": {
-    "@type": "ositrace:DataSource",
-    "ositrace:usedDataSources": {
-      "@value": "Direct Sensor Capture ARS 548 FW05.38.14 on PMSF MB CLS 500",
-      "@type": "xsd:string"
-    },
-    "ositrace:measurementSystem": {
-      "@value": "pcapng2osi converter v1.1",
-      "@type": "xsd:string"
-    }
-  },
-  "ositrace:georeference": {
-    "@type": "georeference:Georeference",
-    "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocation",
-      "georeference:country": {
-        "@value": "DE",
-        "@type": "xsd:string"
-      },
-      "georeference:state": {
-        "@value": "DE-NI",
-        "@type": "xsd:string"
-      },
-      "georeference:region": {
-        "@value": "Brunswick",
-        "@type": "xsd:string"
-      },
-      "georeference:city": {
-        "@value": "Edemissen",
-        "@type": "xsd:string"
-      },
-      "georeference:relationOrArea": {
-        "@value": "Airport Peine-Eddesse",
-        "@type": "xsd:string"
-      },
-      "georeference:boundingBox": {
-        "@type": "georeference:BoundingBox",
-        "georeference:xMin": {
-          "@value": "52.40177964666667",
-          "@type": "xsd:float"
+            "general:contractId": {
+                "@value": "123456789",
+                "@type": "xsd:string"
+            },
+            "general:recordingTime": {
+                "@value": "2024-06-03T16:37:10",
+                "@type": "xsd:dateTime"
+            }
         },
         "general:links": {
             "@type": "general:Links",
