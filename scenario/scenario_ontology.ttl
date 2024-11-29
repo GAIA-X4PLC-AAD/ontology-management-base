@@ -13,7 +13,7 @@ scenario: a owl:Ontology ;
     dcterms:contributor "Fin Heuer (DLR), Rico Auerswald (FhG IVI)" ;
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
     dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" ;
-    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/Ontology_Scenario/scenario/scenario_ontology.ttl> ;
+    owl:versionIRI <https://raw.githubusercontent.com/GAIA-X4PLC-AAD/ontology-management-base/refs/heads/main/scenario/scenario_ontology.ttl> ;
     owl:versionInfo "0.1" .
 
 scenario:Scenario a owl:Class ;
@@ -22,30 +22,22 @@ scenario:Scenario a owl:Class ;
     rdfs:subClassOf gx:DataResource ,
                     openlabel:Scenario .
 
-scenario:DataSource a owl:Class ;
-    rdfs:label "class definition for DataSource" ;
-    rdfs:comment "Attributes for DataSource"@en .
-    
-scenario:Environmental a owl:Class ;
-    rdfs:label "class definition for Environmental" ;
-    rdfs:comment "Attributes for Environmental"@en .    
-    
 scenario:Format a owl:Class ;
     rdfs:label "class definition for Format" ;
-    rdfs:comment "Attributes for Format"@en .       
-    
-scenario:Common a owl:Class ;
-    rdfs:label "class definition for Common" ;
-    rdfs:comment "Attributes for Common"@en .       
-    
-scenario:TrafficParticipants a owl:Class ;
-    rdfs:label "class definition for TrafficParticipants" ;
-    rdfs:comment "Attributes for TrafficParticipants"@en .      
-    
-scenario:Structural a owl:Class ;
-    rdfs:label "class definition for Structural" ;
-    rdfs:comment "Attributes for Structural"@en .   
-    
-scenario:Traffic a owl:Class ;
-    rdfs:label "class definition for Traffic" ;
-    rdfs:comment "Attributes for Traffic"@en .  
+    rdfs:comment "Class with attributes for Format"@en .    
+
+scenario:Content a owl:Class ;
+    rdfs:label "class definition for Content" ;
+    rdfs:comment "Class with attributes for Content"@en .
+
+scenario:Quantity a owl:Class ;
+    rdfs:label "class definition for Quantity" ;
+    rdfs:comment "Class with attributes for Quantity"@en .
+
+scenario:Quality a owl:Class ;
+    rdfs:label "class definition for Quality" ;
+    rdfs:comment "Class with attributes for Quality"@en .
+
+scenario:DataSource a owl:Class ;
+    rdfs:label "class definition for DataSource" ;
+    rdfs:comment "Class with attributes for DataSource"@en .

@@ -1,6 +1,7 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -14,59 +15,45 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
             sh:description "general object with properties for descriptions, data, links, bundle" ;
-            sh:order 5 ;
-            sh:path scenario:general ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:EnvironmentalShape ;
-            sh:name "environmental object" ;
-            sh:description "environmental object with property for sunAzimuth" ;
-            sh:order 2 ;
-            sh:path scenario:environmental ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:ScenarioCommonShape ;
-            sh:name "common object" ;
-            sh:description "common object with property for common values" ;
-            sh:order 0 ;
-            sh:path scenario:common ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:DataSourceShape ;
-            sh:name "source object" ;
-            sh:description "source object with properties for data sources" ;
-            sh:order 6 ;
-            sh:path scenario:source ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:StructuralShape ;
-            sh:name "structural object" ;
-            sh:description "structural object with links to dependend data" ;
-            sh:order 4 ;
-            sh:path scenario:structural ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:TrafficShape ;
-            sh:name "traffic object" ;
-            sh:description "traffic object with properties for country specific informations" ;
-            sh:order 3 ;
-            sh:path scenario:traffic ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:TrafficParticipantsShape ;
-            sh:name "trafficParticipants object" ;
-            sh:description "trafficParticipants object with properties for traffic participants" ;
             sh:order 1 ;
-            sh:path scenario:trafficParticipants ],
+            sh:path scenario:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
             sh:name "format object" ;
             sh:description "format object with properties for format informations" ;
-            sh:order 5 ;
+            sh:order 2 ;
             sh:path scenario:format ],
         [ sh:maxCount 1 ;
-            sh:minCount 0 ;
+            sh:minCount 1 ;
+            sh:node scenario:Content ;
+            sh:name "content object" ;
+            sh:description "content object with properties for scenario intrinsic attributes" ;
+            sh:order 3 ;
+            sh:path scenario:content ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:QuantityShape ;
+            sh:name "quantity object" ;
+            sh:description "quantity object with properties for quantity informations" ;
+            sh:order 4 ;
+            sh:path scenario:quantity ],            
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:QualityShape ;
+            sh:name "quality object" ;
+            sh:description "quality object with properties for quality informations" ;
+            sh:order 5 ;
+            sh:path scenario:quality ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node scenario:DataSourceShape ;
+            sh:name "data source object" ;
+            sh:description "dataSource object with properties for data sources" ;
+            sh:order 6 ;
+            sh:path scenario:dataSource ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
             sh:name "georeference object" ;
             sh:description "georeference object with properties for georeference informations" ;
@@ -74,33 +61,6 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:path scenario:georeference ] ;
     sh:targetClass scenario:Scenario .
  
-scenario:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "captured reality, synthetic" ;
-            sh:datatype xsd:string ;
-            sh:description "Capture type"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of source failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "source"@en ;
-            sh:order 0 ;
-            sh:path scenario:source ] ;
-    sh:targetClass scenario:DataSource .
-
-scenario:EnvironmentalShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "194.01" ;
-            sh:datatype xsd:float ;
-            sh:description "Azimuth of the sun"@en ;
-            sh:message "Validation of sunAzimuth failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "sun azimuth"@en ;
-            sh:order 2 ;
-            sh:path scenario:sunAzimuth ] ;
-    sh:targetClass scenario:Environmental .
-
 scenario:FormatShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -111,7 +71,7 @@ scenario:FormatShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path scenario:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
@@ -119,11 +79,11 @@ scenario:FormatShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
-            sh:order 1 ;
+            sh:order 2 ;
             sh:path scenario:version ] ;
     sh:targetClass scenario:Format .
 
-scenario:ScenarioCommonShape a sh:NodeShape ;
+scenario:ContentShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
@@ -133,9 +93,9 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "abstraction level"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path scenario:abstractionLevel ],
-        [ skos:example "2009-06-30T18:30:00+02:00   " ;
+        [ skos:example "2009-06-30T18:30:00+02:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens."@en ;
             sh:maxCount 1 ;
@@ -151,20 +111,102 @@ scenario:ScenarioCommonShape a sh:NodeShape ;
             sh:message "Validation of aim failed!"@en ;
             sh:minCount 0 ;
             sh:name "aim"@en ;
-            sh:order 4 ;
+            sh:order 3 ;
             sh:path scenario:aim ],
-        [ skos:example "global positions, parameter declaration..." ;
+        [ skos:example "GlobalPosition" ;
+            skos:example "ParameterDeclaration" ;
             sh:datatype xsd:string ;
-            sh:description " Use of the functionalities from the standard. E.g. which Actions are used."@en ;
-            sh:maxCount 1 ;
+            sh:description "Use of the functionalities from the standard. E.g. which Actions are used."@en ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
             sh:minCount 0 ;
-            sh:name "used standard functions"@en ;
-            sh:order 3 ;
-            sh:path scenario:usedStandardFunctions ] ;
-    sh:targetClass scenario:Common .
+            sh:name "used functions in the standard"@en ;
+            sh:order 4 ;
+            sh:path scenario:usedStandardFunctions ],
+        [ skos:example "via trajectory, via support points" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of movement used by traffic participants according to the OpenSCENARIO standard."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of movementDescription failed!"@en ;
+            sh:name "movement description"@en ;
+            sh:order 5 ;
+            sh:path scenario:movementDescription ],
+        [ skos:example "stopIfTTCLowerThan" ;
+            sh:datatype xsd:string ;
+            sh:description "Scenario/domain specific commands or actions"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of customCommands failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "custom commands"@en ;
+            sh:order 6 ;
+            sh:path scenario:customCommands ],
+        [ skos:example "http://mywebsite.de/Catalogs" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to Catalogs"@en ;
+            sh:message "Validation of catalogs failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "catalogs"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 7 ;
+            sh:path scenario:catalogs ],
+        [ skos:example "http://mywebsite.de/myModel.fbx" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to environment models"@en ;
+            sh:message "Validation of environment failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "3d models"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 8 ;
+            sh:path scenario:EnvironmentModels ],
+        [ skos:example "http://mywebsite.de/map.xodr" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to traffic space"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of trafficSpace failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "traffic space"@en ;
+            sh:node manifest:LinkShape ;
+            sh:order 9 ;
+            sh:path scenario:trafficSpace ],
+        [ skos:example "194.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Azimuth of the sun in degrees"@en ;
+            sh:message "Validation of sunAzimuth failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "sun azimuth"@en ;
+            sh:order 10 ;
+            sh:minInclusive -360 ;
+            sh:maxInclusive 360 ;
+            sh:path scenario:sunAzimuth ],
+        [ skos:example "kangaroo crossing" ;
+            sh:datatype xsd:string ;
+            sh:description "Country specific traffic signs"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificSign failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country specific sign"@en ;
+            sh:order 11 ;
+            sh:path scenario:countrySpecificSign ],
+        [ skos:example "tuk tuk" ;
+            sh:datatype xsd:string ;
+            sh:description "Country specific traffic participants"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificTrafficParticipants failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country specific traffic participants"@en ;
+            sh:order 12 ;
+            sh:path scenario:countrySpecificTrafficParticipants ],
+        [ skos:example "germany, not applicable" ;
+            sh:datatype xsd:string ;
+            sh:description "Country where this scenario is from"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country"@en ;
+            sh:order 13 ;
+            sh:path scenario:country ] ;
+    sh:targetClass scenario:Content .
 
-scenario:TrafficParticipantsShape a sh:NodeShape ;
+scenario:QuantityShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2" ;
@@ -181,15 +223,15 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficObjects failed!"@en ;
             sh:name "number traffic objects"@en ;
-            sh:order 0 ;
+            sh:order 2 ;
             sh:path scenario:numberTrafficObjects ],
         [ skos:example "myDriver, BestPedestrianController2000" ;
             sh:datatype xsd:string ;
-            sh:description "Usage of simulation Core internal or external controllers."@en ;
+            sh:description "Usage of simulation core internal or external controllers."@en ;
             sh:message "Validation of controllers failed!"@en ;
             sh:minCount 0 ;
             sh:name "controllers"@en ;
-            sh:order 5 ;
+            sh:order 3 ;
             sh:path scenario:controllers ],
         [ skos:example "8" ;
             sh:datatype xsd:unsignedInt ;
@@ -197,85 +239,53 @@ scenario:TrafficParticipantsShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of permanentTrafficObjects failed!"@en ;
             sh:name "permanent traffic objects"@en ;
-            sh:order 2 ;
-            sh:path scenario:permanentTrafficObjects ],
-        [ skos:example "via trajectory, via support points" ;
-            sh:datatype xsd:string ;
-            sh:description "Type of movement used by traffic participants according to the OpenSCENARIO standard."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of movementDescription failed!"@en ;
-            sh:name "movement description"@en ;
             sh:order 4 ;
-            sh:path scenario:movementDescription ],
-        [ skos:example "stopIfTTCLowerThan" ;
-            sh:datatype xsd:string ;
-            sh:description "Scenario/domain specific commands or actions"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of customCommands failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "custom commands"@en ;
-            sh:order 6 ;
-            sh:path scenario:customCommands ] ;
-    sh:targetClass scenario:TrafficParticipants .
+            sh:path scenario:permanentTrafficObjects ] ;
+    sh:targetClass scenario:Quantity .
 
-scenario:StructuralShape a sh:NodeShape ;
+scenario:QualityShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:description "Link to Catalogs"@en ;
-            sh:message "Validation of catalogs failed!"@en ;
+    sh:property [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Accuracy of moving objects (only applicable if scenario is based on real measurments)."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyObjects failed!"@en ;
             sh:minCount 0 ;
-            sh:name "catalogs"@en ;
-            sh:node general:LinkShape ;
-            sh:order 0 ;
-            sh:path scenario:catalogs ],
-        [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:description "Link to 3D models"@en ;
-            sh:message "Validation of 3dModels failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "3dModels"@en ;
-            sh:node general:LinkShape ;
+            sh:name "accuracy objects"@en ;
             sh:order 1 ;
-            sh:path scenario:3dModels ],
-        [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:description "Link to traffic space"@en ;
+            sh:path scenario:accuracyObjects ],
+        [ skos:example "Static sensor calibration performed at <origin> using system XYZ" ;
+            sh:datatype xsd:string ;
+            sh:description "Description of any calibration steps performed prior to measurement"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of trafficSpace failed!"@en ;
+            sh:message "Validation of calibration failed!"@en ;
             sh:minCount 0 ;
-            sh:name "traffic space"@en ;
-            sh:node general:LinkShape ;
+            sh:name "calibration"@en ;
             sh:order 2 ;
-            sh:path scenario:trafficSpace ] ;
-    sh:targetClass scenario:Structural .
+            sh:path scenario:calibration ] ;
+    sh:targetClass scenario:Quality .
 
-scenario:TrafficShape a sh:NodeShape ;
+scenario:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "kangaroo crossing" ;
+    sh:property [ skos:example "Real World Data" ;
             sh:datatype xsd:string ;
-            sh:description "Country specific traffic signs"@en ;
+            sh:description "Source type"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of countrySpecificSign failed!"@en ;
+            sh:message "Validation of source type failed!"@en ;
+            sh:in ("Accident Database" "Real World Data" "Analytical Hazard Based Approach" "Formal Verification" "Operational Design Domain" "Ontology" "Standards, Regulations, Guidelines" "Real-world Deployment and Trials") ;
             sh:minCount 0 ;
-            sh:name "country specific sign"@en ;
-            sh:order 3 ;
-            sh:path scenario:countrySpecificSign ],
-        [ skos:example "tuk tuk" ;
+            sh:name "source type"@en ;
+            sh:order 1 ;
+            sh:path scenario:sourceType ],
+        [ skos:example "Test drives on proving ground XYZ and system ABC" ;
             sh:datatype xsd:string ;
-            sh:description "Country specific traffic participants"@en ;
+            sh:description "Source description that details the selected sourceType. As sourceType only describes the overall category, this attribute allows a free description of the source method/source type used in sourceType."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of countrySpecificTP failed!"@en ;
+            sh:message "Validation of source description failed!"@en ;
             sh:minCount 0 ;
-            sh:name "country specific TP"@en ;
+            sh:name "source description"@en ;
             sh:order 2 ;
-            sh:path scenario:countrySpecificTP ],
-        [ skos:example "germany, not applicable" ;
-            sh:datatype xsd:string ;
-            sh:description "Country where this scenario is from"@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of country failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "country"@en ;
-            sh:order 0 ;
-            sh:path scenario:country ] ;
-    sh:targetClass scenario:Traffic .
+            sh:path scenario:sourceDescription ] ;
+    sh:targetClass scenario:DataSource .
