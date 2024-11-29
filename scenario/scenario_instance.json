@@ -62,7 +62,7 @@
             "@value": "Germany",
             "@type": "xsd:string"
         },
-        "scenario:EnvironmentModels": {
+        "scenario:environmentModels": {
             "@type": "manifest:Link",
             "manifest:path": {
                 "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
