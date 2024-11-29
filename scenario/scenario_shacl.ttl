@@ -150,13 +150,13 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
             sh:datatype xsd:anyURI ;
-            sh:description "Link to 3D models"@en ;
-            sh:message "Validation of 3dModels failed!"@en ;
+            sh:description "Link to environment models"@en ;
+            sh:message "Validation of environment failed!"@en ;
             sh:minCount 0 ;
             sh:name "3d models"@en ;
             sh:node manifest:LinkShape ;
             sh:order 8 ;
-            sh:path scenario:3dModels ],
+            sh:path scenario:EnvironmentModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
             sh:datatype xsd:anyURI ;
             sh:description "Link to traffic space"@en ;

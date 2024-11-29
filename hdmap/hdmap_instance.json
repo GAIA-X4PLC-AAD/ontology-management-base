@@ -1,7 +1,6 @@
 {
   "@context": {
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "hdmap": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -14,11 +13,11 @@
     "@type": "general:General",
     "general:description": {
       "@type": "general:Description",
-      "gx:name": {
+      "general:name": {
         "@value": "hdmap example",
         "@type": "xsd:string"
       },
-      "gx:description": {
+      "general:description": {
         "@value": "simple hdmap example file",
         "@type": "xsd:string"
       }
@@ -29,56 +28,10 @@
         "@value": "5",
         "@type": "xsd:float"
       },
-      "general:contractId": {
-        "@value": "123456789",
-        "@type": "xsd:string"
-      },
       "general:recordingTime": {
         "@value": "2024-05-15T08:18:17",
         "@type": "xsd:dateTime"
       }
-    },
-    "general:links": {
-      "@type": "general:Links",
-      "general:data": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
-      },
-      "general:media": [
-          {
-            "@type": "general:Link",
-            "general:url": {
-              "@value": "https://github.com/GAIA-X4PLC-AAD/hd-map-asset-example/blob/main/asset/TestfeldNiedersachsen_ALKS_ODR_sample/LICENSE",
-              "@type": "xsd:anyURI"
-            },
-            "general:type": "Document"
-          },
-          {
-            "@type": "general:Link",
-            "general:url": {
-              "@value": "https://github.com/GAIA-X4PLC-AAD/hd-map-asset-example/blob/main/asset/TestfeldNiedersachsen_ALKS_ODR_sample/visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-              "@type": "xsd:anyURI"
-            },
-            "general:type": "Image"
-          }
-      ]
-    },
-    "general:bundleData": {
-      "@type": "general:BundleData",
-      "general:requiredData": [
-          {
-            "@type": "general:Link",
-            "general:url": {
-              "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
-              "@type": "xsd:anyURI"
-            },
-            "general:type": "Document"
-          }
-      ]
     }
   },
   "hdmap:format": {
