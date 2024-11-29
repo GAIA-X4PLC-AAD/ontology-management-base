@@ -1,6 +1,7 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -144,7 +145,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of catalogs failed!"@en ;
             sh:minCount 0 ;
             sh:name "catalogs"@en ;
-            sh:node general:LinkShape ;
+            sh:node manifest:LinkShape ;
             sh:order 7 ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
@@ -153,7 +154,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of 3dModels failed!"@en ;
             sh:minCount 0 ;
             sh:name "3d models"@en ;
-            sh:node general:LinkShape ;
+            sh:node manifest:LinkShape ;
             sh:order 8 ;
             sh:path scenario:3dModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
@@ -163,7 +164,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of trafficSpace failed!"@en ;
             sh:minCount 0 ;
             sh:name "traffic space"@en ;
-            sh:node general:LinkShape ;
+            sh:node manifest:LinkShape ;
             sh:order 9 ;
             sh:path scenario:trafficSpace ],
         [ skos:example "194.01" ;
