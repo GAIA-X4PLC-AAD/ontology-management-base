@@ -70,7 +70,7 @@ scenario:FormatShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path scenario:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
@@ -78,7 +78,7 @@ scenario:FormatShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
-            sh:order 1 ;
+            sh:order 2 ;
             sh:path scenario:version ] ;
     sh:targetClass scenario:Format .
 
@@ -92,7 +92,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "abstraction level"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path scenario:abstractionLevel ],
         [ skos:example "2009-06-30T18:30:00+02:00" ;
             sh:datatype xsd:dateTime ;
@@ -110,7 +110,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of aim failed!"@en ;
             sh:minCount 0 ;
             sh:name "aim"@en ;
-            sh:order 4 ;
+            sh:order 3 ;
             sh:path scenario:aim ],
         [ skos:example "GlobalPosition" ;
             skos:example "ParameterDeclaration" ;
@@ -119,7 +119,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
             sh:minCount 0 ;
             sh:name "used functions in the standard"@en ;
-            sh:order 3 ;
+            sh:order 4 ;
             sh:path scenario:usedStandardFunctions ],
         [ skos:example "via trajectory, via support points" ;
             sh:datatype xsd:string ;
@@ -127,7 +127,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of movementDescription failed!"@en ;
             sh:name "movement description"@en ;
-            sh:order 4 ;
+            sh:order 5 ;
             sh:path scenario:movementDescription ],
         [ skos:example "stopIfTTCLowerThan" ;
             sh:datatype xsd:string ;
@@ -145,7 +145,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "catalogs"@en ;
             sh:node general:LinkShape ;
-            sh:order 0 ;
+            sh:order 7 ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
             sh:datatype xsd:anyURI ;
@@ -154,7 +154,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "3d models"@en ;
             sh:node general:LinkShape ;
-            sh:order 1 ;
+            sh:order 8 ;
             sh:path scenario:3dModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
             sh:datatype xsd:anyURI ;
@@ -164,7 +164,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "traffic space"@en ;
             sh:node general:LinkShape ;
-            sh:order 2 ;
+            sh:order 9 ;
             sh:path scenario:trafficSpace ],
         [ skos:example "194.01" ;
             sh:datatype xsd:float ;
@@ -172,9 +172,9 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of sunAzimuth failed!"@en ;
             sh:minCount 0 ;
             sh:name "sun azimuth"@en ;
-            sh:order 2 ;
+            sh:order 10 ;
             sh:minInclusive -360 ;
-		    sh:maxInclusive 360 ;
+            sh:maxInclusive 360 ;
             sh:path scenario:sunAzimuth ],
         [ skos:example "kangaroo crossing" ;
             sh:datatype xsd:string ;
@@ -183,7 +183,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of countrySpecificSign failed!"@en ;
             sh:minCount 0 ;
             sh:name "country specific sign"@en ;
-            sh:order 3 ;
+            sh:order 11 ;
             sh:path scenario:countrySpecificSign ],
         [ skos:example "tuk tuk" ;
             sh:datatype xsd:string ;
@@ -192,7 +192,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of countrySpecificTrafficParticipants failed!"@en ;
             sh:minCount 0 ;
             sh:name "country specific traffic participants"@en ;
-            sh:order 2 ;
+            sh:order 12 ;
             sh:path scenario:countrySpecificTrafficParticipants ],
         [ skos:example "germany, not applicable" ;
             sh:datatype xsd:string ;
@@ -201,7 +201,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:message "Validation of country failed!"@en ;
             sh:minCount 0 ;
             sh:name "country"@en ;
-            sh:order 0 ;
+            sh:order 13 ;
             sh:path scenario:country ] ;
     sh:targetClass scenario:Content .
 
@@ -222,7 +222,7 @@ scenario:QuantityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficObjects failed!"@en ;
             sh:name "number traffic objects"@en ;
-            sh:order 0 ;
+            sh:order 2 ;
             sh:path scenario:numberTrafficObjects ],
         [ skos:example "myDriver, BestPedestrianController2000" ;
             sh:datatype xsd:string ;
@@ -230,7 +230,7 @@ scenario:QuantityShape a sh:NodeShape ;
             sh:message "Validation of controllers failed!"@en ;
             sh:minCount 0 ;
             sh:name "controllers"@en ;
-            sh:order 5 ;
+            sh:order 3 ;
             sh:path scenario:controllers ],
         [ skos:example "8" ;
             sh:datatype xsd:unsignedInt ;
@@ -238,7 +238,7 @@ scenario:QuantityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of permanentTrafficObjects failed!"@en ;
             sh:name "permanent traffic objects"@en ;
-            sh:order 2 ;
+            sh:order 4 ;
             sh:path scenario:permanentTrafficObjects ] ;
     sh:targetClass scenario:Quantity .
 
@@ -252,7 +252,7 @@ scenario:QualityShape a sh:NodeShape ;
             sh:message "Validation of accuracyObjects failed!"@en ;
             sh:minCount 0 ;
             sh:name "accuracy objects"@en ;
-            sh:order 4 ;
+            sh:order 1 ;
             sh:path scenario:accuracyObjects ],
         [ skos:example "Static sensor calibration performed at <origin> using system XYZ" ;
             sh:datatype xsd:string ;
@@ -261,7 +261,7 @@ scenario:QualityShape a sh:NodeShape ;
             sh:message "Validation of calibration failed!"@en ;
             sh:minCount 0 ;
             sh:name "calibration"@en ;
-            sh:order 5 ;
+            sh:order 2 ;
             sh:path scenario:calibration ] ;
     sh:targetClass scenario:Quality .
 
@@ -276,7 +276,7 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:in ("Accident Database" "Real World Data" "Analytical Hazard Based Approach" "Formal Verification" "Operational Design Domain" "Ontology" "Standards, Regulations, Guidelines" "Real-world Deployment and Trials") ;
             sh:minCount 0 ;
             sh:name "source type"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:path scenario:sourceType ],
         [ skos:example "Test drives on proving ground XYZ and system ABC" ;
             sh:datatype xsd:string ;
@@ -285,6 +285,6 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:message "Validation of source description failed!"@en ;
             sh:minCount 0 ;
             sh:name "source description"@en ;
-            sh:order 0 ;
+            sh:order 2 ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
