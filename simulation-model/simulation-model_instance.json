@@ -179,5 +179,16 @@
             "@value": "http://mywebsite.de/ModelSpecification.pdf",
             "@type": "xsd:anyURI"
         }
+    },
+    "simulation-model:quantity": {
+        "@type": "simulation-model:Quantity",
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/maxDetections": {
+            "@value": "800",
+            "@type": "xsd:positiveInteger"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/maxObjects": {
+            "@value": "50",
+            "@type": "xsd:positiveInteger"
+        }
     }
 }

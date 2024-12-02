@@ -31,7 +31,7 @@ simulation-model:SimulationModelShape a sh:NodeShape ;
             sh:order 3 ;
             sh:path simulation-model:content ],
         [ sh:maxCount 1 ;
-            sh:minCount 0 ;
+            sh:minCount 1 ;
             sh:node simulation-model:QuantityShape ;
             sh:name "quantity object" ;
             sh:description "quantity object with properties for quantity informations" ;
@@ -196,6 +196,24 @@ simulation-model:ContentShape a sh:NodeShape ;
 simulation-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "800" ;
+            sh:datatype xsd:positiveInteger ;
+            sh:description "The maximum number of detections."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of maxDetections failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "Maximum Number Detections"@en ;
+            sh:order 0 ;
+            sh:path simulation-model:maxDetections ],
+        [ skos:example "50" ;
+            sh:datatype xsd:positiveInteger ;
+            sh:description "The maximum number of objects."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of maxObjects failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "Maximum Number Detected Objects"@en ;
+            sh:order 1 ;
+            sh:path simulation-model:maxObjects ] ;
     sh:targetClass simulation-model:Quantity .
 
 simulation-model:QualityShape a sh:NodeShape ;
