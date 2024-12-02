@@ -1,7 +1,6 @@
 {
   "@context": {
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -14,11 +13,11 @@
     "@type": "general:General",
     "general:description": {
       "@type": "general:Description",
-      "gx:name": {
+      "general:name": {
         "@value": "3d model example",
         "@type": "xsd:string"
       },
-      "gx:description": {
+      "general:description": {
         "@value": "simple 3d model example",
         "@type": "xsd:string"
       }
@@ -29,52 +28,10 @@
         "@value": "512",
         "@type": "xsd:float"
       },
-      "general:contractId": {
-        "@value": "123465798",
-        "@type": "xsd:string"
-      },
       "general:recordingTime": {
         "@value": "2024-03-21T08:34:19",
         "@type": "xsd:dateTime"
       }
-    },
-    "general:links": {
-      "@type": "general:Links",
-      "general:data": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/3DModel-TG/data/Unreal/Readme.md",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
-      },
-      "general:media": {
-      "@type": "general:Link",
-      "general:url": {
-        "@value": "https://github.com/image.png",
-        "@type": "xsd:anyURI"
-      },
-      "general:type": "Image"
-    }
-    },
-    "general:bundleData": {
-        "@type": "general:BundleData",
-        "general:requiredData": {
-          "@type": "general:Link",
-          "general:url": {
-            "@value": "https://github.com/GAIA-X4PLC-AAD/map-and-scenario-data/blob/main/data/002_MarktplatzGrafing/ODR-3DM/data/MarktplatzGrafing_offset.xodr",
-            "@type": "xsd:anyURI"
-          },
-          "general:type": "Asset"
-        },
-        "general:relatedData": {
-          "@type": "general:Link",
-          "general:url": {
-            "@value": "https://github.com/scenario.xosc",
-            "@type": "xsd:anyURI"
-          },
-          "general:type": "Asset"
-        }
     }
   },
   "environment-model:quantity": {

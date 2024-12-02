@@ -13,7 +13,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
-            sh:description "general object with properties for description, data, links, bundles" ;
+            sh:description "general object with properties for description and data" ;
             sh:order 1 ;
             sh:path environment-model:general ],
         [ sh:maxCount 1 ;
