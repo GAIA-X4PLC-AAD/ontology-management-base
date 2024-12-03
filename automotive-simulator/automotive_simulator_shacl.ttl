@@ -1,0 +1,68 @@
+@prefix automotive-simulator: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/> .
+@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
+    sh:targetClass automotive-simulato:AutomotiveSimulator ;
+    # General shape TODO: is data resource something else or included in the data attribute of general?
+    sh:property [
+        sh:path automotive-simulator:general ;
+        sh:maxCount 1 ; 
+        sh:minCount 1 ; 
+        sh:node general:GeneralShape ;  
+    ] .
+    # simulator type/make (String, optional)
+    sh:property [
+        skos:example "CARLA" ;
+        sh:path automotive-simulator:sensorType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "simulatorMake"@en ;
+        sh:order 0 ;
+        sh:description "Make/Type of automotive simulator" ;
+    ] ;
+    # software version (String, optional)
+    sh:property [
+        skos:example "0.9.15" ;
+        sh:path automotive-simulator:softwareVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "softwareVersion"@en ;
+        sh:order 0 ;
+        sh:description "Sofware version of the simulator" ;
+    ] ;
+    # Sensor Failure Flag (Boolean, optional)
+    sh:property [
+        skos:example "true" ;
+        sh:path automotive-simulator:sensorFailureFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "sensorFailureFlag"@en ;
+        sh:order 0 ;
+        sh:description "If true, the simulator supports a simulation of sensor failures" ;
+    ] ;
+    # Sensor Attack Flag (Boolean, optional)
+    sh:property [
+        skos:example "true" ;
+        sh:path automotive-simulator:sensorAttackFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "sensorAttackFlag"@en ;
+        sh:order 0 ;
+        sh:description "If true, the simulator supports a simulation of sensor attacks" ;
+    ] ;
+    # Sensor type(s) (optional, can be multiple)
+    sh:property [
+        skos:example "Radar" ;
+        sh:path simulated-sensor:SimulatedSensor ;
+        sh:minCount 1 ;
+        sh:name "simulatedSensors"@en ;
+        sh:order 5 ;
+        sh:description "Types and kinds of sensors that must natively be included in the simulator and their properties." ;
+    ] .
