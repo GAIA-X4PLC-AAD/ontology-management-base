@@ -13,8 +13,7 @@ general: a owl:Ontology ;
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General" ;
-    rdfs:comment "General attributes for all assets"@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:comment "General attributes for all assets"@en .
 
 general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;

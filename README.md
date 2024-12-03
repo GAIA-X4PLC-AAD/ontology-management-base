@@ -94,6 +94,9 @@ This section describes guidelines that _must_ be followed when applying changes 
 * Class must be a subclass of one of the Gaia-X base classes
 * The name of the class must be in PascalCase. Example: `Sensor`
 * The attributes of the class must be in camelCase. Example: `sensorType`
+* The prefix of the ontology must point to this repository. Example for `sensor`:
+  ```turtle
+  @prefix sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/sensor/> .
 * The prefix of the ontology must match the prefix defined in the SHACL Shape.
 
 ### SHACL Shapes
@@ -138,6 +141,9 @@ The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF gr
 #### Check if `_instance.json` file is conform to the SHACL Shape(s)
 The pipeline checks if the `_instance.json` file is conform to the SHACL Shape(s) defined in the corresponding SHACL file. For this all `*_shacl.ttl` files in this repository are collected to be able to check against a schema not defined in the current SHACL Shape. If the instance is not conform the pipeline fails with a detailed error message.
 
+#### Check if all target classes of a SHACL file are specified in the corresponding ontology file
+The pipeline checks if all target classes of a SHACL file are specified in the corresponding ontology file. If a target class is not specified in the ontology file the pipeline fails with a detailed error message.
+
 ### Run the pipeline scripts locally
 ```bash
 # prepare venv (optional)
@@ -148,11 +154,13 @@ $ source .venv/bin/activate
 # execute check from CI
 python3 src/check_ttl_syntax.py <path_to_ttl_file>
 python3 src/check_jsonld_against_shacl_schema.py <directory name>
+python3 src/check_target_classes_against_owl_classes.py <directory name>
 ```
 Example:
 ```bash
 python3 src/check_ttl_syntax.py scenario/scenario_ontology.ttl
 python3 src/check_jsonld_against_shacl_schema.py scenario
+python3 src/check_target_classes_against_owl_classes.py scenario
 ```
 
 >You might use `py` or `python` instead of `python3` depending on your system.
@@ -192,5 +200,8 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
 
 * If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 
+
+* SD-Wizard does not process Logical Constraint Components. For example, if I use sh:xone in the shacl, all combinations are possible in the SD wizard, although only one field needs to be entered explicitly.
+I would expect that saving in export format is only enabled if the condition is met. See [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/27).
 
 > Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).

@@ -4,47 +4,66 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ositrace:OSITraceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
+            sh:name "general object" ;
+            sh:description "general object with properties for descriptions, data, links, bundle" ;
             sh:order 1 ;
             sh:path ositrace:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:FormatShape ;
+            sh:name "format object" ;
+            sh:description "format object with properties for format informations" ;
             sh:order 2 ;
             sh:path ositrace:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:ContentShape ;
+            sh:name "content object" ;
+            sh:description "content object with properties for road types, lane type, object type and traffic direction" ;
             sh:order 3 ;
             sh:path ositrace:content ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:QualityShape ;
+            sh:name "quality object" ;
+            sh:description "quality object with properties for quality informations" ; 
             sh:order 4 ;
             sh:path ositrace:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:QuantityShape ;
+            sh:name "quantity object" ;
+            sh:description "quantity object with properties for quantity informations" ;    
             sh:order 5 ;
             sh:path ositrace:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node ositrace:DataSourceShape ;
+            sh:name "dataSource object" ;
+            sh:description "dataSource object with properties for data sources" ;
             sh:order 6 ;
             sh:path ositrace:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node georeference:GeoreferenceShape ;
+            sh:node georeference:GeoreferenceShape ;            
+            sh:name "georeference object" ;
+            sh:description "georeference object with properties for georeference informations" ;
             sh:order 7 ;
             sh:path ositrace:georeference ] ;
     sh:targetClass ositrace:OSITrace .
 
 ositrace:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, residential]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
@@ -131,6 +150,8 @@ ositrace:ContentShape a sh:NodeShape ;
     sh:targetClass ositrace:Content .
 
 ositrace:DataSourceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
@@ -149,6 +170,8 @@ ositrace:DataSourceShape a sh:NodeShape ;
     sh:targetClass ositrace:DataSource .
 
 ositrace:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -165,10 +188,12 @@ ositrace:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path ositrace:type ] ;
+            sh:path ositrace:formatType ] ;
     sh:targetClass ositrace:Format .
 
 ositrace:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
@@ -226,6 +251,8 @@ ositrace:QualityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of frames/messages in the trace file"@en ;
@@ -237,6 +264,8 @@ ositrace:QuantityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quantity .
 
 ositrace:MovingObjectShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file"@en ;
@@ -257,6 +286,8 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:targetClass ositrace:MovingObject .
 
 ositrace:EventShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;
             sh:description "Exact timestamp of the event in the recorded trace"@en ;

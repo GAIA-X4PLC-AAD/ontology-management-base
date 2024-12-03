@@ -2,39 +2,67 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 georeference:GeoreferenceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
+            sh:maxCount 1 ;
             sh:node georeference:ProjectLocationShape ;
+            sh:name "projectLocation object" ;
+            sh:description "projectLocation object with property for locations and description" ;
             sh:order 0 ;
             sh:path georeference:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
+            sh:maxCount 1 ;
             sh:node georeference:GeodeticReferenceSystemShape ;
+            sh:name "geodeticReferenceSystem object" ;
+            sh:description "geodeticReferenceSystem object with properties for projection informations" ;
             sh:order 1 ;
             sh:path georeference:geodeticReferenceSystem ] ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
+            [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
     sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
             sh:description "World coordinates of map origin"@en ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
-            sh:node georeference:Coordinate2DShape ;
+            sh:node georeference:LatLonCoordinateShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:origin ],
-        [ skos:example "EPSG::32632" ;
-            sh:datatype xsd:string ;
-            sh:description "EPSG code of the map"@en ;
-            sh:minCount 0 ;
+        [ skos:example "Lat: 1.234; Lon 45.23" ;
+            sh:description "World coordinates of view point"@en ;
+            sh:message "Validation of view point failed!"@en ;
+            sh:name "view point"@en ;
+            sh:node georeference:LatLonCoordinateShape ;
             sh:maxCount 1 ;
-            sh:message "Validation of coordinateSystem failed!"@en ;
-            sh:name "coordinateSystem"@en ;
-            sh:order 0 ;
-            sh:path georeference:coordinateSystem ],
+            sh:order 1 ;
+            sh:path georeference:viewPoint ],
+        [ skos:example "32632" ;
+            sh:datatype xsd:int ;
+            sh:description "EPSG code of the map"@en ;
+            sh:message "Validation of codeEPSG failed!"@en ;
+            sh:name "EPSG code"@en ;
+            sh:maxCount 1 ; 
+            sh:order 2 ;
+            sh:path georeference:codeEPSG ],
+        [ skos:example "UTM, None" ;
+            sh:datatype xsd:string ;
+            sh:description "coordinate system name of the map"@en ;
+            sh:message "Validation of coordinateSystemName failed!"@en ;
+            sh:name "coordinate system name"@en ;
+            sh:maxCount 1 ; 
+            sh:order 3 ;
+            sh:path georeference:coordinateSystemName ],
         [ skos:example "Ellipsodial height" ;
             sh:datatype xsd:string ;
             sh:description "Ellipsodial height or orthometric height"@en ;
@@ -42,53 +70,77 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of heightSystem failed!"@en ;
             sh:name "heightSystem"@en ;
-            sh:order 1 ;
+            sh:order 4 ;
             sh:path georeference:heightSystem ] ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of yMin failed!"@en ;
-            sh:name "yMin"@en ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path georeference:yMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of yMax failed!"@en ;
-            sh:name "yMax"@en ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path georeference:yMax ],
-        [ sh:datatype xsd:float ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "1.0" ;
+            sh:datatype xsd:float ;
+            sh:description "minimum bounding value in x axis"@en ;
             sh:message "Validation of xMin failed!"@en ;
             sh:name "xMin"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:xMin ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of xMax failed!"@en ;
-            sh:name "xMax"@en ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path georeference:xMax ] ;
-    sh:targetClass georeference:BoundingBox .
-
-georeference:Coordinate2DShape a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:message "Validation of x failed!"@en ;
-            sh:name "x"@en ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path georeference:x ],
-        [ sh:datatype xsd:float ;
-            sh:message "Validation of y failed!"@en ;
-            sh:name "y"@en ;
+        [ skos:example "2.0" ;
+            sh:datatype xsd:float ;
+            sh:description "minimum bounding value in y axis"@en ;
+            sh:message "Validation of yMin failed!"@en ;
+            sh:name "yMin"@en ;
+            sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path georeference:y ] ;
-    sh:targetClass georeference:Coordinate2D .
+            sh:path georeference:yMin ],
+        [ skos:example "11.0" ;
+            sh:datatype xsd:float ;
+            sh:description "maximum bounding value in x axis"@en ;
+            sh:message "Validation of xMax failed!"@en ;
+            sh:name "xMax"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path georeference:xMax ],
+        [ skos:example "12.0" ;
+            sh:datatype xsd:float ;
+            sh:description "maximum bounding value in y axis"@en ;
+            sh:message "Validation of yMax failed!"@en ;
+            sh:name "yMax"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path georeference:yMax ];
+    sh:targetClass georeference:BoundingBox .
+
+georeference:LatLonCoordinateShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "52.540721" ;
+            sh:datatype xsd:float ;
+            sh:description "latitude value - y axis"@en ;
+            sh:message "Validation of lat failed!"@en ;
+            sh:name "lat"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path georeference:lat ],
+        [ skos:example "13.412511" ;
+            sh:datatype xsd:float ;
+            sh:description "longitude value - x axis"@en ;
+            sh:message "Validation of lon failed!"@en ;
+            sh:name "lon"@en ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path georeference:lon ] ;
+    sh:targetClass georeference:LatLonCoordinate .
     
 georeference:ProjectLocationShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "DE-BY" ;
             sh:datatype xsd:string ;
             sh:description "Code of federal state or province as ISO 3166-2"@en ;
@@ -140,4 +192,4 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:name "relationOrArea"@en ;
             sh:order 4 ;
             sh:path georeference:relationOrArea ] ;
-    sh:targetClass georeference:ProjectLocation .     
+    sh:targetClass georeference:ProjectLocation .

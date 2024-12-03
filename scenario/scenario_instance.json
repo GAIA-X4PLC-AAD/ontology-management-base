@@ -96,7 +96,7 @@
   },
   "scenario:format": {
     "@type": "scenario:Format",
-    "scenario:dataFormat": "ASAM OpenSCENARIO",
+    "scenario:formatType": "ASAM OpenSCENARIO",
     "scenario:version": {
       "@value": "1.2",
       "@type": "xsd:string"
@@ -104,29 +104,16 @@
   },
   "scenario:general": {
     "@type": "general:General",
-    "general:DataResource": {
-      "@type": "gx:DataResource",
-      "gx:expirationDateTime": {
-        "@value": "2100-01-01T00:00:00",
-        "@type": "xsd:dateTime"
-      },
-      "gx:containsPII": false,
-      "gx:exposedThrough": {
-        "@id": "https://inavlid.link.com/my_scenario_resource.zip"
-      },
-      "gx:producedBy": {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base"
-      },
-      "gx:policy": {
-        "@value": "MPL-2.0",
-        "@type": "xsd:string"
-      },
+    "general:description": {
+        "@type": "general:Description",
       "gx:name": {
         "@value": "Scenario Example",
         "@type": "xsd:string"
       },
-      "gx:copyrightOwnedBy": "Sample Entity",
-      "gx:license": "Some License"
+      "gx:description": {
+        "@value": "A sample description of a none existing scenario.",
+        "@type": "xsd:string"
+      }
     },
     "general:data": {
       "@type": "general:Data",
@@ -143,57 +130,50 @@
         "@type": "xsd:dateTime"
       }
     },
-    "general:description": {
-      "@type": "general:Description",
-      "gx:name": {
-        "@value": "Scenario Example",
-        "@type": "xsd:string"
-      },
-      "gx:description": {
-        "@value": "A sample description of a none existing scenario.",
-        "@type": "xsd:string"
-      }
-    },
-    "general:bundleData": {
-      "@type": "general:BundleData",
-      "general:requiredData": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
-    },
     "general:links": {
       "@type": "general:Links",
       "general:data": {
         "@type": "general:Link",
         "general:url": {
-          "@value": "https://inavlid.link.com/link",
+          "@value": "https://github.com/GAIA-X4PLC-AAD/scenario-asset-example/blob/main/Data/scenario_data/ALKS_Scenario_4.4_1_CutInNoCollision_TEMPLATE.xosc",
           "@type": "xsd:anyURI"
         },
-        "general:type": "Document"
+        "general:type": "Asset"
       },
-      "general:media": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://inavlid.link.com/media",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Document"
-      }
+      "general:media": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "https://inavlid.link.com/media",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
+    },
+    "general:bundleData": {
+      "@type": "general:BundleData",
+      "general:requiredData": [
+          {
+            "@type": "general:Link",
+            "general:url": {
+              "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+              "@type": "xsd:anyURI"
+            },
+            "general:type": "Document"
+          }
+      ]
     }
   },
   "scenario:source": {
-    "@type": "scenario:DataSourceShape",
+    "@type": "scenario:DataSource",
     "scenario:source": {
       "@value": "Synthetically created",
       "@type": "xsd:string"
     }
   },
-  "georeference:georeference": {
-    "@type": "georeference:GeoreferenceShape",
+  "scenario:georeference": {
+    "@type": "georeference:Georeference",
     "georeference:projectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
@@ -219,65 +199,52 @@
       "georeference:boundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
-          "@value": "0",
+          "@value": "10.533752",
           "@type": "xsd:float"
         },
         "georeference:yMin": {
-          "@value": "0",
+          "@value": "52.313032",
           "@type": "xsd:float"
         },
         "georeference:xMax": {
-          "@value": "10",
+          "@value": "10.581254",
           "@type": "xsd:float"
         },
         "georeference:yMax": {
-          "@value": "20",
+          "@value": "52.323018",
           "@type": "xsd:float"
         }
       }
     },
     "georeference:geodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystem": {
-        "@value": "EPSG:32632",
-        "@type": "xsd:string"
+      "georeference:codeEPSG": {
+        "@value": "32632",
+        "@type": "xsd:int"
       },
       "georeference:origin": {
-        "@type": "georeference:Coordinate2D",
-        "georeference:x": {
-          "@value": "0",
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "52.315173",
           "@type": "xsd:float"
         },
-        "georeference:y": {
-          "@value": "0",
+        "georeference:lon": {
+          "@value": "10.562871",
           "@type": "xsd:float"
         }
       },
+      "georeference:viewPoint": {
+        "@type": "georeference:LatLonCoordinate",
+        "georeference:lat": {
+          "@value": "52.315173",
+          "@type": "xsd:float"
+        },
+        "georeference:lon": {
+          "@value": "10.562871",
+          "@type": "xsd:float"
+        }
+      }, 
       "georeference:heightSystem": "Ellipsodial height"
     }
-  },
-  "scenario:catalogs": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "scenario:trafficSpace": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/my_map.xodr",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
-  },
-  "general:media": {
-    "@type": "general:Link",
-    "general:url": {
-      "@value": "https://inavlid.link.com/media",
-      "@type": "xsd:anyURI"
-    },
-    "general:type": "Document"
   }
 }

@@ -4,48 +4,67 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 hdmap:HdMapShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
+            sh:name "general object" ;
+            sh:description "general object with properties for descriptions, data, links, bundle" ;
             sh:order 1 ;
             sh:path hdmap:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
+            sh:name "format object" ;
+            sh:description "format object with properties for format informations" ;
             sh:order 2 ;
             sh:path hdmap:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
+            sh:name "content object" ;
+            sh:description "content object with properties for road types, lane type, object type and traffic direction" ;
             sh:order 3 ;
             sh:path hdmap:content ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
+            sh:name "quantity object" ;
+            sh:description "quantity object with properties for quantity informations" ;
             sh:order 4 ;
             sh:path hdmap:quantity ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
+            sh:name "quality object" ;
+            sh:description "quality object with properties for quality informations" ;
             sh:order 5 ;
             sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
+            sh:name "dataSource object" ;
+            sh:description "dataSource object with properties for data sources" ;
             sh:order 6 ;
             sh:path hdmap:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
+            sh:name "georeference object" ;
+            sh:description "georeference object with properties for georeference informations" ;
             sh:order 7 ;
             sh:path hdmap:georeference ] ;
     sh:targetClass hdmap:HdMap .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:property [ skos:example "[motorway, residential]" ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "[Motorway, Rural]" ;
             sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("Bicycle" "LowSpeed" "Motorway" "Pedestrian" "Rural" "Town" "TownArterial" "TownCollector" "TownExpressway" "TownLocal" "TownPlayStreet" "TownPrivate" "Unknown") ;
@@ -81,6 +100,8 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
@@ -99,6 +120,8 @@ hdmap:DataSourceShape a sh:NodeShape ;
     sh:targetClass hdmap:DataSource .
 
 hdmap:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -115,10 +138,12 @@ hdmap:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path hdmap:type ] ;
+            sh:path hdmap:formatType ] ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals"@en ;
@@ -167,6 +192,8 @@ hdmap:QualityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quality .
 
 hdmap:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Sum of all junctions defined in the map,  see ODR spec section 10"@en ;
