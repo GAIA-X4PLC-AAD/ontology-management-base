@@ -247,7 +247,16 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "calibration"@en ;
             sh:order 5 ;
-            sh:path ositrace:calibration ] ;
+            sh:path ositrace:calibration ],
+        [ skos:example "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to OSI trace file validation report, if any exists"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of validationReport failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "validation report"@en ;
+            sh:order 6 ;
+            sh:path ositrace:validationReport ] ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
