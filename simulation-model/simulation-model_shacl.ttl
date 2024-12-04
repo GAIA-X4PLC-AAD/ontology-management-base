@@ -197,7 +197,7 @@ simulation-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "800" ;
-            sh:datatype xsd:positiveInteger ;
+            sh:datatype xsd:unsignedInt ;
             sh:description "The maximum number of detections."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of maxDetections failed!"@en ;
@@ -206,7 +206,7 @@ simulation-model:QuantityShape a sh:NodeShape ;
             sh:order 0 ;
             sh:path simulation-model:maxDetections ],
         [ skos:example "50" ;
-            sh:datatype xsd:positiveInteger ;
+            sh:datatype xsd:unsignedInt ;
             sh:description "The maximum number of objects."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of maxObjects failed!"@en ;
