@@ -8,7 +8,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| EnvironmentModelShape | environment-model | general | 1 | 1 | general object with properties for description, data, links, bundles |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | general | 1 | 1 | general object with properties for description and data |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | quantity | 1 | 1 | quantity object with properties for quatity values |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | quality | 1 | 1 | quality object with properties for quality values |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | content | 1 | 1 | content object with properties for content informations |  | environment-model_shacl.ttl |

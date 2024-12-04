@@ -58,11 +58,10 @@
 # simulated-sensor directory (Rhea)
 /simulated-sensor @telina
 
-# manipulated-sensor-simulation directory (Rhea AND Valentin)
-/manipulated-sensor-simulation @telina
-/manipulated-sensor-simulation @ValentinFischerTT
-
 # leakage-test directory (Selcan AND Robert Or Lena)
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
 
+# marketplace-info directory (Robert AND Johannes)
+/marketplace-info @robertschubert
+/marketplace-info @jtdemer

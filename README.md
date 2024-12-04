@@ -109,20 +109,26 @@ This section describes guidelines that _must_ be followed when applying changes 
 * The prefix of the SHACL Shape must match the prefix defined in the ontology.
 * If worth explaining, examples should be given. Specify concrete valid input here. Values should match with sh:In. Separate multiple entries with a comma. Example: '3DMS system, Trimble xyz, Riegl xyz'
 * If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
-* Every Shape linking to an ontology must **nest** the `general` Shape. Example:
+* Every Shape linking to an ontology must **nest** the `general` and the `marketplace-info` Shape. Example:
   * Add prefix 
     ```turtle
     @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
+    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/marketplace-info/ .
     ```
   * Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology
     ```turtle
     sh:property [ sh:maxCount 1 ;
                 sh:minCount 1 ;
                 sh:node general:GeneralShape ;
-                # some other attributes
+                # some other attributes like description, order, etc.
                 sh:path <your_prefix>:general ],
+    
+    sh:property [ sh:maxCount 1 ;
+                sh:minCount 1 ;
+                sh:node marketplace-info:MarketplaceInfoShape ;
+                # some other attributes like description, order, etc.
+                sh:path <your_prefix>:marketplace-info ],
     ```
-
 
 ## CI pipeline
 

@@ -1,7 +1,6 @@
 {
   "@context": {
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "ositrace": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -14,11 +13,11 @@
     "@type": "general:General",
     "general:description": {
       "@type": "general:Description",
-      "gx:name": {
+      "general:name": {
         "@value": "Cut-out scenario on testing ground",
         "@type": "xsd:string"
       },
-      "gx:description": {
+      "general:description": {
         "@value": "OSI SensorData trace of cut-out scenario on testing ground",
         "@type": "xsd:string"
       }
@@ -29,48 +28,10 @@
         "@value": "126.6",
         "@type": "xsd:float"
       },
-      "general:contractId": {
-        "@value": "123456789",
-        "@type": "xsd:string"
-      },
       "general:recordingTime": {
         "@value": "2024-06-03T16:37:10",
         "@type": "xsd:dateTime"
       }
-    },
-    "general:links": {
-      "@type": "general:Links",
-      "general:data": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143710.835792Z_sd_360_3200_1448_pmsf_ars548_054814_119_cutout.osi",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
-      },
-      "general:media": [
-          {
-            "@type": "general:Link",
-            "general:url": {
-              "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/20240603T143715.300000Z_position_pmsf_zedf9p_119_cutout.gpx",
-              "@type": "xsd:anyURI"
-            },
-            "general:type": "Routing"
-          }
-      ]
-    },
-    "general:bundleData": {
-      "@type": "general:BundleData",
-      "general:requiredData": [
-          {
-            "@type": "general:Link",
-            "general:url": {
-              "@value": "https://github.com/GAIA-X4PLC-AAD/sensordata/blob/main/ars548/sampledata/119_pmsf_adc_cutout/LICENSE.md",
-              "@type": "xsd:anyURI"
-            },
-            "general:type": "Document"
-          }
-      ]
     }
   },
   "ositrace:format": {
@@ -83,7 +44,7 @@
   },
   "ositrace:content": {
     "@type": "ositrace:Content",
-    "ositrace:roadTypes": "Rural",
+    "ositrace:roadTypes": "rural",
     "ositrace:laneTypes": "driving",
     "ositrace:levelOfDetail": "car",
     "ositrace:trafficDirection": "right-hand",

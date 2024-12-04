@@ -13,7 +13,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object" ;
-            sh:description "general object with properties for description, data, links, bundles" ;
+            sh:description "general object with properties for description and data" ;
             sh:order 1 ;
             sh:path environment-model:general ],
         [ sh:maxCount 1 ;
@@ -111,7 +111,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:description "Tool for the creation of the data"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of creationVersion failed!"@en ;
-            sh:name "creationVersion"@en ;
+            sh:name "creation version"@en ;
             sh:order 4 ;
             sh:path environment-model:creationVersion ],
         [ skos:example "Trian3DBuilder" ;
@@ -119,7 +119,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:description "Tool for the creation of the data"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of creationSource failed!"@en ;
-            sh:name "creationSource"@en ;
+            sh:name "creation source"@en ;
             sh:order 3 ;
             sh:path environment-model:creationSource ],
         [ skos:example "Unreal" ;
@@ -127,7 +127,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:description "Name of the graphics engine"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of softwareName failed!"@en ;
-            sh:name "softwareName"@en ;
+            sh:name "software name"@en ;
             sh:order 0 ;
             sh:path environment-model:softwareName ],
         [ skos:example "Epic Games" ;
@@ -135,7 +135,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:description "Name of software vendor"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of softwareVendor failed!"@en ;
-            sh:name "softwareVendor"@en ;
+            sh:name "software vendor"@en ;
             sh:order 1 ;
             sh:path environment-model:softwareVendor ],
         [ skos:example "4.27" ;
@@ -166,7 +166,7 @@ environment-model:QualityShape a sh:NodeShape ;
             sh:in ("High" "Medium" "Low") ;
             sh:maxCount 1 ;
             sh:message "Validation of detailLevel failed!"@en ;
-            sh:name "detailLevel"@en ;
+            sh:name "detail level"@en ;
             sh:order 0 ;
             sh:path environment-model:detailLevel ],
         [ skos:example "0.1 m" ;
@@ -175,7 +175,7 @@ environment-model:QualityShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of textureResolution failed!"@en ;
             sh:minCount 0 ;
-            sh:name "textureResolution"@en ;
+            sh:name "texture resolution"@en ;
             sh:order 1 ;
             sh:path environment-model:textureResolution ] ;
     sh:targetClass environment-model:Quality .
@@ -188,7 +188,7 @@ environment-model:QuantityShape a sh:NodeShape ;
             sh:description "Total number of all geoemtries(all triangles with a material assignment), instances are considered only once"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of geometryCount failed!"@en ;
-            sh:name "geometryCount"@en ;
+            sh:name "geometry count"@en ;
             sh:order 2 ;
             sh:path environment-model:geometryCount ],
         [ skos:example "16000000" ;
@@ -196,7 +196,7 @@ environment-model:QuantityShape a sh:NodeShape ;
             sh:description "Total number of all triangles, instances are considered only once"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of triangleCount failed!"@en ;
-            sh:name "triangleCount"@en ;
+            sh:name "triangle count"@en ;
             sh:order 1 ;
             sh:path environment-model:triangleCount ],
         [ skos:example "179" ;
@@ -204,7 +204,7 @@ environment-model:QuantityShape a sh:NodeShape ;
             sh:description "Number of textures"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of textureMaterialCount failed!"@en ;
-            sh:name "textureMaterialCount"@en ;
+            sh:name "texture material count"@en ;
             sh:order 0 ;
             sh:path environment-model:textureMaterialCount ] ;
     sh:targetClass environment-model:Quantity .
