@@ -56,25 +56,6 @@
                 },
                 "general:type": "Video"
             }
-        },
-        "general:bundleData": {
-            "@type": "general:BundleData",
-            "general:requiredData": {
-                "@type": "general:Link",
-                "general:url": {
-                    "@value": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-                    "@type": "xsd:anyURI"
-                },
-                "general:type": "Asset"
-            },
-            "general:relatedData": {
-                "@type": "general:Link",
-                "general:url": {
-                    "@value": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-                    "@type": "xsd:anyURI"
-                },
-                "general:type": "Asset"
-            }
         }
     },
     "simulation-model:format": {
