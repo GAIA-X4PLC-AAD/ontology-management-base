@@ -274,7 +274,7 @@ simulation-model:QualityShape a sh:NodeShape ;
             sh:order 5 ;
             sh:path simulation-model:model.validation.platform ],
         [ skos:example "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf" ;
-            sh:datatype xsd:string ;
+            sh:datatype xsd:anyURI ;
             sh:description "Link to model validation report, if any exists"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of model.validation.report failed!"@en ;
@@ -283,7 +283,7 @@ simulation-model:QualityShape a sh:NodeShape ;
             sh:order 6 ;
             sh:path simulation-model:model.validation.report ],
         [ skos:example "http://mywebsite.de/ValidationConcept.md" ;
-            sh:datatype xsd:string ;
+            sh:datatype xsd:anyURI ;
             sh:description "Link to document detailing the validation concepts used for model validation, if any exists"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of model.validation.concept failed!"@en ;

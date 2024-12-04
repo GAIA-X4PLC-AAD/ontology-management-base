@@ -162,11 +162,11 @@
         },
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.report": {
             "@value": "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-            "@type": "xsd:string"
+            "@type": "xsd:anyURI"
         },
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.concept": {
             "@value": "http://mywebsite.de/ValidationConcept.md",
-            "@type": "xsd:string"
+            "@type": "xsd:anyURI"
         },
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.implementation.performance-characteristics": {
             "@value": "Potentially real-time capable, if less than 100 objects in object list input at any one time",
