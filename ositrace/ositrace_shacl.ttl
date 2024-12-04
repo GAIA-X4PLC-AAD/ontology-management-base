@@ -256,7 +256,16 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "validation report"@en ;
             sh:order 6 ;
-            sh:path ositrace:validationReport ] ;
+            sh:path ositrace:validationReport ],
+        [ skos:example "application/xqar" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of OSI trace validation report, if any exists. As mime-type"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of validationReportType failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "validation report type"@en ;
+            sh:order 7 ;
+            sh:path ositrace:validationReportType ] ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
