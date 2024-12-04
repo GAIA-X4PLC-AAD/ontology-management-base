@@ -5,726 +5,172 @@
 
 simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:SimulatedSensor ;
-    # sensorType (String, mandatory)
-    sh:property [
-        skos:example "RADAR" ;
-        sh:path simulated-sensor:sensorType ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:name "sensorType"@en ;
-        sh:order 0 ;
-        sh:description "Type of Sensor used in the simulation" ;
-    ] ;
     # mountingPosition (Tuple of three floats, mandatory)
+    # Ensure at least one sensor is available
+    sh:property [
+        skos:example "Radar" ;
+        sh:path simulated-sensor:sensorType ;
+        sh:minCount 1 ;
+        sh:maxCount 1;
+        sh:name "sensorType"@en ;
+        sh:or (
+            [ sh:node simulated-sensor:Radar ]
+            [ sh:node simulated-sensor:Lidar ]
+            [ sh:node simulated-sensor:Camera ]
+        ) ;
+        sh:order 0 ;
+        sh:description "Perception and other relevant sensors for autonomous driving" ;
+    ] ;
+     sh:property [
+        skos:example "RADAR" ;
+        sh:path simulated-sensor:sensorIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "sensorIdentifier"@en ;
+        sh:order 1 ;
+        sh:description "Name/Identifier of the sensor in the simulator" ;
+    ] ;
+    # mountingPosition TODO: Perhaps this is too specific, not all simulators will use the same metric/parametrization for this
     sh:property [
         skos:example "Front-mid" ;
         sh:path simulated-sensor:mountingPosition ;
         sh:datatype xsd:string ;
         sh:in ("Front-left" "Front-right" "Front-mid" "Top-left" "Top-right" "Top-mid" "Back-left" "Back-right" "Back-mid") ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:name "mountingPosition"@en ;
-        sh:order 1 ;
-        sh:description "Position of the sensor on the vehicle. The precise coordinates are calculated in the world-coordinate system. Note that any back options will also induce a rotation of the sensor so that its field of view covers the vehicle rear." ;
-    ] ;
-    # numberOfBeams (Integer, mandatory)
+        sh:order 2 ;
+        sh:description "Possible mounting positions of the radar" ;
+    ] . 
+
+# Available sensors
+# RADAR
+simulated-sensor:Radar
+    a sh:NodeShape ;
+    sh:targetClass simulated-sensor:Radar ;
+    # numberOfBeams (Integer)
     sh:property [
         skos:example "60" ;
         sh:path simulated-sensor:numberOfBeams ;
         sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
+        sh:minCount 0 ;
         sh:minInclusive 0;
         sh:name "numberOfBeams"@en ;
         sh:order 2 ;
-        sh:description "Number of beams the radar or lidar sensor shall send" ;
+        sh:description "Number of beams sent by the radar sensor" ;
     ] ;
-    # distance (Integer, mandatory)
+    # distance (Integer)
     sh:property [
         skos:example "30" ;
         sh:path simulated-sensor:distance ;
         sh:datatype xsd:float ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
         sh:order 3 ;
         sh:description "Covered distance or range in meters" ;
     ] ;
-    # fieldOfView (Tuple of three floats, mandatory)
+    # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0" ;
         sh:path simulated-sensor:fieldOfView ;
         sh:nodeKind sh:List ;
         sh:datatype xsd:float ;
-        sh:minCount 3 ;
-        sh:maxCount 3 ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
         sh:name "fieldOfView"@en ;
         sh:order 4 ;
-        sh:description "For RADAR: horizontal and vertical angles; For LIDAR: horizontal FoV, upper FoV, lower FoV" ;
-    ] ;
-    # Ensure at least one failure/attack model is present
-    sh:property [
-        skos:example "PackageLossShape" ;
-        sh:path simulated-sensor:manipulationModel ;
-        sh:minCount 1 ;
-        sh:name "definedManipulationModel"@en ;
-        sh:or (
-            [ sh:node simulated-sensor:PackageLossShape ]
-            [ sh:node simulated-sensor:PackageDelayShape ]
-            [ sh:node simulated-sensor:DetectionPointShiftShape ]
-            [ sh:node simulated-sensor:VelocityPointShiftShape ]
-            [ sh:node simulated-sensor:RangeReductionShape ]
-            [ sh:node simulated-sensor:DetectNonExistingPointsShape ]
-            [ sh:node simulated-sensor:CollisionSensorShiftShape ]
-            [ sh:node simulated-sensor:ConstantSensorShiftShape ]
-            [ sh:node simulated-sensor:SensorBlockageRandomLifetimeShape ]
-            [ sh:node simulated-sensor:SensorBlockageDefinedLifetimeShape ]
-        ) ;
-        sh:order 5 ;
-        sh:description "Manipulation (failure and attack patterns) model(s) of the sensor. Each definition will lead to another independent simulation. Note that always one reference simulation with a non-manipulated sensor is performed." ;
+        sh:description "Depending on the simulator, either horizontal and vertical angles or horizontal FoV, upper FoV and lower FoV" ;
     ] .
 
-# Available manipulation models:
-# Model: packageLoss
-simulated-sensor:PackageLossShape
+# LIDAR
+simulated-sensor:Lidar
     a sh:NodeShape ;
-    sh:targetClass simulated-sensor:PackageLoss ;
+    sh:targetClass simulated-sensor:Lidar ;
+    # numberOfBeams (Integer)
     sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; 
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence";    
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
-    ] .
-
-# Model: packageDelay
-simulated-sensor:PackageDelayShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:PackageDelay ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ; 
-        sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:delaySize ;
+        skos:example "60" ;
+        sh:path simulated-sensor:numberOfBeams ;
         sh:datatype xsd:integer ;
-        sh:minCount 0 ; 
-        sh:maxCount 1 ;
         sh:minCount 0 ;
-        sh:maxInclusive 100 ;
-        sh:description "Occupancy of the ringbuffer at start of the simulation" ;
+        sh:minInclusive 0;
+        sh:name "numberOfBeams"@en ;
+        sh:order 2 ;
+        sh:description "Number of beams sent by the lidar sensor" ;
     ] ;
+    # distance (Integer)
     sh:property [
-        sh:path simulated-sensor:degradationSize ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Amount of packages that are delayed" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:ringBufferMaxUseSize ;
-        sh:datatype xsd:integer ;
-        sh:minCount 0 ; # if not defined, default value (100) is used
-        sh:maxCount 1 ;
-        sh:minInclusive 1 ;
-        sh:maxInclusive 100 ;
-        sh:description "Amount of raw data packages that fit into the ringbuffer before it overflows and causes package loss" ;
-    ] .
-
-# Model: detectionPointShift -> Shift of single detection points for simulating vibration effects
-simulated-sensor:DetectionPointShiftShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:DetectionPointShift ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; 
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; 
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
+        skos:example "30" ;
+        sh:path simulated-sensor:distance ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence";
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences";
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:maxDepthDisturbance ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Maximal shifting distance between the sensor and detection point" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:maxAzimuthDisturbance;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Maximal shifting Azimuth between the sensor and detection point" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:maxAltitudeDisturbance ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Maximal shifting Altitude between the sensor and detection point" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:distribution ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # Enum values for distribution (0 - nothing, 1 - Weibull, 2 - linear)
-        sh:minInclusive 2 ;
-        sh:description "Kind of distrbution used to calculate the detection point shift" ;
-    ] .
-
-
-# Model: velocityPointShift
-simulated-sensor:VelocityPointShiftShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:VelocityPointShift ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:maxVelocityDisturbance ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Maximal shift/change of the velocity" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:distribution ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # Enum values for distribution (0 - nothing, 1 - Weibull, 2 - linear)
-        sh:minInclusive 2 ;
-        sh:description "Kind of distrbution used to calculate the velocity shift" ;
-    ] .
-
-# Failure Model: rangeReduction
-simulated-sensor:RangeReductionShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:RangeReduction ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:rangeReductionValue;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Distance of the range reduction in meters" ;
-    ] .
-
-# Failure Model: detectNonExistingPoints
-simulated-sensor:DetectNonExistingPointsShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:DetectNonExistingPoints ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:amountDetections ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Amount of non-existant points that shall be spawned" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:horFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - left, 1 - everywhere in horizontal FOV, 2 - right
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the ghost points are spawned (horizontal)" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:vertFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - bottom, 1 - everywhere in vertical FOV, 2 - top
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the ghost points are spawned (vertical)";
-    ] .
-
-
-# Failure Model: sensorShift due to collision
-simulated-sensor:CollisionSensorShiftShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:CollisionSensorShift ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:yaw ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Yaw rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:pitch ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Pitch rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:roll ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Roll rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:shiftTriggerFlag ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 1;
-        sh:maxInclusive 1;
-        sh:description "If true, the shift will happen at the first collision" ;
-    ] .
-
-# Failure Model: sensorShift due to degradation (constantly shifting)
-simulated-sensor:ConstantSensorShiftShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:ConstantSensorShift ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:duration ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Time the pattern of manipulation is active in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence";
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:durationDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:description "Change/worsening (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:yaw ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Yaw rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:pitch ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Pitch rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:roll ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "Roll rotation of the shift" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:shiftFlag ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:minInclusive 0;
-        sh:maxInclusive 1;
-        sh:description "If true, the shift occurs once at the beginning of the failur event, otherwise a constant shift is simulated" ;
+        sh:name "distance"@en ;
+        sh:order 3 ;
+        sh:description "Covered distance or range in meters" ;
     ] ;
+    # fieldOfView (Tuple of three floats)
     sh:property [
-        sh:path simulated-sensor:shiftTriggerFlag ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
+        skos:example "30.0" ;
+        sh:path simulated-sensor:fieldOfView ;
+        sh:nodeKind sh:List ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:minInclusive 0;
-        sh:maxInclusive 0;
-        sh:description "If true, the shift will happen at the first collision" ;
+        sh:name "fieldOfView"@en ;
+        sh:order 4 ;
+        sh:description "Depending on the simulator, either horizontal and vertical angles or horizontal FoV, upper FoV and lower FoV" ;
     ] .
 
-
-# Failure Model: sensorBlockageRandomLifetime
-simulated-sensor:SensorBlockageRandomLifetimeShape
+# CAMERA
+simulated-sensor:Camera
     a sh:NodeShape ;
-    sh:targetClass simulated-sensor:SensorBlockageRandomLifetime ;
+    sh:targetClass simulated-sensor:Camera ;
     sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
+        skos:example "true" ;
+        sh:path simulated-sensor:rgbFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
+        sh:name "rgbFlag"@en ;
+        sh:order 0 ;
+        sh:description "If true, camera is RGB camera" ;
     ] ;
     sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
+        skos:example "false" ;
+        sh:path simulated-sensor:3dflag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
+        sh:name "3dflag"@en ;
+        sh:order 1 ;
+        sh:description "If true, camera is 3D camera" ;
     ] ;
     sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
+        skos:example "false" ;
+        sh:path simulated-sensor:detphFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "depthFlag"@en ;
+        sh:order 2 ;
+        sh:description "If true, camera is depth camera" ;
+    ] ;
+    # fieldOfView (Tuple of three floats)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:fieldOfView ;
+        sh:nodeKind sh:List ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:amountOfBlockingObjects ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Change (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:type ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "If true, blockage points are spawend in the entire FOV of the sensor. Otherwise in 1m distance to the sensor" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:lifeTime ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 1;
-        sh:maxInclusive 1;
-        sh:description "If true, the blocking object will have a random lifetime, otherwise the lifetime has to be defined" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:maxBlockingObjectLifeTime;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Maximum lifetime of the blocking object(s) in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:blockageDropSpeed;
-        sh:datatype xsd:integer ;
-        sh:minCount 0 ; # default is 0 
-        sh:maxCount 1 ;
-        sh:description "Fall speed of the blocking object (e.g. to simulate dirt falling off the lense)" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:horFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - left, 1 - everywhere in horizontal FOV, 2 - right
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the blocking objects are spawned (horizontal)" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:vertFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - bottom, 1 - everywhere in vertical FOV, 2 - top
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the blocking objects are spawned (vertical)";
+        sh:name "fieldOfView"@en ;
+        sh:order 3 ;
+        sh:description "Depending on the simulator, either horizontal and vertical angles or horizontal FoV, upper FoV and lower FoV" ;
     ] .
 
 
-# Failure Model: sensorBlockageDefinedLifetime
-simulated-sensor:SensorBlockageDefinedLifetimeShape
-    a sh:NodeShape ;
-    sh:targetClass simulated-sensor:SensorBlockageDefinedLifetime ;
-    sh:property [
-        sh:path simulated-sensor:start ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ; # minimal value is 0 corresponding to start of the simulation
-        sh:description "First occurrence of the pattern of manipulation in the simulation in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:interval ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Interval of re-occurrence of the manipulation pattern in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:intervalDegradation ;
-        sh:datatype xsd:float ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Change/worsening (decrease) of the time of re-occurrence" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:amountOfBlockingObjects ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Change (decrease) of the duration between re-ocurrences" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:type ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:description "If true, blockage points are spawend in the entire FOV of the sensor. Otherwise in 1m distance to the sensor" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:lifeTime ;
-        sh:datatype xsd:boolean ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:maxInclusive 0 ;
-        sh:description "If true, the blocking object will have a random lifetime, otherwise the lifetime has to be defined" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:blockingObjectLifeTime ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
-        sh:description "Lifetime of each blocking object in seconds" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:blockageDropSpeed;
-        sh:datatype xsd:integer ;
-        sh:minCount 0 ; # default is 0
-        sh:maxCount 1 ;
-        sh:description "Fall speed of the blocking object (e.g. to simulate dirt falling off the lense)" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:horFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - left, 1 - everywhere in horizontal FOV, 2 - right
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the blocking objects are spawned (horizontal)" ;
-    ] ;
-    sh:property [
-        sh:path simulated-sensor:vertFOVFlag ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:minInclusive 0; # 0 - bottom, 1 - everywhere in vertical FOV, 2 - top
-        sh:maxInclusive 2;
-        sh:description "Flag to indicate where the blocking objects are spawned (vertical)";
-    ] .
+
