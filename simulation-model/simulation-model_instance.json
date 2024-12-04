@@ -97,7 +97,7 @@
         }
     },
     "simulation-model:content": {
-        "@type": "undefined",
+        "@type": "simulation-model:Content",
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.type": "sensor",
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.manufacturer": {
             "@value": "OpenMSL Project Group",
