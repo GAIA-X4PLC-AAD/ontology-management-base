@@ -29,8 +29,8 @@
 | ContentShape | simulation-model | model.guid |  | 1 | For FMU-based models, this should be the GUID of the FMU. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | model.purpose |  | 1 | Purpose for which the model has been built/validated. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | model.modelling-approach |  | 1 | Description of the modelling approach taken. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
-| QuantityShape | simulation-model | maxDetections | 0 | 1 | The maximum number of detections. | <http://www.w3.org/2001/XMLSchema#positiveInteger> | simulation-model_shacl.ttl |
-| QuantityShape | simulation-model | maxObjects | 0 | 1 | The maximum number of objects. | <http://www.w3.org/2001/XMLSchema#positiveInteger> | simulation-model_shacl.ttl |
+| QuantityShape | simulation-model | maxDetections | 0 | 1 | The maximum number of detections. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | simulation-model_shacl.ttl |
+| QuantityShape | simulation-model | maxObjects | 0 | 1 | The maximum number of objects. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.limitations | 0 | 1 | Description of all limitations that apply to the model and its usage. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.validity-range | 0 | 1 | Restrictions on the model validity, typically on quantifiable aspects. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.verification.status | 1 | 1 | Is the model verified | <http://www.w3.org/2001/XMLSchema#boolean> | simulation-model_shacl.ttl |
