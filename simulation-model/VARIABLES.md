@@ -37,7 +37,7 @@
 | QualityShape | simulation-model | model.verification.report | 0 | 1 | Link to model verification report, if any exists | <http://www.w3.org/2001/XMLSchema#anyURI> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.validation.status | 1 | 1 | Is the model validated, according to the validation concept | <http://www.w3.org/2001/XMLSchema#boolean> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.validation.platform | 0 | 1 | Specification of simulation environment used for model validation. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
-| QualityShape | simulation-model | model.validation.report | 0 | 1 | Link to model validation report, if any exists | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
-| QualityShape | simulation-model | model.validation.concept | 0 | 1 | Link to document detailing the validation concepts used for model validation, if any exists | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
+| QualityShape | simulation-model | model.validation.report | 0 | 1 | Link to model validation report, if any exists | <http://www.w3.org/2001/XMLSchema#anyURI> | simulation-model_shacl.ttl |
+| QualityShape | simulation-model | model.validation.concept | 0 | 1 | Link to document detailing the validation concepts used for model validation, if any exists | <http://www.w3.org/2001/XMLSchema#anyURI> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | model.implementation.performance-characteristics | 0 | 1 | Description of model performance characteristics. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | DataSourceShape | simulation-model | model.specification | 0 | 1 | Provide a link to the model specification document | <http://www.w3.org/2001/XMLSchema#anyURI> | simulation-model_shacl.ttl |
