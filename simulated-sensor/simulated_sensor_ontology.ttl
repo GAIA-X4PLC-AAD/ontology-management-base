@@ -32,3 +32,7 @@ simulated-sensor:Lidar a owl:Class ;
 simulated-sensor:Camera a owl:Class ;
     rdfs:label "class definition for a simulated camera sensor"@en ; 
     rdfs:comment "A simulated camera sensor"@en .
+
+simulated-sensor:FieldOfView a owl:Class ;
+    rdfs:label "class definition for the Field of View (FoV) of a perception sensor"@en ; 
+    rdfs:comment "A field of view as float angles"@en .
