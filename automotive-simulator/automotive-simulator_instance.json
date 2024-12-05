@@ -1,0 +1,110 @@
+{
+    "@context": {
+        "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+        "simulated-sensor": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "skos": "http://www.w3.org/2004/02/skos/core#"
+    },
+    "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
+    "@type": "automotive-simulator:AutomotiveSimulator",
+    "automotive-simulator:general": {
+    "@id": "TBD",
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "gx:name": {
+            "@value": "Sensor failure and attack simulation with a modified CARLA simulator",
+        "@type": "xsd:string"
+      },
+      "gx:description": {
+            "@value": "An extension of the CARLA simulator by various degradation models for perceptionsensors that cover effects of internal failures, external failures and security attacks.",
+        "@type": "xsd:string"
+      }
+    },
+     "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "TBD",
+        "@type": "xsd:float"
+      },
+      "general:contractId": {
+        "@value": "TBD",
+        "@type": "xsd:string"
+      }
+    },
+    "automotive-simulator:simulatorMake": "CARLA",
+    "automotive-simulator:softwareVersion": "0.9.15",
+    "automotive-simulator:sensorFailureFlag": "true",
+    "automotive-simulator:sensorAttackFlag": "true",
+    //TODO add 3 simulated sensors TODO: input fields must be ranges
+    "simulated-sensor:SimulatedSensor": {
+        "simulated-sensor:sensorIdentifier": "sensor.other.radar",
+        "simulated-sensor:mountingPosition": "Front-mid",
+        "simulated-sensor:sensorType": {
+        "@type": "simulated-sensor:Radar",
+        "simulated-sensor:numberOfBeams": {
+          "@value": "1500",
+          "@type": "xsd:integer"
+        },
+        "simulated-sensor:distance": {
+            "sh:minInclusive": 0,
+            "sh:maxInclusive": 100,
+            "@type": "xsd:integer"
+        },
+        "simulated-sensor:duration": {
+          "@value": "0.1",
+          "@type": "xsd:float"
+        },
+        "simulated-sensor:fieldOfView": [
+          {
+            "@value": "60",
+            "@type": "xsd:float"
+          },
+          {
+            "@value": "30",
+            "@type": "xsd:float"
+          },
+          {
+            "@value": "0",
+            "@type": "xsd:float"
+          }
+        ],
+        }
+    },
+    "simulated-sensor:SimulatedSensor": {
+        "simulated-sensor:sensorIdentifier": "sensor.other.lidar",
+        "simulated-sensor:mountingPosition": "Front-mid",
+        "simulated-sensor:sensorType": {
+        "@type": "simulated-sensor:Radar",
+        "simulated-sensor:numberOfBeams": {
+          "@value": "1500",
+          "@type": "xsd:integer"
+        },
+        "simulated-sensor:distance": {
+          "@value": "100",
+          "@type": "xsd:integer"
+        },
+        "simulated-sensor:duration": {
+          "@value": "0.1",
+          "@type": "xsd:float"
+        },
+        "simulated-sensor:fieldOfView": [
+          {
+            "@value": "60",
+            "@type": "xsd:float"
+          },
+          {
+            "@value": "30",
+            "@type": "xsd:float"
+          },
+          {
+            "@value": "0",
+            "@type": "xsd:float"
+          }
+        ],
+        }
+    },
+
+}
