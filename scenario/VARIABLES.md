@@ -23,9 +23,9 @@
 | ContentShape | scenario | usedStandardFunctions | 0 |  | Use of the functionalities from the standard. E.g. which Actions are used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | movementDescription |  | 1 | Type of movement used by traffic participants according to the OpenSCENARIO standard. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | customCommands | 0 | 1 | Scenario/domain specific commands or actions | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | catalogs | 0 |  | Link to Catalogs | <http://www.w3.org/2001/XMLSchema#anyURI> | scenario_shacl.ttl |
-| ContentShape | scenario | EnvironmentModels | 0 |  | Link to environment models | <http://www.w3.org/2001/XMLSchema#anyURI> | scenario_shacl.ttl |
-| ContentShape | scenario | trafficSpace | 0 | 1 | Link to traffic space | <http://www.w3.org/2001/XMLSchema#anyURI> | scenario_shacl.ttl |
+| ContentShape | scenario | catalogs | 0 |  | Link to Catalogs |  | scenario_shacl.ttl |
+| ContentShape | scenario | environmentModels | 0 |  | Link to environment models |  | scenario_shacl.ttl |
+| ContentShape | scenario | trafficSpace | 0 | 1 | Link to traffic space |  | scenario_shacl.ttl |
 | ContentShape | scenario | sunAzimuth | 0 |  | Azimuth of the sun in degrees | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | ContentShape | scenario | countrySpecificSign | 0 | 1 | Country specific traffic signs | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | countrySpecificTrafficParticipants | 0 | 1 | Country specific traffic participants | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
