@@ -26,7 +26,7 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:path scenario:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node scenario:Content ;
+            sh:node scenario:ContentShape ;
             sh:name "content object" ;
             sh:description "content object with properties for scenario intrinsic attributes" ;
             sh:order 3 ;
