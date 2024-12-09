@@ -140,7 +140,6 @@ scenario:ContentShape a sh:NodeShape ;
             sh:order 6 ;
             sh:path scenario:customCommands ],
         [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:datatype xsd:anyURI ;
             sh:description "Link to Catalogs"@en ;
             sh:message "Validation of catalogs failed!"@en ;
             sh:minCount 0 ;
@@ -149,16 +148,14 @@ scenario:ContentShape a sh:NodeShape ;
             sh:order 7 ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:datatype xsd:anyURI ;
             sh:description "Link to environment models"@en ;
             sh:message "Validation of environment failed!"@en ;
             sh:minCount 0 ;
             sh:name "3d models"@en ;
             sh:node manifest:LinkShape ;
             sh:order 8 ;
-            sh:path scenario:EnvironmentModels ],
+            sh:path scenario:environmentModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:datatype xsd:anyURI ;
             sh:description "Link to traffic space"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of trafficSpace failed!"@en ;
