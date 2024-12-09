@@ -6,7 +6,6 @@
 @prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 simulated-sensor: a owl:Ontology ;
     rdfs:label "Ontology definition for simulated_sensor"@en ;

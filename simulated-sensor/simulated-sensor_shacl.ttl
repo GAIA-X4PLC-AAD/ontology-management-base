@@ -5,7 +5,6 @@
 
 simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:SimulatedSensor ;
-    # mountingPosition (Tuple of three floats, mandatory)
     # Ensure at least one sensor is available
     sh:property [
         skos:example "Radar" ;
@@ -21,6 +20,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:order 0 ;
         sh:description "Perception and other relevant sensors for autonomous driving" ;
     ] ;
+    # sensorIdentifier (string)
      sh:property [
         skos:example "RADAR" ;
         sh:path simulated-sensor:sensorIdentifier ;
@@ -48,79 +48,83 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
 # RADAR
 simulated-sensor:RadarShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:Radar ;
-    # numberOfBeams (Integer)
+    # numberOfBeams (integer)
     sh:property [
-        skos:example "60" ;
+        skos:example "1500" ;
         sh:path simulated-sensor:numberOfBeams ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
-        sh:minInclusive 0;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
         sh:name "numberOfBeams"@en ;
-        sh:order 2 ;
+        sh:order 0 ;
         sh:description "Number of beams sent by the radar sensor" ;
     ] ;
-    # distance (Integer)
+    # distance (float)
     sh:property [
-        skos:example "30" ;
+        skos:example "30.0" ;
         sh:path simulated-sensor:distance ;
-        sh:datatype xsd:integer ;
+        sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
-        sh:order 3 ;
+        sh:order 1 ;
         sh:description "Covered distance or range in meters" ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
+        sh:name "fov"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:order 3 ;
+        sh:order 2 ;
         sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
     ] .
 
 # LIDAR
 simulated-sensor:LidarShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:Lidar ;
-    # numberOfBeams (Integer)
+    # numberOfBeams (integer)
     sh:property [
-        skos:example "60" ;
+        skos:example "1500" ;
         sh:path simulated-sensor:numberOfBeams ;
-        sh:datatype xsd:integer ;
-        sh:minCount 0 ;
-        sh:minInclusive 0;
-        sh:name "numberOfBeams"@en ;
-        sh:order 2 ;
-        sh:description "Number of beams sent by the lidar sensor" ;
-    ] ;
-    # distance (Integer)
-    sh:property [
-        skos:example "30" ;
-        sh:path simulated-sensor:distance ;
         sh:datatype xsd:integer ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0;
+        sh:name "numberOfBeams"@en ;
+        sh:order 0 ;
+        sh:description "Number of beams sent by the lidar sensor" ;
+    ] ;
+    # distance (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:distance ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
         sh:name "distance"@en ;
-        sh:order 3 ;
+        sh:order 1 ;
         sh:description "Covered distance or range in meters" ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
+        sh:name "fov"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:order 3 ;
+        sh:order 2 ;
         sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
-
     ] .
 
 # CAMERA
 simulated-sensor:CameraShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:Camera ;
+    # rgbFlag (boolean) to indicate whether camera is RGB camera
     sh:property [
         skos:example "true" ;
         sh:path simulated-sensor:rgbFlag ;
@@ -131,6 +135,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:order 0 ;
         sh:description "If true, camera is RGB camera" ;
     ] ;
+    # 3dFlag (boolean) to indicate whether camera is 3D camera
     sh:property [
         skos:example "false" ;
         sh:path simulated-sensor:3dflag ;
@@ -141,6 +146,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:order 1 ;
         sh:description "If true, camera is 3D camera" ;
     ] ;
+    # depthFlag (boolean) to indicate whether camera is depth camera
     sh:property [
         skos:example "false" ;
         sh:path simulated-sensor:depthFlag ;
@@ -154,16 +160,17 @@ simulated-sensor:CameraShape a sh:NodeShape ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
+        sh:name "fov"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 3 ;
         sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
-
     ] .
 
 simulated-sensor:FieldOfViewShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:FieldOfView ;
+    # fov angle 1 (float)
     sh:property [
         skos:example "30.0" ;
         sh:path simulated-sensor:fovAngle1 ;
@@ -172,18 +179,20 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "fovAngle1"@end ;
         sh:order 0 ;
-        sh:description "FoV angle 1"
+        sh:description "FoV angle 1 (mandatory if FoV attribute is used)"
     ] ;
+    # fov angle 2 (float)
     sh:property [
         skos:example "30.0" ;
         sh:path simulated-sensor:fovAngle2 ;
         sh:datatype xsd:float ;
-        sh:minCount 1 ;
+        sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:name "fovAngle2"@end ;
         sh:order 1 ;
-        sh:description "FoV angle 2"
+        sh:description "FoV angle 2 (optional, depending on simulator and sensor type)"
     ] ;
+    # fov angle 3 (float)
     sh:property [
         skos:example "30.0" ;
         sh:path simulated-sensor:fovAngle3 ;
@@ -192,7 +201,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "fovAngle3"@end ;
         sh:order 2 ;
-        sh:description "FoV angle 3"
+        sh:description "FoV angle 3 (optional, depending on simulator and sensor type)"
     ] .
 
 
