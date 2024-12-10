@@ -11,7 +11,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:path simulated-sensor:sensorType ;
         sh:minCount 1 ;
         sh:maxCount 1;
-        sh:name "sensorType"@en ;
+        sh:name "sensor type"@en ;
         sh:or (
             [ sh:node simulated-sensor:RadarShape ]
             [ sh:node simulated-sensor:LidarShape ]
@@ -27,7 +27,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "sensorIdentifier"@en ;
+        sh:name "sensor identifier"@en ;
         sh:order 1 ;
         sh:description "Name/Identifier of the sensor in the simulator" ;
     ] ;
@@ -39,7 +39,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:in ("Front-left" "Front-right" "Front-mid" "Top-left" "Top-right" "Top-mid" "Back-left" "Back-right" "Back-mid") ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "mountingPosition"@en ;
+        sh:name "mounting position"@en ;
         sh:order 2 ;
         sh:description "Possible mounting positions of the radar" ;
     ] . 
@@ -56,7 +56,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0 ;
-        sh:name "numberOfBeams"@en ;
+        sh:name "number of beams"@en ;
         sh:order 0 ;
         sh:description "Number of beams sent by the radar sensor" ;
     ] ;
@@ -75,7 +75,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
-        sh:name "fov"@en ;
+        sh:name "FoV"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -94,7 +94,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:minInclusive 0;
-        sh:name "numberOfBeams"@en ;
+        sh:name "number of beams"@en ;
         sh:order 0 ;
         sh:description "Number of beams sent by the lidar sensor" ;
     ] ;
@@ -113,7 +113,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
-        sh:name "fov"@en ;
+        sh:name "FoV"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -131,7 +131,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "rgbFlag"@en ;
+        sh:name "RGB flag"@en ;
         sh:order 0 ;
         sh:description "If true, camera is RGB camera" ;
     ] ;
@@ -142,7 +142,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "3dflag"@en ;
+        sh:name "3D flag"@en ;
         sh:order 1 ;
         sh:description "If true, camera is 3D camera" ;
     ] ;
@@ -153,14 +153,14 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "depthFlag"@en ;
+        sh:name "depth flag"@en ;
         sh:order 2 ;
         sh:description "If true, camera is depth camera" ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
         skos:example "30.0 70.0 20.0" ;
-        sh:name "fov"@en ;
+        sh:name "FoV"@en ;
         sh:path simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -177,7 +177,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:datatype xsd:float ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:name "fovAngle1"@end ;
+        sh:name "FoV angle 1"@en ;
         sh:order 0 ;
         sh:description "FoV angle 1 (mandatory if FoV attribute is used)"
     ] ;
@@ -188,7 +188,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "fovAngle2"@end ;
+        sh:name "FoV angle 2"@en ;
         sh:order 1 ;
         sh:description "FoV angle 2 (optional, depending on simulator and sensor type)"
     ] ;
@@ -199,7 +199,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:datatype xsd:float ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
-        sh:name "fovAngle3"@end ;
+        sh:name "FoV angle 3"@en ;
         sh:order 2 ;
         sh:description "FoV angle 3 (optional, depending on simulator and sensor type)"
     ] .
