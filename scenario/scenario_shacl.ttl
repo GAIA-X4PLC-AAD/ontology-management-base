@@ -118,6 +118,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Use of the functionalities from the standard. E.g. which Actions are used."@en ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
+            sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:name "used functions in the standard"@en ;
             sh:order 4 ;
