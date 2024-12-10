@@ -76,7 +76,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
     sh:property [
         skos:example "30.0 70.0 20.0" ;
         sh:name "FoV"@en ;
-        sh:path simulated-sensor:FieldOfViewShape ;
+        sh:node simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 2 ;
@@ -114,7 +114,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
     sh:property [
         skos:example "30.0 70.0 20.0" ;
         sh:name "FoV"@en ;
-        sh:path simulated-sensor:FieldOfViewShape ;
+        sh:node simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 2 ;
@@ -161,7 +161,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
     sh:property [
         skos:example "30.0 70.0 20.0" ;
         sh:name "FoV"@en ;
-        sh:path simulated-sensor:FieldOfViewShape ;
+        sh:node simulated-sensor:FieldOfViewShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 3 ;
