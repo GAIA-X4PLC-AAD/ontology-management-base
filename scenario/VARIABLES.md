@@ -20,7 +20,7 @@
 | ContentShape | scenario | abstractionLevel |  | 1 | Pegasus type of scenario | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | timeDate | 0 | 1 | Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens. | <http://www.w3.org/2001/XMLSchema#dateTime> | scenario_shacl.ttl |
 | ContentShape | scenario | aim | 0 | 1 | Purpose of this scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | usedStandardFunctions | 0 |  | Use of the functionalities from the standard. E.g. which Actions are used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | usedStandardFunctions | 0 | 1 | Use of the functionalities from the standard. E.g. which Actions are used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | movementDescription |  | 1 | Type of movement used by traffic participants according to the OpenSCENARIO standard. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | customCommands | 0 | 1 | Scenario/domain specific commands or actions | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | catalogs | 0 |  | Link to Catalogs |  | scenario_shacl.ttl |
