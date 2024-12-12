@@ -17,16 +17,17 @@
       "@value": "100.0",
       "@type": "xsd:float"
     },
-    "simulated-sensor:fieldOfView": [
-      {
+    "simulated-sensor:fieldOfView": {
+      "@type": "simulated-sensor:FieldOfView",
+      "simulated-sensor:fovAngle1": {
         "@value": "60",
         "@type": "xsd:float"
       },
-      {
+      "simulated-sensor:fovAngle2": {
         "@value": "30",
         "@type": "xsd:float"
       }
-    ]
+    }
   },
   "simulated-sensor:sensorIdentifier": "sensor.other.radar",
   "simulated-sensor:mountingPosition": "Front-mid"
