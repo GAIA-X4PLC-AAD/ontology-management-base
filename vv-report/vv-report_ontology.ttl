@@ -10,26 +10,26 @@ vv-report: a owl:Ontology ;
     dcterms:contributor "Maurizio Ahmann (localhorst87)" ;
     owl:versionInfo "0.1" .
 
-vv-report:VVReport a owl:Class ;
+vv-report:VvReport a owl:Class ;
     rdfs:label "Class definition for a verification & validation report" ;
     rdfs:comment "Attributes for a verification & validation report"@en .
 
-vv-report:EvaluationShape a owl:Class ;
+vv-report:Evaluation a owl:Class ;
     rdfs:label "Class definition for an evaluation element" ;
     rdfs:comment "Attributes for an evaluation element"@en .
 
-vv-report:MetricShape a owl:Class ;
+vv-report:Metric a owl:Class ;
     rdfs:label "Class definition for definition of a quality metric" ;
     rdfs:comment "Attributes for definition of a quality metric"@en .
 
-vv-report:InputDataShape a owl:Class ;
+vv-report:InputData a owl:Class ;
     rdfs:label "Class definition for definition of an input data element" ;
     rdfs:comment "Attributes for definition of an input data element"@en .
 
-vv-report:ResultShape a owl:Class ;
+vv-report:Result a owl:Class ;
     rdfs:label "Class definition for evaluation results" ;
     rdfs:comment "Attributes for evaluation results"@en .
 
-vv-report:ResultVerificationShape a owl:Class ;
+vv-report:ResultVerification a owl:Class ;
     rdfs:label "Class definition for the verification of the result by a third party" ;
     rdfs:comment "Attributes for the verification of the result by a third party"@en .

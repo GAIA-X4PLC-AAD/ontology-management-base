@@ -3,13 +3,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
 
-vv-report:vvReportShape a sh:NodeShape ;
+vv-report:VvReportShape a sh:NodeShape ;
     sh:property [ sh:path vv-report:evaluations ;
             sh:node vv-report:EvaluationShape ;
             sh:description "A list of all measures carried out on the subject under test"@en ;
             sh:minCount 1 ;
             sh:order 0 ] ;
-    sh:targetClass vv-report:VVReport .
+    sh:targetClass vv-report:VvReport .
 
 vv-report:EvaluationShape a sh:NodeShape ;
     sh:property [ sh:path vv-report:metric ;

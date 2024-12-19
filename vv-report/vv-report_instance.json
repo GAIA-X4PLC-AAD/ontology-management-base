@@ -7,7 +7,7 @@
         "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "@id": "did:web:registry.gaia-x.eu:VVReport:.............",
-    "@type": "vv-report:VVReport",
+    "@type": "vv-report:VvReport",
     "vv-report:evaluations": [
         {
             "@type": "vv-report:Evaluation",
@@ -94,7 +94,7 @@
                     },
                     "vv-report:inputReference": {
                         "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:gADlioH767wrmg4t6uUTj0wgADlioH534hrhSF",
-                        "@type": "xsd:string"
+                        "@type": "xsd:anyURI"
                     }
                 }
             ],
