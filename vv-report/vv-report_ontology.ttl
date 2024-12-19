@@ -1,0 +1,35 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+vv-report: a owl:Ontology ;
+    rdfs:label "ontology definition for a verification & validation report"@en ;
+    dcterms:contributor "Maurizio Ahmann (localhorst87)" ;
+    owl:versionInfo "0.1" .
+
+vv-report:VVReport a owl:Class ;
+    rdfs:label "Class definition for a verification & validation report" ;
+    rdfs:comment "Attributes for a verification & validation report"@en .
+
+vv-report:EvaluationShape a owl:Class ;
+    rdfs:label "Class definition for an evaluation element" ;
+    rdfs:comment "Attributes for an evaluation element"@en .
+
+vv-report:MetricShape a owl:Class ;
+    rdfs:label "Class definition for definition of a quality metric" ;
+    rdfs:comment "Attributes for definition of a quality metric"@en .
+
+vv-report:InputDataShape a owl:Class ;
+    rdfs:label "Class definition for definition of an input data element" ;
+    rdfs:comment "Attributes for definition of an input data element"@en .
+
+vv-report:ResultShape a owl:Class ;
+    rdfs:label "Class definition for evaluation results" ;
+    rdfs:comment "Attributes for evaluation results"@en .
+
+vv-report:ResultVerificationShape a owl:Class ;
+    rdfs:label "Class definition for the verification of the result by a third party" ;
+    rdfs:comment "Attributes for the verification of the result by a third party"@en .
