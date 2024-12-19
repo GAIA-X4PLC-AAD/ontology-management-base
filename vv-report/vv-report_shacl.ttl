@@ -1,7 +1,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/verification-validation-report/> .
+@prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
 
 vv-report:vvReportShape a sh:NodeShape ;
     sh:property [ sh:path vv-report:evaluations ;
@@ -21,7 +21,7 @@ vv-report:EvaluationShape a sh:NodeShape ;
         [ sh:path vv-report:inputData ;
             sh:node vv-report:InputDataShape ;
             sh:description "The definition of a dataset that has been used as input to the quality metric"@en ;
-            sh:minCount 0 ;
+            sh:minCount 1 ;
             sh:order 1 ],
         [ sh:path vv-report:result ;
             sh:node vv-report:ResultShape ;
