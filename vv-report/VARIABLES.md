@@ -8,7 +8,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| vvReportShape | vv-report | evaluations | 1 |  | A list of all measures carried out on the subject under test |  | vv-report_shacl.ttl |
+| VvReportShape | vv-report | evaluations | 1 |  | A list of all measures carried out on the subject under test |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | metric | 1 | 1 | The definition of the quality metric that has been used in this evaluation item |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | inputData | 1 |  | The definition of a dataset that has been used as input to the quality metric |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | result | 1 | 1 | The summary of the result of this evaluation item |  | vv-report_shacl.ttl |
