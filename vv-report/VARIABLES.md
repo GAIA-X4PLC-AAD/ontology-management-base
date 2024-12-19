@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/verification-validation-report/>
+- vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/>
 
 ## List of SHACL Properties
 
@@ -10,7 +10,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | vvReportShape | vv-report | evaluations | 1 |  | A list of all measures carried out on the subject under test |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | metric | 1 | 1 | The definition of the quality metric that has been used in this evaluation item |  | vv-report_shacl.ttl |
-| EvaluationShape | vv-report | inputData | 0 |  | The definition of a dataset that has been used as input to the quality metric |  | vv-report_shacl.ttl |
+| EvaluationShape | vv-report | inputData | 1 |  | The definition of a dataset that has been used as input to the quality metric |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | result | 1 | 1 | The summary of the result of this evaluation item |  | vv-report_shacl.ttl |
 | EvaluationShape | vv-report | metadata | 0 |  | Additional data (e.g. V&V-concept specific data) to be used to describe the evaluation |  | vv-report_shacl.ttl |
 | MetricShape | vv-report | metricTitle | 1 | 1 | A meaningful name of this metric | <http://www.w3.org/2001/XMLSchema#string> | vv-report_shacl.ttl |
