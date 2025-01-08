@@ -60,103 +60,135 @@
     },
     "simulation-model:format": {
         "@type": "simulation-model:Format",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.implementation.format": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelImplementationFormat": {
             "@value": "OSMP 1.0/OSI 3.1.2/FMI 2.0",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.preconditions": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelPreconditions": {
             "@value": "Object-list input contains accurate bounding box values",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.implementation.preconditions": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelImplementationPreconditions": {
             "@value": "Model needs Windows 10 1809 or newer with nVidia Drivers version 389.12 or newer and OpenCL 2.0 capable GPU",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.integration.requirements": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelIntegrationRequirements": {
             "@value": "http://mywebsite.de/Requirements.pdf",
             "@type": "xsd:anyURI"
         }
     },
     "simulation-model:content": {
         "@type": "simulation-model:Content",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.type": "sensor",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.manufacturer": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelType": "sensor",
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelManufacturer": {
             "@value": "OpenMSL Project Group",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.family": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelFamily": {
             "@value": "Sensor Family X4000",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.name": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelName": {
             "@value": "X4101",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.version": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelVersion": {
             "@value": "1.2.2",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.releasedate": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelReleasedate": {
             "@value": "2024-11-26T12:37:15",
             "@type": "xsd:dateTime"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.releasestatus": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelReleasestatus": {
             "@value": "Released",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.use-restrictions": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelUseRestrictions": {
             "@value": "No use restrictions",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.guid": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelGuid": {
             "@value": "7ae4-210f-dead-beef-042",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.purpose": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelPurpose": {
             "@value": "HAD function validation in OEM environment at object-list level",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.modelling-approach": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelModellingApproach": {
             "@value": "model is purely object-list driven, weather effects are not modelled.",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorManufacturer": {
+            "@value": "Sample company.",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorFamily": {
+            "@value": "ARS5XX",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorName": {
+            "@value": "ARS548",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorVersion": {
+            "@value": "1.0.0",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorManufacturerPartnumber": {
+            "@value": "A123",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorType": {
+            "@value": "object-output",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorTechnology": {
+            "@value": "radar",
+            "@type": "xsd:string"
+        },
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/sensorTechnologyVariant": {
+            "@value": "long-range",
             "@type": "xsd:string"
         }
     },
     "simulation-model:quality": {
         "@type": "simulation-model:Quality",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.limitations": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelLimitations": {
             "@value": "This delivery is a pre-release and the model is intended to be used for checking the interfaces of the simulation toolchain. The model is not validated; thus it is not intended to be used for validation or verification of any sensor, especially not for ARS810 or ARS840. In particular, the existence of this model shall not be used to imply the existence of sensors ARS810 nor ARS840 nor their properties. This delivery is not developed according to process defined in ISO 26262 (Standard for Functional Safety).",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validity-range": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelValidityRange": {
             "@value": "Sensor model is only accurate up to sensor/vehicle speeds of less than 150km/h",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.verification.status": true,
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.verification.report": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelVerificationStatus": true,
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelVerificationReport": {
             "@value": "http://mywebsite.de/VerficiationReport.pdf",
             "@type": "xsd:anyURI"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.status": true,
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.platform": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelValidationStatus": true,
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelValidationPlatform": {
             "@value": "PMSF FMIBench 1.9.9.4 using osi3test 0.6.0 on Windows 10 1809",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.report": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelValidationReport": {
             "@value": "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
             "@type": "xsd:anyURI"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.validation.concept": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelValidationConcept": {
             "@value": "http://mywebsite.de/ValidationConcept.md",
             "@type": "xsd:anyURI"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.implementation.performance-characteristics": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelImplementationPerformanceCharacteristics": {
             "@value": "Potentially real-time capable, if less than 100 objects in object list input at any one time",
             "@type": "xsd:string"
         }
     },
     "simulation-model:dataSource": {
         "@type": "simulation-model:DataSource",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/model.specification": {
+        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelSpecification": {
             "@value": "http://mywebsite.de/ModelSpecification.pdf",
             "@type": "xsd:anyURI"
         }

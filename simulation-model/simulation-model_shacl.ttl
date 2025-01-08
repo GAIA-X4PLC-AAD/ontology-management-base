@@ -1,5 +1,4 @@
 @prefix simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -61,34 +60,34 @@ simulation-model:FormatShape a sh:NodeShape ;
             sh:description "Format of model implementation, e.g. OSMP 1.0/OSI 3.1.2/FMI 2.0"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.implementation.format failed!"@en ;
-            sh:name "model.implementation.format"@en ;
+            sh:message "Validation of modelImplementationFormat failed!"@en ;
+            sh:name "modelImplementationFormat"@en ;
             sh:order 0 ;
-            sh:path simulation-model:model.implementation.format ],
+            sh:path simulation-model:modelImplementationFormat ],
         [ skos:example "Object-list input contains accurate bounding box values" ;
             sh:datatype xsd:string ;
             sh:description "Preconditions for model validity, e.g. things that the rest of the simulation should provide the model with so that the model can work within its foreseen validity range."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.preconditions failed!"@en ;
-            sh:name "model.preconditions"@en ;
+            sh:message "Validation of modelPreconditions failed!"@en ;
+            sh:name "modelPreconditions"@en ;
             sh:order 1 ;
-            sh:path simulation-model:model.preconditions ],
+            sh:path simulation-model:modelPreconditions ],
         [ skos:example "Model needs Windows 10 1809 or newer with nVidia Drivers version 389.12 or newer and OpenCL 2.0 capable GPU" ;
             sh:datatype xsd:string ;
             sh:description "Implementation requirements."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.implementation.preconditions failed!"@en ;
-            sh:name "model.implementation.preconditions"@en ;
+            sh:message "Validation of modelImplementationPreconditions failed!"@en ;
+            sh:name "modelImplementationPreconditions"@en ;
             sh:order 2 ;
-            sh:path simulation-model:model.implementation.preconditions ],
+            sh:path simulation-model:modelImplementationPreconditions ],
         [ skos:example "http://mywebsite.de/Requirements.pdf" ;
             sh:datatype xsd:anyURI ;
             sh:description "Provide a link to requirements and considerations for operating the model."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.integration.requirements failed!"@en ;
-            sh:name "model.integration.requirements"@en ;
+            sh:message "Validation of modelIntegrationR<equirements failed!"@en ;
+            sh:name "modelIntegrationRequirements"@en ;
             sh:order 3 ;
-            sh:path simulation-model:model.integration.requirements ] ;
+            sh:path simulation-model:modelIntegrationRequirements ] ;
     sh:targetClass simulation-model:Format .
 
 simulation-model:ContentShape a sh:NodeShape ;
@@ -100,54 +99,54 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:description "Type of model. This entry defines what domain specific entries are relevant and is mandatory"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.type failed!"@en ;
-            sh:name "model.type"@en ;
+            sh:message "Validation of modelType failed!"@en ;
+            sh:name "modelType"@en ;
             sh:order 0 ;
-            sh:path simulation-model:model.type ],
+            sh:path simulation-model:modelType ],
         [ skos:example "OpenMSL Project Group" ;
             sh:datatype xsd:string ;
             sh:description "Provider of the Model, no specific convention defined, it can be a company, a department a person or a combination of those."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.manufacturer failed!"@en ;
-            sh:name "model.manufacturer"@en ;
+            sh:message "Validation of modelManufacturer failed!"@en ;
+            sh:name "modelManufacturer"@en ;
             sh:order 1 ;
-            sh:path simulation-model:model.manufacturer ],
+            sh:path simulation-model:modelManufacturer ],
         [ skos:example "Sensor Family X4000" ;
             sh:datatype xsd:string ;
             sh:description "Model Family Name, in some case a model is a concrete instance of a more generic model belonging to a family. In this case, the family can be mentioned here."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.family failed!"@en ;
-            sh:name "model.family"@en ;
+            sh:message "Validation of modelFamily failed!"@en ;
+            sh:name "modelFamily"@en ;
             sh:order 2 ;
-            sh:path simulation-model:model.family ],
+            sh:path simulation-model:modelFamily ],
         [ skos:example "X4101" ;
             sh:datatype xsd:string ;
             sh:description "Model Name. This can be the name of the model file or the name of the model as it is called"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.name failed!"@en ;
-            sh:name "model.name"@en ;
+            sh:message "Validation of modelName failed!"@en ;
+            sh:name "modelName"@en ;
             sh:order 3 ;
-            sh:path simulation-model:model.name ],
+            sh:path simulation-model:modelName ],
         [ skos:example "1.2.2" ;
             sh:datatype xsd:string ;
             sh:description "Model Version, no specific convention defined"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.version failed!"@en ;
-            sh:name "model.version"@en ;
+            sh:message "Validation of modelVersion failed!"@en ;
+            sh:name "modelVersion"@en ;
             sh:order 4 ;
-            sh:path simulation-model:model.version ],
+            sh:path simulation-model:modelVersion ],
         [ skos:example "2009-06-30T18:30:00+02:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Model Release Date in ISO8601"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.releasedate failed!"@en ;
-            sh:name "model.releasedate"@en ;
+            sh:message "Validation of modelReleasedate failed!"@en ;
+            sh:name "modelReleasedate"@en ;
             sh:order 5 ;
-            sh:path simulation-model:model.releasedate ],
+            sh:path simulation-model:modelReleasedate ],
         [ skos:example "In Development" ;
             skos:example "Released" ;
             skos:example "Decommissioned" ;
@@ -155,42 +154,112 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:description "The status of the model version released in the life cycle of the model."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:message "Validation of model.releasestatus failed!"@en ;
-            sh:name "model.releasestatus"@en ;
+            sh:message "Validation of modelReleasestatus failed!"@en ;
+            sh:name "modelReleasestatus"@en ;
             sh:order 6 ;
-            sh:path simulation-model:model.releasestatus ],
+            sh:path simulation-model:modelReleasestatus ],
         [ skos:example "No use restrictions" ;
             sh:datatype xsd:string ;
             sh:description "Legal or contractual restrictions on the use and distribution of the model that have to be respected. Applicable Licenses should be mentioned here."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.use-restrictions failed!"@en ;
-            sh:name "model.use-restrictions"@en ;
+            sh:message "Validation of modelUseRestrictions failed!"@en ;
+            sh:name "modelUseRestrictions"@en ;
             sh:order 7 ;
-            sh:path simulation-model:model.use-restrictions ],
+            sh:path simulation-model:modelUseRestrictions ],
         [ skos:example "7ae4-210f-dead-beef-042" ;
             sh:datatype xsd:string ;
             sh:description "For FMU-based models, this should be the GUID of the FMU."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.guid failed!"@en ;
-            sh:name "model.guid"@en ;
+            sh:message "Validation of modelGuid failed!"@en ;
+            sh:name "modelGuid"@en ;
             sh:order 8 ;
-            sh:path simulation-model:model.guid ],
+            sh:path simulation-model:modelGuid ],
         [ skos:example "HAD function validation in OEM environment at object-list level" ;
             sh:datatype xsd:string ;
             sh:description "Purpose for which the model has been built/validated."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.purpose failed!"@en ;
-            sh:name "model.purpose"@en ;
+            sh:message "Validation of modelPurpose failed!"@en ;
+            sh:name "modelPurpose"@en ;
             sh:order 9 ;
-            sh:path simulation-model:model.purpose ],
+            sh:path simulation-model:modelPurpose ],
         [ skos:example "model is purely object-list driven, weather effects are not modelled." ;
             sh:datatype xsd:string ;
             sh:description "Description of the modelling approach taken."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.modelling-approach failed!"@en ;
-            sh:name "model.modelling-approach"@en ;
+            sh:message "Validation of modelModellingApproach failed!"@en ;
+            sh:name "modelModellingApproach"@en ;
             sh:order 10 ;
-            sh:path simulation-model:model.modelling-approach ] ;
+            sh:path simulation-model:modelModellingApproach ],
+        [ skos:example "Sample company" ;
+            sh:datatype xsd:string ;
+            sh:description "Company Name manufacturing the sensor. Alternatively, If the model does not relate to a particular manufacturer, mention it here."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorManufacturer failed!"@en ;
+            sh:name "sensorManufacturer"@en ;
+            sh:order 11 ;
+            sh:path simulation-model:sensorManufacturer ],
+        [ skos:example "ARS5XX" ;
+            sh:datatype xsd:string ;
+            sh:description "Actual Sensor HW Family Name."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorFamily failed!"@en ;
+            sh:name "sensorFamily "@en ;
+            sh:order 12 ;
+            sh:path simulation-model:sensorFamily ],
+        [ skos:example "ARS548" ;
+            sh:datatype xsd:string ;
+            sh:description "Actual Sensor HW Name."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorName failed!"@en ;
+            sh:name "sensorName"@en ;
+            sh:order 13 ;
+            sh:path simulation-model:sensorName ],
+        [ skos:example "1.0.0" ;
+            sh:datatype xsd:string ;
+            sh:description "Actual Sensor HW Version."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorVersion failed!"@en ;
+            sh:name "sensorVersion "@en ;
+            sh:order 14 ;
+            sh:path simulation-model:sensorVersion ],
+        [ skos:example "A123" ;
+            sh:datatype xsd:string ;
+            sh:description "Partnumber at Manufacturer."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorManufacturerPartnumber failed!"@en ;
+            sh:name "sensorManufacturerPartnumber"@en ;
+            sh:order 15 ;
+            sh:path simulation-model:sensorManufacturerPartnumber ],
+        [ skos:example "object-output" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of Output of Sensor."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorType failed!"@en ;
+            sh:name "sensorType"@en ;
+            sh:order 16 ;
+            sh:path simulation-model:sensorType ],
+        [ skos:example "radar" ;
+            skos:example "camera" ;
+            skos:example "lidar" ;
+            sh:datatype xsd:string ;
+            sh:description "HW Technology of sensor."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorTechnology failed!"@en ;
+            sh:name "sensorTechnology"@en ;
+            sh:order 17 ;
+            sh:path simulation-model:sensorTechnology  ],
+        [ skos:example "long-range" ;
+            skos:example "front" ;
+            skos:example "rear" ;
+            skos:example "corner" ;
+            skos:example "side" ;
+            sh:datatype xsd:string ;
+            sh:description "HW Technology variant of sensor."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of sensorTechnologyVariant failed!"@en ;
+            sh:name "sensorTechnologyVariant"@en ;
+            sh:order 18 ;
+            sh:path simulation-model:sensorTechnologyVariant ] ;
     sh:targetClass simulation-model:Content .
 
 simulation-model:QuantityShape a sh:NodeShape ;
@@ -223,83 +292,82 @@ simulation-model:QualityShape a sh:NodeShape ;
             sh:datatype xsd:string ;
             sh:description "Description of all limitations that apply to the model and its usage."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.limitations failed!"@en ;
+            sh:message "Validation of modelLimitations failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.limitations"@en ;
+            sh:name "modelLimitations"@en ;
             sh:order 0 ;
-            sh:path simulation-model:model.limitations ],
+            sh:path simulation-model:modelLimitations ],
         [ skos:example "Sensor model is only accurate up to sensor/vehicle speeds of less than 150km/h" ;
             sh:datatype xsd:string ;
             sh:description "Restrictions on the model validity, typically on quantifiable aspects."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.validity-range failed!"@en ;
+            sh:message "Validation of model.vValidityRange failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.validity-range"@en ;
+            sh:name "modelValidityRange"@en ;
             sh:order 1 ;
-            sh:path simulation-model:model.validity-range ],
+            sh:path simulation-model:modelValidityRange ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
             sh:description "Is the model verified"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.verification.status failed!"@en ;
+            sh:message "Validation of modelVerificationStatus failed!"@en ;
             sh:minCount 1 ;
-            sh:name "model.verification.status"@en ;
+            sh:name "modelVerificationStatus"@en ;
             sh:order 2 ;
-            sh:path simulation-model:model.verification.status ],
+            sh:path simulation-model:modelVerificationStatus ],
         [ skos:example "http://mywebsite.de/VerficiationReport.pdf" ;
             sh:datatype xsd:anyURI ;
             sh:description "Link to model verification report, if any exists"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.verification.report failed!"@en ;
+            sh:message "Validation of modelVerificationReport failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.verification.report"@en ;
+            sh:name "modelVerificationReport"@en ;
             sh:order 3 ;
-            sh:path simulation-model:model.verification.report ],
+            sh:path simulation-model:modelVerificationReport ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
             sh:description "Is the model validated, according to the validation concept"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.validation.status failed!"@en ;
+            sh:message "Validation of modelValidationStatus failed!"@en ;
             sh:minCount 1 ;
-            sh:name "model.validation.status"@en ;
+            sh:name "modelValidationStatus"@en ;
             sh:order 4 ;
-            sh:path simulation-model:model.validation.status ],
+            sh:path simulation-model:modelValidationStatus ],
         [ skos:example "PMSF FMIBench 1.9.9.4 using osi3test 0.6.0 on Windows 10 1809" ;
             sh:datatype xsd:string ;
             sh:description "Specification of simulation environment used for model validation."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of model.validation.platform failed!"@en ;
+            sh:message "Validation of modelValidationPlatform failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.validation.platform"@en ;
+            sh:name "modelValidationPlatform"@en ;
             sh:order 5 ;
-            sh:path simulation-model:model.validation.platform ],
+            sh:path simulation-model:modelValidationPlatform ],
         [ skos:example "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf" ;
             sh:datatype xsd:anyURI ;
             sh:description "Link to model validation report, if any exists"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.validation.report failed!"@en ;
+            sh:message "Validation of modelValidationReport failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.validation.report"@en ;
+            sh:name "modelValidationReport"@en ;
             sh:order 6 ;
-            sh:path simulation-model:model.validation.report ],
+            sh:path simulation-model:modelValidationReport ],
         [ skos:example "http://mywebsite.de/ValidationConcept.md" ;
             sh:datatype xsd:anyURI ;
             sh:description "Link to document detailing the validation concepts used for model validation, if any exists"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of model.validation.concept failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.validation.concept"@en ;
+            sh:name "modelValidationConcept"@en ;
             sh:order 7 ;
-            sh:path simulation-model:model.validation.concept ],
+            sh:path simulation-model:modelValidationConcept ],
         [ skos:example "Potentially real-time capable, if less than 100 objects in object list input at any one time" ;
             sh:datatype xsd:string ;
             sh:description "Description of model performance characteristics."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.implementation.performance-characteristics failed!"@en ;
+            sh:message "Validation of modelImplementationPerformanceCharacteristics failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.implementation.performance-characteristics"@en ;
+            sh:name "modelImplementationPerformanceCharacteristics"@en ;
             sh:order 8 ;
-            sh:path simulation-model:model.implementation.performance-characteristics ] ;
+            sh:path simulation-model:modelImplementationPerformanceCharacteristics ] ;
     sh:targetClass simulation-model:Quality .
 
 simulation-model:DataSourceShape a sh:NodeShape ;
@@ -309,9 +377,9 @@ simulation-model:DataSourceShape a sh:NodeShape ;
             sh:datatype xsd:anyURI ;
             sh:description "Provide a link to the model specification document"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of model.specification failed!"@en ;
+            sh:message "Validation of modelSpecification failed!"@en ;
             sh:minCount 0 ;
-            sh:name "model.specification"@en ;
+            sh:name "modelSpecification"@en ;
             sh:order 0 ;
-            sh:path simulation-model:model.specification ] ;
+            sh:path simulation-model:modelSpecification ] ;
     sh:targetClass simulation-model:DataSource .
