@@ -104,10 +104,6 @@
             "@value": "Released",
             "@type": "xsd:string"
         },
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelUseRestrictions": {
-            "@value": "No use restrictions",
-            "@type": "xsd:string"
-        },
         "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/modelGuid": {
             "@value": "7ae4-210f-dead-beef-042",
             "@type": "xsd:string"

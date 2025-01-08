@@ -158,21 +158,13 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:name "modelReleasestatus"@en ;
             sh:order 6 ;
             sh:path simulation-model:modelReleasestatus ],
-        [ skos:example "No use restrictions" ;
-            sh:datatype xsd:string ;
-            sh:description "Legal or contractual restrictions on the use and distribution of the model that have to be respected. Applicable Licenses should be mentioned here."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of modelUseRestrictions failed!"@en ;
-            sh:name "modelUseRestrictions"@en ;
-            sh:order 7 ;
-            sh:path simulation-model:modelUseRestrictions ],
         [ skos:example "7ae4-210f-dead-beef-042" ;
             sh:datatype xsd:string ;
             sh:description "For FMU-based models, this should be the GUID of the FMU."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of modelGuid failed!"@en ;
             sh:name "modelGuid"@en ;
-            sh:order 8 ;
+            sh:order 7 ;
             sh:path simulation-model:modelGuid ],
         [ skos:example "HAD function validation in OEM environment at object-list level" ;
             sh:datatype xsd:string ;
@@ -180,7 +172,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of modelPurpose failed!"@en ;
             sh:name "modelPurpose"@en ;
-            sh:order 9 ;
+            sh:order 8 ;
             sh:path simulation-model:modelPurpose ],
         [ skos:example "model is purely object-list driven, weather effects are not modelled." ;
             sh:datatype xsd:string ;
@@ -188,7 +180,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of modelModellingApproach failed!"@en ;
             sh:name "modelModellingApproach"@en ;
-            sh:order 10 ;
+            sh:order 9 ;
             sh:path simulation-model:modelModellingApproach ],
         [ skos:example "Sample company" ;
             sh:datatype xsd:string ;
@@ -196,7 +188,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorManufacturer failed!"@en ;
             sh:name "sensorManufacturer"@en ;
-            sh:order 11 ;
+            sh:order 10 ;
             sh:path simulation-model:sensorManufacturer ],
         [ skos:example "ARS5XX" ;
             sh:datatype xsd:string ;
@@ -204,7 +196,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorFamily failed!"@en ;
             sh:name "sensorFamily "@en ;
-            sh:order 12 ;
+            sh:order 11 ;
             sh:path simulation-model:sensorFamily ],
         [ skos:example "ARS548" ;
             sh:datatype xsd:string ;
@@ -212,7 +204,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorName failed!"@en ;
             sh:name "sensorName"@en ;
-            sh:order 13 ;
+            sh:order 12 ;
             sh:path simulation-model:sensorName ],
         [ skos:example "1.0.0" ;
             sh:datatype xsd:string ;
@@ -220,7 +212,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorVersion failed!"@en ;
             sh:name "sensorVersion "@en ;
-            sh:order 14 ;
+            sh:order 13 ;
             sh:path simulation-model:sensorVersion ],
         [ skos:example "A123" ;
             sh:datatype xsd:string ;
@@ -228,7 +220,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorManufacturerPartnumber failed!"@en ;
             sh:name "sensorManufacturerPartnumber"@en ;
-            sh:order 15 ;
+            sh:order 14 ;
             sh:path simulation-model:sensorManufacturerPartnumber ],
         [ skos:example "object-output" ;
             sh:datatype xsd:string ;
@@ -236,7 +228,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorType failed!"@en ;
             sh:name "sensorType"@en ;
-            sh:order 16 ;
+            sh:order 15 ;
             sh:path simulation-model:sensorType ],
         [ skos:example "radar" ;
             skos:example "camera" ;
@@ -246,7 +238,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorTechnology failed!"@en ;
             sh:name "sensorTechnology"@en ;
-            sh:order 17 ;
+            sh:order 16 ;
             sh:path simulation-model:sensorTechnology  ],
         [ skos:example "long-range" ;
             skos:example "front" ;
@@ -258,7 +250,7 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of sensorTechnologyVariant failed!"@en ;
             sh:name "sensorTechnologyVariant"@en ;
-            sh:order 18 ;
+            sh:order 17 ;
             sh:path simulation-model:sensorTechnologyVariant ] ;
     sh:targetClass simulation-model:Content .
 
