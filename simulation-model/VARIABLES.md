@@ -25,7 +25,6 @@
 | ContentShape | simulation-model | modelVersion | 1 | 1 | Model Version, no specific convention defined | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | modelReleasedate | 1 | 1 | Model Release Date in ISO8601 | <http://www.w3.org/2001/XMLSchema#dateTime> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | modelReleasestatus | 1 | 1 | The status of the model version released in the life cycle of the model. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
-| ContentShape | simulation-model | modelUseRestrictions |  | 1 | Legal or contractual restrictions on the use and distribution of the model that have to be respected. Applicable Licenses should be mentioned here. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | modelGuid |  | 1 | For FMU-based models, this should be the GUID of the FMU. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | modelPurpose |  | 1 | Purpose for which the model has been built/validated. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | modelModellingApproach |  | 1 | Description of the modelling approach taken. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
