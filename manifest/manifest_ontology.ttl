@@ -27,4 +27,9 @@ manifest:License a owl:Class ;
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link" ;
     rdfs:comment "Link attributes for all assets"@en .
-
+manifest:FileMetaData a owl:Class ;
+    rdfs:label "Class definition for FileMetaData" ;
+    rdfs:comment "FileMetaData attributes for all assets"@en .    
+manifest:Dimensions a owl:Class ;
+    rdfs:label "Class definition for Dimensions" ;
+    rdfs:comment "Dimensions attributes for all assets"@en .
