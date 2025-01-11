@@ -1,0 +1,39 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+simulation-model: a owl:Ontology ;
+    rdfs:label "Ontology definition for Simulation Model"@en ;
+    dcterms:contributor "Fin Heuer (DLR)" ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
+    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/" ;
+    owl:versionIRI <https://raw.githubusercontent.com/GAIA-X4PLC-AAD/ontology-management-base/refs/heads/main/simulation-model/simulation-model_ontology.ttl> ;
+    owl:versionInfo "0.1" .
+
+simulation-model:SimulationModel a owl:Class ;
+    rdfs:label "SimulationModel"@en ;
+    rdfs:comment "Class definition for a simulation model"@en ;
+    rdfs:subClassOf gx:DataResource .
+
+simulation-model:Format a owl:Class ;
+    rdfs:label "class definition for Format" ;
+    rdfs:comment "Class with attributes for Format"@en .
+
+simulation-model:Content a owl:Class ;
+    rdfs:label "class definition for Content" ;
+    rdfs:comment "Class with attributes for Content"@en .
+
+simulation-model:Quantity a owl:Class ;
+    rdfs:label "class definition for Quantity" ;
+    rdfs:comment "Class with attributes for Quantity"@en .
+
+simulation-model:Quality a owl:Class ;
+    rdfs:label "class definition for Quality" ;
+    rdfs:comment "Class with attributes for Quality"@en .
+
+simulation-model:DataSource a owl:Class ;
+    rdfs:label "class definition for DataSource" ;
+    rdfs:comment "Class with attributes for DataSource"@en .
