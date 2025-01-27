@@ -58,6 +58,9 @@
 # simulated-sensor directory (Rhea)
 /simulated-sensor @telina
 
+# automotive-simulator directory (Rhea)
+/automotive-simulator @telina
+
 # leakage-test directory (Selcan AND Robert Or Lena)
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
