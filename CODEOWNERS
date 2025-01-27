@@ -68,3 +68,7 @@
 # marketplace-info directory (Robert AND Johannes)
 /marketplace-info @robertschubert
 /marketplace-info @jtdemer
+
+# manifest directory (Robert AND Johannes)
+/manifest @robertschubert
+/manifest @jtdemer
