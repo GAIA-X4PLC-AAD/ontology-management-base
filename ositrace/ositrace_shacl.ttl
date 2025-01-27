@@ -250,7 +250,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:path ositrace:calibration ],
         [ skos:example "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf" ;
             sh:datatype xsd:anyURI ;
-            sh:description "Link to the validation report. E.g. DID of the report asset or other link types."@en ;
+            sh:description "Link to the validation report. E.g. DID of the report asset or other link types. The report should be of type 'vv-report:VvReport' according to https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of validationReport failed!"@en ;
             sh:minCount 0 ;
