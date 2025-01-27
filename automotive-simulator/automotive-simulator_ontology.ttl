@@ -10,7 +10,7 @@
 
 automotive-simulator: a owl:Ontology ;
     rdfs:label "Ontology definition for automotive-simulator"@en ;
-    dcterms:contributor "Rhea C. Rinaldo (IQZ), Aaron Blickle (IQZ), Johannes Heinrich (IQZ)" ;
+    dcterms:contributor "Rhea C. Rinaldo (IQZ), Aaron Blickle (IQZ), Johannes Heinrich (IQZ), Elias Modrakowski (DLR)" ;
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
     dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/" ;
     owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/automotive_simulator/automotive-simulator/automotive_simulator_ontology.ttl> ;
