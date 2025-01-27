@@ -55,6 +55,9 @@
 /ositrace @robertschubert
 /ositrace @pmai
 
+# simulated-sensor directory (Rhea)
+/simulated-sensor @telina
+
 # leakage-test directory (Selcan AND Robert Or Lena)
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
@@ -63,5 +66,6 @@
 /marketplace-info @robertschubert
 /marketplace-info @jtdemer
 
-
-
+# manifest directory (Robert AND Johannes)
+/manifest @robertschubert
+/manifest @jtdemer
