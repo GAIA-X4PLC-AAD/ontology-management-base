@@ -247,7 +247,25 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "calibration"@en ;
             sh:order 5 ;
-            sh:path ositrace:calibration ] ;
+            sh:path ositrace:calibration ],
+        [ skos:example "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar" ;
+            sh:datatype xsd:anyURI ;
+            sh:description "Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of validationReport failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "validation report"@en ;
+            sh:order 6 ;
+            sh:path ositrace:validationReport ],
+        [ skos:example "application/xqar" ;
+            sh:datatype xsd:string ;
+            sh:description "Type of OSI trace validation report, if any exists. As mime-type"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of validationReportType failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "validation report type"@en ;
+            sh:order 7 ;
+            sh:path ositrace:validationReportType ] ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
