@@ -7,7 +7,7 @@
 
 automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
     sh:targetClass automotive-simulator:AutomotiveSimulator ;
-    # General shape 
+    # General shape (mandatory)
     sh:property [
         sh:node general:GeneralShape ;  
         sh:name "general object" ;
@@ -17,7 +17,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 0 ;
         sh:description "general object with properties for description and data" ;
     ] ;
-    # simulator type/make (String, optional)
+    # simulator type/make (String, mandatory)
     sh:property [
         skos:example "CARLA" ;
         sh:path automotive-simulator:simulatorMake ;
@@ -28,7 +28,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 1 ;
         sh:description "Make/Type of automotive simulator" ;
     ] ;
-    # software version (String, optional)
+    # software version (String, mandatory)
     sh:property [
         skos:example "0.9.15" ;
         sh:path automotive-simulator:softwareVersion ;
@@ -39,7 +39,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 2 ;
         sh:description "Sofware version of the simulator" ;
     ] ;
-    # Sensor Failure Flag (Boolean, optional)
+    # Sensor Failure Flag (Boolean, mandatory)
     sh:property [
         skos:example "true" ;
         sh:path automotive-simulator:sensorFailureFlag ;
@@ -50,7 +50,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 3 ;
         sh:description "If true, the simulator supports the simulation of sensor failures" ;
     ] ;
-    # Sensor Attack Flag (Boolean, optional)
+    # Sensor Attack Flag (Boolean, mandatory)
     sh:property [
         skos:example "true" ;
         sh:path automotive-simulator:sensorAttackFlag ;
@@ -61,6 +61,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 5 ;
         sh:description "If true, the simulator supports the simulation of sensor attacks" ;
     ] ;
+    # Open Scenario Version (List, optional)
     sh:property [
         skos:example "ASAM openSCENARIO 1.x" ;
         sh:path automotive-simulator:scenarioDefinition ;
@@ -71,6 +72,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:order 6 ;
         sh:description "Description language for defining driving scenarios supported by the simulator" ;
     ] ;
+    # Open Scenario Version (List, optional)
     sh:property [
         skos:example "TCP" ;
         sh:path automotive-simulator:interface ;
