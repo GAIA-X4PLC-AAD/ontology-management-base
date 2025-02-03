@@ -2,6 +2,7 @@
     "@context": {
         "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
         "simulated-sensor": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/",
+        "automotive-simulator": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/",
         "sh": "http://www.w3.org/ns/shacl#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
