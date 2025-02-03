@@ -85,6 +85,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
     ] ;
     # Sensor type(s) (optional, can be multiple)
     sh:property [
+        sh:node simulated-sensor:SimulatedSensor ;  
         skos:example "Radar" ;
         sh:path simulated-sensor:simulatedSensor ;
         sh:minCount 0 ;
