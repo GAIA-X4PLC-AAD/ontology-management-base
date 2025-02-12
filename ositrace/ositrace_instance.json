@@ -84,7 +84,15 @@
     }  
   },
   "ositrace:quality": {
-    "@type": "ositrace:Quality"
+    "@type": "ositrace:Quality",
+    "ositrace:validationReport": {
+      "@value": "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar",
+      "@type": "xsd:anyURI"
+    },
+    "ositrace:validationReportType": {
+      "@value": "application/xqar",
+      "@type": "xsd:string"
+    }
   },
   "ositrace:quantity": {
     "@type": "ositrace:Quantity",
