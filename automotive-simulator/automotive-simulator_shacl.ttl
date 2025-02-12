@@ -1,0 +1,95 @@
+@prefix automotive-simulator: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
+    sh:targetClass automotive-simulator:AutomotiveSimulator ;
+    # General shape (mandatory)
+    sh:property [
+        sh:node general:GeneralShape ;  
+        sh:name "general object" ;
+        sh:path automotive-simulator:general ;
+        sh:maxCount 1 ; 
+        sh:minCount 1 ; 
+        sh:order 0 ;
+        sh:description "general object with properties for description and data" ;
+    ] ;
+    # simulator type/make (String, mandatory)
+    sh:property [
+        skos:example "CARLA" ;
+        sh:path automotive-simulator:simulatorMake ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "simulator make"@en ;
+        sh:order 1 ;
+        sh:description "Make/Type of automotive simulator" ;
+    ] ;
+    # software version (String, mandatory)
+    sh:property [
+        skos:example "0.9.15" ;
+        sh:path automotive-simulator:softwareVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "software version"@en ;
+        sh:order 2 ;
+        sh:description "Sofware version of the simulator" ;
+    ] ;
+    # Sensor Failure Flag (Boolean, mandatory)
+    sh:property [
+        skos:example "true" ;
+        sh:path automotive-simulator:sensorFailureFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "sensor failure flag"@en ;
+        sh:order 3 ;
+        sh:description "If true, the simulator supports the simulation of sensor failures" ;
+    ] ;
+    # Sensor Attack Flag (Boolean, mandatory)
+    sh:property [
+        skos:example "true" ;
+        sh:path automotive-simulator:sensorAttackFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "sensor attack flag"@en ;
+        sh:order 5 ;
+        sh:description "If true, the simulator supports the simulation of sensor attacks" ;
+    ] ;
+    # Open Scenario Version (List, optional)
+    sh:property [
+        skos:example "ASAM openSCENARIO 1.x" ;
+        sh:path automotive-simulator:scenarioDefinition ;
+        sh:datatype xsd:string ;
+        sh:in ("ASAM openSCENARIO 1.x" "ASAM openSCENARIO 2.x" "proprietary" "scenic") ;
+        sh:minCount 0 ;
+        sh:name "scenario definition"@en ;
+        sh:order 6 ;
+        sh:description "Description language for defining driving scenarios supported by the simulator" ;
+    ] ;
+    # Open Scenario Version (List, optional)
+    sh:property [
+        skos:example "TCP" ;
+        sh:path automotive-simulator:interface ;
+        sh:datatype xsd:string ;
+        sh:in ("PythonAPI" "TCP" "UDP" "ROS1" "ROS2") ;
+        sh:minCount 0 ;
+        sh:name "interface"@en ;
+        sh:order 7 ;
+        sh:description "Communcation interface provided by the simulator to communicate with different assets (e.g. agents/vehicle implementations)" ;
+    ] ;
+    # Sensor type(s) (optional, can be multiple)
+    sh:property [
+        sh:node simulated-sensor:SimulatedSensor ;  
+        skos:example "Radar" ;
+        sh:path simulated-sensor:simulatedSensor ;
+        sh:minCount 0 ;
+        sh:name "simulated sensor"@en ;
+        sh:order 8 ;
+        sh:description "Type and kinds of sensors that are natively included in the simulator" ;
+    ] .
