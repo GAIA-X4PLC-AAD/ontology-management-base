@@ -130,6 +130,95 @@ This section describes guidelines that _must_ be followed when applying changes 
                 sh:path <your_prefix>:marketplace-info ],
     ```
 
+## Release Management
+
+Creating a new domain-specific release begins with creating a pull request in the main branch.
+
+The pull request is divided into a four-step review process.
+
+### Step 1:
+* When the contributor creates the pull request, the corresponding CODEOWNERS are automatically assigned and review the pull request. If this process is successfully completed, the CODEOWNERS set the appropriate version bump label: `patch`, `minor`, or `major`.
+
+### Step 2:
+* The necessary version folder structure is then created in the domain. Optionally, the script `create-version-folder.yml` can be used by setting the label `create-version-folder`, which triggers a GitHub action.
+
+### Step 3:
+* The automatic verification of the necessary version folder structure is started by setting the label `check-version-folder`.
+
+### Step 4:
+* Before the pull request is merged into the main branch, the label `create-releases` can be set to automatically generate the domain release. Alternatively, the corresponding release must be manually created by the CODEOWNERS after merging into the main branch.
+
+**Below is a more detailed explanation of the release process:**
+
+### Labels
+
+1. **Version Bump**:
+   - `patch`: Choose this label for small bug fixes or changes that do not add new features. The version number will be incremented by 0.0.1.
+   - `minor`: Choose this label for minor new features or significant improvements that are backward compatible. The version number will be incremented by 0.1.0.
+   - `major`: Choose this label for major changes or new features that may not be backward compatible. The version number will be incremented by 1.0.0.
+
+2. **Optional**:
+   - `create-version-folder`: Choose this label when the GitHub action should create the necessary code subfolder structure.
+   - `create-release`: Choose this label if an automated release should be generated after merging the pull request.
+
+3. **Check**:
+   - `check-version-folder`: Choose this label to trigger the check for the version subfolder.
+
+### Subfolder Structure
+
+For each domain in the main branch (e.g., `domain1`, `domain2`, etc.), a new version subfolder must be created depending on the amount of changes and the assigned category, which is defined by the three labels: patch, minor, and major. For the patch label, the version number is incremented by `v[].[].[+1]`. For the minor label, the version number is incremented by `v[].[+1].[]`. For the major label, the version number is incremented by `v[+1].[].[]`. The structure should look like this:
+
+```
+repository-root/
+├── domain1/
+│   ├── v1.0.0/
+│   │   ├── file1_shacl.ttl
+│   │   ├── file1_ontology.ttl
+│   │   └── file1_instance.json
+│   ├── v1.1.0/
+│   │   ├── file1_shacl.ttl
+│   │   ├── file1_ontology.ttl
+│   │   └── file1_instance.json
+│   ├── file1_shacl.ttl
+│   ├── file1_ontology.ttl
+│   ├── file1_instance.json
+│   └── ...
+├── domain2/
+│   ├── v1.0.0/
+│   │   ├── file2_shacl.ttl
+│   │   ├── file2_ontology.ttl
+│   │   └── file2_instance.json
+│   ├── v1.1.0/
+│   │   ├── file2_shacl.ttl
+│   │   ├── file2_ontology.ttl
+│   │   └── file2_instance.json
+│   ├── file2_shacl.ttl
+│   ├── file2_ontology.ttl
+│   ├── file2_instance.json
+│   └── ...
+└── ...
+```
+
+### Update files
+
+   - Open the `.ttl` and `.json` files in the new version subfolder and update the `@prefix` and `@context` entries to reflect the new version URIs.
+
+   ```ttl
+   @prefix example: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/domain1/v1.0.0/> .
+   ```
+
+   ```json
+   {
+     "@context": {
+       "domain1": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/domain1/v1.0.0/"
+     }
+   }
+   ```
+
+### Subfolder Checker
+
+To ensure that the subfolders are correctly created, a separate GitHub Actions workflow is used. This workflow is triggered when the label `check-version-folder` is added to the pull request.
+
 ## CI pipeline
 
 The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. The result can be seen in the `Actions` tab in the github repository.
