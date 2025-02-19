@@ -1,14 +1,31 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
 
 vv-report:VvReportShape a sh:NodeShape ;
-    sh:property [ sh:path vv-report:evaluations ;
+    sh:property 
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:GeneralShape ;
+            sh:name "general object" ;
+            sh:description "general object with properties for descriptions, data, links, bundle" ;
+            sh:order 0 ;
+            sh:path vv-report:general ],
+        [ skos:example "did:op:bffa3d7670fc3ac3a49a257de0d4b44fdfbc12d9bd7aa329647cf73018f529f4" ;
+            sh:path vv-report:systemUnderTest ; 
+            sh:name "system under test"@en ;
+            sh:description "A unique reference or identifier to the tested artifact, like a simulation model"@en ;
+            sh:datatype xsd:anyURI ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 1 ],
+        [ sh:path vv-report:evaluations ;
             sh:node vv-report:EvaluationShape ;
             sh:description "A list of all measures carried out on the subject under test"@en ;
             sh:minCount 1 ;
-            sh:order 0 ] ;
+            sh:order 2 ] ;
     sh:targetClass vv-report:VvReport .
 
 vv-report:EvaluationShape a sh:NodeShape ;
@@ -28,9 +45,8 @@ vv-report:EvaluationShape a sh:NodeShape ;
             sh:description "The summary of the result of this evaluation item"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ],
-        [ sh:path vv-report:metadata ;
-            sh:node vv-report:MetadataShape ;
-            sh:description "Additional data (e.g. V&V-concept specific data) to be used to describe the evaluation"@en ;
+        [ sh:path vv-report:conceptSpecificData ;
+            sh:description "Additional arbitrary V&V-concept specific data, to further describe the evaluation"@en ;
             sh:minCount 0 ] ;
     sh:targetClass vv-report:Evaluation .
 
@@ -107,9 +123,7 @@ vv-report:ResultShape a sh:NodeShape ;
             sh:node vv-report:ResultVerificationShape ; 
             sh:description "The necessary attributes to carry out verification of the result by a third party"@en ;
             sh:minCount 0 ;
-            sh:maxCount 1 ],
-        [ sh:path vv-report:EvaluationMetadata ;
-            sh:description "Any additional data, e.g. v&v concept specific information" ] ;
+            sh:maxCount 1 ] ;
     sh:targetClass vv-report:Result .
 
 vv-report:ResultVerificationShape a sh:NodeShape ;

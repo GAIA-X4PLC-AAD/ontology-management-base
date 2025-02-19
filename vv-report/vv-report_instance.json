@@ -2,12 +2,38 @@
     "@context": {
         "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
         "vv-report": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/",
+        "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
         "sh": "http://www.w3.org/ns/shacl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#"
     },
     "@id": "did:web:registry.gaia-x.eu:VVReport:.............",
     "@type": "vv-report:VvReport",
+    "vv-report:general": {
+        "@type": "general:General",
+        "general:description": {
+            "@type": "general:Description",
+            "general:name": {
+                "@value": "ARS548 simulation model V&V report",
+                "@type": "xsd:string"
+            },
+            "general:description": {
+                "@value": "V&V Report of the radar sensor simulation model of the Continental ARS548 radar sensor",
+                "@type": "xsd:string"
+            }
+        },
+        "general:data": {
+            "@type": "general:Data",
+                "general:size": {
+                    "@value": "0.008",
+                    "@type": "xsd:float"
+            }
+        }
+    },
+    "vv-report:systemUnderTest": {
+        "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:gADlioH767wrmg4t6uUTj0wgADlioH534hrhSF",
+        "@type": "xsd:anyURI"
+    },
     "vv-report:evaluations": [
         {
             "@type": "vv-report:Evaluation",
