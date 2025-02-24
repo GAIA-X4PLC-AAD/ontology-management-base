@@ -1,9 +1,8 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 general:GeneralShape a sh:NodeShape ;
     sh:closed false ;
@@ -11,15 +10,15 @@ general:GeneralShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
-            sh:name "description object" ;
-            sh:description "description object with property for name and description" ;
+            sh:name "description"@en ;
+            sh:description "General text based description of the simulation asset."@en ;
             sh:order 1 ;
             sh:path general:description ],     
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
-            sh:name "data object" ;
-            sh:description "data object with property for size and record time" ;
+            sh:name "data"@en ;
+            sh:description "Data properties of the simulation asset."@en ;
             sh:order 2 ;
             sh:path general:data ];              
     sh:targetClass general:General .
@@ -28,19 +27,19 @@ general:DescriptionShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "A human readable name of the entity." ;
-            skos:example "3D Model in Grafing" ;
+            sh:description "A human readable name of the entity."@en ;
+            skos:example "3D Model of Grafing"@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:name "name" ;
+            sh:name "name"@en ;
             sh:order 1 ;
             sh:path general:name ],
         [ sh:datatype xsd:string ;
-            sh:description "A free text description of the entity." ;
-            skos:example "town district, with traffic signs" ;
+            sh:description "A free text description of the entity."@en ;
+            skos:example "Town district with traffic signs."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:name "description" ;
+            sh:name "description"@en ;
             sh:order 2 ;
             sh:path general:description ];
     sh:targetClass general:Description .    
@@ -49,19 +48,19 @@ general:DataShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
-            sh:description "Size of the asset file(e.g. xodr, 3d model zip) to be downloaded in MB." ;
+            sh:description "Size of the data file(e.g. xodr, 3d model zip) to be downloaded in MB."@en ;
             skos:example "5.8" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:name "size" ;
+            sh:name "size"@en ;
             sh:order 1 ;
             sh:path general:size ],
-        [ skos:example "2022-04-01 00:00:00" ;
+        [ skos:example "2022-04-01T00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of recordingTime failed!"@en ;
-            sh:name "recordingTime"@en ;
+            sh:message "Validation of recording time failed!"@en ;
+            sh:name "recording time"@en ;
             sh:order 2 ;
             sh:path general:recordingTime ] ;
     sh:targetClass general:Data . 

@@ -1,29 +1,32 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
 general: a owl:Ontology ;
-    rdfs:label "ontology definition for General"@en ;
-    dcterms:contributor "Mirco Nierenz (TG)" ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for General"@en ;
+    rdfs:comment "General ontology with common classes for the simulation domain."@en ;
+    dcterms:contributor "Mirco Nierenz (TG), Carlo van Driesten (BMW AG)" ;
+    owl:versionInfo "0.2" .
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General" ;
-    rdfs:comment "General attributes for all assets"@en ;
+    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en ;
     rdfs:subClassOf gx:DataResource .
 
 general:Description a owl:Class ;
     rdfs:label "Description definition for General" ;
-    rdfs:comment "Description attributes for all assets"@en .
+    rdfs:comment "General text based description of the simulation asset."@en .
 
 general:Data a owl:Class ;
     rdfs:label "Data definition for General" ;
-    rdfs:comment "Data attributes for all assets"@en .
+    rdfs:comment "Data properties of the simulation asset."@en .
 
 general:Range2D a owl:Class ;
     rdfs:label "Range2D definition for General" ;
-    rdfs:comment "Range2D attributes for all assets"@en .
+    rdfs:comment "A minimum to maximum data property usable in the simulation asset."@en .
