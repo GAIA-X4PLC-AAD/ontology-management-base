@@ -11,16 +11,16 @@ georeference:GeoreferenceShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node georeference:ProjectLocationShape ;
-            sh:name "project location object" ;
-            sh:description "projectLocation object with property for locations and description" ;
+            sh:name "project location object"@en ;
+            sh:description "Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset."@en ;
             sh:order 0 ;
             sh:path georeference:projectLocation ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node georeference:GeodeticReferenceSystemShape ;
-            sh:name "geodetic reference system object" ;
-            sh:description "geodeticReferenceSystem object with properties for projection informations" ;
+            sh:name "geodetic reference system object"@en ;
+            sh:description "This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system."@en ;
             sh:order 1 ;
             sh:path georeference:geodeticReferenceSystem ] ;
     sh:targetClass georeference:Georeference .
@@ -30,8 +30,8 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:or ( [ sh:minCount 1 ; sh:path georeference:codeEPSG ] 
             [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ] ) ;
-    sh:property [ skos:example "Lat: 1.234; Lon 45.23" ;
-            sh:description "World coordinates of map origin"@en ;
+    sh:property [ skos:example "Lat: 1.234; Lon 45.23"@en ;
+            sh:description "Defines the center position of the asset in world coordinates."@en ;
             sh:message "Validation of origin failed!"@en ;
             sh:name "origin"@en ;
             sh:node georeference:LatLonCoordinateShape ;
@@ -39,8 +39,8 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path georeference:origin ],
-        [ skos:example "Lat: 1.234; Lon 45.23" ;
-            sh:description "World coordinates of view point"@en ;
+        [ skos:example "Lat: 1.234; Lon 45.23"@en ;
+            sh:description "Defines the imported viewpoint position of the asset in world coordinates."@en ;
             sh:message "Validation of view point failed!"@en ;
             sh:name "view point"@en ;
             sh:node georeference:LatLonCoordinateShape ;
@@ -49,7 +49,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:path georeference:viewPoint ],
         [ skos:example "32632" ;
             sh:datatype xsd:int ;
-            sh:description "EPSG code of the map"@en ;
+            sh:description "Defines the projection EPSG code for the asset."@en ;
             sh:message "Validation of codeEPSG failed!"@en ;
             sh:name "EPSG code"@en ;
             sh:maxCount 1 ; 
@@ -57,7 +57,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:path georeference:codeEPSG ],
         [ skos:example "UTM, None" ;
             sh:datatype xsd:string ;
-            sh:description "coordinate system name of the map"@en ;
+            sh:description "Describes the coordinate system name of the asset as an alternative to the EPSG code."@en ;
             sh:message "Validation of coordinateSystemName failed!"@en ;
             sh:name "coordinate system name"@en ;
             sh:maxCount 1 ; 
@@ -65,7 +65,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
             sh:path georeference:coordinateSystemName ],
         [ skos:example "Ellipsodial height" ;
             sh:datatype xsd:string ;
-            sh:description "Ellipsodial height or orthometric height"@en ;
+            sh:description "Defines the height system type of the asset."@en ;
             sh:in ("Ellipsodial height" "Orthometric height" "local height") ;
             sh:maxCount 1 ;
             sh:message "Validation of heightSystem failed!"@en ;
@@ -184,7 +184,7 @@ georeference:ProjectLocationShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 5 ;
             sh:path georeference:boundingBox ],
-        [ skos:example "Highway A8, Greater Area Ingolstadt" ;
+        [ skos:example "Highway A8, Greater Area Ingolstadt"@en ;
             sh:datatype xsd:string ;
             sh:description "Description of the mapped area as relation for a certain road, or alternatively a region"@en ;
             sh:message "Validation of relationOrArea failed!"@en ;

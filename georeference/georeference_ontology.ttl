@@ -14,21 +14,21 @@ georeference: a owl:Ontology ;
     owl:versionInfo "0.2" .
 
 georeference:Georeference a owl:Class ;
-    rdfs:label "Class definition for Georeference" ;
+    rdfs:label "Class definition for Georeference"@en ;
     rdfs:comment "General properties for defining the location and projection of the simulation asset."@en .
 
 georeference:GeodeticReferenceSystem a owl:Class ;
-    rdfs:label "Class definition for GeodeticReferenceSystem" ;
-    rdfs:comment "Contains properties for positions (origin, viewpoint), projection type, and ellipsoidal height system."@en .
+    rdfs:label "Class definition for GeodeticReferenceSystem"@en ;
+    rdfs:comment "This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system."@en .
 
 georeference:BoundingBox a owl:Class ;
-    rdfs:label "Class definition for BoundingBox" ;
+    rdfs:label "Class definition for BoundingBox"@en ;
     rdfs:comment "Data property to define a bounding box with minimum and maximum values for the x and y axes."@en .
 
 georeference:LatLonCoordinate a owl:Class ;
-    rdfs:label "Class definition for LatLonCoordinate" ;
+    rdfs:label "Class definition for LatLonCoordinate"@en ;
     rdfs:comment "Data property to define world coordinates in latitude/longitude, expressed in degrees."@en .
 
 georeference:ProjectLocation a owl:Class ;
-    rdfs:label "Class definition for Georeference" ;
+    rdfs:label "Class definition for Georeference"@en ;
     rdfs:comment "Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset."@en .
