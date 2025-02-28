@@ -10,13 +10,13 @@
 
 environment-model: a owl:Ontology ;
     rdfs:label "Ontology definition for environment-model"@en ;
-    rdfs:comment "An environment-model ontology with common classes to describe an environment-model asset."@en ;
+    rdfs:comment "An ontology with common classes to describe an environment-model asset."@en ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
     owl:versionInfo "0.2" .
 
 environment-model:EnvironmentModel a owl:Class ;
     rdfs:label "Class definition for environment-model"@en ;
-    rdfs:comment "General properties for defining an environment-model asset, such as format, content, project, and quantity or quality properties."@en ;
+    rdfs:comment "General properties for defining an environment-model asset, such as format, content, project, quantity and quality properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 environment-model:Format a owl:Class ;

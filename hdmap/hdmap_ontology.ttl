@@ -1,36 +1,39 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 
 hdmap: a owl:Ontology ;
-    rdfs:label "ontology definition for hdmap"@en ;
-    dcterms:contributor "Sebastian Tuttas (3DMS)" ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for hdmap"@en ;
+    rdfs:comment "An ontology with common classes to describe an hdmap asset."@en ;
+    dcterms:contributor "Sebastian Tuttas (3DMS), Mirco Nierenz (TG)" ;
+    owl:versionInfo "0.2" .
 
 hdmap:HdMap a owl:Class ;
-    rdfs:label "class definition for hdmap" ;
-    rdfs:comment "Attributes for high definition maps"@en ;
+    rdfs:label "Class definition for hdmap"@en ;
+    rdfs:comment "General properties for defining a hdmap asset, such as format, content, quantity and quality properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 hdmap:Content a owl:Class ;
-    rdfs:label "class definition for Content" ;
-    rdfs:comment "Attributes for Content"@en .
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the hdmap asset."@en .
 
 hdmap:DataSource a owl:Class ;
-    rdfs:label "class definition for DataSource" ;
-    rdfs:comment "Attributes for DataSource"@en .
+    rdfs:label "Class definition for DataSource"@en ;
+    rdfs:comment "Defines which data resources or measurement systems were used to create the hdmap asset."@en .
 
 hdmap:Format a owl:Class ;
-    rdfs:label "class definition for Format" ;
-    rdfs:comment "Attributes for Format"@en .
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Contains properties to describe the format of the hdmap asset."@en .
 
 hdmap:Quality a owl:Class ;
-    rdfs:label "class definition for Quality" ;
-    rdfs:comment "Attributes for Quality"@en .
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Contains properties to describe the accuracy of the hdmap asset."@en .
 
 hdmap:Quantity a owl:Class ;
-    rdfs:label "class definition for Quantity" ;
-    rdfs:comment "Attributes for Quantity"@en .
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Contains properties to describe the quantity (e.g., number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the hdmap asset."@en .
