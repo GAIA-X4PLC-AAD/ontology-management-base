@@ -64,23 +64,27 @@
   },
   "environment-model:project": {
     "@type": "environment-model:Project",
-    "environment-model:softwareName": {
+    "environment-model:visualisationToolName": {
       "@value": "Unreal",
       "@type": "xsd:string"
     },
-    "environment-model:softwareVendor": {
+    "environment-model:visualisationToolVendor": {
       "@value": "Epic Games",
       "@type": "xsd:string"
     },
-    "environment-model:softwareVersion": {
+    "environment-model:visualisationToolVersion": {
       "@value": "4.27",
       "@type": "xsd:string"
     },
-    "environment-model:creationSource": {
+    "environment-model:creationToolName": {
       "@value": "Trian3DBuilder",
       "@type": "xsd:string"
+    }    ,
+    "environment-model:creationToolVendor": {
+      "@value": "TrianGraphics GmbH",
+      "@type": "xsd:string"
     },
-    "environment-model:creationVersion": {
+    "environment-model:creationToolVersion": {
       "@value": "7.7",
       "@type": "xsd:string"
     }

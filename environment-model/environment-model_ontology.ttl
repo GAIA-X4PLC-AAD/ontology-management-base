@@ -1,37 +1,40 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
 environment-model: a owl:Ontology ;
-    rdfs:label "ontology definition for environment-model"@en ;
+    rdfs:label "Ontology definition for environment-model"@en ;
+    rdfs:comment "An environment-model ontology with common classes to describe an environment-model asset."@en ;
     dcterms:contributor "Mirco Nierenz (TG)" ;
-    owl:versionInfo "0.1" .
+    owl:versionInfo "0.2" .
 
 environment-model:EnvironmentModel a owl:Class ;
-    rdfs:label "class definition for environment-model" ;
-    rdfs:comment "Attributes for 3d environment-model"@en ;
+    rdfs:label "Class definition for environment-model"@en ;
+    rdfs:comment "General properties for defining an environment-model asset, such as format, content, project, and quantity or quality properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 environment-model:Format a owl:Class ;
-    rdfs:label "class definition for Format" ;
-    rdfs:comment "Attributes for Format"@en .
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Contains properties to describe the format of the environment-model asset."@en .
 
 environment-model:Content a owl:Class ;
-    rdfs:label "class definition for Content" ;
-    rdfs:comment "Attributes for Content"@en .	
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Contains properties to describe the content(elements, use cases) of the environment-model asset."@en .	
 
 environment-model:Project a owl:Class ;
-    rdfs:label "class definition for Project" ;
-    rdfs:comment "Attributes for Project"@en .		
+    rdfs:label "Class definition for Project"@en ;
+    rdfs:comment "Contains properties to describe the project information(software used for generation and visualisation) of the environment-model asset."@en .		
 
 environment-model:Quality a owl:Class ;
-    rdfs:label "class definition for Quality" ;
-    rdfs:comment "Attributes for Quality"@en .		
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Contains properties to describe the quality(detail level, features) of the environment-model asset."@en .		
 
 environment-model:Quantity a owl:Class ;
-    rdfs:label "class definition for Quantity" ;
-    rdfs:comment "Attributes for Quantity"@en .		
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Contains properties to describe the quantity(number of geometries, triangles, texture) of the environment-model asset."@en .		
