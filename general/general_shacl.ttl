@@ -10,14 +10,14 @@ general:GeneralShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
-            sh:name "description"@en ;
+            sh:name "description object"@en ;
             sh:description "General text based description of the simulation asset."@en ;
             sh:order 1 ;
             sh:path general:description ],     
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DataShape ;
-            sh:name "data"@en ;
+            sh:name "data object"@en ;
             sh:description "Data properties of the simulation asset."@en ;
             sh:order 2 ;
             sh:path general:data ];              

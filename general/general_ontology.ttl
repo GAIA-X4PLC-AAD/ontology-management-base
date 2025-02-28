@@ -15,18 +15,18 @@ general: a owl:Ontology ;
     owl:versionInfo "0.2" .
 
 general:General a owl:Class ;
-    rdfs:label "Class definition for General" ;
+    rdfs:label "Class definition for General"@en ;
     rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en ;
     rdfs:subClassOf gx:DataResource .
 
 general:Description a owl:Class ;
-    rdfs:label "Description definition for General" ;
+    rdfs:label "Description definition for General"@en ;
     rdfs:comment "General text based description of the simulation asset."@en .
 
 general:Data a owl:Class ;
-    rdfs:label "Data definition for General" ;
+    rdfs:label "Data definition for General"@en ;
     rdfs:comment "Data properties of the simulation asset."@en .
 
 general:Range2D a owl:Class ;
-    rdfs:label "Range2D definition for General" ;
+    rdfs:label "Range2D definition for General"@en ;
     rdfs:comment "A minimum to maximum data property usable in the simulation asset."@en .
