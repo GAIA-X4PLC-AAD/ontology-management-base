@@ -21,28 +21,28 @@ scenario:ScenarioShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
             sh:name "format object"@en .
-            sh:description "Contains properties to describe the format of the scenario asset."@en .
+            sh:description "Contains properties that describe the format of the scenario asset."@en .
             sh:order 2 ;
             sh:path scenario:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:ContentShape ;
             sh:name "content object"@en .
-            sh:description "Defines the content (time,  abstraction level, links, ..) of the scenario asset."@en .
+            sh:description "Defines the content of the scenario asset, such as time, abstraction level, and links."@en .
             sh:order 3 ;
             sh:path scenario:content ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QuantityShape ;
             sh:name "quantity object"@en .
-            sh:description "Contains properties to describe the quantity (e.g., number of traffic objects, controllers) of the scenario asset."@en .
+            sh:description "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en .
             sh:order 4 ;
             sh:path scenario:quantity ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QualityShape ;
             sh:name "quality object"@en .
-            sh:description "Contains properties to describe the accuracy of objects and calibration of the scenario asset."@en .
+            sh:description "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en .
             sh:order 5 ;
             sh:path scenario:quality ],
         [ sh:maxCount 1 ;
@@ -88,7 +88,7 @@ scenario:ContentShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:datatype xsd:string ;
-            sh:description "Specifies the abstraction level (defined in the Pegasus project) of the scenario asset.."@en ;
+            sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
@@ -97,7 +97,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:abstractionLevel ],
         [ skos:example "2009-06-30T18:30:00+02:00" ;
             sh:datatype xsd:dateTime ;
-            sh:description "Optionally specifies the time (time of recording or time of the event in the case of a synthetic scenario) of the scenario asset."@en ;
+            sh:description "Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario)."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of timeDate failed!"@en ;
             sh:minCount 0 ;
@@ -116,7 +116,7 @@ scenario:ContentShape a sh:NodeShape ;
         [ skos:example "GlobalPosition" ;
             skos:example "ParameterDeclaration" ;
             sh:datatype xsd:string ;
-            sh:description "Specifies which functions (e.g. actions) from the standard are used."@en ;
+            sh:description "Specifies which functions (e.g., actions) from the standard are utilized."@en ;
             sh:message "Validation of usedStandardFunctions failed!"@en ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
@@ -125,7 +125,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:usedStandardFunctions ],
         [ skos:example "via trajectory, via support points"@en .
             sh:datatype xsd:string ;
-            sh:description "Indicates the type of movement used by traffic participants according to ASAM OpenSCENARIO standard."@en ;
+            sh:description "Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of movementDescription failed!"@en ;
             sh:name "movement description"@en ;
@@ -133,7 +133,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:movementDescription ],
         [ skos:example "stopIfTTCLowerThan" ;
             sh:datatype xsd:string ;
-            sh:description "Defines scenario/domain specific commands or actions that are used in the scenario asset."@en ;
+            sh:description "Defines scenario- or domain-specific commands or actions used in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of customCommands failed!"@en ;
             sh:minCount 0 ;
@@ -141,7 +141,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:order 6 ;
             sh:path scenario:customCommands ],
         [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:description "Specifies the catalogues used (as a link) in the scenario asset."@en ;
+            sh:description "Specifies the catalogues used in the scenario asset (provided as links)."@en ;
             sh:message "Validation of catalogs failed!"@en ;
             sh:minCount 0 ;
             sh:name "catalogs"@en ;
@@ -149,7 +149,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:order 7 ;
             sh:path scenario:catalogs ],
         [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:description "Specifies the environment models used (as a link) in the scenario asset."@en ;
+            sh:description "Specifies the environment models used in the scenario asset (provided as links)."@en ;
             sh:message "Validation of environment failed!"@en ;
             sh:minCount 0 ;
             sh:name "3d models"@en ;
@@ -157,7 +157,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:order 8 ;
             sh:path scenario:environmentModels ],
         [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:description "Specifies the traffic space used (as a link) in the scenario asset."@en ;
+            sh:description "Specifies the traffic space used in the scenario asset (provided as a link)."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of trafficSpace failed!"@en ;
             sh:minCount 0 ;
@@ -167,7 +167,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:trafficSpace ],
         [ skos:example "194.01" ;
             sh:datatype xsd:float ;
-            sh:description "Defines the azimuth of the sun in degrees"@en ;
+            sh:description "Defines the azimuth of the sun in degrees."@en ;
             sh:message "Validation of sunAzimuth failed!"@en ;
             sh:minCount 0 ;
             sh:name "sun azimuth"@en ;
@@ -177,7 +177,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:sunAzimuth ],
         [ skos:example "kangaroo crossing" ;
             sh:datatype xsd:string ;
-            sh:description "Indicates which country-specific traffic signs are used in scenario asset."@en ;
+            sh:description "Indicates which country-specific traffic signs are used in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of countrySpecificSign failed!"@en ;
             sh:minCount 0 ;
@@ -186,7 +186,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:countrySpecificSign ],
         [ skos:example "tuk tuk" ;
             sh:datatype xsd:string ;
-            sh:description "Indicates which country-specific participants are used in scenario asset."@en ;
+            sh:description "Indicates which country-specific participants are used in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of countrySpecificTrafficParticipants failed!"@en ;
             sh:minCount 0 ;
@@ -195,7 +195,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:path scenario:countrySpecificTrafficParticipants ],
         [ skos:example "germany, not applicable" ;
             sh:datatype xsd:string ;
-            sh:description "Indicates the country from which the scenario comes from"@en ;
+            sh:description "Indicates the country of origin for the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of country failed!"@en ;
             sh:minCount 0 ;
@@ -246,16 +246,16 @@ scenario:QualityShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
-            sh:description "Defines the accuracy of moving objects in the scenario asset. Only applicable if the scenario is based on real measurements!"@en ;
+            sh:description "Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements)."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of accuracyObjects failed!"@en ;
             sh:minCount 0 ;
             sh:name "accuracy objects"@en ;
             sh:order 1 ;
             sh:path scenario:accuracyObjects ],
-        [ skos:example "Static sensor calibration performed at <origin> using system XYZ" ;
+        [ skos:example "Static sensor calibration performed at <origin> using system XYZ"@en ;
             sh:datatype xsd:string ;
-            sh:description "Describes the calibration steps performed before the measurement."@en ;
+            sh:description "Describes the calibration steps performed prior to the measurements."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of calibration failed!"@en ;
             sh:minCount 0 ;
@@ -269,7 +269,7 @@ scenario:DataSourceShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Real World Data" ;
             sh:datatype xsd:string ;
-            sh:description "Specifies category of source data used to create the scenario."@en ;
+            sh:description "Specifies the category of source data used to create the scenario."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of source type failed!"@en ;
             sh:in ("Accident Database" "Real World Data" "Analytical Hazard Based Approach" "Formal Verification" "Operational Design Domain" "Ontology" "Standards, Regulations, Guidelines" "Real-world Deployment and Trials") ;
@@ -279,7 +279,7 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:path scenario:sourceType ],
         [ skos:example "Test drives on proving ground XYZ and system ABC"@en .
             sh:datatype xsd:string ;
-            sh:description "Describes the source data used in detail."@en ;
+            sh:description "Provides a detailed description of the source data used."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of source description failed!"@en ;
             sh:minCount 0 ;

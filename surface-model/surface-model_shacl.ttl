@@ -13,35 +13,35 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
             sh:name "general object"@en ;
-            sh:description "General properties for defining a surface-model asset, such as format, data, quantity and quality properties."@en ;
+            sh:description "General properties for defining a surface-model asset, including format, data, quantity, and quality attributes."@en ;
             sh:order 1 ;
             sh:path surface-model:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:FormatShape ;
             sh:name "format object"@en ;
-            sh:description "Contains properties to describe the format of the surface-model asset."@en ;
+            sh:description "Contains properties that describe the format of the surface-model asset."@en ;
             sh:order 2 ;
             sh:path surface-model:Format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:DataShape ;
             sh:name "data object"@en ;
-            sh:description "Contains properties to describe the data type of the surface-model asset."@en ;
+            sh:description "Contains properties that describe the data type of the surface-model asset."@en ;
             sh:order 3 ;
             sh:path surface-model:Data ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QualityShape ;
             sh:name "quality object"@en ;
-            sh:description "Contains properties to describe the accuracy of the surface-model asset."@en ;
+            sh:description "Contains properties that describe the accuracy of the surface-model asset."@en ;
             sh:order 4 ;
             sh:path surface-model:Quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QuantityShape ;
             sh:name "quantity object"@en ;
-            sh:description "Contains properties to describe the quantity of the surface-model asset."@en ;
+            sh:description "Contains properties that describe the quantity of the surface-model asset."@en ;
             sh:order 5 ;
             sh:path surface-model:Quantity ],
         [ sh:maxCount 1 ;
@@ -58,7 +58,7 @@ surface-model:DataShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
-            sh:description "Specifies the data type (height, friction, ..) used in the surface-model asset."@en ;
+            sh:description "Specifies the data type (e.g., height, friction) used in the surface-model asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
@@ -101,7 +101,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:path surface-model:resolutionLongitudinal ],
         [ skos:example "-3,14159" ;
             sh:datatype xsd:float ;
-            sh:description "Specifies the alignment in the starting position in radians."@en ;
+            sh:description "Specifies the alignment at the starting position in radians."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of orientation failed!"@en ;
             sh:name "orientation"@en ;
@@ -138,7 +138,7 @@ surface-model:QuantityShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "yes" ;
             sh:datatype xsd:boolean ;
-            sh:description "Indicates whether the projection system is included in the data set."@en ;
+            sh:description "Indicates whether the projection system is included in the dataset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of mapDataField failed!"@en ;
             sh:name "map data field"@en ;
@@ -146,7 +146,7 @@ surface-model:QuantityShape a sh:NodeShape ;
             sh:path surface-model:mapDataField ],
         [ skos:example "25" ;
             sh:datatype xsd:float ;
-            sh:description "Indicates the difference between the maximum and minimum height of the elevation values in metres."@en ;
+            sh:description "Indicates the difference between the maximum and minimum elevation values in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of elevationRange failed!"@en ;
             sh:minCount 0 ;

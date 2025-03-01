@@ -19,25 +19,25 @@ scenario: a owl:Ontology ;
 
 scenario:Scenario a owl:Class ;
     rdfs:label "GXScenario"@en ;
-    rdfs:comment "General properties for defining a scenario asset, such as format, content, data sources, quantity and quality properties."@en ;
+    rdfs:comment "General properties for defining a scenario asset, including format, content, data sources, quantity, and quality attributes."@en ;
     rdfs:subClassOf gx:DataResource ,
                     openlabel:Scenario .
 
 scenario:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties to describe the format of the scenario asset."@en .    
+    rdfs:comment "Contains properties that describe the format of the scenario asset."@en .    
 
 scenario:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Defines the content (time,  abstraction level, links, ..) of the scenario asset."@en .
+    rdfs:comment "Defines the content of the scenario asset, such as time, abstraction level, and links."@en .
 
 scenario:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity (e.g., number of traffic objects, controllers) of the scenario asset."@en .
+    rdfs:comment "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en .
 
 scenario:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the accuracy of objects and calibration of the scenario asset."@en .
+    rdfs:comment "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en .
 
 scenario:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
