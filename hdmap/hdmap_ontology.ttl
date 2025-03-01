@@ -2,38 +2,38 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 hdmap: a owl:Ontology ;
-    rdfs:label "Ontology definition for hdmap"@en ;
-    rdfs:comment "An ontology with common classes to describe an hdmap asset."@en ;
+    rdfs:label "Ontology definition for HD-map"@en ;
+    rdfs:comment "An ontology with common classes to describe a HD-map asset."@en ;
     dcterms:contributor "Sebastian Tuttas (3DMS), Mirco Nierenz (TG)" ;
     owl:versionInfo "0.2" .
 
 hdmap:HdMap a owl:Class ;
-    rdfs:label "Class definition for hdmap"@en ;
-    rdfs:comment "General properties for defining a hdmap asset, such as format, content, quantity and quality properties."@en ;
+    rdfs:label "Class definition for HD-map"@en ;
+    rdfs:comment "General properties for defining a HD-map asset, such as format, content, quantity and quality properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 hdmap:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the hdmap asset."@en .
+    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD-map asset."@en .
 
 hdmap:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
-    rdfs:comment "Defines which data resources or measurement systems were used to create the hdmap asset."@en .
+    rdfs:comment "Defines which data resources or measurement systems were used to create the HD-map asset."@en .
 
 hdmap:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties to describe the format of the hdmap asset."@en .
+    rdfs:comment "Contains properties to describe the format of the HD-map asset."@en .
 
 hdmap:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the accuracy of the hdmap asset."@en .
+    rdfs:comment "Contains properties to describe the accuracy of the HD-map asset."@en .
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity (e.g., number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the hdmap asset."@en .
+    rdfs:comment "Contains properties to describe the quantity (e.g., number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD-map asset."@en .
