@@ -1,43 +1,44 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 
 scenario: a owl:Ontology ;
     rdfs:label "Ontology definition for scenario"@en ;
-    dcterms:contributor "Fin Heuer (DLR), Rico Auerswald (FhG IVI)" ;
-    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
+    rdfs:comment "An ontology with common classes to describe a scenario asset."@en ;
+    dcterms:contributor "Fin Heuer (DLR), Rico Auerswald (FhG IVI), Mirco Nierenz (TG)" ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" ;
     owl:versionIRI <https://raw.githubusercontent.com/GAIA-X4PLC-AAD/ontology-management-base/refs/heads/main/scenario/scenario_ontology.ttl> ;
-    owl:versionInfo "0.1" .
+    owl:versionInfo "0.2" .
 
 scenario:Scenario a owl:Class ;
     rdfs:label "GXScenario"@en ;
-    rdfs:comment "Class definition for a scenario"@en ;
+    rdfs:comment "General properties for defining a scenario asset, such as format, content, data sources, quantity and quality properties."@en ;
     rdfs:subClassOf gx:DataResource ,
                     openlabel:Scenario .
 
 scenario:Format a owl:Class ;
-    rdfs:label "class definition for Format" ;
-    rdfs:comment "Class with attributes for Format"@en .    
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Contains properties to describe the format of the scenario asset."@en .    
 
 scenario:Content a owl:Class ;
-    rdfs:label "class definition for Content" ;
-    rdfs:comment "Class with attributes for Content"@en .
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Defines the content (time,  abstraction level, links, ..) of the scenario asset."@en .
 
 scenario:Quantity a owl:Class ;
-    rdfs:label "class definition for Quantity" ;
-    rdfs:comment "Class with attributes for Quantity"@en .
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Contains properties to describe the quantity (e.g., number of traffic objects, controllers) of the scenario asset."@en .
 
 scenario:Quality a owl:Class ;
-    rdfs:label "class definition for Quality" ;
-    rdfs:comment "Class with attributes for Quality"@en .
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Contains properties to describe the accuracy of objects and calibration of the scenario asset."@en .
 
 scenario:DataSource a owl:Class ;
-    rdfs:label "class definition for DataSource" ;
-    rdfs:comment "Class with attributes for DataSource"@en .
+    rdfs:label "Class definition for DataSource"@en ;
+    rdfs:comment "Defines which data resources were used to create the scenario asset."@en .
