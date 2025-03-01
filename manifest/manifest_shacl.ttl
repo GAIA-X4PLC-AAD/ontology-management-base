@@ -9,13 +9,13 @@ manifest:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property             
-        [   sh:description "Description of the content and file structure of the uploaded asset"@en ;
+        [   sh:description "Defines the data components of the simulation asset."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:DataShape ;
             sh:order 1 ;
             sh:path manifest:data ],  
-        [   sh:description "Description of the license of the uploaded asset"@en ;
+        [   sh:description "Defines the license of the simulation asset."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:LicenseShape ;
@@ -27,8 +27,8 @@ manifest:DataShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:description "Reference and description to asset data and other data not falling under content data"@en ;
-            skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr";
+        [   sh:description "Defines links to the asset and to other data that is not classified as content data."@en ;
+            skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr"@en ;
             sh:message "Validation of asset data failed!"@en ;
             sh:minCount 1 ;
             sh:name "asset data"@en ;
@@ -36,8 +36,8 @@ manifest:DataShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path manifest:assetData
         ],
-        [   sh:description "Reference and description to content data"@en ;
-            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json" ;
+        [   sh:description "Defines links to content data."@en ;
+            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json"@en ;
             sh:message "Validation of content failed!"@en ;
             sh:name "content data"@en ;
             sh:node manifest:LinkShape ;
@@ -50,8 +50,8 @@ manifest:LicenseShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:description "Any spdx identifier or LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract"@en ;
-            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract" ;
+        [   sh:description "Define a SPDX identifier, such as LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract."@en ;
+            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract"@en ;
             sh:datatype xsd:string ;
             sh:message "Validation of spdx identifier failed!"@en ;
             sh:minCount 1 ;
@@ -60,8 +60,8 @@ manifest:LicenseShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path manifest:spdxIdentifier 
         ],      
-        [   sh:description "Reference and description to license data"@en ;
-            skos:example "accessRole: publicUser, type: license, format: html, path: https://opensource.org/license/mit" ;
+        [   sh:description "Defines a link to license data."@en ;
+            skos:example "accessRole: publicUser, type: license, format: html, path: https://opensource.org/license/mit"@en ;
             sh:message "Validation of licenseData failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -76,7 +76,7 @@ manifest:LinkShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-       [    sh:description "Access role which is related to the corresponding data" ;
+       [    sh:description "Specifies the access role associated with the corresponding file."@en ;
             skos:example "publicUser";
             sh:in ("owner" "registeredUser" "publicUser") ;
             sh:datatype xsd:string ;
@@ -87,7 +87,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
         ],
-        [   sh:description "Type of path which is related to the corresponding data" ;
+        [   sh:description "Specifies the data type of the corresponding file."@en ;
             skos:example "metadata";
             sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
             sh:datatype xsd:string ;
@@ -99,7 +99,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:path manifest:type 
         ],
         [
-            sh:description "Metadata description of the uploaded file"@en ;
+            sh:description "Defines a general class for a data file that is referenced via a link."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:FileMetaDataShape ;
@@ -112,7 +112,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:description "Enter path as url or did." ;
+        [   sh:description "Defines a path as url or did."@en ;
             skos:example "./metadata/gxMetadata.json";
             sh:datatype xsd:anyURI ;
             sh:message "Validation of path failed!"@en ;
@@ -123,10 +123,10 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:path manifest:uri 
         ],
         [ 
-            sh:description "Enter the IPFS CIDv1 identifier of the file.";
+            sh:description "Defines the IPFS CIDv1 identifier of the file."@en ;
             skos:example "bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um";
             sh:datatype xsd:string;
-            sh:message "The CIDv1 identifier is not valid or is a CIDv0 identifier.";
+            sh:message "The CIDv1 identifier is not valid or is a CIDv0 identifier."@en ;
             sh:name "IPFS CIDv1";
             sh:order 1;
             sh:maxCount 1;
@@ -135,10 +135,10 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:pattern "^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-km-z]{48,}|F[0-9A-F]{50,})$" 
         ],     
         [
-            sh:description "Enter the MIME type of the file.";
+            sh:description "Defines the MIME type of the file."@en ;
             skos:example "application/pdf";
             sh:datatype xsd:string;
-            sh:message "Validation of the MIME type failed!";
+            sh:message "Validation of the MIME type failed!"@en ;
             sh:name "MIME type";
             sh:order 2;
             sh:maxCount 1;
@@ -147,7 +147,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
         ],
         [
-            sh:description "If you are describing an image or video, please fill out this shape"@en ;
+            sh:description "Define the dimensional information for images and videos."@en ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node manifest:DimensionsShape ;
@@ -155,7 +155,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:path manifest:dimensions
         ], 
         [
-            sh:description "Enter the file size in bytes." ;
+            sh:description "Specify the file size in bytes."@en ;
             skos:example "1048576" ;
             sh:datatype xsd:integer ;
             sh:message "Validation of file size failed!"@en ;
@@ -166,7 +166,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:path manifest:fileSize ;
         ],
         [
-            sh:description "Enter the filename including its extension." ;
+            sh:description "Specifies the file name (excluding the path) along with its extension."@en ;
             skos:example "example.txt" ;
             sh:datatype xsd:string ;
             sh:message "Filename validation failed!"@en ;
@@ -184,10 +184,10 @@ manifest:DimensionsShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [
-            sh:description "Specify the unit of measurement (e.g., meters, inches)." ;
+            sh:description "Specifies the unit of measurement (e.g., meters, inches)."@en ;
             skos:example "meters" ;
             sh:datatype xsd:string ;
-            sh:message "Unit must be a valid measurement unit." ;
+            sh:message "Unit must be a valid measurement unit."@en ;
             sh:name "Unit" ;
             sh:order 0 ;
             sh:maxCount 1 ;
@@ -196,10 +196,10 @@ manifest:DimensionsShape a sh:NodeShape ;
             sh:in ("meters" "inches" "pixels") ;
         ],
         [
-            sh:description "Enter the width of the item in appropriate units." ;
+            sh:description "Specifies the width (x-axis) of the item in appropriate units."@en ;
             skos:example "1920" ;
             sh:datatype xsd:decimal ;
-            sh:message "Width must be a positive number." ;
+            sh:message "Width must be a positive number."@en ;
             sh:name "Width" ;
             sh:order 1 ;
             sh:maxCount 1 ;
@@ -207,10 +207,10 @@ manifest:DimensionsShape a sh:NodeShape ;
             sh:path manifest:width ;
         ],
         [
-            sh:description "Enter the length of the item in appropriate units." ;
+            sh:description "Specifies the length (y-axis) of the item in appropriate units."@en ;
             skos:example "1080" ;
             sh:datatype xsd:decimal ;
-            sh:message "Length must be a positive number." ;
+            sh:message "Length must be a positive number."@en ;
             sh:name "Length" ;
             sh:order 2 ;
             sh:maxCount 1 ;
