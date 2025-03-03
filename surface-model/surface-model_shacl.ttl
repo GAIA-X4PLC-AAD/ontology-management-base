@@ -22,35 +22,35 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
             sh:name "format object"@en ;
             sh:description "Contains properties that describe the format of the surface-model asset."@en ;
             sh:order 2 ;
-            sh:path surface-model:Format ],
+            sh:path surface-model:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:DataShape ;
             sh:name "data object"@en ;
             sh:description "Contains properties that describe the data type of the surface-model asset."@en ;
             sh:order 3 ;
-            sh:path surface-model:Data ],
+            sh:path surface-model:data ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QualityShape ;
             sh:name "quality object"@en ;
             sh:description "Contains properties that describe the accuracy of the surface-model asset."@en ;
             sh:order 4 ;
-            sh:path surface-model:Quality ],
+            sh:path surface-model:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QuantityShape ;
             sh:name "quantity object"@en ;
             sh:description "Contains properties that describe the quantity of the surface-model asset."@en ;
             sh:order 5 ;
-            sh:path surface-model:Quantity ],
+            sh:path surface-model:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
             sh:name "georeference object"@en ;
             sh:description "General properties for defining the location and projection of the asset."@en ;
             sh:order 6 ;
-            sh:path surface-model:Georeference ] ;
+            sh:path surface-model:georeference ] ;
     sh:targetClass surface-model:SurfaceModel .
     
 surface-model:DataShape a sh:NodeShape ;
