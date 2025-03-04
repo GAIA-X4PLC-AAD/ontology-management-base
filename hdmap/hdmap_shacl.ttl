@@ -21,42 +21,42 @@ hdmap:HdMapShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
             sh:name "format object"@en ;
-            sh:description "Contains properties to describe the format of the HD-map asset."@en ;
+            sh:description "Contains properties to describe the format of the HD map asset."@en ;
             sh:order 2 ;
             sh:path hdmap:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
             sh:name "content object"@en ;
-            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD-map asset."@en ;
+            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
             sh:order 3 ;
             sh:path hdmap:content ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
             sh:name "quantity object"@en ;
-            sh:description "Contains properties to describe the quantity (e.g., number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD-map asset."@en ;
+            sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
             sh:order 4 ;
             sh:path hdmap:quantity ],            
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
             sh:name "quality object"@en ;
-            sh:description "Contains properties to describe the accuracy of the HD-map asset."@en ;
+            sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
             sh:order 5 ;
             sh:path hdmap:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
             sh:name "dataSource object"@en ;
-            sh:description "Defines which data resources or measurement systems were used to create the HD-map asset."@en ;
+            sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
             sh:order 6 ;
             sh:path hdmap:dataSource ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
             sh:name "georeference object"@en ;
-            sh:description "General properties for defining the location and projection of the HD-map asset."@en ;
+            sh:description "General properties for defining the location and projection of the HD map asset."@en ;
             sh:order 7 ;
             sh:path hdmap:georeference ] ;
     sh:targetClass hdmap:HdMap .
@@ -66,7 +66,7 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
             sh:datatype xsd:string ;
-            sh:description "Lists the road types used in the HD-map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
+            sh:description "Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
             sh:message "Validation of roadTypes failed!"@en ;
             sh:name "road types"@en ;
@@ -74,7 +74,7 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:path hdmap:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
             sh:datatype xsd:string ;
-            sh:description "Lists the lanes types used in the HD-map asset. See ASAM OpenDRIVE 1.8.1 Chapter 11.7.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/11_lanes/11_07_lane_properties.html)."@en ;
+            sh:description "Lists the lanes types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 11.7.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/11_lanes/11_07_lane_properties.html)."@en ;
             sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
             sh:message "Validation of laneTypes failed!"@en ;
             sh:name "lane types"@en ;
@@ -82,7 +82,7 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:path hdmap:laneTypes ],
         [ skos:example "trees, street lamps, road patches, ..." ;
             sh:datatype xsd:string ;
-            sh:description "Lists the object types used in the HD-map asset. See ASAM OpenDRIVE 1.8.1 Annex A.4.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_C47587D0_7173_42df_8BB7_36B2C598D95F)"@en ;
+            sh:description "Lists the object types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Annex A.4.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_C47587D0_7173_42df_8BB7_36B2C598D95F)"@en ;
             sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
             sh:message "Validation of levelOfDetail failed!"@en ;
             sh:name "level of detail"@en ;
@@ -90,7 +90,7 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:path hdmap:levelOfDetail ], 
         [ skos:example "right-hand traffic" ;
             sh:datatype xsd:string ;
-            sh:description "Indicates whether the HD-map is designed for left or right-hand traffic."@en ;
+            sh:description "Indicates whether the HD map is designed for left or right-hand traffic."@en ;
             sh:in ("left-hand" "right-hand") ;
             sh:maxCount 1 ;
             sh:message "Validation of trafficDirection failed!"@en ;
@@ -112,7 +112,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
             sh:path hdmap:measurementSystem ],
         [ skos:example "scanner, camera, osm network, aerial images, ..." ;
             sh:datatype xsd:string ;
-            sh:description "Indicates the source data used to create the HD-map."@en ;
+            sh:description "Indicates the source data used to create the HD map."@en ;
             sh:message "Validation of usedDataSources failed!"@en ;
             sh:name "used data sources"@en ;
             sh:order 0 ;
@@ -122,17 +122,17 @@ hdmap:DataSourceShape a sh:NodeShape ;
 hdmap:FormatShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "1.5" ;
+    sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
-            sh:description "Defines the version of the data format used for the HD-map asset."@en ;
+            sh:description "Defines the version of the data format used for the HD map asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
             sh:order 1 ;
             sh:path hdmap:version ],
-        [ skos:example "ASAM OpenDRIVE, Road5, Lanelet, road2sim, roadXML, Shape" ;
+        [ skos:example "ASAM OpenDRIVE" ;
             sh:datatype xsd:string ;
-            sh:description "Defines the type of data format used for the HD-map asset."@en ;
+            sh:description "Defines the type of data format used for the HD map asset."@en ;
             sh:in ("ASAM OpenDRIVE" "Lanelet" "Road5" "Shape" "road2sim" "roadXML") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
@@ -196,7 +196,7 @@ hdmap:QuantityShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the total number of intersections defined in the HD-map. See ASAM OpenDRIVE 1.8.1 Chapter 12.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/12_junctions/12_01_introduction.html)"@en ;
+            sh:description "Specifies the total number of intersections defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 12.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/12_junctions/12_01_introduction.html)"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberIntersections failed!"@en ;
             sh:name "number intersections"@en ;
@@ -204,13 +204,13 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:numberIntersections ],
         [ skos:example "0" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all traffic lights defined in the HD-map."@en ;
+            sh:description "Specifies the number of all traffic lights defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficLights failed!"@en ;
             sh:name "number traffic lights"@en ;
             sh:order 3 ;
             sh:path hdmap:numberTrafficLights ],
-        [ skos:example "20" ;
+        [ skos:example "20.3" ;
             sh:datatype xsd:float ;
             sh:description "Indicates the distance (in metres) to which the area beyond the traffic area has been modeled."@en ;
             sh:maxCount 1 ;
@@ -221,14 +221,14 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:rangeOfModeling ],
         [ skos:example "100" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all outline objects defined in the HD-map. See ASAM OpenDRIVE 1.8.1 Chapter 13.3 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_03_object_outline.html)"@en ;
+            sh:description "Specifies the number of all outline objects defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.3 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_03_object_outline.html)"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberOutlines failed!"@en ;
             sh:name "number outlines"@en ;
             sh:order 6 ;
             sh:path hdmap:numberOutlines ],
         [ skos:example "[10,50] km/h" ;
-            sh:description "Specifies the range of speed limits defined in the HD-map, using the unit specified in the HD-map. See ASAM OpenDRIVE 1.8.1 Annex A.1.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_491DC05E_01C6_49b3_83BE_A06DD81F9C35)"@en ;
+            sh:description "Specifies the range of speed limits defined in the HD map, using the unit specified in the HD map. See ASAM OpenDRIVE 1.8.1 Annex A.1.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_491DC05E_01C6_49b3_83BE_A06DD81F9C35)"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of speedLimit failed!"@en ;
             sh:name "speed limit"@en ;
@@ -253,7 +253,7 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:elevationRange ],
         [ skos:example "200" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all objects in the HD-map. See ASAM OpenDRIVE 1.8.1 Chapter 13.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_01_introduction.html)"@en ;
+            sh:description "Specifies the number of all objects in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_01_introduction.html)"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberObjects failed!"@en ;
             sh:name "number objects"@en ;
@@ -261,7 +261,7 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:numberObjects ],
         [ skos:example "155" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all traffic signs (signals) in the HD-map. See ASAM OpenDRIVE 1.8.1 Chapter 14.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/14_signals/14_01_introduction.html)"@en ;
+            sh:description "Specifies the number of all traffic signs (signals) in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 14.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/14_signals/14_01_introduction.html)"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficSigns failed!"@en ;
             sh:name "number traffic signs"@en ;
