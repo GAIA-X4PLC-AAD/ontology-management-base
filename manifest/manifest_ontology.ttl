@@ -1,18 +1,17 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 manifest: a owl:Ontology ;
-    rdfs:label "ontology definition for Manifest"@en ;
-    dcterms:contributor "Johannes Demer (ASCS)" ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for Manifest"@en ;
+    dcterms:contributor "Johannes Demer (ASCS), Carlo van Driesten (BMW AG)" ;
+    owl:versionInfo "0.2" .
 
 manifest:Manifest a owl:Class ;
-    rdfs:label "class definition for Manifest" ;
+    rdfs:label "Class definition for Manifest" ;
     rdfs:comment "Manifest attributes for all assets"@en ;
     rdfs:subClassOf gx:DataResource .
 
@@ -28,3 +27,10 @@ manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link" ;
     rdfs:comment "Link attributes for all assets"@en .
 
+manifest:FileMetaData a owl:Class ;
+    rdfs:label "Class definition for FileMetaData" ;
+    rdfs:comment "FileMetaData attributes for all assets"@en .
+
+manifest:Dimensions a owl:Class ;
+    rdfs:label "Class definition for Dimensions" ;
+    rdfs:comment "Dimensions attributes for all assets"@en .
