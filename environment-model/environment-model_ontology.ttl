@@ -3,7 +3,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
@@ -14,7 +13,7 @@ environment-model: a owl:Ontology ;
     owl:versionInfo "0.2" .
 
 environment-model:EnvironmentModel a owl:Class ;
-    rdfs:label "Class definition for environment-model"@en ;
+    rdfs:label "Class definition for EnvironmentModel"@en ;
     rdfs:comment "General properties for defining an environment-model asset, such as format, content, project, quantity and quality properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
@@ -24,16 +23,16 @@ environment-model:Format a owl:Class ;
 
 environment-model:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Contains properties to describe the content(elements, use cases) of the environment-model asset."@en .	
+    rdfs:comment "Contains properties to describe the content (elements, use cases) of the environment-model asset."@en .	
 
 environment-model:Project a owl:Class ;
     rdfs:label "Class definition for Project"@en ;
-    rdfs:comment "Contains properties to describe the project information(software used for generation and visualisation) of the environment-model asset."@en .		
+    rdfs:comment "Contains properties to describe the project information (software used for generation and visualisation) of the environment-model asset."@en .		
 
 environment-model:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the quality(detail level, features) of the environment-model asset."@en .		
+    rdfs:comment "Contains properties to describe the quality (detail level, features) of the environment-model asset."@en .		
 
 environment-model:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity(number of geometries, triangles, texture) of the environment-model asset."@en .		
+    rdfs:comment "Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset."@en .		
