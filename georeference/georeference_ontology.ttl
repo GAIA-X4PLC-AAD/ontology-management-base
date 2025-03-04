@@ -3,12 +3,11 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 georeference: a owl:Ontology ;
-    rdfs:label "Ontology definition for Georeference"@en ;
+    rdfs:label "Ontology definition for georeference"@en ;
     rdfs:comment "Georeferencing ontology with common classes for location and georeferencing information."@en ;
     dcterms:contributor "Sebastian Tuttas (3DMS), Mirco Nierenz (TG)" ;
     owl:versionInfo "0.2" .
