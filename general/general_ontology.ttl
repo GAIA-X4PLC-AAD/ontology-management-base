@@ -3,13 +3,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 general: a owl:Ontology ;
-    rdfs:label "Ontology definition for General"@en ;
+    rdfs:label "Ontology definition for general"@en ;
     rdfs:comment "General ontology with common classes for the simulation domain."@en ;
     dcterms:contributor "Mirco Nierenz (TG), Carlo van Driesten (BMW AG)" ;
     owl:versionInfo "0.2" .
