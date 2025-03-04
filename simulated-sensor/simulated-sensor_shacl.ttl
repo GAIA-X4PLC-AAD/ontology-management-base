@@ -70,7 +70,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
         sh:order 1 ;
-        sh:description "Covered distance or range in meters" ;
+        sh:description "Covered distance or range in metres" ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
@@ -109,7 +109,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
         sh:order 1 ;
-        sh:description "Covered distance or range in meters" ;
+        sh:description "Covered distance or range in metres" ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [

@@ -184,8 +184,8 @@ manifest:DimensionsShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [
-            sh:description "Specifies the unit of measurement (e.g., meters, inches)."@en ;
-            skos:example "meters" ;
+            sh:description "Specifies the unit of measurement (e.g., metres, inches)."@en ;
+            skos:example "metres" ;
             sh:datatype xsd:string ;
             sh:message "Unit must be a valid measurement unit."@en ;
             sh:name "Unit" ;
@@ -193,7 +193,7 @@ manifest:DimensionsShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:unit ;
-            sh:in ("meters" "inches" "pixels") ;
+            sh:in ("metres" "inches" "pixels") ;
         ],
         [
             sh:description "Specifies the width (x-axis) of the item in appropriate units."@en ;

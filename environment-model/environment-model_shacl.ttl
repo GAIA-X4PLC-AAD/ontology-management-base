@@ -179,7 +179,7 @@ environment-model:QualityShape a sh:NodeShape ;
             sh:path environment-model:detailLevel ],
         [ skos:example "0.1" ;
             sh:datatype xsd:float ;
-            sh:description "Specifies the maximum real texture resolution in meters."@en ;
+            sh:description "Specifies the maximum real texture resolution in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of textureResolution failed!"@en ;
             sh:minCount 0 ;
