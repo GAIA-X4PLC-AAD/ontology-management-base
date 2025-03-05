@@ -42,11 +42,11 @@
     },
     "environment-model:triangleCount": {
       "@value": "12456",
-      "@type": "xsd:int"
+      "@type": "xsd:unsignedInt"
     },
     "environment-model:geometryCount": {
       "@value": "5000",
-      "@type": "xsd:int"
+      "@type": "xsd:unsignedInt"
     }
   },
   "environment-model:quality": {
@@ -91,7 +91,7 @@
   },
   "environment-model:format": {
     "@type": "environment-model:Format",
-    "environment-model:formatType": "Unreal DataSmith",
+    "environment-model:formatType": "Unreal Datasmith",
     "environment-model:version": {
       "@value": "SDK 4.25",
       "@type": "xsd:string"

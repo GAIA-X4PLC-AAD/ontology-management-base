@@ -55,7 +55,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
             sh:minCount 1 ;            
             sh:node georeference:GeoreferenceShape ;
             sh:name "georeference object"@en ;
-            sh:description "General properties for defining the location and projection of the asset."@en ;
+            sh:description "General properties for defining the location and projection of the environment-model asset."@en ;
             sh:order 7 ;
             sh:path environment-model:georeference ] ;
     sh:targetClass environment-model:EnvironmentModel .   
@@ -138,7 +138,7 @@ environment-model:ProjectShape a sh:NodeShape ;
             sh:name "creation tool name"@en ;
             sh:order 3 ;
             sh:path environment-model:creationToolName ],   
-        [ skos:example "Epic Games" ;
+        [ skos:example "TrianGraphics GmbH" ;
             sh:datatype xsd:string ;
             sh:description "Defines the vendor name of the creation tool."@en ;
             sh:maxCount 1 ;
