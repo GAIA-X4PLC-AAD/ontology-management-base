@@ -63,21 +63,4 @@ general:DataShape a sh:NodeShape ;
             sh:name "recording time"@en ;
             sh:order 2 ;
             sh:path general:recordingTime ] ;
-    sh:targetClass general:Data . 
-
-general:Range2DShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:float ;
-            sh:description "The maximum value of the range."@en ;
-            sh:message "Validation of max failed! Max should be greater than min."@en ;
-            sh:name "max"@en ;
-            sh:order 1 ;
-            sh:path general:max ],
-        [ sh:datatype xsd:float ;
-            sh:description "The minimum value of the range."@en ;
-            sh:message "Validation of min failed! Min should be less than max."@en ;
-            sh:name "min"@en ;
-            sh:order 0 ;
-            sh:path general:min ] ;
-    sh:targetClass general:Range2D .    
+    sh:targetClass general:Data .   

@@ -83,12 +83,12 @@
       "@type": "xsd:unsignedInt"
     },
     "hdmap:speedLimit": {
-      "@type": "general:Range2D",
-      "general:min": {
+      "@type": "hdmap:Range2D",
+      "hdmap:min": {
         "@value": "10",
         "@type": "xsd:float"
       },
-      "general:max": {
+      "hdmap:max": {
         "@value": "50",
         "@type": "xsd:float"
       }
