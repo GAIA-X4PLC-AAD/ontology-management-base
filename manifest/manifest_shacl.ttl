@@ -112,7 +112,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:description "Defines a path as url or did."@en ;
+        [   sh:description "Uniform Resource Identifier (URI) to identify the resource by location, name, or both."@en ;
             skos:example "./metadata/gxMetadata.json";
             sh:datatype xsd:anyURI ;
             sh:message "Validation of path failed!"@en ;

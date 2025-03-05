@@ -144,7 +144,7 @@ jobs:
         id: check_ttl
         run: |
           git fetch origin main
-          CHANGED_FILES=$(git diff --name-only origin/main -- '*.ttl')
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/main -- '*.ttl')
           if [[ -n "$CHANGED_FILES" ]]; then
             CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -n1 dirname | sort -u) # just save the directory names
             echo "FILES_HAVE_CHANGED=true" >> $GITHUB_ENV
