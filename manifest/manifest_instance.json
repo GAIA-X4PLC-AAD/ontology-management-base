@@ -37,6 +37,16 @@
           }
       },
       "manifest:contentData": [
+         {
+            "@type": "manifest:Link",
+            "manifest:accessRole": "publicUser",
+            "manifest:type": "documentation",
+            "manifest:format": "md",
+            "manifest:path": {
+              "@value": "./README.md",
+              "@type": "xsd:anyURI"
+            }
+          },
           {
               "@type": "manifest:Link",
               "manifest:accessRole": "publicUser",
