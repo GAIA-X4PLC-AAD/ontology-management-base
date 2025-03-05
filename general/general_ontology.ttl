@@ -25,7 +25,3 @@ general:Description a owl:Class ;
 general:Data a owl:Class ;
     rdfs:label "Data definition for General"@en ;
     rdfs:comment "Data properties of the simulation asset."@en .
-
-general:Range2D a owl:Class ;
-    rdfs:label "Range2D definition for General"@en ;
-    rdfs:comment "A minimum to maximum data property usable in the simulation asset."@en .
