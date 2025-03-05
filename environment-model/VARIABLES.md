@@ -14,7 +14,7 @@
 | EnvironmentModelShape | environment-model | content | 1 | 1 | Contains properties to describe the content (elements, use cases) of the environment-model asset. |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | project | 1 | 1 | Contains properties to describe the project information (software used for generation and visualisation) of the environment-model asset. |  | environment-model_shacl.ttl |
 | EnvironmentModelShape | environment-model | format | 1 | 1 | Contains properties to describe the format of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | georeference | 1 | 1 | General properties for defining the location and projection of the asset. |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | georeference | 1 | 1 | General properties for defining the location and projection of the environment-model asset. |  | environment-model_shacl.ttl |
 | FormatShape | environment-model | formatType |  | 1 | Defines the data type of the environment-model asset. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | FormatShape | environment-model | version |  | 1 | Defines the version of the environment-model asset's data type. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ContentShape | environment-model | elements |  | 1 | Provides a description of the visual elements contained in the environment-model asset. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
