@@ -17,7 +17,7 @@
 | LinkShape | manifest | accessRole | 1 | 1 | Specifies the access role associated with the corresponding file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | LinkShape | manifest | type | 1 | 1 | Specifies the data type of the corresponding file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | LinkShape | manifest | fileMetaData | 1 | 1 | Defines a general class for a data file that is referenced via a link. |  | manifest_shacl.ttl |
-| FileMetaDataShape | manifest | uri | 1 | 1 | Defines a path as url or did. | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
+| FileMetaDataShape | manifest | uri | 1 | 1 | Uniform Resource Identifier (URI) to identify the resource by location, name, or both. | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | hash | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | mimeType | 0 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | dimensions | 0 | 1 | Define the dimensional information for images and videos. |  | manifest_shacl.ttl |
