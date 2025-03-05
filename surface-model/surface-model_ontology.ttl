@@ -14,7 +14,7 @@ surface-model: a owl:Ontology ;
     owl:versionInfo "0.2" .
 
 surface-model:SurfaceModel a owl:Class ;
-    rdfs:label "Class definition for surface-model" @en ;
+    rdfs:label "Class definition for surface-model"@en ;
     rdfs:comment "General properties for defining a surface-model asset, including format, data, quantity, and quality attributes."@en ;
     rdfs:subClassOf gx:DataResource .
 
