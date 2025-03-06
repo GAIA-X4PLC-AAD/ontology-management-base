@@ -175,7 +175,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:filename ;
-            sh:pattern "^[\\w,\\s-]+\\.[A-Za-z0-9]+$" ;
+            sh:pattern "^([\\w,\\s-]+(?:\\.[\\w,\\s-]+)*)\\.([A-Za-z0-9]+)$" ;
         ];
     sh:targetClass manifest:FileMetaData .
 

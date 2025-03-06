@@ -65,7 +65,8 @@
             "@value": "Germany",
             "@type": "xsd:string"
         },
-        "scenario:environmentModels": {
+        "scenario:environmentModels": [
+          {
             "@type": "manifest:Link",
             "manifest:type": "assetData",
             "manifest:accessRole": "owner",
@@ -74,9 +75,11 @@
                     "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
                     "@type": "xsd:anyURI"
                 }
-            }            
-        },
-        "scenario:trafficSpace": {
+            }
+          }
+        ],
+        "scenario:trafficSpace": [ 
+          {
             "@type": "manifest:Link",
             "manifest:type": "assetData",
             "manifest:accessRole": "owner",
@@ -85,8 +88,9 @@
                     "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
                     "@type": "xsd:anyURI"
                 }
-            }               
-        },
+            }
+          }
+        ],
         "scenario:sunAzimuth": {
             "@value": "180",
             "@type": "xsd:float"
