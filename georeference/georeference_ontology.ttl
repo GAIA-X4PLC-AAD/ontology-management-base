@@ -1,32 +1,64 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 georeference: a owl:Ontology ;
-    rdfs:label "ontology definition for location and georeference information "@en ;
-    dcterms:contributor "Sebastian Tuttas (3DMS)" ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for georeference"@en ;
+    rdfs:comment "Georeferencing ontology with common classes for location and georeferencing information."@en ;
+
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Sebastian Tuttas" ;
+        org:memberOf <https://www.3d-mapping.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Mirco Nierenz" ;
+        org:memberOf <https://triangraphics.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/georeference> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/georeference/v2/ontology> ;
+    owl:versionInfo "v2" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v2/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 georeference:Georeference a owl:Class ;
-    rdfs:label "class definition for Georeference" ;
-    rdfs:comment "Attributes for location and georeference information"@en .
+    rdfs:label "Class definition for Georeference"@en ;
+    rdfs:comment "General properties for defining the location and projection of the simulation asset."@en .
 
 georeference:GeodeticReferenceSystem a owl:Class ;
-    rdfs:label "class definition for GeodeticReferenceSystem" ;
-    rdfs:comment "Attributes for GeodeticReferenceSystem"@en .
+    rdfs:label "Class definition for GeodeticReferenceSystem"@en ;
+    rdfs:comment "This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system."@en .
 
 georeference:BoundingBox a owl:Class ;
-    rdfs:label "class definition for BoundingBox" ;
-    rdfs:comment "Attributes for BoundingBox"@en .
+    rdfs:label "Class definition for BoundingBox"@en ;
+    rdfs:comment "Data property to define a bounding box with minimum and maximum values for the x and y axes."@en .
 
 georeference:LatLonCoordinate a owl:Class ;
-    rdfs:label "class definition for LatLonCoordinate" ;
-    rdfs:comment "Attributes for LatLonCoordinate"@en .
+    rdfs:label "Class definition for LatLonCoordinate"@en ;
+    rdfs:comment "Data property to define world coordinates in latitude/longitude, expressed in degrees."@en .
 
 georeference:ProjectLocation a owl:Class ;
-    rdfs:label "class definition for Georeference" ;
-    rdfs:comment "Attributes for Georeference"@en .
+    rdfs:label "Class definition for Georeference"@en ;
+    rdfs:comment "Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset."@en .

@@ -95,6 +95,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 * The name of the class must be in PascalCase. Example: `Sensor`
 * The attributes of the class must be in camelCase. Example: `sensorType`
 * The prefix of the ontology must point to this repository. Example for `sensor`:
+
   ```turtle
   @prefix sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/sensor/> .
 * The prefix of the ontology must match the prefix defined in the SHACL Shape.
@@ -109,25 +110,22 @@ This section describes guidelines that _must_ be followed when applying changes 
 * The prefix of the SHACL Shape must match the prefix defined in the ontology.
 * If worth explaining, examples should be given. Specify concrete valid input here. Values should match with sh:In. Separate multiple entries with a comma. Example: '3DMS system, Trimble xyz, Riegl xyz'
 * If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
-* Every Shape linking to an ontology must **nest** the `general` and the `marketplace-info` Shape. Example:
-  * Add prefix 
+* Every Shape linking to an ontology must **nest** the `general` Shape. Example:
+  * Add prefix
+
     ```turtle
     @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
-    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/marketplace-info/ .
+    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/ .
     ```
+
   * Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology
+
     ```turtle
     sh:property [ sh:maxCount 1 ;
                 sh:minCount 1 ;
                 sh:node general:GeneralShape ;
                 # some other attributes like description, order, etc.
                 sh:path <your_prefix>:general ],
-    
-    sh:property [ sh:maxCount 1 ;
-                sh:minCount 1 ;
-                sh:node marketplace-info:MarketplaceInfoShape ;
-                # some other attributes like description, order, etc.
-                sh:path <your_prefix>:marketplace-info ],
     ```
 
 ## CI pipeline
@@ -135,22 +133,27 @@ This section describes guidelines that _must_ be followed when applying changes 
 The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline is triggered on every push to the repository as defined in the workflow. The result can be seen in the `Actions` tab in the github repository.
 
 ### Steps
- 
+
 #### Generate VARIABLES.md (overview of used properties in the SHACL files)
+
 The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
 
 >NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. 
 
 #### Check syntax of Turtle files
+
 The pipeline checks the syntax of the Turtle files (`*.ttl`) by loading a RDF graph. If the Turtle file is not correct the pipeline fails with a detailed error message.
 
 #### Check if `_instance.json` file is conform to the SHACL Shape(s)
+
 The pipeline checks if the `_instance.json` file is conform to the SHACL Shape(s) defined in the corresponding SHACL file. For this all `*_shacl.ttl` files in this repository are collected to be able to check against a schema not defined in the current SHACL Shape. If the instance is not conform the pipeline fails with a detailed error message.
 
 #### Check if all target classes of a SHACL file are specified in the corresponding ontology file
+
 The pipeline checks if all target classes of a SHACL file are specified in the corresponding ontology file. If a target class is not specified in the ontology file the pipeline fails with a detailed error message.
 
 ### Run the pipeline scripts locally
+
 ```bash
 # prepare venv (optional)
 $ python3 -m venv .venv
@@ -162,7 +165,9 @@ python3 src/check_ttl_syntax.py <path_to_ttl_file>
 python3 src/check_jsonld_against_shacl_schema.py <directory name>
 python3 src/check_target_classes_against_owl_classes.py <directory name>
 ```
+
 Example:
+
 ```bash
 python3 src/check_ttl_syntax.py scenario/scenario_ontology.ttl
 python3 src/check_jsonld_against_shacl_schema.py scenario
@@ -174,6 +179,7 @@ python3 src/check_target_classes_against_owl_classes.py scenario
 ## Further information
 
 ### Related repository
+
 * [gaia-x-compliant-claims-example](https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example)
   * This repository contains an overview of how to instantiate the Gaia-X trust framework classes to create Gaia-X compliant claims.
 
@@ -185,10 +191,13 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 * IntelliJ: "LNKD.tech Editor"
 
 ### Known issues
+
 #### Issues with [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/)
+
 * The wizard does not support the creation of a SHACL Shape with a nested external Shape, e. g. `GeneralShape` in `SensorShape`. To do this you have to temporarily copy the `GeneralShape` into the `SensorShape` file. This applies to all external Shapes which are not defined in the file which is loaded into the wizard.
 * The wizard may generate a non conform `_instance` file when having optional structures which have mandatory attributes. 
   Example: `relatedData` in `GeneralShape`:
+
   ```turtle
         [ sh:node general:LinkShape ;
             sh:description "Reference to optional related assets" ;
@@ -197,12 +206,15 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
             sh:order 2 ;
             sh:path general:relatedData ];
   ```
+
   If `relatedData` is not filled in the wizard, following block will be generated:
+
   ```json
       "general:relatedData": {
         "@type": "general:Link"
       }
   ```
+
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
 
 * If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 

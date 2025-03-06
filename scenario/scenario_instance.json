@@ -50,13 +50,14 @@
         "scenario:catalogs": [
           {
             "@type": "manifest:Link",
-            "manifest:path": {
-                "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
-                "@type": "xsd:anyURI"
-            },
             "manifest:type": "assetData",
-            "manifest:format": "other",
-            "manifest:accessRole": "owner"
+            "manifest:accessRole": "owner",            
+            "manifest:fileMetaData": {
+                "manifest:uri": {
+                    "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
+                    "@type": "xsd:anyURI"
+                }
+            }
           }
         ],
         "scenario:abstractionLevel": "Logical",
@@ -64,26 +65,32 @@
             "@value": "Germany",
             "@type": "xsd:string"
         },
-        "scenario:environmentModels": {
+        "scenario:environmentModels": [
+          {
             "@type": "manifest:Link",
-            "manifest:path": {
-                "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-                "@type": "xsd:anyURI"
-            },
             "manifest:type": "assetData",
-            "manifest:format": "other",
-            "manifest:accessRole": "owner"
-        },
-        "scenario:trafficSpace": {
+            "manifest:accessRole": "owner",
+            "manifest:fileMetaData": {
+                "manifest:uri": {
+                    "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+                    "@type": "xsd:anyURI"
+                }
+            }
+          }
+        ],
+        "scenario:trafficSpace": [ 
+          {
             "@type": "manifest:Link",
-            "manifest:path": {
-                "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-                "@type": "xsd:anyURI"
-            },
             "manifest:type": "assetData",
-            "manifest:format": "other",
-            "manifest:accessRole": "owner"
-        },
+            "manifest:accessRole": "owner",
+            "manifest:fileMetaData": {
+                "manifest:uri": {
+                    "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+                    "@type": "xsd:anyURI"
+                }
+            }
+          }
+        ],
         "scenario:sunAzimuth": {
             "@value": "180",
             "@type": "xsd:float"

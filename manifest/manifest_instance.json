@@ -37,6 +37,31 @@
           }
       },
       "manifest:contentData": [
+        {
+            "@type": "manifest:Link",
+            "manifest:accessRole": "publicUser",
+            "manifest:type": "documentation",
+            "manifest:fileMetaData": {
+                "@type": "manifest:FileMetaData",
+                "manifest:uri": {
+                    "@value": "ipfs://bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
+                    "@type": "xsd:anyURI"
+                },
+                "manifest:hash": {
+                    "@value": "bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
+                    "@type": "xsd:string"
+                },
+                "manifest:mimeType": {
+                    "@value": "text/markdown",
+                    "@type": "xsd:string"
+                },
+                "manifest:fileSize": 5120,
+                "manifest:filename": {
+                    "@value": "README.md",
+                    "@type": "xsd:string"
+                }
+            }
+        },
           {
               "@type": "manifest:Link",
               "manifest:accessRole": "publicUser",

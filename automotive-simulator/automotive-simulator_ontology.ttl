@@ -1,21 +1,58 @@
+@prefix automotive-simulator: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix automotive-simulator: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 automotive-simulator: a owl:Ontology ;
     rdfs:label "Ontology definition for automotive-simulator"@en ;
-    dcterms:contributor "Rhea C. Rinaldo (IQZ), Aaron Blickle (IQZ), Johannes Heinrich (IQZ), Elias Modrakowski (DLR)" ;
-    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
-    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/" ;
-    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/automotive_simulator/automotive-simulator/automotive_simulator_ontology.ttl> ;
-    owl:versionInfo "0.1" .
+    rdfs:comment "An ontology with common classes to describe the attributes of an automotive simulator."@en ;
+
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Rhea C. Rinaldo" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Aaron Blickle" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Johannes Heinrich" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Elias Modrakowski" ;
+        org:memberOf <https://www.dlr.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/automotive-simulator> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/automotive-simulator/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/automotive-simulator/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 automotive-simulator:AutomotiveSimulator a owl:Class ;
     rdfs:label "class definition for automotive simulators"@en ; 
-    rdfs:comment "An implementation of an automotive simulator"@en ;
+    rdfs:comment "An implementation of an automotive simulator."@en ;
     rdfs:subClassOf gx:DataResource .

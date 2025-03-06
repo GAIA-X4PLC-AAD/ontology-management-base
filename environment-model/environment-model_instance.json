@@ -42,11 +42,11 @@
     },
     "environment-model:triangleCount": {
       "@value": "12456",
-      "@type": "xsd:int"
+      "@type": "xsd:unsignedInt"
     },
     "environment-model:geometryCount": {
       "@value": "5000",
-      "@type": "xsd:int"
+      "@type": "xsd:unsignedInt"
     }
   },
   "environment-model:quality": {
@@ -64,30 +64,34 @@
   },
   "environment-model:project": {
     "@type": "environment-model:Project",
-    "environment-model:softwareName": {
+    "environment-model:visualisationToolName": {
       "@value": "Unreal",
       "@type": "xsd:string"
     },
-    "environment-model:softwareVendor": {
+    "environment-model:visualisationToolVendor": {
       "@value": "Epic Games",
       "@type": "xsd:string"
     },
-    "environment-model:softwareVersion": {
+    "environment-model:visualisationToolVersion": {
       "@value": "4.27",
       "@type": "xsd:string"
     },
-    "environment-model:creationSource": {
+    "environment-model:creationToolName": {
       "@value": "Trian3DBuilder",
       "@type": "xsd:string"
+    }    ,
+    "environment-model:creationToolVendor": {
+      "@value": "TrianGraphics GmbH",
+      "@type": "xsd:string"
     },
-    "environment-model:creationVersion": {
+    "environment-model:creationToolVersion": {
       "@value": "7.7",
       "@type": "xsd:string"
     }
   },
   "environment-model:format": {
     "@type": "environment-model:Format",
-    "environment-model:formatType": "Unreal DataSmith",
+    "environment-model:formatType": "Unreal Datasmith",
     "environment-model:version": {
       "@value": "SDK 4.25",
       "@type": "xsd:string"

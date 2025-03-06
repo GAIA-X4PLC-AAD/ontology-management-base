@@ -1,17 +1,43 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 simulation-model: a owl:Ontology ;
-    rdfs:label "Ontology definition for Simulation Model"@en ;
-    dcterms:contributor "Fin Heuer (DLR)" ;
-    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
-    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/" ;
-    owl:versionIRI <https://raw.githubusercontent.com/GAIA-X4PLC-AAD/ontology-management-base/refs/heads/main/simulation-model/simulation-model_ontology.ttl> ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for simulation-model"@en ;
+    rdfs:comment "An ontology with common classes to describe the structure of a Modelica FMI based simulation model."@en ;
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Fin Heuer" ;
+        org:memberOf <https://www.dlr.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/simulation-model> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/simulation-model/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    dcterms:references <https://fmi-standard.org/> ;
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 simulation-model:SimulationModel a owl:Class ;
     rdfs:label "SimulationModel"@en ;

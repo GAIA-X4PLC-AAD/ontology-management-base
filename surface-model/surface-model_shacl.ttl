@@ -1,9 +1,9 @@
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix surface-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 surface-model:SurfaceModelShape a sh:NodeShape ;
@@ -12,45 +12,45 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
-            sh:name "general object" ;
-            sh:description "general object with properties for descriptions, data, links, bundle" ;
+            sh:name "general object"@en ;
+            sh:description "General properties for defining a surface-model asset, including format, data, quantity, and quality attributes."@en ;
             sh:order 1 ;
             sh:path surface-model:general ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:FormatShape ;
-            sh:name "format object" ;
-            sh:description "format object with properties for format informations" ;
+            sh:name "format object"@en ;
+            sh:description "Contains properties that describe the format of the surface-model asset."@en ;
             sh:order 2 ;
-            sh:path surface-model:Format ],
+            sh:path surface-model:format ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:DataShape ;
-            sh:name "data object" ;
-            sh:description "Data object with property for type of data" ;
+            sh:name "data object"@en ;
+            sh:description "Contains properties that describe the data type of the surface-model asset."@en ;
             sh:order 3 ;
-            sh:path surface-model:Data ],
+            sh:path surface-model:data ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QualityShape ;
-            sh:name "quality object" ;
-            sh:description "quality object with properties for quality informations" ;
+            sh:name "quality object"@en ;
+            sh:description "Contains properties that describe the accuracy of the surface-model asset."@en ;
             sh:order 4 ;
-            sh:path surface-model:Quality ],
+            sh:path surface-model:quality ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node surface-model:QuantityShape ;
-            sh:name "quantity object" ;
-            sh:description "quantity object with properties for quantity informations" ;
+            sh:name "quantity object"@en ;
+            sh:description "Contains properties that describe the quantity of the surface-model asset."@en ;
             sh:order 5 ;
-            sh:path surface-model:Quantity ],
+            sh:path surface-model:quantity ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeference object" ;
-            sh:description "georeference object with properties for georeference informations" ;
+            sh:name "georeference object"@en ;
+            sh:description "General properties for defining the location and projection of the asset."@en ;
             sh:order 6 ;
-            sh:path surface-model:Georeference ] ;
+            sh:path surface-model:georeference ] ;
     sh:targetClass surface-model:SurfaceModel .
     
 surface-model:DataShape a sh:NodeShape ;
@@ -58,7 +58,7 @@ surface-model:DataShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "nan" ;
             sh:datatype xsd:string ;
-            sh:description "Height, friction values, grey values"@en ;
+            sh:description "Specifies the data type (e.g., height, friction) used in the surface-model asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
@@ -71,7 +71,7 @@ surface-model:FormatShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "ASAM OpenCRG; DLM" ;
             sh:datatype xsd:string ;
-            sh:description "Format type definition"@en ;
+            sh:description "Defines the data type of the surface-model asset."@en ;
             sh:in ("ASAM OpenCRG" "DLM") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
@@ -80,7 +80,7 @@ surface-model:FormatShape a sh:NodeShape ;
             sh:path surface-model:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
-            sh:description "Version of data format"@en ;
+            sh:description "Defines the version of the surface-model asset's data type."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of version failed!"@en ;
             sh:name "version"@en ;
@@ -93,7 +93,7 @@ surface-model:QualityShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.01" ;
             sh:datatype xsd:float ;
-            sh:description "Longitudinal resolution "@en ;
+            sh:description "Specifies the longitudinal resolution (s) in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of resolutionLongitudinal failed!"@en ;
             sh:name "resolution longitudinal"@en ;
@@ -101,7 +101,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:path surface-model:resolutionLongitudinal ],
         [ skos:example "-3,14159" ;
             sh:datatype xsd:float ;
-            sh:description "Heading at starting position"@en ;
+            sh:description "Specifies the alignment at the starting position in radians."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of orientation failed!"@en ;
             sh:name "orientation"@en ;
@@ -109,7 +109,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:path surface-model:orientation ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
-            sh:description "Existence of horizontal starting platform"@en ;
+            sh:description "Indicates whether a horizontal start platform exists."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of platformExists failed!"@en ;
             sh:name "platform exists"@en ;
@@ -117,7 +117,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:path surface-model:platformExists ],
         [ skos:example "0.01" ;
             sh:datatype xsd:float ;
-            sh:description "Lateral resolutions"@en ;
+            sh:description "Specifies the lateral resolution (t) in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of resolutionLateral failed!"@en ;
             sh:name "resolution lateral"@en ;
@@ -125,7 +125,7 @@ surface-model:QualityShape a sh:NodeShape ;
             sh:path surface-model:resolutionLateral ],
         [ skos:example "true" ;
             sh:datatype xsd:boolean ;
-            sh:description "Existence of smooth ramp from platform to road"@en ;
+            sh:description "Indicates whether there is a smooth ramp from the platform to the road."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of rampExists failed!"@en ;
             sh:name "ramp exists"@en ;
@@ -138,7 +138,7 @@ surface-model:QuantityShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "yes" ;
             sh:datatype xsd:boolean ;
-            sh:description "Is projection system provided within the dataset"@en ;
+            sh:description "Indicates whether the projection system is included in the dataset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of mapDataField failed!"@en ;
             sh:name "map data field"@en ;
@@ -146,7 +146,7 @@ surface-model:QuantityShape a sh:NodeShape ;
             sh:path surface-model:mapDataField ],
         [ skos:example "25" ;
             sh:datatype xsd:float ;
-            sh:description "Range of elevation values"@en ;
+            sh:description "Indicates the difference between the maximum and minimum elevation values in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of elevationRange failed!"@en ;
             sh:minCount 0 ;
@@ -155,7 +155,7 @@ surface-model:QuantityShape a sh:NodeShape ;
             sh:path surface-model:elevationRange ],
         [ skos:example "1.46" ;
             sh:datatype xsd:float ;
-            sh:description "Road network length in km"@en ;
+            sh:description "Defines the total length of all elements in kilometres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of length failed!"@en ;
             sh:name "length"@en ;
