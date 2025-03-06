@@ -8,22 +8,22 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GeoreferenceShape | georeference | projectLocation | 1 | 1 | projectLocation object with property for locations and description |  | georeference_shacl.ttl |
-| GeoreferenceShape | georeference | geodeticReferenceSystem | 1 | 1 | geodeticReferenceSystem object with properties for projection informations |  | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | origin | 1 | 1 | World coordinates of map origin |  | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | viewPoint |  | 1 | World coordinates of view point |  | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | EPSG code of the map | <http://www.w3.org/2001/XMLSchema#int> | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | coordinateSystemName |  | 1 | coordinate system name of the map | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Ellipsodial height or orthometric height | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| BoundingBoxShape | georeference | xMin | 1 | 1 | minimum bounding value in x axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| BoundingBoxShape | georeference | yMin | 1 | 1 | minimum bounding value in y axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| BoundingBoxShape | georeference | xMax | 1 | 1 | maximum bounding value in x axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| BoundingBoxShape | georeference | yMax | 1 | 1 | maximum bounding value in y axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| LatLonCoordinateShape | georeference | lat | 1 | 1 | latitude value - y axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| LatLonCoordinateShape | georeference | lon | 1 | 1 | longitude value - x axis | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | state |  | 1 | Code of federal state or province as ISO 3166-2 | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | city |  | 1 | Main city of project area | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | region |  | 1 | Region of project area | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | country |  | 1 | Country code as ISO 3166-1, alpha-2 | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | boundingBox | 1 | 1 | Bounding box with lat/lon values in WGS84 |  | georeference_shacl.ttl |
-| ProjectLocationShape | georeference | relationOrArea |  | 1 | Description of the mapped area as relation for a certain road, or alternatively a region | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| GeoreferenceShape | georeference | projectLocation | 1 | 1 | Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset. |  | georeference_shacl.ttl |
+| GeoreferenceShape | georeference | geodeticReferenceSystem | 1 | 1 | This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system. |  | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | origin | 1 | 1 | Defines the center position of the asset in world coordinates. |  | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | viewPoint |  | 1 | Defines the imported viewpoint position of the asset in world coordinates. |  | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | Defines the projection EPSG code for the asset. | <http://www.w3.org/2001/XMLSchema#int> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | coordinateSystemName |  | 1 | Describes the coordinate system name of the asset as an alternative to the EPSG code. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Defines the height system type of the asset. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| BoundingBoxShape | georeference | xMin | 1 | 1 | Defines the minimum bounding box value along the x-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| BoundingBoxShape | georeference | yMin | 1 | 1 | Defines the minimum bounding box value along the y-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| BoundingBoxShape | georeference | xMax | 1 | 1 | Defines the maximum bounding box value along the x-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| BoundingBoxShape | georeference | yMax | 1 | 1 | Defines the maximum bounding box value along the y-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| LatLonCoordinateShape | georeference | lat | 1 | 1 | Defines a world latitude value (on the y-axis) in degrees. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| LatLonCoordinateShape | georeference | lon | 1 | 1 | Defines a world longitude value (on the x-axis) in degrees. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | state |  | 1 | Defines an ISO 3166-2 code for the state or province in which the asset centre is located. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | city |  | 1 | Specifies the name of the city in which the asset's centre is located. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | region |  | 1 | Specifies the name of the region in which the asset's centre is located. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | country |  | 1 | Defines an ISO 3166-1, alpha-2 code for the country in which the asset centre is located. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | boundingBox | 1 | 1 | Defines the bounding box in world coordinates of the asset. |  | georeference_shacl.ttl |
+| ProjectLocationShape | georeference | relationOrArea |  | 1 | Describes the area in which the asset is located, such as the name of the main street or the landscape region. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |

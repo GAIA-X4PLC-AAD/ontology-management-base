@@ -8,33 +8,33 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ScenarioShape | scenario | general | 1 | 1 | general object with properties for descriptions, data, links, bundle |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | format | 1 | 1 | format object with properties for format informations |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | content | 1 | 1 | content object with properties for scenario intrinsic attributes |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | quantity | 1 | 1 | quantity object with properties for quantity informations |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | quality | 1 | 1 | quality object with properties for quality informations |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | dataSource | 1 | 1 | dataSource object with properties for data sources |  | scenario_shacl.ttl |
-| ScenarioShape | scenario | georeference | 1 | 1 | georeference object with properties for georeference informations |  | scenario_shacl.ttl |
-| FormatShape | scenario | formatType |  | 1 | Format type definition | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| FormatShape | scenario | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | abstractionLevel |  | 1 | Pegasus type of scenario | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | timeDate | 0 | 1 | Time of the scenario if applicaple. Either time of recording or if synthetic the time it happens. | <http://www.w3.org/2001/XMLSchema#dateTime> | scenario_shacl.ttl |
-| ContentShape | scenario | aim | 0 | 1 | Purpose of this scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | usedStandardFunctions | 0 | 1 | Use of the functionalities from the standard. E.g. which Actions are used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | movementDescription |  | 1 | Type of movement used by traffic participants according to the OpenSCENARIO standard. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | customCommands | 0 | 1 | Scenario/domain specific commands or actions | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | catalogs | 0 |  | Link to Catalogs |  | scenario_shacl.ttl |
-| ContentShape | scenario | environmentModels | 0 |  | Link to environment models |  | scenario_shacl.ttl |
-| ContentShape | scenario | trafficSpace | 0 | 1 | Link to traffic space |  | scenario_shacl.ttl |
-| ContentShape | scenario | sunAzimuth | 0 |  | Azimuth of the sun in degrees | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
-| ContentShape | scenario | countrySpecificSign | 0 | 1 | Country specific traffic signs | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | countrySpecificTrafficParticipants | 0 | 1 | Country specific traffic participants | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ContentShape | scenario | country | 0 | 1 | Country where this scenario is from | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| QuantityShape | scenario | temporaryTrafficObjects |  | 1 | Count of traffic temporary objects | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
-| QuantityShape | scenario | numberTrafficObjects |  | 1 | Count of traffic objects | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
-| QuantityShape | scenario | controllers | 0 |  | Usage of simulation core internal or external controllers. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| QuantityShape | scenario | permanentTrafficObjects |  | 1 | Count of traffic permanent objects | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
-| QualityShape | scenario | accuracyObjects | 0 | 1 | Accuracy of moving objects (only applicable if scenario is based on real measurments). | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
-| QualityShape | scenario | calibration | 0 | 1 | Description of any calibration steps performed prior to measurement | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| DataSourceShape | scenario | sourceType | 0 | 1 | Source type | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| DataSourceShape | scenario | sourceDescription | 0 | 1 | Source description that details the selected sourceType. As sourceType only describes the overall category, this attribute allows a free description of the source method/source type used in sourceType. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ScenarioShape | scenario | general | 1 | 1 | General properties common for all simulation assets. |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | format | 1 | 1 | Contains properties that describe the format of the scenario asset. |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | content | 1 | 1 | Defines the content of the scenario asset, such as time, abstraction level, and links. |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | quantity | 1 | 1 | Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers). |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | quality | 1 | 1 | Contains properties that describe the accuracy of objects and the calibration of the scenario asset. |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | dataSource | 1 | 1 | Defines which data resources were used to create the scenario asset. |  | scenario_shacl.ttl |
+| ScenarioShape | scenario | georeference | 1 | 1 | General properties for defining the location and projection of the scenario asset. |  | scenario_shacl.ttl |
+| FormatShape | scenario | formatType |  | 1 | Defines the type of data format used for the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| FormatShape | scenario | version |  | 1 | Defines the version of the data format used for the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | abstractionLevel |  | 1 | Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | timeDate | 0 | 1 | Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario). | <http://www.w3.org/2001/XMLSchema#dateTime> | scenario_shacl.ttl |
+| ContentShape | scenario | aim | 0 | 1 | Defines the purpose of the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | usedStandardFunctions | 0 | 1 | Specifies which functions (e.g., actions) from the standard are utilized. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | movementDescription |  | 1 | Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | customCommands | 0 | 1 | Defines scenario- or domain-specific commands or actions used in the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | catalogs | 0 |  | Specifies the catalogues used in the scenario asset (provided as links). |  | scenario_shacl.ttl |
+| ContentShape | scenario | environmentModels | 0 |  | Specifies the environment models used in the scenario asset (provided as links). |  | scenario_shacl.ttl |
+| ContentShape | scenario | trafficSpace | 0 | 1 | Specifies the traffic space used in the scenario asset (provided as a link). |  | scenario_shacl.ttl |
+| ContentShape | scenario | sunAzimuth | 0 |  | Defines the azimuth of the sun in degrees. | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
+| ContentShape | scenario | countrySpecificSign | 0 | 1 | Indicates which country-specific traffic signs are used in the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | countrySpecificTrafficParticipants | 0 | 1 | Indicates which country-specific participants are used in the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| ContentShape | scenario | country | 0 | 1 | Indicates the country of origin for the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| QuantityShape | scenario | temporaryTrafficObjects |  | 1 | Specifies the total number of temporary traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
+| QuantityShape | scenario | numberTrafficObjects |  | 1 | Specifies the total number of traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
+| QuantityShape | scenario | controllers | 0 |  | Specifies the simulation core controllers (internal or external) used in the scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| QuantityShape | scenario | permanentTrafficObjects |  | 1 | Specifies the total number of permanent traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
+| QualityShape | scenario | accuracyObjects | 0 | 1 | Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements). | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
+| QualityShape | scenario | calibration | 0 | 1 | Describes the calibration steps performed prior to the measurements. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| DataSourceShape | scenario | sourceType | 0 | 1 | Specifies the category of source data used to create the scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| DataSourceShape | scenario | sourceDescription | 0 | 1 | Provides a detailed description of the source data used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |

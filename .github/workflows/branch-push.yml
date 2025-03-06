@@ -13,11 +13,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+          fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: 3.12.0
+        python-version: '3.12'
 
     - name: Install additional libraries
       run: pip install -r src/requirements_ci.txt
@@ -40,12 +42,14 @@ jobs:
     - name: Commit and push changes
       if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
       run: |
-        git config --local user.email "justin.dex@msg-david.de"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Action"
         git add */VARIABLES.md
         git commit -s -m "Add VARIABLES.md files"
         git push
       working-directory: ${{ github.workspace }}
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   parse-turtle:
     name: Check syntax of all changed Turtle files
@@ -59,7 +63,7 @@ jobs:
         id: check_ttl
         run: |
           git fetch origin main
-          CHANGED_TTL=$(git diff --name-only origin/main -- '*.ttl')
+          CHANGED_TTL=$(git diff --name-only --diff-filter=d origin/main -- '*.ttl')
           if [[ -n "$CHANGED_TTL" ]]; then
             echo "TTL_HAS_CHANGED=true" >> $GITHUB_ENV
             echo "CHANGED_TTL=$(echo "$CHANGED_TTL" | tr '\n' ' ')" >> $GITHUB_ENV # save files in one line
@@ -99,7 +103,7 @@ jobs:
         id: check_ttl_or_instance
         run: |
           git fetch origin main
-          CHANGED_FILES=$(git diff --name-only origin/main -- '*shacl.ttl' '*instance.json')
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/main -- '*shacl.ttl' '*instance.json')
           if [[ -n "$CHANGED_FILES" ]]; then
             CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -n1 dirname | sort -u) # just save the directory names
             echo "FILES_HAVE_CHANGED=true" >> $GITHUB_ENV
@@ -140,7 +144,7 @@ jobs:
         id: check_ttl
         run: |
           git fetch origin main
-          CHANGED_FILES=$(git diff --name-only origin/main -- '*.ttl')
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/main -- '*.ttl')
           if [[ -n "$CHANGED_FILES" ]]; then
             CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -n1 dirname | sort -u) # just save the directory names
             echo "FILES_HAVE_CHANGED=true" >> $GITHUB_ENV

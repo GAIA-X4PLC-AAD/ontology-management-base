@@ -1,0 +1,68 @@
+@prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
+
+vv-report: a owl:Ontology ;
+    rdfs:label "Ontology definition for vv-report"@en ;
+    rdfs:comment "An ontology with common classes to describe the structure of a verification & validation report."@en ;
+    
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Maurizio Ahmann" ;
+        org:memberOf <https://www.setlabs.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/vv-report> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/vv-report/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/vv-report/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    dcterms:references <https://github.com/asam-ev/qc-framework> ;
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+vv-report:VvReport a owl:Class ;
+    rdfs:label "Class definition for VvReport"@en ;
+    rdfs:comment "Attributes for a verification & validation report."@en .
+
+vv-report:Evaluation a owl:Class ;
+    rdfs:label "Class definition for Evaluation"@en ;
+    rdfs:comment "Attributes for an evaluation element."@en .
+
+vv-report:Metric a owl:Class ;
+    rdfs:label "Class definition for Metric"@en ;
+    rdfs:comment "Attributes for the definition of a quality metric."@en .
+
+vv-report:InputData a owl:Class ;
+    rdfs:label "Class definition for InputData"@en ;
+    rdfs:comment "Attributes for the definition of an input data element."@en .
+
+vv-report:Result a owl:Class ;
+    rdfs:label "Class definition for Result"@en ;
+    rdfs:comment "Attributes for evaluation results."@en .
+
+vv-report:ResultVerification a owl:Class ;
+    rdfs:label "Class definition for ResultVerification"@en ;
+    rdfs:comment "Attributes for the verification of the result by a third party."@en .
