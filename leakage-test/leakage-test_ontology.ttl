@@ -1,16 +1,43 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix leakage-test: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/leakage-test/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 	
 leakage-test: a owl:Ontology ;
-	rdfs:label "Ontology for Leakage Test"@en ;
-	dcterms:contributor "Selcan Karadag (Continental)" ;
-	owl:versionInfo "0.1" .
+	rdfs:label "Ontology for leakage-test"@en ;
+
+	dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Selcan Karadag" ;
+        org:memberOf <https://www.continental.com> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/leakage-test> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/leakage-test/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for Leakage Test"@en ;

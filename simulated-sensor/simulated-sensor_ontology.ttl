@@ -1,19 +1,52 @@
+@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 simulated-sensor: a owl:Ontology ;
-    rdfs:label "Ontology definition for simulated_sensor"@en ;
-    dcterms:contributor "Rhea C. Rinaldo (IQZ), Aaron Blickle (IQZ), Johannes Heinrich (IQZ)" ;
-    dcterms:creator "The GAIA-X 4 PLC AAD Project Team" ;
-    dcterms:identifier "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/" ;
-    owl:versionIRI <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/simulated_sensor_uc1_2/simulated-sensor/simulated_sensor_ontology.ttl> ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for simulated-sensor"@en ;
+    rdfs:comment "An ontology with common classes to describe a simulated sensor."@en ;
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Rhea C. Rinaldo" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Aaron Blickle" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Johannes Heinrich" ;
+        org:memberOf <https://iqz-wuppertal.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/simulated-sensor> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/simulated-sensor/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulated-sensor/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 simulated-sensor:SimulatedSensor a owl:Class ;
     rdfs:label "class definition simulated sensor"@en ; 

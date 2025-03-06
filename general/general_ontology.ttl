@@ -2,6 +2,9 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -10,8 +13,36 @@
 general: a owl:Ontology ;
     rdfs:label "Ontology definition for general"@en ;
     rdfs:comment "General ontology with common classes for the simulation domain."@en ;
-    dcterms:contributor "Mirco Nierenz (TG), Carlo van Driesten (BMW AG)" ;
-    owl:versionInfo "0.2" .
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Mirco Nierenz" ;
+        org:memberOf <https://triangraphics.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/general> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology> ;
+    owl:versionInfo "v2" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General"@en ;

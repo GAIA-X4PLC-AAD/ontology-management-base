@@ -1,17 +1,47 @@
 @prefix surface-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 surface-model: a owl:Ontology ;
     rdfs:label "Ontology definition for surface-model"@en ;
     rdfs:comment "An ontology with common classes used to describe a surface-model asset."@en ;
-    dcterms:contributor "Sebastian Tuttas (3DM), Mirco Nierenz (TG)" ;
-    owl:versionInfo "0.2" .
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Sebastian Tuttas" ;
+        org:memberOf <https://www.3d-mapping.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Mirco Nierenz" ;
+        org:memberOf <https://triangraphics.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/surface-model> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v2/ontology> ;
+    owl:versionInfo "v2" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v2/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 surface-model:SurfaceModel a owl:Class ;
     rdfs:label "Class definition for surface-model"@en ;

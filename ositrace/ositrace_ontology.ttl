@@ -1,14 +1,46 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 ositrace: a owl:Ontology ;
-    rdfs:label "ontology definition for OSI Trace Files"@en ;
-    dcterms:contributor "Pierre R. Mai (PMSF)" ;
-    owl:versionInfo "0.1" .
+    rdfs:label "Ontology definition for OSI Trace Files"@en ;
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Pierre R. Mai" ;
+        org:memberOf <https://pmsf.eu/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/ositrace> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v1/ontology> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v1/shacle> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    dcterms:references <https://github.com/OpenSimulationInterface> ;
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 ositrace:OSITrace a owl:Class ;
     rdfs:label "Class definition for OSI Trace Files" ;
