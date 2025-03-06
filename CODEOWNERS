@@ -51,8 +51,8 @@
 /surface-model @robertschubert
 /surface-model @3Dbastian
 
-# ositrace directory (Pierre AND Robert)
-/ositrace @robertschubert
+# ositrace directory (Pierre AND Carlo)
+/ositrace @jdsika
 /ositrace @pmai
 
 # simulated-sensor directory (Rhea)
@@ -65,6 +65,10 @@
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
 
-# manifest directory (Robert AND Johannes)
+# manifest directory (Robert AND Carlo)
 /manifest @robertschubert
 /manifest @jdsika
+
+# vv-report directory (Maurizio AND Carlo)
+/vv-report @localhorst87
+/vv-report @jdsika
