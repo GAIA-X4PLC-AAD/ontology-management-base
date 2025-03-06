@@ -26,6 +26,7 @@ A sample **`digital asset`** can be downloaded from the [GAIA-X4PLC-AAD/hd-map-a
 - 📁 *`validation`* <i style="color:gray;">(optional)</i>
   - 📄 *`qcReport.txt`* <i style="color:gray;">(optional)</i>
 - 📁 `visualization`
+  - 📁 `3d_preview` *-> 3d preview files* <i style="color:gray;">(optional)</i>
   - 📄 `assetName_01.png` *-> eyecatcher*
   - 📄 *`assetName_[XX].png`* *-> impression* <i style="color:gray;">(optional)</i>
   - 📄 `bbox.geojson`
@@ -64,4 +65,4 @@ A sample **`digital asset`** can be downloaded from the [GAIA-X4PLC-AAD/hd-map-a
 
 ### Create an asset
 
-You can use the GaiaX 4 PLC-AAD [Provider Tools](https://github.com/GAIA-X4PLC-AAD/provider-tools) to create your own digital asset.
+You can use the GaiaX 4 PLC-AAD [Provider Services](https://github.com/GAIA-X4PLC-AAD/provider-services) and [Provider Tools](https://github.com/GAIA-X4PLC-AAD/provider-tools) to create your own digital asset.
