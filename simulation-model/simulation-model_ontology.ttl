@@ -33,7 +33,7 @@ simulation-model: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://fmi-standard.org/> ;
