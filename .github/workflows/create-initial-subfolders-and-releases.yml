@@ -1,0 +1,66 @@
+name: Create Initial Subfolder Versions and Releases
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-initial-subfolders-and-releases:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+
+      - name: Get list of domain subfolders
+        id: subfolders
+        run: |
+          find . -mindepth 1 -maxdepth 1 -type d | sed 's|./||' | grep -v '^\.' | grep -v '^src$' > subfolders.txt
+          subfolders=$(cat subfolders.txt | tr '\n' ' ')
+          if [ -z "$subfolders" ]; then
+            echo "No subfolders found"
+            exit 1
+          fi
+          echo "subfolders=$subfolders" >> $GITHUB_ENV
+          echo "Subfolders: $subfolders"
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "create-initial-subfolder-release-job@gaia-x4plcaad.info"
+          git config --global user.name "GitHub-Action"
+
+      - name: Create initial version subfolders
+        run: |
+          python3 src/create_initial_subfolder.py
+
+      - name: Update @prefix lines in TTL files and @context in JSON files
+        run: |
+          python3 src/update_prefixes.py
+
+      - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add .
+          git commit -m "Move files to initial version subfolders and update @prefix lines and @context entries"
+          git push origin main
+
+      - name: Create releases for subfolders
+        run: |
+          subfolders=$(cat subfolders.txt | tr '\n' ' ')
+          for folder in $subfolders; do
+            latest_tag=$(git tag -l "${folder}_v*" | sort -V | tail -n 1)
+            if [ -n "$latest_tag" ]; then
+              echo "latest_tag: $latest_tag"
+              version_folder="v${latest_tag#*_v}"
+              echo "version_folder: $version_folder"
+              version_folder=${version_folder%%-*}
+              echo "version_folder: $version_folder"
+              zip -r "${folder}_${version_folder}.zip" "${folder}/${version_folder}"
+              gh release create "$latest_tag" "${folder}_${version_folder}.zip" --title "$latest_tag" --notes "Release for $folder version $version_folder"
+            fi
+          done
