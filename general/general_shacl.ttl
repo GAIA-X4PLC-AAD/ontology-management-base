@@ -3,6 +3,8 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#Erik edit
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 
 general:GeneralShape a sh:NodeShape ;
     sh:closed false ;
@@ -20,8 +22,18 @@ general:GeneralShape a sh:NodeShape ;
             sh:name "data object"@en ;
             sh:description "Data properties of the simulation asset."@en ;
             sh:order 2 ;
-            sh:path general:data ];              
-    sh:targetClass general:General .
+            sh:path general:data ];        
+        #Erik edit: Achtung: Dieser Edit bedeutet, dass alle Domain Resources / Generals ein manifest benötigen. 
+        #Wenn dies nicht erfolgen soll kann es sinnvoll sein für entsprechende Resources eine Superklasse anzulegen, die manifeste erfordert 
+        #(Die superklasse muss dabei auch nicht zwingend eine subklasse von DomainResources/General sein, sondern kann einfach daneben stehen)
+        [ sh:maxCount 1 ; # mincount und maxcount kannst du besser einschätzen
+            sh:minCount 1 ;
+            sh:node manifest:Manifest ;
+            sh:name "manifest object"@en ;
+            sh:description "link to manifest of a domain Resource."@en ;
+            sh:order 2 ;
+            sh:path manifest:datahasmanifest ]; # Hier benötist du noch ein Property, was auf dein manifest verweist. Bennenung wie du möchtest               
+    sh:targetClass general:General . 
     
 general:DescriptionShape a sh:NodeShape ;
     sh:closed false ;
