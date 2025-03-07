@@ -44,23 +44,23 @@ surface-model: a owl:Ontology ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 surface-model:SurfaceModel a owl:Class ;
-    rdfs:label "Class definition for surface-model"@en ;
-    rdfs:comment "General properties for defining a surface-model asset, including format, data, quantity, and quality attributes."@en ;
+    rdfs:label "Class definition for SurfaceModel"@en ;
+    rdfs:comment "General properties for defining a surface model asset, including format, data, quantity, and quality attributes."@en ;
     rdfs:subClassOf gx:DataResource .
 
 surface-model:Data a owl:Class ;
     rdfs:label "Class definition for Data"@en ;
-    rdfs:comment "Contains properties that describe the data type of the surface-model asset."@en .
+    rdfs:comment "Contains properties that describe the data type of the surface model asset."@en .
 
 surface-model:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties that describe the format of the surface-model asset."@en .
+    rdfs:comment "Contains properties that describe the format of the surface model asset."@en .
 
 surface-model:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties that describe the accuracy of the surface-model asset."@en .
+    rdfs:comment "Contains properties that describe the accuracy of the surface model asset."@en .
 
 surface-model:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties that describe the quantity of the surface-model asset."@en .
+    rdfs:comment "Contains properties that describe the quantity of the surface model asset."@en .
     

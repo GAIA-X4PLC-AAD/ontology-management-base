@@ -49,12 +49,12 @@ manifest: a owl:Ontology ;
 
 manifest:Manifest a owl:Class ;
     rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "General properties for defining a manifest, including data, license, and link properties."@en ;
+    rdfs:comment "General properties for defining a manifest of the simulation asset, including data, license, and link properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 manifest:Data a owl:Class ;
     rdfs:label "Class definition for Data"@en ;
-    rdfs:comment "Defines the data components of the simulation asset."@en .
+    rdfs:comment "Defines the data components of the manifest."@en .
 
 manifest:License a owl:Class ;
     rdfs:label "Class definition for License"@en ;
@@ -62,7 +62,7 @@ manifest:License a owl:Class ;
 
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link"@en ;
-    rdfs:comment "General class for defining a link."@en .
+    rdfs:comment "General class for defining a links to e.g. related simulation assets or other references."@en .
 
 manifest:FileMetaData a owl:Class ;
     rdfs:label "Class definition for FileMetaData"@en ;
@@ -70,4 +70,4 @@ manifest:FileMetaData a owl:Class ;
 
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
-    rdfs:comment "Describes the dimensions of file data of type image or video."@en .
+    rdfs:comment "Describes the dimensions of data file e.g. of type image or video."@en .

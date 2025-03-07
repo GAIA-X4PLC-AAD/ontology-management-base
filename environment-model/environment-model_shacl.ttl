@@ -159,7 +159,7 @@ environment-model:ProjectShape a sh:NodeShape ;
 environment-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "PBR, highly detailed specific 3D buildings" ;
+    sh:property [ skos:example "PBR, highly detailed specific 3D buildings."@en ;
             sh:datatype xsd:string ;
             sh:description "Describes the features that influence the quality of the environment-model."@en ;
             sh:maxCount 1 ;

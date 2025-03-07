@@ -49,22 +49,22 @@ simulated-sensor: a owl:Ontology ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 simulated-sensor:SimulatedSensor a owl:Class ;
-    rdfs:label "class definition simulated sensor"@en ; 
-    rdfs:comment "A sensor in an automotive driving simulator"@en ;
+    rdfs:label "Class definition for SimulatedSensor"@en ; 
+    rdfs:comment "A sensor in an automotive driving simulator."@en ;
     rdfs:subClassOf gx:DataResource .
 
 simulated-sensor:Radar a owl:Class ;
-    rdfs:label "class definition for a simulated radar sensor"@en ; 
-    rdfs:comment "A simulated RADAR sensor"@en .
+    rdfs:label "Class definition for Radar"@en ; 
+    rdfs:comment "A simulated RADAR sensor in an automotive driving simulator."@en .
 
 simulated-sensor:Lidar a owl:Class ;
-    rdfs:label "class definition for a simulated lidar sensor"@en ; 
-    rdfs:comment "A simulated LIDAR sensor"@en .
+    rdfs:label "Class definition for Lidar"@en ; 
+    rdfs:comment "A simulated LIDAR sensor in an automotive driving simulator."@en .
 
 simulated-sensor:Camera a owl:Class ;
-    rdfs:label "class definition for a simulated camera sensor"@en ; 
-    rdfs:comment "A simulated camera sensor"@en .
+    rdfs:label "Class definition for Camera"@en ; 
+    rdfs:comment "A simulated CAMERA sensor in an automotive driving simulator."@en .
 
 simulated-sensor:FieldOfView a owl:Class ;
-    rdfs:label "class definition for the Field of View (FoV) of a perception sensor"@en ; 
-    rdfs:comment "A field of view as float angles"@en .
+    rdfs:label "Class definition for FieldOfView"@en ; 
+    rdfs:comment "A Field of View (FoV) of a perception sensor as float angles in an automotive driving simulator."@en .

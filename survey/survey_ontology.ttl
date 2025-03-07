@@ -10,7 +10,8 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 survey: a owl:Ontology ;
-      rdfs:label "Semiconductor Survey Metadata Ontology"@en ;
+      rdfs:label "Ontology definition for survey"@en ;
+      rdfs:comment "An ontology with common classes used to describe a semiconductor survey including metadata."@en ;
       
       dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
       dcterms:contributor [
@@ -60,10 +61,10 @@ survey:belongsTo rdf:type owl:ObjectProperty ;
 
 survey:SurveyResultDataOffering rdf:type owl:Class ;
       rdfs:subClassOf gx:DataResource ;
-      rdfs:label "Survey result data offering" ; 
-      rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey." .
+      rdfs:label "Class definition for SurveyResultDataOffering"@en ; 
+      rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey."@en .
 
 survey:SurveyServiceOffering rdf:type owl:Class ;
       rdfs:subClassOf gx:SoftwareResource ;
-      rdfs:label "Survey service offering" ; 
-      rdfs:comment "The survey service offering refers to the invitation to a participate in a survey." .
+      rdfs:label "Class definition for SurveyServiceOffering"@en ; 
+      rdfs:comment "The survey service offering refers to the invitation to a participate in a survey."@en .
