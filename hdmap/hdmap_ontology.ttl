@@ -40,7 +40,7 @@ hdmap: a owl:Ontology ;
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/hdmap/v2/shacle> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 hdmap:HdMap a owl:Class ;

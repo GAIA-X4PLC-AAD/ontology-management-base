@@ -62,7 +62,7 @@ manifest:License a owl:Class ;
 
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link"@en ;
-    rdfs:comment "General class for defining a links to e.g. related simulation assets or other references."@en .
+    rdfs:comment "General class for defining a link to e.g. related simulation assets or other references."@en .
 
 manifest:FileMetaData a owl:Class ;
     rdfs:label "Class definition for FileMetaData"@en ;

@@ -39,7 +39,7 @@ ositrace: a owl:Ontology ;
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v1/shacle> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
