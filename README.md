@@ -138,7 +138,7 @@ The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline
 
 The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
 
->NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically. 
+>NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically.
 
 #### Check syntax of Turtle files
 

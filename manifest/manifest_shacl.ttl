@@ -8,43 +8,24 @@
 manifest:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property             
-        [   sh:description "Defines the data components of the simulation asset."@en ;
+    sh:property
+        [   sh:description "Defines the manifest providing a list of contents of an asset."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node manifest:DataShape ;
-            sh:order 1 ;
-            sh:path manifest:data ],  
-        [   sh:description "Defines the license of the simulation asset."@en ;
-            sh:maxCount 1 ;
+            sh:node manifest:LinkShape ;
+            sh:order 0 ;
+            sh:path manifest:manifest ],
+        [   sh:description "Shape linking to all relevant data of the asset."@en ;
+            sh:minCount 1 ;
+            sh:node manifest:LinkShape ;
+            sh:order 2 ;
+            sh:path manifest:content ],
+        [   sh:description "Shape defining the license applying to all content referenced in the manifest if no other license is mentioned in the referenced data."@en ;
             sh:minCount 1 ;
             sh:node manifest:LicenseShape ;
-            sh:order 2 ;
-            sh:path manifest:license ];                   
-    sh:targetClass manifest:Manifest .
-    
-manifest:DataShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property 
-        [   sh:description "Defines links to the asset and to other data that is not classified as content data."@en ;
-            skos:example "accessRole: owner, type: assetData, format: xodr, path: ./data/hdmap.xodr"@en ;
-            sh:message "Validation of asset data failed!"@en ;
-            sh:minCount 1 ;
-            sh:name "asset data"@en ;
-            sh:node manifest:LinkShape ;
             sh:order 1 ;
-            sh:path manifest:assetData
-        ],
-        [   sh:description "Defines links to content data."@en ;
-            skos:example "accessRole: publicUser, type: metadata, format: json, path: ./metadata/gxMetadata.json"@en ;
-            sh:message "Validation of content failed!"@en ;
-            sh:name "content data"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 2 ;
-            sh:path manifest:contentData 
-        ];
-    sh:targetClass manifest:Data .
+            sh:path manifest:license ];
+    sh:targetClass manifest:Manifest .
 
 manifest:LicenseShape a sh:NodeShape ;
     sh:closed false ;
@@ -87,16 +68,16 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
         ],
-        [   sh:description "Specifies the data type of the corresponding file."@en ;
+        [   sh:description "Specifies the category of the corresponding data file."@en ;
             skos:example "metadata";
             sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
             sh:datatype xsd:string ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "type"@en ;
+            sh:name "category"@en ;
             sh:order 1 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path manifest:type 
+            sh:path manifest:category 
         ],
         [
             sh:description "Defines a general class for a data file that is referenced via a link."@en ;
