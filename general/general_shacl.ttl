@@ -31,7 +31,7 @@ general:GeneralShape a sh:NodeShape ;
             sh:node manifest:Manifest ;
             sh:name "manifest object"@en ;
             sh:description "link to manifest of a domain Resource."@en ;
-            sh:order 2 ;
+            sh:order 3 ;
             sh:path manifest:datahasmanifest ]; # Hier benötist du noch ein Property, was auf dein manifest verweist. Bennenung wie du möchtest               
     sh:targetClass general:General . 
     
