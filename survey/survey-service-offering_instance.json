@@ -2,7 +2,6 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "survey": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/survey/",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
   },
   "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw",
@@ -19,24 +18,16 @@
     "@value": "2023-08-02T17:14:00",
     "@type": "xsd:dateTime"
   },
-  "gx:description": {
-    "@value": "End to end supply chain survey on important leading and lagging indicators for semiconductor supply chains such as demand & sales development and inventory metrics to forecast market development",
-    "@type": "xsd:string"
-  },
-  "gx:name": {
-    "@value": "Semiconductor True Demand Survey",
-    "@type": "xsd:string"
-  },
   "survey:general": {
     "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
     "@type": "general:General",
     "general:description": {
       "@type": "general:Description",
-      "gx:name": {
+      "general:name": {
         "@value": "Semiconductor True Demand Survey",
         "@type": "xsd:string"
       },
-      "gx:description": {
+      "general:description": {
         "@value": "End to end supply chain survey on important leading and lagging indicators for semiconductor supply chains such as demand & sales development and inventory metrics to forecast market development",
         "@type": "xsd:string"
       }
@@ -46,21 +37,6 @@
       "general:size": {
         "@value": "5.8",
         "@type": "xsd:float"
-      },
-      "general:contractId": {
-        "@value": "contract_zcdkr7kqd47y0w5b4tg91w1etw",
-        "@type": "xsd:string"
-      }
-    },
-    "general:links": {
-      "@type": "general:Links",
-      "general:data": {
-        "@type": "general:Link",
-        "general:url": {
-          "@value": "https://web-mpc.gxfs.gx4fm.org/?session=qrsg5sp6n1cs1172kd8q80q0e8&participationCode=7ab1ch5r8gc7e299zb0psa0t0c",
-          "@type": "xsd:anyURI"
-        },
-        "general:type": "Asset"
       }
     }
   }

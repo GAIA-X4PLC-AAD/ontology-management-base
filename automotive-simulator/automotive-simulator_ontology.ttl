@@ -47,7 +47,7 @@ automotive-simulator: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/automotive-simulator/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/automotive-simulator/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .

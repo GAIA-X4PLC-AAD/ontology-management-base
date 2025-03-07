@@ -43,7 +43,7 @@ scenario: a owl:Ontology ;
     owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v2/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v2/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://www.asam.net/standards/detail/openscenario/> ;
