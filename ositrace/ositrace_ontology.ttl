@@ -9,7 +9,8 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 ositrace: a owl:Ontology ;
-    rdfs:label "Ontology definition for OSI Trace Files"@en ;
+    rdfs:label "Ontology definition for ositrace"@en ;
+    rdfs:comment "An ontology with common classes to describe ASAM OSI trace files."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
