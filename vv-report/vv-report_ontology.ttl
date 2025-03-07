@@ -37,7 +37,7 @@ vv-report: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/vv-report/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/vv-report/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://github.com/asam-ev/qc-framework> ;
@@ -49,20 +49,20 @@ vv-report:VvReport a owl:Class ;
 
 vv-report:Evaluation a owl:Class ;
     rdfs:label "Class definition for Evaluation"@en ;
-    rdfs:comment "Attributes for an evaluation element."@en .
+    rdfs:comment "Attributes for an evaluation element of a verification & validation report."@en .
 
 vv-report:Metric a owl:Class ;
     rdfs:label "Class definition for Metric"@en ;
-    rdfs:comment "Attributes for the definition of a quality metric."@en .
+    rdfs:comment "Attributes for the definition of a quality metric of a verification & validation report."@en .
 
 vv-report:InputData a owl:Class ;
     rdfs:label "Class definition for InputData"@en ;
-    rdfs:comment "Attributes for the definition of an input data element."@en .
+    rdfs:comment "Attributes for the definition of an input data element of a verification & validation report."@en .
 
 vv-report:Result a owl:Class ;
     rdfs:label "Class definition for Result"@en ;
-    rdfs:comment "Attributes for evaluation results."@en .
+    rdfs:comment "Attributes for evaluation results of a verification & validation report."@en .
 
 vv-report:ResultVerification a owl:Class ;
     rdfs:label "Class definition for ResultVerification"@en ;
-    rdfs:comment "Attributes for the verification of the result by a third party."@en .
+    rdfs:comment "Attributes for the verification of the result by a third party of a verification & validation report."@en .

@@ -33,7 +33,7 @@ simulation-model: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://fmi-standard.org/> ;
@@ -41,25 +41,25 @@ simulation-model: a owl:Ontology ;
 
 simulation-model:SimulationModel a owl:Class ;
     rdfs:label "SimulationModel"@en ;
-    rdfs:comment "Class definition for a simulation model"@en ;
+    rdfs:comment "Class definition for a simulation model."@en ;
     rdfs:subClassOf gx:DataResource .
 
 simulation-model:Format a owl:Class ;
-    rdfs:label "class definition for Format" ;
-    rdfs:comment "Class with attributes for Format"@en .
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Class with attributes for the format of a simulation model."@en .
 
 simulation-model:Content a owl:Class ;
-    rdfs:label "class definition for Content" ;
-    rdfs:comment "Class with attributes for Content"@en .
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Class with attributes for the content of a simulation model."@en .
 
 simulation-model:Quantity a owl:Class ;
-    rdfs:label "class definition for Quantity" ;
-    rdfs:comment "Class with attributes for Quantity"@en .
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Class with attributes for the quantity of a simulation model."@en .
 
 simulation-model:Quality a owl:Class ;
-    rdfs:label "class definition for Quality" ;
-    rdfs:comment "Class with attributes for Quality"@en .
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Class with attributes for the quality of a simulation model."@en .
 
 simulation-model:DataSource a owl:Class ;
-    rdfs:label "class definition for DataSource" ;
-    rdfs:comment "Class with attributes for DataSource"@en .
+    rdfs:label "Class definition for DataSource"@en ;
+    rdfs:comment "Class with attributes for the data source of a simulation model."@en .

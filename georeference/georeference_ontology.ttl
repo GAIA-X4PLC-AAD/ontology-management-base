@@ -38,7 +38,7 @@ georeference: a owl:Ontology ;
     owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v2/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v2/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
@@ -60,5 +60,5 @@ georeference:LatLonCoordinate a owl:Class ;
     rdfs:comment "Data property to define world coordinates in latitude/longitude, expressed in degrees."@en .
 
 georeference:ProjectLocation a owl:Class ;
-    rdfs:label "Class definition for Georeference"@en ;
+    rdfs:label "Class definition for ProjectLocation"@en ;
     rdfs:comment "Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset."@en .

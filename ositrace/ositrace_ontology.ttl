@@ -9,7 +9,8 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 ositrace: a owl:Ontology ;
-    rdfs:label "Ontology definition for OSI Trace Files"@en ;
+    rdfs:label "Ontology definition for ositrace"@en ;
+    rdfs:comment "An ontology with common classes to describe ASAM OSI trace files."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
@@ -36,41 +37,41 @@ ositrace: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v1/shape> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 ositrace:OSITrace a owl:Class ;
-    rdfs:label "Class definition for OSI Trace Files" ;
-    rdfs:comment "Attributes for OSI Trace Files"@en ;
+    rdfs:label "Class definition for OSITrace"@en ;
+    rdfs:comment "Attributes for ASAM OSI trace files."@en ;
     rdfs:subClassOf gx:DataResource .
 
 ositrace:Content a owl:Class ;
-    rdfs:label "Class definition for Content" ;
-    rdfs:comment "Attributes for Content"@en .
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Attributes for the content of ASAM OSI trace files."@en .
 
 ositrace:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource" ;
-    rdfs:comment "Attributes for DataSource"@en .
+    rdfs:comment "Attributes for the data source of ASAM OSI trace files."@en .
 
 ositrace:Format a owl:Class ;
-    rdfs:label "Class definition for Format" ;
-    rdfs:comment "Attributes for Format"@en .
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Attributes for the format of ASAM OSI trace files."@en .
 
 ositrace:Quality a owl:Class ;
-    rdfs:label "Class definition for Quality" ;
-    rdfs:comment "Attributes for Quality"@en .
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Attributes for the quality of ASAM OSI trace files."@en .
 
 ositrace:Quantity a owl:Class ;
-    rdfs:label "Class definition for Quantity" ;
-    rdfs:comment "Attributes for Quantity"@en .
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Attributes for the quantity of ASAM OSI trace files."@en .
 
 ositrace:MovingObject a owl:Class ;
-    rdfs:label "Class definition for MovingObject" ;
-    rdfs:comment "Attributes for MovingObject"@en .
+    rdfs:label "Class definition for MovingObject"@en ;
+    rdfs:comment "Attributes for moving objects in ASAM OSI trace files."@en .
 
 ositrace:Event a owl:Class ;
-    rdfs:label "Class definition for Event" ;
-    rdfs:comment "Attributes for Event"@en .
+    rdfs:label "Class definition for Event"@en ;
+    rdfs:comment "Attributes for event in  ASAM OSI trace files."@en .

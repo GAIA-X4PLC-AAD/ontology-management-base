@@ -15,7 +15,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:maxCount 1 ; 
         sh:minCount 1 ; 
         sh:order 0 ;
-        sh:description "general object with properties for description and data" ;
+        sh:description "General object with properties for description and data."@en ;
     ] ;
     # simulator type/make (String, mandatory)
     sh:property [
@@ -26,7 +26,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "simulator make"@en ;
         sh:order 1 ;
-        sh:description "Make/Type of automotive simulator" ;
+        sh:description "Make/Type of automotive simulator."@en ;
     ] ;
     # software version (String, mandatory)
     sh:property [
@@ -37,7 +37,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "software version"@en ;
         sh:order 2 ;
-        sh:description "Sofware version of the simulator" ;
+        sh:description "Sofware version of the simulator."@en ;
     ] ;
     # Sensor Failure Flag (Boolean, mandatory)
     sh:property [
@@ -48,7 +48,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "sensor failure flag"@en ;
         sh:order 3 ;
-        sh:description "If true, the simulator supports the simulation of sensor failures" ;
+        sh:description "If true, the simulator supports the simulation of sensor failures."@en ;
     ] ;
     # Sensor Attack Flag (Boolean, mandatory)
     sh:property [
@@ -59,20 +59,20 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "sensor attack flag"@en ;
         sh:order 5 ;
-        sh:description "If true, the simulator supports the simulation of sensor attacks" ;
+        sh:description "If true, the simulator supports the simulation of sensor attacks."@en ;
     ] ;
     # Open Scenario Version (List, optional)
     sh:property [
-        skos:example "ASAM openSCENARIO 1.x" ;
+        skos:example "ASAM OpenSCENARIO 1.x" ;
         sh:path automotive-simulator:scenarioDefinition ;
         sh:datatype xsd:string ;
-        sh:in ("ASAM openSCENARIO 1.x" "ASAM openSCENARIO 2.x" "proprietary" "scenic") ;
+        sh:in ("ASAM OpenSCENARIO 1.x" "ASAM OpenSCENARIO 2.x" "proprietary" "scenic") ;
         sh:minCount 0 ;
         sh:name "scenario definition"@en ;
         sh:order 6 ;
-        sh:description "Description language for defining driving scenarios supported by the simulator" ;
+        sh:description "Description language for defining driving scenarios supported by the simulator."@en ;
     ] ;
-    # Open Scenario Version (List, optional)
+    # Interface (List, optional)
     sh:property [
         skos:example "TCP" ;
         sh:path automotive-simulator:interface ;
@@ -81,7 +81,7 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:name "interface"@en ;
         sh:order 7 ;
-        sh:description "Communcation interface provided by the simulator to communicate with different assets (e.g. agents/vehicle implementations)" ;
+        sh:description "Communcation interface provided by the simulator to communicate with different assets (e.g. agents/vehicle implementations)."@en ;
     ] ;
     # Sensor type(s) (optional, can be multiple)
     sh:property [
@@ -91,5 +91,5 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:name "simulated sensor"@en ;
         sh:order 8 ;
-        sh:description "Type and kinds of sensors that are natively included in the simulator" ;
+        sh:description "Type and kinds of sensors that are natively included in the simulator."@en ;
     ] .

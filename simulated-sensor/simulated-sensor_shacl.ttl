@@ -18,7 +18,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
             [ sh:node simulated-sensor:CameraShape ]
         ) ;
         sh:order 0 ;
-        sh:description "Perception and other relevant sensors for autonomous driving" ;
+        sh:description "Perception and other relevant sensors for autonomous driving."@en ;
     ] ;
     # sensorIdentifier (string)
      sh:property [
@@ -29,7 +29,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "sensor identifier"@en ;
         sh:order 1 ;
-        sh:description "Name/Identifier of the sensor in the simulator" ;
+        sh:description "Name/Identifier of the sensor in the simulator."@en ;
     ] ;
     # mountingPosition TODO: Perhaps this is too specific, not all simulators will use the same metric/parametrization for this
     sh:property [
@@ -41,7 +41,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "mounting position"@en ;
         sh:order 2 ;
-        sh:description "Possible mounting positions of the radar" ;
+        sh:description "Possible mounting positions of the radar."@en ;
     ] . 
 
 # Available sensors
@@ -58,7 +58,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
         sh:minInclusive 0 ;
         sh:name "number of beams"@en ;
         sh:order 0 ;
-        sh:description "Number of beams sent by the radar sensor" ;
+        sh:description "Number of beams sent by the radar sensor."@en ;
     ] ;
     # distance (float)
     sh:property [
@@ -70,7 +70,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
         sh:order 1 ;
-        sh:description "Covered distance or range in metres" ;
+        sh:description "Covered distance or range in metres."@en ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
@@ -81,7 +81,7 @@ simulated-sensor:RadarShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 2 ;
-        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
     ] .
 
 # LIDAR
@@ -97,7 +97,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
         sh:minInclusive 0;
         sh:name "number of beams"@en ;
         sh:order 0 ;
-        sh:description "Number of beams sent by the lidar sensor" ;
+        sh:description "Number of beams sent by the lidar sensor."@en ;
     ] ;
     # distance (float)
     sh:property [
@@ -109,7 +109,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
         sh:minInclusive 0;
         sh:name "distance"@en ;
         sh:order 1 ;
-        sh:description "Covered distance or range in metres" ;
+        sh:description "Covered distance or range in metres."@en ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
@@ -120,7 +120,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 2 ;
-        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
     ] .
 
 # CAMERA
@@ -135,7 +135,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "RGB flag"@en ;
         sh:order 0 ;
-        sh:description "If true, camera is RGB camera" ;
+        sh:description "If true, camera is RGB camera."@en ;
     ] ;
     # 3dFlag (boolean) to indicate whether camera is 3D camera
     sh:property [
@@ -146,7 +146,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "3D flag"@en ;
         sh:order 1 ;
-        sh:description "If true, camera is 3D camera" ;
+        sh:description "If true, camera is 3D camera."@en ;
     ] ;
     # depthFlag (boolean) to indicate whether camera is depth camera
     sh:property [
@@ -157,7 +157,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "depth flag"@en ;
         sh:order 2 ;
-        sh:description "If true, camera is depth camera" ;
+        sh:description "If true, camera is depth camera."@en ;
     ] ;
     # fieldOfView (Tuple of three floats)
     sh:property [
@@ -168,7 +168,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:order 3 ;
-        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)" ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
     ] .
 
 simulated-sensor:FieldOfViewShape a sh:NodeShape ;
@@ -182,7 +182,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "FoV angle 1"@en ;
         sh:order 0 ;
-        sh:description "FoV angle 1 (mandatory if FoV attribute is used)"
+        sh:description "FoV angle 1 (mandatory if FoV attribute is used)."@en
     ] ;
     # fov angle 2 (float)
     sh:property [
@@ -193,7 +193,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "FoV angle 2"@en ;
         sh:order 1 ;
-        sh:description "FoV angle 2 (optional, depending on simulator and sensor type)"
+        sh:description "FoV angle 2 (optional, depending on simulator and sensor type)."@en
     ] ;
     # fov angle 3 (float)
     sh:property [
@@ -204,7 +204,7 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:name "FoV angle 3"@en ;
         sh:order 2 ;
-        sh:description "FoV angle 3 (optional, depending on simulator and sensor type)"
+        sh:description "FoV angle 3 (optional, depending on simulator and sensor type)."@en
     ] .
 
 

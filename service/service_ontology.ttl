@@ -32,20 +32,20 @@ service: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/service/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/service/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 service:Service a owl:Class ;
-    rdfs:label "Class definition for simulation services" ;
-    rdfs:comment "Attributes for services"@en ;
+    rdfs:label "Class definition for Service"@en ;
+    rdfs:comment "Attributes for simulation services."@en ;
     rdfs:subClassOf gx:SoftwareResource .
 
 service:RequiredFile a owl:Class ;
-    rdfs:label "Class definition for required files" ;
-    rdfs:comment "Attributes for required files"@en .
+    rdfs:label "Class definition for RequiredFile"@en ;
+    rdfs:comment "Attributes for required files of simulation services."@en .
 
 service:ResultingFile a owl:Class ;
-    rdfs:label "Class definition for resulting files" ;
-    rdfs:comment "Attributes for resulting files"@en .
+    rdfs:label "Class definition for ResultingFile"@en ;
+    rdfs:comment "Attributes for resulting files of simulation services."@en .
