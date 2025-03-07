@@ -34,40 +34,40 @@ leakage-test: a owl:Ontology ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v1/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 leakage-test:LeakageTest a owl:Class ;
-	rdfs:label "Class definition for Leakage Test"@en ;
-	rdfs:comment "Describes a Leakage Test."@en ;
+	rdfs:label "Class definition for LeakageTest"@en ;
+	rdfs:comment "Describes a leakage test."@en ;
 	rdfs:subClassOf gx:SoftwareResource .
 
 leakage-test:MachineParameter a owl:Class ;
-	rdfs:label "Class definition for Machine Parameter"@en ;
-	rdfs:comment "Attributes for Machine Parameter"@en .
+	rdfs:label "Class definition for MachineParameter"@en ;
+	rdfs:comment "Attributes for machine parameter of a leakage test."@en .
 
 leakage-test:ProcessParameter a owl:Class ;
-	rdfs:label "Class definition for Process Parameter"@en ;
-	rdfs:comment "Attributes for Process Parameter"@en .
+	rdfs:label "Class definition for ProcessParameter"@en ;
+	rdfs:comment "Attributes for process parameter of a leakage test."@en .
 
 leakage-test:CodingDownholder a owl:Class ;
-	rdfs:label "Class definition for Coding Downholder"@en ;
-	rdfs:comment "Attributes for Coding Downholder"@en .
+	rdfs:label "Class definition for CodingDownholder"@en ;
+	rdfs:comment "Attributes for coding downholder of a leakage test."@en .
 
 leakage-test:CodingTestAdapter a owl:Class ;
-	rdfs:label "Class definition for Coding Test Adapter"@en ;
-	rdfs:comment "Attributes for Coding Test Adapter"@en .
+	rdfs:label "Class definition for CodingTestAdapter"@en ;
+	rdfs:comment "Attributes for coding test adapter of a leakage test."@en .
 
 leakage-test:CodingRFID a owl:Class ;
-	rdfs:label "Class definition for Coding RFID"@en ;
-	rdfs:comment "Attributes for Coding RFID"@en .
+	rdfs:label "Class definition for CodingRFID"@en ;
+	rdfs:comment "Attributes for coding RFID of a leakage test."@en .
 
 leakage-test:MaximumPressure a owl:Class ;
-	rdfs:label "Class definition for Maximum Pressure"@en ;
-	rdfs:comment "Attributes for Maximum Pressure"@en .
+	rdfs:label "Class definition for MaximumPressure"@en ;
+	rdfs:comment "Attributes for maximum pressure of a leakage test."@en .
 
 leakage-test:MinimumPressure a owl:Class ;
-	rdfs:label "Class definition for Minimum Pressure"@en ;
-	rdfs:comment "Attributes for Minimum Pressure"@en .
+	rdfs:label "Class definition for MinimumPressure"@en ;
+	rdfs:comment "Attributes for minimum pressure of a leakage test."@en .

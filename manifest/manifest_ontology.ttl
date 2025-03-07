@@ -41,7 +41,7 @@ manifest: a owl:Ontology ;
     owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v2/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v2/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://ontologies.envited-x.net/general/v2/ontology> ;
@@ -49,7 +49,7 @@ manifest: a owl:Ontology ;
 
 manifest:Manifest a owl:Class ;
     rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "General properties for defining a manifest, including data, license, and link properties."@en ;
+    rdfs:comment "General properties for defining a manifest of the simulation asset, including data, license, and link properties."@en ;
     rdfs:subClassOf gx:DataResource .
 
 manifest:Data a owl:Class ;
@@ -62,7 +62,7 @@ manifest:License a owl:Class ;
 
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link"@en ;
-    rdfs:comment "General class for defining a link."@en .
+    rdfs:comment "General class for defining a link to e.g. related simulation assets or other references."@en .
 
 manifest:FileMetaData a owl:Class ;
     rdfs:label "Class definition for FileMetaData"@en ;
@@ -70,4 +70,4 @@ manifest:FileMetaData a owl:Class ;
 
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
-    rdfs:comment "Describes the dimensions of file data of type image or video."@en .
+    rdfs:comment "Describes the dimensions of data file e.g. of type image or video."@en .

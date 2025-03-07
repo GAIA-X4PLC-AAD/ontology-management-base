@@ -50,9 +50,9 @@ general:General a owl:Class ;
     rdfs:subClassOf gx:DataResource .
 
 general:Description a owl:Class ;
-    rdfs:label "Description definition for General"@en ;
+    rdfs:label "Class definition for Description"@en ;
     rdfs:comment "General text based description of the simulation asset."@en .
 
 general:Data a owl:Class ;
-    rdfs:label "Data definition for General"@en ;
-    rdfs:comment "Data properties of the simulation asset."@en .
+    rdfs:label "Class definition for Data"@en ;
+    rdfs:comment "General data properties of the simulation asset."@en .

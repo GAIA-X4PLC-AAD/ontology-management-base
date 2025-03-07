@@ -51,7 +51,7 @@ manifest:LicenseShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [   sh:description "Define a SPDX identifier, such as LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract."@en ;
-            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract"@en ;
+            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract."@en ;
             sh:datatype xsd:string ;
             sh:message "Validation of spdx identifier failed!"@en ;
             sh:minCount 1 ;
