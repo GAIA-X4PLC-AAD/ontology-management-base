@@ -1,7 +1,6 @@
 {
     "@context": {
       "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-      "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
       "service": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/",
       "sh": "http://www.w3.org/ns/shacl#",
       "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -31,17 +30,6 @@
         "general:recordingTime": {
           "@value": "2024-08-019T18:05:00",
           "@type": "xsd:dateTime"
-        }
-      },
-      "general:links": {
-        "@type": "general:Links",
-        "general:data": {
-          "@type": "general:Link",
-          "general:url": {
-            "@value": "https://example.edc/",
-            "@type": "xsd:anyURI"
-          },
-          "general:type": "Asset"
         }
       }
     },

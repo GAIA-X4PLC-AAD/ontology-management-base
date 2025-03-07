@@ -29,32 +29,9 @@
                 "@value": "1.0",
                 "@type": "xsd:float"
             },
-            "general:contractId": {
-                "@value": "1234567890",
-                "@type": "xsd:string"
-            },
             "general:recordingTime": {
                 "@value": "2024-06-26T09:00:00",
                 "@type": "xsd:dateTime"
-            }
-        },
-        "general:links": {
-            "@type": "general:Links",
-            "general:data": {
-                "@type": "general:Link",
-                "general:url": {
-                    "@value": "https://github.com/openMSL/sl-1-1-reflection-based-radar-object-model",
-                    "@type": "xsd:anyURI"
-                },
-                "general:type": "Asset"
-            },
-            "general:media": {
-                "@type": "general:Link",
-                "general:url": {
-                    "@value": "https://inavlid.link.com/media",
-                    "@type": "xsd:anyURI"
-                },
-                "general:type": "Video"
             }
         }
     },
