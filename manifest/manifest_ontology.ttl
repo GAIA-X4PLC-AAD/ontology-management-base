@@ -54,7 +54,7 @@ manifest:Manifest a owl:Class ;
 
 manifest:Data a owl:Class ;
     rdfs:label "Class definition for Data"@en ;
-    rdfs:comment "Defines the data components of the manifest."@en .
+    rdfs:comment "Defines the data components of the simulation asset."@en .
 
 manifest:License a owl:Class ;
     rdfs:label "Class definition for License"@en ;
