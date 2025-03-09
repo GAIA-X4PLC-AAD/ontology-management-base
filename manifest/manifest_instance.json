@@ -28,8 +28,7 @@
     "manifest:license": {
       "@type": "manifest:License",
       "gx:license": {
-        "@value": "EPL-2.0",
-        "@type": "xsd:string"
+        "@value": "EPL-2.0"
       },
       "manifest:licenseData": {
         "@type": "manifest:Link",
