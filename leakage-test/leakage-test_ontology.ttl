@@ -7,9 +7,9 @@
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-	
+
+
 leakage-test: a owl:Ontology ;
 	rdfs:label "Ontology for leakage-test"@en ;
 
