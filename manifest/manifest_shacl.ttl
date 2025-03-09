@@ -15,16 +15,16 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:node manifest:LinkShape ;
             sh:order 0 ;
             sh:path manifest:manifest ],
+        [   sh:description "Defines the license(s) valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms."@en ;
+            sh:minCount 1 ;
+            sh:node manifest:LicenseShape ;
+            sh:order 1 ;
+            sh:path manifest:license ],
         [   sh:description "Defines the links to all relevant data (sets) for a domain specific asset. This is extended and structures in the asset specific ontology."@en ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 2 ;
-            sh:path manifest:content ],
-        [   sh:description "Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms."@en ;
-            sh:minCount 1 ;
-            sh:node manifest:LicenseShape ;
-            sh:order 1 ;
-            sh:path manifest:license ];
+            sh:path manifest:content ];
     sh:targetClass manifest:Manifest .
 
 manifest:LicenseShape a sh:NodeShape ;
