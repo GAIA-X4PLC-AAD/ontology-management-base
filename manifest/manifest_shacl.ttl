@@ -9,18 +9,18 @@ manifest:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property
-        [   sh:description "Defines the manifest providing a list of contents of an asset."@en ;
+        [   sh:description "Self-reference to the manifest.json providing the structure and list of contents for a domain specific asset."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 0 ;
             sh:path manifest:manifest ],
-        [   sh:description "Shape linking to all relevant data of the asset."@en ;
+        [   sh:description "Defines the links to all relevant data (sets) for a domain specific asset. This is extended and structures in the asset specific ontology."@en ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 2 ;
             sh:path manifest:content ],
-        [   sh:description "Shape defining the license applying to all content referenced in the manifest if no other license is mentioned in the referenced data."@en ;
+        [   sh:description "Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms."@en ;
             sh:minCount 1 ;
             sh:node manifest:LicenseShape ;
             sh:order 1 ;
@@ -31,18 +31,22 @@ manifest:LicenseShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:description "Define a SPDX identifier, such as LicenseRef-Custom-Commercial-Agreement or LicenseRef-Policy-Smart-Contract."@en ;
-            skos:example "Any spdx identifier e.g MIT -> OpenSource, LicenseRef-Custom-Commercial-Agreement -> provider specific .LICENSE custom file, LicenseRef-Policy-Smart-Contract -> provider specific policy smart contract."@en ;
+        [   sh:description "Defines a standard SPDX identifier or custom license references."@en ;
+            skos:example "Any spdx identifier e.g MIT from <https://spdx.org/licenses/>, LicenseRef-Custom-Commercial-Agreement for a provider specific .LICENSE file, LicenseRef-Policy-Smart-Contract for a provider specific policy smart contract refernce."@en ;
             sh:datatype xsd:string ;
             sh:message "Validation of spdx identifier failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:name "spdx identifier"@en ;
             sh:order 1 ;
+            sh:or (
+                [ sh:in ("LicenseRef-Custom-Commercial-Agreement" "LicenseRef-Policy-Smart-Contract") ]
+                [ sh:pattern "^([A-Za-z0-9-.+]+)$" ]  # Pattern for standard SPDX identifiers
+    )
             sh:path manifest:spdxIdentifier 
         ],      
-        [   sh:description "Defines a link to license data."@en ;
-            skos:example "accessRole: publicUser, type: license, format: html, path: https://opensource.org/license/mit"@en ;
+        [   sh:description "Defines a link to the license."@en ;
+            skos:example "accessRole: publicUser, type: license, format: html, path: <https://opensource.org/license/mit>"@en ;
             sh:message "Validation of licenseData failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -68,11 +72,11 @@ manifest:LinkShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
         ],
-        [   sh:description "Specifies the category of the corresponding data file."@en ;
+        [   sh:description "Specifies the category of the corresponding data file. The categories may represet the structure of the asset e.g. in an archive."@en ;
             skos:example "metadata";
-            sh:in ("assetData" "documentation" "visualization" "metadata" "validation" "license" "other") ;
+            sh:in ("manifest" "coreData" "documentation" "media" "metadata" "validationReports" "license" "miscellaneous") ;
             sh:datatype xsd:string ;
-            sh:message "Validation of type failed!"@en ;
+            sh:message "Validation of category failed!"@en ;
             sh:name "category"@en ;
             sh:order 1 ;
             sh:maxCount 1 ;
@@ -80,7 +84,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:path manifest:category 
         ],
         [
-            sh:description "Defines a general class for a data file that is referenced via a link."@en ;
+            sh:description "Defines the properties of the data file that is referenced via a link."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:FileMetaDataShape ;
@@ -128,7 +132,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
         ],
         [
-            sh:description "Define the dimensional information for images and videos."@en ;
+            sh:description "Defines the dimensions for images and videos."@en ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node manifest:DimensionsShape ;
@@ -136,7 +140,7 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:path manifest:dimensions
         ], 
         [
-            sh:description "Specify the file size in bytes."@en ;
+            sh:description "Specifies the file size in bytes."@en ;
             skos:example "1048576" ;
             sh:datatype xsd:integer ;
             sh:message "Validation of file size failed!"@en ;
@@ -188,15 +192,26 @@ manifest:DimensionsShape a sh:NodeShape ;
             sh:path manifest:width ;
         ],
         [
-            sh:description "Specifies the length (y-axis) of the item in appropriate units."@en ;
+            sh:description "Specifies the height (y-axis) of the item in appropriate units."@en ;
             skos:example "1080" ;
             sh:datatype xsd:decimal ;
-            sh:message "Length must be a positive number."@en ;
-            sh:name "Length" ;
+            sh:message "Height must be a positive number."@en ;
+            sh:name "Height" ;
             sh:order 2 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path manifest:length ;
+            sh:path manifest:height ;
+        ],
+        [
+            sh:description "Specifies the depth (z-axis) of the item in appropriate units."@en ;
+            skos:example "0" ;
+            sh:datatype xsd:decimal ;
+            sh:message "Depth must be a positive whole number."@en ;
+            sh:name "Depth" ;
+            sh:order 2 ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:path manifest:depth ;
         ];
     sh:targetClass manifest:Dimensions .
 

@@ -12,7 +12,7 @@
 
 general: a owl:Ontology ;
     rdfs:label "Ontology definition for general"@en ;
-    rdfs:comment "General ontology with common classes for the simulation domain."@en ;
+    rdfs:comment "General ontology with common classes for defining an asset in the simulation domain."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
@@ -23,6 +23,10 @@ general: a owl:Ontology ;
         a foaf:Person ;
         foaf:name "Mirco Nierenz" ;
         org:memberOf <https://triangraphics.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Erik Konietzko" ;
+        org:memberOf <https://www.ipk.fraunhofer.de/> ;
     ] ;  
 
     # Permanent identifier for the ontology (not version-specific)
@@ -32,21 +36,21 @@ general: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/general/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/general/v3/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General"@en ;
-    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en ;
+    rdfs:comment "General properties common for all simulation assets. An asset references all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en ;
     rdfs:subClassOf gx:DataResource .
 
 general:Description a owl:Class ;
