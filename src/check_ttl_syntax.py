@@ -5,7 +5,9 @@ from rdflib import Graph, exceptions
 def check_ttl_syntax(turtle_file: str):
     g = Graph()
     try:
-        g.parse(turtle_file, format='turtle')
+        with open(turtle_file, "r", encoding="utf-8") as f:
+            content = f.read()
+        g.parse(data=content, format="turtle")
         print(f"The file {turtle_file} is syntactically correct.")
     except exceptions.Error as e:
         print(f"Syntax error in the file {turtle_file}: {e}")
