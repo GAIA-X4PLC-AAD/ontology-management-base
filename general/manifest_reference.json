@@ -16,7 +16,7 @@
       "manifest:fileMetaData": {
         "@type": "manifest:FileMetaData",
         "manifest:uri": {
-          "@value": "./manifest_instance.json",
+          "@value": "./manifest_reference.json",
           "@type": "xsd:anyURI"
         },
         "manifest:mimeType": {
@@ -134,10 +134,6 @@
             "@value": "./visualization/detailRoadNetwork.geojson",
             "@type": "xsd:anyURI"
           },
-          "manifest:hash": {
-            "@value": "bafkreiakpb3ajhljq6cgwizcyirsk6uz322szaxd6ynmovcwuu5jkx5isa",
-            "@type": "xsd:string"
-          },
           "manifest:mimeType": {
             "@value": "application/x-geojson",
             "@type": "xsd:string"
@@ -148,44 +144,6 @@
             "@type": "xsd:string"
           }
         }
-      },
-      {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "publicUser",
-        "manifest:category": "media",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:hash": {
-            "@value": "bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqosblhwu7kvgvuncqi",
-            "@type": "xsd:string"
-          },
-          "manifest:mimeType": {
-            "@value": "image/png",
-            "@type": "xsd:string"
-          },
-          "manifest:dimensions": {
-            "@type": "manifest:Dimensions",
-            "manifest:unit": "pixels",
-            "manifest:width": {
-              "@value": "1095",
-              "@type": "xsd:decimal"
-            },
-            "manifest:height": {
-              "@value": "850",
-              "@type": "xsd:decimal"
-            }
-          },
-          "manifest:fileSize": 2400256,
-          "manifest:filename": {
-            "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-            "@type": "xsd:string"
-          }
-        }
       }
     ]
-  }
-  
+}

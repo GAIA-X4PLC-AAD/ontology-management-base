@@ -27,7 +27,7 @@
     "manifest:fileMetaData": {
       "@type": "manifest:FileMetaData",
       "manifest:uri": {
-        "@value": "did:web:registry.gaia-x.eu:manifest:exampleManifest",
+        "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
