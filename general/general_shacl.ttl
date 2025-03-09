@@ -20,7 +20,10 @@ general:SimulationAssetShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:path general:hasManifest ;
-        sh:node manifest:ManifestShape ;  # First, validate against manifest SHACL
+        sh:or ( 
+          [ sh:node manifest:ManifestShape ] 
+          [ sh:node manifest:LinkShape ] 
+        ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Each SimulationAsset must have exactly one manifest."@en ;
