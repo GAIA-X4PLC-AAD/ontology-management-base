@@ -47,9 +47,10 @@ def main():
         print(f"The directory {directory} does not exist. Abort.")
         sys.exit(200)
 
-    jsonld_files = glob.glob(f'{directory}/*_instance.json')
+    jsonld_files = glob.glob(f'{directory}/*_instance.json') + glob.glob(f'{directory}/*_reference.json')
+
     if not jsonld_files:
-        print(f"No *_instance.json files found in directory: {directory}. Abort.")
+        print(f"No *_instance.json or *_reference.json files found in directory: {directory}. Abort.")
         sys.exit(300)
 
     # load all jsonld files into the graph since they might reference each other
