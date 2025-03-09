@@ -12,7 +12,6 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | SimulationAssetShape | general | hasMetadata | 1 | 1 |  |  | general_shacl.ttl |
 | SimulationAssetShape | general | hasManifest | 1 | 1 |  |  | general_shacl.ttl |
-| SimulationAssetShape | general | hasManifest |  |  |  |  | general_shacl.ttl |
 | MetadataShape | gx | name | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | MetadataShape | gx | description | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | general_shacl.ttl |
 | ExtendedManifestShape | manifest | content | 4 |  |  |  | general_shacl.ttl |
