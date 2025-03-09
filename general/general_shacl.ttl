@@ -21,17 +21,19 @@ general:SimulationAssetShape a sh:NodeShape ;
     sh:property [
         sh:path general:hasManifest ;
         sh:or ( 
-          [ sh:node manifest:ManifestShape ] 
-          [ sh:node manifest:LinkShape ] 
+            [
+                sh:and (
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node general:ExtendedManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
         ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have exactly one manifest."@en ;
-    ] ;
-    sh:property [
-        sh:path general:hasManifest ;
-        sh:node general:ExtendedManifestShape ;  # Additional constraints from General ontology
-        sh:message "The Manifest must comply with additional SimulationAsset constraints."@en ;
+        sh:message "Each SimulationAsset must have exactly one manifest, either inline or via link."@en ;
     ] ;
     sh:targetClass general:SimulationAsset .
 
