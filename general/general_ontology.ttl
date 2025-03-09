@@ -67,6 +67,10 @@ general:SimulationAsset a owl:Class ;
         owl:someValuesFrom general:Metadata 
     ] .
 
+manifest:Manifest a owl:Class ;
+    rdfs:label "Class definition for Manifest"@en ;
+    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
+
 # Object properties
 general:hasMetadata a owl:ObjectProperty ;
     rdfs:domain general:SimulationAsset ;
