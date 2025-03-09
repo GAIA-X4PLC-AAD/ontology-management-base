@@ -36,8 +36,8 @@
       }
     },
     "sh:conformsTo": [
-      "https://ontologies.envited-x.net/manifest/v3/shape",
-      "https://ontologies.envited-x.net/general/v3/shape"
+      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
     ]
   }
 }
