@@ -43,7 +43,7 @@ manifest:LicenseShape a sh:NodeShape ;
                 [ sh:in ("LicenseRef-Custom-Commercial-Agreement" "LicenseRef-Policy-Smart-Contract") ]
                 [ sh:pattern "^([A-Za-z0-9-.+]+)$" ]  # Pattern for standard SPDX identifiers
     )
-            sh:path manifest:spdxIdentifier 
+            sh:path gx:license
         ],      
         [   sh:description "Defines a link to the license."@en ;
             skos:example "accessRole: publicUser, type: license, format: html, path: <https://opensource.org/license/mit>"@en ;
@@ -161,6 +161,17 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:path manifest:filename ;
             sh:pattern "^([\\w,\\s-]+(?:\\.[\\w,\\s-]+)*)\\.([A-Za-z0-9]+)$" ;
+        ],
+        [
+            sh:description "Represents a date or time associated with the file, such as recording time or creation time."@en ;
+            skos:example "2022-04-01T00:00:00" ;
+            sh:datatype xsd:dateTime ;
+            sh:message "Validation of timestamp failed!"@en ;
+            sh:name "timestamp"@en ;
+            sh:order 6 ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:path manifest:timestamp ;
         ];
     sh:targetClass manifest:FileMetaData .
 
