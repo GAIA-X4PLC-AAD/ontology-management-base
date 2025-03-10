@@ -63,18 +63,37 @@ def explicitly_validate_references(data_graph, shacl_graph, reference_files):
 
 def main():
     if len(sys.argv) != 2:
-        print('Usage explicitly: python validate_jsonld_shacl.py <directory>')
+        print('Usage: python validate_jsonld_shacl.py <directory or file>')
         sys.exit(1)
 
-    directory = sys.argv[1]
+    path = sys.argv[1]
 
     print('Loading SHACL shapes explicitly...')
     shacl_graph = load_shacl_files('.')
 
-    print('Loading JSON-LD files explicitly...')
-    instance_files = glob.glob(f'{directory}/*_instance.json')
-    reference_files = glob.glob(f'{directory}/*_reference.json')
-    data_graph = load_jsonld_files(instance_files + reference_files)
+    data_graph = Graph()
+    instance_files = []
+    reference_files = []
+
+    if os.path.isdir(path):  # ✅ If input is a directory
+        print(f'Loading JSON-LD files from directory: {path}')
+        instance_files = glob.glob(f'{path}/*_instance.json')
+        reference_files = glob.glob(f'{path}/*_reference.json')
+    elif os.path.isfile(path):  # ✅ If input is a single file
+        print(f'Loading single JSON-LD file: {path}')
+        if path.endswith("_instance.json"):
+            instance_files = [path]
+        elif path.endswith("_reference.json"):
+            reference_files = [path]
+        else:
+            print(f'Unsupported file type: {path}')
+            sys.exit(1)
+    else:
+        print(f'Error: {path} is neither a file nor a directory.')
+        sys.exit(1)
+
+    if instance_files or reference_files:
+        data_graph = load_jsonld_files(instance_files + reference_files)
 
     if reference_files:
         explicitly_validate_references(data_graph, shacl_graph, reference_files)

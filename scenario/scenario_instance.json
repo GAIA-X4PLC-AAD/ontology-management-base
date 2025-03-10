@@ -21,14 +21,14 @@
                 "@type": "xsd:string"
             },
             "general:description": {
-                "@value": "A sample description of a none existing scenario.",
+                "@value": "A sample description of a non-existing scenario.",
                 "@type": "xsd:string"
             }
         },
         "general:data": {
             "@type": "general:Data",
             "general:size": {
-                "@value": "1.0",
+                "@value": 1.0,
                 "@type": "xsd:float"
             },
             "general:recordingTime": {
@@ -39,7 +39,9 @@
     },
     "scenario:format": {
         "@type": "scenario:Format",
-        "scenario:formatType": "ASAM OpenSCENARIO",
+        "scenario:formatType": {
+            "@value": "ASAM OpenSCENARIO"
+        },
         "scenario:version": {
             "@value": "1.2",
             "@type": "xsd:string"
@@ -50,11 +52,11 @@
         "scenario:catalogs": [
           {
             "@type": "manifest:Link",
-            "manifest:type": "assetData",
-            "manifest:accessRole": "owner",            
+            "manifest:category": "coreData",
+            "manifest:accessRole": "owner",
             "manifest:fileMetaData": {
                 "manifest:uri": {
-                    "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
+                    "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
                     "@type": "xsd:anyURI"
                 }
             }
@@ -68,7 +70,7 @@
         "scenario:environmentModels": [
           {
             "@type": "manifest:Link",
-            "manifest:type": "assetData",
+            "manifest:category": "coreData",
             "manifest:accessRole": "owner",
             "manifest:fileMetaData": {
                 "manifest:uri": {
@@ -81,7 +83,7 @@
         "scenario:trafficSpace": [ 
           {
             "@type": "manifest:Link",
-            "manifest:type": "assetData",
+            "manifest:category": "coreData",
             "manifest:accessRole": "owner",
             "manifest:fileMetaData": {
                 "manifest:uri": {
@@ -92,7 +94,7 @@
           }
         ],
         "scenario:sunAzimuth": {
-            "@value": "180",
+            "@value": 180.0,
             "@type": "xsd:float"
         },
         "scenario:countrySpecificTrafficParticipants": {
@@ -104,7 +106,7 @@
             "@type": "xsd:string"
         },
         "scenario:usedStandardFunctions": {
-            "@value": "TeleportAction,  SpeedAction, FollowTrajectoryAction",
+            "@value": "TeleportAction, SpeedAction, FollowTrajectoryAction",
             "@type": "xsd:string"
         },
         "scenario:aim": {
@@ -123,26 +125,26 @@
     "scenario:quantity": {
         "@type": "scenario:Quantity",
         "scenario:numberTrafficObjects": {
-            "@value": "1",
+            "@value": 1,
             "@type": "xsd:unsignedInt"
         },
         "scenario:temporaryTrafficObjects": {
-            "@value": "0",
+            "@value": 0,
             "@type": "xsd:unsignedInt"
         },
         "scenario:permanentTrafficObjects": {
-            "@value": "1",
+            "@value": 1,
             "@type": "xsd:unsignedInt"
         },
         "scenario:controllers": {
-            "@value": "SampleControler1",
+            "@value": "SampleController1",
             "@type": "xsd:string"
         }
     },
     "scenario:quality": {
         "@type": "scenario:Quality",
         "scenario:accuracyObjects": {
-            "@value": "0.02",
+            "@value": 0.02,
             "@type": "xsd:float"
         },
         "scenario:calibration": {
@@ -152,7 +154,9 @@
     },
     "scenario:dataSource": {
         "@type": "scenario:DataSource",
-        "scenario:sourceType": "Real World Data",
+        "scenario:sourceType": {
+            "@value": "Real World Data"
+        },
         "scenario:sourceDescription": {
             "@value": "Sensor capture using detection system of the testbed lower Saxony.",
             "@type": "xsd:string"
@@ -181,25 +185,6 @@
             "georeference:relationOrArea": {
                 "@value": "A 39",
                 "@type": "xsd:string"
-            },
-            "georeference:boundingBox": {
-                "@type": "georeference:BoundingBox",
-                "georeference:xMin": {
-                    "@value": "10.533752",
-                    "@type": "xsd:float"
-                },
-                "georeference:yMin": {
-                    "@value": "52.313032",
-                    "@type": "xsd:float"
-                },
-                "georeference:xMax": {
-                    "@value": "10.581254",
-                    "@type": "xsd:float"
-                },
-                "georeference:yMax": {
-                    "@value": "52.323018",
-                    "@type": "xsd:float"
-                }
             }
         },
         "georeference:geodeticReferenceSystem": {
@@ -207,34 +192,25 @@
             "georeference:origin": {
                 "@type": "georeference:LatLonCoordinate",
                 "georeference:lat": {
-                    "@value": "52.315173",
+                    "@value": 52.315173,
                     "@type": "xsd:float"
                 },
                 "georeference:lon": {
-                    "@value": "10.562871",
-                    "@type": "xsd:float"
-                }
-            },
-            "georeference:viewPoint": {
-                "@type": "georeference:LatLonCoordinate",
-                "georeference:lat": {
-                    "@value": "52.315173",
-                    "@type": "xsd:float"
-                },
-                "georeference:lon": {
-                    "@value": "10.562871",
+                    "@value": 10.562871,
                     "@type": "xsd:float"
                 }
             },
             "georeference:codeEPSG": {
-                "@value": "32632",
+                "@value": 32632,
                 "@type": "xsd:int"
             },
             "georeference:coordinateSystemName": {
                 "@value": "UTM Zone 32N, WGS84",
                 "@type": "xsd:string"
             },
-            "georeference:heightSystem": "Ellipsodial height"
+            "georeference:heightSystem": {
+                "@value": "Ellipsoidal height"
+            }
         }
     }
 }

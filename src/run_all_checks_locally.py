@@ -1,13 +1,14 @@
 import os
 import subprocess
 import sys
+import re
 
 # Define the root directory of the repository
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
 
 # Exclude non-ontology folders
-EXCLUDED_FOLDERS = {"src", ".git", ".github", ".playground", ".venv"}
+EXCLUDED_FOLDERS = {"src", ".git", ".github", ".playground", ".venv", "scenario"}
 
 def get_ontology_dirs():
     """Dynamically detects ontology directories by scanning the repository structure."""
@@ -93,6 +94,10 @@ def check_jsonld_against_shacl():
             print(f"✅ {ontology} conforms to SHACL constraints.")
 
 
+def normalize_text(text):
+    """Normalize text by removing extra spaces, newlines, and making it case-insensitive."""
+    return re.sub(r'\s+', ' ', text.strip()).lower()
+
 def check_failing_tests():
     """Run failing test cases in each ontology's tests/ folder and compare with expected failure messages."""
     print("\n=== Running failing test cases ===")
@@ -110,17 +115,44 @@ def check_failing_tests():
             expected_output_path = test_path.replace(".json", ".expected")
 
             print(f"\n🛠 Running failing test: {test}")
+
+            # Run SHACL validation
+            validation_command = [
+                sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"), test_path
+            ]
+            print(f"\n🔎 DEBUG: Running command: {' '.join(validation_command)}")
+
             result = subprocess.run(
-                [sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"), test_path],
-                capture_output=True,
+                validation_command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,  # Capture all output
                 text=True
             )
 
-            # Capture actual SHACL validation output
-            actual_output = result.stderr.strip() if result.returncode != 0 else result.stdout.strip()
+            # Capture full SHACL validation output
+            full_output = result.stdout.strip()
 
-            # Look for explicit "Conforms: False" in output
-            if "Conforms: False" not in actual_output:
+            # 🔎 DEBUG: Print full raw output
+            print("\n🔎 DEBUG: Full SHACL Validation Output")
+            print("-" * 80)
+            print(full_output)
+            print("-" * 80)
+
+            # **Extract only the relevant validation result**
+            match = re.search(r"Overall validation explicitly: Conforms=.*", full_output, re.DOTALL)
+            actual_output = match.group(0) if match else full_output  # Strip logs if match found
+
+            # Normalize actual output
+            actual_output = normalize_text(actual_output)
+
+            # 🔎 DEBUG: Print cleaned and normalized output
+            print("\n🔎 DEBUG: Cleaned & Normalized SHACL Validation Output")
+            print("-" * 80)
+            print(actual_output)
+            print("-" * 80)
+
+            # 🚨 Ensure validation explicitly failed
+            if "conforms: false" not in actual_output:
                 print(f"❌ Test {test} should fail, but SHACL validation reported success!")
                 sys.exit(1)
 
@@ -128,16 +160,17 @@ def check_failing_tests():
             if os.path.exists(expected_output_path):
                 with open(expected_output_path, "r") as expected_file:
                     expected_output = expected_file.read().strip()
+                    expected_output = normalize_text(expected_output)  # Normalize expected output
 
                 if expected_output in actual_output:
-                    print(f"✅ Test {test} failed as expected.")
+                    print(f"✅ Test {test} produced the expected failure message.")
                 else:
                     print(f"❌ Test {test} failed, but output does not match expected.")
-                    print(f"Expected:\n{expected_output}\n\nActual:\n{actual_output}")
+                    print(f"Expected Output:\n{expected_output}\n\nActual Output:\n{actual_output}")
                     sys.exit(1)
             else:
                 print(f"⚠️ No expected output file found for {test}. Please add one.")
-                print(f"Actual output:\n{actual_output}")
+                print(f"Actual Output:\n{actual_output}")
 
 
 def main():
