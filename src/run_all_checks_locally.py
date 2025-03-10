@@ -78,7 +78,6 @@ def check_jsonld_against_shacl():
             text=True
         )
 
-        # Capture stdout and stderr separately
         stdout_output = result.stdout.strip()
         stderr_output = result.stderr.strip()
         full_output = stdout_output + "\n" + stderr_output
@@ -137,19 +136,20 @@ def check_failing_tests():
                 sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py")
             ] + validation_args
 
-            print(f"\n🔎 DEBUG: Running command: {' '.join(validation_command)}")
+            print(f"\n🔎 Running command: {' '.join(validation_command)}")
 
             result = subprocess.run(
                 validation_command,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
+                capture_output=True,
                 text=True
             )
 
-            full_output = result.stdout.strip()
+            stdout_output = result.stdout.strip()
+            stderr_output = result.stderr.strip()
+            full_output = stdout_output + "\n" + stderr_output
 
             # Extract only the relevant validation result
-            match = re.search(r"Overall validation explicitly: Conforms=.*", full_output, re.DOTALL)
+            match = re.search(r"validation report conforms:.*", full_output, re.DOTALL)
             actual_output = match.group(0) if match else full_output
             actual_output = normalize_text(actual_output)
 
@@ -192,13 +192,15 @@ def check_failing_tests():
 
             result = subprocess.run(
                 validation_command,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
+                capture_output=True,
                 text=True
             )
 
-            full_output = result.stdout.strip()
-            match = re.search(r"Overall validation explicitly: Conforms=.*", full_output, re.DOTALL)
+            stdout_output = result.stdout.strip()
+            stderr_output = result.stderr.strip()
+            full_output = stdout_output + "\n" + stderr_output
+
+            match = re.search(r"validation report conforms:.*", full_output, re.DOTALL)
             actual_output = match.group(0) if match else full_output
             actual_output = normalize_text(actual_output)
 

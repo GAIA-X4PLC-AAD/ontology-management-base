@@ -122,8 +122,7 @@ def main():
         failed_validations = explicitly_validate_references(data_graph, shacl_graph, reference_files, shape_mappings)
 
         # 🚨 Stop execution if explicit validation already failed
-        for conforms, filename, v_text in failed_validations:
-            print(f'Validation result explicitly for {filename}: Conforms={conforms}')
+        for conforms, _, v_text in failed_validations:
             if not conforms:
                 print(v_text)
                 skip_overall = True
@@ -137,7 +136,6 @@ def main():
             debug=False
         )
 
-        print(f'Overall validation explicitly: Conforms={conforms}')
         if not conforms:
             print(v_text)
 
