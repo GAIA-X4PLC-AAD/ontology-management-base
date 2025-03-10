@@ -1,0 +1,9 @@
+Validation Report
+Conforms: False
+Results (1):
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+        Severity: sh:Violation
+        Source Shape: [ sh:message Literal("The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media.", lang=en) ; sh:minCount Literal("4", datatype=xsd:integer) ; sh:node manifest:LinkShape ; sh:path manifest:content ]
+        Focus Node: <did:web:registry.gaia-x.eu:Manifest:fail_missing_category_reference>
+        Result Path: manifest:content
+        Message: The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media.

@@ -101,57 +101,59 @@ def normalize_text(text):
 def check_failing_tests():
     """Run failing test cases in each ontology's tests/ folder and compare with expected failure messages."""
     print("\n=== Running failing test cases ===")
+    validated_references = set()  # ✅ Track already validated _reference.json files
+
     for ontology in ONTOLOGY_DIRS:
         test_folder = os.path.join(ontology, "tests")
         if not os.path.exists(test_folder):
             continue  # Skip if no tests exist
 
+        # ✅ Get the actual JSON files present in the folder
         fail_tests = [
             f for f in os.listdir(test_folder) if f.startswith("fail") and f.endswith(".json")
         ]
 
-        for test in fail_tests:
+        # ✅ Separate instance and reference files
+        instance_files = [f for f in fail_tests if "_instance.json" in f]
+        reference_files = [f for f in fail_tests if "_reference.json" in f]
+
+        for test in instance_files:
             test_path = os.path.join(test_folder, test)
             expected_output_path = test_path.replace(".json", ".expected")
+
+            # ✅ Identify reference file if it exists
+            reference_path = test.replace("_instance.json", "_reference.json")
+            reference_path_full = os.path.join(test_folder, reference_path)
+
+            validation_args = [test_path]  # Always include the instance file
+            if reference_path in reference_files:  # ✅ Ensure reference exists before adding
+                validation_args.append(reference_path_full)
+                validated_references.add(reference_path_full)  # ✅ Mark reference as validated
 
             print(f"\n🛠 Running failing test: {test}")
 
             # Run SHACL validation
             validation_command = [
-                sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"), test_path
-            ]
+                sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py")
+            ] + validation_args
+
             print(f"\n🔎 DEBUG: Running command: {' '.join(validation_command)}")
 
             result = subprocess.run(
                 validation_command,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,  # Capture all output
+                stderr=subprocess.STDOUT,
                 text=True
             )
 
-            # Capture full SHACL validation output
             full_output = result.stdout.strip()
 
-            # 🔎 DEBUG: Print full raw output
-            print("\n🔎 DEBUG: Full SHACL Validation Output")
-            print("-" * 80)
-            print(full_output)
-            print("-" * 80)
-
-            # **Extract only the relevant validation result**
+            # Extract only the relevant validation result
             match = re.search(r"Overall validation explicitly: Conforms=.*", full_output, re.DOTALL)
-            actual_output = match.group(0) if match else full_output  # Strip logs if match found
-
-            # Normalize actual output
+            actual_output = match.group(0) if match else full_output
             actual_output = normalize_text(actual_output)
 
-            # 🔎 DEBUG: Print cleaned and normalized output
-            print("\n🔎 DEBUG: Cleaned & Normalized SHACL Validation Output")
-            print("-" * 80)
-            print(actual_output)
-            print("-" * 80)
-
-            # 🚨 Ensure validation explicitly failed
+            # Ensure validation explicitly failed
             if "conforms: false" not in actual_output:
                 print(f"❌ Test {test} should fail, but SHACL validation reported success!")
                 sys.exit(1)
@@ -160,7 +162,7 @@ def check_failing_tests():
             if os.path.exists(expected_output_path):
                 with open(expected_output_path, "r") as expected_file:
                     expected_output = expected_file.read().strip()
-                    expected_output = normalize_text(expected_output)  # Normalize expected output
+                    expected_output = normalize_text(expected_output)
 
                 if expected_output in actual_output:
                     print(f"✅ Test {test} produced the expected failure message.")
@@ -171,6 +173,55 @@ def check_failing_tests():
             else:
                 print(f"⚠️ No expected output file found for {test}. Please add one.")
                 print(f"Actual Output:\n{actual_output}")
+
+        # ✅ Validate standalone reference files only if they weren't already validated
+        for reference in reference_files:
+            reference_path = os.path.join(test_folder, reference)
+
+            if reference_path in validated_references:
+                print(f"🛑 Skipping redundant validation for {reference} (already validated with instance).")
+                continue  # ✅ Skip reference files already validated with an instance file
+
+            print(f"\n🛠 Running independent failing test for reference: {reference}")
+
+            validation_command = [
+                sys.executable, os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"), reference_path
+            ]
+
+            print(f"\n🔎 DEBUG: Running command: {' '.join(validation_command)}")
+
+            result = subprocess.run(
+                validation_command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True
+            )
+
+            full_output = result.stdout.strip()
+            match = re.search(r"Overall validation explicitly: Conforms=.*", full_output, re.DOTALL)
+            actual_output = match.group(0) if match else full_output
+            actual_output = normalize_text(actual_output)
+
+            if "conforms: false" not in actual_output:
+                print(f"❌ Test {reference} should fail, but SHACL validation reported success!")
+                sys.exit(1)
+
+            expected_output_path = reference_path.replace(".json", ".expected")
+            if os.path.exists(expected_output_path):
+                with open(expected_output_path, "r") as expected_file:
+                    expected_output = expected_file.read().strip()
+                    expected_output = normalize_text(expected_output)
+
+                if expected_output in actual_output:
+                    print(f"✅ Test {reference} produced the expected failure message.")
+                else:
+                    print(f"❌ Test {reference} failed, but output does not match expected.")
+                    print(f"Expected Output:\n{expected_output}\n\nActual Output:\n{actual_output}")
+                    sys.exit(1)
+            else:
+                print(f"⚠️ No expected output file found for {reference}. Please add one.")
+                print(f"Actual Output:\n{actual_output}")
+
 
 
 def main():
