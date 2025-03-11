@@ -1,210 +1,203 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-    "sh": "http://www.w3.org/ns/shacl#",
     "hdmap": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/",
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
   "@type": "hdmap:HdMap",
-  "hdmap:general": {
-    "@type": "general:General",
-    "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "hdmap example",
-        "@type": "xsd:string"
-      },
-      "general:description": {
-        "@value": "simple hdmap example file",
+  "hdmap:hasDataResource": {
+    "@type": "hdmap:DataResource",
+    "gx:name": {
+      "@value": "Test HD Map Dataset",
+      "@type": "xsd:string"
+    },
+    "gx:description": {
+      "@value": "A sample HD map dataset for testing, covering an urban environment.",
+      "@type": "xsd:string"
+    },
+    "hdmap:format": {
+      "@type": "hdmap:Format",
+      "hdmap:formatType": "ASAM OpenDRIVE",
+      "hdmap:version": {
+        "@value": "1.6",
         "@type": "xsd:string"
       }
     },
-    "general:data": {
-        "@type": "general:Data",
-      "general:size": {
+    "hdmap:content": {
+      "@type": "hdmap:Content",
+      "hdmap:roadTypes": "town",
+      "hdmap:laneTypes": [
+        "driving",
+        "walking"
+      ],
+      "hdmap:levelOfDetail": "crosswalk",
+      "hdmap:trafficDirection": "right-hand"
+    },
+    "hdmap:quantity": {
+      "@type": "hdmap:Quantity",
+      "hdmap:length": {
+        "@value": "1.46",
+        "@type": "xsd:float"
+      },
+      "hdmap:elevationRange": {
+        "@value": "2.22",
+        "@type": "xsd:float"
+      },
+      "hdmap:numberIntersections": {
         "@value": "5",
-        "@type": "xsd:float"
+        "@type": "xsd:unsignedInt"
       },
-      "general:recordingTime": {
-        "@value": "2024-05-15T08:18:17",
-        "@type": "xsd:dateTime"
-      }
-    }
-  },
-  "hdmap:format": {
-    "@type": "hdmap:Format",
-    "hdmap:formatType": "ASAM OpenDRIVE",
-    "hdmap:version": {
-      "@value": "1.6",
-      "@type": "xsd:string"
-    }
-  },
-  "hdmap:content": {
-    "@type": "hdmap:Content",
-    "hdmap:roadTypes": "town",
-    "hdmap:laneTypes": [
-      "driving",
-      "walking"
-    ],
-    "hdmap:levelOfDetail": "crosswalk",
-    "hdmap:trafficDirection": "right-hand"
-  },
-  "hdmap:quantity": {
-    "@type": "hdmap:Quantity",
-    "hdmap:length": {
-      "@value": "1.46",
-      "@type": "xsd:float"
-    },
-    "hdmap:elevationRange": {
-      "@value": "2.22",
-      "@type": "xsd:float"
-    },
-    "hdmap:numberIntersections": {
-      "@value": "5",
-      "@type": "xsd:unsignedInt"
-    },
-    "hdmap:numberTrafficLights": {
-      "@value": "0",
-      "@type": "xsd:unsignedInt"
-    },
-    "hdmap:numberTrafficSigns": {
-      "@value": "155",
-      "@type": "xsd:unsignedInt"
-    },
-    "hdmap:numberObjects": {
-      "@value": "200",
-      "@type": "xsd:unsignedInt"
-    },
-    "hdmap:numberOutlines": {
-      "@value": "100",
-      "@type": "xsd:unsignedInt"
-    },
-    "hdmap:speedLimit": {
-      "@type": "hdmap:Range2D",
-      "hdmap:min": {
-        "@value": "10",
-        "@type": "xsd:float"
+      "hdmap:numberTrafficLights": {
+        "@value": "0",
+        "@type": "xsd:unsignedInt"
       },
-      "hdmap:max": {
-        "@value": "50",
-        "@type": "xsd:float"
-      }
-    },
-    "hdmap:rangeOfModeling": {
-      "@value": "20",
-      "@type": "xsd:float"
-    }
-  },
-  "hdmap:quality": {
-    "@type": "hdmap:Quality",
-    "hdmap:precision": {
-      "@value": "0.01",
-      "@type": "xsd:float"
-    },
-    "hdmap:accuracyLaneModel2d": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    },
-    "hdmap:accuracyLaneModelHeight": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    },
-    "hdmap:accuracySignals": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    },
-    "hdmap:accuracyObjects": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    }
-  },
-  "hdmap:dataSource": {
-    "@type": "hdmap:DataSource",
-    "hdmap:usedDataSources": {
-      "@value": "scanner",
-      "@type": "xsd:string"
-    },
-    "hdmap:measurementSystem": {
-      "@value": "3DMS system",
-      "@type": "xsd:string"
-    }
-  },
-  "hdmap:georeference": {
-    "@type": "georeference:Georeference",
-    "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocation",
-      "georeference:country": {
-        "@value": "DE",
-        "@type": "xsd:string"
+      "hdmap:numberTrafficSigns": {
+        "@value": "155",
+        "@type": "xsd:unsignedInt"
       },
-      "georeference:state": {
-        "@value": "DE-BY",
-        "@type": "xsd:string"
+      "hdmap:numberObjects": {
+        "@value": "200",
+        "@type": "xsd:unsignedInt"
       },
-      "georeference:region": {
-        "@value": "Upper Bavaria",
-        "@type": "xsd:string"
+      "hdmap:numberOutlines": {
+        "@value": "100",
+        "@type": "xsd:unsignedInt"
       },
-      "georeference:city": {
-        "@value": "Grafing",
-        "@type": "xsd:string"
-      },
-      "georeference:relationOrArea": {
-        "@value": "Town of Grafing",
-        "@type": "xsd:string"
-      },
-      "georeference:boundingBox": {
-        "@type": "georeference:BoundingBox",
-        "georeference:xMin": {
-          "@value": "11.964",
+      "hdmap:speedLimit": {
+        "@type": "hdmap:Range2D",
+        "hdmap:min": {
+          "@value": "10",
           "@type": "xsd:float"
         },
-        "georeference:yMin": {
-          "@value": "48.043",
-          "@type": "xsd:float"
-        },
-        "georeference:xMax": {
-          "@value": "11.968274",
-          "@type": "xsd:float"
-        },
-        "georeference:yMax": {
-          "@value": "48.046836",
-          "@type": "xsd:float"
-        }
-      }
-    },
-    "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:codeEPSG": {
-        "@value": "32632",
-        "@type": "xsd:int"
-      },
-      "georeference:origin": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "48.045414",
-          "@type": "xsd:float"
-        },
-        "georeference:lon": {
-          "@value": "11.966206",
+        "hdmap:max": {
+          "@value": "50",
           "@type": "xsd:float"
         }
       },
-      "georeference:viewPoint": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "48.045414",
-          "@type": "xsd:float"
+      "hdmap:rangeOfModeling": {
+        "@value": "20",
+        "@type": "xsd:float"
+      }
+    },
+    "hdmap:quality": {
+      "@type": "hdmap:Quality",
+      "hdmap:precision": {
+        "@value": "0.01",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyLaneModel2d": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyLaneModelHeight": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracySignals": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyObjects": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      }
+    },
+    "hdmap:dataSource": {
+      "@type": "hdmap:DataSource",
+      "hdmap:usedDataSources": {
+        "@value": "scanner",
+        "@type": "xsd:string"
+      },
+      "hdmap:measurementSystem": {
+        "@value": "3DMS system",
+        "@type": "xsd:string"
+      }
+    },
+    "hdmap:georeference": {
+      "@type": "georeference:Georeference",
+      "georeference:projectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
         },
-        "georeference:lon": {
-          "@value": "11.966206",
-          "@type": "xsd:float"
+        "georeference:state": {
+          "@value": "DE-BY",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Upper Bavaria",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Town of Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:boundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "11.964",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "48.043",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "11.968274",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "48.046836",
+            "@type": "xsd:float"
+          }
         }
       },
-      "georeference:heightSystem": "Ellipsodial height"
+      "georeference:geodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "32632",
+          "@type": "xsd:int"
+        },
+        "georeference:origin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsodial height"
+      }
+    }
+  },
+  "hdmap:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:accessRole": "publicUser",
+    "manifest:category": "manifest",
+    "manifest:fileMetaData": {
+      "@type": "manifest:FileMetaData",
+      "manifest:uri": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/json",
+        "@type": "xsd:string"
+      }
     }
   }
 }

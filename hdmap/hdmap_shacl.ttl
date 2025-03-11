@@ -17,7 +17,7 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:node hdmap:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResource object."@en ;
+        sh:message "Each HD map must have one associated DataResource object containing format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
     sh:property [
         sh:path hdmap:hasManifest ;
@@ -85,7 +85,7 @@ hdmap:DataResourceShape a sh:NodeShape ;
             sh:description "General properties for defining the location and projection of the HD map asset."@en ;
             sh:order 6 ;
             sh:path hdmap:georeference ] ;
-    sh:targetClass hdmap:HdMap .
+    sh:targetClass hdmap:DataResource .
 
 # Manifest Shape for additional constraints
 # hdmap:ManifestShape a sh:NodeShape ;
