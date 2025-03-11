@@ -8,13 +8,14 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| HdMapShape | hdmap | general | 1 | 1 | General properties common for all simulation assets. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | format | 1 | 1 | Contains properties to describe the format of the HD map asset. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | content | 1 | 1 | Defines the content (road types, lane types, object types, traffic direction) of the HD map asset. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | quantity | 1 | 1 | Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | quality | 1 | 1 | Contains properties to describe the accuracy of the HD map asset. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | dataSource | 1 | 1 | Defines which data resources or measurement systems were used to create the HD map asset. |  | hdmap_shacl.ttl |
-| HdMapShape | hdmap | georeference | 1 | 1 | General properties for defining the location and projection of the HD map asset. |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | hasDataResource | 1 | 1 |  |  | hdmap_shacl.ttl |
+| HdMapShape | hdmap | hasManifest | 1 | 1 |  |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | format | 1 | 1 | Contains properties to describe the format of the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | content | 1 | 1 | Defines the content (road types, lane types, object types, traffic direction) of the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | quantity | 1 | 1 | Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | quality | 1 | 1 | Contains properties to describe the accuracy of the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | dataSource | 1 | 1 | Defines which data resources or measurement systems were used to create the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShape | hdmap | georeference | 1 | 1 | General properties for defining the location and projection of the HD map asset. |  | hdmap_shacl.ttl |
 | ContentShape | hdmap | roadTypes |  |  | Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html) | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | laneTypes |  |  | Lists the lanes types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 11.7.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/11_lanes/11_07_lane_properties.html). | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
 | ContentShape | hdmap | levelOfDetail |  |  | Lists the object types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Annex A.4.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_C47587D0_7173_42df_8BB7_36B2C598D95F) | <http://www.w3.org/2001/XMLSchema#string> | hdmap_shacl.ttl |
