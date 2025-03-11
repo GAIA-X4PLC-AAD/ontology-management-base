@@ -50,10 +50,10 @@ def explicitly_validate_references(data_graph, shacl_graph, reference_files, sha
 
         with open(ref_file, 'r') as f:
             json_data = json.load(f)
-            manifest_id = json_data.get('@id')
+            refernce_file_id = json_data.get('@id')
             json_type = json_data.get("@type", "")
 
-        if not manifest_id:
+        if not refernce_file_id:
             print(f'No explicit "@id" found in {ref_file}, skipping validation.')
             continue
 
@@ -65,7 +65,7 @@ def explicitly_validate_references(data_graph, shacl_graph, reference_files, sha
             print(f'No SHACL shape found for {filename} (Type: {json_type} resolved as {full_type}), skipping validation.')
             continue
 
-        focus_node = URIRef(manifest_id)
+        focus_node = URIRef(refernce_file_id)
 
         for shape_uri_str in shape_uris:
             target_shape_uri = URIRef(shape_uri_str)

@@ -15,26 +15,26 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:node manifest:LinkShape ;
             sh:order 0 ;
             sh:path manifest:manifest
-        ],
+        ] ,
         [   sh:description "Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms."@en ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:LicenseShape ;
             sh:order 1 ;
             sh:path manifest:license
-        ],
+        ] ,
         [   sh:description "Defines the links to all relevant data for a digital asset. This is extended by the domain specific ontology."@en ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 2 ;
             sh:path manifest:content
-        ],
+        ] ,
         [   sh:description "Defines the links to all related external data for a digital asset. This is extended by the domain specific ontology"@en ;
             sh:minCount 0 ;
             sh:node manifest:LinkShape ;
             sh:order 3 ;
             sh:path manifest:externalContent
-        ];
+        ] ;
     sh:targetClass manifest:Manifest .
 
 manifest:LicenseShape a sh:NodeShape ;
@@ -80,7 +80,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
-        ],
+        ] ,
         [   sh:description "Specifies the category of the corresponding data file. The categories may represet the structure of the asset e.g. in an archive."@en ;
             skos:example "metadata";
             sh:in ("manifest" "coreData" "documentation" "media" "metadata" "validationReports" "license" "externalDependency" "miscellaneous") ;
@@ -91,7 +91,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:category 
-        ],
+        ] ,
         [
             sh:description "Defines the properties of the data file that is referenced via a link."@en ;
             sh:maxCount 1 ;
@@ -99,12 +99,6 @@ manifest:LinkShape a sh:NodeShape ;
             sh:node manifest:FileMetaDataShape ;
             sh:order 2 ;
             sh:path manifest:fileMetaData
-        ] , [
-            sh:description "Specifies the ontology conformance for the linked asset."@en ;
-            sh:minCount 0 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path sh:conformsTo
         ] ;
     sh:targetClass manifest:Link .
     
@@ -147,11 +141,26 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
         ],
         [
+            sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
+            sh:minCount 0 ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path sh:conformsTo ;
+            sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
+            sh:condition [
+                sh:property [
+                    sh:path manifest:mimeType ;
+                    sh:in ("application/json" "application/ld+json")
+                ]
+            ]
+        ],
+        [
             sh:description "Defines the dimensions for images and videos."@en ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node manifest:DimensionsShape ;
-            sh:order 3 ;
+            sh:order 4 ;
             sh:path manifest:dimensions
         ], 
         [
