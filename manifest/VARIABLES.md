@@ -4,6 +4,7 @@
 
 - gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
 - manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+- sh: <http://www.w3.org/ns/shacl#>
 
 ## List of SHACL Properties
 
@@ -18,6 +19,7 @@
 | LinkShape | manifest | accessRole | 1 | 1 | Specifies the access role associated with the corresponding file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | LinkShape | manifest | category | 1 | 1 | Specifies the category of the corresponding data file. The categories may represet the structure of the asset e.g. in an archive. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | LinkShape | manifest | fileMetaData | 1 | 1 | Defines the properties of the data file that is referenced via a link. |  | manifest_shacl.ttl |
+| LinkShape | sh | conformsTo | 0 |  | Specifies the ontology conformance for the linked asset. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | uri | 1 | 1 | Uniform Resource Identifier (URI) to identify the resource by location, name, or both. | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | hash | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | mimeType | 0 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
