@@ -1,43 +1,33 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:general:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
-  "@type": "general:SimulationAsset",
-  "general:hasMetadata": {
-    "@type": "general:Metadata",
-    "gx:name": {
+  "@id": "did:web:registry.gaia-x.eu:General:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
+  "@type": "general:General",
+  "general:description": {
+    "@type": "general:Description",
+    "general:name": {
       "@value": "3D Model in Grafing",
       "@type": "xsd:string"
     },
-    "gx:description": {
-      "@value": "Town district with traffic signs.",
+    "general:description": {
+      "@value": "town district, with traffic signs",
       "@type": "xsd:string"
     }
   },
-  "general:hasManifest": {
-    "@type": "manifest:Link",
-    "manifest:accessRole": "publicUser",
-    "manifest:category": "manifest",
-    "manifest:fileMetaData": {
-      "@type": "manifest:FileMetaData",
-      "manifest:uri": {
-        "@value": "./manifest_reference.json",
-        "@type": "xsd:anyURI"
-      },
-      "manifest:mimeType": {
-        "@value": "application/json",
-        "@type": "xsd:string"
-      }
+  "general:data": {
+    "@type": "general:Data",
+    "general:size": {
+      "@value": "5.8",
+      "@type": "xsd:float"
     },
-    "sh:conformsTo": [
-      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
-      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
-    ]
+    "general:recordingTime": {
+      "@value": "2024-04-01T00:00:00",
+      "@type": "xsd:dateTime"
+    }
   }
 }

@@ -1,0 +1,83 @@
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# Ontology metadata
+envited-x: a owl:Ontology ;
+    rdfs:label "Ontology definition for envited-x"@en ;
+    rdfs:comment "ENVITED-C ontology with common classes for defining an asset in the simulation domain."@en ;
+    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Mirco Nierenz" ;
+        org:memberOf <https://triangraphics.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Erik Konietzko" ;
+        org:memberOf <https://www.ipk.fraunhofer.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/envited-x> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v3/ontology> ;
+    owl:versionInfo "v3" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v3/shape> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+# envited-x metadata class
+envited-x:Metadata a owl:Class ;
+    rdfs:label "Metadata"@en ;
+    rdfs:comment "ENVITED-X metadata containing information such as name and description of the simulation asset."@en ;
+    rdfs:subClassOf gx:DataResource .
+
+# Core simulation asset class
+envited-x:SimulationAsset a owl:Class ;
+    rdfs:label "Simulation Asset"@en ;
+    rdfs:comment "A structured digital resource that includes extensible metadata and a table of contents as a linked manifest."@en ;
+    rdfs:subClassOf gx:DataResource ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty envited-x:hasMetadata ; 
+        owl:someValuesFrom envited-x:Metadata 
+    ] .
+
+manifest:Manifest a owl:Class ;
+    rdfs:label "Class definition for Manifest"@en ;
+    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
+
+# Object properties
+envited-x:hasMetadata a owl:ObjectProperty ;
+    rdfs:domain envited-x:SimulationAsset ;
+    rdfs:range envited-x:Metadata ;
+    rdfs:comment "Links a simulation asset to its metadata, such as name and description."@en .
+
+envited-x:hasManifest a owl:ObjectProperty ;
+    rdfs:domain envited-x:SimulationAsset ;
+    rdfs:range manifest:Manifest ;
+    rdfs:comment "Each simulation asset must have an associated manifest that describes its structure and content."@en .

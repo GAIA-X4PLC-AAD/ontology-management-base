@@ -52,9 +52,10 @@
         "scenario:catalogs": [
           {
             "@type": "manifest:Link",
-            "manifest:category": "coreData",
             "manifest:accessRole": "owner",
+            "manifest:category": "coreData",
             "manifest:fileMetaData": {
+                "@type": "manifest:FileMetaData",
                 "manifest:uri": {
                     "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
                     "@type": "xsd:anyURI"
@@ -70,9 +71,10 @@
         "scenario:environmentModels": [
           {
             "@type": "manifest:Link",
-            "manifest:category": "coreData",
             "manifest:accessRole": "owner",
+            "manifest:category": "coreData",
             "manifest:fileMetaData": {
+                "@type": "manifest:FileMetaData",
                 "manifest:uri": {
                     "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
                     "@type": "xsd:anyURI"
@@ -83,9 +85,10 @@
         "scenario:trafficSpace": [ 
           {
             "@type": "manifest:Link",
-            "manifest:category": "coreData",
             "manifest:accessRole": "owner",
+            "manifest:category": "coreData",
             "manifest:fileMetaData": {
+                "@type": "manifest:FileMetaData",
                 "manifest:uri": {
                     "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
                     "@type": "xsd:anyURI"
@@ -185,32 +188,56 @@
             "georeference:relationOrArea": {
                 "@value": "A 39",
                 "@type": "xsd:string"
+            },
+            "georeference:boundingBox": {
+                "@type": "georeference:BoundingBox",
+                "georeference:xMin": {
+                    "@value": "10.720740862799195",
+                    "@type": "xsd:float"
+                },
+                "georeference:yMin": {
+                    "@value": "52.29672229543727",
+                    "@type": "xsd:float"
+                },
+                "georeference:xMax": {
+                    "@value": "10.730432209669724",
+                    "@type": "xsd:float"
+                },
+                "georeference:yMax": {
+                    "@value": "52.31580272353997",
+                    "@type": "xsd:float"
+                }
             }
         },
         "georeference:geodeticReferenceSystem": {
             "@type": "georeference:GeodeticReferenceSystem",
+            "georeference:codeEPSG": {
+                "@value": "32632",
+                "@type": "xsd:int"
+            },
             "georeference:origin": {
                 "@type": "georeference:LatLonCoordinate",
                 "georeference:lat": {
-                    "@value": 52.315173,
+                    "@value": "52.275329463992996",
                     "@type": "xsd:float"
                 },
                 "georeference:lon": {
-                    "@value": 10.562871,
+                    "@value": "10.685571633942278",
                     "@type": "xsd:float"
                 }
             },
-            "georeference:codeEPSG": {
-                "@value": 32632,
-                "@type": "xsd:int"
+        "georeference:viewPoint": {
+            "@type": "georeference:LatLonCoordinate",
+            "georeference:lat": {
+                "@value": "52.30626250948862",
+                "@type": "xsd:float"
             },
-            "georeference:coordinateSystemName": {
-                "@value": "UTM Zone 32N, WGS84",
-                "@type": "xsd:string"
-            },
-            "georeference:heightSystem": {
-                "@value": "Ellipsoidal height"
+            "georeference:lon": {
+                "@value": "10.72558653623446",
+                "@type": "xsd:float"
             }
+        },
+        "georeference:heightSystem": "Ellipsodial height"
         }
     }
 }

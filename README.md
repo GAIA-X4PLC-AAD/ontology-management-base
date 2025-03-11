@@ -43,22 +43,29 @@ Each ontology (e.g., `manifest/`, `general/`, `hdmap/`) may contain a `tests/` d
 
 ```bash
 /manifest/tests/
-  ├── fail_missing_license.json        # Missing required license
-  ├── fail_no_manifest_shape.json      # No manifest shape defined
-  ├── fail_invalid_uri.json            # Invalid URI format
-  ├── fail_wrong_data_type.json        # Incorrect data type
+  ├── fail_missing_license_instance.json        # Missing required license
+  ├── fail_missing_license_instance.expected      # No manifest shape defined
 ```
 
-For each test case, there is a corresponding `.expected` file that defines the expected validation error message:
+For each test case, there is a corresponding `.expected` file that defines the expected validation error message from `PySHACL`:
 
 ```bash
-/manifest/tests/fail_missing_license.expected
+/manifest/tests/fail_missing_license_instance.expected
 ```
 
 Example content:
 
 ```bash
-SHACL validation error: manifest:license is missing.
+Validation Report
+Conforms: False
+Results (1):
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+        Severity: sh:Violation
+        Source Shape: [ sh:description Literal("Defines the license(s) valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms.", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:node manifest:LicenseShape ; sh:order Literal("1", datatype=xsd:integer) ; sh:path manifest:license ]
+        Focus Node: <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>
+        Result Path: manifest:license
+        Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>->manifest:license
+
 ```
 
 ### **Running Tests Locally**
@@ -159,7 +166,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 - The prefix of the SHACL Shape must match the prefix defined in the ontology.
 - If worth explaining, examples should be given. Specify concrete valid input here. Values should match with sh:In. Separate multiple entries with a comma. Example: '3DMS system, Trimble xyz, Riegl xyz'
 - If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
-- Every Shape linking to an ontology must **nest** the `general` Shape. Example:
+- Every Shape linking to an ontology must **nest** the `general` Shape. This does not apply for ontologies which are subclasses of the `envited-x` ontology. Example:
   - Add prefix
 
     ```turtle

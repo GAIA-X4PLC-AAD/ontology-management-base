@@ -1,89 +1,66 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-
-# General SHACL shape
-general:SimulationAssetShape a sh:NodeShape ;
+general:GeneralShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [
-        sh:path general:hasMetadata ;
-        sh:node general:MetadataShape ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have one associated Metadata object."@en ;
-    ] ;
-    sh:property [
-        sh:path general:hasManifest ;
-        sh:or ( 
-            [
-                sh:and (
-                    [ sh:node manifest:ManifestShape ]
-                    [ sh:node general:ExtendedManifestShape ]
-                )
-            ] 
-            [
-                sh:node manifest:LinkShape
-            ] 
-        ) ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have exactly one manifest, either inline or via link."@en ;
-    ] ;
-    sh:targetClass general:SimulationAsset .
-
-# SHACL Shape for Metadata
-general:MetadataShape a sh:NodeShape ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:DescriptionShape ;
+            sh:name "description object"@en ;
+            sh:description "General text based description of the simulation asset."@en ;
+            sh:order 1 ;
+            sh:path general:description ],     
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:node general:DataShape ;
+            sh:name "data object"@en ;
+            sh:description "Data properties of the simulation asset."@en ;
+            sh:order 2 ;
+            sh:path general:data ];              
+    sh:targetClass general:General .
+    
+general:DescriptionShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ 
-        sh:path gx:name ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have a human-readable name of the entity."@en ;
-        skos:example "3D Model of Grafing"@en ;
-        sh:order 0 
-    ] ;
-    sh:property [ 
-        sh:path gx:description ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have a textual description of the entity."@en ;
-        skos:example "Town district with traffic signs."@en ;
-        sh:order 1 
-    ] ;
-    sh:targetClass general:Metadata .
-
-# Extended Manifest Shape for additional constraints
-general:ExtendedManifestShape a sh:NodeShape ;
-    sh:property [
-        sh:path manifest:content ;
-        sh:node manifest:LinkShape ;
-        sh:minCount 4 ;
-        sh:message "The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media."@en ;
-    ] ;
-    sh:sparql [
-        sh:message "A Manifest must contain at least 4 mandatory content categories: coreData, documentation, metadata, and media, but may also include additional content such as licenses or self-references."@en ;
-        sh:prefixes <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> ;
-        sh:select """
-            SELECT ?this WHERE {
-                {
-                    SELECT (COUNT(?content) AS ?count)
-                    WHERE {
-                        ?this manifest:content ?content .
-                        ?content manifest:category ?category .
-                        FILTER(?category IN ("coreData", "documentation", "metadata", "media"))
-                    }
-                }
-                FILTER(?count < 4)
-            }
-        """ ;
-    ] ;
-    sh:targetClass manifest:Manifest .
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human readable name of the entity."@en ;
+            skos:example "3D Model of Grafing"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "name"@en ;
+            sh:order 1 ;
+            sh:path general:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A free text description of the entity."@en ;
+            skos:example "Town district with traffic signs."@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "description"@en ;
+            sh:order 2 ;
+            sh:path general:description ];
+    sh:targetClass general:Description .    
+    
+general:DataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:description "Size of the data file(s) (e.g. xodr, 3d model zip) to be downloaded in MB (megabyte)."@en ;
+            skos:example "5.8" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "size"@en ;
+            sh:order 1 ;
+            sh:path general:size ],
+        [ skos:example "2022-04-01T00:00:00" ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Time of data acquisition used to generate the asset, if partial measurement: oldest date"@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of recording time failed!"@en ;
+            sh:name "recording time"@en ;
+            sh:order 2 ;
+            sh:path general:recordingTime ] ;
+    sh:targetClass general:Data .   

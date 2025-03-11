@@ -1,22 +1,22 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
     "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:general:fail_missing_property_reference",
-  "@type": "general:SimulationAsset",
-  "general:hasMetadata": {
-    "@type": "general:Metadata",
+  "@id": "did:web:registry.gaia-x.eu:envited-x:fail_missing_property_reference",
+  "@type": "envited-x:SimulationAsset",
+  "envited-x:hasMetadata": {
+    "@type": "envited-x:Metadata",
     "gx:name": {
       "@value": "3D Model in Grafing",
       "@type": "xsd:string"
     }
   },
-  "general:hasManifest": {
+  "envited-x:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
@@ -33,7 +33,7 @@
     },
     "sh:conformsTo": [
       "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
-      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/"
+      "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
     ]
   }
 }

@@ -1,19 +1,18 @@
 @prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
-# Ontology metadata
 general: a owl:Ontology ;
     rdfs:label "Ontology definition for general"@en ;
-    rdfs:comment "General ontology with common classes for defining an asset in the simulation domain."@en ;
+    rdfs:comment "General ontology with common classes for the simulation domain."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
@@ -24,10 +23,6 @@ general: a owl:Ontology ;
         a foaf:Person ;
         foaf:name "Mirco Nierenz" ;
         org:memberOf <https://triangraphics.de/> ;
-    ] , [
-        a foaf:Person ;
-        foaf:name "Erik Konietzko" ;
-        org:memberOf <https://www.ipk.fraunhofer.de/> ;
     ] ;  
 
     # Permanent identifier for the ontology (not version-specific)
@@ -37,47 +32,26 @@ general: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/general/v3/ontology> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology> ;
+    owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/general/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacle> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
-# General metadata class
-general:Metadata a owl:Class ;
-    rdfs:label "Metadata"@en ;
-    rdfs:comment "General metadata containing information such as name and description of the simulation asset."@en ;
-    rdfs:subClassOf gx:DataResource .
+general:General a owl:Class ;
+    rdfs:label "Class definition for General"@en ;
+    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en .
 
-# Core simulation asset class
-general:SimulationAsset a owl:Class ;
-    rdfs:label "Simulation Asset"@en ;
-    rdfs:comment "A structured digital resource that includes extensible metadata and a table of contents as a linked manifest."@en ;
-    rdfs:subClassOf gx:DataResource ;
-    rdfs:subClassOf [ 
-        a owl:Restriction ; 
-        owl:onProperty general:hasMetadata ; 
-        owl:someValuesFrom general:Metadata 
-    ] .
+general:Description a owl:Class ;
+    rdfs:label "Class definition for Description"@en ;
+    rdfs:comment "General text based description of the simulation asset."@en .
 
-manifest:Manifest a owl:Class ;
-    rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
-
-# Object properties
-general:hasMetadata a owl:ObjectProperty ;
-    rdfs:domain general:SimulationAsset ;
-    rdfs:range general:Metadata ;
-    rdfs:comment "Links a simulation asset to its metadata, such as name and description."@en .
-
-general:hasManifest a owl:ObjectProperty ;
-    rdfs:domain general:SimulationAsset ;
-    rdfs:range manifest:Manifest ;
-    rdfs:comment "Each simulation asset must have an associated manifest that describes its structure and content."@en .
+general:Data a owl:Class ;
+    rdfs:label "Class definition for Data"@en ;
+    rdfs:comment "General data properties of the simulation asset."@en .

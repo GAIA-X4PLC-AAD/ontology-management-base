@@ -23,12 +23,13 @@ def load_shacl_files(root_dir):
 
     shacl_files = glob.glob(f'{root_dir}/**/*_shacl.ttl', recursive=True)
     for shacl_file in shacl_files:
-        #print(f'Loading SHACL file: {shacl_file}')
         shacl_graph.parse(shacl_file, format='turtle')
 
     SH = Namespace("http://www.w3.org/ns/shacl#")
     for s, p, o in shacl_graph.triples((None, SH.targetClass, None)):
-        shape_mappings[str(o)] = str(s)  # Map class (o) to SHACL shape URI (s)
+        if str(o) not in shape_mappings:
+            shape_mappings[str(o)] = []  # Initialize as list
+        shape_mappings[str(o)].append(str(s))  # Append to list
 
     return shacl_graph, shape_mappings
 
@@ -59,25 +60,27 @@ def explicitly_validate_references(data_graph, shacl_graph, reference_files, sha
         context = json_data.get("@context", {})
         full_type = resolve_prefixed_type(json_type, context)
 
-        shape_uri_str = shape_mappings.get(full_type)
-        if not shape_uri_str:
+        shape_uris = shape_mappings.get(full_type, [])  # Get all matching shapes
+        if not shape_uris:
             print(f'No SHACL shape found for {filename} (Type: {json_type} resolved as {full_type}), skipping validation.')
             continue
 
         focus_node = URIRef(manifest_id)
-        target_shape_uri = URIRef(shape_uri_str)
 
-        print(f'Explicitly validating {filename} against shape {target_shape_uri}')
-        conforms, _, v_text = validate(
-            data_graph,
-            shacl_graph=shacl_graph,
-            inference='rdfs',
-            debug=False,
-            focus=focus_node,
-            target_shape=target_shape_uri
-        )
+        for shape_uri_str in shape_uris:
+            target_shape_uri = URIRef(shape_uri_str)
 
-        failed_validations.append((conforms, filename, v_text))
+            print(f'Explicitly validating {filename} against shape {target_shape_uri}')
+            conforms, _, v_text = validate(
+                data_graph,
+                shacl_graph=shacl_graph,
+                inference='rdfs',
+                debug=False,
+                focus=focus_node,
+                target_shape=target_shape_uri
+            )
+            if not conforms:
+                failed_validations.append((conforms, filename, v_text))
 
     return failed_validations
 
@@ -89,7 +92,7 @@ def main():
 
     paths = sys.argv[1:]  # Accept multiple file paths
 
-    #print('Loading SHACL shapes explicitly...')
+    print('Loading all SHACL shapes into shacle graph and create shape mappings...')
     shacl_graph, shape_mappings = load_shacl_files('.')
 
     data_graph = Graph()
@@ -97,14 +100,14 @@ def main():
     reference_files = []
     skip_overall = False
 
-    # ✅ Process multiple files
+    # Process multiple files
     for path in paths:
         if os.path.isdir(path):
-            #print(f'Loading JSON-LD files from directory: {path}')
+            print(f'Loading JSON-LD files from directory: {path}')
             instance_files.extend(glob.glob(f'{path}/*_instance.json'))
             reference_files.extend(glob.glob(f'{path}/*_reference.json'))
         elif os.path.isfile(path):
-            #print(f'Loading single JSON-LD file: {path}')
+            print(f'Loading single JSON-LD file: {path}')
             if path.endswith("_instance.json"):
                 instance_files.append(path)
             elif path.endswith("_reference.json"):
@@ -121,9 +124,10 @@ def main():
     if reference_files:
         failed_validations = explicitly_validate_references(data_graph, shacl_graph, reference_files, shape_mappings)
 
-        # 🚨 Stop execution if explicit validation already failed
+        # Stop execution if explicit validation already failed
         for conforms, _, v_text in failed_validations:
             if not conforms:
+                print("$$_$$")
                 print(v_text)
                 skip_overall = True
 
@@ -137,6 +141,7 @@ def main():
         )
 
         if not conforms:
+            print("$$_$$")
             print(v_text)
 
 if __name__ == "__main__":

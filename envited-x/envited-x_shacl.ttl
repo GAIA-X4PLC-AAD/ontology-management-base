@@ -1,0 +1,90 @@
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# envited-x SHACL shape
+envited-x:SimulationAssetShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path envited-x:hasMetadata ;
+        sh:node envited-x:MetadataShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have one associated Metadata object."@en ;
+    ] ;
+    sh:property [
+        sh:path envited-x:hasManifest ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node envited-x:ExtendedManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have exactly one manifest, either inline or via link."@en ;
+    ] ;
+    sh:targetClass envited-x:SimulationAsset .
+
+# SHACL Shape for Metadata
+envited-x:MetadataShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ 
+        sh:path gx:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have a human-readable name of the entity."@en ;
+        skos:example "3D Model of Grafing"@en ;
+        sh:order 0 
+    ] ;
+    sh:property [ 
+        sh:path gx:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have a textual description of the entity."@en ;
+        skos:example "Town district with traffic signs."@en ;
+        sh:order 1 
+    ] ;
+    sh:targetClass envited-x:Metadata .
+
+# Extended Manifest Shape for additional constraints
+envited-x:ExtendedManifestShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:property [
+        sh:path manifest:content ;
+        sh:node manifest:LinkShape ;
+        sh:minCount 4 ;
+        sh:message "The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media."@en ;
+    ] ;
+    sh:sparql [
+        sh:message "A Manifest must contain at least 4 mandatory content categories: coreData, documentation, metadata, and media, but may also include additional content such as licenses or self-references."@en ;
+        sh:prefixes <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> ;
+        sh:select """
+            SELECT ?this WHERE {
+                {
+                    SELECT (COUNT(?content) AS ?count)
+                    WHERE {
+                        ?this manifest:content ?content .
+                        ?content manifest:category ?category .
+                        FILTER(?category IN ("coreData", "documentation", "metadata", "media"))
+                    }
+                }
+                FILTER(?count < 4)
+            }
+        """ ;
+    ] ;
+    sh:targetClass manifest:Manifest .
