@@ -9,14 +9,14 @@
   },
   "@id": "did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
   "@type": "envited-x:SimulationAsset",
-  "envited-x:hasMetadata": {
-    "@type": "envited-x:Metadata",
+  "envited-x:hasDataResource": {
+    "@type": "envited-x:DataResource",
     "gx:name": {
       "@value": "3D Model in Grafing",
       "@type": "xsd:string"
     },
     "gx:description": {
-      "@value": "Town district with traffic signs.",
+      "@value": "A 3D model representing the town district with traffic signs.",
       "@type": "xsd:string"
     }
   },
