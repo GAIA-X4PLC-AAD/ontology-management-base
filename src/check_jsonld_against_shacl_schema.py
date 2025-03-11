@@ -98,7 +98,6 @@ def main():
     data_graph = Graph()
     instance_files = []
     reference_files = []
-    skip_overall = False
 
     # Process multiple files
     for path in paths:
@@ -116,30 +115,24 @@ def main():
             print(f'Error: {path} is neither a file nor a directory.')
             sys.exit(1)
 
-    if instance_files or reference_files:
-        data_graph = load_jsonld_files(instance_files + reference_files)
-
     failed_validations = []
 
     if reference_files:
         failed_validations = explicitly_validate_references(data_graph, shacl_graph, reference_files, shape_mappings)
 
-        # Stop execution if explicit validation already failed
-        for conforms, _, v_text in failed_validations:
-            if not conforms:
-                print("$$_$$")
-                print(v_text)
-                skip_overall = True
+    if instance_files or reference_files:
+        data_graph = load_jsonld_files(instance_files + reference_files)
 
-    if not skip_overall:
-        print('Performing overall validation explicitly...')
-        conforms, _, v_text = validate(
-            data_graph,
-            shacl_graph=shacl_graph,
-            inference='rdfs',
-            debug=False
-        )
+    print('Performing overall validation explicitly...')
+    conforms, _, v_text = validate(
+        data_graph,
+        shacl_graph=shacl_graph,
+        inference='rdfs',
+        debug=False
+    )
+    failed_validations.append((conforms, _, v_text))
 
+    for conforms, _, v_text in failed_validations:
         if not conforms:
             print("$$_$$")
             print(v_text)

@@ -35,9 +35,9 @@
         "@type": "xsd:string"
       },
       "sh:conformsTo": [
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
-        "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
-    ]
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" },
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
+      ]
     }
   }
 }

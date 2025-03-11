@@ -143,7 +143,6 @@ manifest:FileMetaDataShape a sh:NodeShape ;
         [
             sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
             sh:minCount 0 ;
-            sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
             sh:order 3 ;
             sh:path sh:conformsTo ;
