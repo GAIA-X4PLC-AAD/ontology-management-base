@@ -12,11 +12,11 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
-        sh:path envited-x:hasMetadata ;
-        sh:node envited-x:MetadataShape ;
+        sh:path envited-x:hasDataResource ;
+        sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have one associated Metadata object."@en ;
+        sh:message "Each SimulationAsset must have one associated DataResource object."@en ;
     ] ;
     sh:property [
         sh:path envited-x:hasManifest ;
@@ -24,7 +24,7 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
             [
                 sh:and (
                     [ sh:node manifest:ManifestShape ]
-                    [ sh:node envited-x:ExtendedManifestShape ]
+                    [ sh:node envited-x:ManifestShape ]
                 )
             ] 
             [
@@ -37,8 +37,8 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     ] ;
     sh:targetClass envited-x:SimulationAsset .
 
-# SHACL Shape for Metadata
-envited-x:MetadataShape a sh:NodeShape ;
+# SHACL Shape for envited-x:DataResource
+envited-x:DataResourceShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ 
@@ -59,10 +59,10 @@ envited-x:MetadataShape a sh:NodeShape ;
         skos:example "Town district with traffic signs."@en ;
         sh:order 1 
     ] ;
-    sh:targetClass envited-x:Metadata .
+    sh:targetClass envited-x:DataResource .
 
-# Extended Manifest Shape for additional constraints
-envited-x:ExtendedManifestShape a sh:NodeShape ;
+# Manifest Shape for additional constraints
+envited-x:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:property [
         sh:path manifest:content ;
@@ -87,4 +87,4 @@ envited-x:ExtendedManifestShape a sh:NodeShape ;
             }
         """ ;
     ] ;
-    sh:targetClass manifest:Manifest .
+    sh:targetClass envited-x:Manifest .

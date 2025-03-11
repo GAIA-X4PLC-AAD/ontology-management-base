@@ -1,5 +1,6 @@
 @prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -50,6 +51,41 @@ hdmap: a owl:Ontology ;
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+# hdmap DataResource class
+hdmap:DataResource a owl:Class ;
+    rdfs:label "Class definition for DataResource"@en ;
+    rdfs:comment "HD map DataResource containing information such as name and description of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DataResource ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:Content
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:DataSource
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:Format
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:Quality
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:Quantity
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom hdmap:Range2D
+    ].
 
 ### HdMap class definition
 hdmap:HdMap a owl:Class ;
@@ -58,89 +94,58 @@ hdmap:HdMap a owl:Class ;
     rdfs:subClassOf envited-x:SimulationAsset ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
+        owl:onProperty hdmap:hasDataResource ;
+        owl:someValuesFrom envited-x:DataResource
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasManifest ;
-        owl:someValuesFrom manifest:Manifest
+        owl:someValuesFrom envited-x:Manifest
     ] .
 
-### Define hdmap:hasMetadata as a sub-property of envited-x:hasMetadata
-hdmap:hasMetadata a owl:ObjectProperty ;
-    rdfs:label "Has Metadata"@en ;
+### Define hdmap:hasDataResource as a sub-property of envited-x:hasDataResource
+hdmap:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "Class definition for hasDataResource"@en ;
     rdfs:comment "Links an HD map asset to its specific metadata, which may contain additional HD map-specific attributes."@en ;
-    rdfs:subPropertyOf envited-x:hasMetadata ;
+    rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain hdmap:HdMap ;
-    rdfs:range envited-x:Metadata .
+    rdfs:range hdmap:DataResource .
 
 ### Define hdmap:hasManifest as a sub-property of envited-x:hasManifest
 hdmap:hasManifest a owl:ObjectProperty ;
-    rdfs:label "Has Manifest"@en ;
+    rdfs:label "Class definition for hasManifest"@en ;
     rdfs:comment "Links an HD map asset to its specific manifest, extending standard manifest properties with additional HD map constraints."@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain hdmap:HdMap ;
-    rdfs:range manifest:Manifest .
+    rdfs:range envited-x:Manifest .
 
-### HdMapMetadata-related classes can only exist within hasMetadata
-
+### hdmap:DataResource-related classes can only exist within hasDataResource
 hdmap:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
     rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
 
 hdmap:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
     rdfs:comment "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
 
 hdmap:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
     rdfs:comment "Contains properties to describe the format of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
 
 hdmap:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
     rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
 
 hdmap:Range2D a owl:Class ;
     rdfs:label "Class definition for Range2D"@en ;
     rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Metadata ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasMetadata ;
-        owl:someValuesFrom envited-x:Metadata
-    ] .
+    rdfs:subClassOf hdmap:DataResource .
