@@ -56,6 +56,11 @@ envited-x:Metadata a owl:Class ;
     rdfs:comment "ENVITED-X metadata containing information such as name and description of the simulation asset."@en ;
     rdfs:subClassOf gx:DataResource .
 
+# Validation enforces the re-defintion of the class from manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+manifest:Manifest a owl:Class ;
+    rdfs:label "Class definition for Manifest"@en ;
+    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
+
 # Core simulation asset class
 envited-x:SimulationAsset a owl:Class ;
     rdfs:label "Simulation Asset"@en ;
@@ -65,11 +70,12 @@ envited-x:SimulationAsset a owl:Class ;
         a owl:Restriction ; 
         owl:onProperty envited-x:hasMetadata ; 
         owl:someValuesFrom envited-x:Metadata 
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty envited-x:hasManifest ;  
+        owl:someValuesFrom manifest:Manifest
     ] .
-
-manifest:Manifest a owl:Class ;
-    rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
 
 # Object properties
 envited-x:hasMetadata a owl:ObjectProperty ;

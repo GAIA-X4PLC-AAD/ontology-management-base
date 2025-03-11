@@ -1,11 +1,13 @@
 @prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
@@ -15,6 +17,10 @@ hdmap: a owl:Ontology ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] , [
         a foaf:Person ;
         foaf:name "Sebastian Tuttas" ;
         org:memberOf <https://www.3d-mapping.de/> ;
@@ -31,44 +37,110 @@ hdmap: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/hdmap/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/hdmap/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/hdmap/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/hdmap/v3/shape> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+
+### HdMap class definition
 hdmap:HdMap a owl:Class ;
     rdfs:label "Class definition for HdMap"@en ;
-    rdfs:comment "General properties for defining a HD-map asset, such as format, content, quantity and quality properties."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:comment "General properties for defining a high-definition map (HD map) asset used in simulation environments, such as format, content, quantity and quality properties."@en ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasManifest ;
+        owl:someValuesFrom manifest:Manifest
+    ] .
+
+### Define hdmap:hasMetadata as a sub-property of envited-x:hasMetadata
+hdmap:hasMetadata a owl:ObjectProperty ;
+    rdfs:label "Has Metadata"@en ;
+    rdfs:comment "Links an HD map asset to its specific metadata, which may contain additional HD map-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasMetadata ;
+    rdfs:domain hdmap:HdMap ;
+    rdfs:range envited-x:Metadata .
+
+### Define hdmap:hasManifest as a sub-property of envited-x:hasManifest
+hdmap:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Has Manifest"@en ;
+    rdfs:comment "Links an HD map asset to its specific manifest, extending standard manifest properties with additional HD map constraints."@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain hdmap:HdMap ;
+    rdfs:range manifest:Manifest .
+
+### HdMapMetadata-related classes can only exist within hasMetadata
 
 hdmap:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en .
+    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
 
 hdmap:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
-    rdfs:comment "Defines which data resources or measurement systems were used to create the HD map asset."@en .
+    rdfs:comment "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
 
 hdmap:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties to describe the format of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the format of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
 
 hdmap:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
 
 hdmap:Range2D a owl:Class ;
     rdfs:label "Class definition for Range2D"@en ;
-    rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en .
+    rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Metadata ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasMetadata ;
+        owl:someValuesFrom envited-x:Metadata
+    ] .
