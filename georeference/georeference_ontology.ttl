@@ -39,8 +39,9 @@ georeference: a owl:Ontology ;
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v2/shape> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+    # Additional references to documentation or related ontologies
+    dcterms:references <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> ;
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 georeference:Georeference a owl:Class ;
     rdfs:label "Class definition for Georeference"@en ;

@@ -40,11 +40,11 @@ envited-x: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v3/ontology> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v1/ontology> ;
+    owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v1/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;

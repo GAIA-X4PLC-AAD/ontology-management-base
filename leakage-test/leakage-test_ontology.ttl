@@ -36,8 +36,9 @@ leakage-test: a owl:Ontology ;
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v1/shape> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+    # Additional references to documentation or related ontologies
+    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for LeakageTest"@en ;
