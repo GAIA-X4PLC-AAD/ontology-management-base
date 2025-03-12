@@ -13,7 +13,7 @@
 # Ontology metadata
 envited-x: a owl:Ontology ;
     rdfs:label "Ontology definition for envited-x"@en ;
-    rdfs:comment "ENVITED-C ontology with common classes for defining an asset in the simulation domain."@en ;
+    rdfs:comment "ENVITED-X Data Space ontology with common classes for defining a digital asset in the simulation domain."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
@@ -82,9 +82,9 @@ envited-x:SimulationAsset a owl:Class ;
 envited-x:hasDataResource a owl:ObjectProperty ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:DataResource ;
-    rdfs:comment "Links a simulation asset to its extentable gx:DataResource metadata, such as name and description."@en .
+    rdfs:comment "Links a simulation asset to its extentable gx:DataResource metadata, such as name and description; applicable only within SimulationAsset instances."@en .
 
 envited-x:hasManifest a owl:ObjectProperty ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:Manifest ;
-    rdfs:comment "Each simulation asset must have an associated manifest that describes its structure and content."@en .
+    rdfs:comment "Links a simulation asset to the associated manifest that describes its structure and content; applicable only within SimulationAsset instances."@en .
