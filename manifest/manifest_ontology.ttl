@@ -53,11 +53,17 @@ manifest: a owl:Ontology ;
 
 manifest:Manifest a owl:Class ;
     rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en .
-
-manifest:License a owl:Class ;
-    rdfs:label "Class definition for License"@en ;
-    rdfs:comment "General class for defining the license of an asset."@en .
+    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty manifest:hasLicense ; 
+        owl:someValuesFrom manifest:License 
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty manifest:hasContent ;  
+        owl:someValuesFrom manifest:Link
+    ] .
 
 ### Define Link class with restriction on FileMetaData
 manifest:Link a owl:Class ;
@@ -65,23 +71,47 @@ manifest:Link a owl:Class ;
     rdfs:comment "General class for defining a link to data within an archive, related published simulation assets, or other web references."@en ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty manifest:fileMetaData ;
+        owl:onProperty manifest:hasFileMetaData ;
         owl:someValuesFrom manifest:FileMetaData
     ] .
+
+manifest:License a owl:Class ;
+    rdfs:label "Class definition for License"@en ;
+    rdfs:comment "General class for defining the license of an asset."@en ;
+    rdfs:subClassOf manifest:Link ;
 
 ### Restrict FileMetaData to only be used inside manifest:Link
 manifest:FileMetaData a owl:Class ;
     rdfs:label "Class definition for FileMetaData"@en ;
-    rdfs:comment "General class for defining the properties of a data file referenced inside a manifest:Link."@en ;
-    rdfs:subClassOf manifest:Link ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:dimensions ;
-        owl:someValuesFrom manifest:Dimensions
-    ] .
+    rdfs:comment "General class for defining the properties of a data file referenced inside a manifest:Link."@en .
 
 ### Restrict Dimensions to only be used inside FileMetaData
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
     rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetaData."@en ;
-    rdfs:subClassOf manifest:FileMetaData .
+
+# Object properties
+manifest:hasLicense a owl:ObjectProperty ;
+    rdfs:domain manifest:Manifest ;
+    rdfs:range manifest:License ;
+    rdfs:comment "Each License must have be associated with a Manifest."@en .
+
+manifest:hasContent a owl:ObjectProperty ;
+    rdfs:domain manifest:Manifest ;
+    rdfs:range manifest:Link ;
+    rdfs:comment "Each Link for content must be associated with a Manifest."@en .
+
+manifest:hasExternalContent a owl:ObjectProperty ;
+    rdfs:domain manifest:Manifest ;
+    rdfs:range manifest:Link ;
+    rdfs:comment "Each Link for external content must be associated with a Manifest."@en .
+
+manifest:hasFileMetaData a owl:ObjectProperty ;
+    rdfs:domain manifest:Link ;
+    rdfs:range manifest:FileMetaData ;
+    rdfs:comment "Each FileMetaData must be associated with Link."@en .
+
+manifest:hasDimensions a owl:ObjectProperty ;
+    rdfs:domain manifest:FileMetaData ;
+    rdfs:range manifest:Dimensions ;
+    rdfs:comment "Each Dimensions must be associated with FileMetaData."@en .

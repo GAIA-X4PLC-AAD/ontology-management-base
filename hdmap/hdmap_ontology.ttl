@@ -95,12 +95,12 @@ hdmap:HdMap a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom hdmap:DataResource
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasManifest ;
-        owl:someValuesFrom envited-x:Manifest
+        owl:someValuesFrom hdmap:Manifest
     ] .
 
 ### Define hdmap:hasDataResource as a sub-property of envited-x:hasDataResource

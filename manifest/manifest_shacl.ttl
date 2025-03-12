@@ -150,17 +150,9 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:condition [
                 sh:property [
                     sh:path manifest:mimeType ;
-                    sh:in ("application/json" "application/ld+json")
+                    sh:in ("application/ld+json")
                 ]
             ]
-        ],
-        [
-            sh:description "Defines the dimensions for images and videos."@en ;
-            sh:maxCount 1 ;
-            sh:minCount 0 ;
-            sh:node manifest:DimensionsShape ;
-            sh:order 4 ;
-            sh:path manifest:dimensions
         ], 
         [
             sh:description "Specifies the file size in bytes."@en ;
@@ -195,7 +187,15 @@ manifest:FileMetaDataShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:timestamp ;
-        ];
+        ] ,
+        [
+            sh:description "Defines the dimensions for images and videos."@en ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:node manifest:DimensionsShape ;
+            sh:order 7 ;
+            sh:path manifest:dimensions
+        ] ;
     sh:targetClass manifest:FileMetaData .
 
 manifest:DimensionsShape a sh:NodeShape ;
