@@ -1,31 +1,31 @@
 {
   "@context": {
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
   "@type": "manifest:Manifest",
-  "manifest:manifest": {
+  "manifest:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
     "manifest:FileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:uri": {
-        "@value": "./manifest_reference.json",
+        "@value": "./manifest_instance.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
-        "@value": "application/json",
+        "@value": "application/ld+json",
         "@type": "xsd:string"
       }
     }
   },
-  "manifest:license": {
+  "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
       "@value": "EPL-2.0"
@@ -47,7 +47,7 @@
       }
     }
   },
-  "manifest:content": [
+  "manifest:hasContent": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
@@ -66,7 +66,10 @@
           "@value": "application/x-xodr",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 636673,
+        "manifest:fileSize": {
+          "@value": 636673,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
           "@type": "xsd:string"
@@ -91,7 +94,10 @@
           "@value": "text/markdown",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 5120,
+        "manifest:fileSize": {
+          "@value": 5120,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "README.md",
           "@type": "xsd:string"
@@ -116,12 +122,84 @@
           "@value": "application/json",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 5678,
+        "manifest:fileSize": {
+          "@value": 5678,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "domainMetadata.json",
           "@type": "xsd:string"
         }
       }
+    },
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "registeredUser",
+      "manifest:category": "media",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "./visualization/detailRoadNetwork.geojson",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:cid": {
+          "@value": "bafkreiakpb3ajhljq6cgwizcyirsk6uz322szaxd6ynmovcwuu5jkx5isa",
+          "@type": "xsd:string"
+        },
+        "manifest:mimeType": {
+          "@value": "application/x-geojson",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": {
+          "@value": 1500,
+          "@type": "xsd:integer"
+        },
+        "manifest:filename": {
+          "@value": "detailRoadNetwork.geojson",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "publicUser",
+      "manifest:category": "media",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:cid": {
+          "@value": "bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqosblhwu7kvgvuncqi",
+          "@type": "xsd:string"
+        },
+        "manifest:mimeType": {
+          "@value": "image/png",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": {
+          "@value": 2400256,
+          "@type": "xsd:integer"
+        },
+        "manifest:filename": {
+          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+          "@type": "xsd:string"
+        },
+        "manifest:dimensions": {
+          "@type": "manifest:Dimensions",
+          "manifest:unit": "pixels",
+          "manifest:width": {
+            "@value": 1095,
+            "@type": "xsd:decimal"
+          },
+          "manifest:height": {
+            "@value": 850,
+            "@type": "xsd:decimal"
+          }
+        }
+      }
     }
-  ]
+  ],
+  "manifest:hasExternalContent": []
 }

@@ -9,7 +9,7 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
   "@type": "manifest:Manifest",
-  "manifest:manifest": {
+  "manifest:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
@@ -20,12 +20,12 @@
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
-        "@value": "application/json",
+        "@value": "application/ld+json",
         "@type": "xsd:string"
       }
     }
   },
-  "manifest:license": {
+  "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
       "@value": "EPL-2.0"
@@ -47,7 +47,7 @@
       }
     }
   },
-  "manifest:content": [
+  "manifest:hasContent": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
@@ -66,7 +66,10 @@
           "@value": "application/x-xodr",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 636673,
+        "manifest:fileSize": {
+          "@value": 636673,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
           "@type": "xsd:string"
@@ -91,7 +94,10 @@
           "@value": "text/markdown",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 5120,
+        "manifest:fileSize": {
+          "@value": 5120,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "README.md",
           "@type": "xsd:string"
@@ -116,7 +122,10 @@
           "@value": "application/json",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 5678,
+        "manifest:fileSize": {
+          "@value": 5678,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "domainMetadata.json",
           "@type": "xsd:string"
@@ -141,7 +150,10 @@
           "@value": "application/x-geojson",
           "@type": "xsd:string"
         },
-        "manifest:fileSize": 1500,
+        "manifest:fileSize": {
+          "@value": 1500,
+          "@type": "xsd:integer"
+        },
         "manifest:filename": {
           "@value": "detailRoadNetwork.geojson",
           "@type": "xsd:string"
@@ -166,24 +178,28 @@
           "@value": "image/png",
           "@type": "xsd:string"
         },
+        "manifest:fileSize": {
+          "@value": 2400256,
+          "@type": "xsd:integer"
+        },
+        "manifest:filename": {
+          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+          "@type": "xsd:string"
+        },
         "manifest:dimensions": {
           "@type": "manifest:Dimensions",
           "manifest:unit": "pixels",
           "manifest:width": {
-            "@value": "1095",
+            "@value": 1095,
             "@type": "xsd:decimal"
           },
           "manifest:height": {
-            "@value": "850",
+            "@value": 850,
             "@type": "xsd:decimal"
           }
-        },
-        "manifest:fileSize": 2400256,
-        "manifest:filename": {
-          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-          "@type": "xsd:string"
         }
       }
     }
-  ]
+  ],
+  "manifest:hasExternalContent": []
 }
