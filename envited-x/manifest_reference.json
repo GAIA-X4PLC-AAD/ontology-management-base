@@ -1,148 +1,148 @@
 {
-    "@context": {
-      "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
-      "sh": "http://www.w3.org/ns/shacl#",
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "skos": "http://www.w3.org/2004/02/skos/core#"
+  "@context": {
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
+  "@type": "manifest:Manifest",
+  "manifest:manifest": {
+    "@type": "manifest:Link",
+    "manifest:accessRole": "publicUser",
+    "manifest:category": "manifest",
+    "manifest:FileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:uri": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/json",
+        "@type": "xsd:string"
+      }
+    }
+  },
+  "manifest:license": {
+    "@type": "manifest:License",
+    "gx:license": {
+      "@value": "EPL-2.0"
     },
-    "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
-    "@type": "manifest:Manifest",
-    "manifest:manifest": {
+    "manifest:licenseData": {
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
-      "manifest:category": "manifest",
-      "manifest:fileMetaData": {
-        "@type": "manifest:FileMetaData",
+      "manifest:category": "license",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
         "manifest:uri": {
-          "@value": "./manifest_reference.json",
+          "@value": "https://opensource.org/license/EPL-2.0",
           "@type": "xsd:anyURI"
         },
         "manifest:mimeType": {
-          "@value": "application/json",
+          "@value": "text/html",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  },
+  "manifest:content": [
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "owner",
+      "manifest:category": "coreData",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "ipfs://bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:cid": {
+          "@value": "bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
+          "@type": "xsd:string"
+        },
+        "manifest:mimeType": {
+          "@value": "application/x-xodr",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": 636673,
+        "manifest:filename": {
+          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
           "@type": "xsd:string"
         }
       }
     },
-    "manifest:license": {
-      "@type": "manifest:License",
-      "gx:license": {
-        "@value": "EPL-2.0"
-      },
-      "manifest:licenseData": {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "publicUser",
-        "manifest:category": "license",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "https://opensource.org/license/EPL-2.0",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:mimeType": {
-            "@value": "text/html",
-            "@type": "xsd:string"
-          }
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "publicUser",
+      "manifest:category": "documentation",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "ipfs://bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:cid": {
+          "@value": "bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
+          "@type": "xsd:string"
+        },
+        "manifest:mimeType": {
+          "@value": "text/markdown",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": 5120,
+        "manifest:filename": {
+          "@value": "README.md",
+          "@type": "xsd:string"
         }
       }
     },
-    "manifest:content": [
-      {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "owner",
-        "manifest:category": "coreData",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "ipfs://bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:hash": {
-            "@value": "bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
-            "@type": "xsd:string"
-          },
-          "manifest:mimeType": {
-            "@value": "application/x-xodr",
-            "@type": "xsd:string"
-          },
-          "manifest:fileSize": 636673,
-          "manifest:filename": {
-            "@value": "TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
-            "@type": "xsd:string"
-          }
-        }
-      },
-      {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "publicUser",
-        "manifest:category": "documentation",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "ipfs://bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:hash": {
-            "@value": "bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
-            "@type": "xsd:string"
-          },
-          "manifest:mimeType": {
-            "@value": "text/markdown",
-            "@type": "xsd:string"
-          },
-          "manifest:fileSize": 5120,
-          "manifest:filename": {
-            "@value": "README.md",
-            "@type": "xsd:string"
-          }
-        }
-      },
-      {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "publicUser",
-        "manifest:category": "metadata",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:hash": {
-            "@value": "bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
-            "@type": "xsd:string"
-          },
-          "manifest:mimeType": {
-            "@value": "application/json",
-            "@type": "xsd:string"
-          },
-          "manifest:fileSize": 5678,
-          "manifest:filename": {
-            "@value": "domainMetadata.json",
-            "@type": "xsd:string"
-          }
-        }
-      },
-      {
-        "@type": "manifest:Link",
-        "manifest:accessRole": "registeredUser",
-        "manifest:category": "media",
-        "manifest:fileMetaData": {
-          "@type": "manifest:FileMetaData",
-          "manifest:uri": {
-            "@value": "./visualization/detailRoadNetwork.geojson",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:mimeType": {
-            "@value": "application/x-geojson",
-            "@type": "xsd:string"
-          },
-          "manifest:fileSize": 1500,
-          "manifest:filename": {
-            "@value": "detailRoadNetwork.geojson",
-            "@type": "xsd:string"
-          }
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "publicUser",
+      "manifest:category": "metadata",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:cid": {
+          "@value": "bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
+          "@type": "xsd:string"
+        },
+        "manifest:mimeType": {
+          "@value": "application/json",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": 5678,
+        "manifest:filename": {
+          "@value": "domainMetadata.json",
+          "@type": "xsd:string"
         }
       }
-    ]
+    },
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "registeredUser",
+      "manifest:category": "media",
+      "manifest:FileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:uri": {
+          "@value": "./visualization/detailRoadNetwork.geojson",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:mimeType": {
+          "@value": "application/x-geojson",
+          "@type": "xsd:string"
+        },
+        "manifest:fileSize": 1500,
+        "manifest:filename": {
+          "@value": "detailRoadNetwork.geojson",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  ]
 }

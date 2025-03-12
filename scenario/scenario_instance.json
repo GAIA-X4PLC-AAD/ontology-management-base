@@ -50,18 +50,18 @@
     "scenario:content": {
         "@type": "scenario:Content",
         "scenario:catalogs": [
-          {
-            "@type": "manifest:Link",
-            "manifest:accessRole": "owner",
-            "manifest:category": "coreData",
-            "manifest:fileMetaData": {
-                "@type": "manifest:FileMetaData",
-                "manifest:uri": {
-                    "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
-                    "@type": "xsd:anyURI"
+            {
+                "@type": "manifest:Link",
+                "manifest:accessRole": "owner",
+                "manifest:category": "coreData",
+                "manifest:FileMetadata": {
+                    "@type": "manifest:FileMetadata",
+                    "manifest:uri": {
+                        "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
+                        "@type": "xsd:anyURI"
+                    }
                 }
             }
-          }
         ],
         "scenario:abstractionLevel": "Logical",
         "scenario:country": {
@@ -69,32 +69,32 @@
             "@type": "xsd:string"
         },
         "scenario:environmentModels": [
-          {
-            "@type": "manifest:Link",
-            "manifest:accessRole": "owner",
-            "manifest:category": "coreData",
-            "manifest:fileMetaData": {
-                "@type": "manifest:FileMetaData",
-                "manifest:uri": {
-                    "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-                    "@type": "xsd:anyURI"
+            {
+                "@type": "manifest:Link",
+                "manifest:accessRole": "owner",
+                "manifest:category": "coreData",
+                "manifest:FileMetadata": {
+                    "@type": "manifest:FileMetadata",
+                    "manifest:uri": {
+                        "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+                        "@type": "xsd:anyURI"
+                    }
                 }
             }
-          }
         ],
-        "scenario:trafficSpace": [ 
-          {
-            "@type": "manifest:Link",
-            "manifest:accessRole": "owner",
-            "manifest:category": "coreData",
-            "manifest:fileMetaData": {
-                "@type": "manifest:FileMetaData",
-                "manifest:uri": {
-                    "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-                    "@type": "xsd:anyURI"
+        "scenario:trafficSpace": [
+            {
+                "@type": "manifest:Link",
+                "manifest:accessRole": "owner",
+                "manifest:category": "coreData",
+                "manifest:FileMetadata": {
+                    "@type": "manifest:FileMetadata",
+                    "manifest:uri": {
+                        "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+                        "@type": "xsd:anyURI"
+                    }
                 }
             }
-          }
         ],
         "scenario:sunAzimuth": {
             "@value": 180.0,
@@ -226,18 +226,18 @@
                     "@type": "xsd:float"
                 }
             },
-        "georeference:viewPoint": {
-            "@type": "georeference:LatLonCoordinate",
-            "georeference:lat": {
-                "@value": "52.30626250948862",
-                "@type": "xsd:float"
+            "georeference:viewPoint": {
+                "@type": "georeference:LatLonCoordinate",
+                "georeference:lat": {
+                    "@value": "52.30626250948862",
+                    "@type": "xsd:float"
+                },
+                "georeference:lon": {
+                    "@value": "10.72558653623446",
+                    "@type": "xsd:float"
+                }
             },
-            "georeference:lon": {
-                "@value": "10.72558653623446",
-                "@type": "xsd:float"
-            }
-        },
-        "georeference:heightSystem": "Ellipsodial height"
+            "georeference:heightSystem": "Ellipsodial height"
         }
     }
 }

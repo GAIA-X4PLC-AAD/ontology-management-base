@@ -188,8 +188,8 @@
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
-    "manifest:fileMetaData": {
-      "@type": "manifest:FileMetaData",
+    "manifest:FileMetadata": {
+      "@type": "manifest:FileMetadata",
       "manifest:uri": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
@@ -199,8 +199,12 @@
         "@type": "xsd:string"
       },
       "sh:conformsTo": [
-        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" },
-        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+        },
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+        }
       ]
     }
   }

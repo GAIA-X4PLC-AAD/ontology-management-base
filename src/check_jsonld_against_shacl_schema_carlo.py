@@ -37,7 +37,7 @@ def extract_references(instance_file, json_data):
 
     for key, value in json_data.items():
         if isinstance(value, dict) and value.get("@type") == "manifest:Link":
-            file_metadata = value.get("manifest:fileMetaData", {})
+            file_metadata = value.get("manifest:FileMetadata", {})
             if isinstance(file_metadata, dict) and "sh:conformsTo" in file_metadata:
                 ref_path = file_metadata.get("manifest:uri", {}).get("@value", file_metadata.get("manifest:uri"))
                 if not ref_path:
