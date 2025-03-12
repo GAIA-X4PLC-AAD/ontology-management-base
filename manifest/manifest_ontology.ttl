@@ -78,7 +78,7 @@ manifest:Link a owl:Class ;
 manifest:License a owl:Class ;
     rdfs:label "Class definition for License"@en ;
     rdfs:comment "General class for defining the license of an asset."@en ;
-    rdfs:subClassOf manifest:Link ;
+    rdfs:subClassOf manifest:Link .
 
 ### Restrict FileMetaData to only be used inside manifest:Link
 manifest:FileMetaData a owl:Class ;
@@ -88,7 +88,7 @@ manifest:FileMetaData a owl:Class ;
 ### Restrict Dimensions to only be used inside FileMetaData
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
-    rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetaData."@en ;
+    rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetaData."@en .
 
 # Object properties
 manifest:hasLicense a owl:ObjectProperty ;
