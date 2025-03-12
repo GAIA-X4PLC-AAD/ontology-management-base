@@ -23,10 +23,10 @@
 | FileMetaDataShape | manifest | hash | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | mimeType | 0 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | sh | conformsTo | 0 |  | Specifies the ontology conformance for the linked asset if it is JSON-LD. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
-| FileMetaDataShape | manifest | dimensions | 0 | 1 | Defines the dimensions for images and videos. |  | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | fileSize | 0 | 1 | Specifies the file size in bytes. | <http://www.w3.org/2001/XMLSchema#integer> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | filename | 0 | 1 | Specifies the file name (excluding the path) along with its extension. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetaDataShape | manifest | timestamp | 0 | 1 | Represents a date or time associated with the file, such as recording time or creation time. | <http://www.w3.org/2001/XMLSchema#dateTime> | manifest_shacl.ttl |
+| FileMetaDataShape | manifest | dimensions | 0 | 1 | Defines the dimensions for images and videos. |  | manifest_shacl.ttl |
 | DimensionsShape | manifest | unit | 1 | 1 | Specifies the unit of measurement (e.g., metres, inches). | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | DimensionsShape | manifest | width | 1 | 1 | Specifies the width (x-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#decimal> | manifest_shacl.ttl |
 | DimensionsShape | manifest | height | 1 | 1 | Specifies the height (y-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#decimal> | manifest_shacl.ttl |
