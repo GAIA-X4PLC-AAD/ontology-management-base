@@ -8,13 +8,15 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| EnvironmentModelShape | environment-model | general | 1 | 1 | General properties common for all simulation assets. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | quantity | 1 | 1 | Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | quality | 1 | 1 | Contains properties to describe the quality (detail level, features) of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | content | 1 | 1 | Contains properties to describe the content (elements, use cases) of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | project | 1 | 1 | Contains properties to describe the project information (software used for generation and visualisation) of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | format | 1 | 1 | Contains properties to describe the format of the environment-model asset. |  | environment-model_shacl.ttl |
-| EnvironmentModelShape | environment-model | hasGeoreference | 1 | 1 | General properties for defining the location and projection of the environment-model asset. |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | hasDataResource | 1 | 1 |  |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | hasDataResourceExtension | 1 | 1 |  |  | environment-model_shacl.ttl |
+| EnvironmentModelShape | environment-model | hasManifest | 1 | 1 |  |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasProject | 1 | 1 | Contains properties to describe the project of the environment-model asset. |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasFormat | 1 | 1 | Contains properties to describe the format of the environment-model asset. |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasContent | 1 | 1 | Contains properties to describe the content (elements, use cases) of the environment-model asset. |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasQuantity | 1 | 1 | Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset. |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasQuality | 1 | 1 | Contains properties to describe the quality (detail level, features) of the environment-model asset. |  | environment-model_shacl.ttl |
+| DataResourceExtensionShape | environment-model | hasGeoreference | 1 | 1 |  |  | environment-model_shacl.ttl |
 | FormatShape | environment-model | formatType |  | 1 | Defines the data type of the environment-model asset. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | FormatShape | environment-model | version |  | 1 | Defines the version of the environment-model asset's data type. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
 | ContentShape | environment-model | elements |  | 1 | Provides a description of the visual elements contained in the environment-model asset. | <http://www.w3.org/2001/XMLSchema#string> | environment-model_shacl.ttl |
