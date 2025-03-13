@@ -7,7 +7,7 @@ from urllib.parse import quote_plus
 import authhelper.keycloakhandling
 
 
-# ENVIRONMENT VARIABLES
+# ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()
 FOLDER_TO_UPLOAD = os.environ.get("FOLDER_TO_UPLOAD")
 FEDERATED_CATALOGUE_URL = os.environ.get("FEDERATED_CATALOGUE_URL", default="https://fc-server.gxfs.gx4fm.org")

@@ -9,7 +9,7 @@ import authhelper.keycloakhandling
 # WILL BE REMOVED IN FUTURE.
 ##########################################################################################
 
-# ENVIRONMENT VARIABLES
+# ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()
 FOLDER_TO_UPLOAD = os.environ.get("FOLDER_TO_UPLOAD")
 FEDERATED_CATALOGUE_URL = os.environ.get("FEDERATED_CATALOGUE_URL", default="https://fc-server.gxfs.gx4fm.org")

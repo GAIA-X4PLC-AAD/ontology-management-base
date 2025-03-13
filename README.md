@@ -143,11 +143,12 @@ This section describes guidelines that _must_ be followed when applying changes 
 - SHACL Shapes are stored in Turtle files having the suffix `_shacl`. Example:
   `sensor_shacl.ttl`
 - The example instance of a SHACL Shape is stored in json-ld format in a json file with the suffix `_instance`. Example: `sensor_instance.json`. The content stored in the json file is also called _claims_.
-  - The [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/) can be used to generate the example instance of a SHACL Shape. 
+  - The [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/) can be used to generate the example instance of a SHACL Shape.
 
 ### Ontologies
 
-- Class must be a subclass of one of the Gaia-X base classes
+- Class TYPE A may be a subclass of one of the Gaia-X base classes
+- Class TYPE B may optionally be an `envited-x:SimulationAsset` subclass
 - The name of the class must be in PascalCase. Example: `Sensor`
 - The attributes of the class must be in camelCase. Example: `sensorType`
 - The prefix of the ontology must point to this repository. Example for `sensor`:
@@ -166,7 +167,8 @@ This section describes guidelines that _must_ be followed when applying changes 
 - The prefix of the SHACL Shape must match the prefix defined in the ontology.
 - If worth explaining, examples should be given. Specify concrete valid input here. Values should match with sh:In. Separate multiple entries with a comma. Example: '3DMS system, Trimble xyz, Riegl xyz'
 - If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
-- Every Shape linking to an ontology must **nest** the `general` Shape. This does not apply for ontologies which are subclasses of the `envited-x` ontology. Example:
+- Every TYPE B class must be subclass of `envited-x:SimulationAsset` and implement subclasses of this superclass. See e.g. `hdmap:HdMap`as an example.
+- Every TYPE A Shape linking to an ontology must **nest** the `general` Shape. Example:
   - Add prefix
 
     ```turtle
@@ -190,11 +192,11 @@ The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline
 
 ### Steps
 
-#### Generate VARIABLES.md (overview of used properties in the SHACL files)
+#### Generate PROPERTIES.md (overview of used properties in the SHACL files)
 
-The file VARIABLES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
+The file PROPERTIES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
 
->NOTE: the VARIABLES.md file should not be changed since it will be overwritten automatically.
+>NOTE: the PROPERTIES.md file should not be changed since it will be overwritten automatically.
 
 #### Check syntax of Turtle files
 
@@ -251,7 +253,7 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 #### Issues with [SD-Creation-Wizard](https://sd-creation-wizard.gxfs.gx4fm.org/)
 
 - The wizard does not support the creation of a SHACL Shape with a nested external Shape, e. g. `GeneralShape` in `SensorShape`. To do this you have to temporarily copy the `GeneralShape` into the `SensorShape` file. This applies to all external Shapes which are not defined in the file which is loaded into the wizard.
-- The wizard may generate a non conform `_instance` file when having optional structures which have mandatory attributes. 
+- The wizard may generate a non conform `_instance` file when having optional structures which have mandatory attributes.
   Example: `relatedData` in `GeneralShape`:
 
   ```turtle
@@ -273,7 +275,7 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 
   This is obviously not conform since the mandatory files `url` and `type` of `LinkShape` are missing. This [bug](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend/-/issues/41) will be fixed in the future.
 
-- If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation. 
+- If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation.
 
 - SD-Wizard does not process Logical Constraint Components. For example, if I use sh:xone in the shacl, all combinations are possible in the SD wizard, although only one field needs to be entered explicitly.
 I would expect that saving in export format is only enabled if the condition is met. See [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/27).

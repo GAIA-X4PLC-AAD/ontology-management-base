@@ -1,7 +1,7 @@
 import os
 import rdflib
 
-### ENVIRONMENT VARIABLES
+### ENVIRONMENT PROPERTIES
 # Define the directory from which to crawl directories for.ttl files (os.getcwd() for the current directory).
 SHACL_DIRECTORY = os.getcwd()
 
@@ -11,16 +11,16 @@ SHACL_DIRECTORY = os.getcwd()
 def main():
     """
     The main function controls the overall program flow.
-    It reads .ttl files, extracts RDF graphs, sh:path attributes, and appends them to VARIABLES.md files.
+    It reads .ttl files, extracts RDF graphs, sh:path attributes, and appends them to PROPERTIES.md files.
     """
     # Iterate through the first level of all directories in the current directory except for "src".
     for directory in next(os.walk(SHACL_DIRECTORY))[1]:
         if directory == "src":
             continue
 
-        # Initialize the needed variables.
+        # Initialize the needed properties.
         full_directory_path = os.path.join(SHACL_DIRECTORY, directory)
-        variables_file = os.path.join(full_directory_path, "VARIABLES.md")
+        properties_file = os.path.join(full_directory_path, "PROPERTIES.md")
         shacl_properties = []
         relevant_prefixes = set()  # Initialize set to store relevant prefixes
 
@@ -42,11 +42,11 @@ def main():
         # Convert set of relevant prefixes to a dictionary
         extracted_prefixes = {namespace: prefix for namespace, prefix in relevant_prefixes}
 
-        # Write extracted property details to VARIABLES.md file in a table format with prefixed IRIs
+        # Write extracted property details to PROPERTIES.md file in a table format with prefixed IRIs
         if shacl_properties:
-            with open(variables_file, "w") as file:
+            with open(properties_file, "w") as file:
                 # Write headline
-                file.write("# Variables of SHACL Files in this folder\n\n")
+                file.write("# Properties of SHACL Files in this folder\n\n")
                 # Write prefixes above the table
                 if extracted_prefixes:
                     file.write("## Prefixes\n\n")
@@ -84,7 +84,7 @@ def main():
                     file.write(f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
                                f"|\n")
 
-            print(f"Appended to VARIABLES.md in {full_directory_path}")
+            print(f"Appended to PROPERTIES.md in {full_directory_path}")
 
 
 def extract_prefixes(rdf_graph):
