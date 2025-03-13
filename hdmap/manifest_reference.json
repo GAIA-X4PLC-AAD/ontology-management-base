@@ -10,11 +10,12 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
   "@type": "envited-x:Manifest",
+
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
-    "manifest:FileMetadata": {
+    "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:uri": {
         "@value": "./manifest_instance.json",
@@ -26,6 +27,7 @@
       }
     }
   },
+
   "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
@@ -35,7 +37,7 @@
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
       "manifest:category": "license",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "https://opensource.org/license/EPL-2.0",
@@ -48,12 +50,13 @@
       }
     }
   },
+
   "manifest:hasContent": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
       "manifest:category": "coreData",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "ipfs://bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
@@ -81,7 +84,7 @@
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
       "manifest:category": "documentation",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "ipfs://bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
@@ -109,7 +112,7 @@
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
       "manifest:category": "metadata",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
@@ -137,7 +140,7 @@
       "@type": "manifest:Link",
       "manifest:accessRole": "registeredUser",
       "manifest:category": "media",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "./visualization/detailRoadNetwork.geojson",
@@ -165,7 +168,7 @@
       "@type": "manifest:Link",
       "manifest:accessRole": "publicUser",
       "manifest:category": "media",
-      "manifest:FileMetadata": {
+      "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:uri": {
           "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
@@ -187,20 +190,21 @@
           "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
           "@type": "xsd:string"
         },
-        "manifest:dimensions": {
+        "manifest:hasDimensions": {
           "@type": "manifest:Dimensions",
           "manifest:unit": "pixels",
           "manifest:width": {
-            "@value": 1095,
+            "@value": "1095",
             "@type": "xsd:decimal"
           },
           "manifest:height": {
-            "@value": 850,
+            "@value": "850",
             "@type": "xsd:decimal"
           }
         }
       }
     }
   ],
+
   "manifest:hasExternalContent": []
 }

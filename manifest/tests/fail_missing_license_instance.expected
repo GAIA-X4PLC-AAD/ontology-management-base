@@ -1,9 +1,0 @@
-Validation Report
-Conforms: False
-Results (1):
-Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
-        Severity: sh:Violation
-        Source Shape: [ sh:description Literal("Defines the license(s) valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms.", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:node manifest:LicenseShape ; sh:order Literal("1", datatype=xsd:integer) ; sh:path manifest:license ]
-        Focus Node: <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>
-        Result Path: manifest:license
-        Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>->manifest:license
