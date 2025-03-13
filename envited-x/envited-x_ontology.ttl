@@ -100,6 +100,12 @@ envited-x:SimulationAsset a owl:Class ;
   owl:members ( envited-x:SimulationAsset envited-x:DataResource )
 ] .
 
+envited-x:DataResource a owl:Class ;
+    rdfs:label "Class definition for DataResource"@en ;
+    rdfs:comment """A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset. 
+                    This class extends gx:DataResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
+    rdfs:subClassOf gx:DataResource .
+
 
 envited-x:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;
