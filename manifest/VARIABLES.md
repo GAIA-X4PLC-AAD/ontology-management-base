@@ -10,7 +10,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ManifestShape | manifest | hasManifest | 1 | 1 | Self-reference to the manifest.json providing the structure and list of contents for a domain specific asset. |  | manifest_shacl.ttl |
+| ManifestShape | manifest | hasManifestReference | 1 | 1 | Self-reference to the manifest.json providing the structure and list of contents for a domain specific asset. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasLicense | 1 | 1 | Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasContent | 1 |  | Defines the links to all relevant data for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasExternalContent | 0 |  | Defines the links to all related external data for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
