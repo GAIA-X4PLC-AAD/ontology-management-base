@@ -5,6 +5,7 @@
 - gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
 - manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
 - sh: <http://www.w3.org/ns/shacl#>
+- skos: <http://www.w3.org/2004/02/skos/core#>
 
 ## List of SHACL Properties
 
@@ -22,6 +23,7 @@
 | FileMetadataShape | manifest | uri | 1 | 1 | Uniform Resource Identifier (URI) to identify the resource by location, name, or both. | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | cid | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | mimeType | 0 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
+| FileMetadataShape | skos | note | 0 | 1 | Provides additional information about the manifest reference, such as validation expectations. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetadataShape | sh | conformsTo | 0 |  | Specifies the ontology conformance for the linked asset if it is JSON-LD. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | fileSize | 0 | 1 | Specifies the file size in bytes. | <http://www.w3.org/2001/XMLSchema#integer> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | filename | 0 | 1 | Specifies the file name (excluding the path) along with its extension. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
