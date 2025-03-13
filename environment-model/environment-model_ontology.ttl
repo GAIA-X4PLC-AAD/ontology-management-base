@@ -117,36 +117,31 @@ environment-model:hasQuantity a owl:ObjectProperty ;
 environment-model:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;
     rdfs:comment "Environment-model specific metadata extensions."@en ;
-        rdfs:subClassOf envited-x:DataResourceExtension ;
+    rdfs:subClassOf envited-x:DataResourceExtension ;
     # Restricting each extension property
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty environment-model:hasContent ;
         owl:someValuesFrom environment-model:Content
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasProject ;
         owl:someValuesFrom environment-model:Project
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasFormat ;
         owl:someValuesFrom environment-model:Format
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasQuality ;
         owl:someValuesFrom environment-model:Quality
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasQuantity ;
         owl:someValuesFrom environment-model:Quantity
-    ] ;
-    rdfs:subClassOf [ 
-        a owl:Restriction ; 
-        owl:onProperty environment-model:hasGeoreference ; 
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasGeoreference ;
         owl:someValuesFrom georeference:Georeference
     ] .
 

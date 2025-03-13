@@ -82,35 +82,29 @@ hdmap:DataResourceExtension a owl:Class ;
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
         owl:someValuesFrom hdmap:Content
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataSource ;
         owl:someValuesFrom hdmap:DataSource
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasFormat ;
         owl:someValuesFrom hdmap:Format
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasQuality ;
         owl:someValuesFrom hdmap:Quality
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasQuantity ;
         owl:someValuesFrom hdmap:Quantity
-    ] ;
-    rdfs:subClassOf [
+    ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasRange2D ;
         owl:someValuesFrom hdmap:Range2D
-    ] ;
-    rdfs:subClassOf [ 
-        a owl:Restriction ; 
-        owl:onProperty hdmap:hasGeoreference ; 
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasGeoreference ;
         owl:someValuesFrom georeference:Georeference
     ] .
 

@@ -132,9 +132,9 @@ def main():
     )
     failed_validations.append((conforms, _, v_text))
 
+    print("========== VALIDATION REPORTS ==========")
     for conforms, _, v_text in failed_validations:
         if not conforms:
-            print("$$_$$")
             print(v_text)
 
 if __name__ == "__main__":
