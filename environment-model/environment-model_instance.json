@@ -5,180 +5,195 @@
     "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
   },
   "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
   "@type": "environment-model:EnvironmentModel",
 
-  "environment-model:general": {
-    "@type": "general:General",
+  "environment-model:hasDataResource": {
+    "@type": "envited-x:DataResource",
+    "general:name": {
+      "@value": "3d model example",
+      "@type": "xsd:string"
+    },
     "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "3d model example",
+      "@value": "simple 3d model example",
+      "@type": "xsd:string"
+    }
+  },
+
+  "environment-model:hasDataResourceExtension": {
+    "@type": "environment-model:DataResourceExtension",
+
+    "environment-model:hasProject": {
+      "@type": "environment-model:Project",
+      "environment-model:visualisationToolName": {
+        "@value": "Unreal",
         "@type": "xsd:string"
       },
-      "general:description": {
-        "@value": "simple 3d model example",
+      "environment-model:visualisationToolVendor": {
+        "@value": "Epic Games",
+        "@type": "xsd:string"
+      },
+      "environment-model:visualisationToolVersion": {
+        "@value": "4.27",
+        "@type": "xsd:string"
+      },
+      "environment-model:creationToolName": {
+        "@value": "Trian3DBuilder",
+        "@type": "xsd:string"
+      },
+      "environment-model:creationToolVendor": {
+        "@value": "TrianGraphics GmbH",
+        "@type": "xsd:string"
+      },
+      "environment-model:creationToolVersion": {
+        "@value": "7.7",
         "@type": "xsd:string"
       }
     },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": "512",
+
+    "environment-model:hasFormat": {
+      "@type": "environment-model:Format",
+      "environment-model:formatType": "Unreal Datasmith",
+      "environment-model:version": {
+        "@value": "SDK 4.25",
+        "@type": "xsd:string"
+      }
+    },
+
+    "environment-model:hasContent": {
+      "@type": "environment-model:Content",
+      "environment-model:elements": "profile roads, extrude buildings, powerlines",
+      "environment-model:useCase": "driving"
+    },
+
+    "environment-model:hasQuantity": {
+      "@type": "environment-model:Quantity",
+      "environment-model:textureMaterialCount": {
+        "@value": "179",
+        "@type": "xsd:unsignedInt"
+      },
+      "environment-model:triangleCount": {
+        "@value": "12456",
+        "@type": "xsd:unsignedInt"
+      },
+      "environment-model:geometryCount": {
+        "@value": "5000",
+        "@type": "xsd:unsignedInt"
+      }
+    },
+
+    "environment-model:hasQuality": {
+      "@type": "environment-model:Quality",
+      "environment-model:detailLevel": "High",
+      "environment-model:textureResolution": {
+        "@value": "0.1",
         "@type": "xsd:float"
+      }
+    },
+
+    "environment-model:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
+        },
+        "georeference:state": {
+          "@value": "DE-BY",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Upper Bavaria",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Town of Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "10.720740862799195",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "52.29672229543727",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "10.730432209669724",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "52.31580272353997",
+            "@type": "xsd:float"
+          }
+        }
       },
-      "general:recordingTime": {
-        "@value": "2024-03-21T08:34:19",
-        "@type": "xsd:dateTime"
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:coordinateSystemName": {
+          "@value": "UTM",
+          "@type": "xsd:string"
+        },
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.300",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.7250",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.30626250948862",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.72558653623446",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsodial height"
       }
     }
   },
 
-  "environment-model:quantity": {
-    "@type": "environment-model:Quantity",
-    "environment-model:textureMaterialCount": {
-      "@value": "179",
-      "@type": "xsd:unsignedInt"
-    },
-    "environment-model:triangleCount": {
-      "@value": "12456",
-      "@type": "xsd:unsignedInt"
-    },
-    "environment-model:geometryCount": {
-      "@value": "5000",
-      "@type": "xsd:unsignedInt"
-    }
-  },
-
-  "environment-model:quality": {
-    "@type": "environment-model:Quality",
-    "environment-model:detailLevel": "High",
-    "environment-model:textureResolution": {
-      "@value": "0.1",
-      "@type": "xsd:float"
-    }
-  },
-
-  "environment-model:content": {
-    "@type": "environment-model:Content",
-    "environment-model:elements": "profile roads, extrude buildings, powerlines",
-    "environment-model:useCase": "driving"
-  },
-
-  "environment-model:project": {
-    "@type": "environment-model:Project",
-    "environment-model:visualisationToolName": {
-      "@value": "Unreal",
-      "@type": "xsd:string"
-    },
-    "environment-model:visualisationToolVendor": {
-      "@value": "Epic Games",
-      "@type": "xsd:string"
-    },
-    "environment-model:visualisationToolVersion": {
-      "@value": "4.27",
-      "@type": "xsd:string"
-    },
-    "environment-model:creationToolName": {
-      "@value": "Trian3DBuilder",
-      "@type": "xsd:string"
-    },
-    "environment-model:creationToolVendor": {
-      "@value": "TrianGraphics GmbH",
-      "@type": "xsd:string"
-    },
-    "environment-model:creationToolVersion": {
-      "@value": "7.7",
-      "@type": "xsd:string"
-    }
-  },
-
-  "environment-model:format": {
-    "@type": "environment-model:Format",
-    "environment-model:formatType": "Unreal Datasmith",
-    "environment-model:version": {
-      "@value": "SDK 4.25",
-      "@type": "xsd:string"
-    }
-  },
-
-  "environment-model:hasGeoreference": {
-    "@type": "georeference:Georeference",
-
-    "georeference:hasProjectLocation": {
-      "@type": "georeference:ProjectLocation",
-      "georeference:country": {
-        "@value": "DE",
+  "environment-model:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:accessRole": "publicUser",
+    "manifest:category": "manifest",
+    "manifest:FileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:uri": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
         "@type": "xsd:string"
       },
-      "georeference:state": {
-        "@value": "DE-BY",
-        "@type": "xsd:string"
-      },
-      "georeference:region": {
-        "@value": "Upper Bavaria",
-        "@type": "xsd:string"
-      },
-      "georeference:city": {
-        "@value": "Grafing",
-        "@type": "xsd:string"
-      },
-      "georeference:relationOrArea": {
-        "@value": "Town of Grafing",
-        "@type": "xsd:string"
-      },
-      "georeference:hasBoundingBox": {
-        "@type": "georeference:BoundingBox",
-        "georeference:xMin": {
-          "@value": "10.720740862799195",
-          "@type": "xsd:float"
+      "sh:conformsTo": [
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
         },
-        "georeference:yMin": {
-          "@value": "52.29672229543727",
-          "@type": "xsd:float"
-        },
-        "georeference:xMax": {
-          "@value": "10.730432209669724",
-          "@type": "xsd:float"
-        },
-        "georeference:yMax": {
-          "@value": "52.31580272353997",
-          "@type": "xsd:float"
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
         }
-      }
-    },
-
-    "georeference:hasGeodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:coordinateSystemName": {
-        "@value": "UTM",
-        "@type": "xsd:string"
-      },
-      "georeference:hasOrigin": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "52.300",
-          "@type": "xsd:float"
-        },
-        "georeference:lon": {
-          "@value": "10.7250",
-          "@type": "xsd:float"
-        }
-      },
-      "georeference:hasViewPoint": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "52.30626250948862",
-          "@type": "xsd:float"
-        },
-        "georeference:lon": {
-          "@value": "10.72558653623446",
-          "@type": "xsd:float"
-        }
-      },
-      "georeference:heightSystem": "Ellipsodial height"
+      ]
     }
   }
 }

@@ -1,42 +1,68 @@
 @prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-
 environment-model:EnvironmentModelShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path environment-model:hasDataResource ;
+        sh:node environment-model:DataResourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each environment model must have one associated DataResource object containing name and description."@en ;
+    ],
+    [
+        sh:path environment-model:hasDataResourceExtension ;
+        sh:node environment-model:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each environment model must have one associated DataResourceExtension object with format, content, quantity, quality, and georeference."@en ;
+    ],
+    [
+        sh:path environment-model:hasManifest ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:class envited-x:Manifest ]
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node envited-x:ManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each environment model must have exactly one manifest."@en ;
+    ] ;
+    sh:targetClass environment-model:EnvironmentModel .
 
+environment-model:DataResourceExtensionShape a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:maxCount 1 ;
         sh:minCount 1 ;
-        sh:node general:GeneralShape ;
-        sh:name "general object"@en ;
-        sh:description "General properties common for all simulation assets."@en ;
+        sh:node environment-model:ProjectShape ;
+        sh:name "project object"@en ;
+        sh:description "Contains properties to describe the project of the environment-model asset."@en ;
+        sh:order 0 ;
+        sh:path environment-model:hasProject
+    ],[
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:node environment-model:FormatShape ;
+        sh:name "format object"@en ;
+        sh:description "Contains properties to describe the format of the environment-model asset."@en ;
         sh:order 1 ;
-        sh:path environment-model:general
-    ],
-    [
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:node environment-model:QuantityShape ;
-        sh:name "quantity object"@en ;
-        sh:description "Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset."@en ;
-        sh:order 2 ;
-        sh:path environment-model:quantity
-    ],
-    [
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:node environment-model:QualityShape ;
-        sh:name "quality object"@en ;
-        sh:description "Contains properties to describe the quality (detail level, features) of the environment-model asset."@en ;
-        sh:order 3 ;
-        sh:path environment-model:quality
+        sh:path environment-model:hasFormat
     ],
     [
         sh:maxCount 1 ;
@@ -44,39 +70,37 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
         sh:node environment-model:ContentShape ;
         sh:name "content object"@en ;
         sh:description "Contains properties to describe the content (elements, use cases) of the environment-model asset."@en ;
+        sh:order 2 ;
+        sh:path environment-model:hasContent
+    ],
+    [
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:node environment-model:QuantityShape ;
+        sh:name "quantity object"@en ;
+        sh:description "Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset."@en ;
+        sh:order 3 ;
+        sh:path environment-model:hasQuantity
+    ],
+    [
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:node environment-model:QualityShape ;
+        sh:name "quality object"@en ;
+        sh:description "Contains properties to describe the quality (detail level, features) of the environment-model asset."@en ;
         sh:order 4 ;
-        sh:path environment-model:content
-    ],
-    [
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:node environment-model:ProjectShape ;
-        sh:name "project object"@en ;
-        sh:description "Contains properties to describe the project information (software used for generation and visualisation) of the environment-model asset."@en ;
-        sh:order 5 ;
-        sh:path environment-model:project
-    ],
-    [
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:node environment-model:FormatShape ;
-        sh:name "format object"@en ;
-        sh:description "Contains properties to describe the format of the environment-model asset."@en ;
-        sh:order 6 ;
-        sh:path environment-model:format
+        sh:path environment-model:hasQuality
     ],
     [
         sh:maxCount 1 ;
         sh:minCount 1 ;
         sh:node georeference:GeoreferenceShape ;
         sh:name "georeference object"@en ;
-        sh:description "General properties for defining the location and projection of the environment-model asset."@en ;
-        sh:order 7 ;
+        sh:message "Each environment model must link to a georeference dataset defining the location/projection of the environment-model asset."@en ;
+        sh:order 5 ;
         sh:path environment-model:hasGeoreference
     ] ;
-
-    sh:targetClass environment-model:EnvironmentModel .
-
+    sh:targetClass environment-model:DataResourceExtension .
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
@@ -88,7 +112,7 @@ environment-model:FormatShape a sh:NodeShape ;
         sh:in ("Autodesk FBX" "glTF" "OpenSceneGraph" "Unreal Datasmith") ;
         sh:maxCount 1 ;
         sh:message "Validation of type failed!"@en ;
-        sh:name "type"@en ;
+        sh:name "format type"@en ;
         sh:order 0 ;
         sh:path environment-model:formatType
     ],
@@ -103,7 +127,6 @@ environment-model:FormatShape a sh:NodeShape ;
         sh:path environment-model:version
     ] ;
     sh:targetClass environment-model:Format .
-
 
 environment-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
@@ -129,7 +152,6 @@ environment-model:ContentShape a sh:NodeShape ;
         sh:path environment-model:useCase
     ] ;
     sh:targetClass environment-model:Content .
-
 
 environment-model:ProjectShape a sh:NodeShape ;
     sh:closed false ;
