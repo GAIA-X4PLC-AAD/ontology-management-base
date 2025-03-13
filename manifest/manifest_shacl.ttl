@@ -15,7 +15,7 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 0 ;
-            sh:path manifest:hasManifest
+            sh:path manifest:hasManifestReference
         ] ,
         [   sh:name "license"@en ;
             sh:description "Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms."@en ;

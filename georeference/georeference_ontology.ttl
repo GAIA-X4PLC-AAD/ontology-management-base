@@ -1,19 +1,24 @@
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+# Ontology Metadata
 georeference: a owl:Ontology ;
-    rdfs:label "Ontology definition for georeference"@en ;
-    rdfs:comment "Georeferencing ontology with common classes for location and georeferencing information."@en ;
+    rdfs:label "Ontology definition for Georeferencing"@en ;
+    rdfs:comment "Georeferencing ontology with common classes for location, coordinate reference systems, and spatial properties."@en ;
 
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] , [
         a foaf:Person ;
         foaf:name "Sebastian Tuttas" ;
         org:memberOf <https://www.3d-mapping.de/> ;
@@ -30,35 +35,109 @@ georeference: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/georeference/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/georeference/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v3/shape> ;
 
-    # Additional references to documentation or related ontologies
+    # References to related ontologies
     dcterms:references <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+
+
 georeference:Georeference a owl:Class ;
     rdfs:label "Class definition for Georeference"@en ;
-    rdfs:comment "General properties for defining the location and projection of the simulation asset."@en .
+    rdfs:comment "A georeferencing dataset that defines the coordinate system, location, and spatial properties of a simulation asset. 
+                  This class serves as an optional metadata extension and does not function as a standalone data resource."@en ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty georeference:hasGeodeticReferenceSystem ; 
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty georeference:hasProjectLocation ; 
+        owl:cardinality 1
+    ] .
 
+### **Geodetic Reference System**
 georeference:GeodeticReferenceSystem a owl:Class ;
     rdfs:label "Class definition for GeodeticReferenceSystem"@en ;
-    rdfs:comment "This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system."@en .
+    rdfs:comment "Defines the reference system used to represent coordinates, including projection type and ellipsoid model."@en ;
 
-georeference:BoundingBox a owl:Class ;
-    rdfs:label "Class definition for BoundingBox"@en ;
-    rdfs:comment "Data property to define a bounding box with minimum and maximum values for the x and y axes."@en .
-
-georeference:LatLonCoordinate a owl:Class ;
-    rdfs:label "Class definition for LatLonCoordinate"@en ;
-    rdfs:comment "Data property to define world coordinates in latitude/longitude, expressed in degrees."@en .
+    # Must have an EPSG code OR a Coordinate System Name
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:unionOf (
+            [ a owl:Restriction ; owl:onProperty georeference:codeEPSG ; owl:cardinality 1 ]
+            [ a owl:Restriction ; owl:onProperty georeference:coordinateSystemName ; owl:cardinality 1 ]
+        )
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty georeference:hasOrigin ;
+        owl:cardinality 1 ;
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty georeference:hasViewPoint ;
+        owl:maxCardinality 1 ;
+        owl:someValuesFrom  georeference:LatLonCoordinate 
+    ] .
 
 georeference:ProjectLocation a owl:Class ;
     rdfs:label "Class definition for ProjectLocation"@en ;
-    rdfs:comment "Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset."@en .
+    rdfs:comment "Contains attributes describing the location of a simulation asset, such as country, region, city, and bounding box."@en ;
+
+    # Must have at least one BoundingBox
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty georeference:hasBoundingBox ;
+        owl:cardinality 1 ;
+    ] .
+
+georeference:BoundingBox a owl:Class ;
+    rdfs:label "Class definition for BoundingBox"@en ;
+    rdfs:comment "Defines a rectangular spatial extent using minimum and maximum values for the x and y axes."@en .
+
+georeference:LatLonCoordinate a owl:Class ;
+    rdfs:label "Class definition for LatLonCoordinate"@en ;
+    rdfs:comment "Defines world coordinates in latitude and longitude, expressed in degrees."@en .
+
+### **Object Properties**
+georeference:hasGeodeticReferenceSystem a owl:ObjectProperty ;
+    rdfs:label "has geodetic reference system"@en ;
+    rdfs:comment "Links a Georeference to its Geodetic Reference System. REQUIRED (1 per Georeference)."@en ;
+    rdfs:domain georeference:Georeference ;
+    rdfs:range georeference:GeodeticReferenceSystem .
+
+georeference:hasProjectLocation a owl:ObjectProperty ;
+    rdfs:label "has project location"@en ;
+    rdfs:comment "Links a Georeference to its Project Location details, which includes the bounding box. REQUIRED (1 per Georeference)."@en ;
+    rdfs:domain georeference:Georeference ;
+    rdfs:range georeference:ProjectLocation .
+
+georeference:hasBoundingBox a owl:ObjectProperty ;
+    rdfs:label "has bounding box"@en ;
+    rdfs:comment "Bounding Box is only allowed inside ProjectLocation and defines its spatial extent."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range georeference:BoundingBox .
+
+georeference:hasOrigin a owl:ObjectProperty ;
+    rdfs:label "has origin"@en ;
+    rdfs:comment "Defines the origin position of the asset in world coordinates. REQUIRED."@en ;
+    rdfs:domain georeference:GeodeticReferenceSystem ;
+    rdfs:range georeference:LatLonCoordinate .
+    
+
+georeference:hasViewPoint a owl:ObjectProperty ;
+    rdfs:label "has view point"@en ;
+    rdfs:comment "Defines the viewpoint position of the asset in world coordinates. OPTIONAL."@en ;
+    rdfs:domain georeference:GeodeticReferenceSystem ;
+    rdfs:range georeference:LatLonCoordinate .
+    

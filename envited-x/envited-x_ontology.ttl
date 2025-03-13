@@ -50,41 +50,95 @@ envited-x: a owl:Ontology ;
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
-# envited-x DataResource class
-envited-x:DataResource a owl:Class ;
-    rdfs:label "Class definition for DataResource"@en ;
-    rdfs:comment "ENVITED-X DataResource containing information such as name and description of the simulation asset."@en ;
-    rdfs:subClassOf gx:DataResource .
 
-# envited-x Manifest class
-envited-x:Manifest a owl:Class ;
-    rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en ;
-    rdfs:subClassOf manifest:Manifest .
+# Example Query to Retrieve Simulation Assets and Their Metadata
+# This query selects all instances of envited-x:SimulationAsset
+# and retrieves the linked metadata stored in envited-x:DataResource.
 
-# Core simulation asset class
+# SPARQL Query:
+# SELECT ?simulationAsset ?metadata
+# WHERE {
+#     ?simulationAsset a envited-x:SimulationAsset .
+#     ?simulationAsset envited-x:hasDataResource ?metadata .
+#     ?metadata a envited-x:DataResource . 
+# }
+#
+# Core simulation asset class for the ENVITED-X Data Space
 envited-x:SimulationAsset a owl:Class ;
     rdfs:label "Class definition for SimulationAsset"@en ;
-    rdfs:comment "A structured digital resource that includes extensible metadata and a table of contents as a linked manifest."@en ;
-    rdfs:subClassOf gx:DataResource ;
+    rdfs:comment """A structured digital asset in the ENVITED-X Data Space that aggregates metadata and a structured manifest.
+                    This class serves as a modular container for various simulation-related resources, ensuring interoperability and extensibility.
+                    Every SimulationAsset must be linked to at least one DataResource, which provides essential metadata, 
+                    and a Manifest, which defines its internal structure and licensing information.
+                    Subclasses of SimulationAsset can be introduced to represent specific asset types, such as HD Maps or Vehicle Models."""@en ;
+    rdfs:subClassOf owl:Thing ;
+    # Coupling to Gaia-X through a subclass of gx:DataResource
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty envited-x:hasDataResource ; 
         owl:someValuesFrom envited-x:DataResource 
     ] ;
+    # Optional coupling to DataResourceExtension
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty envited-x:hasDataResourceExtension ; 
+        owl:minCardinality 0
+    ] ;
+    # Coupling to a Manifest
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty envited-x:hasManifest ;  
-        owl:someValuesFrom envited-x:Manifest
+        owl:cardinality 1
     ] .
 
+# Ensures a SimulationAsset cannot also be classified as a DataResource.
+# This enforces the distinction between structured digital assets (SimulationAsset)
+# and their associated metadata resources (DataResource).
+[ a owl:AllDisjointClasses ;
+  owl:members ( envited-x:SimulationAsset envited-x:DataResource )
+] .
+
+envited-x:DataResource a owl:Class ;
+    rdfs:label "Class definition for DataResource"@en ;
+    rdfs:comment """A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset. 
+                    This class extends gx:DataResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
+    rdfs:subClassOf gx:DataResource .
+
+
+envited-x:DataResourceExtension a owl:Class ;
+    rdfs:label "Class definition for DataResourceExtension"@en ;
+    rdfs:comment """A metadata extension that enriches a SimulationAsset with additional structured information. 
+                    Unlike envited-x:DataResource, extensions do not represent standalone retrievable data assets but 
+                    serve as auxiliary metadata linked to a SimulationAsset."""@en .
+
+
+envited-x:Manifest a owl:Class ;
+    rdfs:label "Class definition for Manifest"@en ;
+    rdfs:comment "Defines a general manifest structure that can be extended for specific asset types, such as HD Maps or Vehicle Models."@en ;
+    rdfs:subClassOf manifest:Manifest .
+
+
 # Object properties
+# This allows:
+#
+# All subclasses of SimulationAsset (e.g., hdmap:HdMap, vehicle:VehicleModel) to use hasDataResource without redefinition.
+# Future assets to link to a DataResource without changing the ontology structure.
 envited-x:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "has data resource"@en ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:DataResource ;
-    rdfs:comment "Links a simulation asset to its extentable gx:DataResource metadata, such as name and description; applicable only within SimulationAsset instances."@en .
+    rdfs:comment "Links a simulation asset or its subclass to its associated DataResource, which provides essential metadata such as name and description."@en .
+
+envited-x:hasDataResourceExtension a owl:ObjectProperty ;
+    rdfs:label "has data resource extension"@en ;
+    rdfs:domain envited-x:SimulationAsset ;
+    rdfs:range envited-x:DataResourceExtension ;
+    rdfs:comment """Links a SimulationAsset to one or more metadata extensions (e.g., georeference metadata, sensor calibration) 
+                    that provide additional structured information. Extensions do not function as independent data resources 
+                    but rather as supplementary metadata specific to a given SimulationAsset."""@en .
 
 envited-x:hasManifest a owl:ObjectProperty ;
+    rdfs:label "has manifest"@en ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:Manifest ;
-    rdfs:comment "Links a simulation asset to the associated manifest that describes its structure and content; applicable only within SimulationAsset instances."@en .
+    rdfs:comment "Links a simulation asset or its subclass to the associated manifest that describes its structure and content."@en .

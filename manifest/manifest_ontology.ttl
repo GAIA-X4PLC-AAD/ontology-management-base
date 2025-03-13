@@ -57,18 +57,23 @@ manifest:Manifest a owl:Class ;
     rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
-        owl:onProperty manifest:hasManifest ; 
-        owl:allValuesFrom manifest:Link 
+        owl:onProperty manifest:hasManifestReference ; 
+        owl:cardinality 1
     ] ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty manifest:hasLicense ; 
-        owl:allValuesFrom manifest:License 
+        owl:cardinality 1
     ] ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty manifest:hasContent ;  
         owl:someValuesFrom manifest:Link
+    ] ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty manifest:hasExternalContent ;  
+        owl:minCardinality 0
     ] .
 
 ### Define Link class with restriction on FileMetadata
@@ -78,27 +83,31 @@ manifest:Link a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty manifest:hasFileMetadata ;
-        owl:someValuesFrom manifest:FileMetadata
+        owl:cardinality 1
     ] .
 
 manifest:FileMetadata a owl:Class ;
     rdfs:label "Class definition for FileMetadata"@en ;
-    rdfs:comment "Represents the properties of a data file referenced within a Link instance."@en .
+    rdfs:comment "Represents the properties of a data file referenced within a Link instance."@en ;
+    rdfs:subClassOf [ 
+        a owl:Restriction ; 
+        owl:onProperty manifest:hasDimensions ;  
+        owl:minCardinality 0
+    ] .
 
 manifest:License a owl:Class ;
     rdfs:label "Class definition for License"@en ;
-    rdfs:comment "General subclass of Link for defining the license of an asset."@en ;
-    rdfs:subClassOf manifest:Link .
+    rdfs:comment "General subclass of Link for defining the license of an asset."@en .
 
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
     rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetadata."@en .
 
 # Object properties
-manifest:hasManifest a owl:ObjectProperty ;
+manifest:hasManifestReference a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link ;
-    rdfs:comment "Links a Manifest to its corresponding manifest.json file, defining the structure and contents of a digital asset; only applicable within Manifest instances."@en .
+    rdfs:comment "Links a Manifest to its corresponding manifest reference file, defining the structure and contents of a digital asset; only applicable within Manifest instances."@en .
 
 manifest:hasLicense a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
