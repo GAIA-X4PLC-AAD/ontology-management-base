@@ -11,6 +11,7 @@
   },
   "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
   "@type": "hdmap:HdMap",
+
   "hdmap:hasDataResource": {
     "@type": "hdmap:DataResource",
     "gx:name": {
@@ -20,8 +21,13 @@
     "gx:description": {
       "@value": "A sample HD map dataset for testing, covering an urban environment.",
       "@type": "xsd:string"
-    },
-    "hdmap:format": {
+    }
+  },
+
+  "hdmap:hasDataResourceExtension": {
+    "@type": "hdmap:DataResourceExtension",
+
+    "hdmap:hasFormat": {
       "@type": "hdmap:Format",
       "hdmap:formatType": "ASAM OpenDRIVE",
       "hdmap:version": {
@@ -29,7 +35,8 @@
         "@type": "xsd:string"
       }
     },
-    "hdmap:content": {
+
+    "hdmap:hasContent": {
       "@type": "hdmap:Content",
       "hdmap:roadTypes": "town",
       "hdmap:laneTypes": [
@@ -39,7 +46,8 @@
       "hdmap:levelOfDetail": "crosswalk",
       "hdmap:trafficDirection": "right-hand"
     },
-    "hdmap:quantity": {
+
+    "hdmap:hasQuantity": {
       "@type": "hdmap:Quantity",
       "hdmap:length": {
         "@value": "1.46",
@@ -85,7 +93,8 @@
         "@type": "xsd:float"
       }
     },
-    "hdmap:quality": {
+
+    "hdmap:hasQuality": {
       "@type": "hdmap:Quality",
       "hdmap:precision": {
         "@value": "0.01",
@@ -108,7 +117,8 @@
         "@type": "xsd:float"
       }
     },
-    "hdmap:dataSource": {
+
+    "hdmap:hasDataSource": {
       "@type": "hdmap:DataSource",
       "hdmap:usedDataSources": {
         "@value": "scanner",
@@ -119,7 +129,8 @@
         "@type": "xsd:string"
       }
     },
-    "hdmap:georeference": {
+
+    "hdmap:hasGeoreference": {
       "@type": "georeference:Georeference",
       "georeference:projectLocation": {
         "@type": "georeference:ProjectLocation",
@@ -184,6 +195,7 @@
       }
     }
   },
+
   "hdmap:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",

@@ -8,7 +8,6 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 
-# hdmap SHACL shape
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -24,7 +23,7 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:node hdmap:DataResourceShapeExtension ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResource object containing format, content, quantity, quality, dataSource, and georeference."@en ;
+        sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
     sh:property [
         sh:path hdmap:hasManifest ;
@@ -46,7 +45,9 @@ hdmap:HdMapShape a sh:NodeShape ;
     ] ;
     sh:targetClass hdmap:HdMap .
 
-# SHACL Shape for hdmap:DataResourceExtension
+####################################################
+# DataResourceExtension Shape
+####################################################
 hdmap:DataResourceShapeExtension a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -58,7 +59,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:name "format object"@en ;
             sh:description "Contains properties to describe the format of the HD map asset."@en ;
             sh:order 1 ;
-            sh:path hdmap:format ],
+            sh:path hdmap:hasFormat
+        ],
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -66,7 +68,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:name "content object"@en ;
             sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
             sh:order 2 ;
-            sh:path hdmap:content ],            
+            sh:path hdmap:hasContent
+        ],            
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -74,7 +77,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:name "quantity object"@en ;
             sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
             sh:order 3 ;
-            sh:path hdmap:quantity ],            
+            sh:path hdmap:hasQuantity
+        ],            
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -82,7 +86,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:name "quality object"@en ;
             sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
             sh:order 4 ;
-            sh:path hdmap:quality ],
+            sh:path hdmap:hasQuality
+        ],
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -90,13 +95,14 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:name "dataSource object"@en ;
             sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
             sh:order 5 ;
-            sh:path hdmap:dataSource ],
+            sh:path hdmap:hasDataSource
+        ],
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path hdmap:hasGeoreference ;
             sh:node georeference:GeoreferenceShape ;
-            sh:message "Each HD map must link to at one georeference dataset defining the location and projection of the HD map asset."@en ;
+            sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
         ] ;
     sh:targetClass hdmap:DataResourceExtension .
 

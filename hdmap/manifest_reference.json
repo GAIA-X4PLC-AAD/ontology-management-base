@@ -1,5 +1,6 @@
 {
   "@context": {
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
     "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
@@ -8,7 +9,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
-  "@type": "manifest:Manifest",
+  "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
