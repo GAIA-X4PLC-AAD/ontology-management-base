@@ -131,14 +131,16 @@ envited-x:hasDataResource a owl:ObjectProperty ;
 
 envited-x:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:label "has data resource extension"@en ;
+    rdfs:comment """Links a SimulationAsset to one or more metadata extensions (e.g., georeference metadata, sensor calibration)
+                    that provide additional structured information. Extensions do not function as independent data resources
+                    but rather as supplementary metadata specific to a given SimulationAsset."""@en ;
     rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:DataResourceExtension ;
-    rdfs:comment """Links a SimulationAsset to one or more metadata extensions (e.g., georeference metadata, sensor calibration) 
-                    that provide additional structured information. Extensions do not function as independent data resources 
-                    but rather as supplementary metadata specific to a given SimulationAsset."""@en .
+    rdfs:range envited-x:DataResourceExtension .
+    
 
 envited-x:hasManifest a owl:ObjectProperty ;
     rdfs:label "has manifest"@en ;
+    rdfs:comment "Links a simulation asset or its subclass to the associated manifest that describes its structure and content."@en ;
     rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:Manifest ;
-    rdfs:comment "Links a simulation asset or its subclass to the associated manifest that describes its structure and content."@en .
+    rdfs:range envited-x:Manifest .
+    

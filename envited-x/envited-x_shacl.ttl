@@ -22,8 +22,8 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
         sh:path envited-x:hasDataResourceExtension ;
         sh:node envited-x:DataResourceExtensionShape ;
         sh:minCount 0 ;  # Optional
-        sh:message "A SimulationAsset may have one or more DataResourceExtensions (e.g., georeference metadata, sensor calibration) 
-                    to provide additional structured metadata. These extensions do not represent standalone retrievable data assets."@en ;
+        sh:message """A SimulationAsset may have one or more DataResourceExtensions (e.g., georeference metadata, sensor calibration) 
+                      to provide additional structured metadata. These extensions do not represent standalone retrievable data assets."""@en ;
     ] ;
     sh:property [
         sh:path envited-x:hasManifest ;

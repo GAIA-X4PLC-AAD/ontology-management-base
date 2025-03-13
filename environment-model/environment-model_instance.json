@@ -9,6 +9,7 @@
   },
   "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
   "@type": "environment-model:EnvironmentModel",
+
   "environment-model:general": {
     "@type": "general:General",
     "general:description": {
@@ -34,6 +35,7 @@
       }
     }
   },
+
   "environment-model:quantity": {
     "@type": "environment-model:Quantity",
     "environment-model:textureMaterialCount": {
@@ -49,6 +51,7 @@
       "@type": "xsd:unsignedInt"
     }
   },
+
   "environment-model:quality": {
     "@type": "environment-model:Quality",
     "environment-model:detailLevel": "High",
@@ -57,11 +60,13 @@
       "@type": "xsd:float"
     }
   },
+
   "environment-model:content": {
     "@type": "environment-model:Content",
     "environment-model:elements": "profile roads, extrude buildings, powerlines",
     "environment-model:useCase": "driving"
   },
+
   "environment-model:project": {
     "@type": "environment-model:Project",
     "environment-model:visualisationToolName": {
@@ -79,7 +84,7 @@
     "environment-model:creationToolName": {
       "@value": "Trian3DBuilder",
       "@type": "xsd:string"
-    }    ,
+    },
     "environment-model:creationToolVendor": {
       "@value": "TrianGraphics GmbH",
       "@type": "xsd:string"
@@ -89,6 +94,7 @@
       "@type": "xsd:string"
     }
   },
+
   "environment-model:format": {
     "@type": "environment-model:Format",
     "environment-model:formatType": "Unreal Datasmith",
@@ -97,9 +103,11 @@
       "@type": "xsd:string"
     }
   },
-  "environment-model:georeference": {
+
+  "environment-model:hasGeoreference": {
     "@type": "georeference:Georeference",
-    "georeference:projectLocation": {
+
+    "georeference:hasProjectLocation": {
       "@type": "georeference:ProjectLocation",
       "georeference:country": {
         "@value": "DE",
@@ -121,7 +129,7 @@
         "@value": "Town of Grafing",
         "@type": "xsd:string"
       },
-      "georeference:boundingBox": {
+      "georeference:hasBoundingBox": {
         "@type": "georeference:BoundingBox",
         "georeference:xMin": {
           "@value": "10.720740862799195",
@@ -141,13 +149,14 @@
         }
       }
     },
-    "georeference:geodeticReferenceSystem": {
+
+    "georeference:hasGeodeticReferenceSystem": {
       "@type": "georeference:GeodeticReferenceSystem",
       "georeference:coordinateSystemName": {
         "@value": "UTM",
         "@type": "xsd:string"
       },
-      "georeference:origin": {
+      "georeference:hasOrigin": {
         "@type": "georeference:LatLonCoordinate",
         "georeference:lat": {
           "@value": "52.300",
@@ -157,8 +166,8 @@
           "@value": "10.7250",
           "@type": "xsd:float"
         }
-      },      
-      "georeference:viewPoint": {
+      },
+      "georeference:hasViewPoint": {
         "@type": "georeference:LatLonCoordinate",
         "georeference:lat": {
           "@value": "52.30626250948862",
