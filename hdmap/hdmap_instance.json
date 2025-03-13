@@ -132,7 +132,9 @@
 
     "hdmap:hasGeoreference": {
       "@type": "georeference:Georeference",
-      "georeference:projectLocation": {
+      "@id": "did:web:registry.gaia-x.eu:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+      
+      "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
           "@value": "DE",
@@ -154,7 +156,7 @@
           "@value": "Town of Grafing",
           "@type": "xsd:string"
         },
-        "georeference:boundingBox": {
+        "georeference:hasBoundingBox": {
           "@type": "georeference:BoundingBox",
           "georeference:xMin": {
             "@value": "11.964",
@@ -174,13 +176,14 @@
           }
         }
       },
-      "georeference:geodeticReferenceSystem": {
+
+      "georeference:hasGeodeticReferenceSystem": {
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
           "@value": "32632",
           "@type": "xsd:int"
         },
-        "georeference:origin": {
+        "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
             "@value": "48.045414",
@@ -188,6 +191,17 @@
           },
           "georeference:lon": {
             "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.046",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.967",
             "@type": "xsd:float"
           }
         },
@@ -200,7 +214,7 @@
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
-    "manifest:FileMetadata": {
+    "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:uri": {
         "@value": "./manifest_reference.json",

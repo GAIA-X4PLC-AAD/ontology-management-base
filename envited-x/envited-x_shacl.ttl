@@ -74,7 +74,7 @@ envited-x:DataResourceShape a sh:NodeShape ;
 envited-x:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:property [
-        sh:path manifest:content ;
+        sh:path manifest:hasContent ;  # Updated from "manifest:content" to "manifest:hasContent"
         sh:node manifest:LinkShape ;
         sh:minCount 4 ;
         sh:message "The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media."@en ;
@@ -85,23 +85,22 @@ envited-x:ManifestShape a sh:NodeShape ;
         sh:select """
             SELECT ?this WHERE {
                 FILTER NOT EXISTS {
-                    ?this manifest:content ?coreData .
+                    ?this manifest:hasContent ?coreData .
                     ?coreData manifest:category "coreData" .
                 }
                 FILTER NOT EXISTS {
-                    ?this manifest:content ?documentation .
+                    ?this manifest:hasContent ?documentation .
                     ?documentation manifest:category "documentation" .
                 }
                 FILTER NOT EXISTS {
-                    ?this manifest:content ?metadata .
+                    ?this manifest:hasContent ?metadata .
                     ?metadata manifest:category "metadata" .
                 }
                 FILTER NOT EXISTS {
-                    ?this manifest:content ?media .
+                    ?this manifest:hasContent ?media .
                     ?media manifest:category "media" .
                 }
             }
         """ ;
     ] ;
     sh:targetClass envited-x:Manifest .
-

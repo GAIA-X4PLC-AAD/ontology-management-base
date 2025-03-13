@@ -5,7 +5,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 georeference:GeoreferenceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:maxCount 1 ;
@@ -27,7 +27,7 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:or (
         [ sh:minCount 1 ; sh:path georeference:codeEPSG ]
@@ -84,7 +84,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         skos:example "1.0" ;
@@ -130,7 +130,7 @@ georeference:BoundingBoxShape a sh:NodeShape ;
     sh:targetClass georeference:BoundingBox .
 
 georeference:LatLonCoordinateShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         skos:example "52.540721" ;
@@ -156,7 +156,7 @@ georeference:LatLonCoordinateShape a sh:NodeShape ;
     sh:targetClass georeference:LatLonCoordinate .
 
 georeference:ProjectLocationShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         skos:example "DE-BY" ;

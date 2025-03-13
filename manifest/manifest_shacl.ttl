@@ -242,10 +242,19 @@ manifest:FileMetadataShape a sh:NodeShape ;
             sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
         ],
         [
+            sh:description "Provides additional information about the manifest reference, such as validation expectations."@en ;
+            sh:minCount 0 ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:string ;
+            sh:order 3 ;
+            sh:path skos:note ;
+            sh:message "A skos:note can provide supplementary information about the manifest reference."@en ;
+        ],
+        [
             sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
             sh:minCount 0 ;
             sh:nodeKind sh:IRI ;
-            sh:order 3 ;
+            sh:order 4 ;
             sh:path sh:conformsTo ;
             sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
             sh:condition [
@@ -261,7 +270,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             skos:example "1048576" ;
             sh:datatype xsd:integer ;
             sh:message "Validation of file size failed!"@en ;
-            sh:order 4 ;
+            sh:order 5 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:fileSize ;
@@ -272,7 +281,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             skos:example "example.txt" ;
             sh:datatype xsd:string ;
             sh:message "Filename validation failed!"@en ;
-            sh:order 5 ;
+            sh:order 6 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:filename ;
@@ -284,7 +293,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             skos:example "2022-04-01T00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:message "Validation of timestamp failed!"@en ;
-            sh:order 6 ;
+            sh:order 7 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:timestamp ;
@@ -295,7 +304,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node manifest:DimensionsShape ;
-            sh:order 7 ;
+            sh:order 8 ;
             sh:path manifest:hasDimensions ;
         ] ;
     sh:targetClass manifest:FileMetadata .

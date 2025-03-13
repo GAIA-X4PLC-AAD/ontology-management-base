@@ -1,6 +1,6 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -14,11 +14,11 @@
 
   "environment-model:hasDataResource": {
     "@type": "envited-x:DataResource",
-    "general:name": {
+    "gx:name": {
       "@value": "3d model example",
       "@type": "xsd:string"
     },
-    "general:description": {
+    "gx:description": {
       "@value": "simple 3d model example",
       "@type": "xsd:string"
     }
@@ -176,7 +176,7 @@
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
-    "manifest:FileMetadata": {
+    "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:uri": {
         "@value": "./manifest_reference.json",

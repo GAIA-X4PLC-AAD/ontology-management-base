@@ -13,7 +13,7 @@ hdmap:HdMapShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:path hdmap:hasDataResource ;
-        sh:node hdmap:DataResourceShape ;
+        sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Each HD map must have one associated DataResource object containing name and description."@en ;
@@ -120,7 +120,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
 #     sh:targetClass hdmap:DataResource .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
             sh:datatype xsd:string ;
@@ -158,7 +158,7 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
@@ -178,7 +178,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
     sh:targetClass hdmap:DataSource .
 
 hdmap:FormatShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
@@ -200,7 +200,7 @@ hdmap:FormatShape a sh:NodeShape ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -250,7 +250,7 @@ hdmap:QualityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quality .
 
 hdmap:QuantityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
@@ -328,7 +328,7 @@ hdmap:QuantityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quantity .
 
 hdmap:Range2DShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
             sh:description "The maximum value of the range."@en ;

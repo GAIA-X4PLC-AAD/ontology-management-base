@@ -24,7 +24,7 @@
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
-    "manifest:FileMetadata": {
+    "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:uri": {
         "@value": "./manifest_reference.json",
