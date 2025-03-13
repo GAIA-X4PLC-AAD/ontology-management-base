@@ -69,33 +69,6 @@ envited-x:DataResourceShape a sh:NodeShape ;
     ] ;
     sh:targetClass envited-x:DataResource .
 
-envited-x:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    
-    # Optional but structured metadata properties
-    sh:property [
-        sh:path gx:name ;
-        sh:datatype xsd:string ;
-        sh:minCount 0 ; # Optional, but useful for readability
-        sh:maxCount 1 ;
-        sh:message "If provided, a DataResourceExtension should have a human-readable name."@en ;
-        skos:example "Georeference Metadata"@en ;
-        sh:order 0 ;
-    ] ;
-    
-    sh:property [
-        sh:path gx:description ;
-        sh:datatype xsd:string ;
-        sh:minCount 0 ;
-        sh:maxCount 1 ;
-        sh:message "If provided, a DataResourceExtension should have a textual description."@en ;
-        skos:example "Contains coordinate reference system and bounding box information."@en ;
-        sh:order 1 ;
-    ] ;
-    
-    sh:targetClass envited-x:DataResourceExtension .
-
 
 # Manifest Shape for additional constraints
 envited-x:ManifestShape a sh:NodeShape ;

@@ -64,6 +64,8 @@ envited-x: a owl:Ontology ;
 # }
 #
 # Core simulation asset class for the ENVITED-X Data Space
+#
+# Remark: Think about SimulationAsset being a subClassOf envited-X:DataResource
 envited-x:SimulationAsset a owl:Class ;
     rdfs:label "Class definition for SimulationAsset"@en ;
     rdfs:comment """A structured digital asset in the ENVITED-X Data Space that aggregates metadata and a structured manifest.
@@ -97,12 +99,6 @@ envited-x:SimulationAsset a owl:Class ;
 [ a owl:AllDisjointClasses ;
   owl:members ( envited-x:SimulationAsset envited-x:DataResource )
 ] .
-
-envited-x:DataResource a owl:Class ;
-    rdfs:label "Class definition for DataResource"@en ;
-    rdfs:comment """A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset. 
-                    This class extends gx:DataResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
-    rdfs:subClassOf gx:DataResource .
 
 
 envited-x:DataResourceExtension a owl:Class ;

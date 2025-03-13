@@ -13,7 +13,7 @@
   "@type": "hdmap:HdMap",
 
   "hdmap:hasDataResource": {
-    "@type": "hdmap:DataResource",
+    "@type": "envited-x:DataResource",
     "gx:name": {
       "@value": "Test HD Map Dataset",
       "@type": "xsd:string"

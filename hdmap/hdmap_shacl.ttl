@@ -9,7 +9,7 @@
 
 
 hdmap:HdMapShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:path hdmap:hasDataResource ;
@@ -45,11 +45,8 @@ hdmap:HdMapShape a sh:NodeShape ;
     ] ;
     sh:targetClass hdmap:HdMap .
 
-####################################################
-# DataResourceExtension Shape
-####################################################
 hdmap:DataResourceShapeExtension a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ 
@@ -100,9 +97,11 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
         [ 
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path hdmap:hasGeoreference ;
             sh:node georeference:GeoreferenceShape ;
+            sh:name "has georeferenz"@en ;
             sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
+            sh:order 6 ;
+            sh:path hdmap:hasGeoreference ;
         ] ;
     sh:targetClass hdmap:DataResourceExtension .
 
