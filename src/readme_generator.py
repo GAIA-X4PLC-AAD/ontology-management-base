@@ -116,7 +116,7 @@ def replace_with_prefix(uri, prefixes):
 
 def extract_shacl_properties(rdf_graph, insertion_filename=None) -> list[dict]:
     """
-    Extracts properties including sh:path, sh:mincount, sh:maxcount, sh:description,
+    Extracts properties including sh:path, sh:minCount, sh:maxcount, sh:description,
     sh:datatype, sh:nodekind, and sh:in from an RDF graph.
 
     :param rdf_graph: An RDF graph.

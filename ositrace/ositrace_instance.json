@@ -1,190 +1,221 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
     "ositrace": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
   },
   "@id": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
   "@type": "ositrace:OSITrace",
-  "ositrace:general": {
-    "@type": "general:General",
-    "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "Cut-out scenario on testing ground",
-        "@type": "xsd:string"
-      },
-      "general:description": {
-        "@value": "OSI SensorData trace of cut-out scenario on testing ground",
-        "@type": "xsd:string"
-      }
+
+  "ositrace:hasDataResource": {
+    "@type": "envited-x:DataResource",
+    "gx:name": {
+      "@value": "Cut-out scenario on testing ground",
+      "@type": "xsd:string"
     },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": "126.6",
-        "@type": "xsd:float"
-      },
-      "general:recordingTime": {
-        "@value": "2024-06-03T16:37:10",
-        "@type": "xsd:dateTime"
-      }
-    }
-  },
-  "ositrace:format": {
-    "@type": "ositrace:Format",
-    "ositrace:formatType": "ASAM OSI SensorData",
-    "ositrace:version": {
-      "@value": "3.6.0/3.20.0",
+    "gx:description": {
+      "@value": "OSI SensorData trace of cut-out scenario on testing ground",
       "@type": "xsd:string"
     }
   },
-  "ositrace:content": {
-    "@type": "ositrace:Content",
-    "ositrace:roadTypes": "rural",
-    "ositrace:laneTypes": "driving",
-    "ositrace:levelOfDetail": "car",
-    "ositrace:trafficDirection": "right-hand",
-    "ositrace:granularity": [
-      "object list",
-      "detection list"
-    ],
-    "ositrace:startTime": {
-      "@value": "2024-06-03T16:37:10.835792+02:00",
-      "@type": "xsd:dateTimeStamp"
-    },
-    "ositrace:stopTime": {
-      "@value": "2024-06-03T16:38:28.636671+02:00",
-      "@type": "xsd:dateTimeStamp"
-    },
-    "ositrace:hostMovingObject": {
-      "@type": "ositrace:MovingObject",
-      "ositrace:identifier": {
-        "@value": "1",
-        "@type": "xsd:unsignedLong"
-      },
-      "ositrace:description": {
-        "@value": "PMSF MB CLS 500 Host Vehicle",
+
+  "ositrace:hasDataResourceExtension": {
+    "@type": "ositrace:DataResourceExtension",
+
+    "ositrace:hasFormat": {
+      "@type": "ositrace:Format",
+      "ositrace:formatType": "ASAM OSI SensorData",
+      "ositrace:version": {
+        "@value": "3.6.0/3.20.0",
         "@type": "xsd:string"
       }
     },
-    "ositrace:targetMovingObject": {
-      "@type": "ositrace:MovingObject",
-      "ositrace:identifier": {
-        "@value": "2",
-        "@type": "xsd:unsignedLong"
+
+    "ositrace:hasContent": {
+      "@type": "ositrace:Content",
+      "ositrace:roadTypes": "rural",
+      "ositrace:laneTypes": [
+        "driving"
+      ],
+      "ositrace:levelOfDetail": "car",
+      "ositrace:trafficDirection": "right-hand",
+      "ositrace:granularity": [
+        "object list",
+        "detection list"
+      ],
+      "ositrace:startTime": {
+        "@value": "2024-06-03T16:37:10.835792+02:00",
+        "@type": "xsd:dateTimeStamp"
       },
-      "ositrace:description": {
-        "@value": "ADC Target Vehicle",
-        "@type": "xsd:string"
-      }
-    }  
-  },
-  "ositrace:quality": {
-    "@type": "ositrace:Quality",
-    "ositrace:validationReport": {
-      "@value": "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar",
-      "@type": "xsd:anyURI"
-    },
-    "ositrace:validationReportType": {
-      "@value": "application/xqar",
-      "@type": "xsd:string"
-    }
-  },
-  "ositrace:quantity": {
-    "@type": "ositrace:Quantity",
-    "ositrace:numberFrames": {
-      "@value": "1448",
-      "@type": "xsd:unsignedInt"
-    }
-  },
-  "ositrace:dataSource": {
-    "@type": "ositrace:DataSource",
-    "ositrace:usedDataSources": {
-      "@value": "Direct Sensor Capture ARS 548 FW05.38.14 on PMSF MB CLS 500",
-      "@type": "xsd:string"
-    },
-    "ositrace:measurementSystem": {
-      "@value": "pcapng2osi converter v1.1",
-      "@type": "xsd:string"
-    }
-  },
-  "ositrace:georeference": {
-    "@type": "georeference:Georeference",
-    "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocation",
-      "georeference:country": {
-        "@value": "DE",
-        "@type": "xsd:string"
+      "ositrace:stopTime": {
+        "@value": "2024-06-03T16:38:28.636671+02:00",
+        "@type": "xsd:dateTimeStamp"
       },
-      "georeference:state": {
-        "@value": "DE-NI",
-        "@type": "xsd:string"
-      },
-      "georeference:region": {
-        "@value": "Brunswick",
-        "@type": "xsd:string"
-      },
-      "georeference:city": {
-        "@value": "Edemissen",
-        "@type": "xsd:string"
-      },
-      "georeference:relationOrArea": {
-        "@value": "Airport Peine-Eddesse",
-        "@type": "xsd:string"
-      },
-      "georeference:boundingBox": {
-        "@type": "georeference:BoundingBox",
-        "georeference:xMin": {
-          "@value": "52.40177964666667",
-          "@type": "xsd:float"
+      "ositrace:hasMovingObject": [
+        {
+          "@type": "ositrace:MovingObject",
+          "ositrace:identifier": {
+            "@value": "1",
+            "@type": "xsd:unsignedLong"
+          },
+          "ositrace:description": {
+            "@value": "PMSF MB CLS 500 Host Vehicle",
+            "@type": "xsd:string"
+          }
         },
-        "georeference:yMin": {
-          "@value": "10.22518251",
-          "@type": "xsd:float"
-        },
-        "georeference:xMax": {
-          "@value": "52.403132605",
-          "@type": "xsd:float"
-        },
-        "georeference:yMax": {
-          "@value": "10.23265636",
-          "@type": "xsd:float"
+        {
+          "@type": "ositrace:MovingObject",
+          "ositrace:identifier": {
+            "@value": "2",
+            "@type": "xsd:unsignedLong"
+          },
+          "ositrace:description": {
+            "@value": "ADC Target Vehicle",
+            "@type": "xsd:string"
+          }
         }
+      ]
+    },
+
+    "ositrace:hasQuality": {
+      "@type": "ositrace:Quality",
+      "ositrace:validationReport": {
+        "@value": "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar",
+        "@type": "xsd:anyURI"
+      },
+      "ositrace:validationReportType": {
+        "@value": "application/xqar",
+        "@type": "xsd:string"
       }
     },
-    "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:codeEPSG": {
-        "@value": "4326",
-        "@type": "xsd:int"
+
+    "ositrace:hasQuantity": {
+      "@type": "ositrace:Quantity",
+      "ositrace:numberFrames": {
+        "@value": "1448",
+        "@type": "xsd:unsignedInt"
+      }
+    },
+
+    "ositrace:hasDataSource": {
+      "@type": "ositrace:DataSource",
+      "ositrace:usedDataSources": {
+        "@value": "Direct Sensor Capture ARS 548 FW05.38.14 on PMSF MB CLS 500",
+        "@type": "xsd:string"
       },
-      "georeference:origin": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "52.40177964666667",
-          "@type": "xsd:float"
+      "ositrace:measurementSystem": {
+        "@value": "pcapng2osi converter v1.1",
+        "@type": "xsd:string"
+      }
+    },
+
+    "ositrace:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "@id": "did:web:registry.gaia-x.eu:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+      
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
         },
-        "georeference:lon": {
-          "@value": "10.22518251",
-          "@type": "xsd:float"
+        "georeference:state": {
+          "@value": "DE-NI",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Brunswick",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Edemissen",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Airport Peine-Eddesse",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "52.40177964666667",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "52.403132605",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "10.23265636",
+            "@type": "xsd:float"
+          }
         }
       },
-      "georeference:viewPoint": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "52.40177964666667",
-          "@type": "xsd:float"
+
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "4326",
+          "@type": "xsd:int"
         },
-        "georeference:lon": {
-          "@value": "10.22518251",
-          "@type": "xsd:float"
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.40177964666667",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.40177964666667",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          }
+        },      
+        "georeference:heightSystem": "Ellipsodial height"
+      }
+    }
+  },
+
+  "ositrace:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:accessRole": "publicUser",
+    "manifest:category": "manifest",
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:uri": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      },
+      "sh:conformsTo": [
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+        },
+        {
+          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
         }
-      },      
-      "georeference:heightSystem": "Ellipsodial height"
+      ]
     }
   }
 }
