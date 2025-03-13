@@ -52,8 +52,8 @@ georeference: a owl:Ontology ;
 
 georeference:Georeference a owl:Class ;
     rdfs:label "Class definition for Georeference"@en ;
-    rdfs:comment "A georeferencing dataset that defines the coordinate system, location, and spatial properties of a simulation asset. 
-                  This class serves as an optional metadata extension and does not function as a standalone data resource."@en ;
+    rdfs:comment """A georeferencing dataset that defines the coordinate system, location, and spatial properties of a simulation asset. 
+                    This class serves as an optional metadata extension and does not function as a standalone data resource."""@en ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty georeference:hasGeodeticReferenceSystem ; 
