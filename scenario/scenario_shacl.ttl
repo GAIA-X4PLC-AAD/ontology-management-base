@@ -8,64 +8,106 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 scenario:ScenarioShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:name "general object"@en ;
-            sh:description "General properties common for all simulation assets."@en ;
-            sh:order 1 ;
-            sh:path scenario:general ],
-        [ sh:maxCount 1 ;
+    sh:property [
+        sh:path scenario:hasDataResource ;
+        sh:node envited-x:DataResourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have one associated DataResource object containing name and description."@en ;
+    ] ;
+    sh:property [
+        sh:path scenario:hasDataResourceExtension ;
+        sh:node scenario:DataResourceShapeExtension ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+    ] ;
+    sh:property [
+        sh:path scenario:hasManifest ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:class envited-x:Manifest ]
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node envited-x:ManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have exactly one manifest, either inline or via link."@en ;
+    ] ;
+    sh:targetClass scenario:Scenario .
+
+scenario:DataResourceShapeExtension a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property 
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
             sh:name "format object"@en ;
-            sh:description "Contains properties that describe the format of the scenario asset."@en ;
-            sh:order 2 ;
-            sh:path scenario:format ],
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the format of the scenario asset."@en ;
+            sh:order 1 ;
+            sh:path scenario:hasFormat
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:ContentShape ;
             sh:name "content object"@en ;
-            sh:description "Defines the content of the scenario asset, such as time, abstraction level, and links."@en ;
-            sh:order 3 ;
-            sh:path scenario:content ],
-        [ sh:maxCount 1 ;
+            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
+            sh:order 2 ;
+            sh:path scenario:hasContent
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QuantityShape ;
             sh:name "quantity object"@en ;
-            sh:description "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en ;
-            sh:order 4 ;
-            sh:path scenario:quantity ],            
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
+            sh:order 3 ;
+            sh:path scenario:hasQuantity
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QualityShape ;
             sh:name "quality object"@en ;
-            sh:description "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en ;
-            sh:order 5 ;
-            sh:path scenario:quality ],
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
+            sh:order 4 ;
+            sh:path scenario:hasQuality
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:DataSourceShape ;
-            sh:name "data source object"@en ;
-            sh:description "Defines which data resources were used to create the scenario asset."@en ;
-            sh:order 6 ;
-            sh:path scenario:dataSource ],
-        [ sh:maxCount 1 ;
+            sh:name "dataSource object"@en ;
+            sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
+            sh:order 5 ;
+            sh:path scenario:hasDataSource
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeference object"@en ;
-            sh:description "General properties for defining the location and projection of the scenario asset."@en ;
-            sh:order 7 ;
-            sh:path scenario:georeference ] ;
-    sh:targetClass scenario:Scenario .
+            sh:name "has georeferenz"@en ;
+            sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
+            sh:order 6 ;
+            sh:path scenario:hasGeoreference ;
+        ] ;
+    sh:targetClass scenario:DataResourceExtension .
  
 scenario:FormatShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "ASAM OpenSCENARIO" ;
-            sh:datatype xsd:string ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
@@ -87,7 +129,6 @@ scenario:ContentShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
-            sh:datatype xsd:string ;
             sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
@@ -288,38 +329,34 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
 
-
-###############################################################################
-### A shape that targets scenario:Manifest
-###############################################################################
 scenario:ManifestShape a sh:NodeShape ;
     rdfs:label "Shape for scenario:Manifest"@en ;
-    rdfs:comment "Checks that each scenario:Manifest includes an HD map reference in manifest:hasExternalContent."@en ;
+    rdfs:comment "Checks that each scenario:Manifest includes an HD map reference in manifest:hasExternalArtifacts."@en ;
 
     # 1) We apply this shape to all scenario:Manifest instances
     sh:targetClass scenario:Manifest ;
 
-    # 2) We want to ensure that there is a Link in hasExternalContent
+    # 2) We want to ensure that there is a Link in hasExternalArtifacts
     #    (with cardinalities or sub-shapes).
     sh:property [
-        sh:path manifest:hasExternalContent ;
-        # Optionally require at least 1 Link in hasExternalContent
+        sh:path manifest:hasExternalArtifacts ;
+        # Optionally require at least 1 Link in hasExternalArtifacts
         sh:minCount 1 ;
         sh:node manifest:LinkShape ;
-        sh:message "The scenario manifest must have at least one external link in 'hasExternalContent'."@en
+        sh:message "The scenario manifest must have at least one external link in 'hasExternalArtifacts'."@en
     ] ;
 
     # 3) Additional SPARQL constraint:
-    #    Check that at least one of those links has sh:conformsTo = hdmap:hdmap
+    #    Check that at least one of those links has sh:conformsTo = scenario:scenario
     sh:sparql [
-        # If you want to FAIL when no link with sh:conformsTo=hdmap:hdmap is found:
-        sh:message "The scenario manifest must reference an HD map (sh:conformsTo hdmap:hdmap) in hasExternalContent."@en ;
+        # If you want to FAIL when no link with sh:conformsTo=scenario:scenario is found:
+        sh:message "The scenario manifest must reference an HD map (sh:conformsTo scenario:scenario) in hasExternalArtifacts."@en ;
         sh:select """
             SELECT ?this
             WHERE {
               FILTER NOT EXISTS {
-                ?this manifest:hasExternalContent ?link .
-                ?link sh:conformsTo hdmap:hdmap .
+                ?this manifest:hasExternalArtifacts ?link .
+                ?link sh:conformsTo scenario:scenario .
               }
             }
         """

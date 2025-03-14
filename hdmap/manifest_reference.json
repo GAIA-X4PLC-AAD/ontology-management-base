@@ -10,7 +10,6 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
   "@type": "envited-x:Manifest",
-
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
@@ -27,7 +26,6 @@
       }
     }
   },
-
   "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
@@ -50,8 +48,7 @@
       }
     }
   },
-
-  "manifest:hasContent": [
+  "manifest:hasArtifacts": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
@@ -205,6 +202,5 @@
       }
     }
   ],
-
-  "manifest:hasExternalContent": []
+  "manifest:hasExternalArtifacts": []
 }

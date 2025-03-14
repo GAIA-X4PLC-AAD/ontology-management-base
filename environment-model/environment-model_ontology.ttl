@@ -85,14 +85,30 @@ environment-model:hasGeoreference a owl:ObjectProperty ;
 environment-model:hasFormat a owl:ObjectProperty ;
     rdfs:label "has format"@en ;
     rdfs:comment "Links an environment model to its format specifications."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
     rdfs:domain environment-model:DataResourceExtension ;
     rdfs:range environment-model:Format .
 
 environment-model:hasContent a owl:ObjectProperty ;
     rdfs:label "has content"@en ;
     rdfs:comment "Links an environment model to its content properties."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
     rdfs:domain environment-model:DataResourceExtension ;
     rdfs:range environment-model:Content .
+
+environment-model:hasQuality a owl:ObjectProperty ;
+    rdfs:label "has quality"@en ;
+    rdfs:comment "Links an environment model to quality characteristics."@en ;
+    rdfs:subPropertyOf envited-x:hasQuality ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Quality .
+
+environment-model:hasQuantity a owl:ObjectProperty ;
+    rdfs:label "has quantity"@en ;
+    rdfs:comment "Links an environment model to quantity attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasQuantity ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Quantity .
 
 environment-model:hasProject a owl:ObjectProperty ;
     rdfs:label "has project"@en ;
@@ -100,25 +116,12 @@ environment-model:hasProject a owl:ObjectProperty ;
     rdfs:domain environment-model:DataResourceExtension ;
     rdfs:range environment-model:Project .
 
-environment-model:hasQuality a owl:ObjectProperty ;
-    rdfs:label "has quality"@en ;
-    rdfs:comment "Links an environment model to quality characteristics."@en ;
-    rdfs:domain environment-model:DataResourceExtension ;
-    rdfs:range environment-model:Quality .
-
-environment-model:hasQuantity a owl:ObjectProperty ;
-    rdfs:label "has quantity"@en ;
-    rdfs:comment "Links an environment model to quantity attributes."@en ;
-    rdfs:domain environment-model:DataResourceExtension ;
-    rdfs:range environment-model:Quantity .
-
 #### Supporting Classes
 
 environment-model:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;
     rdfs:comment "Environment-model specific metadata extensions."@en ;
     rdfs:subClassOf envited-x:DataResourceExtension ;
-    # Restricting each extension property
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty environment-model:hasContent ;
@@ -147,20 +150,24 @@ environment-model:DataResourceExtension a owl:Class ;
 
 environment-model:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Defines the format specifications of an environment-model asset."@en .
+    rdfs:comment "Defines the format specifications of an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 environment-model:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Describes the visual and functional elements included in an environment-model asset."@en .
+    rdfs:comment "Describes the visual and functional elements included in an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Content .
+
+environment-model:Quality a owl:Class ;
+    rdfs:label "Class definition for Quality"@en ;
+    rdfs:comment "Describes the quality attributes of the environment-model asset, including detail level and texture resolution."@en ;
+    rdfs:subClassOf envited-x:Quality .
+
+environment-model:Quantity a owl:Class ;
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Specifies numerical attributes like geometry count and triangle count for an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Quanitiy .
 
 environment-model:Project a owl:Class ;
     rdfs:label "Class definition for Project"@en ;
     rdfs:comment "Contains information about the tools and software used to create the environment-model asset."@en .
-
-environment-model:Quality a owl:Class ;
-    rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Describes the quality attributes of the environment-model asset, including detail level and texture resolution."@en .
-
-environment-model:Quantity a owl:Class ;
-    rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Specifies numerical attributes like geometry count and triangle count for an environment-model asset."@en .

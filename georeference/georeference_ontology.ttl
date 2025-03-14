@@ -48,8 +48,6 @@ georeference: a owl:Ontology ;
     dcterms:references <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
-
-
 georeference:Georeference a owl:Class ;
     rdfs:label "Class definition for Georeference"@en ;
     rdfs:comment """A georeferencing dataset that defines the coordinate system, location, and spatial properties of a simulation asset. 
@@ -93,8 +91,6 @@ georeference:GeodeticReferenceSystem a owl:Class ;
 georeference:ProjectLocation a owl:Class ;
     rdfs:label "Class definition for ProjectLocation"@en ;
     rdfs:comment "Contains attributes describing the location of a simulation asset, such as country, region, city, and bounding box."@en ;
-
-    # Must have at least one BoundingBox
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty georeference:hasBoundingBox ;
@@ -134,10 +130,8 @@ georeference:hasOrigin a owl:ObjectProperty ;
     rdfs:domain georeference:GeodeticReferenceSystem ;
     rdfs:range georeference:LatLonCoordinate .
     
-
 georeference:hasViewPoint a owl:ObjectProperty ;
     rdfs:label "has view point"@en ;
     rdfs:comment "Defines the viewpoint position of the asset in world coordinates. OPTIONAL."@en ;
     rdfs:domain georeference:GeodeticReferenceSystem ;
     rdfs:range georeference:LatLonCoordinate .
-    

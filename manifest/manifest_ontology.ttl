@@ -67,12 +67,12 @@ manifest:Manifest a owl:Class ;
     ] ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
-        owl:onProperty manifest:hasContent ;  
+        owl:onProperty manifest:hasArtifacts ;  
         owl:someValuesFrom manifest:Link
     ] ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
-        owl:onProperty manifest:hasExternalContent ;  
+        owl:onProperty manifest:hasExternalArtifacts ;  
         owl:minCardinality 0
     ] .
 
@@ -120,16 +120,16 @@ manifest:hasLicense a owl:ObjectProperty ;
     rdfs:comment "Associates a Manifest instance with its corresponding License; only applicable within Manifest instances."@en .
 
 
-manifest:hasContent a owl:ObjectProperty ;
+manifest:hasArtifacts a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link ;
-    rdfs:comment "Associates a Manifest instance with its content data, represented as Link instances; only applicable within Manifest instances."@en .
+    rdfs:comment "Associates a Manifest instance with its artifacts, represented as Link instances; only applicable within Manifest instances."@en .
 
 
-manifest:hasExternalContent a owl:ObjectProperty ;
+manifest:hasExternalArtifacts a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link ;
-    rdfs:comment "Associates a Manifest instance with its external content data, represented as Link instances; only applicable within Manifest instances."@en .
+    rdfs:comment "Associates a Manifest instance with its external artifacts, represented as Link instances; only applicable within Manifest instances."@en .
 
 
 manifest:hasFileMetadata a owl:ObjectProperty ;

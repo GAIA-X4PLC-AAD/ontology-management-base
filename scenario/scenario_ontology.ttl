@@ -186,7 +186,6 @@ scenario:hasQuality a owl:ObjectProperty ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:Quality .
 
-
 ### hasGeoreference (DataResourceExtension -> georeference:Georeference)
 scenario:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;
@@ -200,4 +199,3 @@ scenario:hasHdMap a owl:ObjectProperty ;
     rdfs:comment "Links a scenario asset to a referenced HD map that is used within the scenario."@en ;
     rdfs:domain scenario:Manifest ;
     rdfs:range hdmap:HdMap .
-

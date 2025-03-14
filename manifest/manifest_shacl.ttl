@@ -26,19 +26,19 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path manifest:hasLicense
         ] ,
-        [   sh:name "content links"@en ;
-            sh:description "Defines the links to all relevant data for a digital asset. This is extended by the domain specific ontology."@en ;
+        [   sh:name "artifact links"@en ;
+            sh:description "Defines the links to all relevant artifacts for a digital asset. This is extended by the domain specific ontology."@en ;
             sh:minCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 2 ;
-            sh:path manifest:hasContent
+            sh:path manifest:hasArtifacts
         ] ,
-        [   sh:name "external content links"@en ;
-            sh:description "Defines the links to all related external data for a digital asset. This is extended by the domain specific ontology."@en ;
+        [   sh:name "external artifact links"@en ;
+            sh:description "Defines the links to all related external artifacts for a digital asset. This is extended by the domain specific ontology."@en ;
             sh:minCount 0 ;
             sh:node manifest:LinkShape ;
             sh:order 3 ;
-            sh:path manifest:hasExternalContent
+            sh:path manifest:hasExternalArtifacts
         ] ;
     sh:targetClass manifest:Manifest .
 

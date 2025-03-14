@@ -77,7 +77,6 @@ hdmap:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;
     rdfs:comment "HD map DataResourceExtension containing additional metadata information of the simulation asset."@en ;
     rdfs:subClassOf envited-x:DataResourceExtension ;
-    # Restricting each extension property
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
@@ -110,24 +109,30 @@ hdmap:DataResourceExtension a owl:Class ;
 
 hdmap:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en .
+    rdfs:comment "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 hdmap:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
-    rdfs:comment "Defines which data resources or measurement systems were used to create the HD map asset."@en .
+    rdfs:comment "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
+    rdfs:subClassOf envited-x:DataSource .
 
 hdmap:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties to describe the format of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the format of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 hdmap:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Quality .
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en .
+    rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
+    rdfs:subClassOf envited-x:Quanitiy .
 
+# Used in Quanitiy
 hdmap:Range2D a owl:Class ;
     rdfs:label "Class definition for Range2D"@en ;
     rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en .
@@ -162,6 +167,7 @@ hdmap:hasManifest a owl:ObjectProperty ;
 hdmap:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Content that describes the HD map`s content."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
     rdfs:domain hdmap:DataResourceExtension ;
     rdfs:range hdmap:Content .
 
@@ -169,6 +175,7 @@ hdmap:hasContent a owl:ObjectProperty ;
 hdmap:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:DataSource that describes how the HD map was created."@en ;
+rdfs:subPropertyOf envited-x:hasDataSource ;
     rdfs:domain hdmap:DataResourceExtension ;
     rdfs:range hdmap:DataSource .
 
@@ -176,6 +183,7 @@ hdmap:hasDataSource a owl:ObjectProperty ;
 hdmap:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Format that describes the HD map`s format details."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
     rdfs:domain hdmap:DataResourceExtension ;
     rdfs:range hdmap:Format .
 
@@ -183,6 +191,7 @@ hdmap:hasFormat a owl:ObjectProperty ;
 hdmap:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Quality describing the HD map`s quality or accuracy aspects."@en ;
+    rdfs:subPropertyOf envited-x:hasQuality ;
     rdfs:domain hdmap:DataResourceExtension ;
     rdfs:range hdmap:Quality .
 
@@ -190,6 +199,7 @@ hdmap:hasQuality a owl:ObjectProperty ;
 hdmap:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Quantity describing the HD map`s quantity (intersections, traffic signs, etc.)."@en ;
+    rdfs:subPropertyOf envited-x:hasQuantity ;
     rdfs:domain hdmap:DataResourceExtension ;
     rdfs:range hdmap:Quantity .
 
