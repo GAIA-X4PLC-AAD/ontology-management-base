@@ -25,10 +25,3 @@ repos:
         types: [python]
         args: ["--config=.flake8"]
         pass_filenames: true
-
-      - id: check-signoff
-        name: Ensure Signed-off-by
-        entry: >-
-          bash -c "grep -iq '^Signed-off-by: ' \"$1\"" bash
-        language: system
-        stages: [commit-msg]

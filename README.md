@@ -57,6 +57,13 @@ To automatically add a sign-off when committing:
 git commit -s -S -m "Your commit message"
 ```
 
+#### Configure signing
+
+You can add a commit hook to ensure that all commits include a Signed-off-by line. The process for setting up this hook is described in the [CONTRIBUTING.md](./CONTRIBUTING.md) file. This helps maintain compliance with the Developer Certificate of Origin (DCO) requirements.
+Adding a GPG Key for Commit Signing to sign your commits with a GPG key, follow the instructions provided in the [GitHub GPG documentation](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
+
+By following these steps, you can ensure that your commits are signed with your GPG key, adding an extra layer of security and verification to your contributions.
+
 ## Repository structure
 
 The repository contains a folder for each domain in the project which stores Turtle files for the domain-specific Ontologies and
