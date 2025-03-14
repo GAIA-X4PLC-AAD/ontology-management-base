@@ -287,3 +287,40 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
+
+
+###############################################################################
+### A shape that targets scenario:Manifest
+###############################################################################
+scenario:ManifestShape a sh:NodeShape ;
+    rdfs:label "Shape for scenario:Manifest"@en ;
+    rdfs:comment "Checks that each scenario:Manifest includes an HD map reference in manifest:hasExternalContent."@en ;
+
+    # 1) We apply this shape to all scenario:Manifest instances
+    sh:targetClass scenario:Manifest ;
+
+    # 2) We want to ensure that there is a Link in hasExternalContent
+    #    (with cardinalities or sub-shapes).
+    sh:property [
+        sh:path manifest:hasExternalContent ;
+        # Optionally require at least 1 Link in hasExternalContent
+        sh:minCount 1 ;
+        sh:node manifest:LinkShape ;
+        sh:message "The scenario manifest must have at least one external link in 'hasExternalContent'."@en
+    ] ;
+
+    # 3) Additional SPARQL constraint:
+    #    Check that at least one of those links has sh:conformsTo = hdmap:hdmap
+    sh:sparql [
+        # If you want to FAIL when no link with sh:conformsTo=hdmap:hdmap is found:
+        sh:message "The scenario manifest must reference an HD map (sh:conformsTo hdmap:hdmap) in hasExternalContent."@en ;
+        sh:select """
+            SELECT ?this
+            WHERE {
+              FILTER NOT EXISTS {
+                ?this manifest:hasExternalContent ?link .
+                ?link sh:conformsTo hdmap:hdmap .
+              }
+            }
+        """
+    ] .

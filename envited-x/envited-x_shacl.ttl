@@ -74,7 +74,7 @@ envited-x:DataResourceShape a sh:NodeShape ;
 envited-x:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:property [
-        sh:path manifest:hasContent ;  # Updated from "manifest:content" to "manifest:hasContent"
+        sh:path manifest:hasContent ;
         sh:node manifest:LinkShape ;
         sh:minCount 4 ;
         sh:message "The manifest must contain at least 4 required content categories: coreData, documentation, metadata, and media."@en ;
