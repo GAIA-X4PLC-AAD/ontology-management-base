@@ -1,4 +1,4 @@
-# Ontology management
+# Ontology Management
 
 ## Purpose
 
@@ -7,6 +7,55 @@ This repository is used to maintain the custom Ontologies and associated SHACL S
 **Ontologies** are required, when there is a need to introduce a custom type for a Self Description which should be expressed
 as an OWL class. For each class a **SHACL Shape** _must_ be defined, which defines the properties for the class and optional
 constraints.
+
+## Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/GAIA-X4PLC-AAD/ontology-management-base.git
+cd ontology-management-base
+```
+
+### 2️⃣ Install Python Environment (Optional but Recommended)
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install --upgrade pip
+pip install -r requirements_ci.txt
+```
+
+### 4️⃣ Install & Configure `pre-commit`
+
+```bash
+pre-commit install
+```
+
+Verify installation:
+
+```bash
+pre-commit run --all-files
+```
+
+### 5️⃣ Run Tests Locally
+
+```bash
+python3 src/run_all_checks_locally.py
+```
+
+### 6️⃣ Commit with `Signed-off-by` (Required for DCO Compliance)
+
+To automatically add a sign-off when committing:
+
+```bash
+git commit -s -S -m "Your commit message"
+```
 
 ## Repository structure
 
@@ -209,30 +258,6 @@ The pipeline checks if the `_instance.json` file is conform to the SHACL Shape(s
 #### Check if all target classes of a SHACL file are specified in the corresponding ontology file
 
 The pipeline checks if all target classes of a SHACL file are specified in the corresponding ontology file. If a target class is not specified in the ontology file the pipeline fails with a detailed error message.
-
-### Run the pipeline scripts locally
-
-```bash
-# prepare venv (optional)
-$ python3 -m venv .venv
-$ source .venv/bin/activate
-(.venv) $ python3 -m pip install --upgrade pip
-(.venv) $ python3 -m pip install -r requirements_ci.txt
-# execute check from CI
-python3 src/check_ttl_syntax.py <path_to_ttl_file>
-python3 src/check_jsonld_against_shacl_schema.py <directory name>
-python3 src/check_target_classes_against_owl_classes.py <directory name>
-```
-
-Example:
-
-```bash
-python3 src/check_ttl_syntax.py scenario/scenario_ontology.ttl
-python3 src/check_jsonld_against_shacl_schema.py scenario
-python3 src/check_target_classes_against_owl_classes.py scenario
-```
-
->You might use `py` or `python` instead of `python3` depending on your system.
 
 ## Further information
 
