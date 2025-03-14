@@ -34,13 +34,15 @@ def main():
                 # Extract prefixes relevant to the SHACL properties
                 for prop in shacl_properties:
                     for prefix, namespace in rdf_graph.namespaces():
-                        if prop['path'].startswith(namespace):
+                        if prop["path"].startswith(namespace):
                             relevant_prefixes.add((namespace, prefix))
-                        if prop['shape'].startswith(namespace):
+                        if prop["shape"].startswith(namespace):
                             relevant_prefixes.add((namespace, prefix))
 
         # Convert set of relevant prefixes to a dictionary
-        extracted_prefixes = {namespace: prefix for namespace, prefix in relevant_prefixes}
+        extracted_prefixes = {
+            namespace: prefix for namespace, prefix in relevant_prefixes
+        }
 
         # Write extracted property details to PROPERTIES.md file in a table format with prefixed IRIs
         if shacl_properties:
@@ -51,38 +53,50 @@ def main():
                 if extracted_prefixes:
                     file.write("## Prefixes\n\n")
                     # iterate and sort by prefix.
-                    for namespace, prefix in sorted(extracted_prefixes.items(), key=lambda x: x[1]):
+                    for namespace, prefix in sorted(
+                        extracted_prefixes.items(), key=lambda x: x[1]
+                    ):
                         file.write(f"- {prefix}: <{namespace}>\n")
                     file.write("\n")
 
                 # Write table header
                 file.write("## List of SHACL Properties\n\n")
-                file.write("| Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |\n")
+                file.write(
+                    "| Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |\n"
+                )
                 file.write("| --- | --- | --- | --- | --- | --- | --- | --- |\n")
 
                 for prop in shacl_properties:
                     # Replace IRIs with prefixes
                     for namespace, prefix in extracted_prefixes.items():
-                        if prop['path'].startswith(namespace):
-                            prop['path'] = prop['path'].replace(namespace, '')
-                            prop['prefix'] = prefix
-                        if prop['shape'].startswith(namespace):
-                            prop['shape'] = prop['shape'].replace(namespace, '')
+                        if prop["path"].startswith(namespace):
+                            prop["path"] = prop["path"].replace(namespace, "")
+                            prop["prefix"] = prefix
+                        if prop["shape"].startswith(namespace):
+                            prop["shape"] = prop["shape"].replace(namespace, "")
 
                     # Handling empty or None values explicitly to avoid Markdown table issues
-                    prefix_of_path = prop['prefix'] if 'prefix' in prop and prop['prefix'] is not None else ''
-                    min_count = prop['minCount'] if prop['minCount'] is not None else ''
-                    max_count = prop['maxCount'] if prop['maxCount'] is not None else ''
-                    description = prop['description'] if prop['description'] is not None else ''
-                    if prop['datatype'] is not None:
-                        datatype_or_nodekind = "<" + str(prop['datatype']) + ">"
-                    elif prop['nodeKind'] is not None:
-                        datatype_or_nodekind = "<" + str(prop['nodeKind']) + ">"
+                    prefix_of_path = (
+                        prop["prefix"]
+                        if "prefix" in prop and prop["prefix"] is not None
+                        else ""
+                    )
+                    min_count = prop["minCount"] if prop["minCount"] is not None else ""
+                    max_count = prop["maxCount"] if prop["maxCount"] is not None else ""
+                    description = (
+                        prop["description"] if prop["description"] is not None else ""
+                    )
+                    if prop["datatype"] is not None:
+                        datatype_or_nodekind = "<" + str(prop["datatype"]) + ">"
+                    elif prop["nodeKind"] is not None:
+                        datatype_or_nodekind = "<" + str(prop["nodeKind"]) + ">"
                     else:
-                        datatype_or_nodekind = ''
+                        datatype_or_nodekind = ""
 
-                    file.write(f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
-                               f"|\n")
+                    file.write(
+                        f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
+                        f"|\n"
+                    )
 
             print(f"Appended to PROPERTIES.md in {full_directory_path}")
 
@@ -147,17 +161,17 @@ def extract_shacl_properties(rdf_graph, insertion_filename=None) -> list[dict]:
 
     for row in results:
         property_details = {
-            'shape': row.shape,
-            'path': row.path,
-            'minCount': row.minCount,
-            'maxCount': row.maxCount,
-            'description': row.description,
-            'datatype': row.datatype,
-            'nodeKind': row.nodeKind,
-            'in': getattr(row, 'in', None)
+            "shape": row.shape,
+            "path": row.path,
+            "minCount": row.minCount,
+            "maxCount": row.maxCount,
+            "description": row.description,
+            "datatype": row.datatype,
+            "nodeKind": row.nodeKind,
+            "in": getattr(row, "in", None),
         }
         if insertion_filename:
-            property_details['filename'] = insertion_filename
+            property_details["filename"] = insertion_filename
         properties_list.append(property_details)
 
     return properties_list
@@ -171,9 +185,9 @@ def extract_rdf_graph_from_ttl(file_path) -> rdflib.Graph:
     :return: An RDF graph.
     """
     rdf_graph = rdflib.Graph()
-    rdf_graph.parse(file_path, format='ttl')
+    rdf_graph.parse(file_path, format="ttl")
     return rdf_graph
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

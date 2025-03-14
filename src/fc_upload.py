@@ -12,7 +12,9 @@ import authhelper.keycloakhandling
 # ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()
 FOLDER_TO_UPLOAD = os.environ.get("FOLDER_TO_UPLOAD")
-FEDERATED_CATALOGUE_URL = os.environ.get("FEDERATED_CATALOGUE_URL", default="https://fc-server.gxfs.gx4fm.org")
+FEDERATED_CATALOGUE_URL = os.environ.get(
+    "FEDERATED_CATALOGUE_URL", default="https://fc-server.gxfs.gx4fm.org"
+)
 
 
 # FUNCTIONS
@@ -29,7 +31,11 @@ def main():
                 if filename.endswith(".ttl"):
                     with open(full_filepath, "r") as new_turtle_file:
                         new_turtle_file_text = new_turtle_file.read()
-                        print(post_to_catalogue("/schemas", request_body=new_turtle_file_text))
+                        print(
+                            post_to_catalogue(
+                                "/schemas", request_body=new_turtle_file_text
+                            )
+                        )
 
 
 def post_to_catalogue(endpoint: str, request_body: str) -> requests.Response:
@@ -44,8 +50,10 @@ def post_to_catalogue(endpoint: str, request_body: str) -> requests.Response:
 
     auth_header = authhelper.keycloakhandling.get_auth_header()
     auth_header["Content-Type"] = "text/turtle"
-    return requests.post(FEDERATED_CATALOGUE_URL + endpoint, headers=auth_header, data=request_body)
+    return requests.post(
+        FEDERATED_CATALOGUE_URL + endpoint, headers=auth_header, data=request_body
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
