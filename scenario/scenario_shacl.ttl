@@ -1,7 +1,11 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
+@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
 @prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -29,9 +33,9 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:or ( 
             [
                 sh:and (
-                    [ sh:class envited-x:Manifest ]
+                    [ sh:class scenario:Manifest ]
                     [ sh:node manifest:ManifestShape ]
-                    [ sh:node envited-x:ManifestShape ]
+                    [ sh:node scenario:ManifestShape ]
                 )
             ] 
             [
@@ -105,16 +109,16 @@ scenario:DataResourceShapeExtension a sh:NodeShape ;
     sh:targetClass scenario:DataResourceExtension .
  
 scenario:FormatShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "ASAM OpenSCENARIO" ;
+    sh:property [skos:example "ASAM OpenSCENARIO" ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 1 ;
-            sh:path scenario:formatType ],
+            sh:path scenario:type ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Defines the version of the data format used for the scenario asset."@en ;
@@ -126,7 +130,7 @@ scenario:FormatShape a sh:NodeShape ;
     sh:targetClass scenario:Format .
 
 scenario:ContentShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
@@ -181,31 +185,6 @@ scenario:ContentShape a sh:NodeShape ;
             sh:name "custom commands"@en ;
             sh:order 6 ;
             sh:path scenario:customCommands ],
-        [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:description "Specifies the catalogues used in the scenario asset (provided as links)."@en ;
-            sh:message "Validation of catalogs failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "catalogs"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 7 ;
-            sh:path scenario:catalogs ],
-        [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:description "Specifies the environment models used in the scenario asset (provided as links)."@en ;
-            sh:message "Validation of environment failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "3d models"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 8 ;
-            sh:path scenario:environmentModels ],
-        [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:description "Specifies the traffic space used in the scenario asset (provided as a link)."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of trafficSpace failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "traffic space"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 9 ;
-            sh:path scenario:trafficSpace ],
         [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Defines the azimuth of the sun in degrees."@en ;
@@ -306,7 +285,7 @@ scenario:QualityShape a sh:NodeShape ;
     sh:targetClass scenario:Quality .
 
 scenario:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Real World Data" ;
             sh:datatype xsd:string ;
@@ -329,13 +308,12 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
 
+# 1) We apply this shape to all scenario:Manifest instances
 scenario:ManifestShape a sh:NodeShape ;
-    rdfs:label "Shape for scenario:Manifest"@en ;
-    rdfs:comment "Checks that each scenario:Manifest includes an HD map reference in manifest:hasExternalArtifacts."@en ;
-
-    # 1) We apply this shape to all scenario:Manifest instances
-    sh:targetClass scenario:Manifest ;
-
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:label "Shape for scenario:Manifest"@en ;
+    sh:comment "Checks that each scenario:Manifest includes external artifacts as reference in manifest:hasExternalArtifacts."@en ;
     # 2) We want to ensure that there is a Link in hasExternalArtifacts
     #    (with cardinalities or sub-shapes).
     sh:property [
@@ -343,21 +321,23 @@ scenario:ManifestShape a sh:NodeShape ;
         # Optionally require at least 1 Link in hasExternalArtifacts
         sh:minCount 1 ;
         sh:node manifest:LinkShape ;
-        sh:message "The scenario manifest must have at least one external link in 'hasExternalArtifacts'."@en
+        sh:message "The scenario manifest must have at least one external link in 'hasExternalArtifacts'."@en ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:class environment-model:EnvironmentModel ]
+                    [ sh:node environment-model:EnvironmentModelShape ]
+                )
+            ] 
+            [
+                sh:and (
+                    [ sh:class hdmap:HdMap ]
+                    [ sh:node hdmap:HdMapShape ]
+                )
+            ]
+            [
+                sh:node manifest:LinkShape
+            ] 
+        )
     ] ;
-
-    # 3) Additional SPARQL constraint:
-    #    Check that at least one of those links has sh:conformsTo = scenario:scenario
-    sh:sparql [
-        # If you want to FAIL when no link with sh:conformsTo=scenario:scenario is found:
-        sh:message "The scenario manifest must reference an HD map (sh:conformsTo scenario:scenario) in hasExternalArtifacts."@en ;
-        sh:select """
-            SELECT ?this
-            WHERE {
-              FILTER NOT EXISTS {
-                ?this manifest:hasExternalArtifacts ?link .
-                ?link sh:conformsTo scenario:scenario .
-              }
-            }
-        """
-    ] .
+    sh:targetClass scenario:Manifest .
