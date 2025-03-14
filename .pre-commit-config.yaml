@@ -1,3 +1,4 @@
+---
 repos:
   - repo: local
     hooks:
@@ -7,7 +8,7 @@ repos:
         language: system
         types: [python]
         args: ["--config=pyproject.toml"]
-        pass_filenames: true  # Ensures black runs only on changed files
+        pass_filenames: true
 
       - id: isort
         name: isort
@@ -15,7 +16,7 @@ repos:
         language: system
         types: [python]
         args: ["--settings=pyproject.toml"]
-        pass_filenames: true  # Ensures isort runs only on changed files
+        pass_filenames: true
 
       - id: flake8
         name: flake8
@@ -23,10 +24,11 @@ repos:
         language: system
         types: [python]
         args: ["--config=.flake8"]
-        pass_filenames: true  # Ensures flake8 runs only on changed files
+        pass_filenames: true
 
-#      - id: check-signoff
-#        name: Ensure Signed-off-by
-#        entry: bash -c 'grep -iq "^Signed-off-by: " "$1"' _
-#        language: system
-#        types: [commit-msg]
+      - id: check-signoff
+        name: Ensure Signed-off-by
+        entry: >-
+          bash -c "grep -iq '^Signed-off-by: ' \"$1\"" bash
+        language: system
+        stages: [commit-msg]
