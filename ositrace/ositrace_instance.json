@@ -19,7 +19,7 @@
       "@type": "xsd:string"
     },
     "gx:description": {
-      "@value": "OSI SensorData trace of cut-out scenario on testing ground",
+      "@value": "OSI SensorData trace of cut-out scenario on testing ground.",
       "@type": "xsd:string"
     }
   },
