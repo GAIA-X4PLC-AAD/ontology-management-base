@@ -15,4 +15,9 @@
 | SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
 | DataResourceShape | gx | name | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
 | DataResourceShape | gx | description | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
+| DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
+| n321d65f2254e4be0a7f4f191f384b20bb22 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| n321d65f2254e4be0a7f4f191f384b20bb22 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts | 4 |  |  |  | envited-x_shacl.ttl |
