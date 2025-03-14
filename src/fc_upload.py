@@ -1,13 +1,14 @@
 import os
+
 import requests
 
 import authhelper.keycloakhandling
 
-##########################################################################################
+##########################################################################
 # DEPRECATED: LEGACY VERSION ONLY SUPPORTING ADDING NEW SCHEMAS TO THE FEDERATED CATALOGUE
 # USE THE NEW VERSION IN src/fc_upload_with_update.py instead.
 # WILL BE REMOVED IN FUTURE.
-##########################################################################################
+##########################################################################
 
 # ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()

@@ -1,4 +1,5 @@
 import sys
+
 from rdflib import Graph, exceptions
 
 

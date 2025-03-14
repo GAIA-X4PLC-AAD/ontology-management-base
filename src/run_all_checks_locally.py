@@ -1,7 +1,7 @@
 import os
+import re
 import subprocess
 import sys
-import re
 
 # Define the root directory of the repository
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

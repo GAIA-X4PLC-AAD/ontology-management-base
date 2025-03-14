@@ -1,7 +1,8 @@
 # Python
-import sys
 import glob
 import os
+import sys
+
 from rdflib import Graph
 
 # Import the functions from fc_upload_with_update.py

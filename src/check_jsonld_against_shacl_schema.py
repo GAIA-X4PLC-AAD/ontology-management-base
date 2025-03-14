@@ -1,9 +1,10 @@
-import sys
 import glob
-import os
 import json
-from rdflib import Graph, URIRef, Namespace
+import os
+import sys
+
 from pyshacl import validate
+from rdflib import Graph, Namespace, URIRef
 
 
 def resolve_prefixed_type(json_type, context):

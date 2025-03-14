@@ -1,7 +1,8 @@
 import os
+
 from keycloak.keycloak_openid import KeycloakOpenID
 
-### Authentification
+# Authentification
 KEYCLOAK_USER = str(os.environ.get("KEYCLOAK_USER"))
 KEYCLOAK_PASSWORD = str(os.environ.get("KEYCLOAK_PASSWORD"))
 

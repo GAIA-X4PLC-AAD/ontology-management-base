@@ -1,11 +1,12 @@
 import os
-import requests
-import rdflib
 import sys
 from typing import List, Optional
 from urllib.parse import quote_plus
-import authhelper.keycloakhandling
 
+import rdflib
+import requests
+
+import authhelper.keycloakhandling
 
 # ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()
@@ -196,7 +197,9 @@ def find_corresponding_shapes_from_catalogue(
     if len(corresponding_shapes) > 1:
         raise ValueError(
             f"Multiple corresponding shapes found in catalogue for {ontology_name}. "
-            f"IDs are {list(corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
+            f"IDs are {
+                list(
+                    corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
             f"the correct shape ID.\nPlease upload manually."
         )
     return corresponding_shapes

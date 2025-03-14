@@ -1,11 +1,13 @@
 import os
+
 import rdflib
 
-### ENVIRONMENT PROPERTIES
-# Define the directory from which to crawl directories for.ttl files (os.getcwd() for the current directory).
+# ENVIRONMENT PROPERTIES
+# Define the directory from which to crawl directories for.ttl files
+# (os.getcwd() for the current directory).
 SHACL_DIRECTORY = os.getcwd()
 
-### FUNCTIONS
+# FUNCTIONS
 
 
 def main():
@@ -13,7 +15,8 @@ def main():
     The main function controls the overall program flow.
     It reads .ttl files, extracts RDF graphs, sh:path attributes, and appends them to PROPERTIES.md files.
     """
-    # Iterate through the first level of all directories in the current directory except for "src".
+    # Iterate through the first level of all directories in the current
+    # directory except for "src".
     for directory in next(os.walk(SHACL_DIRECTORY))[1]:
         if directory == "src":
             continue
@@ -24,7 +27,8 @@ def main():
         shacl_properties = []
         relevant_prefixes = set()  # Initialize set to store relevant prefixes
 
-        # Extract SHACL Properties (paths) and additional attributes from all sorted .ttl files in the directory.
+        # Extract SHACL Properties (paths) and additional attributes from all
+        # sorted .ttl files in the directory.
         for filename in sorted(os.listdir(full_directory_path)):
             if filename.endswith("shacl.ttl"):
                 file_path = os.path.join(full_directory_path, filename)
@@ -44,7 +48,8 @@ def main():
             namespace: prefix for namespace, prefix in relevant_prefixes
         }
 
-        # Write extracted property details to PROPERTIES.md file in a table format with prefixed IRIs
+        # Write extracted property details to PROPERTIES.md file in a table format
+        # with prefixed IRIs
         if shacl_properties:
             with open(properties_file, "w") as file:
                 # Write headline
@@ -75,7 +80,8 @@ def main():
                         if prop["shape"].startswith(namespace):
                             prop["shape"] = prop["shape"].replace(namespace, "")
 
-                    # Handling empty or None values explicitly to avoid Markdown table issues
+                    # Handling empty or None values explicitly to avoid Markdown table
+                    # issues
                     prefix_of_path = (
                         prop["prefix"]
                         if "prefix" in prop and prop["prefix"] is not None
@@ -94,7 +100,10 @@ def main():
                         datatype_or_nodekind = ""
 
                     file.write(
-                        f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
+                        f"| {
+                            prop['shape']} | {prefix_of_path} | {
+                            prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {
+                            prop['filename']} "
                         f"|\n"
                     )
 
@@ -142,7 +151,7 @@ def extract_shacl_properties(rdf_graph, insertion_filename=None) -> list[dict]:
     # SPARQL query to extract property details.
     query = """
     PREFIX sh: <http://www.w3.org/ns/shacl#>
-    
+
     SELECT ?shape ?path ?minCount ?maxCount ?description ?datatype ?nodeKind ?in
     WHERE {
       ?shape a sh:NodeShape .

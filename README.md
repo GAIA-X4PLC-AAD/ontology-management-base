@@ -217,7 +217,7 @@ The pipeline checks if all target classes of a SHACL file are specified in the c
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 (.venv) $ python3 -m pip install --upgrade pip
-(.venv) $ python3 -m pip install -r src/requirements_ci.txt
+(.venv) $ python3 -m pip install -r requirements_ci.txt
 # execute check from CI
 python3 src/check_ttl_syntax.py <path_to_ttl_file>
 python3 src/check_jsonld_against_shacl_schema.py <directory name>
