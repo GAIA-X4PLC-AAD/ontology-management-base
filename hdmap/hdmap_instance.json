@@ -11,7 +11,6 @@
   },
   "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
   "@type": "hdmap:HdMap",
-
   "hdmap:hasDataResource": {
     "@type": "envited-x:DataResource",
     "gx:name": {
@@ -23,10 +22,8 @@
       "@type": "xsd:string"
     }
   },
-
   "hdmap:hasDataResourceExtension": {
     "@type": "hdmap:DataResourceExtension",
-
     "hdmap:hasFormat": {
       "@type": "hdmap:Format",
       "hdmap:formatType": "ASAM OpenDRIVE",
@@ -35,7 +32,6 @@
         "@type": "xsd:string"
       }
     },
-
     "hdmap:hasContent": {
       "@type": "hdmap:Content",
       "hdmap:roadTypes": "town",
@@ -46,7 +42,6 @@
       "hdmap:levelOfDetail": "crosswalk",
       "hdmap:trafficDirection": "right-hand"
     },
-
     "hdmap:hasQuantity": {
       "@type": "hdmap:Quantity",
       "hdmap:length": {
@@ -93,7 +88,6 @@
         "@type": "xsd:float"
       }
     },
-
     "hdmap:hasQuality": {
       "@type": "hdmap:Quality",
       "hdmap:precision": {
@@ -117,7 +111,6 @@
         "@type": "xsd:float"
       }
     },
-
     "hdmap:hasDataSource": {
       "@type": "hdmap:DataSource",
       "hdmap:usedDataSources": {
@@ -129,11 +122,9 @@
         "@type": "xsd:string"
       }
     },
-
     "hdmap:hasGeoreference": {
       "@type": "georeference:Georeference",
       "@id": "did:web:registry.gaia-x.eu:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-      
       "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
@@ -176,7 +167,6 @@
           }
         }
       },
-
       "georeference:hasGeodeticReferenceSystem": {
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
@@ -209,14 +199,13 @@
       }
     }
   },
-
   "hdmap:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      "manifest:uri": {
+      "manifest:filePath": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
       },

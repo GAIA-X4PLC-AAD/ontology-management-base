@@ -1,9 +1,9 @@
 {
     "@context": {
-        "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/" ,
-        "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/" ,
-        "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" ,
-        "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#" ,
+        "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+        "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
+        "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+        "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
         "scenario": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/",
         "sh": "http://www.w3.org/ns/shacl#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -15,7 +15,6 @@
     },
     "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
     "@type": "scenario:Scenario",
-
     "scenario:hasDataResource": {
         "@type": "envited-x:DataResource",
         "gx:name": {
@@ -46,7 +45,7 @@
                 "manifest:category": "coreData",
                 "manifest:FileMetadata": {
                     "@type": "manifest:FileMetadata",
-                    "manifest:uri": {
+                    "manifest:filePath": {
                         "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
                         "@type": "xsd:anyURI"
                     }
@@ -65,14 +64,13 @@
                 "manifest:category": "coreData",
                 "manifest:FileMetadata": {
                     "@type": "manifest:FileMetadata",
-                    "manifest:uri": {
+                    "manifest:filePath": {
                         "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
                         "@type": "xsd:anyURI"
                     }
                 }
             }
         ],
-
         "scenario:sunAzimuth": {
             "@value": 180.0,
             "@type": "xsd:float"
@@ -216,32 +214,32 @@
             },
             "georeference:heightSystem": "Ellipsodial height"
         }
-    } ,
+    },
     "scenario:hasManifest": {
-    "@type": "manifest:Link",
-    "manifest:accessRole": "publicUser",
-    "manifest:category": "manifest",
-    "manifest:hasFileMetadata": {
-      "@type": "manifest:FileMetadata",
-      "manifest:uri": {
-        "@value": "./manifest_reference.json",
-        "@type": "xsd:anyURI"
-      },
-      "manifest:mimeType": {
-        "@value": "application/ld+json",
-        "@type": "xsd:string"
-      },
-      "sh:conformsTo": [
-        {
-          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
-        },
-        {
-          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
-        },
-        {
-          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/"
+        "@type": "manifest:Link",
+        "manifest:accessRole": "publicUser",
+        "manifest:category": "manifest",
+        "manifest:hasFileMetadata": {
+            "@type": "manifest:FileMetadata",
+            "manifest:filePath": {
+                "@value": "./manifest_reference.json",
+                "@type": "xsd:anyURI"
+            },
+            "manifest:mimeType": {
+                "@value": "application/ld+json",
+                "@type": "xsd:string"
+            },
+            "sh:conformsTo": [
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+                },
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+                },
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/"
+                }
+            ]
         }
-      ]
     }
-  }
 }

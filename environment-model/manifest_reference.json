@@ -8,7 +8,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
+  "@id": "did:web:registry.gaia-x.eu:Manifest:p2yv4S6Z7FXc9qJaLy1B3mEGtiRuLoK8hcsN",
   "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
@@ -16,7 +16,7 @@
     "manifest:category": "manifest",
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      "manifest:uri": {
+      "manifest:filePath": {
         "@value": "./manifest_instance.json",
         "@type": "xsd:anyURI"
       },
@@ -37,7 +37,7 @@
       "manifest:category": "license",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "https://opensource.org/license/EPL-2.0",
           "@type": "xsd:anyURI"
         },
@@ -55,7 +55,7 @@
       "manifest:category": "coreData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "ipfs://bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
           "@type": "xsd:anyURI"
         },
@@ -83,7 +83,7 @@
       "manifest:category": "documentation",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "ipfs://bafkreidjcjbxlyeft6wasxkuerwxvo3acmranffkmv5iy2tiewl2k5z6fe",
           "@type": "xsd:anyURI"
         },
@@ -111,7 +111,7 @@
       "manifest:category": "metadata",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
           "@type": "xsd:anyURI"
         },
@@ -139,7 +139,7 @@
       "manifest:category": "media",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "./visualization/detailRoadNetwork.geojson",
           "@type": "xsd:anyURI"
         },
@@ -167,7 +167,7 @@
       "manifest:category": "media",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:uri": {
+        "manifest:filePath": {
           "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
           "@type": "xsd:anyURI"
         },

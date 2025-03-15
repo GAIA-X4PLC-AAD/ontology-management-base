@@ -11,7 +11,6 @@
   },
   "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
   "@type": "environment-model:EnvironmentModel",
-
   "environment-model:hasDataResource": {
     "@type": "envited-x:DataResource",
     "gx:name": {
@@ -23,10 +22,8 @@
       "@type": "xsd:string"
     }
   },
-
   "environment-model:hasDataResourceExtension": {
     "@type": "environment-model:DataResourceExtension",
-
     "environment-model:hasProject": {
       "@type": "environment-model:Project",
       "environment-model:visualisationToolName": {
@@ -54,7 +51,6 @@
         "@type": "xsd:string"
       }
     },
-
     "environment-model:hasFormat": {
       "@type": "environment-model:Format",
       "environment-model:formatType": "Unreal Datasmith",
@@ -63,13 +59,11 @@
         "@type": "xsd:string"
       }
     },
-
     "environment-model:hasContent": {
       "@type": "environment-model:Content",
       "environment-model:elements": "profile roads, extrude buildings, powerlines",
       "environment-model:useCase": "driving"
     },
-
     "environment-model:hasQuantity": {
       "@type": "environment-model:Quantity",
       "environment-model:textureMaterialCount": {
@@ -85,7 +79,6 @@
         "@type": "xsd:unsignedInt"
       }
     },
-
     "environment-model:hasQuality": {
       "@type": "environment-model:Quality",
       "environment-model:detailLevel": "High",
@@ -94,7 +87,6 @@
         "@type": "xsd:float"
       }
     },
-
     "environment-model:hasGeoreference": {
       "@type": "georeference:Georeference",
       "georeference:hasProjectLocation": {
@@ -171,14 +163,13 @@
       }
     }
   },
-
   "environment-model:hasManifest": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      "manifest:uri": {
+      "manifest:filePath": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
       },

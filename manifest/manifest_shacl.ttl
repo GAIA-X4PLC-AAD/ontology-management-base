@@ -171,12 +171,52 @@ manifest:LinkShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-       [    sh:name "access role"@en ;
+        [   # This is for the RDF-level link (the IRI)
+            sh:name "resource IRI"@en ;
+            sh:description "IRI that identifies the resource in RDF (if the file is JSON-LD)."@en ;
+            sh:nodeKind sh:IRI ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ; # maybe optional if it's not JSON-LD
+            sh:path manifest:iri ;
+            sh:message "IRI link is required if this file is an RDF/JSON-LD resource."@en ;
+            sh:order 0 ;
+            sh:severity sh:Violation ;
+            sh:condition [
+                a sh:NodeShape ;
+                sh:property [
+                    sh:path manifest:hasFileMetadata ;
+                    sh:node [
+                        sh:property [
+                            sh:path manifest:mimeType ;
+                            sh:hasValue "application/ld+json"^^xsd:string ;
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        [
+            sh:description "Provides additional information about the manifest reference, such as validation expectations."@en ;
+            sh:minCount 0 ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:string ;
+            sh:order 1 ;
+            sh:path skos:note ;
+            sh:message "A skos:note can provide supplementary information about the manifest reference."@en ;
+        ],
+        [
+            sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
+            sh:minCount 0 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path sh:conformsTo ;
+            sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
+        ],
+        [   sh:name "access role"@en ;
             sh:description "Specifies the access role associated with the corresponding file."@en ;
             skos:example "publicUser";
             sh:in ("owner" "registeredUser" "publicUser") ;
             sh:message "Validation of accessRole failed!"@en ;
-            sh:order 1 ;
+            sh:order 3 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:accessRole 
@@ -186,7 +226,7 @@ manifest:LinkShape a sh:NodeShape ;
             skos:example "metadata";
             sh:in ("manifest" "coreData" "documentation" "media" "metadata" "validationReports" "license" "externalDependency" "miscellaneous") ;
             sh:message "Validation of category failed!"@en ;
-            sh:order 2 ;
+            sh:order 4 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:category 
@@ -196,7 +236,7 @@ manifest:LinkShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node manifest:FileMetadataShape ;
-            sh:order 3 ;
+            sh:order 5 ;
             sh:path manifest:hasFileMetadata
         ] ;
     sh:targetClass manifest:Link .
@@ -205,30 +245,17 @@ manifest:FileMetadataShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [   sh:name "uniform resource identifier"@en ;
-            sh:description "Uniform Resource Identifier (URI) to identify the resource by location, name, or both."@en ;
+        [   # Path or location for local/remote retrieval
+            sh:name "file location"@en ;
+            sh:description "A local or remote path/URL from which the file can be retrieved (e.g. './manifest_reference.json', 'ipfs://...', 's3://...', 'https://...')."@en ;
             skos:example "./metadata/gxMetadata.json";
             sh:datatype xsd:anyURI ;
             sh:message "Validation of URI failed!"@en ;
-            sh:name "path"@en ;
-            sh:order 0 ;
+            sh:order 1 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path manifest:uri 
+            sh:path manifest:filePath  
         ],
-        [ 
-            sh:name "content identifier"@en ;
-            sh:description "Defines the IPFS CIDv1 identifier of the file."@en ;
-            skos:example "bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um";
-            sh:datatype xsd:string;
-            sh:message "The CIDv1 identifier is not valid or is a CIDv0 identifier."@en ;
-            sh:name "IPFS CIDv1";
-            sh:order 1;
-            sh:maxCount 1;
-            sh:minCount 0;
-            sh:path manifest:cid;
-            sh:pattern "^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-km-z]{48,}|F[0-9A-F]{50,})$" 
-        ],     
         [
             sh:name "mime type"@en ;
             sh:description "Defines the MIME type of the file."@en ;
@@ -237,40 +264,30 @@ manifest:FileMetadataShape a sh:NodeShape ;
             sh:message "Validation of the MIME type failed!"@en ;
             sh:order 2;
             sh:maxCount 1;
-            sh:minCount 0;
+            sh:minCount 1;
             sh:path manifest:mimeType;
             sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
         ],
-        [
-            sh:description "Provides additional information about the manifest reference, such as validation expectations."@en ;
-            sh:minCount 0 ;
-            sh:maxCount 1 ;
-            sh:datatype xsd:string ;
-            sh:order 3 ;
-            sh:path skos:note ;
-            sh:message "A skos:note can provide supplementary information about the manifest reference."@en ;
-        ],
-        [
-            sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
-            sh:minCount 0 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path sh:conformsTo ;
-            sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
-            sh:condition [
-                sh:property [
-                    sh:path manifest:mimeType ;
-                    sh:in ("application/ld+json")
-                ]
-            ]
-        ], 
+        [ 
+            sh:name "content identifier"@en ;
+            sh:description "Defines the IPFS CIDv1 identifier of the file."@en ;
+            skos:example "bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um";
+            sh:datatype xsd:string;
+            sh:message "The CIDv1 identifier is not valid or is a CIDv0 identifier."@en ;
+            sh:order 3;
+            sh:maxCount 1;
+            sh:minCount 0;
+            sh:path manifest:cid;
+            sh:pattern "^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-km-z]{48,}|F[0-9A-F]{50,})$" 
+        ],     
+        
         [
             sh:name "file size"@en ;
             sh:description "Specifies the file size in bytes."@en ;
             skos:example "1048576" ;
             sh:datatype xsd:integer ;
             sh:message "Validation of file size failed!"@en ;
-            sh:order 5 ;
+            sh:order 4 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:fileSize ;
@@ -281,7 +298,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             skos:example "example.txt" ;
             sh:datatype xsd:string ;
             sh:message "Filename validation failed!"@en ;
-            sh:order 6 ;
+            sh:order 5 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:filename ;
@@ -293,7 +310,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             skos:example "2022-04-01T00:00:00" ;
             sh:datatype xsd:dateTime ;
             sh:message "Validation of timestamp failed!"@en ;
-            sh:order 7 ;
+            sh:order 6 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:timestamp ;
@@ -304,7 +321,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:node manifest:DimensionsShape ;
-            sh:order 8 ;
+            sh:order 7 ;
             sh:path manifest:hasDimensions ;
         ] ;
     sh:targetClass manifest:FileMetadata .

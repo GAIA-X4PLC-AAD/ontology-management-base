@@ -1,93 +1,125 @@
 import glob
-import json
 import os
 import sys
+from collections import defaultdict
+from urllib.parse import urlparse
 
 from pyshacl import validate
-from rdflib import Graph, Namespace, URIRef
+from rdflib import RDF, Graph, Namespace
+
+# Global standard prefixes
+STANDARD_PREFIXES = {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "org": "http://www.w3.org/ns/org#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    # Force redirect gx: to the local repo
+    "gx": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/gx/",
+}
+
+
+def load_shacl_files(root_dir, used_types):
+    """Loads only SHACL files relevant to the detected RDF types."""
+    shacl_graph = Graph()
+    loaded_shacl_files = set()
+
+    # Bind standard prefixes
+    for prefix, namespace in STANDARD_PREFIXES.items():
+        shacl_graph.bind(prefix, Namespace(namespace))
+
+    # Always load mapped SHACL files (e.g., gx)
+    namespace_mapping = {"gx": os.path.join(root_dir, "gx/gx_shacl.ttl")}
+    for prefix, local_path in namespace_mapping.items():
+        if os.path.exists(local_path):
+            print(f"✅ Loading mapped SHACL file for {prefix}: {local_path}")
+            shacl_graph.parse(local_path, format="turtle")
+
+    # Load only SHACL files relevant to used RDF types
+    shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
+
+    for shacl_file in shacl_files:
+        if shacl_file in namespace_mapping.values():
+            continue  # Already loaded manually
+
+        temp_graph = Graph()
+        temp_graph.parse(shacl_file, format="turtle")
+
+        SH = Namespace("http://www.w3.org/ns/shacl#")
+        file_is_relevant = False
+
+        for _, _, rdf_type in temp_graph.triples((None, SH.targetClass, None)):
+            rdf_type_str = str(rdf_type)
+            if rdf_type_str in used_types:
+                file_is_relevant = True
+                break  # No need to continue if at least one match is found
+
+        # ✅ Load the SHACL file only if it constrains at least one used RDF type
+        if file_is_relevant:
+            shacl_graph += temp_graph
+            loaded_shacl_files.add(shacl_file)
+            print(f"✅ Loaded SHACL file: {os.path.basename(shacl_file)}")
+
+    return shacl_graph
 
 
 def resolve_prefixed_type(json_type, context):
-    """Converts a prefixed type like 'manifest:Manifest' to a full IRI."""
+    """Resolves prefixed RDF types to full IRIs using global prefixes."""
+    full_context = context.copy() if context else {}
+    for prefix, namespace in STANDARD_PREFIXES.items():
+        full_context.setdefault(prefix, namespace)  # Add only if missing
+
     if ":" in json_type:
         prefix, suffix = json_type.split(":", 1)
-        base_iri = context.get(prefix)
+        base_iri = full_context.get(prefix)
         if base_iri:
             return f"{base_iri}{suffix}"
-    return json_type  # Return as-is if it's already a full IRI
+    return json_type
 
 
-def load_shacl_files(root_dir):
-    """Loads all SHACL files and extracts shape mappings based on sh:targetClass."""
-    shacl_graph = Graph()
-    shape_mappings = {}
+def extract_used_types(data_graph):
+    """Extracts all unique RDF types used in the JSON-LD data graph, grouped by namespace for better readability."""
+    used_types = defaultdict(set)  # Use a set to store unique values per namespace
 
-    shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
-    for shacl_file in shacl_files:
-        shacl_graph.parse(shacl_file, format="turtle")
+    for _, _, rdf_type in data_graph.triples((None, RDF.type, None)):
+        rdf_type_str = str(rdf_type)
+        namespace = (
+            urlparse(rdf_type_str).scheme + "://" + urlparse(rdf_type_str).netloc
+        )  # Extract domain
+        used_types[namespace].add(rdf_type_str)  # Store unique values only
 
-    SH = Namespace("http://www.w3.org/ns/shacl#")
-    for s, p, o in shacl_graph.triples((None, SH.targetClass, None)):
-        if str(o) not in shape_mappings:
-            shape_mappings[str(o)] = []  # Initialize as list
-        shape_mappings[str(o)].append(str(s))  # Append to list
+    # Format output for better readability with newlines
+    formatted_output = []
+    for namespace, types in used_types.items():
+        formatted_types = "\n    ".join(sorted(types))  # Sort for consistent order
+        formatted_output.append(f"  - {namespace}:\n    {formatted_types}")
 
-    return shacl_graph, shape_mappings
+    print(
+        f"✅ Extracted {sum(len(types) for types in used_types.values())} unique RDF types:\n{'\n'.join(formatted_output)}"
+    )
+
+    return {rdf_type for types in used_types.values() for rdf_type in types}
 
 
 def load_jsonld_files(jsonld_files):
+    """Loads JSON-LD files into an RDF graph and prints each file with its number."""
     data_graph = Graph()
-    for jsonld_file in jsonld_files:
-        print(f"Adding JSON-LD file to data graph: {jsonld_file}")
-        data_graph.parse(jsonld_file, format="json-ld")
+    failed_files = 0
+
+    for i, jsonld_file in enumerate(jsonld_files, start=1):
+        try:
+            data_graph.parse(jsonld_file, format="json-ld")
+            print(f"✅ [{i}/{len(jsonld_files)}] Loaded: {jsonld_file}")
+        except Exception as e:
+            print(f"❌ [{i}/{len(jsonld_files)}] Failed: {jsonld_file} → {e}")
+            failed_files += 1
+
+    print(
+        f"\n✅ Successfully loaded {len(jsonld_files) - failed_files}/{len(jsonld_files)} JSON-LD files."
+    )
     return data_graph
-
-
-def explicitly_validate_references(
-    data_graph, shacl_graph, reference_files, shape_mappings
-):
-    failed_validations = []
-
-    for ref_file in reference_files:
-        filename = os.path.basename(ref_file)
-
-        with open(ref_file, "r") as f:
-            json_data = json.load(f)
-            refernce_file_id = json_data.get("@id")
-            json_type = json_data.get("@type", "")
-
-        if not refernce_file_id:
-            print(f'No explicit "@id" found in {ref_file}, skipping validation.')
-            continue
-
-        context = json_data.get("@context", {})
-        full_type = resolve_prefixed_type(json_type, context)
-
-        shape_uris = shape_mappings.get(full_type, [])  # Get all matching shapes
-        if not shape_uris:
-            print(
-                f"No SHACL shape found for {filename} (Type: {json_type} resolved as {full_type}), skipping validation."
-            )
-            continue
-
-        focus_node = URIRef(refernce_file_id)
-
-        for shape_uri_str in shape_uris:
-            target_shape_uri = URIRef(shape_uri_str)
-
-            print(f"Explicitly validating {filename} against shape {target_shape_uri}")
-            conforms, _, v_text = validate(
-                data_graph,
-                shacl_graph=shacl_graph,
-                inference="rdfs",
-                debug=False,
-                focus=focus_node,
-                target_shape=target_shape_uri,
-            )
-            if not conforms:
-                failed_validations.append((conforms, filename, v_text))
-
-    return failed_validations
 
 
 def main():
@@ -97,51 +129,84 @@ def main():
         )
         sys.exit(1)
 
-    paths = sys.argv[1:]  # Accept multiple file paths
+    paths = sys.argv[1:]
 
-    print("Loading all SHACL shapes into shacle graph and create shape mappings...")
-    shacl_graph, shape_mappings = load_shacl_files(".")
+    # Step 1: Collect all *ontology.ttl files
+    ontology_files = []
+    for path in paths:
+        if os.path.isdir(path):
+            ontology_files.extend(glob.glob(os.path.join(path, "*_ontology.ttl")))
+        elif os.path.isfile(path) and path.endswith("_ontology.ttl"):
+            ontology_files.append(path)
 
+    # Step 2: Load corresponding SHACL files
+    shacl_graph_onto = Graph()
+    for onto_file in ontology_files:
+        shacl_file = onto_file.replace("_ontology.ttl", "_shacl.ttl")
+        if os.path.exists(shacl_file):
+            print(f"✅ Loading SHACL file for ontology: {shacl_file}")
+            shacl_graph_onto.parse(shacl_file, format="turtle")
+        else:
+            print(
+                f"⚠️ Warning: No SHACL file found for {onto_file}, skipping validation."
+            )
+
+    # Step 3: Validate each ontology.ttl against its SHACL graph
+    for onto_file in ontology_files:
+        print(f"🔍 Validating ontology {onto_file} against the SHACL shapes...")
+        onto_graph = Graph()
+        onto_graph.parse(onto_file, format="turtle")
+
+        conforms, _, v_text = validate(
+            onto_graph, shacl_graph=shacl_graph_onto, inference="owlrl", debug=False
+        )
+        if not conforms:
+            print(f"❌ Failed SHACL validation for {onto_file}!")
+            print(v_text)
+            sys.exit(2)
+        else:
+            print(f"✅ Ontology file {onto_file} passed SHACL validation.\n")
+
+    # Step 4: Load JSON-LD Instance and Reference Files
     data_graph = Graph()
     instance_files = []
     reference_files = []
 
-    # Process multiple files
     for path in paths:
         if os.path.isdir(path):
-            print(f"Loading JSON-LD files from directory: {path}")
             instance_files.extend(glob.glob(f"{path}/*_instance.json"))
             reference_files.extend(glob.glob(f"{path}/*_reference.json"))
         elif os.path.isfile(path):
-            print(f"Loading single JSON-LD file: {path}")
             if path.endswith("_instance.json"):
                 instance_files.append(path)
             elif path.endswith("_reference.json"):
                 reference_files.append(path)
-        else:
-            print(f"Error: {path} is neither a file nor a directory.")
-            sys.exit(1)
 
-    failed_validations = []
+    # ✅ Step 5: Load JSON-LD files FIRST
+    print("📌 Loading JSON-LD files into data graph...")
+    data_graph = load_jsonld_files(instance_files + reference_files)
 
-    if reference_files:
-        failed_validations = explicitly_validate_references(
-            data_graph, shacl_graph, reference_files, shape_mappings
-        )
+    # ✅ Step 6: Now Extract RDF Types From the Loaded Data Graph
+    print("📌 Extracting RDF types from data graph...")
+    used_types = extract_used_types(data_graph)
 
-    if instance_files or reference_files:
-        data_graph = load_jsonld_files(instance_files + reference_files)
+    # ✅ Step 7: Load only necessary SHACL shapes based on detected RDF types
+    print("📌 Loading only necessary SHACL shapes based on detected RDF types...")
+    shacl_graph = load_shacl_files(".", used_types)
 
-    print("Performing overall validation explicitly...")
+    # ✅ Step 8: Perform Final Validation
+    print("🔍 Performing overall validation explicitly...")
     conforms, _, v_text = validate(
         data_graph, shacl_graph=shacl_graph, inference="rdfs", debug=False
     )
-    failed_validations.append((conforms, _, v_text))
 
+    # ✅ Step 9: Print Validation Report
     print("========== VALIDATION REPORTS ==========")
-    for conforms, _, v_text in failed_validations:
-        if not conforms:
-            print(v_text)
+    if not conforms:
+        print(v_text)
+    else:
+        print("=              No failures             =")
+    print("========================================")
 
 
 if __name__ == "__main__":
