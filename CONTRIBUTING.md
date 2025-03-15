@@ -1,13 +1,6 @@
 # Contributing Guidelines
 
-...
-
-# Licensing
-
-...
-
-
-# Developer Certification of Origin (DCO)
+## Developer Certification of Origin (DCO)
 
 To make a good faith effort to ensure licensing criteria are met, this project requires the Developer Certificate of Origin (DCO) process to be followed.
 The DCO is an attestation attached to every contribution made by every developer.
@@ -15,7 +8,7 @@ In the commit message of the contribution, (described more fully later in this d
 When a developer submits a patch, it is a commitment that the contributor has the right to submit the patch per the license.
 The DCO agreement is shown below and online.
 
-```
+```markdown
 Developer's Certificate of Origin 1.1
 
 By making a contribution to this project, I certify that:
@@ -55,7 +48,6 @@ If you forget to add the sign-off you can also amend a previous commit with the 
 You can add sign-offs to multiple commits (including commits originally authored by others, if you are authorized to do so) using `git rebase --signoff`.
 If you’ve pushed your changes to GitHub already you’ll need to force push your branch after this with `git push --force-with-lease`.
 If you want to be reminded to add the sign-off for commits in your repository, you can add the following commit-message git hook to your repository:
-
 
 ```bash
 #!/bin/sh

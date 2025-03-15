@@ -26,6 +26,6 @@
     "@id": "https://www.example.org/id"
   },
   "description_ontology:hasJunctionIntersection": {
-    "@id": "undefined"
+    "@id": "openlabel:IntersectionTJunction"
   }
 }

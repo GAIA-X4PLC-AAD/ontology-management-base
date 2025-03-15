@@ -1,4 +1,4 @@
-# Variables of SHACL Files in this folder
+# Properties of SHACL Files in this folder
 
 ## Prefixes
 

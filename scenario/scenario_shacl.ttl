@@ -1,78 +1,124 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
+@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
 @prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 scenario:ScenarioShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:name "general object"@en ;
-            sh:description "General properties common for all simulation assets."@en ;
-            sh:order 1 ;
-            sh:path scenario:general ],
-        [ sh:maxCount 1 ;
+    sh:property [
+        sh:path scenario:hasDataResource ;
+        sh:node envited-x:DataResourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have one associated DataResource object containing name and description."@en ;
+    ] ;
+    sh:property [
+        sh:path scenario:hasDataResourceExtension ;
+        sh:node scenario:DataResourceShapeExtension ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+    ] ;
+    sh:property [
+        sh:path scenario:hasManifest ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:class scenario:Manifest ]
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node scenario:ManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each scenario must have exactly one manifest, either inline or via link."@en ;
+    ] ;
+    sh:targetClass scenario:Scenario .
+
+scenario:DataResourceShapeExtension a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property 
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:FormatShape ;
             sh:name "format object"@en ;
-            sh:description "Contains properties that describe the format of the scenario asset."@en ;
-            sh:order 2 ;
-            sh:path scenario:format ],
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the format of the scenario asset."@en ;
+            sh:order 1 ;
+            sh:path scenario:hasFormat
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:ContentShape ;
             sh:name "content object"@en ;
-            sh:description "Defines the content of the scenario asset, such as time, abstraction level, and links."@en ;
-            sh:order 3 ;
-            sh:path scenario:content ],
-        [ sh:maxCount 1 ;
+            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
+            sh:order 2 ;
+            sh:path scenario:hasContent
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QuantityShape ;
             sh:name "quantity object"@en ;
-            sh:description "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en ;
-            sh:order 4 ;
-            sh:path scenario:quantity ],            
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
+            sh:order 3 ;
+            sh:path scenario:hasQuantity
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:QualityShape ;
             sh:name "quality object"@en ;
-            sh:description "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en ;
-            sh:order 5 ;
-            sh:path scenario:quality ],
-        [ sh:maxCount 1 ;
+            sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
+            sh:order 4 ;
+            sh:path scenario:hasQuality
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node scenario:DataSourceShape ;
-            sh:name "data source object"@en ;
-            sh:description "Defines which data resources were used to create the scenario asset."@en ;
-            sh:order 6 ;
-            sh:path scenario:dataSource ],
-        [ sh:maxCount 1 ;
+            sh:name "dataSource object"@en ;
+            sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
+            sh:order 5 ;
+            sh:path scenario:hasDataSource
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeference object"@en ;
-            sh:description "General properties for defining the location and projection of the scenario asset."@en ;
-            sh:order 7 ;
-            sh:path scenario:georeference ] ;
-    sh:targetClass scenario:Scenario .
+            sh:name "has georeferenz"@en ;
+            sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
+            sh:order 6 ;
+            sh:path scenario:hasGeoreference ;
+        ] ;
+    sh:targetClass scenario:DataResourceExtension .
  
 scenario:FormatShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ skos:example "ASAM OpenSCENARIO" ;
-            sh:datatype xsd:string ;
+    sh:property [skos:example "ASAM OpenSCENARIO" ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 1 ;
-            sh:path scenario:formatType ],
+            sh:path scenario:type ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Defines the version of the data format used for the scenario asset."@en ;
@@ -84,10 +130,9 @@ scenario:FormatShape a sh:NodeShape ;
     sh:targetClass scenario:Format .
 
 scenario:ContentShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
-            sh:datatype xsd:string ;
             sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
             sh:maxCount 1 ;
@@ -140,31 +185,6 @@ scenario:ContentShape a sh:NodeShape ;
             sh:name "custom commands"@en ;
             sh:order 6 ;
             sh:path scenario:customCommands ],
-        [ skos:example "http://mywebsite.de/Catalogs" ;
-            sh:description "Specifies the catalogues used in the scenario asset (provided as links)."@en ;
-            sh:message "Validation of catalogs failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "catalogs"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 7 ;
-            sh:path scenario:catalogs ],
-        [ skos:example "http://mywebsite.de/myModel.fbx" ;
-            sh:description "Specifies the environment models used in the scenario asset (provided as links)."@en ;
-            sh:message "Validation of environment failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "3d models"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 8 ;
-            sh:path scenario:environmentModels ],
-        [ skos:example "http://mywebsite.de/map.xodr" ;
-            sh:description "Specifies the traffic space used in the scenario asset (provided as a link)."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of trafficSpace failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "traffic space"@en ;
-            sh:node manifest:LinkShape ;
-            sh:order 9 ;
-            sh:path scenario:trafficSpace ],
         [ skos:example "194.01" ;
             sh:datatype xsd:float ;
             sh:description "Defines the azimuth of the sun in degrees."@en ;
@@ -265,7 +285,7 @@ scenario:QualityShape a sh:NodeShape ;
     sh:targetClass scenario:Quality .
 
 scenario:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Real World Data" ;
             sh:datatype xsd:string ;
@@ -287,3 +307,37 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
+
+# 1) We apply this shape to all scenario:Manifest instances
+scenario:ManifestShape a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:label "Shape for scenario:Manifest"@en ;
+    sh:comment "Checks that each scenario:Manifest includes external artifacts as reference in manifest:hasExternalArtifacts."@en ;
+    # 2) We want to ensure that there is a Link in hasExternalArtifacts
+    #    (with cardinalities or sub-shapes).
+    sh:property [
+        sh:path manifest:hasExternalArtifacts ;
+        # Optionally require at least 1 Link in hasExternalArtifacts
+        sh:minCount 1 ;
+        sh:node manifest:LinkShape ;
+        sh:message "The scenario manifest must have at least one external link in 'hasExternalArtifacts'."@en ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:class environment-model:EnvironmentModel ]
+                    [ sh:node environment-model:EnvironmentModelShape ]
+                )
+            ] 
+            [
+                sh:and (
+                    [ sh:class hdmap:HdMap ]
+                    [ sh:node hdmap:HdMapShape ]
+                )
+            ]
+            [
+                sh:node manifest:LinkShape
+            ] 
+        )
+    ] ;
+    sh:targetClass scenario:Manifest .

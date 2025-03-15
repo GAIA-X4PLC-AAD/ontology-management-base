@@ -39,6 +39,9 @@
 /general @robertschubert
 /general @MircoNierenz
 
+# envited-x directory (Mirco OR Carlo)
+/envited-x @jdsika @MircoNierenz
+
 # georeference directory (Robert AND (Sebastian OR Mirco))
 /georeference @robertschubert
 /georeference @3Dbastian @MircoNierenz
@@ -65,9 +68,8 @@
 /leakage-test @selcan-k
 /leakage-test @robertschubert @lenasauermann
 
-# manifest directory (Robert AND Carlo)
-/manifest @robertschubert
-/manifest @jdsika
+# manifest directory (Robert OR Carlo)
+/manifest @jdsika @robertschubert
 
 # vv-report directory (Maurizio AND Carlo)
 /vv-report @localhorst87

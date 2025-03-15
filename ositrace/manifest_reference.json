@@ -1,14 +1,15 @@
 {
   "@context": {
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
-  "@type": "manifest:Manifest",
+  "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
@@ -190,11 +191,11 @@
           "@type": "manifest:Dimensions",
           "manifest:unit": "pixels",
           "manifest:width": {
-            "@value": "1095.0",
+            "@value": "1095",
             "@type": "xsd:decimal"
           },
           "manifest:height": {
-            "@value": "850.0",
+            "@value": "850",
             "@type": "xsd:decimal"
           }
         }

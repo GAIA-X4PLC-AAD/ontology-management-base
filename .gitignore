@@ -1,3 +1,5 @@
 /.venv/
 /.idea/
+/.playground/
+/.vscode/
 **/__pycache__/

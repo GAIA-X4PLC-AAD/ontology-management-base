@@ -1,65 +1,111 @@
 @prefix ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
+### OSITrace SHACL Shape
 ositrace:OSITraceShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:name "general object" ;
-            sh:description "General object with properties for descriptions, data, links, bundle."@en ;
-            sh:order 1 ;
-            sh:path ositrace:general ],
+          sh:minCount 1 ;
+          sh:node ositrace:DataResourceExtensionShape ;
+          sh:name "data resource extension"@en ;
+          sh:description "DataResourceExtension containing additional metadata about the OSI trace."@en ;
+          sh:order 1 ;
+          sh:path ositrace:hasDataResourceExtension ],
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node ositrace:FormatShape ;
-            sh:name "format object" ;
-            sh:description "Format object with properties for format informations."@en ;
-            sh:order 2 ;
-            sh:path ositrace:format ],
+          sh:minCount 1 ;
+          sh:node envited-x:DataResourceShape ;
+          sh:name "data resource"@en ;
+          sh:description "Links to an envited-x:DataResource that describes the raw data asset."@en ;
+          sh:order 2 ;
+          sh:path ositrace:hasDataResource ],
         [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node ositrace:ContentShape ;
-            sh:name "content object" ;
-            sh:description "Content object with properties for road types, lane type, object type and traffic direction."@en ;
-            sh:order 3 ;
-            sh:path ositrace:content ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node ositrace:QualityShape ;
-            sh:name "quality object" ;
-            sh:description "Quality object with properties for quality informations."@en ; 
-            sh:order 4 ;
-            sh:path ositrace:quality ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node ositrace:QuantityShape ;
-            sh:name "quantity object" ;
-            sh:description "Quantity object with properties for quantity informations."@en ;    
-            sh:order 5 ;
-            sh:path ositrace:quantity ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node ositrace:DataSourceShape ;
-            sh:name "dataSource object" ;
-            sh:description "DataSource object with properties for data sources."@en ;
-            sh:order 6 ;
-            sh:path ositrace:dataSource ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node georeference:GeoreferenceShape ;            
-            sh:name "georeference object" ;
-            sh:description "Georeference object with properties for georeference informations."@en ;
-            sh:order 7 ;
-            sh:path ositrace:georeference ] ;
+          sh:minCount 1 ;
+          sh:or ( 
+                [
+                    sh:and (
+                        [ sh:class envited-x:Manifest ]
+                        [ sh:node manifest:ManifestShape ]
+                        [ sh:node envited-x:ManifestShape ]
+                    )
+                ] 
+                [
+                    sh:node manifest:LinkShape
+                ] 
+            ) ;
+          sh:name "manifest"@en ;
+          sh:description "Manifest file describing the OSI trace metadata."@en ;
+          sh:order 3 ;
+          sh:path ositrace:hasManifest ] ;
     sh:targetClass ositrace:OSITrace .
+
+### DataResourceExtension SHACL Shape
+ositrace:DataResourceExtensionShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property 
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node ositrace:ContentShape ;
+          sh:name "content"@en ;
+          sh:description "Attributes describing the content of the OSI trace."@en ;
+          sh:order 1 ;
+          sh:path ositrace:hasContent ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node ositrace:FormatShape ;
+          sh:name "format"@en ;
+          sh:description "File format details of the OSI trace."@en ;
+          sh:order 2 ;
+          sh:path ositrace:hasFormat ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node ositrace:QualityShape ;
+          sh:name "quality"@en ;
+          sh:description "Quality metrics of the OSI trace."@en ;
+          sh:order 3 ;
+          sh:path ositrace:hasQuality ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node ositrace:QuantityShape ;
+          sh:name "quantity"@en ;
+          sh:description "Quantitative metrics describing the OSI trace."@en ;
+          sh:order 4 ;
+          sh:path ositrace:hasQuantity ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node ositrace:DataSourceShape ;
+          sh:name "data source"@en ;
+          sh:description "Data sources used to create the OSI trace."@en ;
+          sh:order 5 ;
+          sh:path ositrace:hasDataSource ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node georeference:GeoreferenceShape ;
+          sh:name "georeference"@en ;
+          sh:description "Georeferencing information for the OSI trace."@en ;
+          sh:order 6 ;
+          sh:path ositrace:hasGeoreference ],
+        [ sh:maxCount 1 ;
+          sh:node ositrace:MovingObjectShape ;
+          sh:name "moving object"@en ;
+          sh:description "Describes moving objects recorded in the OSI trace."@en ;
+          sh:order 7 ;
+          sh:path ositrace:hasMovingObject ],
+        [ sh:maxCount 1 ;
+          sh:node ositrace:EventShape ;
+          sh:name "event"@en ;
+          sh:description "Recorded events within the OSI trace."@en ;
+          sh:order 8 ;
+          sh:path ositrace:hasEvent ] ;
+    sh:targetClass ositrace:DataResourceExtension .
 
 ositrace:ContentShape a sh:NodeShape ;
     sh:closed false ;
@@ -287,7 +333,7 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file."@en ;
-            sh:mincount 1 ;
+            sh:minCount 1 ;
             sh:maxcount 1 ;
             sh:message "Validation of identifier failed!"@en ;
             sh:name "identifier"@en ;
@@ -318,7 +364,7 @@ ositrace:EventShape a sh:NodeShape ;
         [ skos:example "42" ;
             sh:datatype xsd:string ;
             sh:description "Unique tag of the event in trace file."@en ;
-            sh:mincount 1 ;
+            sh:minCount 1 ;
             sh:maxcount 1 ;
             sh:message "Validation of tag failed!"@en ;
             sh:name "tag"@en ;

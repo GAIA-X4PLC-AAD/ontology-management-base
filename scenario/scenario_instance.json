@@ -1,6 +1,9 @@
 {
     "@context": {
-        "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+        "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+        "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
+        "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+        "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
         "scenario": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/",
         "sh": "http://www.w3.org/ns/shacl#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -12,34 +15,22 @@
     },
     "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
     "@type": "scenario:Scenario",
-    "scenario:general": {
-        "@type": "general:General",
-        "general:description": {
-            "@type": "general:Description",
-            "general:name": {
-                "@value": "Scenario Example",
-                "@type": "xsd:string"
-            },
-            "general:description": {
-                "@value": "A sample description of a none existing scenario.",
-                "@type": "xsd:string"
-            }
+    "scenario:hasDataResource": {
+        "@type": "envited-x:DataResource",
+        "gx:name": {
+            "@value": "Scenario Example",
+            "@type": "xsd:string"
         },
-        "general:data": {
-            "@type": "general:Data",
-            "general:size": {
-                "@value": "1.0",
-                "@type": "xsd:float"
-            },
-            "general:recordingTime": {
-                "@value": "2024-06-26T09:00:00",
-                "@type": "xsd:dateTime"
-            }
+        "gx:description": {
+            "@value": "A sample description of a non-existing scenario.",
+            "@type": "xsd:string"
         }
     },
     "scenario:format": {
         "@type": "scenario:Format",
-        "scenario:formatType": "ASAM OpenSCENARIO",
+        "scenario:formatType": {
+            "@value": "ASAM OpenSCENARIO"
+        },
         "scenario:version": {
             "@value": "1.2",
             "@type": "xsd:string"
@@ -48,17 +39,18 @@
     "scenario:content": {
         "@type": "scenario:Content",
         "scenario:catalogs": [
-          {
-            "@type": "manifest:Link",
-            "manifest:type": "assetData",
-            "manifest:accessRole": "owner",            
-            "manifest:fileMetaData": {
-                "manifest:uri": {
-                    "@value": "https://inavlid.link.com/my_pedestrian_catalog.xosc",
-                    "@type": "xsd:anyURI"
+            {
+                "@type": "manifest:Link",
+                "manifest:accessRole": "owner",
+                "manifest:category": "coreData",
+                "manifest:FileMetadata": {
+                    "@type": "manifest:FileMetadata",
+                    "manifest:filePath": {
+                        "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
+                        "@type": "xsd:anyURI"
+                    }
                 }
             }
-          }
         ],
         "scenario:abstractionLevel": "Logical",
         "scenario:country": {
@@ -66,33 +58,21 @@
             "@type": "xsd:string"
         },
         "scenario:environmentModels": [
-          {
-            "@type": "manifest:Link",
-            "manifest:type": "assetData",
-            "manifest:accessRole": "owner",
-            "manifest:fileMetaData": {
-                "manifest:uri": {
-                    "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-                    "@type": "xsd:anyURI"
+            {
+                "@type": "manifest:Link",
+                "manifest:accessRole": "owner",
+                "manifest:category": "coreData",
+                "manifest:FileMetadata": {
+                    "@type": "manifest:FileMetadata",
+                    "manifest:filePath": {
+                        "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+                        "@type": "xsd:anyURI"
+                    }
                 }
             }
-          }
-        ],
-        "scenario:trafficSpace": [ 
-          {
-            "@type": "manifest:Link",
-            "manifest:type": "assetData",
-            "manifest:accessRole": "owner",
-            "manifest:fileMetaData": {
-                "manifest:uri": {
-                    "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-                    "@type": "xsd:anyURI"
-                }
-            }
-          }
         ],
         "scenario:sunAzimuth": {
-            "@value": "180",
+            "@value": 180.0,
             "@type": "xsd:float"
         },
         "scenario:countrySpecificTrafficParticipants": {
@@ -104,7 +84,7 @@
             "@type": "xsd:string"
         },
         "scenario:usedStandardFunctions": {
-            "@value": "TeleportAction,  SpeedAction, FollowTrajectoryAction",
+            "@value": "TeleportAction, SpeedAction, FollowTrajectoryAction",
             "@type": "xsd:string"
         },
         "scenario:aim": {
@@ -123,26 +103,26 @@
     "scenario:quantity": {
         "@type": "scenario:Quantity",
         "scenario:numberTrafficObjects": {
-            "@value": "1",
+            "@value": 1,
             "@type": "xsd:unsignedInt"
         },
         "scenario:temporaryTrafficObjects": {
-            "@value": "0",
+            "@value": 0,
             "@type": "xsd:unsignedInt"
         },
         "scenario:permanentTrafficObjects": {
-            "@value": "1",
+            "@value": 1,
             "@type": "xsd:unsignedInt"
         },
         "scenario:controllers": {
-            "@value": "SampleControler1",
+            "@value": "SampleController1",
             "@type": "xsd:string"
         }
     },
     "scenario:quality": {
         "@type": "scenario:Quality",
         "scenario:accuracyObjects": {
-            "@value": "0.02",
+            "@value": 0.02,
             "@type": "xsd:float"
         },
         "scenario:calibration": {
@@ -152,7 +132,9 @@
     },
     "scenario:dataSource": {
         "@type": "scenario:DataSource",
-        "scenario:sourceType": "Real World Data",
+        "scenario:sourceType": {
+            "@value": "Real World Data"
+        },
         "scenario:sourceDescription": {
             "@value": "Sensor capture using detection system of the testbed lower Saxony.",
             "@type": "xsd:string"
@@ -185,56 +167,79 @@
             "georeference:boundingBox": {
                 "@type": "georeference:BoundingBox",
                 "georeference:xMin": {
-                    "@value": "10.533752",
+                    "@value": "10.720740862799195",
                     "@type": "xsd:float"
                 },
                 "georeference:yMin": {
-                    "@value": "52.313032",
+                    "@value": "52.29672229543727",
                     "@type": "xsd:float"
                 },
                 "georeference:xMax": {
-                    "@value": "10.581254",
+                    "@value": "10.730432209669724",
                     "@type": "xsd:float"
                 },
                 "georeference:yMax": {
-                    "@value": "52.323018",
+                    "@value": "52.31580272353997",
                     "@type": "xsd:float"
                 }
             }
         },
         "georeference:geodeticReferenceSystem": {
             "@type": "georeference:GeodeticReferenceSystem",
+            "georeference:codeEPSG": {
+                "@value": "32632",
+                "@type": "xsd:int"
+            },
             "georeference:origin": {
                 "@type": "georeference:LatLonCoordinate",
                 "georeference:lat": {
-                    "@value": "52.315173",
+                    "@value": "52.275329463992996",
                     "@type": "xsd:float"
                 },
                 "georeference:lon": {
-                    "@value": "10.562871",
+                    "@value": "10.685571633942278",
                     "@type": "xsd:float"
                 }
             },
             "georeference:viewPoint": {
                 "@type": "georeference:LatLonCoordinate",
                 "georeference:lat": {
-                    "@value": "52.315173",
+                    "@value": "52.30626250948862",
                     "@type": "xsd:float"
                 },
                 "georeference:lon": {
-                    "@value": "10.562871",
+                    "@value": "10.72558653623446",
                     "@type": "xsd:float"
                 }
             },
-            "georeference:codeEPSG": {
-                "@value": "32632",
-                "@type": "xsd:int"
+            "georeference:heightSystem": "Ellipsodial height"
+        }
+    },
+    "scenario:hasManifest": {
+        "@type": "manifest:Link",
+        "manifest:accessRole": "publicUser",
+        "manifest:category": "manifest",
+        "manifest:hasFileMetadata": {
+            "@type": "manifest:FileMetadata",
+            "manifest:filePath": {
+                "@value": "./manifest_reference.json",
+                "@type": "xsd:anyURI"
             },
-            "georeference:coordinateSystemName": {
-                "@value": "UTM Zone 32N, WGS84",
+            "manifest:mimeType": {
+                "@value": "application/ld+json",
                 "@type": "xsd:string"
             },
-            "georeference:heightSystem": "Ellipsodial height"
+            "sh:conformsTo": [
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+                },
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+                },
+                {
+                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/"
+                }
+            ]
         }
     }
 }

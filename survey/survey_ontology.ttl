@@ -10,61 +10,62 @@
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 survey: a owl:Ontology ;
-      rdfs:label "Ontology definition for survey"@en ;
-      rdfs:comment "An ontology with common classes used to describe a semiconductor survey including metadata."@en ;
+    rdfs:label "Ontology definition for survey"@en ;
+    rdfs:comment "An ontology with common classes used to describe a semiconductor survey including metadata."@en ;
       
-      dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
-      dcterms:contributor [
-          a foaf:Person ;
-          foaf:name "Alina Werner" ;
-          org:memberOf <https://www.infineon.com/> ;
-      ] , [
-          a foaf:Person ;
-          foaf:name "Lisa Rossgoderer" ;
-          org:memberOf <https://www.infineon.com/> ;
-      ] ,[
-          a foaf:Person ;
-          foaf:name "Philipp Ulrich" ;
-          org:memberOf <https://www.infineon.com/> ;
-      ] , [
-          a foaf:Person ;
-          foaf:name "Hauke Hinrichs" ;
-          org:memberOf <https://www.infineon.com/> ;
-      ] , [
-          a foaf:Person ;
-          foaf:name "Maria Nakhla" ;
-          org:memberOf <https://www.infineon.com/> ;
-      ] ;    
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Alina Werner" ;
+        org:memberOf <https://www.infineon.com/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Lisa Rossgoderer" ;
+        org:memberOf <https://www.infineon.com/> ;
+    ] ,[
+        a foaf:Person ;
+        foaf:name "Philipp Ulrich" ;
+        org:memberOf <https://www.infineon.com/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Hauke Hinrichs" ;
+        org:memberOf <https://www.infineon.com/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Maria Nakhla" ;
+        org:memberOf <https://www.infineon.com/> ;
+    ] ;    
 
-      # Permanent identifier for the ontology (not version-specific)
-      dcterms:identifier <https://ontologies.envited-x.net/survey> ;
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/survey> ;
 
-      # GitHub repository where the ontology is maintained
-      dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
-      # Specific GitHub release used for publishing this version
-      prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
-      # Versioning
-      owl:versionIRI <https://ontologies.envited-x.net/survey/v5/ontology> ;
-      owl:versionInfo "v5" ;
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/survey/v5/ontology> ;
+    owl:versionInfo "v5" ;
 
-      # Reference to SHACL validation rules
-      dcterms:conformsTo <https://ontologies.envited-x.net/survey/v5/shape> ;
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/survey/v5/shape> ;
 
-      # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-      rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+    # Additional references to documentation or related ontologies
+    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 survey:belongsTo rdf:type owl:ObjectProperty ;
-      rdfs:domain survey:SurveyResultDataOffering ;
-      rdfs:range survey:SurveyServiceOffering .
+    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:range survey:SurveyServiceOffering .
 
 survey:SurveyResultDataOffering rdf:type owl:Class ;
-      rdfs:subClassOf gx:DataResource ;
-      rdfs:label "Class definition for SurveyResultDataOffering"@en ; 
-      rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey."@en .
+    rdfs:subClassOf gx:DataResource ;
+    rdfs:label "Class definition for SurveyResultDataOffering"@en ; 
+    rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey."@en .
 
 survey:SurveyServiceOffering rdf:type owl:Class ;
-      rdfs:subClassOf gx:SoftwareResource ;
-      rdfs:label "Class definition for SurveyServiceOffering"@en ; 
-      rdfs:comment "The survey service offering refers to the invitation to a participate in a survey."@en .
+    rdfs:subClassOf gx:SoftwareResource ;
+    rdfs:label "Class definition for SurveyServiceOffering"@en ; 
+    rdfs:comment "The survey service offering refers to the invitation to a participate in a survey."@en .
