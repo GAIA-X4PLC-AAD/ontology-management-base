@@ -1,16 +1,16 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
-@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
 @prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
 @prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
+### **Scenario SHACL Shape**
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -19,14 +19,14 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each scenario must have one associated DataResource object containing name and description."@en ;
+        sh:message "Each HD map must have one associated DataResource object containing name and description."@en ;
     ] ;
     sh:property [
         sh:path scenario:hasDataResourceExtension ;
         sh:node scenario:DataResourceShapeExtension ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+        sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
     sh:property [
         sh:path scenario:hasManifest ;
@@ -35,6 +35,7 @@ scenario:ScenarioShape a sh:NodeShape ;
                 sh:and (
                     [ sh:class scenario:Manifest ]
                     [ sh:node manifest:ManifestShape ]
+                    [ sh:node envited-x:ManifestShape ]
                     [ sh:node scenario:ManifestShape ]
                 )
             ] 
@@ -48,77 +49,127 @@ scenario:ScenarioShape a sh:NodeShape ;
     ] ;
     sh:targetClass scenario:Scenario .
 
-scenario:DataResourceShapeExtension a sh:NodeShape ;
+
+### **Scenario Manifest SHACL Shape**
+scenario:ManifestShape a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+
+    ## Ensure at least two `manifest:Link` shapes in `hasArtifacts` categorized as `coreData`
+    sh:property 
+        [ sh:qualifiedValueShape [
+              sh:and (
+                  [ sh:node manifest:LinkShape ]
+                  [ sh:hasValue "coreData" ; sh:path manifest:category ]
+              )
+          ] ;
+          sh:qualifiedMinCount 2 ;
+          sh:name "core data references"@en ;
+          sh:description "Each Scenario manifest must contain at least two `manifest:Link` references categorized as `coreData`."@en ;
+          sh:order 1 ;
+          sh:path scenario:hasArtifacts ],
+        [ sh:qualifiedValueShape [
+              sh:or (
+                  [ sh:node hdmap:HdMap ]
+                  [ sh:and (
+                      [ sh:node manifest:LinkShape ]
+                      [ sh:class hdmap:HdMap ]
+                  )]
+              )
+          ] ;
+          sh:qualifiedMinCount 1 ;
+          sh:name "HD Map reference"@en ;
+          sh:description "Each Scenario manifest must reference at least one HD map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
+          sh:order 2 ;
+          sh:path scenario:hasExternalArtifacts ],
+
+    ## Ensure at least one Environment Model reference (either inline `environment-model:EnvironmentModel` or `manifest:Link` referencing `environment-model:EnvironmentModel`)
+        [ sh:qualifiedValueShape [
+              sh:or (
+                  [ sh:node environment-model:EnvironmentModel ]
+                  [ sh:and (
+                      [ sh:node manifest:LinkShape ]
+                      [ sh:class environment-model:EnvironmentModel ]
+                  )]
+              )
+          ] ;
+          sh:qualifiedMinCount 1 ;
+          sh:name "Environment Model reference"@en ;
+          sh:description "Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
+          sh:order 3 ;
+          sh:path scenario:hasExternalArtifacts ],
+
+    ## Ensure at least one catalog reference via `manifest:Link`
+        [ sh:qualifiedValueShape [ sh:node manifest:LinkShape ] ;
+          sh:qualifiedMinCount 1 ;
+          sh:name "catalog reference"@en ;
+          sh:description "Each Scenario manifest must reference at least one catalog via a `manifest:Link`."@en ;
+          sh:order 4 ;
+          sh:path scenario:hasArtifact ] ;
+
+    sh:targetClass scenario:Manifest .
+
+
+### **DataResourceExtension SHACL Shape**
+scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:FormatShape ;
-            sh:name "format object"@en ;
-            sh:description "Contains properties to describe the format of the scenario asset."@en ;
-            sh:order 1 ;
-            sh:path scenario:hasFormat
-        ],
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:ContentShape ;
-            sh:name "content object"@en ;
-            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
-            sh:order 2 ;
-            sh:path scenario:hasContent
-        ],            
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:QuantityShape ;
-            sh:name "quantity object"@en ;
-            sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
-            sh:order 3 ;
-            sh:path scenario:hasQuantity
-        ],            
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:QualityShape ;
-            sh:name "quality object"@en ;
-            sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
-            sh:order 4 ;
-            sh:path scenario:hasQuality
-        ],
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node scenario:DataSourceShape ;
-            sh:name "dataSource object"@en ;
-            sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
-            sh:order 5 ;
-            sh:path scenario:hasDataSource
-        ],
-        [ 
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node georeference:GeoreferenceShape ;
-            sh:name "has georeferenz"@en ;
-            sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
-            sh:order 6 ;
-            sh:path scenario:hasGeoreference ;
-        ] ;
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:ContentShape ;
+          sh:name "content"@en ;
+          sh:description "Attributes describing the content of the scenario."@en ;
+          sh:order 1 ;
+          sh:path scenario:hasContent ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:FormatShape ;
+          sh:name "format"@en ;
+          sh:description "File format details of the scenario."@en ;
+          sh:order 2 ;
+          sh:path scenario:hasFormat ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:QualityShape ;
+          sh:name "quality"@en ;
+          sh:description "Quality metrics of the scenario."@en ;
+          sh:order 3 ;
+          sh:path scenario:hasQuality ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:QuantityShape ;
+          sh:name "quantity"@en ;
+          sh:description "Quantitative metrics describing the scenario."@en ;
+          sh:order 4 ;
+          sh:path scenario:hasQuantity ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:DataSourceShape ;
+          sh:name "data source"@en ;
+          sh:description "Data sources used to create the scenario."@en ;
+          sh:order 5 ;
+          sh:path scenario:hasDataSource ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node georeference:GeoreferenceShape ;
+          sh:name "georeference"@en ;
+          sh:description "Georeferencing information for the scenario."@en ;
+          sh:order 6 ;
+          sh:path scenario:hasGeoreference ] ;
     sh:targetClass scenario:DataResourceExtension .
  
 scenario:FormatShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [skos:example "ASAM OpenSCENARIO" ;
+    sh:property [ skos:example "ASAM OpenSCENARIO" ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
             sh:in ("ASAM OpenSCENARIO") ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 1 ;
-            sh:path scenario:type ],
+            sh:path scenario:formatType ],
         [ skos:example "1.5" ;
             sh:datatype xsd:string ;
             sh:description "Defines the version of the data format used for the scenario asset."@en ;
@@ -225,7 +276,7 @@ scenario:ContentShape a sh:NodeShape ;
     sh:targetClass scenario:Content .
 
 scenario:QuantityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
@@ -262,7 +313,7 @@ scenario:QuantityShape a sh:NodeShape ;
     sh:targetClass scenario:Quantity .
 
 scenario:QualityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -288,7 +339,6 @@ scenario:DataSourceShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Real World Data" ;
-            sh:datatype xsd:string ;
             sh:description "Specifies the category of source data used to create the scenario."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of source type failed!"@en ;
@@ -307,37 +357,3 @@ scenario:DataSourceShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path scenario:sourceDescription ] ;
     sh:targetClass scenario:DataSource .
-
-# 1) We apply this shape to all scenario:Manifest instances
-scenario:ManifestShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:label "Shape for scenario:Manifest"@en ;
-    sh:comment "Checks that each scenario:Manifest includes external artifacts as reference in manifest:hasExternalArtifacts."@en ;
-    # 2) We want to ensure that there is a Link in hasExternalArtifacts
-    #    (with cardinalities or sub-shapes).
-    sh:property [
-        sh:path manifest:hasExternalArtifacts ;
-        # Optionally require at least 1 Link in hasExternalArtifacts
-        sh:minCount 1 ;
-        sh:node manifest:LinkShape ;
-        sh:message "The scenario manifest must have at least one external link in 'hasExternalArtifacts'."@en ;
-        sh:or ( 
-            [
-                sh:and (
-                    [ sh:class environment-model:EnvironmentModel ]
-                    [ sh:node environment-model:EnvironmentModelShape ]
-                )
-            ] 
-            [
-                sh:and (
-                    [ sh:class hdmap:HdMap ]
-                    [ sh:node hdmap:HdMapShape ]
-                )
-            ]
-            [
-                sh:node manifest:LinkShape
-            ] 
-        )
-    ] ;
-    sh:targetClass scenario:Manifest .

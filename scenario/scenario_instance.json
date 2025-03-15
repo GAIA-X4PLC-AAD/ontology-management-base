@@ -15,6 +15,7 @@
     },
     "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
     "@type": "scenario:Scenario",
+    
     "scenario:hasDataResource": {
         "@type": "envited-x:DataResource",
         "gx:name": {
@@ -26,197 +27,164 @@
             "@type": "xsd:string"
         }
     },
-    "scenario:format": {
-        "@type": "scenario:Format",
-        "scenario:formatType": {
-            "@value": "ASAM OpenSCENARIO"
+
+    "scenario:hasDataResourceExtension": {
+        "@type": "scenario:DataResourceExtension",
+        "scenario:hasFormat": {
+            "@type": "scenario:Format",
+            "scenario:formatType": "ASAM OpenSCENARIO",
+            "scenario:version": {
+                "@value": "1.2",
+                "@type": "xsd:string"
+            }
         },
-        "scenario:version": {
-            "@value": "1.2",
-            "@type": "xsd:string"
-        }
-    },
-    "scenario:content": {
-        "@type": "scenario:Content",
-        "scenario:catalogs": [
-            {
-                "@type": "manifest:Link",
-                "manifest:accessRole": "owner",
-                "manifest:category": "coreData",
-                "manifest:FileMetadata": {
-                    "@type": "manifest:FileMetadata",
-                    "manifest:filePath": {
-                        "@value": "https://invalid.link.com/my_pedestrian_catalog.xosc",
-                        "@type": "xsd:anyURI"
+        "scenario:hasContent": {
+            "@type": "scenario:Content",
+            "scenario:abstractionLevel": "Logical",
+            "scenario:country": {
+                "@value": "Germany",
+                "@type": "xsd:string"
+            },
+            "scenario:aim": {
+                "@value": "Test sensor perception range.",
+                "@type": "xsd:string"
+            },
+            "scenario:movementDescription": {
+                "@value": "FollowTrajectory",
+                "@type": "xsd:string"
+            },
+            "scenario:customCommands": {
+                "@value": "UserDefinedAction: TurnAround",
+                "@type": "xsd:string"
+            }
+        },
+        "scenario:hasQuality": {
+            "@type": "scenario:Quality",
+            "scenario:accuracyObjects": {
+                "@value": 0.02,
+                "@type": "xsd:float"
+            },
+            "scenario:calibration": {
+                "@value": "Static calibration using GNSS/RTK on XYZ.",
+                "@type": "xsd:string"
+            }
+        },
+        "scenario:hasQuantity": {
+            "@type": "scenario:Quantity",
+            "scenario:numberTrafficObjects": {
+                "@value": 1,
+                "@type": "xsd:unsignedInt"
+            },
+            "scenario:temporaryTrafficObjects": {
+                "@value": 0,
+                "@type": "xsd:unsignedInt"
+            },
+            "scenario:permanentTrafficObjects": {
+                "@value": 1,
+                "@type": "xsd:unsignedInt"
+            },
+            "scenario:controllers": {
+                "@value": "SampleController1",
+                "@type": "xsd:string"
+            }
+        },
+        "scenario:hasDataSource": {
+            "@type": "scenario:DataSource",
+            "scenario:sourceType": "Real World Data",
+            "scenario:sourceDescription": {
+                "@value": "Sensor capture using detection system of the testbed lower Saxony.",
+                "@type": "xsd:string"
+            }
+        },
+        "scenario:hasGeoreference": {
+            "@type": "georeference:Georeference",
+            "georeference:hasProjectLocation": {
+                "@type": "georeference:ProjectLocation",
+                "georeference:country": {
+                    "@value": "DE",
+                    "@type": "xsd:string"
+                },
+                "georeference:state": {
+                    "@value": "DE-NDS",
+                    "@type": "xsd:string"
+                },
+                "georeference:region": {
+                    "@value": "Lower Saxony",
+                    "@type": "xsd:string"
+                },
+                "georeference:city": {
+                    "@value": "Brunswick",
+                    "@type": "xsd:string"
+                },
+                "georeference:relationOrArea": {
+                    "@value": "A 39",
+                    "@type": "xsd:string"
+                },
+                "georeference:hasBoundingBox": {
+                    "@type": "georeference:BoundingBox",
+                    "georeference:xMin": {
+                        "@value": 10.720740862799195,
+                        "@type": "xsd:float"
+                    },
+                    "georeference:yMin": {
+                        "@value": 52.29672229543727,
+                        "@type": "xsd:float"
+                    },
+                    "georeference:xMax": {
+                        "@value": 10.730432209669724,
+                        "@type": "xsd:float"
+                    },
+                    "georeference:yMax": {
+                        "@value": 52.31580272353997,
+                        "@type": "xsd:float"
                     }
                 }
-            }
-        ],
-        "scenario:abstractionLevel": "Logical",
-        "scenario:country": {
-            "@value": "Germany",
-            "@type": "xsd:string"
-        },
-        "scenario:environmentModels": [
-            {
-                "@type": "manifest:Link",
-                "manifest:accessRole": "owner",
-                "manifest:category": "coreData",
-                "manifest:FileMetadata": {
-                    "@type": "manifest:FileMetadata",
-                    "manifest:filePath": {
-                        "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-                        "@type": "xsd:anyURI"
+            },
+            "georeference:hasGeodeticReferenceSystem": {
+                "@type": "georeference:GeodeticReferenceSystem",
+                "georeference:codeEPSG": {
+                    "@value": 32632,
+                    "@type": "xsd:int"
+                },
+                "georeference:hasOrigin": {
+                    "@type": "georeference:LatLonCoordinate",
+                    "georeference:lat": {
+                        "@value": 52.275329463992996,
+                        "@type": "xsd:float"
+                    },
+                    "georeference:lon": {
+                        "@value": 10.685571633942278,
+                        "@type": "xsd:float"
                     }
-                }
+                },
+                "georeference:hasViewPoint": {
+                    "@type": "georeference:LatLonCoordinate",
+                    "georeference:lat": {
+                        "@value": 52.30626250948862,
+                        "@type": "xsd:float"
+                    },
+                    "georeference:lon": {
+                        "@value": 10.72558653623446,
+                        "@type": "xsd:float"
+                    }
+                },
+                "georeference:heightSystem": "Ellipsodial height"
             }
-        ],
-        "scenario:sunAzimuth": {
-            "@value": 180.0,
-            "@type": "xsd:float"
-        },
-        "scenario:countrySpecificTrafficParticipants": {
-            "@value": "CustomCar",
-            "@type": "xsd:string"
-        },
-        "scenario:countrySpecificSign": {
-            "@value": "Aircraft",
-            "@type": "xsd:string"
-        },
-        "scenario:usedStandardFunctions": {
-            "@value": "TeleportAction, SpeedAction, FollowTrajectoryAction",
-            "@type": "xsd:string"
-        },
-        "scenario:aim": {
-            "@value": "Test sensor perception range.",
-            "@type": "xsd:string"
-        },
-        "scenario:movementDescription": {
-            "@value": "FollowTrajectory",
-            "@type": "xsd:string"
-        },
-        "scenario:customCommands": {
-            "@value": "UserDefinedAction: TurnAround",
-            "@type": "xsd:string"
         }
     },
-    "scenario:quantity": {
-        "@type": "scenario:Quantity",
-        "scenario:numberTrafficObjects": {
-            "@value": 1,
-            "@type": "xsd:unsignedInt"
-        },
-        "scenario:temporaryTrafficObjects": {
-            "@value": 0,
-            "@type": "xsd:unsignedInt"
-        },
-        "scenario:permanentTrafficObjects": {
-            "@value": 1,
-            "@type": "xsd:unsignedInt"
-        },
-        "scenario:controllers": {
-            "@value": "SampleController1",
-            "@type": "xsd:string"
-        }
-    },
-    "scenario:quality": {
-        "@type": "scenario:Quality",
-        "scenario:accuracyObjects": {
-            "@value": 0.02,
-            "@type": "xsd:float"
-        },
-        "scenario:calibration": {
-            "@value": "Static calibration using GNSS/RTK on XYZ.",
-            "@type": "xsd:string"
-        }
-    },
-    "scenario:dataSource": {
-        "@type": "scenario:DataSource",
-        "scenario:sourceType": {
-            "@value": "Real World Data"
-        },
-        "scenario:sourceDescription": {
-            "@value": "Sensor capture using detection system of the testbed lower Saxony.",
-            "@type": "xsd:string"
-        }
-    },
-    "scenario:georeference": {
-        "@type": "georeference:Georeference",
-        "georeference:projectLocation": {
-            "@type": "georeference:ProjectLocation",
-            "georeference:country": {
-                "@value": "DE",
-                "@type": "xsd:string"
-            },
-            "georeference:state": {
-                "@value": "DE-NDS",
-                "@type": "xsd:string"
-            },
-            "georeference:region": {
-                "@value": "Lower Saxony",
-                "@type": "xsd:string"
-            },
-            "georeference:city": {
-                "@value": "Brunswick",
-                "@type": "xsd:string"
-            },
-            "georeference:relationOrArea": {
-                "@value": "A 39",
-                "@type": "xsd:string"
-            },
-            "georeference:boundingBox": {
-                "@type": "georeference:BoundingBox",
-                "georeference:xMin": {
-                    "@value": "10.720740862799195",
-                    "@type": "xsd:float"
-                },
-                "georeference:yMin": {
-                    "@value": "52.29672229543727",
-                    "@type": "xsd:float"
-                },
-                "georeference:xMax": {
-                    "@value": "10.730432209669724",
-                    "@type": "xsd:float"
-                },
-                "georeference:yMax": {
-                    "@value": "52.31580272353997",
-                    "@type": "xsd:float"
-                }
-            }
-        },
-        "georeference:geodeticReferenceSystem": {
-            "@type": "georeference:GeodeticReferenceSystem",
-            "georeference:codeEPSG": {
-                "@value": "32632",
-                "@type": "xsd:int"
-            },
-            "georeference:origin": {
-                "@type": "georeference:LatLonCoordinate",
-                "georeference:lat": {
-                    "@value": "52.275329463992996",
-                    "@type": "xsd:float"
-                },
-                "georeference:lon": {
-                    "@value": "10.685571633942278",
-                    "@type": "xsd:float"
-                }
-            },
-            "georeference:viewPoint": {
-                "@type": "georeference:LatLonCoordinate",
-                "georeference:lat": {
-                    "@value": "52.30626250948862",
-                    "@type": "xsd:float"
-                },
-                "georeference:lon": {
-                    "@value": "10.72558653623446",
-                    "@type": "xsd:float"
-                }
-            },
-            "georeference:heightSystem": "Ellipsodial height"
-        }
-    },
+
     "scenario:hasManifest": {
         "@type": "manifest:Link",
+        "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6" },
+        "skos:note": {
+            "@value": "Ensure that 'manifest_reference.json' contains all required categories: coreData, documentation, metadata, media.",
+            "@type": "xsd:string"
+        },
+        "sh:conformsTo": [
+            { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" },
+            { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" },
+            { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" }
+        ],
         "manifest:accessRole": "publicUser",
         "manifest:category": "manifest",
         "manifest:hasFileMetadata": {
@@ -228,18 +196,7 @@
             "manifest:mimeType": {
                 "@value": "application/ld+json",
                 "@type": "xsd:string"
-            },
-            "sh:conformsTo": [
-                {
-                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
-                },
-                {
-                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
-                },
-                {
-                    "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/"
-                }
-            ]
+            }
         }
     }
 }

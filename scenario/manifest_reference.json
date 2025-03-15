@@ -11,6 +11,7 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6",
   "@type": "scenario:Manifest",
+
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
@@ -27,6 +28,7 @@
       }
     }
   },
+
   "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
@@ -49,7 +51,59 @@
       }
     }
   },
+
+  "manifest:hasExternalArtifacts": [
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "owner",
+      "manifest:category": "coreData",
+      "manifest:hasFileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:filePath": {
+          "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:mimeType": {
+          "@value": "application/ld+json",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "owner",
+      "manifest:category": "coreData",
+      "manifest:hasFileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:filePath": {
+          "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:mimeType": {
+          "@value": "application/ld+json",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  ],
+
   "manifest:hasArtifacts": [
+    {
+      "@type": "manifest:Link",
+      "manifest:accessRole": "owner",
+      "manifest:category": "coreData",
+      "manifest:hasFileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:filePath": {
+          "@value": "https://placeholder-link.com/my_pedestrian_catalog.xosc",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:mimeType": {
+          "@value": "application/x-xosc",
+          "@type": "xsd:string"
+        }
+      }
+    },
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
@@ -102,160 +156,6 @@
         },
         "manifest:filename": {
           "@value": "README.md",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    {
-      "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "metadata",
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "application/json",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": 5678,
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "domainMetadata.json",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    {
-      "@type": "manifest:Link",
-      "manifest:accessRole": "registeredUser",
-      "manifest:category": "media",
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "./visualization/detailRoadNetwork.geojson",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafkreiakpb3ajhljq6cgwizcyirsk6uz322szaxd6ynmovcwuu5jkx5isa",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "application/x-geojson",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": 1500,
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "detailRoadNetwork.geojson",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    {
-      "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "media",
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqosblhwu7kvgvuncqi",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "image/png",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": 2400256,
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
-          "@type": "xsd:string"
-        },
-        "manifest:hasDimensions": {
-          "@type": "manifest:Dimensions",
-          "manifest:unit": "pixels",
-          "manifest:width": {
-            "@value": "1095",
-            "@type": "xsd:decimal"
-          },
-          "manifest:height": {
-            "@value": "850",
-            "@type": "xsd:decimal"
-          }
-        }
-      }
-    }
-  ],
-  "manifest:hasExternalArtifacts": [
-    {
-      "@type": "manifest:Link",
-      "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "ipfs://bafybeidhmknqn4cofjlphtrxpyvruur42t55bfmtcldyb74l2ob22kjjdu",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafybeidhmknqn4cofjlphtrxpyvruur42t55bfmtcldyb74l2ob22kjjdu",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "application/zip",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": 3150043,
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "bafybeidhmknqn4cofjlphtrxpyvruur42t55bfmtcldyb74l2ob22kjjdu.zip",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    {
-      "@type": "manifest:Link",
-      "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://github.com/GAIA-X4PLC-AAD/environment-model-asset-example/releases/download/v0.1.0/Gaia_X_Example_Asset_TestfeldNiedersachsen_ALKS_3DModel_opt_osgb.zip",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafybeiavngl5uyg72zkhfqomlxmeen56u7iqp73ic3gu6ceqliq6ftjivy",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "application/zip",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": 301830,
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "Gaia_X_Example_Asset_TestfeldNiedersachsen_ALKS_3DModel_opt_osgb.zip",
           "@type": "xsd:string"
         }
       }
