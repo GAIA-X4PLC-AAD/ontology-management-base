@@ -2,7 +2,6 @@
 
 ## Prefixes
 
-- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
 - scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/>
 
 ## List of SHACL Properties
@@ -12,13 +11,17 @@
 | ScenarioShape | scenario | hasDataResource | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasDataResourceExtension | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasManifest | 1 | 1 |  |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasFormat | 1 | 1 | Contains properties to describe the format of the scenario asset. |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasContent | 1 | 1 | Defines the content (road types, lane types, object types, traffic direction) of the HD map asset. |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasQuantity | 1 | 1 | Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset. |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasQuality | 1 | 1 | Contains properties to describe the accuracy of the HD map asset. |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasDataSource | 1 | 1 | Defines which data resources or measurement systems were used to create the HD map asset. |  | scenario_shacl.ttl |
-| DataResourceShapeExtension | scenario | hasGeoreference | 1 | 1 |  |  | scenario_shacl.ttl |
-| FormatShape | scenario | type |  | 1 | Defines the type of data format used for the scenario asset. |  | scenario_shacl.ttl |
+| ManifestShape | scenario | hasArtifacts |  |  | Each Scenario manifest must contain at least two `manifest:Link` references categorized as `coreData`. |  | scenario_shacl.ttl |
+| ManifestShape | scenario | hasExternalArtifacts |  |  | Each Scenario manifest must reference at least one HD map, either inline or via `manifest:Link` referencing `hdmap:HdMap`. |  | scenario_shacl.ttl |
+| ManifestShape | scenario | hasExternalArtifacts |  |  | Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`. |  | scenario_shacl.ttl |
+| ManifestShape | scenario | hasArtifact |  |  | Each Scenario manifest must reference at least one catalog via a `manifest:Link`. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasQuantity | 1 | 1 | Quantitative metrics describing the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasDataSource | 1 | 1 | Data sources used to create the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasGeoreference | 1 | 1 | Georeferencing information for the scenario. |  | scenario_shacl.ttl |
+| FormatShape | scenario | formatType |  | 1 | Defines the type of data format used for the scenario asset. |  | scenario_shacl.ttl |
 | FormatShape | scenario | version |  | 1 | Defines the version of the data format used for the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | abstractionLevel |  | 1 | Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset. |  | scenario_shacl.ttl |
 | ContentShape | scenario | timeDate | 0 | 1 | Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario). | <http://www.w3.org/2001/XMLSchema#dateTime> | scenario_shacl.ttl |
@@ -36,6 +39,5 @@
 | QuantityShape | scenario | permanentTrafficObjects |  | 1 | Specifies the total number of permanent traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
 | QualityShape | scenario | accuracyObjects | 0 | 1 | Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements). | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | QualityShape | scenario | calibration | 0 | 1 | Describes the calibration steps performed prior to the measurements. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| DataSourceShape | scenario | sourceType | 0 | 1 | Specifies the category of source data used to create the scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
+| DataSourceShape | scenario | sourceType | 0 | 1 | Specifies the category of source data used to create the scenario. |  | scenario_shacl.ttl |
 | DataSourceShape | scenario | sourceDescription | 0 | 1 | Provides a detailed description of the source data used. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| ManifestShape | manifest | hasExternalArtifacts | 1 |  |  |  | scenario_shacl.ttl |

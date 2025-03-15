@@ -23,7 +23,7 @@
 | LinkShape | manifest | accessRole | 1 | 1 | Specifies the access role associated with the corresponding file. |  | manifest_shacl.ttl |
 | LinkShape | manifest | category | 1 | 1 | Specifies the category of the corresponding data file. The categories may represent the structure of the asset e.g. in an archive. |  | manifest_shacl.ttl |
 | LinkShape | manifest | hasFileMetadata | 1 | 1 | Defines the properties of the data file that is referenced via a link. |  | manifest_shacl.ttl |
-| nd8c18b0183bd4c8c9378f208e2580aa4b542 | manifest | hasFileMetadata |  |  |  |  | manifest_shacl.ttl |
+| nfb6d51a77c2f4ecdbf97dc2559a87142b542 | manifest | hasFileMetadata |  |  |  |  | manifest_shacl.ttl |
 | FileMetadataShape | manifest | filePath | 1 | 1 | A local or remote path/URL from which the file can be retrieved (e.g. './manifest_reference.json', 'ipfs://...', 's3://...', 'https://...'). | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | mimeType | 1 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | cid | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
