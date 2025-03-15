@@ -1,12 +1,15 @@
 @prefix surface-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 
 
 surface-model: a owl:Ontology ;
@@ -22,6 +25,10 @@ surface-model: a owl:Ontology ;
         a foaf:Person ;
         foaf:name "Mirco Nierenz" ;
         org:memberOf <https://triangraphics.de/> ;
+    ] , [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
     ] ;  
 
     # Permanent identifier for the ontology (not version-specific)
@@ -31,37 +38,104 @@ surface-model: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v3/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
-surface-model:SurfaceModel a owl:Class ;
-    rdfs:label "Class definition for SurfaceModel"@en ;
-    rdfs:comment "General properties for defining a surface model asset, including format, data, quantity, and quality attributes."@en ;
-    rdfs:subClassOf gx:DataResource .
+surface-model:DataResourceExtension a owl:Class ;
+    rdfs:label "Class definition for DataResourceExtension"@en ;
+    rdfs:comment "Surface model DataResourceExtension containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DataResourceExtension ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasData ;
+        owl:someValuesFrom surface-model:Data
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasFormat ;
+        owl:someValuesFrom surface-model:Format
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasQuality ;
+        owl:someValuesFrom surface-model:Quality
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasQuantity ;
+        owl:someValuesFrom surface-model:Quantity
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasGeoreference ;
+        owl:someValuesFrom georeference:Georeference
+    ] .
 
 surface-model:Data a owl:Class ;
     rdfs:label "Class definition for Data"@en ;
-    rdfs:comment "Contains properties that describe the data type of the surface model asset."@en .
+    rdfs:comment "Contains properties that describe the data type of the surface model asset."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 surface-model:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties that describe the format of the surface model asset."@en .
+    rdfs:comment "Contains properties that describe the format of the surface model asset."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 surface-model:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties that describe the accuracy of the surface model asset."@en .
+    rdfs:comment "Contains properties that describe the accuracy of the surface model asset."@en ;
+    rdfs:subClassOf envited-x:Quality .
 
 surface-model:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties that describe the quantity of the surface model asset."@en .
-    
+    rdfs:comment "Contains properties that describe the quantity of the surface model asset."@en ;
+    rdfs:subClassOf envited-x:Quantity .
+
+### **Object Properties**
+
+surface-model:hasDataResourceExtension a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResourceExtension"@en ;
+    rdfs:comment "Links a surface model asset to its specific metadata (DataResourceExtension), which may contain additional surface model-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+    rdfs:domain surface-model:SurfaceModel ;
+    rdfs:range surface-model:DataResourceExtension .
+
+surface-model:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResource"@en ;
+    rdfs:comment "Links a surface model asset to a standard DataResource instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResource ;
+    rdfs:domain surface-model:SurfaceModel ;
+    rdfs:range envited-x:DataResource .
+
+surface-model:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment "Links a surface model asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain surface-model:SurfaceModel ;
+    rdfs:range envited-x:Manifest .
+
+surface-model:hasGeoreference a owl:ObjectProperty ;
+    rdfs:label "Object property: hasGeoreference"@en ;
+    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the surface model is georeferenced."@en ;
+    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:range georeference:Georeference .
+
+surface-model:hasData a owl:ObjectProperty ;
+    rdfs:label "Object property: hasData"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Data that describes the surface model's data content."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:range surface-model:Data .
+
+surface-model:hasFormat a owl:ObjectProperty ;
+    rdfs:label "Object property: hasFormat"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Format that describes the surface model's file format details."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
+    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:range surface-model:Format .

@@ -22,6 +22,7 @@
   },
   "envited-x:hasManifest": {
     "@type": "manifest:Link",
+    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:ksfw72PrV1L9XYsZxJqTg9Ounh2Qez4cMEm1" },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: coreData, documentation, metadata, media.",
       "@type": "xsd:string"

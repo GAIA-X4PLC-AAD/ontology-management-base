@@ -70,6 +70,22 @@ environment-model:EnvironmentModel a owl:Class ;
 
 #### Object Properties
 
+### hasDataResource (environment-model -> envited-x:DataResource)
+environment-model:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResource"@en ;
+    rdfs:comment "Links an environment model asset to a standard DataResource instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResource ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range envited-x:DataResource .
+
+### hasManifest (environment-model -> envited-x:Manifest)
+environment-model:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment "Links an environment model asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range envited-x:Manifest .
+
 environment-model:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:label "has data resource extension"@en ;
     rdfs:comment "Links an environment model asset to its metadata extensions."@en ;

@@ -211,11 +211,11 @@ scenario:hasEnvironmentModel a owl:ObjectProperty ;
     rdfs:label "Object property: hasEnvironmentModel"@en ;
     rdfs:comment "Links a scenario asset to a referenced environment model that is used within the scenario."@en ;
     rdfs:domain scenario:Manifest ;
-    rdfs:range environment-mode:EnvironmentModel .
+    rdfs:range environment-model:EnvironmentModel .
 
 ### hasExternalArtifacts
 # (Scenario -> Manifest -> hdmap:HdMap)
-# (Scenario -> Manifest -> environment-mode:EnvironmentModel)
+# (Scenario -> Manifest -> environment-model:EnvironmentModel)
 scenario:hasExternalArtifacts a owl:ObjectProperty ;
     rdfs:label "Object property: hasExternalArtifacts"@en ;
     rdfs:comment "Links a scenario asset to a referenced environment model and HD map that is used within the scenario."@en ;

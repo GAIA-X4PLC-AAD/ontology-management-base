@@ -185,10 +185,24 @@
   },
   "ositrace:hasManifest": {
     "@type": "manifest:Link",
+    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4" },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: coreData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+      },
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+      }
+    ],
     "manifest:accessRole": "publicUser",
     "manifest:category": "manifest",
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
+      
       "manifest:filePath": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
@@ -196,15 +210,7 @@
       "manifest:mimeType": {
         "@value": "application/ld+json",
         "@type": "xsd:string"
-      },
-      "sh:conformsTo": [
-        {
-          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
-        },
-        {
-          "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
-        }
-      ]
+      }
     }
   }
 }
