@@ -14,7 +14,7 @@
 | GeodeticReferenceSystemShape | georeference | hasViewPoint |  | 1 | Defines the imported viewpoint position of the asset in world coordinates. |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | Defines the projection EPSG code for the asset. | <http://www.w3.org/2001/XMLSchema#int> | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | coordinateSystemName |  | 1 | Describes the coordinate system name of the asset as an alternative to the EPSG code. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Defines the height system type of the asset. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Defines the height system type of the asset. |  | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | xMin | 1 | 1 | Defines the minimum bounding box value along the x-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | yMin | 1 | 1 | Defines the minimum bounding box value along the y-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | xMax | 1 | 1 | Defines the maximum bounding box value along the x-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |
