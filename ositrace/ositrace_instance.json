@@ -64,17 +64,6 @@
           "@value": "PMSF MB CLS 500 Host Vehicle",
           "@type": "xsd:string"
         }
-      },
-      {
-        "@type": "ositrace:MovingObject",
-        "ositrace:identifier": {
-          "@value": "2",
-          "@type": "xsd:unsignedLong"
-        },
-        "ositrace:description": {
-          "@value": "ADC Target Vehicle",
-          "@type": "xsd:string"
-        }
       }
     ],
     "ositrace:hasQuality": {
@@ -200,11 +189,11 @@
         "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
       }
     ],
-    "manifest:accessRole": {
+    "manifest:hasAccessRole": {
       "@type": "manifest:AccessRole",
       "@id": "envited-x:isPublic"
     },
-    "manifest:category": {
+    "manifest:hasCategory": {
       "@type": "manifest:Category",
       "@id": "envited-x:isManifest"
     },
