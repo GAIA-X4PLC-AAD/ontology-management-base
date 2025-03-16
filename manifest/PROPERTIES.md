@@ -17,13 +17,12 @@
 | ManifestShape | manifest | hasReferencedArtifacts | 0 |  | Defines the links to all related external artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
 | LicenseShape | gx | license | 1 | 1 | Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints. |  | manifest_shacl.ttl |
 | LicenseShape | manifest | licenseData | 1 | 1 | Defines a link to the license. |  | manifest_shacl.ttl |
-| LinkShape | manifest | iri | 0 | 1 | IRI that identifies the resource in RDF (if the file is JSON-LD). | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
-| LinkShape | skos | note | 0 | 1 | Provides additional information about the manifest reference, such as validation expectations. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
-| LinkShape | sh | conformsTo | 0 |  | Specifies the ontology conformance for the linked asset if it is JSON-LD. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
-| LinkShape | manifest | hasAccessRole | 1 | 1 | Specifies the access role associated with the corresponding file. |  | manifest_shacl.ttl |
-| LinkShape | manifest | hasCategory | 1 | 1 | Specifies the category of the artifact. Categories are defined as instances of manifest:Category and extended via domain-specific ontologies. |  | manifest_shacl.ttl |
-| LinkShape | manifest | hasFileMetadata | 1 | 1 | Defines the properties of the data file that is referenced via a link. |  | manifest_shacl.ttl |
-| nbd657fc96daa49cfb6028e0ed913c35bb542 | manifest | hasFileMetadata |  |  |  |  | manifest_shacl.ttl |
+| LinkShape | manifest | iri | 0 | 1 | IRI required if the file is RDF/JSON-LD. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
+| LinkShape | skos | note | 0 | 1 | Additional information about the manifest reference. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
+| LinkShape | sh | conformsTo | 0 |  | Specifies ontology conformance. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
+| LinkShape | manifest | hasAccessRole | 1 | 1 |  |  | manifest_shacl.ttl |
+| LinkShape | manifest | hasCategory | 1 | 1 | Specifies artifact category. |  | manifest_shacl.ttl |
+| LinkShape | manifest | hasFileMetadata | 1 | 1 |  |  | manifest_shacl.ttl |
 | FileMetadataShape | manifest | filePath | 1 | 1 | A local or remote path/URL from which the file can be retrieved (e.g. './manifest_reference.json', 'ipfs://...', 's3://...', 'https://...'). | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | mimeType | 1 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | cid | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
