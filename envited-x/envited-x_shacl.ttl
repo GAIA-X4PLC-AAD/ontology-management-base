@@ -27,21 +27,19 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:path envited-x:hasManifest ;
-        sh:or (
-            [
-                sh:and (
-                    [ sh:class envited-x:Manifest ]
-                    [ sh:node manifest:ManifestShape ]
-                    [ sh:node envited-x:ManifestShape ]
-                )
-            ]
-            [
-                sh:node manifest:LinkShape
-            ]
-        ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each SimulationAsset must have exactly one manifest, either inline or via link."@en ;
+        sh:or (
+            ## Case 1: Inline manifest must conform to both required shapes
+            [ sh:and (
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+            )]
+            
+            ## Case 2: Linked manifest reference
+            [ sh:node manifest:LinkShape ]
+        ) ;
+        sh:message "Each SimulationAsset must have exactly one manifest, either inline (conforming to both manifest:ManifestShape and envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
     ] ;
     sh:targetClass envited-x:SimulationAsset .
 
@@ -105,34 +103,58 @@ envited-x:DataResourceExtensionShape a sh:NodeShape ;
 # Manifest Shape for additional constraints
 envited-x:ManifestShape a sh:NodeShape ;
     sh:closed false ;
+
+    ## Ensure at least one `manifest:Link` for each required category
     sh:property [
         sh:path manifest:hasArtifacts ;
-        sh:node manifest:LinkShape ;
-        sh:minCount 4 ;
-        sh:message "The envited-x:Manifest must contain at least 4 required manifest:Link(s) of content categories: coreData, documentation, metadata, and media."@en ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isSimulationData ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Simulation Data'."@en ;
     ] ;
-    sh:sparql [
-        sh:message "The envited-x:Manifest must contain at least 4 required manifest:Link(s) of content categories: coreData, documentation, metadata, and media."@en ;
-        sh:prefixes <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> ;
-        sh:select """
-            SELECT ?this WHERE {
-                FILTER NOT EXISTS {
-                    ?this manifest:hasArtifacts ?coreData .
-                    ?coreData manifest:category "coreData" .
-                }
-                FILTER NOT EXISTS {
-                    ?this manifest:hasArtifacts ?documentation .
-                    ?documentation manifest:category "documentation" .
-                }
-                FILTER NOT EXISTS {
-                    ?this manifest:hasArtifacts ?metadata .
-                    ?metadata manifest:category "metadata" .
-                }
-                FILTER NOT EXISTS {
-                    ?this manifest:hasArtifacts ?media .
-                    ?media manifest:category "media" .
-                }
-            }
-        """ ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isDocumentation ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Documentation'."@en ;
     ] ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isMetadata ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Metadata'."@en ;
+    ] ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isMedia ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Media'."@en ;
+    ] ;
+
     sh:targetClass envited-x:Manifest .

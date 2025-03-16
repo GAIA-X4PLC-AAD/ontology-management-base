@@ -52,7 +52,7 @@
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:category": "simulationData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -202,5 +202,5 @@
       }
     }
   ],
-  "manifest:hasExternalArtifacts": []
+  "manifest:hasReferencedArtifacts": []
 }

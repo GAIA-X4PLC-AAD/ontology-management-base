@@ -72,7 +72,6 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
         sh:path georeference:coordinateSystemName
     ], [
         skos:example "Ellipsodial height" ;
-        sh:datatype xsd:string ;
         sh:description "Defines the height system type of the asset."@en ;
         sh:in ("Ellipsodial height" "Orthometric height" "Local height") ;
         sh:maxCount 1 ;

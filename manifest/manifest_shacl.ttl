@@ -38,7 +38,7 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:node manifest:LinkShape ;
             sh:order 3 ;
-            sh:path manifest:hasExternalArtifacts
+            sh:path manifest:hasReferencedArtifacts
         ] ;
     sh:targetClass manifest:Manifest .
 
@@ -211,26 +211,26 @@ manifest:LinkShape a sh:NodeShape ;
             sh:path sh:conformsTo ;
             sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
         ],
-        [   sh:name "access role"@en ;
+        [
+            sh:name "access role"@en ;
             sh:description "Specifies the access role associated with the corresponding file."@en ;
-            skos:example "publicUser";
-            sh:in ("owner" "registeredUser" "publicUser") ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:class manifest:AccessRole ;
             sh:message "Validation of accessRole failed!"@en ;
             sh:order 3 ;
-            sh:maxCount 1 ;
+            sh:path manifest:hasAccessRole ;
+        ],
+        [
+            sh:name "category"@en ;
+            sh:description "Specifies the category of the artifact. Categories are defined as instances of manifest:Category and extended via domain-specific ontologies."@en ;
             sh:minCount 1 ;
-            sh:path manifest:accessRole 
-        ] ,
-        [   sh:name "category"@en ;
-            sh:description "Specifies the category of the corresponding data file. The categories may represent the structure of the asset e.g. in an archive."@en ;
-            skos:example "metadata";
-            sh:in ("manifest" "coreData" "documentation" "media" "metadata" "validationReports" "license" "externalDependency" "miscellaneous") ;
-            sh:message "Validation of category failed!"@en ;
+            sh:maxCount 1 ;
+            sh:class manifest:Category ;
+            sh:message "Each manifest:Link must have exactly one assigned category, which must be an instance of manifest:Category."@en ;
             sh:order 4 ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path manifest:category 
-        ] ,
+            sh:path manifest:hasCategory ;
+        ],
         [   sh:name "file metadata"@en ;
             sh:description "Defines the properties of the data file that is referenced via a link."@en ;
             sh:maxCount 1 ;

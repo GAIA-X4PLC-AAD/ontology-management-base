@@ -30,82 +30,92 @@ scenario:ScenarioShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:path scenario:hasManifest ;
-        sh:or ( 
-            [
-                sh:and (
-                    [ sh:class scenario:Manifest ]
-                    [ sh:node manifest:ManifestShape ]
-                    [ sh:node envited-x:ManifestShape ]
-                    [ sh:node scenario:ManifestShape ]
-                )
-            ] 
-            [
-                sh:node manifest:LinkShape
-            ] 
-        ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each scenario must have exactly one manifest, either inline or via link."@en ;
+        sh:or (
+            ## Case 1: Inline manifest must conform to all three required shapes
+            [ sh:and (
+                [ sh:node scenario:ManifestShape ]
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+            )]
+            ## Case 2: Linked manifest reference
+            [ sh:node manifest:LinkShape ]
+        ) ;
+        sh:message "Each scenario must have exactly one manifest, either inline (conforming to all of scenario:ManifestShape, manifest:ManifestShape, envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
     ] ;
     sh:targetClass scenario:Scenario .
-
 
 ### **Scenario Manifest SHACL Shape**
 scenario:ManifestShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
 
-    ## Ensure at least two `manifest:Link` shapes in `hasArtifacts` categorized as `coreData`
-    sh:property 
-        [ sh:qualifiedValueShape [
-              sh:and (
-                  [ sh:node manifest:LinkShape ]
-                  [ sh:hasValue "coreData" ; sh:path manifest:category ]
-              )
-          ] ;
-          sh:qualifiedMinCount 2 ;
-          sh:name "core data references"@en ;
-          sh:description "Each Scenario manifest must contain at least two `manifest:Link` references categorized as `coreData`."@en ;
-          sh:order 1 ;
-          sh:path scenario:hasArtifacts ],
-        [ sh:qualifiedValueShape [
-              sh:or (
-                  [ sh:node hdmap:HdMap ]
-                  [ sh:and (
-                      [ sh:node manifest:LinkShape ]
-                      [ sh:class hdmap:HdMap ]
-                  )]
-              )
-          ] ;
-          sh:qualifiedMinCount 1 ;
-          sh:name "HD Map reference"@en ;
-          sh:description "Each Scenario manifest must reference at least one HD map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
-          sh:order 2 ;
-          sh:path scenario:hasExternalArtifacts ],
+    ## Ensure at least one `manifest:Link` in `hasArtifacts` categorized as `simulationData`
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:category ;
+                sh:hasValue "simulationData" ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 2 ;
+        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) with category 'simulationData'."@en ;
+    ] ;
+    ## Ensure at least two `manifest:Link` shapes in `hasReferencedArtifacts` categorized as `referencedSimulationData`
+    sh:property [
+        sh:path manifest:hasReferencedArtifacts ;
+        sh:node manifest:LinkShape ;
+        sh:qualifiedValueShape [
+            sh:property [
+                sh:path manifest:category ;
+                sh:hasValue "referencedSimulationData" ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 2 ;
+        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) of content category: referencedSimulationData."@en ;
+    ] ;
+
+    ## Ensure at least one HD map reference (either inline `hdmap:HdMap` or `manifest:Link` referencing `hdmap:HdMap`)
+    sh:property [
+        sh:path manifest:hasReferencedArtifacts ;
+        sh:qualifiedValueShape [
+            sh:or (
+                [ sh:class hdmap:HdMap ]
+                [ sh:node manifest:LinkShape ]
+            )
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:name "HD Map reference"@en ;
+        sh:description "Each Scenario manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
+    ] ;
 
     ## Ensure at least one Environment Model reference (either inline `environment-model:EnvironmentModel` or `manifest:Link` referencing `environment-model:EnvironmentModel`)
-        [ sh:qualifiedValueShape [
-              sh:or (
-                  [ sh:node environment-model:EnvironmentModel ]
-                  [ sh:and (
-                      [ sh:node manifest:LinkShape ]
-                      [ sh:class environment-model:EnvironmentModel ]
-                  )]
-              )
-          ] ;
-          sh:qualifiedMinCount 1 ;
-          sh:name "Environment Model reference"@en ;
-          sh:description "Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
-          sh:order 3 ;
-          sh:path scenario:hasExternalArtifacts ],
+    sh:property [
+        sh:path manifest:hasReferencedArtifacts ;
+        sh:qualifiedValueShape [
+            sh:or (
+                [ sh:class environment-model:EnvironmentModel ]
+                [ sh:node manifest:LinkShape ]
+            )
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:name "Environment Model reference"@en ;
+        sh:description "Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
+    ] ;
 
     ## Ensure at least one catalog reference via `manifest:Link`
-        [ sh:qualifiedValueShape [ sh:node manifest:LinkShape ] ;
-          sh:qualifiedMinCount 1 ;
-          sh:name "catalog reference"@en ;
-          sh:description "Each Scenario manifest must reference at least one catalog via a `manifest:Link`."@en ;
-          sh:order 4 ;
-          sh:path scenario:hasArtifact ] ;
+    sh:property [
+        sh:path scenario:hasArtifact ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:name "catalog reference"@en ;
+        sh:description "Each Scenario manifest must reference at least one catalog via a `manifest:Link`."@en ;
+    ] ;
 
     sh:targetClass scenario:Manifest .
 

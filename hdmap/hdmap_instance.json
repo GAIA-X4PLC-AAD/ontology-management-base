@@ -201,9 +201,11 @@
   },
   "hdmap:hasManifest": {
     "@type": "manifest:Link",
-    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q" },
+    "manifest:iri": {
+      "@id": "did:web:registry.gaia-x.eu:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
+    },
     "skos:note": {
-      "@value": "Ensure that 'manifest_reference.json' contains all required categories: coreData, documentation, metadata, media.",
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
       "@type": "xsd:string"
     },
     "sh:conformsTo": [
@@ -218,7 +220,6 @@
     "manifest:category": "manifest",
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      
       "manifest:filePath": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"

@@ -11,7 +11,6 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6",
   "@type": "scenario:Manifest",
-
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:accessRole": "publicUser",
@@ -28,7 +27,6 @@
       }
     }
   },
-
   "manifest:hasLicense": {
     "@type": "manifest:License",
     "gx:license": {
@@ -51,12 +49,11 @@
       }
     }
   },
-
-  "manifest:hasExternalArtifacts": [
+  "manifest:hasReferencedArtifacts": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:category": "simulationData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -72,7 +69,7 @@
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:category": "simulationData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -86,12 +83,11 @@
       }
     }
   ],
-
   "manifest:hasArtifacts": [
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:category": "simulationData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -107,7 +103,7 @@
     {
       "@type": "manifest:Link",
       "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:category": "simulationData",
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {

@@ -14,7 +14,7 @@
 | ManifestShape | manifest | hasManifestReference | 1 | 1 | Self-reference to the manifest.json providing the structure and list of contents for a domain specific asset. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasLicense | 1 | 1 | Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts | 1 |  | Defines the links to all relevant artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
-| ManifestShape | manifest | hasExternalArtifacts | 0 |  | Defines the links to all related external artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts | 0 |  | Defines the links to all related external artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
 | LicenseShape | gx | license | 1 | 1 | Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints. |  | manifest_shacl.ttl |
 | LicenseShape | manifest | licenseData | 1 | 1 | Defines a link to the license. |  | manifest_shacl.ttl |
 | LinkShape | manifest | iri | 0 | 1 | IRI that identifies the resource in RDF (if the file is JSON-LD). | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |

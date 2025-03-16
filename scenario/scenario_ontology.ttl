@@ -113,21 +113,27 @@ scenario:Manifest a owl:Class ;
     rdfs:label "Class definition for Manifest"@en ;
     rdfs:comment "A scenario-specific extension of envited-x:Manifest. Ensures that a Scenario manifest contains references to an HD Map, an Environment Model, and catalogs."@en ;
     rdfs:subClassOf envited-x:Manifest ;
-    # Restriction ensuring at least 2 external artifacts (HD Map, Environment Model, or their manifest links)
+    ### hasReferencedArtifacts
+    # Restriction ensuring at least 2 external artifacts
+    # (Scenario -> Manifest -> hdmap:HdMap)
+    # (Scenario -> Manifest -> environment-model:EnvironmentModel)
+    # (Scenario -> Manifest -> manifest:link to these)
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty scenario:hasExternalArtifacts ;
+        owl:onProperty manifest:hasReferencedArtifacts ;
         owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
         owl:onClass [
             a owl:Class ;
             owl:unionOf ( environment-model:EnvironmentModel hdmap:HdMap manifest:Link )
         ]
     ] ;
+    ### hasArtifacts
     # Ensuring catalogs are referenced separately
+    # (Scenario -> Manifest -> manifest:Link to catalogs)
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty scenario:hasArtifact ;
-        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onProperty manifest:hasArtifacts ;
+        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
         owl:onClass manifest:Link
     ] .
 
@@ -215,25 +221,3 @@ scenario:hasGeoreference a owl:ObjectProperty ;
     rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the scenario is georeferenced."@en ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range georeference:Georeference .
-
-### hasExternalArtifacts
-# (Scenario -> Manifest -> hdmap:HdMap)
-# (Scenario -> Manifest -> environment-model:EnvironmentModel)
-# (Scenario -> Manifest -> manifest:link to these these)
-scenario:hasExternalArtifacts a owl:ObjectProperty ;
-    rdfs:label "Object property: hasExternalArtifacts"@en ;
-    rdfs:comment "Links a scenario asset to referenced external artifacts: an Environment Model, an HD Map, or a manifest link to these artifacts."@en ;
-    rdfs:subPropertyOf manifest:hasExternalArtifacts ;
-    rdfs:domain scenario:Manifest ;
-    rdfs:range [
-        a owl:Class ;
-        owl:unionOf ( environment-model:EnvironmentModel hdmap:HdMap manifest:Link )
-    ] .
-
-### hasArtifact (Scenario -> Manifest -> manifest:Link to catalogs)
-scenario:hasArtifact a owl:ObjectProperty ;
-    rdfs:label "Object property: hasArtifact"@en ;
-    rdfs:comment "Links a scenario manifest to a referenced artifact such as catalogs that are not external models but provide additional resources."@en ;
-    rdfs:subPropertyOf manifest:hasArtifact ;
-    rdfs:domain scenario:Manifest ;
-    rdfs:range manifest:Link .

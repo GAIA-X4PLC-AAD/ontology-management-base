@@ -72,7 +72,7 @@ manifest:Manifest a owl:Class ;
     ] ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
-        owl:onProperty manifest:hasExternalArtifacts ;  
+        owl:onProperty manifest:hasReferencedArtifacts ;  
         owl:minCardinality 0
     ] .
 
@@ -126,7 +126,7 @@ manifest:hasArtifacts a owl:ObjectProperty ;
     rdfs:comment "Associates a Manifest instance with its artifacts, represented as Link instances; only applicable within Manifest instances."@en .
 
 
-manifest:hasExternalArtifacts a owl:ObjectProperty ;
+manifest:hasReferencedArtifacts a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link ;
     rdfs:comment "Associates a Manifest instance with its external artifacts, represented as Link instances; only applicable within Manifest instances."@en .
@@ -143,3 +143,44 @@ manifest:hasDimensions a owl:ObjectProperty ;
     rdfs:range manifest:Dimensions ;
     rdfs:comment "Links a Dimensions instance to its associated FileMetadata, defining the size and scale of the data file; applicable only within FileMetadata instances."@en .
 
+## Define a general access role class
+manifest:AccessRole a owl:Class ;
+    rdfs:label "AccessRole"@en ;
+    rdfs:comment "A class representing different access roles of artifacts in a manifest."@en .
+
+## General accessRole property
+manifest:hasAccessRole a owl:ObjectProperty ;
+    rdfs:label "has AccessRole"@en ;
+    rdfs:comment "General property to indicate the access role of an artifact."@en ;
+    rdfs:domain manifest:Link ;
+    rdfs:range manifest:AccessRole .
+
+## Define specific access role types as named individuals (NOT subclasses)
+manifest:isPublic a manifest:AccessRole, owl:NamedIndividual ;
+    rdfs:label "Public Access Role"@en ;
+    rdfs:comment "Indicates that the artifact access role is public."@en .
+
+## Define a general category class
+manifest:Category a owl:Class ;
+    rdfs:label "Category"@en ;
+    rdfs:comment "A class representing different categories of artifacts in a manifest."@en .
+
+## General category property
+manifest:hasCategory a owl:ObjectProperty ;
+    rdfs:label "has Category"@en ;
+    rdfs:comment "General property to indicate the category of an artifact."@en ;
+    rdfs:domain manifest:Link ;
+    rdfs:range manifest:Category .
+
+## Define specific category types as named individuals (NOT subclasses)
+manifest:isManifest a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Manifest Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a manifest."@en .
+
+manifest:isLicense a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "License Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a license file."@en .
+
+manifest:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Miscellaneous Category"@en ;
+    rdfs:comment "Indicates that the artifact category is miscellaneous."@en .

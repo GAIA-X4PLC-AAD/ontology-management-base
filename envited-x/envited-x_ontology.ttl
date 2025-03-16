@@ -223,3 +223,53 @@ envited-x:hasQuantity a owl:ObjectProperty ;
     rdfs:comment "Links a DataResourceExtension to an instance of envited-x:Quantity describing the SimulationAsset`s quantity."@en ;
     rdfs:domain envited-x:DataResourceExtension ;
     rdfs:range envited-x:Quantity .
+
+### Define specific category types as named individuals, extending manifest categories
+envited-x:isManifest a manifest:isManifest, owl:NamedIndividual ;
+    rdfs:label "envited-x Manifest Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a manifest in the envited-x context."@en .
+
+envited-x:isLicense a manifest:isLicense, owl:NamedIndividual ;
+    rdfs:label "envited-x License Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a license file in the envited-x context."@en .
+
+envited-x:isMiscellaneous a manifest:isMiscellaneous, owl:NamedIndividual ;
+    rdfs:label "envited-x Miscellaneous Category"@en ;
+    rdfs:comment "Indicates that the artifact category is miscellaneous in the envited-x context."@en .
+
+envited-x:isSimulationData a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Simulation Data Category"@en ;
+    rdfs:comment "Indicates that the artifact category is simulation data."@en .
+
+envited-x:isReferencedSimulationData a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Referenced Simulation Data Category"@en ;
+    rdfs:comment "Indicates that the artifact category is referenced simulation data."@en .
+
+envited-x:isDocumentation a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Documentation Category"@en ;
+    rdfs:comment "Indicates that the artifact category is documentation."@en .
+
+envited-x:isMedia a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Media Category"@en ;
+    rdfs:comment "Indicates that the artifact category is media content."@en .
+
+envited-x:isMetadata a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Metadata Category"@en ;
+    rdfs:comment "Indicates that the artifact category is metadata."@en .
+
+envited-x:isValidationReport a manifest:Category, owl:NamedIndividual ;
+    rdfs:label "Validation Report Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a validation report."@en .
+
+### Define specific access role types as named individuals
+envited-x:isPublic a manifest:isPublic, owl:NamedIndividual ;
+    rdfs:label "Public Access Role"@en ;
+    rdfs:comment "Indicates that the artifact access role is public in the envited-x context."@en .
+
+envited-x:isOwner a manifest:AccessRole, owl:NamedIndividual ;
+    rdfs:label "Owner Access Role"@en ;
+    rdfs:comment "Indicates that the artifact access role is owner in the envited-x context."@en .
+
+envited-x:isRegistered a manifest:AccessRole, owl:NamedIndividual ;
+    rdfs:label "Registered Access Role"@en ;
+    rdfs:comment "Indicates that the artifact access role is registered user in the envited-x context."@en .

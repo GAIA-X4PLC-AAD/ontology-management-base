@@ -105,20 +105,6 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
         ] ;
     sh:targetClass hdmap:DataResourceExtension .
 
-# Manifest Shape for additional constraints
-# hdmap:ManifestShape a sh:NodeShape ;
-#
-#     add additional constraints as in envited-x:manifest
-#
-#     sh:targetClass hdmap:Manifest .
-
-# DataResource Shape for additional constraints
-# hdmap:DataResource a sh:NodeShape ;
-#
-#     add additional constraints as in envited-x:DataResource
-#
-#     sh:targetClass hdmap:DataResource .
-
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;

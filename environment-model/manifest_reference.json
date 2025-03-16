@@ -12,8 +12,14 @@
   "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
-    "manifest:accessRole": "publicUser",
-    "manifest:category": "manifest",
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
@@ -33,8 +39,14 @@
     },
     "manifest:licenseData": {
       "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "license",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isLicense"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -51,8 +63,14 @@
   "manifest:hasArtifacts": [
     {
       "@type": "manifest:Link",
-      "manifest:accessRole": "owner",
-      "manifest:category": "coreData",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isOwner"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isSimulationData"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -79,8 +97,14 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "documentation",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isDocumentation"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -107,8 +131,14 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "metadata",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isMetadata"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -135,8 +165,14 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:accessRole": "registeredUser",
-      "manifest:category": "media",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isRegistered"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isMedia"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -163,8 +199,14 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:accessRole": "publicUser",
-      "manifest:category": "media",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isMedia"
+      },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
@@ -202,5 +244,5 @@
       }
     }
   ],
-  "manifest:hasExternalArtifacts": []
+  "manifest:hasReferencedArtifacts": []
 }

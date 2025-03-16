@@ -1,13 +1,14 @@
 {
   "@context": {
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
-    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+    "environment-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/"
   },
   "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
   "@type": "environment-model:EnvironmentModel",
@@ -39,11 +40,11 @@
         "@type": "xsd:string"
       },
       "environment-model:creationToolName": {
-        "@value": "Trian3DBuilder",
+        "@value": "Triangle3DBuilder",
         "@type": "xsd:string"
       },
       "environment-model:creationToolVendor": {
-        "@value": "TrianGraphics GmbH",
+        "@value": "TriangleGraphics GmbH",
         "@type": "xsd:string"
       },
       "environment-model:creationToolVersion": {
@@ -61,7 +62,7 @@
     },
     "environment-model:hasContent": {
       "@type": "environment-model:Content",
-      "environment-model:elements": "profile roads, extrude buildings, powerlines",
+      "environment-model:elements": "profile roads, extruded buildings, powerlines",
       "environment-model:useCase": "driving"
     },
     "environment-model:hasQuantity": {
@@ -140,11 +141,11 @@
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
-            "@value": "52.300",
+            "@value": "52.3",
             "@type": "xsd:float"
           },
           "georeference:lon": {
-            "@value": "10.7250",
+            "@value": "10.725",
             "@type": "xsd:float"
           }
         },
@@ -165,9 +166,11 @@
   },
   "environment-model:hasManifest": {
     "@type": "manifest:Link",
-    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:p2yv4S6Z7FXc9qJaLy1B3mEGtiRuLoK8hcsN" },
+    "manifest:iri": {
+      "@id": "did:web:registry.gaia-x.eu:Manifest:p2yv4S6Z7FXc9qJaLy1B3mEGtiRuLoK8hcsN"
+    },
     "skos:note": {
-      "@value": "Ensure that 'manifest_reference.json' contains all required categories: coreData, documentation, metadata, media.",
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
       "@type": "xsd:string"
     },
     "sh:conformsTo": [
@@ -178,11 +181,16 @@
         "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
       }
     ],
-    "manifest:accessRole": "publicUser",
-    "manifest:category": "manifest",
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      
       "manifest:filePath": {
         "@value": "./manifest_reference.json",
         "@type": "xsd:anyURI"
