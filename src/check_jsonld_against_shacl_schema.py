@@ -1,4 +1,5 @@
 import glob
+import logging
 import os
 import sys
 from collections import defaultdict
@@ -19,6 +20,19 @@ STANDARD_PREFIXES = {
     # Force redirect gx: to the local repo
     "gx": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/gx/",
 }
+
+
+def setup_logging(debug=False):
+    handlers = [logging.StreamHandler(sys.stdout)]
+    if debug:
+        handlers.append(logging.FileHandler("output.log", mode="w"))
+
+    logging.basicConfig(
+        level=logging.DEBUG if debug else logging.INFO,
+        handlers=handlers,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        force=True,
+    )
 
 
 def load_shacl_files(root_dir, used_types):
@@ -123,13 +137,19 @@ def load_jsonld_files(jsonld_files):
 
 
 def main():
+    debug = "--debug" in sys.argv
+
     if len(sys.argv) < 2:
         print(
-            "Usage: python validate_jsonld_shacl.py <directory or file> [additional files...]"
+            "Usage: python validate_jsonld_shacl.py [--debug] <directory or file> [additional files...]"
         )
         sys.exit(1)
 
-    paths = sys.argv[1:]
+    paths = [arg for arg in sys.argv[1:] if arg != "--debug"]
+
+    setup_logging(debug)
+
+    logging.info(f"Debug mode {'enabled' if debug else 'disabled'}.")
 
     # Step 1: Collect all *ontology.ttl files
     ontology_files = []
@@ -158,7 +178,7 @@ def main():
         onto_graph.parse(onto_file, format="turtle")
 
         conforms, _, v_text = validate(
-            onto_graph, shacl_graph=shacl_graph_onto, inference="owlrl", debug=False
+            onto_graph, shacl_graph=shacl_graph_onto, inference="owlrl", debug=debug
         )
         if not conforms:
             print(f"❌ Failed SHACL validation for {onto_file}!")
@@ -197,7 +217,7 @@ def main():
     # ✅ Step 8: Perform Final Validation
     print("🔍 Performing overall validation explicitly...")
     conforms, _, v_text = validate(
-        data_graph, shacl_graph=shacl_graph, inference="rdfs", debug=False
+        data_graph, shacl_graph=shacl_graph, inference="rdfs", debug=debug
     )
 
     # ✅ Step 9: Print Validation Report

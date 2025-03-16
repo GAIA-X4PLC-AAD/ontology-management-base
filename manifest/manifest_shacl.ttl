@@ -170,76 +170,85 @@ manifest:LicenseShape a sh:NodeShape ;
 manifest:LinkShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property 
-        [   # This is for the RDF-level link (the IRI)
-            sh:name "resource IRI"@en ;
-            sh:description "IRI that identifies the resource in RDF (if the file is JSON-LD)."@en ;
-            sh:nodeKind sh:IRI ;
-            sh:maxCount 1 ;
-            sh:minCount 0 ; # maybe optional if it's not JSON-LD
-            sh:path manifest:iri ;
-            sh:message "IRI link is required if this file is an RDF/JSON-LD resource."@en ;
-            sh:order 0 ;
-            sh:severity sh:Violation ;
-            sh:condition [
-                a sh:NodeShape ;
-                sh:property [
-                    sh:path manifest:hasFileMetadata ;
-                    sh:node [
-                        sh:property [
-                            sh:path manifest:mimeType ;
-                            sh:hasValue "application/ld+json"^^xsd:string ;
-                        ]
-                    ]
-                ]
-            ]
-        ],
-        [
-            sh:description "Provides additional information about the manifest reference, such as validation expectations."@en ;
-            sh:minCount 0 ;
-            sh:maxCount 1 ;
-            sh:datatype xsd:string ;
-            sh:order 1 ;
-            sh:path skos:note ;
-            sh:message "A skos:note can provide supplementary information about the manifest reference."@en ;
-        ],
-        [
-            sh:description "Specifies the ontology conformance for the linked asset if it is JSON-LD."@en ;
-            sh:minCount 0 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path sh:conformsTo ;
-            sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
-        ],
-        [
-            sh:name "access role"@en ;
-            sh:description "Specifies the access role associated with the corresponding file."@en ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:class manifest:AccessRole ;
-            sh:message "Validation of accessRole failed!"@en ;
-            sh:order 3 ;
-            sh:path manifest:hasAccessRole ;
-        ],
-        [
-            sh:name "category"@en ;
-            sh:description "Specifies the category of the artifact. Categories are defined as instances of manifest:Category and extended via domain-specific ontologies."@en ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:class manifest:Category ;
-            sh:message "Each manifest:Link must have exactly one assigned category, which must be an instance of manifest:Category."@en ;
-            sh:order 4 ;
-            sh:path manifest:hasCategory ;
-        ],
-        [   sh:name "file metadata"@en ;
-            sh:description "Defines the properties of the data file that is referenced via a link."@en ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node manifest:FileMetadataShape ;
-            sh:order 5 ;
-            sh:path manifest:hasFileMetadata
-        ] ;
+    sh:property [
+        sh:name "IRI"@en ;
+        sh:description "IRI required if the file is RDF/JSON-LD."@en ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:minCount 0 ;
+        sh:path manifest:iri ;
+        sh:message "IRI link is required if this file is an RDF/JSON-LD resource."@en ;
+        sh:order 0 ;
+    ],
+    [
+        sh:description "Additional information about the manifest reference."@en ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:path skos:note ;
+        sh:message "A skos:note can provide supplementary information about the manifest reference."@en ;
+    ],
+    [
+        sh:description "Specifies ontology conformance."@en ;
+        sh:minCount 0 ;
+        sh:nodeKind sh:IRI ;
+        sh:path sh:conformsTo ;
+        sh:message "Ontology conformance should be provided for JSON-LD files."@en ;
+    ],
+    [
+        sh:name "access role"@en ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class manifest:AccessRole ;
+        sh:path manifest:hasAccessRole ;
+        sh:message "Validation of accessRole failed!"@en ;
+    ],
+    [
+        sh:name "category"@en ;
+        sh:description "Specifies artifact category."@en ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class manifest:Category ;
+        sh:path manifest:hasCategory ;
+        sh:message "Each manifest:Link must have exactly one assigned category."@en ;
+    ],
+    [   
+        sh:name "file metadata"@en ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node manifest:FileMetadataShape ;
+        sh:path manifest:hasFileMetadata ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "manifest:iri, skos:note, and sh:conformsTo MUST all be provided if manifest:mimeType is 'application/ld+json'."@en ;
+        sh:severity sh:Violation ;
+        sh:select """
+            PREFIX manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            PREFIX sh: <http://www.w3.org/ns/shacl#>
+
+            SELECT ?this
+            WHERE {
+                ?this manifest:hasFileMetadata ?meta .
+                ?meta manifest:mimeType ?mimeType .
+                FILTER(str(?mimeType) = "application/ld+json") .
+
+                FILTER NOT EXISTS {
+                    ?manifestRef manifest:hasManifestReference ?this .
+                }
+
+                FILTER (
+                    NOT EXISTS { ?this manifest:iri ?iri } ||
+                    NOT EXISTS { ?this skos:note ?note } ||
+                    NOT EXISTS { ?this sh:conformsTo ?conformsTo }
+                )
+            }
+        """ ;
+    ] ;
+
     sh:targetClass manifest:Link .
+
 
 manifest:FileMetadataShape a sh:NodeShape ;
     sh:closed true ;
@@ -266,7 +275,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
             sh:maxCount 1;
             sh:minCount 1;
             sh:path manifest:mimeType;
-            sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$";
+            sh:pattern "^(application|audio|font|example|image|message|model|multipart|text|video)/[a-zA-Z0-9!#$&^_.+-]+$|^x-[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$"^^xsd:string;
         ],
         [ 
             sh:name "content identifier"@en ;

@@ -13,97 +13,66 @@
   "@type": "scenario:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
-    "manifest:hasAccessRole": {
-      "@type": "manifest:AccessRole",
-      "@id": "envited-x:isPublic"
-    },
-    "manifest:hasCategory": {
-      "@type": "manifest:Category",
-      "@id": "envited-x:isManifest"
-    },
+    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6" },
+    "skos:note": { "@value": "Self-reference to scenario manifest." },
+    "sh:conformsTo": [
+      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" },
+      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" },
+      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
+    ],
+    "manifest:hasAccessRole": { "@type": "manifest:AccessRole", "@id": "envited-x:isPublic" },
+    "manifest:hasCategory": { "@type": "manifest:Category", "@id": "envited-x:isManifest" },
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
-      "manifest:filePath": {
-        "@value": "./manifest_instance.json",
-        "@type": "xsd:anyURI"
-      },
-      "manifest:mimeType": {
-        "@value": "application/ld+json",
-        "@type": "xsd:string"
-      }
+      "manifest:filePath": { "@value": "./manifest_instance.json", "@type": "xsd:anyURI" },
+      "manifest:mimeType": { "@value": "application/ld+json", "@type": "xsd:string" }
     }
   },
   "manifest:hasLicense": {
     "@type": "manifest:License",
-    "gx:license": {
-      "@value": "EPL-2.0"
-    },
+    "gx:license": { "@value": "EPL-2.0" },
     "manifest:licenseData": {
       "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isPublic"
-      },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isLicense"
-      },
+      "manifest:hasAccessRole": { "@type": "manifest:AccessRole", "@id": "envited-x:isPublic" },
+      "manifest:hasCategory": { "@type": "manifest:Category", "@id": "envited-x:isLicense" },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://opensource.org/license/EPL-2.0",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+        "manifest:filePath": { "@value": "https://opensource.org/license/EPL-2.0", "@type": "xsd:anyURI" },
+        "manifest:mimeType": { "@value": "text/html", "@type": "xsd:string" }
       }
     }
   },
   "manifest:hasReferencedArtifacts": [
     {
       "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isOwner"
-      },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isReferencedSimulationData"
-      },
+      "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8" },
+      "skos:note": { "@value": "Referenced HDMap artifact." },
+      "sh:conformsTo": [
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/" },
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
+      ],
+      "manifest:hasAccessRole": { "@type": "manifest:AccessRole", "@id": "envited-x:isOwner" },
+      "manifest:hasCategory": { "@type": "manifest:Category", "@id": "envited-x:isReferencedSimulationData" },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "application/ld+json",
-          "@type": "xsd:string"
-        }
+        "manifest:filePath": { "@value": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8", "@type": "xsd:anyURI" },
+        "manifest:mimeType": { "@value": "application/ld+json", "@type": "xsd:string" }
       }
     },
     {
       "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isOwner"
-      },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isReferencedSimulationData"
-      },
+      "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi" },
+      "skos:note": { "@value": "Reference to Environment Model artifact." },
+      "sh:conformsTo": [
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/" },
+        { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
+      ],
+      "manifest:hasAccessRole": { "@type": "manifest:AccessRole", "@id": "envited-x:isOwner" },
+      "manifest:hasCategory": { "@type": "manifest:Category", "@id": "envited-x:isReferencedSimulationData" },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "application/ld+json",
-          "@type": "xsd:string"
-        }
+        "manifest:filePath": { "@value": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi", "@type": "xsd:anyURI" },
+        "manifest:mimeType": { "@value": "application/ld+json", "@type": "xsd:string" }
       }
     }
   ],
