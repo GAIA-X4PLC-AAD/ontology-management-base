@@ -71,9 +71,9 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
         sh:order 3 ;
         sh:path georeference:coordinateSystemName
     ], [
-        skos:example "Ellipsodial height" ;
+        skos:example "Ellipsoidal height" ;
         sh:description "Defines the height system type of the asset."@en ;
-        sh:in ("Ellipsodial height" "Orthometric height" "Local height") ;
+        sh:in ("Ellipsoidal height" "Orthometric height" "Local height") ;
         sh:maxCount 1 ;
         sh:message "Validation of heightSystem failed!"@en ;
         sh:name "height system"@en ;

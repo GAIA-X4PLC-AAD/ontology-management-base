@@ -29,15 +29,15 @@
       "@type": "leakage-test:MinimumPressure",
       "leakage-test:lowerTolerance": {
         "@value": "0",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:setpoint": {
         "@value": "0.2",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:upperTolerance": {
         "@value": "0",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:unit": "bar"
     },
@@ -45,15 +45,15 @@
       "@type": "leakage-test:MaximumPressure",
       "leakage-test:lowerTolerance": {
         "@value": "0",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:setpoint": {
         "@value": "2.7",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:upperTolerance": {
         "@value": "0",
-        "@type": "xsd:decimal"
+        "@type": "xsd:float"
       },
       "leakage-test:unit": "bar"
     }

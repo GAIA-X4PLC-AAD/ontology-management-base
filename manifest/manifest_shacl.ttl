@@ -346,36 +346,36 @@ manifest:DimensionsShape a sh:NodeShape ;
             sh:name "width" ;
             sh:description "Specifies the width (x-axis) of the item in appropriate units."@en ;
             skos:example "1920.0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:message "Width must be a positive number."@en ;
             sh:order 1 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:width ;
-            sh:minExclusive "0.0"^^xsd:decimal ;
+            sh:minExclusive "0.0"^^xsd:float ;
         ],
         [
             sh:name "height" ;
             sh:description "Specifies the height (y-axis) of the item in appropriate units."@en ;
             skos:example "1080.0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:message "Height must be a positive number."@en ;
             sh:order 2 ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path manifest:height ;
-            sh:minExclusive "0.0"^^xsd:decimal ;
+            sh:minExclusive "0.0"^^xsd:float ;
         ],
         [
             sh:name "depth" ;
             sh:description "Specifies the depth (z-axis) of the item in appropriate units."@en ;
             skos:example "0.0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:message "Depth must be a positive number."@en ;
             sh:order 3 ;
             sh:maxCount 1 ;
             sh:minCount 0 ;
             sh:path manifest:depth ;
-            sh:minExclusive "0.0"^^xsd:decimal ;
+            sh:minExclusive "0.0"^^xsd:float ;
         ];
     sh:targetClass manifest:Dimensions .

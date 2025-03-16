@@ -77,6 +77,6 @@
         "@type": "xsd:float"
       }
     },
-    "georeference:heightSystem": "Ellipsodial height"
+    "georeference:heightSystem": "Ellipsoidal height"
   }
 }

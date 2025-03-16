@@ -106,8 +106,7 @@ manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
     rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetadata."@en .
 
-
-# Object properties
+### Object properties
 manifest:hasManifestReference a owl:ObjectProperty ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link ;

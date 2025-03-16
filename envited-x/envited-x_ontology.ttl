@@ -225,15 +225,18 @@ envited-x:hasQuantity a owl:ObjectProperty ;
     rdfs:range envited-x:Quantity .
 
 ### Define specific category types as named individuals, extending manifest categories
-envited-x:isManifest a manifest:isManifest, owl:NamedIndividual ;
+envited-x:isManifest a manifest:Category, owl:NamedIndividual ;
+    rdfs:subClassOf manifest:isManifest ;
     rdfs:label "envited-x Manifest Category"@en ;
     rdfs:comment "Indicates that the artifact category is a manifest in the envited-x context."@en .
 
-envited-x:isLicense a manifest:isLicense, owl:NamedIndividual ;
+envited-x:isLicense a manifest:Category, owl:NamedIndividual ;
+    rdfs:subClassOf manifest:isLicense ;
     rdfs:label "envited-x License Category"@en ;
     rdfs:comment "Indicates that the artifact category is a license file in the envited-x context."@en .
 
-envited-x:isMiscellaneous a manifest:isMiscellaneous, owl:NamedIndividual ;
+envited-x:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+    rdfs:subClassOf manifest:isMiscellaneous ;
     rdfs:label "envited-x Miscellaneous Category"@en ;
     rdfs:comment "Indicates that the artifact category is miscellaneous in the envited-x context."@en .
 
@@ -262,9 +265,11 @@ envited-x:isValidationReport a manifest:Category, owl:NamedIndividual ;
     rdfs:comment "Indicates that the artifact category is a validation report."@en .
 
 ### Define specific access role types as named individuals
-envited-x:isPublic a manifest:isPublic, owl:NamedIndividual ;
+envited-x:isPublic a manifest:AccessRole, owl:NamedIndividual ;
+    rdfs:subClassOf manifest:isPublic ;
     rdfs:label "Public Access Role"@en ;
-    rdfs:comment "Indicates that the artifact access role is public in the envited-x context."@en .
+    rdfs:comment "Overrides manifest:isPublic to define a public access role specific to envited-x."@en .
+
 
 envited-x:isOwner a manifest:AccessRole, owl:NamedIndividual ;
     rdfs:label "Owner Access Role"@en ;

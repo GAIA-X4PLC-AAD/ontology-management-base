@@ -300,13 +300,13 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:label "connected network a"@en ;
     rdfs:comment "autonomous system (AS) number (ASN) of the side A" ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
-    rdfs:range xsd:decimal .
+    rdfs:range xsd:float .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connectedNetwork_Z> a owl:DatatypeProperty ;
     rdfs:label "connected network z"@en ;
     rdfs:comment "autonomous system (AS) number (ASN) of the side Z" ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Interconnection> ;
-    rdfs:range xsd:decimal .
+    rdfs:range xsd:float .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#connection> a owl:DatatypeProperty ;
     rdfs:label "connection"@en ;

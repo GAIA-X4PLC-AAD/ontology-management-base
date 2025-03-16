@@ -9,7 +9,7 @@
 
 ### OSITrace SHACL Shape
 ositrace:OSITraceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
@@ -31,7 +31,6 @@ ositrace:OSITraceShape a sh:NodeShape ;
           sh:or ( 
                 [
                     sh:and (
-                        [ sh:class envited-x:Manifest ]
                         [ sh:node manifest:ManifestShape ]
                         [ sh:node envited-x:ManifestShape ]
                     )
@@ -48,7 +47,7 @@ ositrace:OSITraceShape a sh:NodeShape ;
 
 ### DataResourceExtension SHACL Shape
 ositrace:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
@@ -108,10 +107,9 @@ ositrace:DataResourceExtensionShape a sh:NodeShape ;
     sh:targetClass ositrace:DataResourceExtension .
 
 ositrace:ContentShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
-            sh:datatype xsd:string ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
             sh:message "Validation of roadTypes failed!"@en ;
@@ -119,7 +117,6 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 0 ;
             sh:path ositrace:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
-            sh:datatype xsd:string ;
             sh:description "Covered lane types, see ODR spec section 9.5.3."@en ;
             sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
             sh:message "Validation of laneTypes failed!"@en ;
@@ -127,7 +124,6 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path ositrace:laneTypes ],
         [ skos:example "trees, street lamps, road patches..." ;
-            sh:datatype xsd:string ;
             sh:description "Covered object classes, see ODR spec section 11"@en ;
             sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
             sh:message "Validation of levelOfDetail failed!"@en ;
@@ -135,7 +131,6 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path ositrace:levelOfDetail ], 
         [ skos:example "right-hand traffic"@en ;
-            sh:datatype xsd:string ;
             sh:description "Traffic direction, i.e. right-hand or left-hand traffic"@en ;
             sh:in ("left-hand" "right-hand") ;
             sh:maxCount 1 ;
@@ -144,7 +139,6 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 3 ;
             sh:path ositrace:trafficDirection ],
         [ skos:example "object list, detection list"@en ;
-            sh:datatype xsd:string ;
             sh:description "Level of granularity of sensor data"@en ;
             sh:in ("object list" "detection list") ;
             sh:message "Validation of granularity failed!"@en ;
@@ -227,7 +221,6 @@ ositrace:FormatShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path ositrace:version ],
         [ skos:example "ASAM OSI GroundTruth; ASAM OSI SensorView; ASAM OSI SensorData" ;
-            sh:datatype xsd:string ;
             sh:description "Format type definition."@en ;
             sh:in ("ASAM OSI GroundTruth" "ASAM OSI SensorView" "ASAM OSI SensorData") ;
             sh:maxCount 1 ;

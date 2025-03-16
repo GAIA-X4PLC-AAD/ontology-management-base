@@ -30,7 +30,6 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:or ( 
             [
                 sh:and (
-                    [ sh:class envited-x:Manifest ]
                     [ sh:node manifest:ManifestShape ]
                     [ sh:node envited-x:ManifestShape ]
                 )

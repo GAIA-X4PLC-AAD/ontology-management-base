@@ -233,11 +233,11 @@
           "manifest:unit": "pixels",
           "manifest:width": {
             "@value": "1095.0",
-            "@type": "xsd:decimal"
+            "@type": "xsd:float"
           },
           "manifest:height": {
             "@value": "850.0",
-            "@type": "xsd:decimal"
+            "@type": "xsd:float"
           }
         }
       }
