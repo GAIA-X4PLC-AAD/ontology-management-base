@@ -48,34 +48,35 @@ scenario:ScenarioShape a sh:NodeShape ;
 
 ### **Scenario Manifest SHACL Shape**
 scenario:ManifestShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
 
-    ## Ensure at least one `manifest:Link` in `hasArtifacts` categorized as `simulationData`
+    ## Ensure at least two `manifest:Link` in `hasArtifacts` categorized as `simulationData`
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
             sh:node manifest:LinkShape ;
             sh:property [
-                sh:path manifest:category ;
-                sh:hasValue "simulationData" ;
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isSimulationData ;
             ]
         ] ;
         sh:qualifiedMinCount 2 ;
-        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) with category 'simulationData'."@en ;
+        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
     ] ;
+
     ## Ensure at least two `manifest:Link` shapes in `hasReferencedArtifacts` categorized as `referencedSimulationData`
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:node manifest:LinkShape ;
         sh:qualifiedValueShape [
             sh:property [
-                sh:path manifest:category ;
-                sh:hasValue "referencedSimulationData" ;
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isReferencedSimulationData ;
             ]
         ] ;
         sh:qualifiedMinCount 2 ;
-        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) of content category: referencedSimulationData."@en ;
+        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) of content category: Referenced Simulation Data."@en ;
     ] ;
 
     ## Ensure at least one HD map reference (either inline `hdmap:HdMap` or `manifest:Link` referencing `hdmap:HdMap`)
@@ -83,7 +84,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:or (
-                [ sh:class hdmap:HdMap ]
+                [ sh:node hdmap:HdMap ]
                 [ sh:node manifest:LinkShape ]
             )
         ] ;
@@ -97,7 +98,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:or (
-                [ sh:class environment-model:EnvironmentModel ]
+                [ sh:node environment-model:EnvironmentModel ]
                 [ sh:node manifest:LinkShape ]
             )
         ] ;
@@ -108,7 +109,7 @@ scenario:ManifestShape a sh:NodeShape ;
 
     ## Ensure at least one catalog reference via `manifest:Link`
     sh:property [
-        sh:path scenario:hasArtifact ;
+        sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
             sh:node manifest:LinkShape
         ] ;
@@ -118,6 +119,7 @@ scenario:ManifestShape a sh:NodeShape ;
     ] ;
 
     sh:targetClass scenario:Manifest .
+
 
 
 ### **DataResourceExtension SHACL Shape**

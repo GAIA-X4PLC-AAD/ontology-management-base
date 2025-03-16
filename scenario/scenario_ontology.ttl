@@ -76,7 +76,7 @@ scenario:Scenario a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasManifest ;
-        owl:someValuesFrom envited-x:Manifest
+        owl:someValuesFrom scenario:Manifest
     ] .
 
 scenario:DataResourceExtension a owl:Class ;
