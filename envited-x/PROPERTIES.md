@@ -18,8 +18,8 @@
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| nd670d12cdc4b48e6a9a8459a65e513f6b20 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| nd670d12cdc4b48e6a9a8459a65e513f6b20 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| nf6cf4ee3eb574eac8075a858b2dc84f5b20 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| nf6cf4ee3eb574eac8075a858b2dc84f5b20 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |

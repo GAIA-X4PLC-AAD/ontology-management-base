@@ -16,7 +16,7 @@
 | ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  | Each Scenario manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`. |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  | Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`. |  | scenario_shacl.ttl |
-| ManifestShape | scenario | hasArtifact |  |  | Each Scenario manifest must reference at least one catalog via a `manifest:Link`. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  | Each Scenario manifest must reference at least one catalog via a `manifest:Link`. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |
