@@ -7,7 +7,7 @@
   },
   "@id": "did:web:registry.gaia-x.eu:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
   "@type": "georeference:Georeference",
-  "georeference:projectLocation": {
+  "georeference:hasProjectLocation": {
     "@type": "georeference:ProjectLocation",
     "georeference:country": {
       "@value": "DE",
@@ -29,7 +29,7 @@
       "@value": "motorway A8, Greater Area of Ingolstadt",
       "@type": "xsd:string"
     },
-    "georeference:boundingBox": {
+    "georeference:hasBoundingBox": {
       "@type": "georeference:BoundingBox",
       "georeference:xMin": {
         "@value": "10.720740862799195",
@@ -49,13 +49,13 @@
       }
     }
   },
-  "georeference:geodeticReferenceSystem": {
+  "georeference:hasGeodeticReferenceSystem": {
     "@type": "georeference:GeodeticReferenceSystem",
     "georeference:codeEPSG": {
       "@value": "32632",
       "@type": "xsd:int"
     },
-    "georeference:origin": {
+    "georeference:hasOrigin": {
       "@type": "georeference:LatLonCoordinate",
       "georeference:lat": {
         "@value": "52.275329463992996",
@@ -66,7 +66,7 @@
         "@type": "xsd:float"
       }
     },
-    "georeference:viewPoint": {
+    "georeference:hasViewPoint": {
       "@type": "georeference:LatLonCoordinate",
       "georeference:lat": {
         "@value": "52.30626250948862",
@@ -77,6 +77,6 @@
         "@type": "xsd:float"
       }
     },
-    "georeference:heightSystem": "Ellipsodial height"
+    "georeference:heightSystem": "Ellipsoidal height"
   }
 }

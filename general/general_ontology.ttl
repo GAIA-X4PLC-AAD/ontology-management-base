@@ -41,13 +41,12 @@ general: a owl:Ontology ;
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacle> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+    # Additional references
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 general:General a owl:Class ;
     rdfs:label "Class definition for General"@en ;
-    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en .
 
 general:Description a owl:Class ;
     rdfs:label "Class definition for Description"@en ;

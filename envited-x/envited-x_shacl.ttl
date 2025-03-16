@@ -1,0 +1,160 @@
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# envited-x SHACL shape
+envited-x:SimulationAssetShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path envited-x:hasDataResource ;
+        sh:node envited-x:DataResourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ; # Exactly ONE DataResource per SimulationAsset
+        sh:message "Each SimulationAsset must have exactly one associated DataResource, which provides essential metadata such as name and description."@en ;
+    ] ;
+    sh:property [
+        sh:path envited-x:hasDataResourceExtension ;
+        sh:node envited-x:DataResourceExtensionShape ;
+        sh:minCount 0 ;  # Optional
+        sh:message """A SimulationAsset may have one or more DataResourceExtensions (e.g., georeference metadata, sensor calibration) 
+                      to provide additional structured metadata. These extensions do not represent standalone retrievable data assets."""@en ;
+    ] ;
+    sh:property [
+        sh:path envited-x:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            ## Case 1: Inline manifest must conform to both required shapes
+            [ sh:and (
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+            )]
+            
+            ## Case 2: Linked manifest reference
+            [ sh:node manifest:LinkShape ]
+        ) ;
+        sh:message "Each SimulationAsset must have exactly one manifest, either inline (conforming to both manifest:ManifestShape and envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
+    ] ;
+    sh:targetClass envited-x:SimulationAsset .
+
+# SHACL Shape for envited-x:DataResource
+envited-x:DataResourceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ 
+        sh:path gx:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have a human-readable name of the entity."@en ;
+        skos:example "3D Model of Grafing"@en ;
+        sh:order 0 
+    ] ;
+    sh:property [ 
+        sh:path gx:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationAsset must have a textual description of the entity."@en ;
+        skos:example "Town district with traffic signs."@en ;
+        sh:order 1 
+    ] ;
+    sh:targetClass envited-x:DataResource .
+
+# SHACL Shape for envited-x:DataResourceExtension
+envited-x:DataResourceExtensionShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass envited-x:DataResourceExtension ;
+
+    # Constraint to ensure at least one hasContent and one hasFormat
+    sh:property [
+        sh:path envited-x:hasContent ;
+        sh:minCount 1 ;  # At least one hasContent must be present
+    ] ;
+    sh:property [
+        sh:path envited-x:hasFormat ;
+        sh:minCount 1 ;  # At least one hasFormat must be present
+    ] ;
+
+    # SPARQL check for subclasses of DataResourceExtension
+    sh:property [
+        sh:path envited-x:hasDataResourceExtension ;  # Assuming this is the property linking to subclasses
+        sh:node [
+            a sh:NodeShape ;
+            sh:targetClass envited-x:DataResourceExtension ;  # Targeting the DataResourceExtension class
+            sh:property [
+                sh:path envited-x:hasContent ;
+                sh:minCount 1 ;  # At least one hasContent must be present
+            ] ;
+            sh:property [
+                sh:path envited-x:hasFormat ;
+                sh:minCount 1 ;  # At least one hasFormat must be present
+            ] ;
+        ]
+    ] .
+
+# Manifest Shape for additional constraints
+envited-x:ManifestShape a sh:NodeShape ;
+    sh:closed false ;
+
+    ## Ensure at least one `manifest:Link` for each required category
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isSimulationData ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Simulation Data'."@en ;
+    ] ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isDocumentation ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Documentation'."@en ;
+    ] ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isMetadata ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Metadata'."@en ;
+    ] ;
+
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LinkShape ;
+            sh:property [
+                sh:path manifest:hasCategory ;
+                sh:hasValue envited-x:isMedia ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "The envited-x:Manifest must contain at least 1 manifest:Link with category 'Media'."@en ;
+    ] ;
+
+    sh:targetClass envited-x:Manifest .

@@ -1,153 +1,181 @@
 {
   "@context": {
-    "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
     "surface-model": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/",
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
   },
-  "@id": "did:web:registry.gaia-x.eu:SurfaceModel:ERXl1TxE2xQjGodfoKoi1lgYULTW5dCbtfcL",
+  "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
   "@type": "surface-model:SurfaceModel",
-  "surface-model:general": {
-    "@type": "general:General",
-    "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "My surface model",
-        "@type": "xsd:string"
-      },
-      "general:description": {
-        "@value": "A sample description of a none existing surface model.",
-        "@type": "xsd:string"
-      }
+  "surface-model:hasDataResource": {
+    "@type": "envited-x:DataResource",
+    "gx:name": {
+      "@value": "Sample Surface Model Data",
+      "@type": "xsd:string"
     },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": "50",
-        "@type": "xsd:float"
-      },
-      "general:recordingTime": {
-        "@value": "2024-06-19T08:04:09",
-        "@type": "xsd:dateTime"
-      }
-    }
-  },
-  "surface-model:format": {
-    "@type": "surface-model:Format",
-    "surface-model:formatType": "ASAM OpenCRG",
-    "surface-model:version": {
-      "@value": "1.1",
+    "gx:description": {
+      "@value": "A detailed surface model for simulation applications.",
       "@type": "xsd:string"
     }
   },
-  "surface-model:data": {
-    "@type": "surface-model:Data",
-    "surface-model:dataType": "Height"
-  },
-  "surface-model:quality": {
-    "@type": "surface-model:Quality",
-    "surface-model:resolutionLongitudinal": {
-      "@value": "0.01",
-      "@type": "xsd:float"
-    },
-    "surface-model:resolutionLateral": {
-      "@value": "0.01",
-      "@type": "xsd:float"
-    },
-    "surface-model:orientation": {
-      "@value": "-3.14159",
-      "@type": "xsd:float"
-    },
-    "surface-model:platformExists": true,
-    "surface-model:rampExists": true
-  },
-  "surface-model:quantity": {
-    "@type": "surface-model:Quantity",
-    "surface-model:length": {
-      "@value": "1.46",
-      "@type": "xsd:float"
-    },
-    "surface-model:elevationRange": {
-      "@value": "25.00",
-      "@type": "xsd:float"
-    },
-    "surface-model:mapDataField": true
-  },
-  "surface-model:georeference": {
-    "@type": "georeference:Georeference",
-    "georeference:projectLocation": {
-      "@type": "georeference:ProjectLocation",
-      "georeference:country": {
-        "@value": "DE",
+  "surface-model:hasDataResourceExtension": {
+    "@type": "surface-model:DataResourceExtension",
+    "surface-model:hasFormat": {
+      "@type": "surface-model:Format",
+      "surface-model:formatType": "ASAM OpenCRG",
+      "surface-model:version": {
+        "@value": "1.1",
         "@type": "xsd:string"
-      },
-      "georeference:state": {
-        "@value": "DE-BY",
-        "@type": "xsd:string"
-      },
-      "georeference:region": {
-        "@value": "Upper Bavaria",
-        "@type": "xsd:string"
-      },
-      "georeference:city": {
-        "@value": "Munich",
-        "@type": "xsd:string"
-      },
-      "georeference:relationOrArea": {
-        "@value": "Autobahn A8, in the greater Ingolstadt area",
-        "@type": "xsd:string"
-      },
-      "georeference:boundingBox": {
-        "@type": "georeference:BoundingBox",
-        "georeference:xMin": {
-          "@value": "11.608111",
-          "@type": "xsd:float"
-        },
-        "georeference:yMin": {
-          "@value": "48.331035",
-          "@type": "xsd:float"
-        },
-        "georeference:xMax": {
-          "@value": "11.610954",
-          "@type": "xsd:float"
-        },
-        "georeference:yMax": {
-          "@value": "48.341742",
-          "@type": "xsd:float"
-        }
       }
     },
-    "georeference:geodeticReferenceSystem": {
-      "@type": "georeference:GeodeticReferenceSystem",
-      "georeference:codeEPSG": {
-        "@value": "451989",
-        "@type": "xsd:int"
+    "surface-model:hasData": {
+      "@type": "surface-model:Data",
+      "surface-model:dataType": "Height"
+    },
+    "surface-model:hasQuality": {
+      "@type": "surface-model:Quality",
+      "surface-model:resolutionLongitudinal": {
+        "@value": "0.01",
+        "@type": "xsd:float"
       },
-      "georeference:origin": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "48.045414",
-          "@type": "xsd:float"
+      "surface-model:resolutionLateral": {
+        "@value": "0.01",
+        "@type": "xsd:float"
+      },
+      "surface-model:orientation": {
+        "@value": "-3.14159",
+        "@type": "xsd:float"
+      },
+      "surface-model:platformExists": true,
+      "surface-model:rampExists": true
+    },
+    "surface-model:hasQuantity": {
+      "@type": "surface-model:Quantity",
+      "surface-model:length": {
+        "@value": "1.46",
+        "@type": "xsd:float"
+      },
+      "surface-model:elevationRange": {
+        "@value": "25.00",
+        "@type": "xsd:float"
+      },
+      "surface-model:mapDataField": true
+    },
+    "surface-model:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
         },
-        "georeference:lon": {
-          "@value": "11.966206",
-          "@type": "xsd:float"
+        "georeference:state": {
+          "@value": "DE-BY",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Upper Bavaria",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Munich",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Autobahn A8, in the greater Ingolstadt area",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "11.608111",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "48.331035",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "11.610954",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "48.341742",
+            "@type": "xsd:float"
+          }
         }
       },
-      "georeference:viewPoint": {
-        "@type": "georeference:LatLonCoordinate",
-        "georeference:lat": {
-          "@value": "48.045414",
-          "@type": "xsd:float"
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "451989",
+          "@type": "xsd:int"
         },
-        "georeference:lon": {
-          "@value": "11.966206",
-          "@type": "xsd:float"
-        }
-      },   
-      "georeference:heightSystem": "Ellipsodial height"
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsoidal height"
+      }
+    }
+  },
+  "surface-model:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.gaia-x.eu:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
+    },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+      },
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
     }
   }
 }

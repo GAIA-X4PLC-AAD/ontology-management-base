@@ -41,7 +41,7 @@ vv-report: a owl:Ontology ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://github.com/asam-ev/qc-framework> ;
-    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 vv-report:VvReport a owl:Class ;
     rdfs:label "Class definition for VvReport"@en ;

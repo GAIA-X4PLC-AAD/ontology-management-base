@@ -1,3 +1,6 @@
 /.venv/
 /.idea/
+/.playground/
+/.vscode/
 **/__pycache__/
+output.log

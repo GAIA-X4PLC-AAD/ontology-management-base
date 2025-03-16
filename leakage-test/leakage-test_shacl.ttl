@@ -57,21 +57,21 @@ leakage-test:MaximumPressureShape a sh:NodeShape ;
             sh:name "unit"@en ;
             sh:path leakage-test:unit ] ,
         [ skos:example "0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of upperTolerance failed!"@en ;
             sh:name "upperTolerance"@en ;
             sh:path leakage-test:upperTolerance ] ,
         [ skos:example "2.7";
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of setpoint failed!"@en ;
             sh:name "setpoint"@en ;
             sh:path leakage-test:setpoint ] ,
         [ skos:example "0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of lowerTolerance failed!"@en ;
@@ -90,21 +90,21 @@ leakage-test:MinimumPressureShape a sh:NodeShape ;
             sh:name "unit"@en ;
             sh:path leakage-test:unit ] ,
         [ skos:example "0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of upperTolerance failed!"@en ;
             sh:name "upperTolerance"@en ;
             sh:path leakage-test:upperTolerance ] ,
         [ skos:example "0.2";
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of setpoint failed!"@en ;
             sh:name "setpoint"@en ;
             sh:path leakage-test:setpoint ] ,
         [ skos:example "0" ;
-            sh:datatype xsd:decimal ;
+            sh:datatype xsd:float ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:message "Validation of lowerTolerance failed!"@en ;

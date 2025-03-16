@@ -11,7 +11,7 @@
 
 ## Introduction
 
-This repository contains the ontology and shapes for the Gaia-X Trust Framework Model 2210.
+This repository contains the ontology and shapes for the Gaia-X Trust Framework Model 2210. `gx_instance.json` is just a minimal example for the validation pipeline and a full list of instances can be found in this repository [https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example](https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example).
 
 ## Source
 

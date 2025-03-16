@@ -1,68 +1,111 @@
 @prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
 @prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
+
 hdmap:HdMapShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path hdmap:hasDataResource ;
+        sh:node envited-x:DataResourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each HD map must have one associated DataResource object containing name and description."@en ;
+    ] ;
+    sh:property [
+        sh:path hdmap:hasDataResourceExtension ;
+        sh:node hdmap:DataResourceShapeExtension ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+    ] ;
+    sh:property [
+        sh:path hdmap:hasManifest ;
+        sh:or ( 
+            [
+                sh:and (
+                    [ sh:node manifest:ManifestShape ]
+                    [ sh:node envited-x:ManifestShape ]
+                )
+            ] 
+            [
+                sh:node manifest:LinkShape
+            ] 
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each HD map must have exactly one manifest, either inline or via link."@en ;
+    ] ;
+    sh:targetClass hdmap:HdMap .
+
+hdmap:DataResourceShapeExtension a sh:NodeShape ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:name "general object"@en ;
-            sh:description "General properties common for all simulation assets."@en ;
-            sh:order 1 ;
-            sh:path hdmap:general ],
-        [ sh:maxCount 1 ;
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
             sh:name "format object"@en ;
             sh:description "Contains properties to describe the format of the HD map asset."@en ;
-            sh:order 2 ;
-            sh:path hdmap:format ],
-        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path hdmap:hasFormat
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
             sh:name "content object"@en ;
             sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
-            sh:order 3 ;
-            sh:path hdmap:content ],            
-        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path hdmap:hasContent
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
             sh:name "quantity object"@en ;
             sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
-            sh:order 4 ;
-            sh:path hdmap:quantity ],            
-        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path hdmap:hasQuantity
+        ],            
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
             sh:name "quality object"@en ;
             sh:description "Contains properties to describe the accuracy of the HD map asset."@en ;
-            sh:order 5 ;
-            sh:path hdmap:quality ],
-        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path hdmap:hasQuality
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
             sh:name "dataSource object"@en ;
             sh:description "Defines which data resources or measurement systems were used to create the HD map asset."@en ;
-            sh:order 6 ;
-            sh:path hdmap:dataSource ],
-        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path hdmap:hasDataSource
+        ],
+        [ 
+            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "georeference object"@en ;
-            sh:description "General properties for defining the location and projection of the HD map asset."@en ;
-            sh:order 7 ;
-            sh:path hdmap:georeference ] ;
-    sh:targetClass hdmap:HdMap .
+            sh:name "has georeferenz"@en ;
+            sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
+            sh:order 6 ;
+            sh:path hdmap:hasGeoreference ;
+        ] ;
+    sh:targetClass hdmap:DataResourceExtension .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
             sh:datatype xsd:string ;
@@ -100,7 +143,7 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
@@ -120,7 +163,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
     sh:targetClass hdmap:DataSource .
 
 hdmap:FormatShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
@@ -142,7 +185,7 @@ hdmap:FormatShape a sh:NodeShape ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -192,7 +235,7 @@ hdmap:QualityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quality .
 
 hdmap:QuantityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
@@ -270,7 +313,7 @@ hdmap:QuantityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quantity .
 
 hdmap:Range2DShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
             sh:description "The maximum value of the range."@en ;

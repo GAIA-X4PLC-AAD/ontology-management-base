@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       folder_to_upload:
-        description: 'Folder to upload .ttl files from'
+        description: "Folder to upload .ttl files from"
         required: true
       dry_run:
-        description: 'Indicates if the upload is a dry run (no changes will be made to FC)'
+        description: "Indicates if the upload is a dry run (no changes will be made to FC)"
         default: true
         required: true
 
@@ -23,17 +23,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.12.0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.0
 
-    - name: Install required python libraries
-      run: pip install -r src/requirements_fc.txt
+      - name: Install required python libraries
+        run: pip install -r requirements_fc.txt
 
-    - name: Run Python upload into FC
-      run: python3 src/fc_upload_with_update.py
-      working-directory: ${{ github.workspace }}
+      - name: Run Python upload into FC
+        run: python3 src/fc_upload_with_update.py
+        working-directory: ${{ github.workspace }}

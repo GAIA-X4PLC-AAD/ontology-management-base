@@ -1,12 +1,17 @@
 @prefix scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
@@ -27,7 +32,11 @@ scenario: a owl:Ontology ;
         a foaf:Person ;
         foaf:name "Mirco Nierenz" ;
         org:memberOf <https://triangraphics.de/> ;
-    ] ;  
+    ] , [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] ;   
 
     # Permanent identifier for the ontology (not version-specific)
     dcterms:identifier <https://ontologies.envited-x.net/scenario> ;
@@ -36,41 +45,179 @@ scenario: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/scenario/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/scenario/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v3/shape> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://www.asam.net/standards/detail/openscenario/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 scenario:Scenario a owl:Class ;
-    rdfs:label "GXScenario"@en ;
+    rdfs:label "Class definition for Scenario"@en ;
     rdfs:comment "General properties for defining a scenario asset, including format, content, data sources, quantity, and quality attributes."@en ;
-    rdfs:subClassOf gx:DataResource ,
-                    openlabel:Scenario .
+    rdfs:subClassOf envited-x:SimulationAsset  ,
+                    openlabel:Scenario ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasDataResourceExtension ;
+        owl:someValuesFrom scenario:DataResourceExtension
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasDataResource ;
+        owl:someValuesFrom envited-x:DataResource
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasManifest ;
+        owl:someValuesFrom scenario:Manifest
+    ] .
+
+scenario:DataResourceExtension a owl:Class ;
+    rdfs:label "Class definition for DataResourceExtension"@en ;
+    rdfs:comment "Scenario DataResourceExtension containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DataResourceExtension ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasContent ;
+        owl:someValuesFrom scenario:Content
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasDataSource ;
+        owl:someValuesFrom scenario:DataSource
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasFormat ;
+        owl:someValuesFrom scenario:Format
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasQuality ;
+        owl:someValuesFrom scenario:Quality
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasQuantity ;
+        owl:someValuesFrom scenario:Quantity
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty scenario:hasGeoreference ;
+        owl:someValuesFrom georeference:Georeference
+    ] .
+
+scenario:Manifest a owl:Class ;
+    rdfs:label "Class definition for Manifest"@en ;
+    rdfs:comment "A scenario-specific extension of envited-x:Manifest. Ensures that a Scenario manifest contains references to an HD Map, an Environment Model, and catalogs."@en ;
+    rdfs:subClassOf envited-x:Manifest ;
+    ### hasReferencedArtifacts
+    # Restriction ensuring at least 2 external artifacts
+    # (Scenario -> Manifest -> hdmap:HdMap)
+    # (Scenario -> Manifest -> environment-model:EnvironmentModel)
+    # (Scenario -> Manifest -> manifest:link to these)
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty manifest:hasReferencedArtifacts ;
+        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+        owl:onClass [
+            a owl:Class ;
+            owl:unionOf ( environment-model:EnvironmentModel hdmap:HdMap manifest:Link )
+        ]
+    ] ;
+    ### hasArtifacts
+    # Ensuring catalogs are referenced separately
+    # (Scenario -> Manifest -> manifest:Link to catalogs)
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty manifest:hasArtifacts ;
+        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+        owl:onClass manifest:Link
+    ] .
 
 scenario:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties that describe the format of the scenario asset."@en .    
+    rdfs:comment "Contains properties that describe the format of the scenario asset."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 scenario:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Defines the content of the scenario asset, such as time, abstraction level, and links."@en .
+    rdfs:comment "Defines the content of the scenario asset, such as time, abstraction level, and links."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 scenario:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en .
+    rdfs:comment "Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers)."@en ;
+    rdfs:subClassOf envited-x:Quantity .
 
 scenario:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en .
+    rdfs:comment "Contains properties that describe the accuracy of objects and the calibration of the scenario asset."@en ;
+    rdfs:subClassOf envited-x:Quality .
 
 scenario:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
-    rdfs:comment "Defines which data resources were used to create the scenario asset."@en .
+    rdfs:comment "Defines which data resources were used to create the scenario asset."@en ;
+    rdfs:subClassOf envited-x:DataSource .
+
+#### Object properties
+
+scenario:hasDataResourceExtension a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResourceExtension"@en ;
+    rdfs:comment "Links a scenario asset to its specific metadata (DataResourceExtension), which may contain additional scenario-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+    rdfs:domain scenario:Scenario ;
+    rdfs:range scenario:DataResourceExtension .
+
+scenario:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResource"@en ;
+    rdfs:comment "Links a scenario asset to a standard DataResource instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResource ;
+    rdfs:domain scenario:Scenario ;
+    rdfs:range envited-x:DataResource .
+
+scenario:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment "Links a scenario asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain scenario:Scenario ;
+    rdfs:range envited-x:Manifest .
+
+scenario:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Content that describes the scenario's content."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range scenario:Content .
+
+scenario:hasDataSource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataSource"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of scenario:DataSource that describes how the scenario was created."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range scenario:DataSource .
+
+scenario:hasFormat a owl:ObjectProperty ;
+    rdfs:label "Object property: hasFormat"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Format that describes the scenario's format details."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range scenario:Format .
+
+scenario:hasQuantity a owl:ObjectProperty ;
+    rdfs:label "Object property: hasQuantity"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quantity describing the scenario's quantity."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range scenario:Quantity .
+
+scenario:hasQuality a owl:ObjectProperty ;
+    rdfs:label "Object property: hasQuality"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quality describing the scenario's accuracy or calibration."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range scenario:Quality .
+
+### hasGeoreference (DataResourceExtension -> georeference:Georeference)
+scenario:hasGeoreference a owl:ObjectProperty ;
+    rdfs:label "Object property: hasGeoreference"@en ;
+    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the scenario is georeferenced."@en ;
+    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:range georeference:Georeference .

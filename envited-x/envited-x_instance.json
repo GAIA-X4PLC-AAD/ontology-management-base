@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
+    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sh": "http://www.w3.org/ns/shacl#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
+  "@type": "envited-x:SimulationAsset",
+  "envited-x:hasDataResource": {
+    "@type": "envited-x:DataResource",
+    "gx:name": {
+      "@value": "3D Model in Grafing",
+      "@type": "xsd:string"
+    },
+    "gx:description": {
+      "@value": "A 3D model representing the town district with traffic signs.",
+      "@type": "xsd:string"
+    }
+  },
+  "envited-x:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.gaia-x.eu:Manifest:ksfw72PrV1L9XYsZxJqTg9Ounh2Qez4cMEm1"
+    },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+      },
+      {
+        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 # Python
-import sys
 import glob
 import os
+import sys
+
 from rdflib import Graph
+
 # Import the functions from fc_upload_with_update.py
 from fc_upload_with_update import find_corresponding_shapes_from_filesystem
 
@@ -18,14 +20,20 @@ def validate_target_classes_against_owl_classes(directory: str):
         ontology_graph.parse(ontology_file, format="turtle")
 
         # Find corresponding shapes from the filesystem
-        corresponding_shapes, ontology_name = find_corresponding_shapes_from_filesystem(directory, ontology_graph, True)
+        corresponding_shapes, ontology_name = find_corresponding_shapes_from_filesystem(
+            directory, ontology_graph, True
+        )
         if not corresponding_shapes:
-            print(f"Error for {ontology_name}\n"
-                  f"Please check the log and correct your SHACL shapes to have all target classes are present in "
-                  f"the ontology.")
+            print(
+                f"Error for {ontology_name}\n"
+                f"Please check the log and correct your SHACL shapes to have all target classes are present in "
+                f"the ontology."
+            )
             sys.exit(300)
         else:
-            print(f"Validated that all target classes in SHACL are existent in ontology {ontology_file}.")
+            print(
+                f"Validated that all target classes in SHACL are existent in ontology {ontology_file}."
+            )
 
 
 def main():

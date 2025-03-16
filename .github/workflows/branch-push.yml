@@ -7,48 +7,48 @@ on:
 
 jobs:
   create-file:
-    name: Create VARIABLES.md file on change within Branch
+    name: Create PROPERTIES.md file on change within Branch
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
           fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-    - name: Install additional libraries
-      run: pip install -r src/requirements_ci.txt
+      - name: Install additional libraries
+        run: pip install -r requirements_ci.txt
 
-    - name: Run Python script
-      run: python3 src/readme_generator.py
-      working-directory: ${{ github.workspace }}
+      - name: Run Python script
+        run: python3 src/readme_generator.py
+        working-directory: ${{ github.workspace }}
 
-    - name: Check for changes
-      id: check_changes
-      run: |
-        if git status --porcelain | grep "VARIABLES.md"; then
-          echo "CHANGES_FOUND=true" >> $GITHUB_OUTPUT
-        else
-          echo "CHANGES_FOUND=false" >> $GITHUB_OUTPUT
-        fi
-      continue-on-error: true
-      working-directory: ${{ github.workspace }}
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git status --porcelain | grep "PROPERTIES.md"; then
+            echo "CHANGES_FOUND=true" >> $GITHUB_OUTPUT
+          else
+            echo "CHANGES_FOUND=false" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
 
-    - name: Commit and push changes
-      if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "GitHub Action"
-        git add */VARIABLES.md
-        git commit -s -m "Add VARIABLES.md files"
-        git push
-      working-directory: ${{ github.workspace }}
-      env:
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.CHANGES_FOUND == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Action"
+          git add */PROPERTIES.md
+          git commit -s -m "Add PROPERTIES.md files"
+          git push
+        working-directory: ${{ github.workspace }}
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   parse-turtle:
@@ -80,7 +80,7 @@ jobs:
 
       - name: Install additional libraries
         if: env.TTL_HAS_CHANGED == 'true'
-        run: pip install -r src/requirements_ci.txt
+        run: pip install -r requirements_ci.txt
 
       - name: Run Python script for each changed .ttl file
         if: env.TTL_HAS_CHANGED == 'true'
@@ -121,7 +121,7 @@ jobs:
 
       - name: Install additional libraries
         if: env.FILES_HAVE_CHANGED == 'true'
-        run: pip install -r src/requirements_ci.txt
+        run: pip install -r requirements_ci.txt
 
       - name: Run Python script for each directory that is affected (either shacl or instance file was changed).
         if: env.FILES_HAVE_CHANGED == 'true'
@@ -162,11 +162,11 @@ jobs:
 
       - name: Install additional libraries for ci
         if: env.FILES_HAVE_CHANGED == 'true'
-        run: pip install -r src/requirements_ci.txt
+        run: pip install -r requirements_ci.txt
 
       - name: Install additional libraries for federated catalogue script that is being called.
         if: env.FILES_HAVE_CHANGED == 'true'
-        run: pip install -r src/requirements_fc.txt
+        run: pip install -r requirements_fc.txt
 
       - name: Run Python script for each directory that is affected (ttl file was changed).
         if: env.FILES_HAVE_CHANGED == 'true'

@@ -1,17 +1,19 @@
 @prefix environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/> .
+@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
+@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 environment-model: a owl:Ontology ;
     rdfs:label "Ontology definition for environment-model"@en ;
-    rdfs:comment "An ontology with common classes to describe an environment-model asset."@en ;
+    rdfs:comment "Ontology for defining metadata and structure of environment-model assets used in simulation."@en ;
     
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
@@ -31,39 +33,157 @@ environment-model: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/environment-model/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/environment-model/v3/ontology> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/environment-model/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/environment-model/v3/shape> ;
 
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    # Additional references to documentation or related ontologies
+    dcterms:references <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+#### Classes
 
 environment-model:EnvironmentModel a owl:Class ;
     rdfs:label "Class definition for EnvironmentModel"@en ;
-    rdfs:comment "General properties for defining an environment-model asset, such as format, content, project, quantity and quality properties."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:comment "Represents an environment-model asset with metadata describing format, content, project, quantity, and quality properties."@en ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasDataResourceExtension ;
+        owl:someValuesFrom environment-model:DataResourceExtension
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasDataResource ;
+        owl:someValuesFrom envited-x:DataResource
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasManifest ;
+        owl:someValuesFrom envited-x:Manifest
+    ] .
+
+#### Object Properties
+
+### hasDataResource (environment-model -> envited-x:DataResource)
+environment-model:hasDataResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataResource"@en ;
+    rdfs:comment "Links an environment model asset to a standard DataResource instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResource ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range envited-x:DataResource .
+
+### hasManifest (environment-model -> envited-x:Manifest)
+environment-model:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment "Links an environment model asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range envited-x:Manifest .
+
+environment-model:hasDataResourceExtension a owl:ObjectProperty ;
+    rdfs:label "has data resource extension"@en ;
+    rdfs:comment "Links an environment model asset to its metadata extensions."@en ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range environment-model:DataResourceExtension .
+
+environment-model:hasGeoreference a owl:ObjectProperty ;
+    rdfs:label "has georeference"@en ;
+    rdfs:comment "Links an environment model to georeference information."@en ;
+    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:range georeference:Georeference .
+
+environment-model:hasFormat a owl:ObjectProperty ;
+    rdfs:label "has format"@en ;
+    rdfs:comment "Links an environment model to its format specifications."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Format .
+
+environment-model:hasContent a owl:ObjectProperty ;
+    rdfs:label "has content"@en ;
+    rdfs:comment "Links an environment model to its content properties."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Content .
+
+environment-model:hasQuality a owl:ObjectProperty ;
+    rdfs:label "has quality"@en ;
+    rdfs:comment "Links an environment model to quality characteristics."@en ;
+    rdfs:subPropertyOf envited-x:hasQuality ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Quality .
+
+environment-model:hasQuantity a owl:ObjectProperty ;
+    rdfs:label "has quantity"@en ;
+    rdfs:comment "Links an environment model to quantity attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasQuantity ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Quantity .
+
+environment-model:hasProject a owl:ObjectProperty ;
+    rdfs:label "has project"@en ;
+    rdfs:comment "Links an environment model to project-related metadata."@en ;
+    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:range environment-model:Project .
+
+#### Supporting Classes
+
+environment-model:DataResourceExtension a owl:Class ;
+    rdfs:label "Class definition for DataResourceExtension"@en ;
+    rdfs:comment "Environment-model specific metadata extensions."@en ;
+    rdfs:subClassOf envited-x:DataResourceExtension ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasContent ;
+        owl:someValuesFrom environment-model:Content
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasProject ;
+        owl:someValuesFrom environment-model:Project
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasFormat ;
+        owl:someValuesFrom environment-model:Format
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasQuality ;
+        owl:someValuesFrom environment-model:Quality
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasQuantity ;
+        owl:someValuesFrom environment-model:Quantity
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty environment-model:hasGeoreference ;
+        owl:someValuesFrom georeference:Georeference
+    ] .
 
 environment-model:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Contains properties to describe the format of the environment-model asset."@en .
+    rdfs:comment "Defines the format specifications of an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 environment-model:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Contains properties to describe the content (elements, use cases) of the environment-model asset."@en .	
-
-environment-model:Project a owl:Class ;
-    rdfs:label "Class definition for Project"@en ;
-    rdfs:comment "Contains properties to describe the project information (software used for generation and visualisation) of the environment-model asset."@en .		
+    rdfs:comment "Describes the visual and functional elements included in an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 environment-model:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Contains properties to describe the quality (detail level, features) of the environment-model asset."@en .		
+    rdfs:comment "Describes the quality attributes of the environment-model asset, including detail level and texture resolution."@en ;
+    rdfs:subClassOf envited-x:Quality .
 
 environment-model:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset."@en .		
+    rdfs:comment "Specifies numerical attributes like geometry count and triangle count for an environment-model asset."@en ;
+    rdfs:subClassOf envited-x:Quanitiy .
+
+environment-model:Project a owl:Class ;
+    rdfs:label "Class definition for Project"@en ;
+    rdfs:comment "Contains information about the tools and software used to create the environment-model asset."@en .
