@@ -23,7 +23,7 @@
 | LinkShape | manifest | hasAccessRole | 1 | 1 | Specifies the access role associated with the corresponding file. |  | manifest_shacl.ttl |
 | LinkShape | manifest | hasCategory | 1 | 1 | Specifies the category of the artifact. Categories are defined as instances of manifest:Category and extended via domain-specific ontologies. |  | manifest_shacl.ttl |
 | LinkShape | manifest | hasFileMetadata | 1 | 1 | Defines the properties of the data file that is referenced via a link. |  | manifest_shacl.ttl |
-| nea6bffe5b423433b913268e3ea58b4a2b542 | manifest | hasFileMetadata |  |  |  |  | manifest_shacl.ttl |
+| n337673b51ffe4f08855412134e775b1cb542 | manifest | hasFileMetadata |  |  |  |  | manifest_shacl.ttl |
 | FileMetadataShape | manifest | filePath | 1 | 1 | A local or remote path/URL from which the file can be retrieved (e.g. './manifest_reference.json', 'ipfs://...', 's3://...', 'https://...'). | <http://www.w3.org/2001/XMLSchema#anyURI> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | mimeType | 1 | 1 | Defines the MIME type of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | cid | 0 | 1 | Defines the IPFS CIDv1 identifier of the file. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
@@ -32,6 +32,6 @@
 | FileMetadataShape | manifest | timestamp | 0 | 1 | Represents a date or time associated with the file, such as recording time or creation time. | <http://www.w3.org/2001/XMLSchema#dateTime> | manifest_shacl.ttl |
 | FileMetadataShape | manifest | hasDimensions | 0 | 1 | Defines the dimensions for images and videos. |  | manifest_shacl.ttl |
 | DimensionsShape | manifest | unit | 1 | 1 | Specifies the unit of measurement (e.g., metres, inches). |  | manifest_shacl.ttl |
-| DimensionsShape | manifest | width | 1 | 1 | Specifies the width (x-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#decimal> | manifest_shacl.ttl |
-| DimensionsShape | manifest | height | 1 | 1 | Specifies the height (y-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#decimal> | manifest_shacl.ttl |
-| DimensionsShape | manifest | depth | 0 | 1 | Specifies the depth (z-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#decimal> | manifest_shacl.ttl |
+| DimensionsShape | manifest | width | 1 | 1 | Specifies the width (x-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#float> | manifest_shacl.ttl |
+| DimensionsShape | manifest | height | 1 | 1 | Specifies the height (y-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#float> | manifest_shacl.ttl |
+| DimensionsShape | manifest | depth | 0 | 1 | Specifies the depth (z-axis) of the item in appropriate units. | <http://www.w3.org/2001/XMLSchema#float> | manifest_shacl.ttl |
