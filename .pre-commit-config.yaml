@@ -25,3 +25,17 @@ repos:
         types: [python]
         args: ["--config=.flake8"]
         pass_filenames: true
+
+      - id: jsonld-lint
+        name: JSON-LD Linter
+        entry: python src/jsonld_lint.py
+        language: system
+        types: [json]
+        files: \.json$
+
+      - id: turtle-lint
+        name: Turtle Linter
+        entry: python src/turtle_lint.py
+        language: system
+        types: [text]
+        files: \.(ttl)$
