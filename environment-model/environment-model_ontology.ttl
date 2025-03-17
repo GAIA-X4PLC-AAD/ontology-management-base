@@ -182,7 +182,7 @@ environment-model:Quality a owl:Class ;
 environment-model:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Specifies numerical attributes like geometry count and triangle count for an environment-model asset."@en ;
-    rdfs:subClassOf envited-x:Quanitiy .
+    rdfs:subClassOf envited-x:Quantity .
 
 environment-model:Project a owl:Class ;
     rdfs:label "Class definition for Project"@en ;

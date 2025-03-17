@@ -130,9 +130,9 @@ hdmap:Quality a owl:Class ;
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Quanitiy .
+    rdfs:subClassOf envited-x:Quantity .
 
-# Used in Quanitiy
+# Used in Quantity
 hdmap:Range2D a owl:Class ;
     rdfs:label "Class definition for Range2D"@en ;
     rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en .

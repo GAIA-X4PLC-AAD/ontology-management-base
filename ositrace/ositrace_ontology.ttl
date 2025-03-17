@@ -127,7 +127,7 @@ ositrace:Quality a owl:Class ;
 ositrace:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Attributes for the quantity of ASAM OSI trace files."@en ;
-    rdfs:subClassOf envited-x:Quanitiy .
+    rdfs:subClassOf envited-x:Quantity .
 
 ositrace:MovingObject a owl:Class ;
     rdfs:label "Class definition for MovingObject"@en ;

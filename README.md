@@ -20,15 +20,15 @@ cd ontology-management-base
 ### 2️⃣ Install Python Environment (Optional but Recommended)
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+python3 -m venv .venv # On Windows use python instead of python3
+source .venv/bin/activate  # On Windows use: source .venv/Scripts/activate
 ```
 
 ### 3️⃣ Install Dependencies
 
 ```bash
-pip install --upgrade pip
-pip install -r requirements_ci.txt
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements_ci.txt
 ```
 
 ### 4️⃣ Install & Configure `pre-commit`

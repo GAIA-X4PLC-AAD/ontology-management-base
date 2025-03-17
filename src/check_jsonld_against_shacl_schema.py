@@ -111,7 +111,7 @@ def extract_used_types(data_graph):
         formatted_output.append(f"  - {namespace}:\n    {formatted_types}")
 
     print(
-        f"✅ Extracted {sum(len(types) for types in used_types.values())} unique RDF types:\n{'\n'.join(formatted_output)}"
+        f"✅ Extracted {sum(len(types) for types in used_types.values())} unique RDF types:\n{''.join(formatted_output)}"
     )
 
     return {rdf_type for types in used_types.values() for rdf_type in types}

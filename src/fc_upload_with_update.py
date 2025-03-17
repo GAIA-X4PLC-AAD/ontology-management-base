@@ -197,9 +197,7 @@ def find_corresponding_shapes_from_catalogue(
     if len(corresponding_shapes) > 1:
         raise ValueError(
             f"Multiple corresponding shapes found in catalogue for {ontology_name}. "
-            f"IDs are {
-                list(
-                    corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
+            f"IDs are {list(corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
             f"the correct shape ID.\nPlease upload manually."
         )
     return corresponding_shapes
