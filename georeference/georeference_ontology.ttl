@@ -1,5 +1,5 @@
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -38,14 +38,14 @@ georeference: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/georeference/v3/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/georeference/v3/ontology#> ;
     owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v3/shape#> ;
 
     # References to related ontologies
-    dcterms:references <https://ontologies.envited-x.net/hdmap/v4/ontology> ;
+    dcterms:references <https://ontologies.envited-x.net/hdmap/v4/ontology#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 georeference:Georeference a owl:Class ;

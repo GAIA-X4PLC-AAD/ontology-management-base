@@ -19,8 +19,9 @@ def extract_prefixes_from_ttl(file_path: str) -> dict:
     """
     g = Graph()
     g.parse(file_path, format="turtle")
-    # g.namespaces() yields (prefix, namespace) pairs.
-    return {prefix: str(namespace) for prefix, namespace in g.namespaces()}
+    prefixes = {prefix: str(namespace) for prefix, namespace in g.namespaces()}
+    logging.debug(f"Extracted prefixes from TTL {file_path}: {prefixes}")
+    return prefixes
 
 
 def extract_prefixes_from_jsonld(file_path: str) -> dict:
@@ -29,14 +30,13 @@ def extract_prefixes_from_jsonld(file_path: str) -> dict:
     """
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-
     context = data.get("@context", {})
     prefix_mapping = {}
     if isinstance(context, dict):
         for key, value in context.items():
-            # Only consider string values as prefix mappings.
             if isinstance(value, str):
                 prefix_mapping[key] = value
+    logging.debug(f"Extracted prefixes from JSON-LD {file_path}: {prefix_mapping}")
     return prefix_mapping
 
 
@@ -56,7 +56,8 @@ def load_dynamic_prefixes(files: list) -> dict:
                 continue
             dynamic_prefixes.update(mapping)
         except Exception as e:
-            print(f"⚠️ Warning: Failed to extract prefixes from {file}: {e}")
+            logging.warning(f"Failed to extract prefixes from {file}: {e}")
+    logging.debug(f"Aggregated dynamic prefixes: {dynamic_prefixes}")
     return dynamic_prefixes
 
 
@@ -67,11 +68,11 @@ def resolve_manifest_local_path(name: str, file_type: str, root_dir: str = ".") 
     """
     Given a manifest name and the file type ("ontology" or "shacl"),
     returns the corresponding local file path.
-    For example, if name is "NAME" and file_type is "ontology",
-    the file path will be: "<root_dir>/NAME/NAME_ontology.ttl"
     """
     filename = f"{name}_{file_type}.ttl"
-    return os.path.join(root_dir, name, filename)
+    local_path = os.path.join(root_dir, name, filename)
+    logging.info(f"Resolved manifest local path for {name} ({file_type}): {local_path}")
+    return local_path
 
 
 def resolve_prefixed_type(
@@ -82,29 +83,35 @@ def resolve_prefixed_type(
 ) -> str:
     """
     Resolves a prefixed RDF type to a full IRI using a dynamic prefix mapping.
-    The dynamic_mapping (if provided) is merged with any supplied context.
-    If the resolved IRI matches the manifest pattern, it is converted to a local file path.
     """
     full_context = {}
     if dynamic_mapping:
-        full_context.update(dynamic_mapping)
+        # Ensure that each base IRI ends with a '#' (or '/' if that’s your convention)
+        for prefix, iri in dynamic_mapping.items():
+            if not iri.endswith("#") and not iri.endswith("/"):
+                full_context[prefix] = iri + "#"
+            else:
+                full_context[prefix] = iri
     if context:
         full_context.update(context)
+    logging.info(f"Resolving type '{json_type}' using context: {full_context}")
 
     if ":" in json_type:
         prefix, suffix = json_type.split(":", 1)
         base_iri = full_context.get(prefix)
         if base_iri:
             resolved = f"{base_iri}{suffix}"
-            # If the resolved IRI is a manifest URL that needs redirecting.
+            logging.debug(f"Resolved '{json_type}' to '{resolved}'")
             if resolved.startswith("https://ontologies.envited-x.net/"):
                 parsed = urlparse(resolved)
-                # Expecting path like /NAME/v4/ontology...
                 path_parts = parsed.path.strip("/").split("/")
                 if len(path_parts) >= 3:
                     name = path_parts[0]
                     local_ontology = resolve_manifest_local_path(
                         name, "ontology", root_dir
+                    )
+                    logging.debug(
+                        f"Redirecting '{resolved}' to local ontology: '{local_ontology}'"
                     )
                     return local_ontology
             return resolved
@@ -118,11 +125,7 @@ def format_validation_report(
     v_text: str, width: int = 150, indent_size: int = 4
 ) -> str:
     """
-    Parses and formats the SHACL validation report while:
-    - Ensuring consistent indentation for nested properties.
-    - Removing unnecessary blank lines.
-    - Center-aligning section headers.
-    - Keeping empty lines enclosed with '='.
+    Parses and formats the SHACL validation report.
     """
     border_line = "=" * width
     formatted_lines = []
@@ -178,7 +181,6 @@ def format_validation_report(
 def format_filenames(filenames: list, width: int = 150) -> list:
     """
     Splits the filenames list ensuring filenames remain intact.
-    Ensures each filename starts on a new line properly formatted.
     """
     formatted_lines = []
     current_line = "["
@@ -200,10 +202,11 @@ def print_validation_result(
     width = 150
     border_line = "=" * width
     header_text_files = [""]
-    if success:
-        header_text = ["✅ SHACL validation passed for:"]
-    else:
-        header_text = ["❌ SHACL validation failed for:"]
+    header_text = (
+        ["✅ SHACL validation passed for:"]
+        if success
+        else ["❌ SHACL validation failed for:"]
+    )
     centered_header_lines = [f"= {line.center(width - 5)} =" for line in header_text]
     if onto_files:
         formatted_filenames = format_filenames(onto_files, width)
@@ -220,6 +223,7 @@ def print_validation_result(
         formatted_v_text = format_validation_report(v_text, width)
         print(formatted_v_text, file=sys.stderr)
     if exit_code is not None:
+        logging.debug(f"Exiting with code {exit_code}")
         sys.exit(exit_code)
 
 
@@ -241,33 +245,37 @@ def setup_logging(debug=False):
 def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
     """
     Loads SHACL and ontology files relevant to the detected RDF types.
-    The dynamic mapping is used to bind prefixes.
     """
+    logging.info("Starting to load SHACL and ontology files.")
     shacl_graph = Graph()
     loaded_files = set()
     # Bind prefixes from the dynamic mapping.
     if dynamic_mapping:
         for prefix, namespace in dynamic_mapping.items():
             shacl_graph.bind(prefix, Namespace(namespace))
+            logging.debug(f"Bound prefix {prefix} -> {namespace}")
     # Load GX trust framework SHACL explicitly.
     namespace_gx = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
     for prefix, file_path in namespace_gx.items():
-        print(f"✅ Loading mapped SHACL file for {prefix}: {file_path}")
+        logging.debug(f"Loading mapped SHACL file for {prefix}: {file_path}")
         shacl_graph.parse(file_path, format="turtle")
         loaded_files.add(file_path)
     shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
+    logging.debug(f"Found SHACL files: {shacl_files}")
+    logging.debug(f"Found Ontology files: {ontology_files}")
 
     def is_relevant(graph, used_types):
-        # Use the 'sh' prefix from dynamic mapping.
         sh_ns = dynamic_mapping.get("sh")
         if sh_ns:
             SH = Namespace(sh_ns)
         else:
-            # If not defined, return False (or raise an error as appropriate)
+            logging.error("No 'sh' prefix found in dynamic mapping.")
             return False
-        for _, _, rdf_type in graph.triples((None, SH.targetClass, None)):
+        for subj, pred, rdf_type in graph.triples((None, SH.targetClass, None)):
+            logging.debug(f"Found targetClass triple: {subj} {pred} {rdf_type}")
             if str(rdf_type) in used_types:
+                logging.debug(f"Match found for target {rdf_type}")
                 return True
         return False
 
@@ -277,7 +285,7 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
         if is_relevant(tmp_graph, used_types):
             shacl_graph += tmp_graph
             loaded_files.add(shacl_file)
-            print(f"✅ Loaded SHACL file: {shacl_file}")
+            logging.info(f"Loaded SHACL file: {shacl_file}")
 
     from rdflib.namespace import OWL, RDFS
 
@@ -289,10 +297,15 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
         )
         expanded_defined_classes = {str(cls) for cls in defined_classes}
         matched_types = expanded_defined_classes.intersection(used_types)
+        logging.debug(
+            f"In {ontology_file}, defined classes: {expanded_defined_classes}"
+        )
+        logging.debug(f"Matched types: {matched_types}")
         if matched_types:
             shacl_graph += ontology_graph
             loaded_files.add(ontology_file)
-            print(f"✅ Loaded ontology file: '{ontology_file}'")
+            logging.info(f"Loaded ontology file: {ontology_file}")
+    logging.info("Completed loading SHACL and ontology files.")
     return shacl_graph
 
 
@@ -318,6 +331,7 @@ def extract_used_types(data_graph):
     for namespace, types in used_types.items():
         formatted_types = "\n    ".join(sorted(types))
         formatted_output.append(f"  - {namespace}:\n    {formatted_types}")
+    logging.info("Extracted RDF types:\n" + "\n".join(formatted_output))
     print(
         f"✅ Extracted {sum(len(types) for types in used_types.values())} unique RDF types:\n"
         + "\n".join(formatted_output)
@@ -334,8 +348,10 @@ def load_jsonld_files(jsonld_files):
     for i, jsonld_file in enumerate(jsonld_files, start=1):
         try:
             data_graph.parse(jsonld_file, format="json-ld")
+            logging.info(f"Loaded JSON-LD file: {jsonld_file}")
             print(f"✅ [{i}/{len(jsonld_files)}] Loaded: {jsonld_file}")
         except Exception as e:
+            logging.error(f"Failed to load {jsonld_file}: {e}")
             print(f"❌ [{i}/{len(jsonld_files)}] Failed: {jsonld_file} → {e}")
             failed_files += 1
     print(
@@ -361,9 +377,7 @@ def main():
     paths = [arg for arg in sys.argv[1:] if arg != "--debug"]
     setup_logging(debug)
     logging.info(f"Debug mode {'enabled' if debug else 'disabled'}.")
-
     # --- Dynamic Prefix Mapping ---
-    # Use all ontology and JSON-LD files from the provided paths to build the mapping.
     files_for_prefixes = []
     for path in paths:
         if os.path.isdir(path):
@@ -373,13 +387,10 @@ def main():
         elif os.path.isfile(path):
             files_for_prefixes.append(path)
     dynamic_prefixes = load_dynamic_prefixes(files_for_prefixes)
-
-    # Display the resolved dynamic prefixes
     print("\n✅ Resolved Dynamic Prefix Mapping:")
     for prefix, ns in sorted(dynamic_prefixes.items()):
         print(f"   {prefix}: {ns}")
     print()
-
     # --- Step 1: Collect all *ontology.ttl files ---
     ontology_files = []
     for path in paths:
@@ -387,19 +398,18 @@ def main():
             ontology_files.extend(glob.glob(os.path.join(path, "*_ontology.ttl")))
         elif os.path.isfile(path) and path.endswith("_ontology.ttl"):
             ontology_files.append(path)
-
     # --- Step 2: Load corresponding SHACL files ---
     shacl_graph_onto = Graph()
     for onto_file in ontology_files:
         shacl_file = onto_file.replace("_ontology.ttl", "_shacl.ttl")
         if os.path.exists(shacl_file):
+            logging.info(f"Loading SHACL file for ontology: {shacl_file}")
             print(f"✅ Loading SHACL file for ontology: {shacl_file}")
             shacl_graph_onto.parse(shacl_file, format="turtle")
         else:
             print(
                 f"⚠️ Warning: No SHACL file found for {onto_file}, skipping validation."
             )
-
     # --- Step 3: Validate each ontology.ttl against its SHACL graph ---
     for onto_file in ontology_files:
         print(f"🔍 Validating ontology {onto_file} against the SHACL shapes...")
@@ -412,11 +422,11 @@ def main():
             validation_mode="strict",
             debug=debug,
         )
+        logging.info(f"Validation result for {onto_file}: Conforms = {conforms}")
         if not conforms:
             print_validation_result_wrapper(False, [onto_file], v_text, exit_code=200)
         else:
             print(f"✅ Ontology file {onto_file} passed SHACL validation.\n")
-
     # --- Step 4: Load JSON-LD Instance and Reference Files ---
     data_graph = Graph()
     instance_files = []
@@ -430,25 +440,20 @@ def main():
                 instance_files.append(path)
             elif path.endswith("_reference.json"):
                 reference_files.append(path)
-
-    # --- Step 5: Load JSON-LD files into data graph ---
     print("📌 Loading JSON-LD files into data graph...")
     data_graph = load_jsonld_files(instance_files + reference_files)
-
     # --- Step 6: Extract RDF Types from the Data Graph ---
     print("📌 Extracting RDF types from data graph...")
     used_types = extract_used_types(data_graph)
-
     # --- Step 7: Load only necessary SHACL shapes based on detected RDF types ---
     print("📌 Loading only necessary SHACL shapes based on detected RDF types...")
     shacl_graph = load_shacl_and_ontologies(".", used_types, dynamic_prefixes)
-
     # --- Step 8: Perform Final Validation ---
     print("🔍 Performing overall validation explicitly...")
     conforms, _, v_text = validate(
         data_graph, shacl_graph=shacl_graph, inference="rdfs", debug=debug
     )
-
+    logging.debug(f"Final overall validation: Conforms = {conforms}")
     # --- Step 9: Print Validation Report ---
     if not conforms:
         print_validation_result_wrapper(False, instance_files, v_text, exit_code=210)

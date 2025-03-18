@@ -1,39 +1,39 @@
 {
-    "@context": {
-      "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
-      "service": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/",
-      "sh": "http://www.w3.org/ns/shacl#",
-      "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "skos": "http://www.w3.org/2004/02/skos/core#"
-    },
-    "@id": "did:web:registry.gaia-x.eu:Service:ocneDSjk294DNJe7dh893Djndj93DN89jhDj",
-    "@type": "service:Service",
-    "service:general": {
-      "@type": "general:General",
-      "general:description": {
-        "@type": "general:Description",
-        "general:name": {
-          "@value": "Example Service",
-          "@type": "xsd:string"
-        },
-        "general:description": {
-          "@value": "Description of Example Service",
-          "@type": "xsd:string"
-        }
+  "@context": {
+    "general": "https://ontologies.envited-x.net/general/v2/ontology#",
+    "service": "https://ontologies.envited-x.net/service/v1/ontology#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:Service:ocneDSjk294DNJe7dh893Djndj93DN89jhDj",
+  "@type": "service:Service",
+  "service:general": {
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "general:name": {
+        "@value": "Example Service",
+        "@type": "xsd:string"
       },
-      "general:data": {
-        "@type": "general:Data",
-        "general:size": {
-          "@value": "0.0",
-          "@type": "xsd:float"
-        },
-        "general:recordingTime": {
-          "@value": "2024-08-19T18:05:00",
-          "@type": "xsd:dateTime"
-        }
+      "general:description": {
+        "@value": "Description of Example Service",
+        "@type": "xsd:string"
       }
     },
-    "service:requiredFile": [
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "0.0",
+        "@type": "xsd:float"
+      },
+      "general:recordingTime": {
+        "@value": "2024-08-19T18:05:00",
+        "@type": "xsd:dateTime"
+      }
+    }
+  },
+  "service:requiredFile": [
     {
       "@type": "service:RequiredFile",
       "service:description": {

@@ -1,7 +1,7 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -36,11 +36,11 @@ ositrace: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v3/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v3/ontology#> ;
     owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v3/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;

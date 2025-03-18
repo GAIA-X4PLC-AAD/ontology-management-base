@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology>
+- hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#>
 
 ## List of SHACL Properties
 

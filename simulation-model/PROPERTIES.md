@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/>
+- simulation-model: <https://ontologies.envited-x.net/simulation-model/v1/ontology#>
 
 ## List of SHACL Properties
 

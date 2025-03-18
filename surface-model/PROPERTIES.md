@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- surface-model: <https://ontologies.envited-x.net/surface-model/v4/ontology>
+- surface-model: <https://ontologies.envited-x.net/surface-model/v4/ontology#>
 
 ## List of SHACL Properties
 

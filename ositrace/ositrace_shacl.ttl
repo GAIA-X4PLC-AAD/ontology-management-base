@@ -1,7 +1,7 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -291,7 +291,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:path ositrace:calibration ],
         [ skos:example "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar" ;
             sh:datatype xsd:anyURI ;
-            sh:description "Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/."@en ;
+            sh:description "Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://ontologies.envited-x.net/vv-report/v1/ontology#."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of validationReport failed!"@en ;
             sh:minCount 0 ;

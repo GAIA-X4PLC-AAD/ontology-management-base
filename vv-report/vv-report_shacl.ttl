@@ -1,8 +1,8 @@
-@prefix vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/> .
+@prefix vv-report: <https://ontologies.envited-x.net/vv-report/v1/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
 
 
 vv-report:VvReportShape a sh:NodeShape ;

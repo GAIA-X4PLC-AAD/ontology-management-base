@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- georeference: <https://ontologies.envited-x.net/georeference/v3/ontology>
+- georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#>
 
 ## List of SHACL Properties
 

@@ -1,5 +1,5 @@
-@prefix service: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/service/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix service: <https://ontologies.envited-x.net/service/v1/ontology#> .
+@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

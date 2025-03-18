@@ -1,4 +1,4 @@
-@prefix simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/> .
+@prefix simulation-model: <https://ontologies.envited-x.net/simulation-model/v1/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -29,11 +29,11 @@ simulation-model: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/simulation-model/v1/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/simulation-model/v1/ontology#> ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://fmi-standard.org/> ;

@@ -1,5 +1,5 @@
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -40,11 +40,11 @@ envited-x: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v2/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v2/ontology#> ;
     owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v2/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;

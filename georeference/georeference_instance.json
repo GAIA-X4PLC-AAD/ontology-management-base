@@ -3,7 +3,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology"
+    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#"
   },
   "@id": "did:web:registry.gaia-x.eu:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
   "@type": "georeference:Georeference",

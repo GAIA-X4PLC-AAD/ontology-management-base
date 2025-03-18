@@ -1,4 +1,4 @@
-@prefix automotive-simulator: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/automotive-simulator/> .
+@prefix automotive-simulator: <https://ontologies.envited-x.net/automotive-simulator/v1/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -42,11 +42,11 @@ automotive-simulator: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/automotive-simulator/v1/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/automotive-simulator/v1/ontology#> ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/automotive-simulator/v1/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/automotive-simulator/v1/shape#> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
