@@ -14,11 +14,15 @@
 | ScenarioShape | scenario | hasDataResourceExtension | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasManifest | 1 | 1 |  |  | scenario_shacl.ttl |
 | ManifestShape | rdf | type |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasManifestReference |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasLicense |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`. |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`. |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  | Each scenario:Manifest must reference at least one catalog via a `manifest:Link`. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  | Each scenario:Manifest must reference at least one catalog via a manifest:Link. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |
