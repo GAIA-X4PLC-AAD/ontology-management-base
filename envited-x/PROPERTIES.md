@@ -2,9 +2,10 @@
 
 ## Prefixes
 
-- envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/>
+- envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#>
 - gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
-- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+- manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#>
+- rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 ## List of SHACL Properties
 
@@ -13,14 +14,21 @@
 | SimulationAssetShape | envited-x | hasDataResource | 1 | 1 |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasDataResourceExtension | 0 |  |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
+| ExtendedLinkShape | manifest | hasAccessRole |  |  |  |  | envited-x_shacl.ttl |
+| ExtendedLinkShape | manifest | hasCategory |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | rdf | type |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasManifestReference |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasLicense |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | DataResourceShape | gx | name | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
 | DataResourceShape | gx | description | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| naf555b35fd764c6b907c939e9fbe7c74b20 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| naf555b35fd764c6b907c939e9fbe7c74b20 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| na32c756347c4433cb7f124b2391b6c9bb73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| na32c756347c4433cb7f124b2391b6c9bb73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |

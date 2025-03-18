@@ -2,8 +2,9 @@
 
 ## Prefixes
 
-- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
-- scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/>
+- manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#>
+- rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+- scenario: <https://ontologies.envited-x.net/scenario/v4/ontology#>
 
 ## List of SHACL Properties
 
@@ -12,11 +13,16 @@
 | ScenarioShape | scenario | hasDataResource | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasDataResourceExtension | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasManifest | 1 | 1 |  |  | scenario_shacl.ttl |
+| ManifestShape | rdf | type |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasManifestReference |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasLicense |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each Scenario manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`. |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`. |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  | Each Scenario manifest must reference at least one catalog via a `manifest:Link`. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel. |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasArtifacts |  |  | Each scenario:Manifest must reference at least one catalog via a manifest:Link. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |

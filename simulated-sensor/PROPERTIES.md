@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/>
+- simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#>
 
 ## List of SHACL Properties
 

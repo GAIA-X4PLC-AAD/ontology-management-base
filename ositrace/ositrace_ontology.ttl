@@ -1,7 +1,7 @@
-@prefix ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/> .
-@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -33,14 +33,14 @@ ositrace: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v2/ontology> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v3/ontology#> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v2/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v3/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;
@@ -127,7 +127,7 @@ ositrace:Quality a owl:Class ;
 ositrace:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Attributes for the quantity of ASAM OSI trace files."@en ;
-    rdfs:subClassOf envited-x:Quanitiy .
+    rdfs:subClassOf envited-x:Quantity .
 
 ositrace:MovingObject a owl:Class ;
     rdfs:label "Class definition for MovingObject"@en ;

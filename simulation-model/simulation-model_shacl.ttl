@@ -1,5 +1,5 @@
-@prefix simulation-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulation-model/> .
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix simulation-model: <https://ontologies.envited-x.net/simulation-model/v1/ontology#> .
+@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

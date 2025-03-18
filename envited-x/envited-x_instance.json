@@ -1,7 +1,7 @@
 {
   "@context": {
-    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -31,10 +31,10 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
       },
       {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+        "@id": "https://ontologies.envited-x.net/manifest/v4/ontology#"
       }
     ],
     "manifest:hasAccessRole": {

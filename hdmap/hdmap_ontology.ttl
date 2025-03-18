@@ -1,7 +1,7 @@
-@prefix hdmap: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/> .
-@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
@@ -37,17 +37,17 @@ hdmap: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/hdmap/v3/ontology> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/hdmap/v4/ontology#> ;
+    owl:versionInfo "v4" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/hdmap/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/hdmap/v4/shape#> ;
 
     # Additional references to documentation or related ontologies
-    dcterms:references <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> ;
+    dcterms:references <https://ontologies.envited-x.net/envited-x/v2/ontology#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 
@@ -130,9 +130,9 @@ hdmap:Quality a owl:Class ;
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
     rdfs:comment "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Quanitiy .
+    rdfs:subClassOf envited-x:Quantity .
 
-# Used in Quanitiy
+# Used in Quantity
 hdmap:Range2D a owl:Class ;
     rdfs:label "Class definition for Range2D"@en ;
     rdfs:comment "Range2D definition with minimum to maximum data property usable in the HD map asset."@en .

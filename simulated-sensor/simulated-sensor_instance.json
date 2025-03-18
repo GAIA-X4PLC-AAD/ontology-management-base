@@ -2,7 +2,7 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "simulated-sensor": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/",
+    "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v1/ontology#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
   "@id": "did:web:registry.gaia-x.eu:SimulatedSensor:B6gYmAU2PiHe8c3aqSbazCkrE7sUfCkRPFv2",

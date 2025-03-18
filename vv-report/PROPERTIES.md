@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- vv-report: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/>
+- vv-report: <https://ontologies.envited-x.net/vv-report/v1/ontology#>
 
 ## List of SHACL Properties
 

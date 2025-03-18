@@ -1,8 +1,8 @@
 {
     "@context": {
         "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
-        "vv-report": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/vv-report/",
-        "general": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/",
+        "vv-report": "https://ontologies.envited-x.net/vv-report/v1/ontology#",
+        "general": "https://ontologies.envited-x.net/general/v2/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#"
@@ -24,9 +24,9 @@
         },
         "general:data": {
             "@type": "general:Data",
-                "general:size": {
-                    "@value": "0.008",
-                    "@type": "xsd:float"
+            "general:size": {
+                "@value": "0.008",
+                "@type": "xsd:float"
             }
         }
     },
@@ -41,15 +41,15 @@
                 "@type": "vv-report:Metric",
                 "vv-report:metricTitle": {
                     "@value": "Model ouput OSI validation",
-                    "@type": "xsd:string"                
+                    "@type": "xsd:string"
                 },
                 "vv-report:metricDescription": {
                     "@value": "Running the model open-loop with a defined OSI SensorView input and checking the compliance of the OSI SensorData output with predefined rules",
-                    "@type": "xsd:string"                
+                    "@type": "xsd:string"
                 },
                 "vv-report:metricReference": {
                     "@value": "https://github.com/OpenSimulationInterface/osi-validation",
-                    "@type": "xsd:anyURI"                
+                    "@type": "xsd:anyURI"
                 }
             },
             "vv-report:inputData": [
@@ -74,7 +74,7 @@
                         "@value": "https://github.com/OpenSimulationInterface/osi-validation/raw/refs/heads/master/data/20240221T141700Z_sv_300_2112_10_one_moving_object.osi",
                         "@type": "xsd:anyURI"
                     }
-                }                
+                }
             ],
             "vv-report:result": {
                 "@type": "vv-report:Result",
@@ -100,15 +100,15 @@
                 "@type": "vv-report:Metric",
                 "vv-report:metricTitle": {
                     "@value": "FMU modelDescription check",
-                    "@type": "xsd:string"                
+                    "@type": "xsd:string"
                 },
                 "vv-report:metricDescription": {
                     "@value": "Checking the modelDescription.xml of an FMU: Validation against the XML schema, uniqueness and validity of variable names, completeness and integrity of the ModelStructure, required start values, combinations of causality and variability, units",
-                    "@type": "xsd:string"                
+                    "@type": "xsd:string"
                 },
                 "vv-report:metricReference": {
                     "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:bffa3d7670fc3ac3a49a257de0d4b44fdfbc12d9bd7aa329647cf73018f529f4",
-                    "@type": "xsd:anyURI"                
+                    "@type": "xsd:anyURI"
                 }
             },
             "vv-report:inputData": [

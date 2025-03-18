@@ -1,4 +1,4 @@
-@prefix general: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/> .
+@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -35,11 +35,11 @@ general: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology#> ;
     owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacle> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacl#> ;
 
     # Additional references
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .

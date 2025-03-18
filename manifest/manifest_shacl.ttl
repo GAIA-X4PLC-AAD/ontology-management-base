@@ -1,4 +1,4 @@
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -43,7 +43,7 @@ manifest:ManifestShape a sh:NodeShape ;
     sh:targetClass manifest:Manifest .
 
 manifest:LicenseShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property
         [   sh:name "spdx identifier"@en ;
@@ -168,7 +168,7 @@ manifest:LicenseShape a sh:NodeShape ;
     sh:targetClass manifest:License .
 
 manifest:LinkShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:name "IRI"@en ;
@@ -219,39 +219,56 @@ manifest:LinkShape a sh:NodeShape ;
         sh:node manifest:FileMetadataShape ;
         sh:path manifest:hasFileMetadata ;
     ] ;
-    sh:sparql [
-        a sh:SPARQLConstraint ;
-        sh:message "manifest:iri, skos:note, and sh:conformsTo MUST all be provided if manifest:mimeType is 'application/ld+json'."@en ;
-        sh:severity sh:Violation ;
-        sh:select """
-            PREFIX manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
-            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-            PREFIX sh: <http://www.w3.org/ns/shacl#>
-
-            SELECT ?this
-            WHERE {
-                ?this manifest:hasFileMetadata ?meta .
-                ?meta manifest:mimeType ?mimeType .
-                FILTER(str(?mimeType) = "application/ld+json") .
-
-                FILTER NOT EXISTS {
-                    ?manifestRef manifest:hasManifestReference ?this .
-                }
-
-                FILTER (
-                    NOT EXISTS { ?this manifest:iri ?iri } ||
-                    NOT EXISTS { ?this skos:note ?note } ||
-                    NOT EXISTS { ?this sh:conformsTo ?conformsTo }
-                )
-            }
-        """ ;
-    ] ;
+    # Conditional constraint for manifest:mimeType
+    sh:or (
+        [   # Branch 1: MIME type is NOT "application/ld+json"
+            sh:property [
+                sh:path ( manifest:hasFileMetadata manifest:mimeType ) ;
+                sh:not [ sh:pattern "^application/ld\\+json$" ] ;
+            ]
+        ]
+        [   # Branch 2: MIME type IS "application/ld+json" but the link is part of manifest:hasManifestReference (exception)
+            sh:property [
+                sh:path ( manifest:hasFileMetadata manifest:mimeType ) ;
+                sh:pattern "^application/ld\\+json$" ;
+                sh:minCount 1 ;
+            ] ;
+            sh:property [
+                sh:path [ sh:inversePath manifest:hasManifestReference ] ;
+                sh:minCount 1 ;
+                sh:message "This link is a manifest reference so the extra properties are not required." ;
+            ]
+        ]
+        [   # Branch 3: MIME type IS "application/ld+json" and NOT part of manifest:hasManifestReference,
+            # so require the additional properties.
+            sh:property [
+                sh:path ( manifest:hasFileMetadata manifest:mimeType ) ;
+                sh:pattern "^application/ld\\+json$" ;
+                sh:minCount 1 ;
+            ] ;
+            sh:property [
+                sh:path manifest:iri ;
+                sh:minCount 1 ;
+                sh:message "If the MIME type is 'application/ld+json' and not a manifest reference, an IRI is required." ;
+            ] ;
+            sh:property [
+                sh:path skos:note ;
+                sh:minCount 1 ;
+                sh:message "If the MIME type is 'application/ld+json' and not a manifest reference, a skos:note is required." ;
+            ] ;
+            sh:property [
+                sh:path sh:conformsTo ;
+                sh:minCount 1 ;
+                sh:message "If the MIME type is 'application/ld+json' and not a manifest reference, ontology conformance is required." ;
+            ]
+        ]
+    ) ;
 
     sh:targetClass manifest:Link .
 
 
 manifest:FileMetadataShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [   # Path or location for local/remote retrieval
@@ -337,7 +354,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
 
 
 manifest:DimensionsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [

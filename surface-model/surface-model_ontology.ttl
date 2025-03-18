@@ -1,7 +1,7 @@
-@prefix surface-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/surface-model/> .
-@prefix envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/> .
-@prefix manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/> .
-@prefix georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/> .
+@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v4/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -38,18 +38,38 @@ surface-model: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v3/ontology> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v4/ontology#> ;
+    owl:versionInfo "v4" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v3/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v4/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology> ;
+    dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+surface-model:SurfaceModel a owl:Class ;
+    rdfs:label "Class definition for SurfaceModel"@en ;
+    rdfs:comment "General properties for defining a surface model asset, including format, content, data sources, quantity, and quality attributes."@en ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasDataResourceExtension ;
+        owl:someValuesFrom surface-model:DataResourceExtension
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasDataResource ;
+        owl:someValuesFrom envited-x:DataResource
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasManifest ;
+        owl:someValuesFrom envited-x:Manifest
+    ] .
 
 surface-model:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;

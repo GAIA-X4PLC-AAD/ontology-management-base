@@ -1,4 +1,4 @@
-@prefix simulated-sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/simulated-sensor/> .
+@prefix simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -38,11 +38,11 @@ simulated-sensor: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/simulated-sensor/v1/ontology> ;
+    owl:versionIRI <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#> ;
     owl:versionInfo "v1" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulated-sensor/v1/shape> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulated-sensor/v1/shape#> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;

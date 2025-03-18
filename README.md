@@ -20,15 +20,15 @@ cd ontology-management-base
 ### 2️⃣ Install Python Environment (Optional but Recommended)
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+python3 -m venv .venv # On Windows use python instead of python3
+source .venv/bin/activate  # On Windows use: source .venv/Scripts/activate
 ```
 
 ### 3️⃣ Install Dependencies
 
 ```bash
-pip install --upgrade pip
-pip install -r requirements_ci.txt
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
 ```
 
 ### 4️⃣ Install & Configure `pre-commit`
@@ -228,8 +228,8 @@ This section describes guidelines that _must_ be followed when applying changes 
   - Add prefix
 
     ```turtle
-    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
-    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/ .
+    @prefix general:https://ontologies.envited-x.net/general/v2/ontology# .
+    @prefix general:https://ontologies.envited-x.net/hdmap/v4/ontology .
     ```
 
   - Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology

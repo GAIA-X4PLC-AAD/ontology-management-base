@@ -100,10 +100,7 @@ def main():
                         datatype_or_nodekind = ""
 
                     file.write(
-                        f"| {
-                            prop['shape']} | {prefix_of_path} | {
-                            prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {
-                            prop['filename']} "
+                        f"| {prop['shape']} | {prefix_of_path} | {prop['path']} | {min_count} | {max_count} | {description} | {datatype_or_nodekind} | {prop['filename']} "
                         f"|\n"
                     )
 

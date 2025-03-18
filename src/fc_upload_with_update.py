@@ -197,9 +197,7 @@ def find_corresponding_shapes_from_catalogue(
     if len(corresponding_shapes) > 1:
         raise ValueError(
             f"Multiple corresponding shapes found in catalogue for {ontology_name}. "
-            f"IDs are {
-                list(
-                    corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
+            f"IDs are {list(corresponding_shapes.keys())}.\nNot able to match the file to be updated to "
             f"the correct shape ID.\nPlease upload manually."
         )
     return corresponding_shapes
@@ -208,7 +206,7 @@ def find_corresponding_shapes_from_catalogue(
 def extract_shape_target_classes(graph: rdflib.Graph) -> List[str]:
     """
     Extract all target classes from the top-level (!) SHACL shapes (shapes that are not used as sh:node).
-    Returns a list of class URIs.
+    Returns a sorted list of unique class URIs.
     """
     query = """
     PREFIX sh: <http://www.w3.org/ns/shacl#>
@@ -218,8 +216,9 @@ def extract_shape_target_classes(graph: rdflib.Graph) -> List[str]:
     }
     """
     results = graph.query(query)
-    target_classes = [str(row.targetClass) for row in results]
-    return target_classes
+    # Use a set comprehension to ensure uniqueness, then return a sorted list
+    target_classes = {str(row.targetClass) for row in results}
+    return sorted(target_classes)
 
 
 def all_classes_exist_in_ontology(
@@ -359,12 +358,17 @@ def find_corresponding_shapes_from_filesystem(
 
 def print_classes(ontology_graph: rdflib.Graph, shape_target_classes: List[str]):
     """
-    prints all owl classes of the given ontology as well as all shape target classes
+    Print all owl classes of the given ontology as well as all shape target classes,
+    each on a new line for improved readability.
     """
     ontology_classes = sorted(extract_owl_classnames(ontology_graph))
     target_classes = sorted(shape_target_classes)
-    print(f"Classes in the ontology      : {', '.join(ontology_classes)}")
-    print(f"Target classes in SHACL shape: {', '.join(target_classes)}")
+
+    print("Classes in the ontology:")
+    print("\n".join(f"  - {cls}" for cls in ontology_classes))
+
+    print("\nTarget classes in SHACL shape:")
+    print("\n".join(f"  - {cls}" for cls in target_classes))
 
 
 def post_to_catalogue(

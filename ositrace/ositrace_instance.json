@@ -1,12 +1,12 @@
 {
   "@context": {
-    "ositrace": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/",
+    "ositrace": "https://ontologies.envited-x.net/ositrace/v3/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/",
-    "envited-x": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/",
-    "manifest": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/",
+    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
   },
   "@id": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
@@ -183,10 +183,10 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/"
+        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
       },
       {
-        "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/"
+        "@id": "https://ontologies.envited-x.net/manifest/v4/ontology#"
       }
     ],
     "manifest:hasAccessRole": {
