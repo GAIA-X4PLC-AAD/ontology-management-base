@@ -229,7 +229,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 
     ```turtle
     @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/general/ .
-    @prefix general:https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/hdmap/ .
+    @prefix general:https://ontologies.envited-x.net/hdmap/v4/ontology .
     ```
 
   - Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology

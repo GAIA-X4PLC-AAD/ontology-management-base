@@ -6,7 +6,7 @@
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
-        "georeference": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/"
+        "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology"
     },
     "@id": "did:web:registry.gaia-x.eu:SimulationModel:2Jt36BA9ODxKZJ5yWRtF4BLDUkuvFL59IPra",
     "@type": "simulation-model:SimulationModel",

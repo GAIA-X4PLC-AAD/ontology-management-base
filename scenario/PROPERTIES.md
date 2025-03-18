@@ -2,9 +2,9 @@
 
 ## Prefixes
 
-- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+- manifest: <https://ontologies.envited-x.net/manifest/v4/ontology>
 - rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-- scenario: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/>
+- scenario: <https://ontologies.envited-x.net/scenario/v4/ontology>
 
 ## List of SHACL Properties
 

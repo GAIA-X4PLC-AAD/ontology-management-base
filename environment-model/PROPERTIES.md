@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- environment-model: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/environment-model/>
+- environment-model: <https://ontologies.envited-x.net/environment-model/v4/ontology>
 
 ## List of SHACL Properties
 

@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- ositrace: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/ositrace/>
+- ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology>
 
 ## List of SHACL Properties
 

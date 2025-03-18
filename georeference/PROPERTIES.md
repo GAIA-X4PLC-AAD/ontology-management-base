@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- georeference: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/georeference/>
+- georeference: <https://ontologies.envited-x.net/georeference/v3/ontology>
 
 ## List of SHACL Properties
 

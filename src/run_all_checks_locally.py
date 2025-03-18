@@ -43,7 +43,8 @@ def run_command(command, description):
         return result.returncode, output
 
     except subprocess.CalledProcessError as e:
-        error_message = e.stderr.strip() if e.stderr else "Unknown error"
+        # Try to extract a meaningful error message from stderr or stdout
+        error_message = e.stderr.strip() or e.stdout.strip() or "No output captured."
         print(f"\n❌ Error during {description}:\n{error_message}", file=sys.stderr)
         sys.exit(e.returncode)
 

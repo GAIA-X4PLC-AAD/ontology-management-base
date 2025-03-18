@@ -2,9 +2,9 @@
 
 ## Prefixes
 
-- envited-x: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/>
+- envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology>
 - gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
-- manifest: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/>
+- manifest: <https://ontologies.envited-x.net/manifest/v4/ontology>
 - rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 ## List of SHACL Properties
