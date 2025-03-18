@@ -28,17 +28,19 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
           sh:path surface-model:hasDataResource ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
-          sh:or ( 
-                [
-                    sh:and (
-                        [ sh:node manifest:ManifestShape ]
-                        [ sh:node envited-x:ManifestShape ]
-                    )
-                ] 
-                [
-                    sh:node manifest:LinkShape
-                ] 
-            ) ;
+          sh:or (
+            ## Case 1: Inline manifest must conform to both required shapes
+            [ sh:and (
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+            )]
+            
+            ## Case 2: Linked manifest reference
+            [ sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
+            )]
+        ) ;
           sh:name "manifest"@en ;
           sh:description "Manifest file describing the surface model metadata."@en ;
           sh:order 3 ;

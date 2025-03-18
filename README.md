@@ -28,7 +28,7 @@ source .venv/bin/activate  # On Windows use: source .venv/Scripts/activate
 
 ```bash
 python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements_ci.txt
+python3 -m pip install -r requirements.txt
 ```
 
 ### 4️⃣ Install & Configure `pre-commit`

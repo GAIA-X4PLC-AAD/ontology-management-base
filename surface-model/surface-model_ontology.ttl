@@ -51,6 +51,26 @@ surface-model: a owl:Ontology ;
     dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
+surface-model:SurfaceModel a owl:Class ;
+    rdfs:label "Class definition for SurfaceModel"@en ;
+    rdfs:comment "General properties for defining a surface model asset, including format, content, data sources, quantity, and quality attributes."@en ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasDataResourceExtension ;
+        owl:someValuesFrom surface-model:DataResourceExtension
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasDataResource ;
+        owl:someValuesFrom envited-x:DataResource
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty surface-model:hasManifest ;
+        owl:someValuesFrom envited-x:Manifest
+    ] .
+
 surface-model:DataResourceExtension a owl:Class ;
     rdfs:label "Class definition for DataResourceExtension"@en ;
     rdfs:comment "Surface model DataResourceExtension containing additional metadata information of the simulation asset."@en ;

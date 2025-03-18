@@ -33,14 +33,18 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            ## Case 1: Inline manifest must conform to all three required shapes
+            ## Case 1: Inline manifest must conform to both required shapes
             [ sh:and (
-                [ sh:node scenario:ManifestShape ]
                 [ sh:node manifest:ManifestShape ]
                 [ sh:node envited-x:ManifestShape ]
+                [ sh:node scenario:ManifestShape ]
             )]
+            
             ## Case 2: Linked manifest reference
-            [ sh:node manifest:LinkShape ]
+            [ sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
+            )]
         ) ;
         sh:message "Each scenario must have exactly one manifest, either inline (conforming to all of scenario:ManifestShape, manifest:ManifestShape, envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
     ] ;
@@ -50,6 +54,12 @@ scenario:ScenarioShape a sh:NodeShape ;
 scenario:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
+
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue scenario:Manifest ;
+        sh:message "The manifest node must be explicitly typed as scenario:Manifest."@en ;
+    ] ;
 
     ## Ensure at least two `manifest:Link` in `hasArtifacts` categorized as `simulationData`
     sh:property [
@@ -62,7 +72,7 @@ scenario:ManifestShape a sh:NodeShape ;
             ]
         ] ;
         sh:qualifiedMinCount 2 ;
-        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
+        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
     ] ;
 
     ## Ensure at least two `manifest:Link` shapes in `hasReferencedArtifacts` categorized as `referencedSimulationData`
@@ -76,7 +86,7 @@ scenario:ManifestShape a sh:NodeShape ;
             ]
         ] ;
         sh:qualifiedMinCount 2 ;
-        sh:message "The envited-x:Manifest must contain at least 2 manifest:Link(s) of content category: Referenced Simulation Data."@en ;
+        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) of content category: Referenced Simulation Data."@en ;
     ] ;
 
     ## Ensure at least one HD map reference (either inline `hdmap:HdMap` or `manifest:Link` referencing `hdmap:HdMap`)
@@ -90,7 +100,7 @@ scenario:ManifestShape a sh:NodeShape ;
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "HD Map reference"@en ;
-        sh:description "Each Scenario manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
     ] ;
 
     ## Ensure at least one Environment Model reference (either inline `environment-model:EnvironmentModel` or `manifest:Link` referencing `environment-model:EnvironmentModel`)
@@ -104,7 +114,7 @@ scenario:ManifestShape a sh:NodeShape ;
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "Environment Model reference"@en ;
-        sh:description "Each Scenario manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
     ] ;
 
     ## Ensure at least one catalog reference via `manifest:Link`
@@ -115,11 +125,10 @@ scenario:ManifestShape a sh:NodeShape ;
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "catalog reference"@en ;
-        sh:description "Each Scenario manifest must reference at least one catalog via a `manifest:Link`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one catalog via a `manifest:Link`."@en ;
     ] ;
 
     sh:targetClass scenario:Manifest .
-
 
 
 ### **DataResourceExtension SHACL Shape**

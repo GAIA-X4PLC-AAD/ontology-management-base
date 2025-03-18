@@ -13,13 +13,6 @@
   "@type": "scenario:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
-    "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6" },
-    "skos:note": { "@value": "Self-reference to scenario manifest." },
-    "sh:conformsTo": [
-      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/scenario/" },
-      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/envited-x/" },
-      { "@id": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/manifest/" }
-    ],
     "manifest:hasAccessRole": { "@type": "manifest:AccessRole", "@id": "envited-x:isPublic" },
     "manifest:hasCategory": { "@type": "manifest:Category", "@id": "envited-x:isManifest" },
     "manifest:hasFileMetadata": {

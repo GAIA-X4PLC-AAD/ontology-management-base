@@ -27,19 +27,25 @@ print("\n🚀 Running all ontology validation checks...")
 
 
 def run_command(command, description):
-    """Execute a command and print its raw output."""
+    """Execute a command and capture its output."""
     print(f"\n🔍 {description}")
     try:
         result = subprocess.run(
             command, shell=False, capture_output=True, text=True, check=True
         )
-        output = result.stdout.strip() + "\n" + result.stderr.strip()
+        output = result.stdout.strip()
+        error_output = result.stderr.strip()
+
+        if error_output:
+            print(f"⚠️  Warnings/Errors:\n{error_output}", file=sys.stderr)
+
         print(output)
         return result.returncode, output
+
     except subprocess.CalledProcessError as e:
-        output = e.stdout.strip() + "\n" + e.stderr.strip()
-        print(f"❌ Error during {description}:\n{output}", file=sys.stderr)
-        sys.exit(1)
+        error_message = e.stderr.strip() if e.stderr else "Unknown error"
+        print(f"\n❌ Error during {description}:\n{error_message}", file=sys.stderr)
+        sys.exit(e.returncode)
 
 
 def check_ttl_syntax():
@@ -57,7 +63,7 @@ def check_ttl_syntax():
             print(f"⚠️  No .ttl files found in folder: {ontology}")
         for ttl_file in ttl_files:
             print(f"🔍 Checking syntax of {ttl_file}...")
-            returncode, _ = run_command(
+            returncode, output = run_command(
                 [
                     sys.executable,
                     os.path.join(SRC_DIR, "check_ttl_syntax.py"),
@@ -66,8 +72,8 @@ def check_ttl_syntax():
                 f"TTL syntax check for {ttl_file}",
             )
             if returncode != 0:
-                print(f"❌ {ttl_file} failed syntax check!")
-                sys.exit(1)
+                print(f"❌ {ttl_file} failed syntax check!\n{output}", file=sys.stderr)
+                sys.exit(returncode)
             else:
                 print(f"✅ {ttl_file} passed syntax check.")
         print(f"📌 Completed TTL syntax tests for folder: {ontology}")
@@ -88,8 +94,11 @@ def check_jsonld_against_shacl():
             f"JSON-LD SHACL validation for {folder_path}",
         )
         if returncode != 0:
-            print(f"❌ JSON-LD SHACL validation failed for folder: {ontology}.")
-            sys.exit(1)
+            print(
+                f"❌ JSON-LD SHACL validation failed for folder: {ontology}.\n{output}",
+                file=sys.stderr,
+            )
+            sys.exit(returncode)
         else:
             print(f"✅ {ontology} conforms to SHACL constraints.")
         print(f"📌 Completed JSON-LD SHACL validation for folder: {ontology}")
@@ -106,7 +115,6 @@ def check_failing_tests():
             continue
 
         print(f"\n🔍 Running failing tests in folder: {ontology}")
-        # Select test files starting with "fail" and ending with ".json"
         fail_tests = [
             f
             for f in os.listdir(test_folder)
@@ -117,7 +125,7 @@ def check_failing_tests():
         for test in fail_tests:
             test_path = os.path.join(test_folder, test)
             print(f"🔍 Running failing test: {test_path} in folder: {ontology}")
-            returncode, _ = run_command(
+            returncode, output = run_command(
                 [
                     sys.executable,
                     os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"),
@@ -127,18 +135,47 @@ def check_failing_tests():
             )
             # Failing tests should have a non-zero exit code.
             if returncode == 0:
-                print(f"❌ Test {test} in folder {ontology} should fail but passed!")
+                print(
+                    f"❌ Test {test} in folder {ontology} should fail but passed!\n{output}",
+                    file=sys.stderr,
+                )
                 sys.exit(1)
             else:
                 print(f"✅ Test {test} in folder {ontology} failed as expected.")
         print(f"📌 Completed failing tests for folder: {ontology}")
 
 
+def check_target_classes():
+    """Validate if all target classes in the SHACL shapes exist in the ontology."""
+    print("\n=== Checking target classes against OWL classes ===")
+    for ontology in ONTOLOGY_DIRS:
+        folder_path = os.path.join(ROOT_DIR, ontology)
+        print(f"\n🔍 Checking target classes in folder: {ontology}")
+        returncode, output = run_command(
+            [
+                sys.executable,
+                os.path.join(SRC_DIR, "check_target_classes_against_owl_classes.py"),
+                folder_path,
+            ],
+            f"Target class validation for {ontology}",
+        )
+        if returncode != 0:
+            print(
+                f"❌ Target class validation failed for {ontology}.\n{output}",
+                file=sys.stderr,
+            )
+            sys.exit(returncode)
+        else:
+            print(f"✅ Target classes are correctly defined in {ontology}.")
+        print(f"📌 Completed target class validation for folder: {ontology}")
+
+
 def main():
-    """Run all three checks sequentially."""
+    """Run all validation checks sequentially, aborting on the first failure."""
     check_ttl_syntax()
     check_jsonld_against_shacl()
     check_failing_tests()
+    check_target_classes()
     print("\n✅ All checks completed successfully!")
 
 

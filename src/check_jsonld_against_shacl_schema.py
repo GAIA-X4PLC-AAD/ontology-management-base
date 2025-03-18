@@ -2,6 +2,7 @@ import glob
 import logging
 import os
 import sys
+import textwrap
 from collections import defaultdict
 from urllib.parse import urlparse
 
@@ -17,9 +18,151 @@ STANDARD_PREFIXES = {
     "org": "http://www.w3.org/ns/org#",
     "prov": "http://www.w3.org/ns/prov#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",  # ✅ Add this line
     # Force redirect gx: to the local repo
     "gx": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/gx/",
 }
+
+
+def format_validation_report(
+    v_text: str, width: int = 150, indent_size: int = 4
+) -> str:
+    """
+    Parses and formats the SHACL validation report while:
+    - Ensuring consistent indentation for nested properties.
+    - Removing unnecessary blank lines.
+    - Center-aligning section headers.
+    - Keeping empty lines enclosed with '='.
+    """
+    border_line = "=" * width
+    formatted_lines = []
+
+    # Define breakpoints for logical sectioning
+    breakpoints = [
+        "Validation Report",
+        "Conforms:",
+        "Results (",
+        "Constraint Violation in",
+        "Severity:",
+        "Source Shape:",
+        "Focus Node:",
+        "Value Node:",
+        "Message:",
+        "Result Path:",
+    ]
+
+    # Ensure each important section starts on a new line
+    for bp in breakpoints:
+        v_text = v_text.replace(bp, f"\n{bp}")
+
+    # Process line-by-line
+    indent_level = 0
+    last_line_was_blank = False
+    for line in v_text.splitlines():
+        stripped_line = line.strip()
+
+        # Ensure empty lines start and end with "="
+        if not stripped_line:
+            if last_line_was_blank:
+                continue  # Prevent multiple blank lines in a row
+            last_line_was_blank = True
+            formatted_lines.append(f"= {' ' * (width - 4)} =")
+            continue
+        else:
+            last_line_was_blank = False
+
+        # Detect section headers and adjust indentation levels
+        if stripped_line in breakpoints or stripped_line.endswith(":"):
+            indent_level = 0
+        elif stripped_line.startswith("sh:") or stripped_line.startswith("skos:"):
+            indent_level = 1
+        elif stripped_line.startswith("[") or stripped_line.startswith("]"):
+            indent_level = 2
+        elif stripped_line.startswith("<") and stripped_line.endswith(">"):
+            indent_level = 2
+        elif stripped_line.startswith("Literal("):
+            indent_level = 3
+        elif stripped_line.startswith("datatype="):
+            indent_level = 4
+
+        # Apply indentation and wrap lines
+        indent_space = " " * (indent_level * indent_size)
+        wrapped_lines = textwrap.fill(
+            stripped_line, width=width - 4 - len(indent_space)
+        )
+
+        # Apply left-padding and format each line
+        for wrapped_line in wrapped_lines.split("\n"):
+            formatted_lines.append(
+                f"= {indent_space}{wrapped_line.ljust(width - 4 - len(indent_space))} ="
+            )
+
+    return f"{border_line}\n" + "\n".join(formatted_lines) + f"\n{border_line}"
+
+
+def format_filenames(filenames: list, width: int = 150) -> list:
+    """
+    Splits the filenames list at ", '" ensuring filenames remain intact.
+    Ensures each filename starts on a new line properly formatted.
+    """
+    formatted_lines = []
+    current_line = "["
+
+    for i, file in enumerate(filenames):
+        if i > 0:
+            current_line += ", "  # Properly format the separator
+
+        if (
+            len(current_line) + len(file) + 2 >= width - 4
+        ):  # Check if adding this file exceeds width
+            formatted_lines.append(f"{current_line}")
+            current_line = (
+                "  " + file
+            )  # Indent next line slightly for better readability
+        else:
+            current_line += f"'{file}'"
+
+    formatted_lines.append(f"{current_line}]")  # Close the list correctly
+    return formatted_lines
+
+
+def print_validation_result(
+    success: bool, onto_files: list = None, v_text: str = "", exit_code: int = None
+):
+    width = 150
+    border_line = "=" * width
+    header_text_files = [""]
+
+    # Construct a flexible, center-aligned header
+    if success:
+        header_text = ["✅ SHACL validation passed for:"]
+    else:
+        header_text = ["❌ SHACL validation failed for:"]
+
+    # Center-align the header and handle line breaks properly
+    centered_header_lines = [f"= {line.center(width - 5)} =" for line in header_text]
+
+    if onto_files:
+        formatted_filenames = format_filenames(onto_files, width)
+        header_text_files.extend(formatted_filenames)
+        centered_header_file_lines = [
+            f"= {line.center(width - 4)} =" for line in header_text_files
+        ]
+
+    # Print the header
+    print(border_line)
+    print("\n".join(centered_header_lines))
+    print("\n".join(centered_header_file_lines))
+    print(border_line)
+
+    if not success:
+        # Use `format_validation_report()` without overriding it again
+        formatted_v_text = format_validation_report(v_text, width)
+        print(formatted_v_text, file=sys.stderr)
+
+    # Exit only if an exit_code is provided
+    if exit_code is not None:
+        sys.exit(exit_code)
 
 
 def setup_logging(debug=False):
@@ -35,46 +178,63 @@ def setup_logging(debug=False):
     )
 
 
-def load_shacl_files(root_dir, used_types):
-    """Loads only SHACL files relevant to the detected RDF types."""
+def load_shacl_and_ontologies(root_dir, used_types):
+    """Loads SHACL and ontology files relevant to the detected RDF types."""
     shacl_graph = Graph()
-    loaded_shacl_files = set()
+    loaded_files = set()
 
     # Bind standard prefixes
     for prefix, namespace in STANDARD_PREFIXES.items():
         shacl_graph.bind(prefix, Namespace(namespace))
 
-    # Always load mapped SHACL files (e.g., gx)
-    namespace_mapping = {"gx": os.path.join(root_dir, "gx/gx_shacl.ttl")}
-    for prefix, local_path in namespace_mapping.items():
-        if os.path.exists(local_path):
-            print(f"✅ Loading mapped SHACL file for {prefix}: {local_path}")
-            shacl_graph.parse(local_path, format="turtle")
+    # Load GX trust framework SHACL explicitly (as before)
+    namespace_gx = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
+    for prefix, file_path in namespace_gx.items():
+        print(f"✅ Loading mapped SHACL file for {prefix}: {file_path}")
+        shacl_graph.parse(file_path, format="turtle")
+        loaded_files.add(file_path)
 
-    # Load only SHACL files relevant to used RDF types
+    # Gather SHACL files
     shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
+    ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
 
+    # Function to load relevant files based on used_types
+    def is_relevant(graph, used_types):
+        SH = Namespace(STANDARD_PREFIXES["sh"])
+        for _, _, rdf_type in graph.triples((None, SH.targetClass, None)):
+            if str(rdf_type) in used_types:
+                return True
+        return False
+
+    # Load relevant SHACL files
     for shacl_file in shacl_files:
-        if shacl_file in namespace_mapping.values():
-            continue  # Already loaded manually
+        tmp_graph = Graph()
+        tmp_graph.parse(shacl_file, format="turtle")
+        if is_relevant(tmp_graph, used_types):
+            shacl_graph += tmp_graph
+            loaded_files.add(shacl_file)
+            print(f"✅ Loaded SHACL file: {shacl_file}")
 
-        temp_graph = Graph()
-        temp_graph.parse(shacl_file, format="turtle")
+    # Load relevant Ontology files (robust and verified solution)
+    OWL = Namespace(STANDARD_PREFIXES["owl"])
+    RDFS = Namespace(STANDARD_PREFIXES["rdfs"])
 
-        SH = Namespace("http://www.w3.org/ns/shacl#")
-        file_is_relevant = False
+    for ontology_file in ontology_files:
+        ontology_graph = Graph()
+        ontology_graph.parse(ontology_file, format="turtle")
 
-        for _, _, rdf_type in temp_graph.triples((None, SH.targetClass, None)):
-            rdf_type_str = str(rdf_type)
-            if rdf_type_str in used_types:
-                file_is_relevant = True
-                break  # No need to continue if at least one match is found
+        defined_classes = set(ontology_graph.subjects(RDF.type, OWL.Class)).union(
+            ontology_graph.subjects(RDF.type, RDFS.Class)
+        )
 
-        # ✅ Load the SHACL file only if it constrains at least one used RDF type
-        if file_is_relevant:
-            shacl_graph += temp_graph
-            loaded_shacl_files.add(shacl_file)
-            print(f"✅ Loaded SHACL file: {os.path.basename(shacl_file)}")
+        expanded_defined_classes = {str(cls) for cls in defined_classes}
+
+        matched_types = expanded_defined_classes.intersection(used_types)
+
+        if matched_types:
+            shacl_graph += ontology_graph
+            loaded_files.add(ontology_file)
+            print(f"✅ Loaded ontology file: '{ontology_file}'")
 
     return shacl_graph
 
@@ -140,10 +300,8 @@ def main():
     debug = "--debug" in sys.argv
 
     if len(sys.argv) < 2:
-        print(
-            "Usage: python validate_jsonld_shacl.py [--debug] <directory or file> [additional files...]"
-        )
-        sys.exit(1)
+        v_text = "Usage: python validate_jsonld_shacl.py [--debug] <directory or file> [additional files...]"
+        print_validation_result(False, None, v_text, exit_code=100)
 
     paths = [arg for arg in sys.argv[1:] if arg != "--debug"]
 
@@ -178,12 +336,14 @@ def main():
         onto_graph.parse(onto_file, format="turtle")
 
         conforms, _, v_text = validate(
-            onto_graph, shacl_graph=shacl_graph_onto, inference="owlrl", debug=debug
+            onto_graph,
+            shacl_graph=shacl_graph_onto,
+            inference="owlrl",
+            validation_mode="strict",
+            debug=debug,
         )
         if not conforms:
-            print(f"❌ Failed SHACL validation for {onto_file}!")
-            print(v_text)
-            sys.exit(2)
+            print_validation_result(False, onto_file, v_text, exit_code=200)
         else:
             print(f"✅ Ontology file {onto_file} passed SHACL validation.\n")
 
@@ -212,7 +372,7 @@ def main():
 
     # ✅ Step 7: Load only necessary SHACL shapes based on detected RDF types
     print("📌 Loading only necessary SHACL shapes based on detected RDF types...")
-    shacl_graph = load_shacl_files(".", used_types)
+    shacl_graph = load_shacl_and_ontologies(".", used_types)
 
     # ✅ Step 8: Perform Final Validation
     print("🔍 Performing overall validation explicitly...")
@@ -221,12 +381,10 @@ def main():
     )
 
     # ✅ Step 9: Print Validation Report
-    print("========== VALIDATION REPORTS ==========")
     if not conforms:
-        print(v_text)
+        print_validation_result(False, instance_files, v_text, exit_code=210)
     else:
-        print("=              No failures             =")
-    print("========================================")
+        print_validation_result(True, instance_files, v_text, exit_code=None)
 
 
 if __name__ == "__main__":

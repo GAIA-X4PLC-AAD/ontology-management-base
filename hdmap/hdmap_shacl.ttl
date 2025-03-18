@@ -27,16 +27,18 @@ hdmap:HdMapShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:path hdmap:hasManifest ;
-        sh:or ( 
-            [
-                sh:and (
-                    [ sh:node manifest:ManifestShape ]
-                    [ sh:node envited-x:ManifestShape ]
-                )
-            ] 
-            [
-                sh:node manifest:LinkShape
-            ] 
+        sh:or (
+            ## Case 1: Inline manifest must conform to both required shapes
+            [ sh:and (
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+            )]
+            
+            ## Case 2: Linked manifest reference
+            [ sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
+            )]
         ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
