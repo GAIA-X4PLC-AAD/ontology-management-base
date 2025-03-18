@@ -50,22 +50,77 @@ scenario:ScenarioShape a sh:NodeShape ;
     ] ;
     sh:targetClass scenario:Scenario .
 
-### **Scenario Manifest SHACL Shape**
 scenario:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
 
+    # The manifest node must be explicitly typed as scenario:Manifest.
     sh:property [
         sh:path rdf:type ;
         sh:hasValue scenario:Manifest ;
         sh:message "The manifest node must be explicitly typed as scenario:Manifest."@en ;
     ] ;
-
-    ## Ensure at least two `manifest:Link` in `hasArtifacts` categorized as `simulationData`
+    # Property shape for artifact links:
+    sh:property [
+        sh:path manifest:hasManifestReference ;
+        sh:qualifiedValueShape [
+            sh:node [ 
+            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+            ] ;
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "An scenario manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
+    ] ;
+    sh:property [
+        sh:path manifest:hasLicense ;
+        sh:qualifiedValueShape [
+            sh:node manifest:LicenseShape ;
+            sh:property [
+                sh:path manifest:licenseData ;
+                sh:qualifiedValueShape [
+                    sh:node [ 
+                    sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+                    ] ;
+                ] ;
+                sh:qualifiedMinCount 1 ;
+                sh:message "A license must contain at least one link with an envited-x access role and category."@en ;
+            ]
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "An scenario manifest must contain at least one license link with an envited-x access role and category."@en ;
+    ] ;
+    
+    # Property shape for artifact links:
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
-            sh:node manifest:LinkShape ;
+            sh:node [ 
+            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+            ] ;
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "An scenario manifest must contain at least one artifact link with an envited-x access role and category."@en ;
+    ] ;
+    # Property shape for external artifact links:
+    sh:property [
+        sh:path manifest:hasExternalArtifacts ;
+        sh:qualifiedValueShape [
+            sh:node [ 
+            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+            ] ;
+        ] ;
+        sh:qualifiedMinCount 0 ;
+        sh:message "If provided, a scenario manifest's external artifact links must have an envited-x access role and category."@en ;
+    ] ;
+
+    # Ensure at least two manifest:Link(s) in hasArtifacts categorized as simulationData.
+    sh:property [
+        sh:path manifest:hasArtifacts ;
+        sh:qualifiedValueShape [
+            sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:extendedManifestShape ]
+            ) ;
             sh:property [
                 sh:path manifest:hasCategory ;
                 sh:hasValue envited-x:isSimulationData ;
@@ -75,60 +130,73 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
     ] ;
 
-    ## Ensure at least two `manifest:Link` shapes in `hasReferencedArtifacts` categorized as `referencedSimulationData`
+    # Ensure at least two manifest:Link(s) in hasReferencedArtifacts categorized as referencedSimulationData.
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
-        sh:node manifest:LinkShape ;
         sh:qualifiedValueShape [
+            sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:extendedManifestShape ]
+            ) ;
             sh:property [
                 sh:path manifest:hasCategory ;
                 sh:hasValue envited-x:isReferencedSimulationData ;
             ]
         ] ;
         sh:qualifiedMinCount 2 ;
-        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) of content category: Referenced Simulation Data."@en ;
+        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Referenced Simulation Data'."@en ;
     ] ;
 
-    ## Ensure at least one HD map reference (either inline `hdmap:HdMap` or `manifest:Link` referencing `hdmap:HdMap`)
+    # Ensure at least one HD Map reference (either inline hdmap:HdMap or a manifest:Link that satisfies extendedManifestShape).
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:or (
                 [ sh:node hdmap:HdMap ]
-                [ sh:node manifest:LinkShape ]
+                [ sh:and (
+                    [ sh:node manifest:LinkShape ]
+                    [ sh:node envited-x:extendedManifestShape ]
+                ) ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "HD Map reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one HD Map, either inline or via `manifest:Link` referencing `hdmap:HdMap`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap."@en ;
     ] ;
 
-    ## Ensure at least one Environment Model reference (either inline `environment-model:EnvironmentModel` or `manifest:Link` referencing `environment-model:EnvironmentModel`)
+    # Ensure at least one Environment Model reference (either inline environment-model:EnvironmentModel or a manifest:Link that satisfies extendedManifestShape).
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:or (
                 [ sh:node environment-model:EnvironmentModel ]
-                [ sh:node manifest:LinkShape ]
+                [ sh:and (
+                    [ sh:node manifest:LinkShape ]
+                    [ sh:node envited-x:extendedManifestShape ]
+                ) ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "Environment Model reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one Environment Model, either inline or via `manifest:Link` referencing `environment-model:EnvironmentModel`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel."@en ;
     ] ;
 
-    ## Ensure at least one catalog reference via `manifest:Link`
+    # Ensure at least one catalog reference via a manifest:Link that satisfies extendedManifestShape.
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
-            sh:node manifest:LinkShape
+            sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:extendedManifestShape ]
+            )
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "catalog reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one catalog via a `manifest:Link`."@en ;
+        sh:description "Each scenario:Manifest must reference at least one catalog via a manifest:Link."@en ;
     ] ;
 
     sh:targetClass scenario:Manifest .
+
 
 
 ### **DataResourceExtension SHACL Shape**

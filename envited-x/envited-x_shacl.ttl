@@ -107,6 +107,7 @@ envited-x:ManifestShape a sh:NodeShape ;
         sh:qualifiedMinCount 1 ;
         sh:message "An envited-x manifest must contain at least one license link with an envited-x access role and category."@en ;
     ] ;
+    
     # Property shape for artifact links:
     sh:property [
         sh:path manifest:hasArtifacts ;
