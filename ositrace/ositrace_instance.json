@@ -52,7 +52,7 @@
         "@value": "2024-06-03T16:38:28.636671+02:00",
         "@type": "xsd:dateTimeStamp"
       },
-      "ositrace:hostMovingObject": {
+      "ositrace:hasHostMovingObject": {
         "@type": "ositrace:MovingObject",
         "ositrace:identifier": {
           "@value": "1",
@@ -63,7 +63,7 @@
           "@type": "xsd:string"
         }
       },
-      "ositrace:targetMovingObject": {
+      "ositrace:hasMovingObjects": {
         "@type": "ositrace:MovingObject",
         "ositrace:identifier": {
           "@value": "2",

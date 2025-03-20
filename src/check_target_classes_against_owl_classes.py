@@ -1,8 +1,12 @@
 import glob
+import io
 import os
 import sys
 
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
+
+# Set the encoding for stdout to UTF-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -178,6 +182,7 @@ def main():
         sys.exit(100)
 
     directory = sys.argv[1]
+    directory = os.path.normpath(directory)
     if not os.path.isdir(directory):
         print(f"The directory {directory} does not exist. Abort.", file=sys.stderr)
         sys.exit(110)

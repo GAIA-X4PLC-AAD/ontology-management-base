@@ -1,4 +1,5 @@
 import glob
+import io
 import json
 import logging
 import os
@@ -10,9 +11,11 @@ from urllib.parse import urlparse
 from pyshacl import validate
 from rdflib import RDF, Graph, Namespace
 
+# Set the encoding for stdout to UTF-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
+
 # --- Dynamic Prefix Extraction Functions ---
-
-
 def extract_prefixes_from_ttl(file_path: str) -> dict:
     """
     Parses a Turtle file and returns a dictionary mapping prefixes to namespaces.
@@ -374,7 +377,7 @@ def main():
     if len(sys.argv) < 2:
         v_text = "Usage: python validate_jsonld_shacl.py [--debug] <directory or file> [additional files...]"
         print_validation_result_wrapper(False, None, v_text, exit_code=100)
-    paths = [arg for arg in sys.argv[1:] if arg != "--debug"]
+    paths = [os.path.normpath(arg) for arg in sys.argv[1:] if arg != "--debug"]
     setup_logging(debug)
     logging.info(f"Debug mode {'enabled' if debug else 'disabled'}.")
     # --- Dynamic Prefix Mapping ---

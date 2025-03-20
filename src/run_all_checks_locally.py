@@ -1,6 +1,10 @@
+import io
 import os
 import subprocess
 import sys
+
+# Set the encoding for stdout to UTF-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 # Define the root directory of the repository and the source folder for scripts
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -195,9 +199,9 @@ def check_target_classes():
 def main():
     """Run all validation checks sequentially, aborting on the first failure."""
     check_ttl_syntax()
+    check_target_classes()
     check_jsonld_against_shacl()
     check_failing_tests()
-    check_target_classes()
     print("\n✅ All checks completed successfully!")
 
 

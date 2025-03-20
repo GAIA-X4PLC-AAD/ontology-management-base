@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import os
 import sys
 
 
@@ -16,7 +17,7 @@ def lint_file(filename):
 def main():
     ret = 0
     for filename in sys.argv[1:]:
-        ret |= lint_file(filename)
+        ret |= lint_file(os.path.normpath(filename))
     sys.exit(ret)
 
 

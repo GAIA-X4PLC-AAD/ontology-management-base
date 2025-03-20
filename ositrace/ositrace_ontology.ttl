@@ -73,37 +73,46 @@ ositrace:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasContent ;
-        owl:someValuesFrom ositrace:Content
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty ositrace:hasDataSource ;
-        owl:someValuesFrom ositrace:DataSource
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty ositrace:hasFormat ;
-        owl:someValuesFrom ositrace:Format
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty ositrace:hasQuality ;
-        owl:someValuesFrom ositrace:Quality
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty ositrace:hasQuantity ;
-        owl:someValuesFrom ositrace:Quantity
-    ] , [
-        a owl:Restriction ;
-        owl:onProperty ositrace:hasEvent ;
-        owl:someValuesFrom ositrace:Event
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty ositrace:hasGeoreference ;
-        owl:someValuesFrom georeference:Georeference
+        owl:minCardinality 0
     ] .
 
 ositrace:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
     rdfs:comment "Attributes for the content of ASAM OSI trace files."@en ;
-    rdfs:subClassOf envited-x:Content .
+    rdfs:subClassOf envited-x:Content ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ositrace:hasHostMovingObject ;
+        owl:maxCardinality 1
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty ositrace:hasMovingObjects ;
+        owl:minCardinality 0
+    ] , [
+        a owl:Restriction ;
+        owl:onProperty ositrace:hasEvent ;
+        owl:minCardinality 0
+    ] . 
 
 ositrace:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource" ;
@@ -206,11 +215,18 @@ ositrace:hasQuantity a owl:ObjectProperty ;
     rdfs:domain ositrace:DataResourceExtension ;
     rdfs:range ositrace:Quantity .
 
-### hasMovingObject (DataResourceExtension -> MovingObject)
-ositrace:hasMovingObject a owl:ObjectProperty ;
-    rdfs:label "Object property: hasMovingObject"@en ;
+### hasMovingObjects (Content -> MovingObject)
+ositrace:hasMovingObjects a owl:ObjectProperty ;
+    rdfs:label "Object property: hasMovingObjects"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of ositrace:MovingObject describing dynamic entities within the OSI trace."@en ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:Content ;
+    rdfs:range ositrace:MovingObject .
+
+### hasHostMovingObject (Content -> MovingObject)
+ositrace:hasMovingObjects a owl:ObjectProperty ;
+    rdfs:label "Object property: hasHostMovingObject"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:MovingObject describing the host vehicle entity within the OSI trace."@en ;
+    rdfs:domain ositrace:Content ;
     rdfs:range ositrace:MovingObject .
 
 ### hasEvent (DataResourceExtension -> Event)
