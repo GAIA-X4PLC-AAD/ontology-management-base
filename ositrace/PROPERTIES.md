@@ -17,7 +17,6 @@
 | DataResourceExtensionShape | ositrace | hasQuantity | 1 | 1 | Quantitative metrics describing the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasDataSource | 1 | 1 | Data sources used to create the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasGeoreference | 1 | 1 | Georeferencing information for the OSI trace. |  | ositrace_shacl.ttl |
-| DataResourceExtensionShape | ositrace | hasMovingObject |  | 1 | Describes moving objects recorded in the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasEvent |  | 1 | Recorded events within the OSI trace. |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. |  | ositrace_shacl.ttl |
