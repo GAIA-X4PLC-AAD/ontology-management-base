@@ -51,10 +51,8 @@
       "ositrace:stopTime": {
         "@value": "2024-06-03T16:38:28.636671+02:00",
         "@type": "xsd:dateTimeStamp"
-      }
-    },
-    "ositrace:hasMovingObject": [
-      {
+      },
+      "ositrace:hostMovingObject": {
         "@type": "ositrace:MovingObject",
         "ositrace:identifier": {
           "@value": "1",
@@ -64,8 +62,19 @@
           "@value": "PMSF MB CLS 500 Host Vehicle",
           "@type": "xsd:string"
         }
-      }
-    ],
+      },
+      "ositrace:targetMovingObject": {
+        "@type": "ositrace:MovingObject",
+        "ositrace:identifier": {
+          "@value": "2",
+          "@type": "xsd:unsignedLong"
+        },
+        "ositrace:description": {
+          "@value": "ADC Target Vehicle",
+          "@type": "xsd:string"
+        }
+      }  
+    },
     "ositrace:hasQuality": {
       "@type": "ositrace:Quality",
       "ositrace:validationReport": {
@@ -113,7 +122,7 @@
           "@type": "xsd:string"
         },
         "georeference:city": {
-          "@value": "Eddemissen",
+          "@value": "Edemissen",
           "@type": "xsd:string"
         },
         "georeference:relationOrArea": {
@@ -142,9 +151,9 @@
       },
       "georeference:hasGeodeticReferenceSystem": {
         "@type": "georeference:GeodeticReferenceSystem",
-        "georeference:coordinateSystemName": {
-          "@value": "UTM",
-          "@type": "xsd:string"
+        "georeference:codeEPSG": {
+          "@value": "4326",
+          "@type": "xsd:int"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",

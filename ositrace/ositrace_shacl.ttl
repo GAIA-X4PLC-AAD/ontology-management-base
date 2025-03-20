@@ -95,16 +95,10 @@ ositrace:DataResourceExtensionShape a sh:NodeShape ;
           sh:order 6 ;
           sh:path ositrace:hasGeoreference ],
         [ sh:maxCount 1 ;
-          sh:node ositrace:MovingObjectShape ;
-          sh:name "moving object"@en ;
-          sh:description "Describes moving objects recorded in the OSI trace."@en ;
-          sh:order 7 ;
-          sh:path ositrace:hasMovingObject ],
-        [ sh:maxCount 1 ;
           sh:node ositrace:EventShape ;
           sh:name "event"@en ;
           sh:description "Recorded events within the OSI trace."@en ;
-          sh:order 8 ;
+          sh:order 7 ;
           sh:path ositrace:hasEvent ] ;
     sh:targetClass ositrace:DataResourceExtension .
 

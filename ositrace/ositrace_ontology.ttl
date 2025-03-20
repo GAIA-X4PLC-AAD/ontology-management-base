@@ -92,10 +92,6 @@ ositrace:DataResourceExtension a owl:Class ;
         owl:someValuesFrom ositrace:Quantity
     ] , [
         a owl:Restriction ;
-        owl:onProperty ositrace:hasMovingObject ;
-        owl:someValuesFrom ositrace:MovingObject
-    ] , [
-        a owl:Restriction ;
         owl:onProperty ositrace:hasEvent ;
         owl:someValuesFrom ositrace:Event
     ] , [
