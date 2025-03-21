@@ -30,5 +30,5 @@
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| n6d705f44f89a4da2be5b601f1a0a52f1b73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| n6d705f44f89a4da2be5b601f1a0a52f1b73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| n8bc4c1dd52554c90b42088b6ae0abdbeb73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| n8bc4c1dd52554c90b42088b6ae0abdbeb73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
