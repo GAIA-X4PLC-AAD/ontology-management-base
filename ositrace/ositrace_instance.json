@@ -63,7 +63,7 @@
           "@type": "xsd:string"
         }
       },
-      "ositrace:hasMovingObjects": {
+      "ositrace:hasTargetMovingObjects": {
         "@type": "ositrace:MovingObject",
         "ositrace:identifier": {
           "@value": "2",
