@@ -9,7 +9,7 @@ from collections import defaultdict
 from urllib.parse import urlparse
 
 from pyshacl import validate
-from rdflib import RDF, Graph, Namespace
+from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
 # Set the encoding for stdout to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
@@ -250,7 +250,7 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
     """
     Loads SHACL and ontology files relevant to the detected RDF types.
     """
-    logging.info("Starting to load SHACL and ontology files.")
+    logging.debug("Starting to load SHACL and ontology files.")
     shacl_graph = Graph()
     loaded_files = set()
     # Bind prefixes from the dynamic mapping.
@@ -289,9 +289,7 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
         if is_relevant(tmp_graph, used_types):
             shacl_graph += tmp_graph
             loaded_files.add(shacl_file)
-            logging.info(f"Loaded SHACL file: {shacl_file}")
-
-    from rdflib.namespace import OWL, RDFS
+            print(f"✅ Loaded SHACL file into shacle graph: {shacl_file}")
 
     for ontology_file in ontology_files:
         ontology_graph = Graph()
@@ -308,8 +306,8 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
         if matched_types:
             shacl_graph += ontology_graph
             loaded_files.add(ontology_file)
-            logging.info(f"Loaded ontology file: {ontology_file}")
-    logging.info("Completed loading SHACL and ontology files.")
+            print(f"✅ Loaded Ontology file into shacle graph: {ontology_file}")
+    logging.debug("Completed loading SHACL and ontology files.")
     return shacl_graph
 
 
@@ -335,7 +333,7 @@ def extract_used_types(data_graph):
     for namespace, types in used_types.items():
         formatted_types = "\n    ".join(sorted(types))
         formatted_output.append(f"  - {namespace}:\n    {formatted_types}")
-    logging.info("Extracted RDF types:\n" + "\n".join(formatted_output))
+    logging.debug("Extracted RDF types:\n" + "\n".join(formatted_output))
     print(
         f"✅ Extracted {sum(len(types) for types in used_types.values())} unique RDF types:\n"
         + "\n".join(formatted_output)
@@ -352,15 +350,13 @@ def load_jsonld_files(jsonld_files):
     for i, jsonld_file in enumerate(jsonld_files, start=1):
         try:
             data_graph.parse(jsonld_file, format="json-ld")
-            logging.info(f"Loaded JSON-LD file: {jsonld_file}")
+            logging.debug(f"Loaded JSON-LD file: {jsonld_file}")
             print(f"✅ [{i}/{len(jsonld_files)}] Loaded: {jsonld_file}")
         except Exception as e:
             logging.error(f"Failed to load {jsonld_file}: {e}")
             print(f"❌ [{i}/{len(jsonld_files)}] Failed: {jsonld_file} → {e}")
             failed_files += 1
-    print(
-        f"\n✅ Successfully loaded {len(jsonld_files) - failed_files}/{len(jsonld_files)} JSON-LD files."
-    )
+
     return data_graph
 
 
@@ -407,8 +403,7 @@ def main():
     for onto_file in ontology_files:
         shacl_file = onto_file.replace("_ontology.ttl", "_shacl.ttl")
         if os.path.exists(shacl_file):
-            logging.info(f"Loading SHACL file for ontology: {shacl_file}")
-            print(f"✅ Loading SHACL file for ontology: {shacl_file}")
+            print(f"📌 Loading SHACL file: {shacl_file} for ontology: {onto_file}")
             shacl_graph_onto.parse(shacl_file, format="turtle")
         else:
             print(
@@ -416,7 +411,7 @@ def main():
             )
     # --- Step 3: Validate each ontology.ttl against its SHACL graph ---
     for onto_file in ontology_files:
-        print(f"🔍 Validating ontology {onto_file} against the SHACL shapes...")
+        logging.debug(f"🔍 Validating ontology {onto_file} against the SHACL shapes...")
         onto_graph = Graph()
         onto_graph.parse(onto_file, format="turtle")
         conforms, _, v_text = validate(
@@ -426,7 +421,7 @@ def main():
             validation_mode="strict",
             debug=debug,
         )
-        logging.info(f"Validation result for {onto_file}: Conforms = {conforms}")
+        logging.debug(f"Validation result for {onto_file}: Conforms = {conforms}")
         if not conforms:
             print_validation_result_wrapper(False, [onto_file], v_text, exit_code=200)
         else:
@@ -451,7 +446,16 @@ def main():
     used_types = extract_used_types(data_graph)
     # --- Step 7: Load only necessary SHACL shapes based on detected RDF types ---
     print("📌 Loading only necessary SHACL shapes based on detected RDF types...")
-    shacl_graph = load_shacl_and_ontologies(".", used_types, dynamic_prefixes)
+    # Get the path of the current script
+    script_path = os.path.abspath(__file__)
+    # Get the directory of the script
+    script_directory = os.path.dirname(script_path)
+    # Move one directory up
+    parent_directory = os.path.relpath(os.path.dirname(script_directory))
+    logging.debug(f"Parent dir...: {parent_directory}")
+    shacl_graph = load_shacl_and_ontologies(
+        parent_directory, used_types, dynamic_prefixes
+    )
     # --- Step 8: Perform Final Validation ---
     print("🔍 Performing overall validation explicitly...")
     conforms, _, v_text = validate(
