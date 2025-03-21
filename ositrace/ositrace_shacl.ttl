@@ -162,6 +162,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:path ositrace:stopTime ],
         [ sh:description "Host moving object in trace file"@en ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:name "host moving object"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 8 ;
