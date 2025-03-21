@@ -1,4 +1,4 @@
-@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v4/ontology#> .
+@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v5/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
@@ -38,14 +38,14 @@ surface-model: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.4> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v4/ontology#> ;
-    owl:versionInfo "v4" ;
+    owl:versionIRI <https://ontologies.envited-x.net/surface-model/v5/ontology#> ;
+    owl:versionInfo "v5" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v4/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/surface-model/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology#> ;
@@ -77,29 +77,29 @@ surface-model:DataResourceExtension a owl:Class ;
     rdfs:subClassOf envited-x:DataResourceExtension ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty surface-model:hasData ;
-        owl:someValuesFrom surface-model:Data
+        owl:onProperty surface-model:hasContent ;
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty surface-model:hasFormat ;
-        owl:someValuesFrom surface-model:Format
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty surface-model:hasQuality ;
-        owl:someValuesFrom surface-model:Quality
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty surface-model:hasQuantity ;
-        owl:someValuesFrom surface-model:Quantity
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty surface-model:hasGeoreference ;
-        owl:someValuesFrom georeference:Georeference
+        owl:cardinality 1
     ] .
 
-surface-model:Data a owl:Class ;
-    rdfs:label "Class definition for Data"@en ;
-    rdfs:comment "Contains properties that describe the data type of the surface model asset."@en ;
+surface-model:Content a owl:Class ;
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Contains properties that describe the content type of the surface model asset."@en ;
     rdfs:subClassOf envited-x:Content .
 
 surface-model:Format a owl:Class ;
@@ -146,12 +146,12 @@ surface-model:hasGeoreference a owl:ObjectProperty ;
     rdfs:domain surface-model:DataResourceExtension ;
     rdfs:range georeference:Georeference .
 
-surface-model:hasData a owl:ObjectProperty ;
-    rdfs:label "Object property: hasData"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Data that describes the surface model's data content."@en ;
+surface-model:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Content that describes the surface model's data content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
     rdfs:domain surface-model:DataResourceExtension ;
-    rdfs:range surface-model:Data .
+    rdfs:range surface-model:Content .
 
 surface-model:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;

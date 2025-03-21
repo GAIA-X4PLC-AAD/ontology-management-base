@@ -1,4 +1,4 @@
-@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v4/ontology#> .
+@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v5/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
@@ -54,11 +54,11 @@ surface-model:DataResourceExtensionShape a sh:NodeShape ;
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
-          sh:node surface-model:DataShape ;
+          sh:node surface-model:ContentShape ;
           sh:name "data"@en ;
-          sh:description "Attributes describing the data type of the surface model."@en ;
+          sh:description "Attributes describing the content type of the surface model."@en ;
           sh:order 1 ;
-          sh:path surface-model:hasData ],
+          sh:path surface-model:hasContent ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node surface-model:FormatShape ;
@@ -89,19 +89,19 @@ surface-model:DataResourceExtensionShape a sh:NodeShape ;
           sh:path surface-model:hasGeoreference ] ;
     sh:targetClass surface-model:DataResourceExtension .
 
-### **Data SHACL Shape**
-surface-model:DataShape a sh:NodeShape ;
+### **Content SHACL Shape**
+surface-model:ContentShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "height" ;
             sh:datatype xsd:string ;
-            sh:description "Specifies the data type (e.g., height, friction) used in the surface-model asset."@en ;
+            sh:description "Specifies the content type (e.g., height, friction) used in the surface-model asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of type failed!"@en ;
-            sh:name "data type"@en ;
+            sh:name "content type"@en ;
             sh:order 0 ;
-            sh:path surface-model:dataType ] ;
-    sh:targetClass surface-model:Data .
+            sh:path surface-model:contentType ] ;
+    sh:targetClass surface-model:Content .
 
 ### **Format SHACL Shape**
 surface-model:FormatShape a sh:NodeShape ;

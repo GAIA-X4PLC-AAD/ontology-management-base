@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#>
+- ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#>
 
 ## List of SHACL Properties
 

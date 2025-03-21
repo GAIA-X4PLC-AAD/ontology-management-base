@@ -86,27 +86,27 @@ scenario:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasContent ;
-        owl:someValuesFrom scenario:Content
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasDataSource ;
-        owl:someValuesFrom scenario:DataSource
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasFormat ;
-        owl:someValuesFrom scenario:Format
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasQuality ;
-        owl:someValuesFrom scenario:Quality
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasQuantity ;
-        owl:someValuesFrom scenario:Quantity
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasGeoreference ;
-        owl:someValuesFrom georeference:Georeference
+        owl:cardinality 1
     ] .
 
 scenario:Manifest a owl:Class ;

@@ -1,4 +1,4 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
@@ -33,14 +33,14 @@ ositrace: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.4> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v3/ontology#> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v4/ontology#> ;
+    owl:versionInfo "v4" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v3/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v4/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;
@@ -103,6 +103,7 @@ ositrace:Content a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasHostMovingObject ;
+        owl:minCardinality 0 ;
         owl:maxCardinality 1
     ] , [
         a owl:Restriction ;

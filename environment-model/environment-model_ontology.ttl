@@ -141,27 +141,27 @@ environment-model:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty environment-model:hasContent ;
-        owl:someValuesFrom environment-model:Content
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasProject ;
-        owl:someValuesFrom environment-model:Project
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasFormat ;
-        owl:someValuesFrom environment-model:Format
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasQuality ;
-        owl:someValuesFrom environment-model:Quality
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasQuantity ;
-        owl:someValuesFrom environment-model:Quantity
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty environment-model:hasGeoreference ;
-        owl:someValuesFrom georeference:Georeference
+        owl:cardinality 1
     ] .
 
 environment-model:Format a owl:Class ;

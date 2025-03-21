@@ -1,6 +1,6 @@
 {
   "@context": {
-    "ositrace": "https://ontologies.envited-x.net/ositrace/v3/ontology#",
+    "ositrace": "https://ontologies.envited-x.net/ositrace/v4/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -73,7 +73,7 @@
           "@value": "ADC Target Vehicle",
           "@type": "xsd:string"
         }
-      }  
+      }
     },
     "ositrace:hasQuality": {
       "@type": "ositrace:Quality",

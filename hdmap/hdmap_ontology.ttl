@@ -80,31 +80,27 @@ hdmap:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
-        owl:someValuesFrom hdmap:Content
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataSource ;
-        owl:someValuesFrom hdmap:DataSource
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasFormat ;
-        owl:someValuesFrom hdmap:Format
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasQuality ;
-        owl:someValuesFrom hdmap:Quality
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasQuantity ;
-        owl:someValuesFrom hdmap:Quantity
-    ] , [
-        a owl:Restriction ;
-        owl:onProperty hdmap:hasRange2D ;
-        owl:someValuesFrom hdmap:Range2D
+        owl:cardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasGeoreference ;
-        owl:someValuesFrom georeference:Georeference
+        owl:cardinality 1
     ] .
 
 hdmap:Content a owl:Class ;
@@ -125,7 +121,12 @@ hdmap:Format a owl:Class ;
 hdmap:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
     rdfs:comment "Contains properties to describe the accuracy of the HD map asset."@en ;
-    rdfs:subClassOf envited-x:Quality .
+    rdfs:subClassOf envited-x:Quality ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty hdmap:hasRange2D ;
+        owl:someValuesFrom hdmap:Range2D
+    ] .
 
 hdmap:Quantity a owl:Class ;
     rdfs:label "Class definition for Quantity"@en ;
