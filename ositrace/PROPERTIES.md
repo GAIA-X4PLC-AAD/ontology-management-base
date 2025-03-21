@@ -26,7 +26,7 @@
 | ContentShape | ositrace | startTime | 1 | 1 | Exact start timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
 | ContentShape | ositrace | stopTime | 1 | 1 | Exact stop timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
 | ContentShape | ositrace | hasHostMovingObject |  | 1 | Host moving object in trace file |  | ositrace_shacl.ttl |
-| ContentShape | ositrace | hasTargetMovingObjects |  |  | Target moving object(s) in trace file |  | ositrace_shacl.ttl |
+| ContentShape | ositrace | hasTargetMovingObject |  |  | Target moving object(s) in trace file |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | hasEvent | 0 |  | Description of events of interest in trace file |  | ositrace_shacl.ttl |
 | DataSourceShape | ositrace | measurementSystem |  | 1 | Main acquisition device | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | DataSourceShape | ositrace | usedDataSources |  |  | Basic data for the creation of the trace. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
