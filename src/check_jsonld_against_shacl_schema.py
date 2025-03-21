@@ -13,6 +13,7 @@ from rdflib import RDF, Graph, Namespace
 
 # Set the encoding for stdout to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 
 # --- Dynamic Prefix Extraction Functions ---

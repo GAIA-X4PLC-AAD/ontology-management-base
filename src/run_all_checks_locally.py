@@ -32,18 +32,44 @@ print("\n🚀 Running all ontology validation checks...")
 
 def run_command(command, description):
     """Execute a command and capture its output. Does not print errors."""
+    error_output = ""
+    output = ""
+
+    # Normalize paths in the command
+    command = [os.path.normpath(path) for path in command]
+
+    # Check if the command is empty
+    if not command:
+        return -1, "No command provided."
+
     try:
         result = subprocess.run(
-            command, shell=False, capture_output=True, text=True, check=True
+            command,
+            shell=False,
+            capture_output=True,
+            text=True,
+            check=True,
+            encoding="utf-8",
         )
-        output = result.stdout.strip()
-        error_output = result.stderr.strip()
-        return result.returncode, error_output or output  # Prefer stderr if present
+        output = result.stdout.strip() if isinstance(result.stdout, str) else ""
+
+        return result.returncode, output  # Prefer stdout
 
     except subprocess.CalledProcessError as e:
         # Capture stderr from failures and return it
-        error_message = e.stderr.strip() or e.stdout.strip() or "No output captured."
-        return e.returncode, error_message
+        error_output = (
+            e.stderr.strip() if isinstance(e.stderr, str) else "No output captured."
+        )
+        return e.returncode, error_output
+
+    except FileNotFoundError:
+        return -1, f"Command not found: {' '.join(command)}"
+
+    except PermissionError:
+        return -1, f"Permission denied: {' '.join(command)}"
+
+    except Exception as e:
+        return -1, f"An unexpected error occurred: {str(e)}"
 
 
 def check_ttl_syntax():
@@ -199,9 +225,9 @@ def check_target_classes():
 def main():
     """Run all validation checks sequentially, aborting on the first failure."""
     check_ttl_syntax()
-    check_target_classes()
     check_jsonld_against_shacl()
     check_failing_tests()
+    check_target_classes()
     print("\n✅ All checks completed successfully!")
 
 

@@ -7,6 +7,7 @@ from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
 # Set the encoding for stdout to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -160,25 +161,29 @@ def validate_target_classes_against_owl_classes(directory: str):
                 recovered_classes.add(missing)
         missing_classes -= recovered_classes
 
-        print(
-            format_summary(
-                ontology_file,
-                len(ontology_classes),
-                len(shacl_classes),
-                matches,
-                missing_classes,
-                recovered_classes,
-                extra_classes,
-            )
+        summary = format_summary(
+            ontology_file,
+            len(ontology_classes),
+            len(shacl_classes),
+            matches,
+            missing_classes,
+            recovered_classes,
+            extra_classes,
         )
 
         if missing_classes:
+            print(summary, file=sys.stderr)
             sys.exit(200)
+        else:
+            print(summary)
 
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python check_target_classes_against_owl_classes.py <directory>")
+        print(
+            "Usage: python check_target_classes_against_owl_classes.py <directory>",
+            file=sys.stderr,
+        )
         sys.exit(100)
 
     directory = sys.argv[1]

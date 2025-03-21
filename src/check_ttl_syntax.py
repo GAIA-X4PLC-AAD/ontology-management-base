@@ -8,6 +8,7 @@ from rdflib.plugins.parsers.notation3 import BadSyntax
 
 # Set the encoding for stdout to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 
 def check_ttl_syntax(turtle_file: str):
@@ -43,7 +44,7 @@ def check_ttl_syntax(turtle_file: str):
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python check_ttl_syntax.py <ttl_file>")
+        print("Usage: python check_ttl_syntax.py <ttl_file>", file=sys.stderr)
         sys.exit(100)
 
     ttl_file = os.path.normpath(sys.argv[1])
