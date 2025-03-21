@@ -110,7 +110,6 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
-            sh:datatype xsd:string ;
             sh:description "Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
             sh:message "Validation of roadTypes failed!"@en ;
@@ -118,7 +117,6 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:order 0 ;
             sh:path hdmap:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
-            sh:datatype xsd:string ;
             sh:description "Lists the lanes types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 11.7.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/11_lanes/11_07_lane_properties.html)."@en ;
             sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
             sh:message "Validation of laneTypes failed!"@en ;
@@ -126,7 +124,6 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path hdmap:laneTypes ],
         [ skos:example "trees, street lamps, road patches, ..." ;
-            sh:datatype xsd:string ;
             sh:description "Lists the object types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Annex A.4.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_C47587D0_7173_42df_8BB7_36B2C598D95F)"@en ;
             sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
             sh:message "Validation of levelOfDetail failed!"@en ;
@@ -134,7 +131,6 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path hdmap:levelOfDetail ], 
         [ skos:example "right-hand traffic" ;
-            sh:datatype xsd:string ;
             sh:description "Indicates whether the HD map is designed for left or right-hand traffic."@en ;
             sh:in ("left-hand" "right-hand") ;
             sh:maxCount 1 ;

@@ -1,6 +1,6 @@
 {
   "@context": {
-    "surface-model": "https://ontologies.envited-x.net/surface-model/v4/ontology#",
+    "surface-model": "https://ontologies.envited-x.net/surface-model/v5/ontology#",
     "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#",
     "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
@@ -32,9 +32,9 @@
         "@type": "xsd:string"
       }
     },
-    "surface-model:hasData": {
-      "@type": "surface-model:Data",
-      "surface-model:dataType": "Height"
+    "surface-model:hasContent": {
+      "@type": "surface-model:Content",
+      "surface-model:contentType": "Height"
     },
     "surface-model:hasQuality": {
       "@type": "surface-model:Quality",

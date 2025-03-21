@@ -1,4 +1,4 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
@@ -88,24 +88,11 @@ ositrace:DataResourceExtensionShape a sh:NodeShape ;
           sh:order 5 ;
           sh:path ositrace:hasDataSource ],
         [ sh:maxCount 1 ;
-          sh:minCount 1 ;
           sh:node georeference:GeoreferenceShape ;
           sh:name "georeference"@en ;
           sh:description "Georeferencing information for the OSI trace."@en ;
           sh:order 6 ;
-          sh:path ositrace:hasGeoreference ],
-        [ sh:maxCount 1 ;
-          sh:node ositrace:MovingObjectShape ;
-          sh:name "moving object"@en ;
-          sh:description "Describes moving objects recorded in the OSI trace."@en ;
-          sh:order 7 ;
-          sh:path ositrace:hasMovingObject ],
-        [ sh:maxCount 1 ;
-          sh:node ositrace:EventShape ;
-          sh:name "event"@en ;
-          sh:description "Recorded events within the OSI trace."@en ;
-          sh:order 8 ;
-          sh:path ositrace:hasEvent ] ;
+          sh:path ositrace:hasGeoreference ] ;
     sh:targetClass ositrace:DataResourceExtension .
 
 ositrace:ContentShape a sh:NodeShape ;
@@ -175,24 +162,26 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:path ositrace:stopTime ],
         [ sh:description "Host moving object in trace file"@en ;
             sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:name "host moving object"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 8 ;
-            sh:path ositrace:hostMovingObject ],
-        [ sh:description "Target moving object in trace file"@en ;
-            sh:name "target moving object"@en ;
+            sh:path ositrace:hasHostMovingObject ],
+        [ sh:description "Target moving object(s) in trace file"@en ;
+            sh:name "target moving object(s)"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 9 ;
-            sh:path ositrace:targetMovingObject ],
-        [ sh:description "Description of event of interest in trace file"@en ;
-            sh:name "event"@en ;
+            sh:path ositrace:hasTargetMovingObject ],
+        [ sh:description "Description of events of interest in trace file"@en ;
+            sh:minCount 0 ;
+            sh:name "events"@en ;
             sh:node ositrace:EventShape ;
             sh:order 10 ;
-            sh:path ositrace:event ] ;
+            sh:path ositrace:hasEvent ] ;
     sh:targetClass ositrace:Content .
 
 ositrace:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
@@ -212,7 +201,7 @@ ositrace:DataSourceShape a sh:NodeShape ;
     sh:targetClass ositrace:DataSource .
 
 ositrace:FormatShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
@@ -233,7 +222,7 @@ ositrace:FormatShape a sh:NodeShape ;
     sh:targetClass ositrace:Format .
 
 ositrace:QualityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -310,7 +299,7 @@ ositrace:QualityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
@@ -323,7 +312,7 @@ ositrace:QuantityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quantity .
 
 ositrace:MovingObjectShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
@@ -345,7 +334,7 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:targetClass ositrace:MovingObject .
 
 ositrace:EventShape a sh:NodeShape ;
-    sh:closed false ;
+    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;

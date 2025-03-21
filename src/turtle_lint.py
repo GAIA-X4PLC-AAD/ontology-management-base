@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import sys
 
 from rdflib import Graph
@@ -18,7 +19,7 @@ def lint_file(filename):
 def main():
     ret = 0
     for filename in sys.argv[1:]:
-        ret |= lint_file(filename)
+        ret |= lint_file(os.path.normpath(filename))
     sys.exit(ret)
 
 

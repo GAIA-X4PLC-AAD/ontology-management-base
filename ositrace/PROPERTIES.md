@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- ositrace: <https://ontologies.envited-x.net/ositrace/v3/ontology#>
+- ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#>
 
 ## List of SHACL Properties
 
@@ -16,9 +16,7 @@
 | DataResourceExtensionShape | ositrace | hasQuality | 1 | 1 | Quality metrics of the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasQuantity | 1 | 1 | Quantitative metrics describing the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasDataSource | 1 | 1 | Data sources used to create the OSI trace. |  | ositrace_shacl.ttl |
-| DataResourceExtensionShape | ositrace | hasGeoreference | 1 | 1 | Georeferencing information for the OSI trace. |  | ositrace_shacl.ttl |
-| DataResourceExtensionShape | ositrace | hasMovingObject |  | 1 | Describes moving objects recorded in the OSI trace. |  | ositrace_shacl.ttl |
-| DataResourceExtensionShape | ositrace | hasEvent |  | 1 | Recorded events within the OSI trace. |  | ositrace_shacl.ttl |
+| DataResourceExtensionShape | ositrace | hasGeoreference |  | 1 | Georeferencing information for the OSI trace. |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | roadTypes |  |  | Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3 |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | laneTypes |  |  | Covered lane types, see ODR spec section 9.5.3. |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | levelOfDetail |  |  | Covered object classes, see ODR spec section 11 |  | ositrace_shacl.ttl |
@@ -27,9 +25,9 @@
 | ContentShape | ositrace | scenarioIdentifier |  |  | Identifier of scenario performed in the trace file | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | ContentShape | ositrace | startTime | 1 | 1 | Exact start timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
 | ContentShape | ositrace | stopTime | 1 | 1 | Exact stop timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
-| ContentShape | ositrace | hostMovingObject |  | 1 | Host moving object in trace file |  | ositrace_shacl.ttl |
-| ContentShape | ositrace | targetMovingObject |  |  | Target moving object in trace file |  | ositrace_shacl.ttl |
-| ContentShape | ositrace | event |  |  | Description of event of interest in trace file |  | ositrace_shacl.ttl |
+| ContentShape | ositrace | hasHostMovingObject | 1 | 1 | Host moving object in trace file |  | ositrace_shacl.ttl |
+| ContentShape | ositrace | hasTargetMovingObject |  |  | Target moving object(s) in trace file |  | ositrace_shacl.ttl |
+| ContentShape | ositrace | hasEvent | 0 |  | Description of events of interest in trace file |  | ositrace_shacl.ttl |
 | DataSourceShape | ositrace | measurementSystem |  | 1 | Main acquisition device | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | DataSourceShape | ositrace | usedDataSources |  |  | Basic data for the creation of the trace. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | FormatShape | ositrace | version |  | 1 | Version of data format | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
