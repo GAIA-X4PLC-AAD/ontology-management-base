@@ -170,7 +170,7 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:name "target moving object(s)"@en ;
             sh:node ositrace:MovingObjectShape ;
             sh:order 9 ;
-            sh:path ositrace:hasTargetMovingObjects ],
+            sh:path ositrace:hasTargetMovingObject ],
         [ sh:description "Description of events of interest in trace file"@en ;
             sh:minCount 0 ;
             sh:name "events"@en ;

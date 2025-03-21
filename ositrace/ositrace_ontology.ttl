@@ -106,7 +106,7 @@ ositrace:Content a owl:Class ;
         owl:cardinality 1
     ] , [
         a owl:Restriction ;
-        owl:onProperty ositrace:hasTargetMovingObjects ;
+        owl:onProperty ositrace:hasTargetMovingObject ;
         owl:minCardinality 0
     ] , [
         a owl:Restriction ;
@@ -215,15 +215,15 @@ ositrace:hasQuantity a owl:ObjectProperty ;
     rdfs:domain ositrace:DataResourceExtension ;
     rdfs:range ositrace:Quantity .
 
-### hasTargetMovingObjects (Content -> MovingObject)
-ositrace:hasTargetMovingObjects a owl:ObjectProperty ;
-    rdfs:label "Object property: hasTargetMovingObjects"@en ;
+### hasTargetMovingObject (Content -> MovingObject)
+ositrace:hasTargetMovingObject a owl:ObjectProperty ;
+    rdfs:label "Object property: hasTargetMovingObject"@en ;
     rdfs:comment "Links Content to an instance of ositrace:MovingObject describing target entities within the OSI trace."@en ;
     rdfs:domain ositrace:Content ;
     rdfs:range ositrace:MovingObject .
 
 ### hasHostMovingObject (Content -> MovingObject)
-ositrace:hasHostMovingObjects a owl:ObjectProperty ;
+ositrace:hasHostMovingObject a owl:ObjectProperty ;
     rdfs:label "Object property: hasHostMovingObject"@en ;
     rdfs:comment "Links Content to an instance of ositrace:MovingObject describing the host vehicle entity within the OSI trace."@en ;
     rdfs:domain ositrace:Content ;
