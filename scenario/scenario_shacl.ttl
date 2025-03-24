@@ -126,7 +126,7 @@ scenario:ManifestShape a sh:NodeShape ;
                 sh:hasValue envited-x:isSimulationData ;
             ]
         ] ;
-        sh:qualifiedMinCount 2 ;
+        sh:qualifiedMinCount 1 ;
         sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
     ] ;
 
