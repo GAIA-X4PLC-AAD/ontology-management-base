@@ -23,7 +23,7 @@
 | InputDataShape | vv-report | inputReference | 1 | 1 | Uniform Resource Identifier (URI) to identify the utilized input data element by location, name, or both. | <http://www.w3.org/2001/XMLSchema#anyURI> | vv-report_shacl.ttl |
 | ParameterShape | vv-report | parameterName | 1 | 1 | The formal name of the parameter, as it appears in the validation system | <http://www.w3.org/2001/XMLSchema#string> | vv-report_shacl.ttl |
 | ParameterShape | vv-report | parameterDescription | 1 | 1 | A short description of the parameter in order to unambigously interpret it. | <http://www.w3.org/2001/XMLSchema#string> | vv-report_shacl.ttl |
-| ParameterShape | vv-report | parameterValue | 1 | 1 | The value of the parameter. | <http://www.w3.org/2001/XMLSchema#string> | vv-report_shacl.ttl |
+| ParameterShape | vv-report | parameterValue | 1 | 1 | The value of the parameter. |  | vv-report_shacl.ttl |
 | ResultShape | vv-report | resultTestPassed | 1 | 1 | Statement if the test has been passed or not. | <http://www.w3.org/2001/XMLSchema#boolean> | vv-report_shacl.ttl |
 | ResultShape | vv-report | resultLog | 0 |  | Additional information about the test result, e.g., why it has failed. | <http://www.w3.org/2001/XMLSchema#string> | vv-report_shacl.ttl |
 | ResultShape | vv-report | resultVerifiable | 1 | 1 | Information if the result can be verified by a third party. | <http://www.w3.org/2001/XMLSchema#boolean> | vv-report_shacl.ttl |
