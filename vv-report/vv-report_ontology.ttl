@@ -59,6 +59,10 @@ vv-report:InputData a owl:Class ;
     rdfs:label "Class definition for InputData"@en ;
     rdfs:comment "Attributes for the definition of an input data element of a verification & validation report."@en .
 
+vv-report:Parameter a owl:Class ;
+    rdfs:label "Class definition for Parameter"@en ;
+    rdfs:comment "Attributes for the definition of parameter element of a verification & validation report."@en .
+
 vv-report:Result a owl:Class ;
     rdfs:label "Class definition for Result"@en ;
     rdfs:comment "Attributes for evaluation results of a verification & validation report."@en .
