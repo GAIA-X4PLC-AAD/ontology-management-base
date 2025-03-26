@@ -1,0 +1,65 @@
+@prefix tzip21: <https://ontologies.envited-x.net/tzip21/v1/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tzip21: a owl:Ontology ;
+    rdfs:label "Ontology definition for tzip21"@en ;
+    rdfs:comment "Rich Metadata Asset Shape (TZIP-021 + TZIP-012 Token Metadata)."@en ;
+
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Carlo van Driesten" ;
+        org:memberOf <https://www.bmwgroup.com/> ;
+    ] ;
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://ontologies.envited-x.net/tzip21> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
+
+    # Versioning
+    owl:versionIRI <https://ontologies.envited-x.net/tzip21/v1/ontology#> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://ontologies.envited-x.net/tzip21/v1/shape#> ;
+
+    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
+    dcterms:references <https://ontologies.envited-x.net/envited-x> ;
+    rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+
+tzip21:Asset a owl:Class ;
+    rdfs:label "Class definition for Asset"@en ;
+    rdfs:comment "A class representing a rich metadata asset."@en ;
+    dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
+                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
+                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,
+                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-21/tzip-21.md> .
+
+tzip21:Format a owl:Class ;
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "A class representing the format of an asset."@en .
+
+tzip21:Attribute a owl:Class ;
+    rdfs:label "Class definition for Attribute"@en ;
+    rdfs:comment "A class representing custom attributes of an asset."@en .
+
+tzip21:DataRate a owl:Class ;
+    rdfs:label "Class definition for DataRate"@en ;
+    rdfs:comment "A class representing the data rate of an asset." .
+
+tzip21:Dimensions a owl:Class ;
+    rdfs:label "Class definition for Dimensions"@en ;
+    rdfs:comment "A class representing the dimensions of an asset."@en .
+

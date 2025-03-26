@@ -243,7 +243,26 @@ def setup_logging(debug=False):
     )
 
 
-# --- Loading SHACL and Ontology Files ---
+# --- Loading SHACL and Ontology Files ---,
+
+
+def load_base_shacl_shapes(root_dir):
+    # Initialize the namespace dictionary
+    namespace = {}
+    namespace = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
+
+    # Define the directory containing the SHACL files
+    shacl_dir = os.path.join(root_dir, "src", "base-schemas")
+
+    # Loop through all files in the specified directory
+    for filename in os.listdir(shacl_dir):
+        # Check if the file ends with '_shacl.ttl'
+        if filename.endswith("_shacl.ttl"):
+            # Create the namespace entry
+            prefix = filename.split("_")[0]  # Extract the prefix from the filename
+            namespace[prefix] = os.path.join(shacl_dir, filename)
+
+    return namespace
 
 
 def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
@@ -258,10 +277,10 @@ def load_shacl_and_ontologies(root_dir, used_types, dynamic_mapping: dict):
         for prefix, namespace in dynamic_mapping.items():
             shacl_graph.bind(prefix, Namespace(namespace))
             logging.debug(f"Bound prefix {prefix} -> {namespace}")
-    # Load GX trust framework SHACL explicitly.
-    namespace_gx = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
-    for prefix, file_path in namespace_gx.items():
-        logging.debug(f"Loading mapped SHACL file for {prefix}: {file_path}")
+    # Load GX trust framework SHACL and base shacles explicitly.
+    namespaces = load_base_shacl_shapes(root_dir)
+    for prefix, file_path in namespaces.items():
+        logging.info(f"Loading mapped SHACL file for {prefix}: {file_path}")
         shacl_graph.parse(file_path, format="turtle")
         loaded_files.add(file_path)
     shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
