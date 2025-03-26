@@ -2,6 +2,7 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 #################################################################
@@ -11,6 +12,8 @@ tzip21:AssetShape
   a sh:NodeShape ;
   rdfs:label "Rich Metadata Asset Shape" ;
   sh:targetClass tzip21:Asset ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
   dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,
@@ -248,6 +251,7 @@ tzip21:FormatShape
   sh:targetClass tzip21:Format ;
   rdfs:label "Asset Format Shape" ;
   sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
   sh:property [
       sh:path tzip21:uri ;
       sh:datatype xsd:anyURI ;
@@ -322,6 +326,7 @@ tzip21:AttributeShape
   sh:targetClass tzip21:Attribute ;
   rdfs:label "Asset Attribute Shape" ;
   sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
   sh:property [
       sh:path tzip21:name ;
       sh:datatype xsd:string ;
@@ -355,6 +360,7 @@ tzip21:DataRateShape
   sh:targetClass tzip21:DataRate ;
   rdfs:label "Data Rate Shape" ;
   sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
   sh:property [
       sh:path tzip21:value ;
       sh:datatype xsd:integer ;
@@ -380,6 +386,7 @@ tzip21:DimensionsShape
   sh:targetClass tzip21:Dimensions ;
   rdfs:label "Dimensions Shape" ;
   sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
   sh:property [
       sh:path tzip21:value ;
       sh:datatype xsd:string ;

@@ -478,7 +478,11 @@ def main():
     # --- Step 8: Perform Final Validation ---
     print("🔍 Performing overall validation explicitly...")
     conforms, _, v_text = validate(
-        data_graph, shacl_graph=shacl_graph, inference="rdfs", debug=debug
+        data_graph,
+        shacl_graph=shacl_graph,
+        abort_on_first=True,
+        inference="rdfs",
+        debug=debug,
     )
     logging.debug(f"Final overall validation: Conforms = {conforms}")
     # --- Step 9: Print Validation Report ---
