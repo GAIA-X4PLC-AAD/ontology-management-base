@@ -130,6 +130,21 @@
     },
     {
       "@type": "manifest:Link",
+      "manifest:iri": {
+        "@id": "did:web:registry.gaia-x.eu:HdMap:DjHgK5ErTBow1Ya3J05tW9l12skGWgZn6kA9"
+      },
+      "skos:note": {
+        "@value": "Referenced HD Map Asset.",
+        "@type": "xsd:string"
+      },
+      "sh:conformsTo": [
+        {
+          "@id": "https://ontologies.envited-x.net/hdmap/v2/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/manifest/v2/ontology"
+        }
+      ],
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",
         "@id": "manifest:isPublic"
@@ -149,7 +164,7 @@
           "@type": "xsd:string"
         },
         "manifest:mimeType": {
-          "@value": "application/json",
+          "@value": "application/ld+json",
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
