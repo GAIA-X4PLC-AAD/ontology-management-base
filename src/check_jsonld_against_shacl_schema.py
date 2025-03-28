@@ -257,7 +257,7 @@ def load_base_shacl_shapes(root_dir):
     # Loop through all files in the specified directory
     for filename in os.listdir(shacl_dir):
         # Check if the file ends with '_shacl.ttl'
-        if filename.endswith("_shacl.ttl"):
+        if filename.endswith(".ttl"):
             # Create the namespace entry
             prefix = filename.split("_")[0]  # Extract the prefix from the filename
             namespace[prefix] = os.path.join(shacl_dir, filename)
