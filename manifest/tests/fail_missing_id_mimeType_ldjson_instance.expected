@@ -1,0 +1,47 @@
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (1):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in OrConstraintComponent (http://www.w3.org/ns/shacl#OrConstraintComponent):                                                  =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: manifest:LinkShape                                                                                                                   =
+=                                                                                                                                                    =
+= Focus Node: [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid   =
+= Literal("bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:string) ; manifest:filePath                                    =
+= Literal("ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:anyURI) ; manifest:fileSize Literal("5678",             =
+= datatype=xsd:integer) ; manifest:filename Literal("domainMetadata.json", datatype=xsd:string) ; manifest:mimeType Literal("application/ld+json",   =
+= datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ; sh:conformsTo                     =
+= <https://ontologies.envited-x.net/hdmap/v2/ontology#>, <https://ontologies.envited-x.net/manifest/v2/ontology> ; skos:note Literal("Referenced HD  =
+= Map Asset.", datatype=xsd:string) ]                                                                                                                =
+=                                                                                                                                                    =
+= Value Node: [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid   =
+= Literal("bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:string) ; manifest:filePath                                    =
+= Literal("ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:anyURI) ; manifest:fileSize Literal("5678",             =
+= datatype=xsd:integer) ; manifest:filename Literal("domainMetadata.json", datatype=xsd:string) ; manifest:mimeType Literal("application/ld+json",   =
+= datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ; sh:conformsTo                     =
+= <https://ontologies.envited-x.net/hdmap/v2/ontology#>, <https://ontologies.envited-x.net/manifest/v2/ontology> ; skos:note Literal("Referenced HD  =
+= Map Asset.", datatype=xsd:string) ]                                                                                                                =
+=                                                                                                                                                    =
+= Message: Node [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid =
+= Literal("bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:string) ; manifest:filePath                                    =
+= Literal("ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:anyURI) ; manifest:fileSize Literal("5678",             =
+= datatype=xsd:integer) ; manifest:filename Literal("domainMetadata.json", datatype=xsd:string) ; manifest:mimeType Literal("application/ld+json",   =
+= datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ; sh:conformsTo                     =
+= <https://ontologies.envited-x.net/hdmap/v2/ontology#>, <https://ontologies.envited-x.net/manifest/v2/ontology> ; skos:note Literal("Referenced HD  =
+= Map Asset.", datatype=xsd:string) ] must conform to one or more shapes in [ sh:property [ sh:not [ sh:pattern Literal("^application/ld\+json$") ]  =
+= ; sh:path ( manifest:hasFileMetadata manifest:mimeType ) ] ] , [ sh:property [ sh:message Literal("This link is a manifest reference so the extra  =
+= properties are not required.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path [ sh:inversePath manifest:hasManifestReference ] ], [    =
+= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path ( manifest:hasFileMetadata manifest:mimeType ) ; sh:pattern                               =
+= Literal("^application/ld\+json$") ] ] , [ sh:property [ sh:message Literal("If the MIME type is 'application/ld+json' and not a manifest           =
+= reference, a skos:note is required.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path skos:note ], [ sh:message Literal("If the MIME    =
+= type is 'application/ld+json' and not a manifest reference, an IRI is required.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path       =
+= manifest:iri ], [ sh:message Literal("If the MIME type is 'application/ld+json' and not a manifest reference, ontology conformance is required.")  =
+= ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path sh:conformsTo ], [ sh:minCount Literal("1", datatype=xsd:integer) ; sh:path (           =
+= manifest:hasFileMetadata manifest:mimeType ) ; sh:pattern Literal("^application/ld\+json$") ] ]                                                    =
+======================================================================================================================================================

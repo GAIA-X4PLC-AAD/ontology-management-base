@@ -1,0 +1,971 @@
+@prefix ns0: <http://www.w3.org/2001/> .
+
+[]
+  a <http://www.w3.org/2001/XMLSchemaschema> ;
+  ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ] ;
+  ns0:XMLSchemaimport [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+       Get access to the xml: attribute groups for xml:lang
+       as declared on 'schema' and 'documentation' below
+     """@EN
+  ] ;
+  ns0:XMLSchemacomplexType [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+       This type is extended by almost all schema types
+       to allow attributes from other namespaces to be
+       added to user schemas.
+     """@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+       This type is extended by all types which allow annotation
+       other than <schema> itself
+     """@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattributeGroup ], [ a ns0:XMLSchemaattribute ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemagroup ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ]
+    ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ]
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemachoice [
+        a ns0:XMLSchemasequence ;
+        ns0:XMLSchemaelement ""@EN ;
+        ns0:XMLSchemagroup ""@EN
+      ], [ a ns0:XMLSchemagroup ] ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [
+        a ns0:XMLSchemaannotation ;
+        ns0:XMLSchemadocumentation """This choice is added simply to
+                   make this a valid restriction per the REC"""@EN
+      ], [
+        a ns0:XMLSchemasequence ;
+        ns0:XMLSchemaelement ""@EN ;
+        ns0:XMLSchemagroup ""@EN
+      ] ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [
+        a ns0:XMLSchemaannotation ;
+        ns0:XMLSchemadocumentation """This choice is added simply to
+                   make this a valid restriction per the REC"""@EN
+      ], [ a ns0:XMLSchemagroup ] ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ] ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   The element element can be used either
+   at the top level to define an element-type binding globally,
+   or within a content model to either reference a globally-defined
+   element or type or declare an element-type binding locally.
+   The ref form is not allowed at the top level."""@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattributeGroup ], [ a ns0:XMLSchemaattribute ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemasimpleType [ a ns0:XMLSchemalist ]
+    ], [ a ns0:XMLSchemaattributeGroup ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+        This type is used for 'alternative' elements.
+      """@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemachoice ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   group type for explicit groups, named top-level groups and
+   group references"""@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemaattributeGroup ], [ a ns0:XMLSchemaattributeGroup ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ]
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemachoice [
+        a ns0:XMLSchemaelement ;
+        ns0:XMLSchemacomplexType [
+          a ns0:XMLSchemacomplexContent ;
+          ns0:XMLSchemarestriction [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+        ]
+      ], [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ]
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   group type for the three kinds of group"""@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   Only elements allowed inside"""@EN
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [ a ns0:XMLSchemagroup ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemaattributeGroup ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemaattributeGroup ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   Not the real urType, but as close an approximation as we can
+   get in the XML representation"""@EN
+  ], [
+    a ns0:XMLSchemasequence ;
+    ns0:XMLSchemaany ""@EN
+  ], [ a ns0:XMLSchemaanyAttribute ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemaattribute ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ]
+    ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ]
+    ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN ;
+      ns0:XMLSchemagroup ""@EN
+    ], [
+      a ns0:XMLSchemaattribute ;
+      ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ]
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemaextension [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ], [
+    a ns0:XMLSchemacomplexContent ;
+    ns0:XMLSchemarestriction [
+      a ns0:XMLSchemasequence ;
+      ns0:XMLSchemaelement ""@EN
+    ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaanyAttribute ]
+  ] ;
+  ns0:XMLSchemagroup [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   This group is for the
+   elements which occur freely at the top level of schemas.
+   All of their types are based on the "annotated" type by extension."""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemagroup ""@EN ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   This group is for the
+   elements which can self-redefine (see <redefine> below)."""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   'complexType' uses this"""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemasequence ;
+    ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemasequence ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN ;
+    ns0:XMLSchemasequence [
+      a ns0:XMLSchemaannotation ;
+      ns0:XMLSchemadocumentation """
+   This branch is short for
+   <complexContent>
+   <restriction base="xs:anyType">
+   ...
+   </restriction>
+   </complexContent>"""@EN
+    ], [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemagroup ], [ a ns0:XMLSchemagroup ]
+  ], [
+    a ns0:XMLSchemasequence ;
+    ns0:XMLSchemaelement ""@EN ;
+    ns0:XMLSchemachoice [
+      a ns0:XMLSchemaannotation ;
+      ns0:XMLSchemadocumentation """This choice with min/max is here to
+                          avoid a pblm with the Elt:All/Choice/Seq
+                          Particle derivation constraint"""@EN
+    ], [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ], [
+      a ns0:XMLSchemaelement ;
+      ns0:XMLSchemacomplexType [
+        a ns0:XMLSchemacomplexContent ;
+        ns0:XMLSchemarestriction [
+          a ns0:XMLSchemasequence ;
+          ns0:XMLSchemaelement ""@EN
+        ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ]
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """The three kinds of identity constraints, all with
+                     type of or derived from 'keybase'.
+   """@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemachoice ;
+    ns0:XMLSchemaelement ""@EN
+  ], [
+    a ns0:XMLSchemasequence ;
+    ns0:XMLSchemaelement ""@EN ;
+    ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaany ]
+  ] ;
+  ns0:XMLSchemasimpleType [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemarestriction ;
+    ns0:XMLSchemaenumeration ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemarestriction ;
+    ns0:XMLSchemaenumeration ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN, """
+   #all or (possibly empty) subset of {extension, restriction}"""@EN
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ], [ a ns0:XMLSchemalist ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemarestriction ;
+    ns0:XMLSchemaenumeration ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN, """
+   #all or (possibly empty) subset of {extension, restriction, list, union}"""@EN
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ], [ a ns0:XMLSchemalist ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   for maxOccurs"""@EN
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+    A utility type, not for public use"""@EN, """
+    #all or (possibly empty) subset of {substitution, extension,
+    restriction}"""@EN
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ], [
+      a ns0:XMLSchemalist ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [ a ns0:XMLSchemaunion ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemalist ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemaunion ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemarestriction ;
+    ns0:XMLSchemaenumeration ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+        A utility type, not for public use
+      """@EN
+  ], [
+    a ns0:XMLSchemalist ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemaunion ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+        A utility type, not for public use
+      """@EN
+  ], [
+    a ns0:XMLSchemalist ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemaunion ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN, """
+   A public identifier, per ISO 8879"""@EN
+  ], [ a ns0:XMLSchemarestriction ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemarestriction ;
+    ns0:XMLSchemaenumeration ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   #all or (possibly empty) subset of {restriction, extension, union, list}
+   """@EN, """
+   A utility type, not for public use"""@EN
+  ], [
+    a ns0:XMLSchemaunion ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ], [
+      a ns0:XMLSchemalist ;
+      ns0:XMLSchemasimpleType [
+        a ns0:XMLSchemarestriction ;
+        ns0:XMLSchemaenumeration ""@EN
+      ]
+    ]
+  ] ;
+  ns0:XMLSchemaelement [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemagroup ], [
+        a ns0:XMLSchemasequence ;
+        ns0:XMLSchemaelement ""@EN
+      ], [
+        a ns0:XMLSchemasequence ;
+        ns0:XMLSchemagroup ""@EN ;
+        ns0:XMLSchemaelement ""@EN
+      ] ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemakey ;
+    ns0:XMLSchemaselector ""@EN ;
+    ns0:XMLSchemafield ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemaannotation ;
+        ns0:XMLSchemadocumentation """
+       Overrides any setting on complexType parent."""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemarestriction [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ]
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute ""@EN, [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemarestriction [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ]
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN ;
+      ns0:XMLSchemaattributeGroup ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemagroup ] ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemagroup ] ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ] ;
+        ns0:XMLSchemarestriction ""@EN
+      ], ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ], [ a ns0:XMLSchemadocumentation ] ;
+        ns0:XMLSchemarestriction ""@EN
+      ], ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemasequence [ a ns0:XMLSchemaany ] ;
+    ns0:XMLSchemaattribute ""@EN ;
+    ns0:XMLSchemaanyAttribute ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemasequence [ a ns0:XMLSchemaany ] ;
+    ns0:XMLSchemaattribute ""@EN ;
+    ns0:XMLSchemaanyAttribute ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemachoice [ a ns0:XMLSchemaelement ], [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+        An abstract element, representing facets in general.
+        The facets defined by this spec are substitutable for
+        this element, and implementation-defined facets should
+        also name this as a substitution-group head.
+      """@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ] ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemagroup ""@EN ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ] ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemaannotation [ a ns0:XMLSchemadocumentation ] ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemaextension ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemalist ""@EN
+      ]
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute ""@EN ;
+      ns0:XMLSchemaanyAttribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemarestriction [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ]
+      ] ;
+      ns0:XMLSchemaanyAttribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute ""@EN ;
+      ns0:XMLSchemaanyAttribute ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation ""@EN
+  ], [
+    a ns0:XMLSchemacomplexType ;
+    ns0:XMLSchemacomplexContent [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemasequence [ a ns0:XMLSchemaelement ] ;
+      ns0:XMLSchemaattribute [
+        a ns0:XMLSchemasimpleType ;
+        ns0:XMLSchemarestriction [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ], [ a ns0:XMLSchemaenumeration ]
+      ] ;
+      ns0:XMLSchemaanyAttribute ""@EN
+    ]
+  ] ;
+  ns0:XMLSchemaattributeGroup [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   for all particles"""@EN
+  ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [
+    a ns0:XMLSchemaannotation ;
+    ns0:XMLSchemadocumentation """
+   for element, group and attributeGroup,
+   which both define and reference"""@EN
+  ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [ a ns0:XMLSchemaattribute ], [
+    a ns0:XMLSchemaattribute ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaminLength ""@EN
+    ]
+  ], [
+    a ns0:XMLSchemaattribute ;
+    ns0:XMLSchemasimpleType [
+      a ns0:XMLSchemarestriction ;
+      ns0:XMLSchemaenumeration ""@EN
+    ]
+  ] ;
+  ns0:XMLSchemanotation ""@EN .
