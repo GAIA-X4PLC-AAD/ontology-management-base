@@ -11,7 +11,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
-    "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#"
+    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#"
   },
   "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
   "@type": "scenario:Scenario",
@@ -184,7 +184,7 @@
         "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
       },
       {
-        "@id": "https://ontologies.envited-x.net/manifest/v4/ontology#"
+        "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/scenario/v4/ontology#"

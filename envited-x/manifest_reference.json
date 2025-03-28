@@ -1,7 +1,7 @@
 {
   "@context": {
     "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
-    "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -37,7 +37,7 @@
     "gx:license": {
       "@value": "EPL-2.0"
     },
-    "manifest:licenseData": {
+    "manifest:hasLink": {
       "@type": "manifest:Link",
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",

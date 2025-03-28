@@ -4,7 +4,7 @@
 
 - envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#>
 - gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
-- manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#>
+- manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#>
 - rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 ## List of SHACL Properties
@@ -30,5 +30,5 @@
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| nef52f8f6b1ad47a6b60786e1efc02a9fb73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| nef52f8f6b1ad47a6b60786e1efc02a9fb73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| n0f7ba156d78841e2bfb54f05a1c8e671b73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| n0f7ba156d78841e2bfb54f05a1c8e671b73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |

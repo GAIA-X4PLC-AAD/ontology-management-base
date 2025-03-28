@@ -1,6 +1,6 @@
 @prefix ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .

@@ -2,7 +2,7 @@
   "@context": {
     "surface-model": "https://ontologies.envited-x.net/surface-model/v5/ontology#",
     "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
-    "manifest": "https://ontologies.envited-x.net/manifest/v4/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -155,7 +155,7 @@
         "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
       },
       {
-        "@id": "https://ontologies.envited-x.net/manifest/v4/ontology#"
+        "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
       }
     ],
     "manifest:hasAccessRole": {
