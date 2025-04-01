@@ -400,11 +400,16 @@ def main():
     files_for_prefixes = []
     for path in paths:
         if os.path.isdir(path):
-            files_for_prefixes.extend(glob.glob(os.path.join(path, "*_ontology.ttl")))
             files_for_prefixes.extend(glob.glob(os.path.join(path, "*_instance.json")))
             files_for_prefixes.extend(glob.glob(os.path.join(path, "*_reference.json")))
-        elif os.path.isfile(path):
+        elif os.path.isfile(path) and path.endswith('.json') :
             files_for_prefixes.append(path)
+
+    # Check if files_for_prefixes is empty and throw error
+    if not files_for_prefixes:
+        print("\nError code 100: No valid files found.")
+        sys.exit(100)
+    
     dynamic_prefixes = load_dynamic_prefixes(files_for_prefixes)
     print("\n✅ Resolved Dynamic Prefix Mapping:")
     for prefix, ns in sorted(dynamic_prefixes.items()):
@@ -422,7 +427,7 @@ def main():
     for onto_file in ontology_files:
         shacl_file = onto_file.replace("_ontology.ttl", "_shacl.ttl")
         if os.path.exists(shacl_file):
-            print(f"📌 Loading SHACL file: {shacl_file} for ontology: {onto_file}")
+            print(f"📌 Testing ontology against corresponding shacle: \n   Loading SHACL: {shacl_file}\n   Loading ontology: {onto_file}")
             shacl_graph_onto.parse(shacl_file, format="turtle")
         else:
             print(
@@ -430,7 +435,6 @@ def main():
             )
     # --- Step 3: Validate each ontology.ttl against its SHACL graph ---
     for onto_file in ontology_files:
-        logging.debug(f"🔍 Validating ontology {onto_file} against the SHACL shapes...")
         onto_graph = Graph()
         onto_graph.parse(onto_file, format="turtle")
         conforms, _, v_text = validate(
@@ -440,7 +444,6 @@ def main():
             validation_mode="strict",
             debug=debug,
         )
-        logging.debug(f"Validation result for {onto_file}: Conforms = {conforms}")
         if not conforms:
             print_validation_result_wrapper(False, [onto_file], v_text, exit_code=200)
         else:
@@ -480,16 +483,15 @@ def main():
     conforms, _, v_text = validate(
         data_graph,
         shacl_graph=shacl_graph,
-        abort_on_first=True,
         inference="rdfs",
         debug=debug,
     )
     logging.debug(f"Final overall validation: Conforms = {conforms}")
     # --- Step 9: Print Validation Report ---
     if not conforms:
-        print_validation_result_wrapper(False, instance_files, v_text, exit_code=210)
+        print_validation_result_wrapper(False, instance_files + reference_files, v_text, exit_code=210)
     else:
-        print_validation_result_wrapper(True, instance_files, v_text, exit_code=None)
+        print_validation_result_wrapper(True, instance_files + reference_files, v_text, exit_code=None)
 
 
 if __name__ == "__main__":

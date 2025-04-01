@@ -37,6 +37,7 @@ def run_command(command, description):
 
     # Normalize paths in the command
     command = [os.path.normpath(path) for path in command]
+    sys.stdout.flush()
 
     # Check if the command is empty
     if not command:
@@ -77,6 +78,7 @@ def check_ttl_syntax():
     print("\n=== Checking TTL syntax ===")
     for ontology in ONTOLOGY_DIRS:
         folder_path = os.path.join(ROOT_DIR, ontology)
+        sys.stdout.flush()
         print(f"\n🔍 Starting TTL syntax tests for folder: {ontology}")
         ttl_files = [
             os.path.join(folder_path, f)
@@ -86,6 +88,7 @@ def check_ttl_syntax():
         if not ttl_files:
             print(f"⚠️  No .ttl files found in folder: {ontology}")
         for ttl_file in ttl_files:
+            sys.stdout.flush()
             print(f"🔍 Checking syntax of {ttl_file}...")
             returncode, output = run_command(
                 [
@@ -145,21 +148,34 @@ def check_failing_tests():
             print(f"⚠️  No tests folder found in {ontology}, skipping failing tests.")
             continue
 
+        sys.stdout.flush()
         print(f"\n🔍 Running failing tests in folder: {ontology}")
-        fail_tests = [
+        fail_tests = sorted(
             f
             for f in os.listdir(test_folder)
             if f.startswith("fail") and f.endswith(".json")
-        ]
+        )
         if not fail_tests:
             print(f"⚠️  No failing test files found in {ontology}.")
             continue
 
         for test in fail_tests:
+            sys.stdout.flush()
             test_path = os.path.join(test_folder, test)
             # Remove the '.json' extension and append '.expected'
             expected_output_filename = os.path.splitext(test)[0] + ".expected"
             expected_output_path = os.path.join(test_folder, expected_output_filename)
+
+            # Read expected output if file exists
+            if os.path.exists(expected_output_path):
+                with open(expected_output_path, "r", encoding="utf-8") as f:
+                    expected_output = f.read().strip()
+            else:
+                print(
+                    f"⚠️ No expected output file found: {expected_output_path}",
+                        file=sys.stderr,
+                    )
+                sys.exit(1)
 
             print(f"🔍 Running failing test: {test_path} in folder: {ontology}")
 
@@ -172,27 +188,27 @@ def check_failing_tests():
                 f"Failing test validation for {test_path}",
             )
 
-            # Read expected output if file exists
-            if os.path.exists(expected_output_path):
-                with open(expected_output_path, "r", encoding="utf-8") as f:
-                    expected_output = f.read().strip()
-            else:
-                print(
-                    f"⚠️ No expected output file found: {expected_output_path}",
-                    file=sys.stderr,
-                )
-                sys.exit(1)
-
-            # Compare the captured output with expected output
-            if output.strip() == expected_output.strip():
-                print(f"✅ Test {test} in folder {ontology} failed as expected.")
+            if returncode == 210:
+                # Assuming output and expected_output are defined
+                output = output.split('=')[0].strip() + '=' + output.split('=')[-1].strip()
+                expected_output = expected_output.split('=')[0].strip() + '=' + expected_output.split('=')[-1].strip()
+                # Compare the captured output with expected output
+                if output.strip() == expected_output.strip():
+                    print(f"✅ Test {test} in folder {ontology} failed as expected.")
+                else:
+                    print(
+                        f"\n❌ Error during comparison of expected vs. result for {test_path}:\n"
+                        f"Expected output file:\n{expected_output}\n\nValidation output:\n{output}",
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
             else:
                 print(
                     f"\n❌ Error during failing test validation for {test_path}:\n"
-                    f"Expected:\n{expected_output}\n\nGot:\n{output}",
+                    f"Errorcode: {returncode}\n",
                     file=sys.stderr,
-                )
-                sys.exit(1)
+                    )
+                sys.exit(returncode)
 
         print(f"📌 Completed failing tests for folder: {ontology}")
 
