@@ -173,8 +173,8 @@ def check_failing_tests():
             else:
                 print(
                     f"⚠️ No expected output file found: {expected_output_path}",
-                        file=sys.stderr,
-                    )
+                    file=sys.stderr,
+                )
                 sys.exit(1)
 
             print(f"🔍 Running failing test: {test_path} in folder: {ontology}")
@@ -190,8 +190,14 @@ def check_failing_tests():
 
             if returncode == 210:
                 # Assuming output and expected_output are defined
-                output = output.split('=')[0].strip() + '=' + output.split('=')[-1].strip()
-                expected_output = expected_output.split('=')[0].strip() + '=' + expected_output.split('=')[-1].strip()
+                output = (
+                    output.split("=")[0].strip() + "=" + output.split("=")[-1].strip()
+                )
+                expected_output = (
+                    expected_output.split("=")[0].strip()
+                    + "="
+                    + expected_output.split("=")[-1].strip()
+                )
                 # Compare the captured output with expected output
                 if output.strip() == expected_output.strip():
                     print(f"✅ Test {test} in folder {ontology} failed as expected.")
@@ -207,7 +213,7 @@ def check_failing_tests():
                     f"\n❌ Error during failing test validation for {test_path}:\n"
                     f"Errorcode: {returncode}\n",
                     file=sys.stderr,
-                    )
+                )
                 sys.exit(returncode)
 
         print(f"📌 Completed failing tests for folder: {ontology}")
