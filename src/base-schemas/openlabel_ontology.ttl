@@ -1,0 +1,1641 @@
+# ASAM OpenLABEL Standard V1.0.0 Scenario Tagging Ontology
+# For details, please see https://www.asam.net/project-detail/asam-openlabel-v100
+# Generated: 08/11/2021 14:41:00
+
+@base <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Scenario> a rdfs:Class ;
+	rdfs:subClassOf rdfs:Class .
+
+<hasTag> a rdfs:Property ;
+	rdfs:domain <Scenario> ;
+	rdfs:range <Tag> .
+
+##############################################################################
+# Base Tag
+##############################################################################
+
+<Tag> a rdfs:Class ;
+	rdfs:subClassOf rdfs:Class ;
+	rdfs:label "Base Tag"@en ;
+	rdfs:comment "The base tag"@en .
+
+##############################################################################
+# ODD Tags
+##############################################################################
+
+<Odd> a rdfs:Class ;
+	rdfs:subClassOf <Tag> ;
+	rdfs:label "ODD"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<OddEnvironment> a rdfs:Class ;
+	rdfs:subClassOf <Odd> ;
+	rdfs:label "Environmental Conditions"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.1.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EnvironmentWeather> a rdfs:Class ;
+	rdfs:subClassOf <OddEnvironment> ;
+	rdfs:label "Weather"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WeatherWind> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentWeather> ;
+	rdfs:label "Wind"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WeatherRain> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentWeather> ;
+	rdfs:label "Rainfall"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RainType> a rdfs:Class ;
+	rdfs:subClassOf <WeatherRain> ;
+	rdfs:label "Rainfall type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RainTypeDynamic> a rdfs:Class ;
+	rdfs:subClassOf <RainType> ;
+	rdfs:label "Dynamic"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RainTypeConvective> a rdfs:Class ;
+	rdfs:subClassOf <RainType> ;
+	rdfs:label "Convective"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RainTypeOrographic> a rdfs:Class ;
+	rdfs:subClassOf <RainType> ;
+	rdfs:label "Orographic"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WeatherSnow> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentWeather> ;
+	rdfs:label "Snowfall"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EnvironmentParticulates> a rdfs:Class ;
+	rdfs:subClassOf <OddEnvironment> ;
+	rdfs:label "Particulates (obscuration by nonPrecipitating water droplets and other particulates)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ParticulatesMarine> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentParticulates> ;
+	rdfs:label "Marine (coastal areas only)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ParticulatesWater> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentParticulates> ;
+	rdfs:label "Non-precipitating water droplets or ice crystals (i.e. mist/fog)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ParticulatesDust> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentParticulates> ;
+	rdfs:label "Sand and dust"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ParticulatesPollution> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentParticulates> ;
+	rdfs:label "Smoke and pollution"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ParticulatesVolcanic> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentParticulates> ;
+	rdfs:label "Volcanic ash"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EnvironmentIllumination> a rdfs:Class ;
+	rdfs:subClassOf <OddEnvironment> ;
+	rdfs:label "Illumination"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IlluminationDay> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentIllumination> ;
+	rdfs:label "Day"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DaySunElevation> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationDay> ;
+	rdfs:label "Elevation of the sun above the horizon"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DaySunPosition> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationDay> ;
+	rdfs:label "Position of the sun"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SunPositionFront> a rdfs:Class ;
+	rdfs:subClassOf <DaySunPosition> ;
+	rdfs:label "Front"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SunPositionLeft> a rdfs:Class ;
+	rdfs:subClassOf <DaySunPosition> ;
+	rdfs:label "Left"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SunPositionRight> a rdfs:Class ;
+	rdfs:subClassOf <DaySunPosition> ;
+	rdfs:label "Right"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SunPositionBehind> a rdfs:Class ;
+	rdfs:subClassOf <DaySunPosition> ;
+	rdfs:label "Behind"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IlluminationLowLight> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentIllumination> ;
+	rdfs:label "Night or lowAmbient lighting condition"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LowLightNight> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationLowLight> ;
+	rdfs:label "Night"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LowLightAmbient> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationLowLight> ;
+	rdfs:label "LowAmbient lighting"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.b.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IlluminationCloudiness> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentIllumination> ;
+	rdfs:label "Cloudiness"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IlluminationArtificial> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentIllumination> ;
+	rdfs:label "Artificial illumination"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ArtificialStreetLighting> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationArtificial> ;
+	rdfs:label "Streetlights"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.d.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ArtificialVehicleLighting> a rdfs:Class ;
+	rdfs:subClassOf <IlluminationArtificial> ;
+	rdfs:label "Oncoming vehicle lights"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.d.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EnvironmentConnectivity> a rdfs:Class ;
+	rdfs:subClassOf <OddEnvironment> ;
+	rdfs:label "Connectivity"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ConnectivityCommunication> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentConnectivity> ;
+	rdfs:label "Communication"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<CommunicationV2v> a rdfs:Class ;
+	rdfs:subClassOf <ConnectivityCommunication> ;
+	rdfs:label "Vehicle to vehicle communication (V2V)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2vCellular> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2v> ;
+	rdfs:label "Cellular"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.i"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2vSatellite> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2v> ;
+	rdfs:label "Satellite"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.ii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2vWifi> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2v> ;
+	rdfs:label "802.11p-based WiFi"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.1.iii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<CommunicationV2i> a rdfs:Class ;
+	rdfs:subClassOf <ConnectivityCommunication> ;
+	rdfs:label "Vehicle to infrastructure communication (V2I)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2iCellular> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2i> ;
+	rdfs:label "Cellular"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.i"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2iSatellite> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2i> ;
+	rdfs:label "Satellite"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.ii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<V2iWifi> a rdfs:Class ;
+	rdfs:subClassOf <CommunicationV2i> ;
+	rdfs:label "802.11p-based WiFi"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.a.2.iii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ConnectivityPositioning> a rdfs:Class ;
+	rdfs:subClassOf <EnvironmentConnectivity> ;
+	rdfs:label "Positioning"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<PositioningGalileo> a rdfs:Class ;
+	rdfs:subClassOf <ConnectivityPositioning> ;
+	rdfs:label "Galileo"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<PositioningGlonass> a rdfs:Class ;
+	rdfs:subClassOf <ConnectivityPositioning> ;
+	rdfs:label "GLObal NAvigation Satellite System (GLONASS)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<PositioningGps> a rdfs:Class ;
+	rdfs:subClassOf <ConnectivityPositioning> ;
+	rdfs:label "Global Positioning System (GPS)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.4.b.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<OddScenery> a rdfs:Class ;
+	rdfs:subClassOf <Odd> ;
+	rdfs:label "Scenery"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.1.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SceneryZone> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Zones"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ZoneGeoFenced> a rdfs:Class ;
+	rdfs:subClassOf <SceneryZone> ;
+	rdfs:label "GeoFenced areas"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ZoneTrafficManagement> a rdfs:Class ;
+	rdfs:subClassOf <SceneryZone> ;
+	rdfs:label "Traffic management zones"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ZoneSchool> a rdfs:Class ;
+	rdfs:subClassOf <SceneryZone> ;
+	rdfs:label "School zones"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ZoneRegion> a rdfs:Class ;
+	rdfs:subClassOf <SceneryZone> ;
+	rdfs:label "Regions or states"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ZoneInterference> a rdfs:Class ;
+	rdfs:subClassOf <SceneryZone> ;
+	rdfs:label "Interference zones"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.2.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SceneryDrivableArea> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Drivable area"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaType> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeMotorway> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Motorways"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<MotorwayManaged> a rdfs:Class ;
+	rdfs:subClassOf <RoadTypeMotorway> ;
+	rdfs:label "With active traffic management (smart motorways)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<MotorwayUnmanaged> a rdfs:Class ;
+	rdfs:subClassOf <RoadTypeMotorway> ;
+	rdfs:label "Without active traffic management"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeRadial> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Radial roads"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeDistributor> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Distributor roads"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeMinor> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Minor roads"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeSlip> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Slip roads"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeParking> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Parking"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.f"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoadTypeShared> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaType> ;
+	rdfs:label "Shared space"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.2.g"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaGeometry> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area geometry"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<GeometryHorizontal> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaGeometry> ;
+	rdfs:label "Horizontal plane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<HorizontalStraights> a rdfs:Class ;
+	rdfs:subClassOf <GeometryHorizontal> ;
+	rdfs:label "Straight lines"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<HorizontalCurves> a rdfs:Class ;
+	rdfs:subClassOf <GeometryHorizontal> ;
+	rdfs:label "Curves"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<GeometryTransverse> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaGeometry> ;
+	rdfs:label "Transverse plane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TransverseDivided> a rdfs:Class ;
+	rdfs:subClassOf <GeometryTransverse> ;
+	rdfs:label "Divided"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TransverseUndivided> a rdfs:Class ;
+	rdfs:subClassOf <GeometryTransverse> ;
+	rdfs:label "Undivided"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TransversePavements> a rdfs:Class ;
+	rdfs:subClassOf <GeometryTransverse> ;
+	rdfs:label "Pavements"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TransverseBarriers> a rdfs:Class ;
+	rdfs:subClassOf <GeometryTransverse> ;
+	rdfs:label "Barriers on edges"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TransverseLanesTogether> a rdfs:Class ;
+	rdfs:subClassOf <GeometryTransverse> ;
+	rdfs:label "Types of lanes together"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<GeometryLongitudinal> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaGeometry> ;
+	rdfs:label "Longitudinal plane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LongitudinalUpSlope> a rdfs:Class ;
+	rdfs:subClassOf <GeometryLongitudinal> ;
+	rdfs:label "Up-slope (positive gradient)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.i"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LongitudinalDownSlope> a rdfs:Class ;
+	rdfs:subClassOf <GeometryLongitudinal> ;
+	rdfs:label "Dow-slope (negativeGradient)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.ii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LongitudinalLevelPlane> a rdfs:Class ;
+	rdfs:subClassOf <GeometryLongitudinal> ;
+	rdfs:label "Level plane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.iii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaLaneSpecification> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area lane specification"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneSpecificationDimensions> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaLaneSpecification> ;
+	rdfs:label "Lane dimensions"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneSpecificationMarking> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaLaneSpecification> ;
+	rdfs:label "Lane marking"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneSpecificationType> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaLaneSpecification> ;
+	rdfs:label "Lane type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeBus> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Bus lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeCycle> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Cycle lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeEmergency> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Emergency lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeSpecial> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Special purpose lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeTram> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Tram lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneTypeTraffic> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationType> ;
+	rdfs:label "Traffic lane"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneSpecificationLaneCount> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaLaneSpecification> ;
+	rdfs:label "Number of lanes"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<LaneSpecificationTravelDirection> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaLaneSpecification> ;
+	rdfs:label "Direction of travel"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TravelDirectionLeft> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationTravelDirection> ;
+	rdfs:label "Left"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TravelDirectionRight> a rdfs:Class ;
+	rdfs:subClassOf <LaneSpecificationTravelDirection> ;
+	rdfs:label "Right"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaSigns> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area signs"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SignsInformation> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSigns> ;
+	rdfs:label "Information signs"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsUniform> a rdfs:Class ;
+	rdfs:subClassOf <SignsInformation> ;
+	rdfs:label "Uniform"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsUniformFullTime> a rdfs:Class ;
+	rdfs:subClassOf <InformationSignsUniform> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsUniformTemporary> a rdfs:Class ;
+	rdfs:subClassOf <InformationSignsUniform> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsVariable> a rdfs:Class ;
+	rdfs:subClassOf <SignsInformation> ;
+	rdfs:label "Variable"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsVariableFullTime> a rdfs:Class ;
+	rdfs:subClassOf <InformationSignsVariable> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<InformationSignsVariableTemporary> a rdfs:Class ;
+	rdfs:subClassOf <InformationSignsVariable> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SignsRegulatory> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSigns> ;
+	rdfs:label "Regulatory signs"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsUniform> a rdfs:Class ;
+	rdfs:subClassOf <SignsRegulatory> ;
+	rdfs:label "Uniform"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsUniformFullTime> a rdfs:Class ;
+	rdfs:subClassOf <RegulatorySignsUniform> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsUniformTemporary> a rdfs:Class ;
+	rdfs:subClassOf <RegulatorySignsUniform> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsVariable> a rdfs:Class ;
+	rdfs:subClassOf <SignsRegulatory> ;
+	rdfs:label "Variable"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsVariableFullTime> a rdfs:Class ;
+	rdfs:subClassOf <RegulatorySignsVariable> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RegulatorySignsVariableTemporary> a rdfs:Class ;
+	rdfs:subClassOf <RegulatorySignsVariable> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SignsWarning> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSigns> ;
+	rdfs:label "Warning signs"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsUniform> a rdfs:Class ;
+	rdfs:subClassOf <SignsWarning> ;
+	rdfs:label "Uniform"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsUniformFullTime> a rdfs:Class ;
+	rdfs:subClassOf <WarningSignsUniform> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsUniformTemporary> a rdfs:Class ;
+	rdfs:subClassOf <WarningSignsUniform> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsVariable> a rdfs:Class ;
+	rdfs:subClassOf <SignsWarning> ;
+	rdfs:label "Variable"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsVariableFullTime> a rdfs:Class ;
+	rdfs:subClassOf <WarningSignsVariable> ;
+	rdfs:label "FullTime"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<WarningSignsVariableTemporary> a rdfs:Class ;
+	rdfs:subClassOf <WarningSignsVariable> ;
+	rdfs:label "Temporary"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.5.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaEdge> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area edge"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeLineMarkers> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "Line markers"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeShoulderPavedOrGravel> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "Shoulder (paved or gravel)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeShoulderGrass> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "Shoulder (grass)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeSolidBarriers> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "Solid barriers (e.g. grating, rails, curb, cones)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeTemporaryLineMarkers> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "Temporary line markers"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<EdgeNone> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaEdge> ;
+	rdfs:label "None"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.6.f"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaSurface> a rdfs:Class ;
+	rdfs:subClassOf <SceneryDrivableArea> ;
+	rdfs:label "Drivable area surface"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.1.f"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaSurfaceType> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurface> ;
+	rdfs:label "Drivable area surface type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceTypeLoose> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceType> ;
+	rdfs:label "Loose (e.g. gravel, earth, sand)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceTypeSegmented> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceType> ;
+	rdfs:label "Segmented (e.g. concrete slabs, granite setts, cobblestones)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceTypeUniform> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceType> ;
+	rdfs:label "Uniform (e.g. asphalt)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaSurfaceFeature> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurface> ;
+	rdfs:label "Drivable area surface features"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceFeatureCrack> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceFeature> ;
+	rdfs:label "Cracks"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceFeaturePothole> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceFeature> ;
+	rdfs:label "Potholes"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceFeatureRut> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceFeature> ;
+	rdfs:label "Ruts"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceFeatureSwell> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceFeature> ;
+	rdfs:label "Swells"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DrivableAreaSurfaceCondition> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurface> ;
+	rdfs:label "Drivable area induced road surface conditions"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionIcy> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Icy"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.i"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionFlooded> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Flooded roadways"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.ii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionMirage> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Mirage"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.iii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionSnow> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Snow on drivable area"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.iv"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionStandingWater> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Standing water"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.v"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionWet> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Wet road"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.vi"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SurfaceConditionContamination> a rdfs:Class ;
+	rdfs:subClassOf <DrivableAreaSurfaceCondition> ;
+	rdfs:label "Surface contamination"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.7.vii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SceneryJunction> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Junctions"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<JunctionIntersection> a rdfs:Class ;
+	rdfs:subClassOf <SceneryJunction> ;
+	rdfs:label "Intersections"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IntersectionTJunction> a rdfs:Class ;
+	rdfs:subClassOf <JunctionIntersection> ;
+	rdfs:label "TJunctions"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.i"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IntersectionStaggered> a rdfs:Class ;
+	rdfs:subClassOf <JunctionIntersection> ;
+	rdfs:label "Staggered"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.ii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IntersectionYJunction> a rdfs:Class ;
+	rdfs:subClassOf <JunctionIntersection> ;
+	rdfs:label "YJunction"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.iii"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IntersectionCrossroad> a rdfs:Class ;
+	rdfs:subClassOf <JunctionIntersection> ;
+	rdfs:label "Crossroads"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.iv"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<IntersectionGradeSeperated> a rdfs:Class ;
+	rdfs:subClassOf <JunctionIntersection> ;
+	rdfs:label "Grade separated"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.v"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<JunctionRoundabout> a rdfs:Class ;
+	rdfs:subClassOf <SceneryJunction> ;
+	rdfs:label "Roundabouts"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutNormal> a rdfs:Class ;
+	rdfs:subClassOf <JunctionRoundabout> ;
+	rdfs:label "Normal"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutNormalNosignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutNormal> ;
+	rdfs:label "Signalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutNormalSignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutNormal> ;
+	rdfs:label "NonSignalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutCompact> a rdfs:Class ;
+	rdfs:subClassOf <JunctionRoundabout> ;
+	rdfs:label "Compact"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutCompactNosignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutCompact> ;
+	rdfs:label "Signalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutCompactSignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutCompact> ;
+	rdfs:label "NonSignalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.b.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutDouble> a rdfs:Class ;
+	rdfs:subClassOf <JunctionRoundabout> ;
+	rdfs:label "Double"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutDoubleNosignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutDouble> ;
+	rdfs:label "Signalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutDoubleSignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutDouble> ;
+	rdfs:label "NonSignalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.c.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutLarge> a rdfs:Class ;
+	rdfs:subClassOf <JunctionRoundabout> ;
+	rdfs:label "Large"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutLargeNosignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutLarge> ;
+	rdfs:label "Signalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutLargeSignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutLarge> ;
+	rdfs:label "NonSignalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.d.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutMini> a rdfs:Class ;
+	rdfs:subClassOf <JunctionRoundabout> ;
+	rdfs:label "Mini"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutMiniNosignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutMini> ;
+	rdfs:label "Signalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<RoundaboutMiniSignal> a rdfs:Class ;
+	rdfs:subClassOf <RoundaboutMini> ;
+	rdfs:label "NonSignalised"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.4.e.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<ScenerySpecialStructure> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Special structures"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructureAutoAccess> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Automatic access control"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructureBridge> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Bridges"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructurePedestrianCrossing> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Pedestrian crossings"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructureRailCrossing> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Rail crossings"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructureTunnel> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Tunnels"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SpecialStructureTollPlaza> a rdfs:Class ;
+	rdfs:subClassOf <ScenerySpecialStructure> ;
+	rdfs:label "Toll plaza"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.5.f"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SceneryFixedStructure> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Fixed road structures"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.e"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<FixedStructureBuilding> a rdfs:Class ;
+	rdfs:subClassOf <SceneryFixedStructure> ;
+	rdfs:label "Buildings"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<FixedStructureStreetlight> a rdfs:Class ;
+	rdfs:subClassOf <SceneryFixedStructure> ;
+	rdfs:label "Street lights"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<FixedStructureStreetFurniture> a rdfs:Class ;
+	rdfs:subClassOf <SceneryFixedStructure> ;
+	rdfs:label "Street furniture (e.g. bollards)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<FixedStructureVegetation> a rdfs:Class ;
+	rdfs:subClassOf <SceneryFixedStructure> ;
+	rdfs:label "Vegetation"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.6.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SceneryTemporaryStructure> a rdfs:Class ;
+	rdfs:subClassOf <OddScenery> ;
+	rdfs:label "Temporary road structures"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.1.f"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TemporaryStructureConstructionDetour> a rdfs:Class ;
+	rdfs:subClassOf <SceneryTemporaryStructure> ;
+	rdfs:label "Construction site detours"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TemporaryStructureRefuseCollection> a rdfs:Class ;
+	rdfs:subClassOf <SceneryTemporaryStructure> ;
+	rdfs:label "Refuse collection"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TemporaryStructureRoadWorks> a rdfs:Class ;
+	rdfs:subClassOf <SceneryTemporaryStructure> ;
+	rdfs:label "Road works"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TemporaryStructureRoadSignage> a rdfs:Class ;
+	rdfs:subClassOf <SceneryTemporaryStructure> ;
+	rdfs:label "Road signage"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.7.d"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<OddDynamicElements> a rdfs:Class ;
+	rdfs:subClassOf <Odd> ;
+	rdfs:label "Dynamic elements"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.1.c"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DynamicElementsTraffic> a rdfs:Class ;
+	rdfs:subClassOf <OddDynamicElements> ;
+	rdfs:label "Traffic"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TrafficAgentDensity> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsTraffic> ;
+	rdfs:label "Density of agents"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.1"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TrafficVolume> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsTraffic> ;
+	rdfs:label "Volume of traffic"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.2"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TrafficFlowRate> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsTraffic> ;
+	rdfs:label "Flow rate"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.3"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TrafficAgentType> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsTraffic> ;
+	rdfs:label "Agent type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.4"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<TrafficSpecialVehicle> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsTraffic> ;
+	rdfs:label "Presence of special vehicles (e.g. ambulances or police vehicles)."@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.5"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<DynamicElementsSubjectVehicle> a rdfs:Class ;
+	rdfs:subClassOf <OddDynamicElements> ;
+	rdfs:label "Subject vehicle"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<SubjectVehicleSpeed> a rdfs:Class ;
+	rdfs:subClassOf <DynamicElementsSubjectVehicle> ;
+	rdfs:label "Speed"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+##############################################################################
+# ODD Tag Properties
+##############################################################################
+
+<weatherWindValue> a rdfs:Property ;
+	rdfs:label "Wind Speed (m/s)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.1"@en ;
+	rdfs:domain <WeatherWind> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<weatherRainValue> a rdfs:Property ;
+	rdfs:label "Rainfall Intensity (mm/h)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.2"@en ;
+	rdfs:domain <WeatherRain> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<weatherSnowValue> a rdfs:Property ;
+	rdfs:label "Visibility (km)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.1.3"@en ;
+	rdfs:domain <WeatherSnow> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<particulatesWaterValue> a rdfs:Property ;
+	rdfs:label "Meteorological Optical Range(MOR) (m)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.2.b"@en ;
+	rdfs:domain <ParticulatesWater> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<daySunElevationValue> a rdfs:Property ;
+	rdfs:label "Sun Elevation (degrees)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.a.1"@en ;
+	rdfs:domain <DaySunElevation> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<illuminationCloudinessValue> a rdfs:Property ;
+	rdfs:label "Cloud cover (okta)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.3.3.c"@en ;
+	rdfs:domain <IlluminationCloudiness> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<horizontalCurvesValue> a rdfs:Property ;
+	rdfs:label "Curve Radius (m)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3"@en ;
+	rdfs:domain <HorizontalCurves> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<longitudinalUpSlopeValue> a rdfs:Property ;
+	rdfs:label "Gradient (%)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.i"@en ;
+	rdfs:domain <LongitudinalUpSlope> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<longitudinalDownSlopeValue> a rdfs:Property ;
+	rdfs:label "Gradient (%)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.3.ii"@en ;
+	rdfs:domain <LongitudinalDownSlope> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<laneSpecificationDimensionsValue> a rdfs:Property ;
+	rdfs:label "Lane width (m)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.a"@en ;
+	rdfs:domain <LaneSpecificationDimensions> ;
+	rdfs:range xsd:decimal ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<laneSpecificationLaneCountValue> a rdfs:Property ;
+	rdfs:label "Number of lanes (Unit)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.2.3.4.d"@en ;
+	rdfs:domain <LaneSpecificationLaneCount> ;
+	rdfs:range xsd:positiveInteger ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<trafficAgentDensityValue> a rdfs:Property ;
+	rdfs:label "Density (vehicles/km)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.1"@en ;
+	rdfs:domain <TrafficAgentDensity> ;
+	rdfs:range xsd:nonNegativeInteger ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<trafficVolumeValue> a rdfs:Property ;
+	rdfs:label "Volume (vehicle km)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.2"@en ;
+	rdfs:domain <TrafficVolume> ;
+	rdfs:range xsd:nonNegativeInteger ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<trafficFlowRateValue> a rdfs:Property ;
+	rdfs:label "Rate (vehicles/h)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.3"@en ;
+	rdfs:domain <TrafficFlowRate> ;
+	rdfs:range xsd:nonNegativeInteger ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<trafficAgentTypeValue> a rdfs:Property ;
+	rdfs:label "Agent type"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.a.4"@en ;
+	rdfs:domain <TrafficAgentType> ;
+	rdfs:range <RoadUser> ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+<subjectVehicleSpeedValue> a rdfs:Property ;
+	rdfs:label "Speed (km/h)"@en ;
+	rdfs:comment "Refer to BSI PAS-1883 Section 5.4.b"@en ;
+	rdfs:domain <SubjectVehicleSpeed> ;
+	rdfs:range xsd:nonNegativeInteger ;
+	rdfs:seeAlso "https://www.bsigroup.com/en-GB/CAV/pas-1883" .
+
+##############################################################################
+# Administration tags
+##############################################################################
+
+<AdminTag> a rdfs:Class ;
+    rdfs:label "Base Administration Tag"@en ;
+    rdfs:comment "The base tag to use when extending the Administration tags with new classes."@en ;
+	rdfs:subClassOf <Tag> .
+
+# Properties Section
+
+<scenarioUniqueReference> a rdfs:Property ;
+    rdfs:label "Scenario unique reference"@en ;
+    rdfs:comment "This is a universally unique identifier (UUID) assigned to the scenario which allows the scenario to be identified."@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioParentReference> a rdfs:Property ;
+    rdfs:label "Scenario parent reference"@en ;
+    rdfs:comment "This is a universally unique identifier (UUID) which identifies the scenario which this one has been derived from."@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioName> a rdfs:Property ;
+    rdfs:label "Scenario name"@en ;
+    rdfs:comment "The name of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioDescription> a rdfs:Property ;
+    rdfs:label "Scenario description"@en ;
+    rdfs:comment "A description of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioVersion> a rdfs:Property ;
+    rdfs:label "Scenario version"@en ;
+    rdfs:comment "The version number of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioCreatedDate> a rdfs:Property ;
+    rdfs:label "Scenario created date"@en ;
+    rdfs:comment "The date that the scenario was created/published"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range xsd:dateTime .
+
+<scenarioDefinition> a rdfs:Property ;
+    rdfs:label "Scenario definition SDL"@en ;
+    rdfs:comment "SDL definition of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioDefinitionLanguageURI> a rdfs:Property ;
+    rdfs:label "Scenario definition type"@en ;
+    rdfs:comment "URI of SDL language used for the definition of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<scenarioVisualisationURL> a rdfs:Property ;
+    rdfs:label "Scenario visualisation"@en ;
+    rdfs:comment "Relative or absolute URL of a static image or animation of the scenario to allow users to easily see what the scenario represents"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<ownerName> a rdfs:Property ;
+    rdfs:label "Scenario owner name"@en ;
+    rdfs:comment "The name of the legal entity who owns the rights to the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<ownerEmail> a rdfs:Property ;
+    rdfs:label "Scenario owner email"@en ;
+    rdfs:comment "The email address of the legal entity who owns the rights to the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<ownerURL> a rdfs:Property ;
+    rdfs:label "Scenario owner URL"@en ;
+    rdfs:comment "The URL of the legal entity who owns the rights to the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+<licenseURI> a rdfs:Property ;
+    rdfs:label "License Type"@en ;
+    rdfs:comment "The type of license which governs usage of the scenario"@en ;
+    rdfs:domain <Scenario> ;
+    rdfs:range rdfs:Literal .
+
+##############################################################################
+# Road User and Behaviour tags
+##############################################################################
+
+<RoadUser> a rdfs:Class ;
+	rdfs:subClassOf <Tag> ;
+	rdfs:label "Road user"@en ;
+	rdfs:comment "Something which uses a road to travel"@en .
+
+<RoadUserAnimal> a rdfs:Class ;
+	rdfs:subClassOf <RoadUser> ;
+	rdfs:label "Animal"@en ;
+	rdfs:comment "A non-human living organism that feeds on organic matter, typically having specialized sense organs and nervous system and able to respond rapidly to stimuli"@en .
+
+<RoadUserHuman> a rdfs:Class ;
+	rdfs:subClassOf <RoadUser> ;
+	rdfs:label "Human"@en ;
+	rdfs:comment "A person"@en .
+
+<HumanAnimalRider> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Animal rider"@en ;
+	rdfs:comment "A person who is riding an animal"@en .
+
+<HumanCyclist> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Cyclist"@en ;
+	rdfs:comment "A person who is riding a cycle"@en .
+
+<HumanDriver> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Driver"@en ;
+	rdfs:comment "A person who is operating a motorised vehicle, excluding motorcycles"@en .
+
+<HumanMotorcyclist> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Motorcyclist"@en ;
+	rdfs:comment "A person who is riding a motorcycle"@en .
+
+<HumanPassenger> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Passenger"@en ;
+	rdfs:comment "A person who is using a vehicle to travel but who is not operating the vehicle"@en .
+
+<HumanPedestrian> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Pedestrian"@en ;
+	rdfs:comment "A person who is using a road without the use of a vehicle"@en .
+
+<HumanWheelchairUser> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserHuman> ;
+	rdfs:label "Wheelchair user"@en ;
+	rdfs:comment "A person who is travelling in a wheelchair"@en .
+
+<RoadUserVehicle> a rdfs:Class ;
+	rdfs:subClassOf <RoadUser> ;
+	rdfs:label "Vehicle"@en ;
+	rdfs:comment "A mode of transport that can be operated on a road; human or computer controlled"@en .
+
+<VehicleAgricultural> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Agricultural vehicle"@en ;
+	rdfs:comment "A motor vehicle designed for the purpose of farming, such as tractors, harvesters"@en .
+
+<VehicleBus> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Bus"@en ;
+	rdfs:comment "A motor vehicle designed to carry many passengers, contracted from omnibus, with variants multibus, motorbus, autobus"@en .
+
+<VehicleCar> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Car"@en ;
+	rdfs:comment "A motor vehicle used primarily for the transportation of a small number of people where the occupants are protected by a safety frame"@en .
+
+<VehicleConstruction> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Construction vehicle"@en ;
+	rdfs:comment "A motor vehicle designed for the purpose of construction, such as cranes, bulldozer"@en .
+
+<VehicleCycle> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Cycle"@en ;
+	rdfs:comment "A cycle, is a human-powered or motor-assisted, pedal-driven, wheeled vehicle"@en .
+
+<VehicleEmergency> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Emergency vehicle"@en ;
+	rdfs:comment "A vehicle that is used by emergency services to respond to an incident"@en .
+
+<VehicleMotorcycle> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Motorcycle"@en ;
+	rdfs:comment "A motorcycle, often called a motorbike, is a two- or three-wheeled motor vehicle, where the riders are not enclosed in a protective frame"@en .
+
+<VehicleTrailer> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Trailer"@en ;
+	rdfs:comment "An unpowered vehicle towed by another vehicle"@en .
+
+<VehicleTruck> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Truck"@en ;
+	rdfs:comment "A large, heavy motor vehicle used for carrying goods and materials"@en .
+
+<VehicleVan> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Van"@en ;
+	rdfs:comment "A medium-sized motor vehicle, typically without side windows in the rear part, for transporting goods"@en .
+
+<VehicleWheelchair> a rdfs:Class ;
+	rdfs:subClassOf <RoadUserVehicle> ;
+	rdfs:label "Wheelchair"@en ;
+	rdfs:comment "A chair fitted with wheels for use as a means of transport"@en .
+
+<Behaviour> a rdfs:Class ;
+	rdfs:subClassOf <Tag> ;
+	rdfs:label "Behaviour"@en ;
+	rdfs:comment "An activity performed by a road user"@en .
+
+<BehaviourMotion> a rdfs:Class ;
+	rdfs:subClassOf <Behaviour> ;
+	rdfs:label "Motion"@en ;
+	rdfs:comment "An activity in which the road user changes position, velocity or direction"@en .
+
+<MotionAccelerate> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Accelerate"@en ;
+	rdfs:comment "An activity where the road user increases their velocity"@en .
+
+<MotionDrive> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Drive"@en ;
+	rdfs:comment "An activity where the subject vehicle is moving in the direction in which it is facing"@en .
+
+<MotionDecelerate> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Decelerate"@en ;
+	rdfs:comment "An activity where the road user decreases their velocity"@en .
+
+<MotionLaneChangeLeft> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Lane change left"@en ;
+	rdfs:comment "An activity where the subject vehicle is in a lane left of the original lane at the end of the activity"@en .
+
+<MotionLaneChangeRight> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Lane change right"@en ;
+	rdfs:comment "An activity where the subject vehicle is in a lane right of the original lane at the end of the activity"@en .
+
+<MotionReverse> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Reverse"@en ;
+	rdfs:comment "An activity where the subject vehicle is moving in the opposite direction to which it is facing"@en .
+
+<MotionRun> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Run"@en ;
+	rdfs:comment "Locomotion mode of humans (and animals) in which at a specific point in time no foot touches the ground"@en .
+
+<MotionSlide> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Slide"@en ;
+	rdfs:comment "An activity where a pedestrian is slipping/sliding on the road"@en .
+
+<MotionStop> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Stop"@en ;
+	rdfs:comment "An activity where the road user is stationary"@en .
+
+<MotionTurn> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Turn"@en ;
+	rdfs:comment "An activity where the road user changes their heading"@en .
+
+<MotionTurnLeft> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Turn left"@en ;
+	rdfs:comment "An activity where the subject changes direction in reference to a traffic intersection in which the subject exits the intersection on a road to the left of the original road."@en .
+
+<MotionTurnRight> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Turn right"@en ;
+	rdfs:comment "A moving activity where the subject changes direction in reference to a traffic intersection in which the subject exits the intersection on a road to the right of the original road."@en .
+
+<MotionWalk> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Walk"@en ;
+	rdfs:comment "Locomotion mode of humans (and animals) in which at least one foot is always on the ground"@en .
+
+<MotionCross> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Cross"@en ;
+	rdfs:comment "An activity where the trajectory of the road user crosses the trajectory of the object"@en .
+
+<MotionCutIn> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Cut-in"@en ;
+	rdfs:comment "An activity where the subject vehicle ends up directly in front of the object vehicle in such a manner as to (potentially) affect the behavior of the object vehicle"@en .
+
+<MotionCutOut> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Cut-out"@en ;
+	rdfs:comment "A two participant moving activity where the subject and object vehicles start in the same lane and then the object participant suddenly moves out of the lane"@en .
+
+<MotionAway> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Move away"@en ;
+	rdfs:comment "An activity where the rod user is further away from the object by the end of the activity"@en .
+
+<MotionTowards> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Move towards"@en ;
+	rdfs:comment "An activity where the road user is closer to the object by the end of the activity"@en .
+
+<MotionOvertake> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "Overtake"@en ;
+	rdfs:comment "An activity where the subject starts behind the object and then ends up in front of the object by changing lanes twice"@en .
+
+<MotionUTurn> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourMotion> ;
+	rdfs:label "U-turn"@en ;
+	rdfs:comment "An activity where the subject peforms a turn resulting in it heading in the opposite direction to which it started the activity"@en .
+
+<BehaviourCommunication> a rdfs:Class ;
+	rdfs:subClassOf <Behaviour> ;
+	rdfs:label "Communication"@en ;
+	rdfs:comment "An activity in which the road user issues a communication"@en .
+
+<CommunicationHeadlightFlash> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Flash headlight"@en ;
+	rdfs:comment "Headlight flashing is the act of either briefly switching on the headlights of a vehicle, or of momentarily switching between a headlight's high beams and low beams, in an effort to communicate with other road users"@en .
+
+<CommunicationSignalEmergency> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Signal emergency"@en ;
+	rdfs:comment "Signals made by an emergency vehicle when responding to an emergency, i.e. flashing blue lights"@en .
+
+<CommunicationSignalLeft> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Signal left"@en ;
+	rdfs:comment "A signal made by a road user to indicate an intention to move or turn left"@en .
+
+<CommunicationSignalRight> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Signal right"@en ;
+	rdfs:comment "A signal made by a road user to indicate an intention to move or turn right"@en .
+
+<CommunicationSignalSlowing> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Signal slowing"@en ;
+	rdfs:comment "A signal made by a road user to indicate an intention to slow down or stop"@en .
+
+<CommunicationSignalHazard> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Signal hazard"@en ;
+	rdfs:comment "A signal made by a road user to warn other road users of a hazardous situation, such as when a vehicle is causing an obstruction"@en .
+
+<CommunicationHorn> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Sound horn"@en ;
+	rdfs:comment "The noise made by a vehicle horn"@en .
+
+<CommunicationWave> a rdfs:Class ;
+	rdfs:subClassOf <BehaviourCommunication> ;
+	rdfs:label "Wave"@en ;
+	rdfs:comment "A person, including drivers, pedestrians, riders, making a waving gesture"@en .
+
+# Properties Section
+
+<motionAccelerateValue> a rdfs:Property ;
+	rdfs:label "Rate of acceleration (ms-2)"@en ;
+	rdfs:domain <MotionAccelerate> ;
+	rdfs:range xsd:decimal .
+
+<motionDriveValue> a rdfs:Property ;
+	rdfs:label "Speed (km/h)"@en ;
+	rdfs:domain <MotionDrive> ;
+	rdfs:range xsd:decimal .
+
+<motionDecelerateValue> a rdfs:Property ;
+	rdfs:label "Rate of deceleration (ms-2)"@en ;
+	rdfs:domain <MotionDecelerate> ;
+	rdfs:range xsd:decimal .
