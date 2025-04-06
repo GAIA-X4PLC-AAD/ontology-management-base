@@ -40,7 +40,7 @@
             "vv-report:metric": {
                 "@type": "vv-report:Metric",
                 "vv-report:metricTitle": {
-                    "@value": "Model ouput OSI validation",
+                    "@value": "Model output OSI validation",
                     "@type": "xsd:string"
                 },
                 "vv-report:metricDescription": {
@@ -76,6 +76,23 @@
                     }
                 }
             ],
+            "vv-report:parameters": [
+                {
+                    "@type": "vv-report:Parameter",
+                    "vv-report:parameterName": {
+                        "@value": "verbose",
+                        "@type": "xsd:string"
+                    },
+                    "vv-report:parameterDescription": {
+                        "@value": "If set to true, extensive checks, according to XY, will be carried out",
+                        "@type": "xsd:string"
+                    },
+                    "vv-report:parameterValue": {
+                        "@value": false,
+                        "@type": "xsd:boolean"
+                    }
+                }
+            ],
             "vv-report:result": {
                 "@type": "vv-report:Result",
                 "vv-report:resultTestPassed": {
@@ -87,7 +104,7 @@
                     "@type": "xsd:boolean"
                 }
             },
-            "vv-report:metadata": {
+            "vv-report:conceptSpecificData": {
                 "modeling-simulation-spice-credibility-level": {
                     "@value": 1,
                     "@type": "xsd:integer"
@@ -150,7 +167,7 @@
                     }
                 }
             },
-            "vv-report:metadata": {
+            "vv-report:conceptSpecificData": {
                 "modeling-simulation-spice-credibility-level": {
                     "@value": 1,
                     "@type": "xsd:integer"
