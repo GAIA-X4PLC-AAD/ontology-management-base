@@ -114,7 +114,7 @@ scenario:Manifest a owl:Class ;
     rdfs:comment "A scenario-specific extension of envited-x:Manifest. Ensures that a Scenario manifest contains references to an HD Map, an Environment Model, and catalogs."@en ;
     rdfs:subClassOf envited-x:Manifest ;
     ### hasReferencedArtifacts
-    # Restriction ensuring at least 2 external artifacts
+    # Restriction ensuring at least 2 referenced artifacts
     # (Scenario -> Manifest -> hdmap:HdMap)
     # (Scenario -> Manifest -> environment-model:EnvironmentModel)
     # (Scenario -> Manifest -> manifest:link to these)

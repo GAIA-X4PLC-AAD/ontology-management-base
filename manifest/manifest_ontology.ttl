@@ -148,7 +148,7 @@ manifest:hasArtifacts a owl:ObjectProperty ;
 
 manifest:hasReferencedArtifacts a owl:ObjectProperty ;
     rdfs:label "has Referenced Artifacts"@en ;
-    rdfs:comment "Associates a Manifest instance with its external artifacts, represented as Link instances; only applicable within Manifest instances."@en ;
+    rdfs:comment "Associates a Manifest instance with its referenced artifacts, represented as Link instances; only applicable within Manifest instances."@en ;
     rdfs:subPropertyOf manifest:hasLink ;
     rdfs:domain manifest:Manifest ;
     rdfs:range manifest:Link .
