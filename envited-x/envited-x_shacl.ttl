@@ -121,14 +121,14 @@ envited-x:ManifestShape a sh:NodeShape ;
     ] ;
     # Property shape for external artifact links:
     sh:property [
-        sh:path manifest:hasExternalArtifacts ;
+        sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:node [ 
             sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
             ] ;
         ] ;
         sh:qualifiedMinCount 0 ;
-        sh:message "If provided, external artifact links must have an envited-x access role and category."@en ;
+        sh:message "If provided, referenced artifact links must have an envited-x access role and category."@en ;
     ] ;
     ## Ensure at least one `manifest:Link` for each required category
     sh:property [

@@ -34,7 +34,7 @@ manifest:ManifestShape a sh:NodeShape ;
             sh:path manifest:hasArtifacts
         ] ,
         [   sh:name "external artifact links"@en ;
-            sh:description "Defines the links to all related external artifacts for a digital asset. This is extended by the domain specific ontology."@en ;
+            sh:description "Defines the links to all related referenced artifacts for a digital asset. This is extended by the domain specific ontology."@en ;
             sh:minCount 0 ;
             sh:node manifest:LinkShape ;
             sh:order 3 ;

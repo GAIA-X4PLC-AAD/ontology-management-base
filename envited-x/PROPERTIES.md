@@ -9,26 +9,26 @@
 
 ## List of SHACL Properties
 
-| Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| SimulationAssetShape | envited-x | hasDataResource | 1 | 1 |  |  | envited-x_shacl.ttl |
-| SimulationAssetShape | envited-x | hasDataResourceExtension | 0 |  |  |  | envited-x_shacl.ttl |
-| SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
-| ExtendedLinkShape | manifest | hasAccessRole |  |  |  |  | envited-x_shacl.ttl |
-| ExtendedLinkShape | manifest | hasCategory |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | rdf | type |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasManifestReference |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasLicense |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| DataResourceShape | gx | name | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
-| DataResourceShape | gx | description | 1 | 1 |  | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
-| DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
-| DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| n0bf1e069fed94e6492fbae400b2d1da8b73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| n0bf1e069fed94e6492fbae400b2d1da8b73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| Shape                                | Property prefix | Property                 | MinCount | MaxCount | Description | Datatype/NodeKind                         | Filename            |
+| ------------------------------------ | --------------- | ------------------------ | -------- | -------- | ----------- | ----------------------------------------- | ------------------- |
+| SimulationAssetShape                 | envited-x       | hasDataResource          | 1        | 1        |             |                                           | envited-x_shacl.ttl |
+| SimulationAssetShape                 | envited-x       | hasDataResourceExtension | 0        |          |             |                                           | envited-x_shacl.ttl |
+| SimulationAssetShape                 | envited-x       | hasManifest              | 1        | 1        |             |                                           | envited-x_shacl.ttl |
+| ExtendedLinkShape                    | manifest        | hasAccessRole            |          |          |             |                                           | envited-x_shacl.ttl |
+| ExtendedLinkShape                    | manifest        | hasCategory              |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | rdf             | type                     |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasManifestReference     |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasLicense               |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasArtifacts             |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasReferencedArtifacts     |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasArtifacts             |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasArtifacts             |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasArtifacts             |          |          |             |                                           | envited-x_shacl.ttl |
+| ManifestShape                        | manifest        | hasArtifacts             |          |          |             |                                           | envited-x_shacl.ttl |
+| DataResourceShape                    | gx              | name                     | 1        | 1        |             | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
+| DataResourceShape                    | gx              | description              | 1        | 1        |             | <http://www.w3.org/2001/XMLSchema#string> | envited-x_shacl.ttl |
+| DataResourceExtensionShape           | envited-x       | hasContent               | 1        |          |             |                                           | envited-x_shacl.ttl |
+| DataResourceExtensionShape           | envited-x       | hasFormat                | 1        |          |             |                                           | envited-x_shacl.ttl |
+| DataResourceExtensionShape           | envited-x       | hasDataResourceExtension |          |          |             |                                           | envited-x_shacl.ttl |
+| nef52f8f6b1ad47a6b60786e1efc02a9fb73 | envited-x       | hasContent               | 1        |          |             |                                           | envited-x_shacl.ttl |
+| nef52f8f6b1ad47a6b60786e1efc02a9fb73 | envited-x       | hasFormat                | 1        |          |             |                                           | envited-x_shacl.ttl |

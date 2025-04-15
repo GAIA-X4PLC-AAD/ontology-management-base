@@ -103,14 +103,14 @@ scenario:ManifestShape a sh:NodeShape ;
     ] ;
     # Property shape for external artifact links:
     sh:property [
-        sh:path manifest:hasExternalArtifacts ;
+        sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:node [ 
             sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
             ] ;
         ] ;
         sh:qualifiedMinCount 0 ;
-        sh:message "If provided, a scenario manifest's external artifact links must have an envited-x access role and category."@en ;
+        sh:message "If provided, a scenario manifest's referenced artifact links must have an envited-x access role and category."@en ;
     ] ;
 
     # Ensure at least two manifest:Link(s) in hasArtifacts categorized as simulationData.
