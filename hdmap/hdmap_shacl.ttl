@@ -1,6 +1,6 @@
 @prefix hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .

@@ -1,12 +1,10 @@
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 manifest: a owl:Ontology ;
     rdfs:label "Ontology definition for manifest"@en ;
@@ -38,14 +36,14 @@ manifest: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/manifest/v4/ontology#> ;
-    owl:versionInfo "v4" ;
+    owl:versionIRI <https://ontologies.envited-x.net/manifest/v5/ontology#> ;
+    owl:versionInfo "v5" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v4/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://ontologies.envited-x.net/envited-x> ;
@@ -54,8 +52,11 @@ manifest: a owl:Ontology ;
 
 manifest:Manifest a owl:Class ;
     rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "Defines the structure as list of contents of an asset (e.g. simulation asset) using a manifest.json, including content data and license as linked properties."@en ;
-    rdfs:subClassOf [ 
+    rdfs:comment """Defines the structure of an asset (e.g. simulation asset) as list of contents 
+                    using a manifest.json, listing explicitely included artifacts, referenced
+                    artifacts and license information as linked properties. Typically used for
+                    archives."""@en ;
+    owl:equivalentClass [ 
         a owl:Restriction ; 
         owl:onProperty manifest:hasManifestReference ; 
         owl:cardinality 1
@@ -65,21 +66,33 @@ manifest:Manifest a owl:Class ;
         owl:onProperty manifest:hasLicense ; 
         owl:cardinality 1
     ] ;
-    rdfs:subClassOf [ 
+    owl:equivalentClass [ 
         a owl:Restriction ; 
         owl:onProperty manifest:hasArtifacts ;  
         owl:someValuesFrom manifest:Link
     ] ;
-    rdfs:subClassOf [ 
+    owl:equivalentClass [ 
         a owl:Restriction ; 
         owl:onProperty manifest:hasReferencedArtifacts ;  
         owl:minCardinality 0
     ] .
 
 
+manifest:License a owl:Class ;
+    rdfs:label "Class definition for License"@en ;
+    rdfs:comment "General subclass of Link for defining the license of an asset."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty manifest:hasLink ;
+        owl:cardinality 1
+    ] .
+
+
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link"@en ;
-    rdfs:comment "Defines a Link instance that connects to data and mandatory metadata within an archive or related published simulation assets; can include web references."@en ;
+    rdfs:comment """Defines a Link instance that connects to data and mandatory metadata
+                    within an asset or related published simulation assets; can include
+                    web references."""@en ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty manifest:hasFileMetadata ;
@@ -88,7 +101,7 @@ manifest:Link a owl:Class ;
 
 
 manifest:FileMetadata a owl:Class ;
-    rdfs:label "Class definition for FileMetadata"@en ;
+    rdfs:label "Class definition for File Metadata"@en ;
     rdfs:comment "Represents the properties of a data file referenced within a Link instance."@en ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
@@ -97,50 +110,62 @@ manifest:FileMetadata a owl:Class ;
     ] .
 
 
-manifest:License a owl:Class ;
-    rdfs:label "Class definition for License"@en ;
-    rdfs:comment "General subclass of Link for defining the license of an asset."@en .
-
-
 manifest:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
     rdfs:comment "General class for defining the dimensions of a data file, e.g., of type image or video, referenced inside a manifest:FileMetadata."@en .
 
 ### Object properties
+
+manifest:hasLink a owl:ObjectProperty ;
+    rdfs:label "has Link"@en ;
+    rdfs:comment "States that a subject has a Link instance."@en ;
+    # The range is Link, but no domain is specified
+    rdfs:range manifest:Link .
+
+
 manifest:hasManifestReference a owl:ObjectProperty ;
+    rdfs:label "has Manifest Reference"@en ;
+    rdfs:comment "Links a Manifest to its corresponding manifest reference file, defining the structure and contents of a digital asset; only applicable within Manifest instances."@en ;
+    rdfs:subPropertyOf manifest:hasLink ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:Link ;
-    rdfs:comment "Links a Manifest to its corresponding manifest reference file, defining the structure and contents of a digital asset; only applicable within Manifest instances."@en .
+    rdfs:range manifest:Link .
 
 
 manifest:hasLicense a owl:ObjectProperty ;
+    rdfs:label "has License"@en ;
+    rdfs:comment "Associates a Manifest instance with its corresponding License; only applicable within Manifest instances."@en ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:License ;
-    rdfs:comment "Associates a Manifest instance with its corresponding License; only applicable within Manifest instances."@en .
+    rdfs:range manifest:License .
 
 
 manifest:hasArtifacts a owl:ObjectProperty ;
+    rdfs:label "has Artifacts"@en ;
+    rdfs:comment "Associates a Manifest instance with its artifacts, represented as Link instances; only applicable within Manifest instances."@en ;
+    rdfs:subPropertyOf manifest:hasLink ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:Link ;
-    rdfs:comment "Associates a Manifest instance with its artifacts, represented as Link instances; only applicable within Manifest instances."@en .
+    rdfs:range manifest:Link .
 
 
 manifest:hasReferencedArtifacts a owl:ObjectProperty ;
+    rdfs:label "has Referenced Artifacts"@en ;
+    rdfs:comment "Associates a Manifest instance with its external artifacts, represented as Link instances; only applicable within Manifest instances."@en ;
+    rdfs:subPropertyOf manifest:hasLink ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:Link ;
-    rdfs:comment "Associates a Manifest instance with its external artifacts, represented as Link instances; only applicable within Manifest instances."@en .
+    rdfs:range manifest:Link .
 
 
 manifest:hasFileMetadata a owl:ObjectProperty ;
+    rdfs:label "has File Metadata"@en ;
+    rdfs:comment "Associates a FileMetadata instance with its corresponding Link; only applicable within Link instances."@en ;
     rdfs:domain manifest:Link ;
-    rdfs:range manifest:FileMetadata ;
-    rdfs:comment "Associates a FileMetadata instance with its corresponding Link; only applicable within Link instances."@en .
+    rdfs:range manifest:FileMetadata .
 
 
 manifest:hasDimensions a owl:ObjectProperty ;
+    rdfs:label "has Dimensions"@en ;
+    rdfs:comment "Links a Dimensions instance to its associated FileMetadata, defining the size and scale of the data file; applicable only within FileMetadata instances."@en ;
     rdfs:domain manifest:FileMetadata ;
-    rdfs:range manifest:Dimensions ;
-    rdfs:comment "Links a Dimensions instance to its associated FileMetadata, defining the size and scale of the data file; applicable only within FileMetadata instances."@en .
+    rdfs:range manifest:Dimensions .
 
 ## Define a general access role class
 manifest:AccessRole a owl:Class ;

@@ -1,4 +1,4 @@
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -156,14 +156,14 @@ manifest:LicenseShape a sh:NodeShape ;
             sh:path gx:license 
         ],
         [   sh:name "license data"@en ;
-            sh:description "Defines a link to the license."@en ;
-            skos:example "accessRole: publicUser, type: license, format: html, path: <https://opensource.org/license/mit>"@en ;
-            sh:message "Validation of licenseData failed!"@en ;
+            sh:description "Defines a link to the licensing terms."@en ;
+            skos:example "accessRole: isPublic, category: isLicense, hasFileMetadata: { mimeType: text/html, filePath: <https://opensource.org/license/mit> }"@en ;
+            sh:message "Validation of hasLink failed!"@en ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node manifest:LinkShape ;
             sh:order 2 ;
-            sh:path manifest:licenseData 
+            sh:path manifest:hasLink 
         ] ;
     sh:targetClass manifest:License .
 

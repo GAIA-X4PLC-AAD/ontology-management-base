@@ -1,5 +1,5 @@
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
-@prefix manifest: <https://ontologies.envited-x.net/manifest/v4/ontology#> .
+@prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -94,7 +94,7 @@ envited-x:ManifestShape a sh:NodeShape ;
         sh:qualifiedValueShape [
             sh:node manifest:LicenseShape ;
             sh:property [
-                sh:path manifest:licenseData ;
+                sh:path manifest:hasLink ;
                 sh:qualifiedValueShape [
                     sh:node [ 
                     sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
