@@ -41,6 +41,10 @@ vv-report:EvaluationShape a sh:NodeShape ;
             sh:description "The definition of a dataset that has been used as input to the quality metric."@en ;
             sh:minCount 1 ;
             sh:order 1 ],
+        [ sh:path vv-report:parameters ;
+            sh:node general:ParameterShape ;
+            sh:description "A list of parameters that have been used to configure the quality metric and/or quality criterion."@en ;
+            sh:minCount 0 ],
         [ sh:path vv-report:result ;
             sh:node vv-report:ResultShape ;
             sh:description "The summary of the result of this evaluation item."@en ;
@@ -98,6 +102,40 @@ vv-report:InputDataShape a sh:NodeShape ;
             sh:order 1 ] ;
     sh:targetClass vv-report:InputData .
 
+vv-report:ParameterShape a sh:NodeShape ;
+    sh:property [ skos:example "max_allowed_deviation"@en ;
+            sh:path vv-report:parameterName ;
+            sh:name "parameter name"@en ;
+            sh:description "The formal name of the parameter, as it appears in the validation system"@en ;
+            sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 0 ],
+        [ skos:example "Maximum allowed position deviation in meters, to pass the test."@en ; 
+            sh:path vv-report:parameterDescription ;
+            sh:name "parameter description"@en ;
+            sh:description "A short description of the parameter in order to unambigously interpret it."@en ;
+            sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 1 ],
+        [ skos:example "0.19" ;
+            sh:path vv-report:parameterValue ;
+            sh:name "parameter value"@en ;
+            sh:description "The value of the parameter."@en ;
+            sh:or (
+                [ sh:datatype xsd:string ]
+                [ sh:datatype xsd:boolean ]
+                [ sh:datatype xsd:integer ]
+                [ sh:datatype xsd:decimal ]
+                [ sh:datatype xsd:float ]
+                [ sh:datatype xsd:double ]
+            ) ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:order 2 ] ;
+    sh:targetClass vv-report:Parameter .
+
 vv-report:ResultShape a sh:NodeShape ;
     sh:property [ skos:example "false" ;
             sh:path vv-report:resultTestPassed ;
@@ -132,6 +170,7 @@ vv-report:ResultVerificationShape a sh:NodeShape ;
             sh:path vv-report:resultVerificationDescription ;
             sh:name "verification method description"@en ;
             sh:description "A short description of how the result can be verified with the given reference."@en ;
+            sh:datatype xsd:string ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:order 0 ],
