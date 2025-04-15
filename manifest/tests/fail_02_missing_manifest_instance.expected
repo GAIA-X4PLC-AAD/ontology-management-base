@@ -1,0 +1,22 @@
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (1):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:description Literal("Self-reference to the manifest.json providing the structure and list of contents for a domain specific     =
+= asset.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("manifest    =
+= reference", lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("0", datatype=xsd:integer) ; sh:path manifest:hasManifestReference ]          =
+=                                                                                                                                                    =
+= Focus Node: <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>                                                             =
+=                                                                                                                                                    =
+= Result Path: manifest:hasManifestReference                                                                                                         =
+=                                                                                                                                                    =
+= Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>->manifest:hasManifestReference           =
+======================================================================================================================================================
