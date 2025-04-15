@@ -17,7 +17,7 @@
 | ManifestShape | manifest | hasManifestReference |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasLicense |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
-| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | scenario_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap. |  | scenario_shacl.ttl |

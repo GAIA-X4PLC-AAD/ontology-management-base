@@ -20,7 +20,7 @@
 | ManifestShape | manifest | hasManifestReference |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasLicense |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
-| ManifestShape | manifest | hasExternalArtifacts |  |  |  |  | envited-x_shacl.ttl |
+| ManifestShape | manifest | hasReferencedArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  |  |  | envited-x_shacl.ttl |
@@ -30,5 +30,5 @@
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| n344e7f81c0c846e2823052bc6d98b086b73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| n344e7f81c0c846e2823052bc6d98b086b73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| n822229e26e984ae0972ca05dcdb2f31db73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| n822229e26e984ae0972ca05dcdb2f31db73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
