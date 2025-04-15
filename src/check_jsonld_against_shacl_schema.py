@@ -252,7 +252,7 @@ def load_base_shacl_shapes(root_dir):
     namespace = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
 
     # Define the directory containing the SHACL files
-    shacl_dir = os.path.join(root_dir, "src", "base-schemas")
+    shacl_dir = os.path.join(root_dir, "base-schemas")
 
     # Loop through all files in the specified directory
     for filename in os.listdir(shacl_dir):
