@@ -49,11 +49,13 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
 
 envited-x:ExtendedLinkShape a sh:NodeShape ;
   sh:property [
+    sh:name manifest:AccessRole ;
     sh:path manifest:hasAccessRole ;
     sh:in ( envited-x:isPublic envited-x:isOwner envited-x:isRegistered ) ;
     sh:message "Access role must be one of the envited‑x defined access roles." ;
   ] ;
   sh:property [
+    sh:name manifest:Category ;
     sh:path manifest:hasCategory ;
     sh:in (
       envited-x:isManifest
@@ -87,6 +89,7 @@ envited-x:ManifestShape a sh:NodeShape ;
             ] ;
         ] ;
         sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
         sh:message "An envited-x manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
     ] ;
     sh:property [
@@ -105,6 +108,7 @@ envited-x:ManifestShape a sh:NodeShape ;
             ]
         ] ;
         sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
         sh:message "An envited-x manifest must contain at least one license link with an envited-x access role and category."@en ;
     ] ;
     
