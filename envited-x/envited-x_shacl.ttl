@@ -13,9 +13,16 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:path envited-x:hasDataResource ;
-        sh:node envited-x:DataResourceShape ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ; # Exactly ONE DataResource per SimulationAsset
+        sh:minCount 1 ; # At least ONE DataResource per SimulationAsset
+        sh:or (
+            ## Case 1: Inline DataResource shape with at least gx:name and gx:description
+            [ sh:node envited-x:DataResourceShape ]
+            ## Case 2: Linked DataResource references e.g. if additional gx metadata has been added afterwards
+            [ sh:and (
+                [ sh:node manifest:LinkShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
+            )]
+        ) ;
         sh:message "Each SimulationAsset must have exactly one associated DataResource, which provides essential metadata such as name and description."@en ;
     ] ;
     sh:property [
