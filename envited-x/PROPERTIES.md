@@ -11,7 +11,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SimulationAssetShape | envited-x | hasDataResource | 1 | 1 |  |  | envited-x_shacl.ttl |
+| SimulationAssetShape | envited-x | hasDataResource | 1 |  |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasDataResourceExtension | 0 |  |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
 | ExtendedLinkShape | manifest | hasAccessRole |  |  |  |  | envited-x_shacl.ttl |
@@ -30,5 +30,5 @@
 | DataResourceExtensionShape | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
 | DataResourceExtensionShape | envited-x | hasDataResourceExtension |  |  |  |  | envited-x_shacl.ttl |
-| nb4779f8d3d3d495b87eef044f15c3780b73 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
-| nb4779f8d3d3d495b87eef044f15c3780b73 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
+| n697e78580f6743998df6813394731b57b81 | envited-x | hasContent | 1 |  |  |  | envited-x_shacl.ttl |
+| n697e78580f6743998df6813394731b57b81 | envited-x | hasFormat | 1 |  |  |  | envited-x_shacl.ttl |
