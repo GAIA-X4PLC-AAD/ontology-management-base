@@ -104,6 +104,7 @@ envited-x:ManifestShape a sh:NodeShape ;
                     ] ;
                 ] ;
                 sh:qualifiedMinCount 1 ;
+                sh:qualifiedMaxCount 1 ;
                 sh:message "A license must contain at least one link with an envited-x access role and category."@en ;
             ]
         ] ;
