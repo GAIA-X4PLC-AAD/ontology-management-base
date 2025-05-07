@@ -49,13 +49,11 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
 
 envited-x:ExtendedLinkShape a sh:NodeShape ;
   sh:property [
-    sh:name manifest:AccessRole ;
     sh:path manifest:hasAccessRole ;
     sh:in ( envited-x:isPublic envited-x:isOwner envited-x:isRegistered ) ;
     sh:message "Access role must be one of the envited‑x defined access roles." ;
   ] ;
   sh:property [
-    sh:name manifest:Category ;
     sh:path manifest:hasCategory ;
     sh:in (
       envited-x:isManifest
