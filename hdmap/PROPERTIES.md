@@ -12,7 +12,7 @@
 | HdMapShape | hdmap | hasDataResourceExtension | 1 | 1 |  |  | hdmap_shacl.ttl |
 | HdMapShape | hdmap | hasManifest | 1 | 1 |  |  | hdmap_shacl.ttl |
 | DataResourceShapeExtension | hdmap | hasFormat | 1 | 1 | Contains properties to describe the format of the HD map asset. |  | hdmap_shacl.ttl |
-| DataResourceShapeExtension | hdmap | hasContent | 1 | 1 | Defines the content (road types, lane types, object types, traffic direction) of the HD map asset. |  | hdmap_shacl.ttl |
+| DataResourceShapeExtension | hdmap | hasContent |  |  | Defines the content (road types, lane types, object types, traffic direction) of the HD map asset. |  | hdmap_shacl.ttl |
 | DataResourceShapeExtension | hdmap | hasQuantity | 1 | 1 | Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset. |  | hdmap_shacl.ttl |
 | DataResourceShapeExtension | hdmap | hasQuality | 1 | 1 | Contains properties to describe the accuracy of the HD map asset. |  | hdmap_shacl.ttl |
 | DataResourceShapeExtension | hdmap | hasDataSource | 1 | 1 | Defines which data resources or measurement systems were used to create the HD map asset. |  | hdmap_shacl.ttl |
