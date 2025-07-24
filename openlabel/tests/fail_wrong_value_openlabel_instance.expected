@@ -1,0 +1,73 @@
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (1):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:minCount Literal("0", datatype=xsd:integer) ; sh:node ex:OddShape ; sh:order Literal("3", datatype=xsd:integer) ; sh:path       =
+= ex:Odd ]                                                                                                                                           =
+=                                                                                                                                                    =
+= Focus Node: <did:web:registry.gaia-x.eu:Tag:uHXBMNZ7qkGLxmuL194ejO7bMRU5HcwpxS15>                                                                  =
+=                                                                                                                                                    =
+= Value Node: [ ex:DaySunElevation Literal("false" = False, datatype=xsd:boolean) ; ex:DaySunPosition Literal("false" = False, datatype=xsd:boolean) =
+= ; ex:DrivableAreaEdge Literal("EdgeLineMarkers"), Literal("EdgeShoulderPavedOrGravel") ; ex:DrivableAreaType Literal("RoadTypeMotorway") ;         =
+= ex:HorizontalCurves Literal("false" = False, datatype=xsd:boolean) ; ex:HorizontalStraights Literal("false" = False, datatype=xsd:boolean) ;       =
+= ex:IlluminationCloudiness Literal("false" = False, datatype=xsd:boolean) ; ex:LaneSpecificationDimensions Literal("true" = True,                   =
+= datatype=xsd:boolean) ; ex:LaneSpecificationLaneCount Literal("true" = True, datatype=xsd:boolean) ; ex:LaneSpecificationMarking Literal("true" =  =
+= True, datatype=xsd:boolean) ; ex:LaneSpecificationTravelDirection Literal("TravelDirectionRight") ; ex:LaneSpecificationType                       =
+= Literal("LaneTypeEmergency"), Literal("LaneTypeTraffic"), Literal("WrongValue") ; ex:LongitudinalDownSlope Literal("false" = False,                =
+= datatype=xsd:boolean) ; ex:LongitudinalLevelPlane Literal("false" = False, datatype=xsd:boolean) ; ex:ParticulatesDust Literal("false" = False,    =
+= datatype=xsd:boolean) ; ex:ParticulatesMarine Literal("false" = False, datatype=xsd:boolean) ; ex:ParticulatesPollution Literal("false" = False,   =
+= datatype=xsd:boolean) ; ex:ParticulatesVolcanic Literal("false" = False, datatype=xsd:boolean) ; ex:SubjectVehicleSpeed Literal("false" = False,   =
+= datatype=xsd:boolean) ; ex:TrafficAgentDensity Literal("false" = False, datatype=xsd:boolean) ; ex:TrafficFlowRate Literal("false" = False,        =
+= datatype=xsd:boolean) ; ex:TrafficSpecialVehicle Literal("false" = False, datatype=xsd:boolean) ; ex:TrafficVolume Literal("false" = False,        =
+= datatype=xsd:boolean) ; ex:TravelDirectionRight Literal("true" = True, datatype=xsd:boolean) ; ex:WeatherRain Literal("false" = False,             =
+= datatype=xsd:boolean) ; ex:WeatherSnow Literal("false" = False, datatype=xsd:boolean) ; ex:WeatherWind Literal("false" = False,                    =
+= datatype=xsd:boolean) ; ex:laneSpecificationDimensionsValue Literal("3.5", datatype=xsd:decimal) ; ex:laneSpecificationLaneCountValue Literal("3", =
+= datatype=xsd:positiveInteger) ; rdf:type <file:///C:/Users/rojasbernal/PycharmProjects/ontology-management-base/openlabel/tests/Odd>,              =
+= rdfs:Resource ]                                                                                                                                    =
+=                                                                                                                                                    =
+= Result Path: ex:Odd                                                                                                                                =
+=                                                                                                                                                    =
+= Message: Value does not conform to Shape ex:OddShape. See details for more information.                                                            =
+= Details:                                                                                                                                           =
+=                                                                                                                                                    =
+= Constraint Violation in InConstraintComponent (http://www.w3.org/ns/shacl#InConstraintComponent):                                                  =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:datatype xsd:string ; sh:description Literal("Validation class for LaneSpecificationType", lang=en) ; sh:in (                   =
+= Literal("LaneTypeBus") Literal("LaneTypeCycle") Literal("LaneTypeEmergency") Literal("LaneTypeSpecial") Literal("LaneTypeTraffic")                 =
+= Literal("LaneTypeTram") ) ; sh:message Literal("Validation of LaneSpecificationType failed!", lang=en) ; sh:name Literal("LaneSpecificationType",  =
+= lang=en) ; sh:order Literal("3", datatype=xsd:integer) ; sh:path ex:LaneSpecificationType ]                                                        =
+=                                                                                                                                                    =
+= Focus Node: [ ex:DaySunElevation Literal("false" = False, datatype=xsd:boolean) ; ex:DaySunPosition Literal("false" = False, datatype=xsd:boolean) =
+= ; ex:DrivableAreaEdge Literal("EdgeLineMarkers"), Literal("EdgeShoulderPavedOrGravel") ; ex:DrivableAreaType Literal("RoadTypeMotorway") ;         =
+= ex:HorizontalCurves Literal("false" = False, datatype=xsd:boolean) ; ex:HorizontalStraights Literal("false" = False, datatype=xsd:boolean) ;       =
+= ex:IlluminationCloudiness Literal("false" = False, datatype=xsd:boolean) ; ex:LaneSpecificationDimensions Literal("true" = True,                   =
+= datatype=xsd:boolean) ; ex:LaneSpecificationLaneCount Literal("true" = True, datatype=xsd:boolean) ; ex:LaneSpecificationMarking Literal("true" =  =
+= True, datatype=xsd:boolean) ; ex:LaneSpecificationTravelDirection Literal("TravelDirectionRight") ; ex:LaneSpecificationType                       =
+= Literal("LaneTypeEmergency"), Literal("LaneTypeTraffic"), Literal("WrongValue") ; ex:LongitudinalDownSlope Literal("false" = False,                =
+= datatype=xsd:boolean) ; ex:LongitudinalLevelPlane Literal("false" = False, datatype=xsd:boolean) ; ex:ParticulatesDust Literal("false" = False,    =
+= datatype=xsd:boolean) ; ex:ParticulatesMarine Literal("false" = False, datatype=xsd:boolean) ; ex:ParticulatesPollution Literal("false" = False,   =
+= datatype=xsd:boolean) ; ex:ParticulatesVolcanic Literal("false" = False, datatype=xsd:boolean) ; ex:SubjectVehicleSpeed Literal("false" = False,   =
+= datatype=xsd:boolean) ; ex:TrafficAgentDensity Literal("false" = False, datatype=xsd:boolean) ; ex:TrafficFlowRate Literal("false" = False,        =
+= datatype=xsd:boolean) ; ex:TrafficSpecialVehicle Literal("false" = False, datatype=xsd:boolean) ; ex:TrafficVolume Literal("false" = False,        =
+= datatype=xsd:boolean) ; ex:TravelDirectionRight Literal("true" = True, datatype=xsd:boolean) ; ex:WeatherRain Literal("false" = False,             =
+= datatype=xsd:boolean) ; ex:WeatherSnow Literal("false" = False, datatype=xsd:boolean) ; ex:WeatherWind Literal("false" = False,                    =
+= datatype=xsd:boolean) ; ex:laneSpecificationDimensionsValue Literal("3.5", datatype=xsd:decimal) ; ex:laneSpecificationLaneCountValue Literal("3", =
+= datatype=xsd:positiveInteger) ; rdf:type <file:///C:/Users/rojasbernal/PycharmProjects/ontology-management-base/openlabel/tests/Odd>,              =
+= rdfs:Resource ]                                                                                                                                    =
+=                                                                                                                                                    =
+= Value Node: Literal("WrongValue")                                                                                                                  =
+=                                                                                                                                                    =
+= Result Path: ex:LaneSpecificationType                                                                                                              =
+=                                                                                                                                                    =
+= Message: Validation of LaneSpecificationType failed!                                                                                               =
+======================================================================================================================================================
