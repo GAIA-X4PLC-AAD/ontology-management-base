@@ -204,13 +204,25 @@ scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property 
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:ContentShape ;
-          sh:name "content"@en ;
-          sh:description "Attributes describing the content of the scenario."@en ;
-          sh:order 1 ;
-          sh:path scenario:hasContent ],
+#        [ sh:maxCount 1 ;
+#          sh:minCount 1 ;
+#          sh:node scenario:ContentShape ;
+#          sh:name "content"@en ;
+#          sh:description "Attributes describing the content of the scenario."@en ;
+#          sh:order 1 ;
+#          sh:path scenario:hasContent ],
+        [
+        sh:path scenario:hasContent ;
+        sh:name "content object"@en ;
+        sh:description "Attributes describing the content of the scenario."@en ;        sh:message "Each item of hasContent must conform to either Scenario Content or OpenLABEL Tag." ;
+        sh:node [
+            sh:or (
+                      [ sh:node scenario:ContentShape ]
+                      [ sh:node openlabel:TagShape]
+                      [ sh:node xsd:boolean ]
+                  )
+                ];
+        ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:FormatShape ;
@@ -247,7 +259,7 @@ scenario:DataResourceExtensionShape a sh:NodeShape ;
           sh:order 6 ;
           sh:path scenario:hasGeoreference ] ;
     sh:targetClass scenario:DataResourceExtension .
- 
+
 scenario:FormatShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -289,7 +301,7 @@ scenario:ContentShape a sh:NodeShape ;
             sh:name "time date"@en ;
             sh:order 2 ;
             sh:path scenario:timeDate ],
-        [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)"@en ;
+        [ skos:example "criticality analysis, testing, specific component tests (e.g. lateral movement control)"@en ;
             sh:datatype xsd:string ;
             sh:description "Defines the purpose of the scenario asset."@en ;
             sh:maxCount 1 ;

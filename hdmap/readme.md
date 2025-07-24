@@ -40,8 +40,8 @@ The **hdmap_shacl.ttl** was updated to allow for:
 
 1. Clone the repository.
 2. Navigate to the `hdmap/tests/` directory.
-3. Run the `src/check_jsonld_against_shacl_schema.py` on the test file. Or run `src/run_all_checks_locally.py`
+3. Run `src/check_jsonld_against_shacl_schema.py` on the test file. Or run `src/run_all_checks_locally.py`
 
 Example command:
 ```bash
-python3 check_jsonld_against_shacl_schema.py \hdmap\openlabel_instance.json
+python3 check_jsonld_against_shacl_schema.py \hdmap\hdmap_instance.json

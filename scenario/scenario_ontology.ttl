@@ -61,7 +61,7 @@ scenario: a owl:Ontology ;
 scenario:Scenario a owl:Class ;
     rdfs:label "Class definition for Scenario"@en ;
     rdfs:comment "General properties for defining a scenario asset, including format, content, data sources, quantity, and quality attributes."@en ;
-    rdfs:subClassOf envited-x:SimulationAsset  ,
+    rdfs:subClassOf envited-x:SimulationAsset ,
                     openlabel:Scenario ;
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -185,11 +185,17 @@ scenario:hasManifest a owl:ObjectProperty ;
     rdfs:domain scenario:Scenario ;
     rdfs:range envited-x:Manifest .
 
+# Declare a union class combining scenario:Content and openlabel:Tag
+scenario:ContentOrTag a owl:Class ;
+                      rdfs:label "Content or OpenLabel Tag"@en ;
+                      rdfs:comment "Combines HDMap content with OpenLABEL's OddScenery."@en ;
+                      owl:unionOf (scenario:Content openlabel:Tag) .
+
 scenario:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:Content that describes the scenario's content."@en ;
     rdfs:domain scenario:DataResourceExtension ;
-    rdfs:range scenario:Content .
+    rdfs:range scenario:ContentOrTag .
 
 scenario:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;

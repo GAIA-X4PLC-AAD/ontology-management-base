@@ -1,0 +1,40 @@
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (1):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):                                          =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: openlabel:BehaviourShape                                                                                                             =
+=                                                                                                                                                    =
+= Focus Node: [ openlabel:MotionDecelerate Literal("true" = True, datatype=xsd:boolean) ; openlabel:MotionDrive Literal("false" = False,             =
+= datatype=xsd:boolean) ; openlabel:motionDecelerateValue [ rdf:type rdfs:Resource, schema:QuantitativeValue ; schema:maxValue Literal("4.444") ;    =
+= schema:minValue Literal("0.053") ] ; openlabel:motionDriveValue [ rdf:type rdfs:Resource, schema:QuantitativeValue ; schema:maxValue               =
+= Literal("60.001") ; schema:minValue Literal("0.01") ] ; rdf:type openlabel:Behaviour, rdfs:Resource ]                                              =
+=                                                                                                                                                    =
+= Value Node: [ openlabel:MotionDecelerate Literal("true" = True, datatype=xsd:boolean) ; openlabel:MotionDrive Literal("false" = False,             =
+= datatype=xsd:boolean) ; openlabel:motionDecelerateValue [ rdf:type rdfs:Resource, schema:QuantitativeValue ; schema:maxValue Literal("4.444") ;    =
+= schema:minValue Literal("0.053") ] ; openlabel:motionDriveValue [ rdf:type rdfs:Resource, schema:QuantitativeValue ; schema:maxValue               =
+= Literal("60.001") ; schema:minValue Literal("0.01") ] ; rdf:type openlabel:Behaviour, rdfs:Resource ]                                              =
+= Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("If 'motionDrive' is not true, 'motionDriveValue' must not be present.",    =
+= lang=en) ; sh:select Literal("                                                                                                                     =
+= PREFIX ex: <https://openlabel.asam.net/V1-0-0/ontologies/>                                                                                         =
+= SELECT $this                                                                                                                                       =
+= WHERE {                                                                                                                                            =
+= OPTIONAL { $this ex:MotionDrive ?motionDrive . }                                                                                                   =
+= OPTIONAL { $this ex:motionDriveValue ?motionDriveValue . }                                                                                         =
+=                                                                                                                                                    =
+= FILTER (                                                                                                                                           =
+= ( !BOUND(?motionDrive) || ?motionDrive != true ) &&                                                                                                =
+= BOUND(?motionDriveValue)                                                                                                                           =
+= )                                                                                                                                                  =
+= }                                                                                                                                                  =
+= ") ]                                                                                                                                               =
+=                                                                                                                                                    =
+= Message: If 'motionDrive' is not true, 'motionDriveValue' must not be present.                                                                     =
+======================================================================================================================================================

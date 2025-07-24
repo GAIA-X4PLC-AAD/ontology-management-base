@@ -72,7 +72,7 @@
         "schema:maxValue": "4.444",
         "schema:minValue": "0.053"
       },
-      "openlabel:MotionDrive": true,
+      "openlabel:MotionDrive": false,
       "openlabel:motionDriveValue": {
         "@type": "schema:QuantitativeValue",
         "schema:maxValue": "60.001",
