@@ -1,0 +1,36 @@
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (1):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):                                          =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: openlabel:OddShape                                                                                                                   =
+=                                                                                                                                                    =
+= Focus Node: [ openlabel:LaneSpecificationDimensions Literal("false" = False, datatype=xsd:boolean) ; openlabel:laneSpecificationDimensionsValue    =
+= Literal("3.5", datatype=xsd:decimal) ; rdf:type openlabel:Odd, rdfs:Resource ]                                                                     =
+=                                                                                                                                                    =
+= Value Node: [ openlabel:LaneSpecificationDimensions Literal("false" = False, datatype=xsd:boolean) ; openlabel:laneSpecificationDimensionsValue    =
+= Literal("3.5", datatype=xsd:decimal) ; rdf:type openlabel:Odd, rdfs:Resource ]                                                                     =
+= Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("If 'laneSpecificationDimensions' is not true,                              =
+= 'laneSpecificationDimensionsValue' must not be present.", lang=en) ; sh:select Literal("                                                           =
+= PREFIX ex: <https://openlabel.asam.net/V1-0-0/ontologies/>                                                                                         =
+= SELECT $this                                                                                                                                       =
+= WHERE {                                                                                                                                            =
+= OPTIONAL { $this ex:LaneSpecificationDimensions ?laneSpecificationDimensions . }                                                                   =
+= OPTIONAL { $this ex:laneSpecificationDimensionsValue ?laneSpecificationDimensionsValue . }                                                         =
+=                                                                                                                                                    =
+= FILTER (                                                                                                                                           =
+= ( !BOUND(?laneSpecificationDimensions) || ?laneSpecificationDimensions != true ) &&                                                                =
+= BOUND(?laneSpecificationDimensionsValue)                                                                                                           =
+= )                                                                                                                                                  =
+= }                                                                                                                                                  =
+= ") ]                                                                                                                                               =
+=                                                                                                                                                    =
+= Message: If 'laneSpecificationDimensions' is not true, 'laneSpecificationDimensionsValue' must not be present.                                     =
+======================================================================================================================================================

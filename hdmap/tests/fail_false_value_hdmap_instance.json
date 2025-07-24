@@ -1,0 +1,250 @@
+{
+  "@context": {
+    "hdmap": "https://ontologies.envited-x.net/hdmap/v4/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+  "@type": "hdmap:HdMap",
+  "hdmap:hasDataResource": {
+    "@type": "envited-x:DataResource",
+    "gx:name": {
+      "@value": "Test HD Map Dataset",
+      "@type": "xsd:string"
+    },
+    "gx:description": {
+      "@value": "A sample HD map dataset for testing, covering an urban environment.",
+      "@type": "xsd:string"
+    }
+  },
+  "hdmap:hasDataResourceExtension": {
+    "@type": "hdmap:DataResourceExtension",
+    "hdmap:hasFormat": {
+      "@type": "hdmap:Format",
+      "hdmap:formatType": "ASAM OpenDRIVE",
+      "hdmap:version": {
+        "@value": "1.6",
+        "@type": "xsd:string"
+      }
+    },
+    "hdmap:hasContent": [
+      {
+        "@type": "hdmap:Content",
+        "hdmap:roadTypes": "town",
+        "hdmap:laneTypes": [
+          "driving",
+          "walking"
+        ],
+        "hdmap:levelOfDetail": "crosswalk",
+        "hdmap:trafficDirection": "right-hand"
+      },
+      {
+        "@type": "openlabel:Odd",
+        "openlabel:LaneSpecificationDimensions": false,
+        "openlabel:laneSpecificationDimensionsValue": {
+          "@type": "xsd:decimal",
+          "@value": "3.5"
+        }
+      }
+    ],
+    "hdmap:hasQuantity": {
+      "@type": "hdmap:Quantity",
+      "hdmap:length": {
+        "@value": "1.46",
+        "@type": "xsd:float"
+      },
+      "hdmap:elevationRange": {
+        "@value": "2.22",
+        "@type": "xsd:float"
+      },
+      "hdmap:numberIntersections": {
+        "@value": "5",
+        "@type": "xsd:unsignedInt"
+      },
+      "hdmap:numberTrafficLights": {
+        "@value": "0",
+        "@type": "xsd:unsignedInt"
+      },
+      "hdmap:numberTrafficSigns": {
+        "@value": "155",
+        "@type": "xsd:unsignedInt"
+      },
+      "hdmap:numberObjects": {
+        "@value": "200",
+        "@type": "xsd:unsignedInt"
+      },
+      "hdmap:numberOutlines": {
+        "@value": "100",
+        "@type": "xsd:unsignedInt"
+      },
+      "hdmap:speedLimit": {
+        "@type": "hdmap:Range2D",
+        "hdmap:min": {
+          "@value": "10",
+          "@type": "xsd:float"
+        },
+        "hdmap:max": {
+          "@value": "50",
+          "@type": "xsd:float"
+        }
+      },
+      "hdmap:rangeOfModeling": {
+        "@value": "20",
+        "@type": "xsd:float"
+      }
+    },
+    "hdmap:hasQuality": {
+      "@type": "hdmap:Quality",
+      "hdmap:precision": {
+        "@value": "0.01",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyLaneModel2d": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyLaneModelHeight": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracySignals": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      },
+      "hdmap:accuracyObjects": {
+        "@value": "0.1",
+        "@type": "xsd:float"
+      }
+    },
+    "hdmap:hasDataSource": {
+      "@type": "hdmap:DataSource",
+      "hdmap:usedDataSources": {
+        "@value": "scanner",
+        "@type": "xsd:string"
+      },
+      "hdmap:measurementSystem": {
+        "@value": "3DMS system",
+        "@type": "xsd:string"
+      }
+    },
+    "hdmap:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "@id": "did:web:registry.gaia-x.eu:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
+        },
+        "georeference:state": {
+          "@value": "DE-BY",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Upper Bavaria",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Town of Grafing",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "11.964",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "48.043",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "11.968274",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "48.046836",
+            "@type": "xsd:float"
+          }
+        }
+      },
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "32632",
+          "@type": "xsd:int"
+        },
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.046",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.967",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsoidal height"
+      }
+    }
+  },
+  "hdmap:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.gaia-x.eu:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
+    },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+      },
+      {
+        "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
+}

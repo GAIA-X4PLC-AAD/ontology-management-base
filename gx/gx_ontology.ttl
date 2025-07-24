@@ -428,7 +428,7 @@ void:vocabulary a owl:AnnotationProperty .
     rdfs:range xsd:string .
 
 <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#descriptionOfTestScope> a owl:DatatypeProperty ;
-    rdfs:label "description of test scope"@en ;
+    rdfs:label "description of tests scope"@en ;
     rdfs:comment "Description of the scope of testing for this service" ;
     rdfs:domain <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#Certificates> ;
     rdfs:range xsd:string .

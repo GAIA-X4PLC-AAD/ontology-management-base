@@ -1,0 +1,124 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "default": "http://www.w3.org/2002/07/owl#",
+    "ex": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:Tag:uHXBMNZ7qkGLxmuL194ejO7bMRU5HcwpxS15",
+  "@type": "ex:Tag",
+  "ex:AdminTag": {
+    "@type": "AdminTag",
+    "ex:ownerEmail": false,
+    "ex:ownerName": {
+      "@type": "rdfs:Literal",
+      "@value": "BMW AG"
+    },
+    "ex:ownerURL": false,
+    "ex:scenarioCreatedDate": {
+      "@type": "rdfs:Literal",
+      "@value": "2021-07-09T10:00:00"
+    },
+    "ex:scenarioDefinition": false,
+    "ex:scenarioDefinitionLanguageURI": false,
+    "ex:scenarioDescription": {
+      "@type": "xds:literal",
+      "@value": "ALKS Scenario 4.2_1 FullyBlockingTarget Template"
+    },
+    "ex:scenarioName": {
+      "@type": "xds:literal",
+      "@value": "ALKS_Scenario_4.2_1_FullyBlockingTarget_TEMPLATE.xosc"
+    },
+    "ex:scenarioParentReference": false,
+    "ex:scenarioUniqueReference": false,
+    "ex:scenarioVersion": false,
+    "ex:scenarioVisualisationURL": false
+  },
+  "ex:Behaviour": {
+    "@type": "Behaviour",
+    "ex:MotionAccelerate": false,
+    "ex:MotionAway": false,
+    "ex:MotionCross": false,
+    "ex:MotionCutIn": false,
+    "ex:MotionCutOut": false,
+    "ex:MotionDecelerate": true,
+    "ex:MotionDrive": true,
+    "ex:MotionLaneChangeLeft": false,
+    "ex:MotionLaneChangeRight": false,
+    "ex:MotionOvertake": false,
+    "ex:MotionReverse": false,
+    "ex:MotionRun": false,
+    "ex:MotionSlide": false,
+    "ex:MotionStop": false,
+    "ex:MotionTowards": false,
+    "ex:MotionTurn": false,
+    "ex:MotionTurnLeft": false,
+    "ex:MotionTurnRight": false,
+    "ex:MotionUTurn": false,
+    "ex:MotionWalk": false,
+    "ex:motionDecelerateValue": {
+      "@type": "schema:QuantitativeValue",
+      "schema:maxValue": "4.444",
+      "schema:minValue": "0.053"
+    },
+    "ex:motionDriveValue": {
+      "@type": "schema:QuantitativeValue",
+      "schema:maxValue": "60.001",
+      "schema:minValue": "0.0"
+    }
+  },
+  "ex:Odd": {
+    "@type": "Odd",
+    "ex:DaySunElevation": false,
+    "ex:DaySunPosition": false,
+    "ex:DrivableAreaEdge": [
+      "EdgeShoulderPavedOrGravel",
+      "EdgeLineMarkers"
+    ],
+    "ex:DrivableAreaType": "RoadTypeMotorway",
+    "ex:HorizontalCurves": false,
+    "ex:HorizontalStraights": false,
+    "ex:IlluminationCloudiness": false,
+    "ex:LaneSpecificationDimensions": true,
+    "ex:LaneSpecificationLaneCount": true,
+    "ex:LaneSpecificationMarking": true,
+    "ex:LaneSpecificationTravelDirection": "TravelDirectionRight",
+    "ex:LaneSpecificationType": [
+      "LaneTypeEmergency",
+      "LaneTypeTraffic"
+    ],
+    "ex:LongitudinalDownSlope": false,
+    "ex:LongitudinalLevelPlane": false,
+    "ex:ParticulatesDust": false,
+    "ex:ParticulatesMarine": false,
+    "ex:ParticulatesPollution": false,
+    "ex:ParticulatesVolcanic": false,
+    "ex:SubjectVehicleSpeed": false,
+    "ex:TrafficAgentDensity": false,
+    "ex:TrafficFlowRate": false,
+    "ex:TrafficSpecialVehicle": false,
+    "ex:TrafficVolume": false,
+    "ex:TravelDirectionRight": true,
+    "ex:WeatherRain": false,
+    "ex:WeatherSnow": false,
+    "ex:WeatherWind": false,
+    "ex:laneSpecificationDimensionsValue": {
+      "@type": "xsd:decimal",
+      "@value": "3.5"
+    },
+    "ex:laneSpecificationLaneCountValue": {
+      "@type": "xsd:positiveInteger",
+      "@value": "3"
+    }
+  },
+  "ex:RoadUser": {
+    "@type": "RoadUser",
+    "ex:RoadUserAnimal": false,
+    "ex:RoadUserHuman": "HumanPedestrian"
+  }
+}
