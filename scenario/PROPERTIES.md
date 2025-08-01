@@ -23,7 +23,7 @@
 | ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap. |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts |  |  | Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel. |  | scenario_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts |  |  | Each scenario:Manifest must reference at least one catalog via a manifest:Link. |  | scenario_shacl.ttl |
-| DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasContent |  |  | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuantity | 1 | 1 | Quantitative metrics describing the scenario. |  | scenario_shacl.ttl |
