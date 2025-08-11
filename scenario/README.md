@@ -62,12 +62,11 @@ Each item under this property may be **either**:
   ]
 }
 ```
-## How to Run SHACL Validation Tests
+### How to Run SHACL Validation Tests
 
-1. Clone the repository.
-2. Navigate to the directory containing your instance.
-3. Run `src/check_jsonld_against_shacl_schema.py` on the test file. Or run `src/run_all_checks_locally.py`
+See the root guide for the canonical commands and explanations:  
+[Running Tests Locally](../README.md#running-tests-locally)
 
-Example command:
+Example command for this folder:
 ```bash
 python3 check_jsonld_against_shacl_schema.py \scenario\scenario_instance.json

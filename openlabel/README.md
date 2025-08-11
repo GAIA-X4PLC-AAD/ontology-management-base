@@ -50,21 +50,26 @@ This folder helps users **describe OpenLABEL annotations** and **check** that th
   "openlabel:laneSpecificationDimensionsValue": { "@type": "xsd:decimal", "@value": "3.5" }
 }
 ```
-## How to Run SHACL Validation Tests
+### How to Run SHACL Validation Tests
 
-1. Clone the repository.
-2. Navigate to the directory containing your instance.
-3. Run `src/check_jsonld_against_shacl_schema.py` on the test file. Or run `src/run_all_checks_locally.py`
+See the root guide for the canonical commands and explanations:  
+[Running Tests Locally](../README.md#running-tests-locally)
 
-Example command:
+Example command for this folder:
 ```bash
 python3 check_jsonld_against_shacl_schema.py \hdmap\open_instance.json
 ```
 
-## License & Attribution (ASAM OpenLABEL)
+## Citation & Licensing
 
-This folder contains original integration artifacts authored by the project to enable interoperability with ASAM OpenLABEL.
+**Citation**  
+This project uses the OpenLABEL ontology defined by the **ASAM OpenLABEL®** standard.  
+Original source: [ASAM OpenLABEL Ontology (TTL)](https://www.asam.net/index.php?eID=dumpFile&t=f&f=4566&token=9d976f840af04adee33b9f85aa3c22f2de4968dd)  
+Standard reference: ASAM e.V. *ASAM OpenLABEL Standard Version 1.0.0*. Available at: [https://www.asam.net/standards/detail/openlabel/](https://www.asam.net/standards/detail/openlabel/)
 
-OpenLABEL and ASAM are the property of ASAM e.V. © ASAM e.V. All rights reserved.
+**Licensing**  
+- The ontology file `openlabel_ontology_scenario_tags.ttl` is used under the license of ASAM, which can be found here: [https://www.asam.net/license](https://www.asam.net/license).  
+- OpenLABEL® and ASAM are names/marks of ASAM e.V. All rights reserved.
 
-Please review the official ASAM License Terms: https://www.asam.net/license
+**Disclaimer**  
+This repository is not affiliated with or endorsed by ASAM. The legal text of the ASAM license is authoritative.
