@@ -5,14 +5,12 @@
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
 scenario: a owl:Ontology ;
@@ -121,7 +119,7 @@ scenario:Manifest a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty manifest:hasReferencedArtifacts ;
-        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+        owl:minQualifiedCardinality "2" ;
         owl:onClass [
             a owl:Class ;
             owl:unionOf ( environment-model:EnvironmentModel hdmap:HdMap manifest:Link )
@@ -133,7 +131,7 @@ scenario:Manifest a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty manifest:hasArtifacts ;
-        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+        owl:minQualifiedCardinality "2" ;
         owl:onClass manifest:Link
     ] .
 
