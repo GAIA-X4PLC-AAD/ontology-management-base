@@ -11,7 +11,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
 
 # Explicitly excluded folders
-EXCLUDED_FOLDERS = {"src", "base-schemas"}
+EXCLUDED_FOLDERS = {"src", "base-ontologies"}
 
 
 def get_ontology_dirs():
