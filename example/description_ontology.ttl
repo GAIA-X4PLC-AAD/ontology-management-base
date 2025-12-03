@@ -32,7 +32,7 @@
 # @base <http://example.org/ontology/> .
 # <apple> <hasColor> <green> => http://example.org/ontology/apple http://example.org/ontology/hasColor http://example.org/ontology/green
 
-@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> .
+@base <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -42,11 +42,11 @@
 ## Content of an Ontology
 # Every Ontology needs to be declared as an OWL-Ontology by including a triple
 # Example:
-# <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology .
-# In this case <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> is the IRI for the ontology we are defining.
+# <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#> rdf:type owl:Ontology .
+# In this case <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#> is the IRI for the ontology we are defining.
 
-# We define that the ontology "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/" is an owl Ontology, this is required for the FC
-<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/> rdf:type owl:Ontology ; # A semi-colon indicates that the next line als refers to the same subject as the predicate & object in this line
+# We define that the ontology "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#" is an owl Ontology, this is required for the FC
+<https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#> rdf:type owl:Ontology ; # A semi-colon indicates that the next line als refers to the same subject as the predicate & object in this line
     # This is a purl specific predicate, you can name a contributor of the ontology
     <http://purl.org/dc/terms/contributor> "Max Mustermann" ;
     # This is a label-assignment for your ontology by using rdfs:label as the predicate and a literal as the object

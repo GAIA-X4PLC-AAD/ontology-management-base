@@ -54,7 +54,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
         sh:path georeference:hasViewPoint
     ], [
         skos:example "32632" ;
-        sh:datatype xsd:int ;
+        sh:datatype xsd:integer ;
         sh:description "Defines the projection EPSG code for the asset."@en ;
         sh:message "Validation of codeEPSG failed!"@en ;
         sh:name "EPSG code"@en ;

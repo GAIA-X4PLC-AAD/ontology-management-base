@@ -4,12 +4,14 @@ import json
 import logging
 import os
 import sys
-import textwrap
 from collections import defaultdict
+from io import StringIO
 from urllib.parse import urlparse
 
 from pyshacl import validate
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
+
+from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
 # Set the encoding for stdout and stderr to UTF-8 only when run as main
 if __name__ == "__main__":
@@ -102,113 +104,6 @@ def resolve_prefixed_type(
     return json_type
 
 
-# --- Formatting and Printing Functions ---
-
-
-def format_validation_report(
-    v_text: str, width: int = 150, indent_size: int = 4
-) -> str:
-    border_line = "=" * width
-    formatted_lines = []
-    breakpoints = [
-        "Validation Report",
-        "Conforms:",
-        "Results (",
-        "Constraint Violation in",
-        "Severity:",
-        "Source Shape:",
-        "Focus Node:",
-        "Value Node:",
-        "Message:",
-        "Result Path:",
-    ]
-    for bp in breakpoints:
-        v_text = v_text.replace(bp, f"\n{bp}")
-    indent_level = 0
-    last_line_was_blank = False
-    for line in v_text.splitlines():
-        stripped_line = line.strip()
-        if not stripped_line:
-            if last_line_was_blank:
-                continue
-            last_line_was_blank = True
-            formatted_lines.append(f"= {' ' * (width - 4)} =")
-            continue
-        else:
-            last_line_was_blank = False
-        if stripped_line in breakpoints or stripped_line.endswith(":"):
-            indent_level = 0
-        elif stripped_line.startswith("sh:") or stripped_line.startswith("skos:"):
-            indent_level = 1
-        elif stripped_line.startswith("[") or stripped_line.startswith("]"):
-            indent_level = 2
-        elif stripped_line.startswith("<") and stripped_line.endswith(">"):
-            indent_level = 2
-        elif stripped_line.startswith("Literal("):
-            indent_level = 3
-        elif stripped_line.startswith("datatype="):
-            indent_level = 4
-        indent_space = " " * (indent_level * indent_size)
-        wrapped_lines = textwrap.fill(
-            stripped_line, width=width - 4 - len(indent_space)
-        )
-        for wrapped_line in wrapped_lines.split("\n"):
-            formatted_lines.append(
-                f"= {indent_space}{wrapped_line.ljust(width - 4 - len(indent_space))} ="
-            )
-    return f"{border_line}\n" + "\n".join(formatted_lines) + f"\n{border_line}"
-
-
-def format_filenames(filenames: list, width: int = 150) -> list:
-    formatted_lines = []
-    current_line = "["
-    for i, file in enumerate(filenames):
-        if i > 0:
-            current_line += ", "
-        if len(current_line) + len(file) + 2 >= width - 4:
-            formatted_lines.append(f"{current_line}")
-            current_line = "  " + file
-        else:
-            current_line += f"'{file}'"
-    formatted_lines.append(f"{current_line}]")
-    return formatted_lines
-
-
-def print_validation_result(
-    success: bool,
-    onto_files: list = None,
-    v_text: str = "",
-    exit_code: int = None,
-    file=None,  # new argument to redirect output
-):
-    width = 150
-    border_line = "=" * width
-    header_text_files = [""]
-    header_text = (
-        ["✅ SHACL validation passed for:"]
-        if success
-        else ["❌ SHACL validation failed for:"]
-    )
-    centered_header_lines = [f"= {line.center(width - 5)} =" for line in header_text]
-    if onto_files:
-        formatted_filenames = format_filenames(onto_files, width)
-        header_text_files.extend(formatted_filenames)
-        centered_header_file_lines = [
-            f"= {line.center(width - 4)} =" for line in header_text_files
-        ]
-    print(border_line, file=file)
-    print("\n".join(centered_header_lines), file=file)
-    if onto_files:
-        print("\n".join(centered_header_file_lines), file=file)
-    print(border_line, file=file)
-    if not success:
-        formatted_v_text = format_validation_report(v_text, width)
-        print(formatted_v_text, file=file)
-    if exit_code is not None:
-        logging.debug(f"Exiting with code {exit_code}")
-        sys.exit(exit_code)
-
-
 def setup_logging(debug=False):
     handlers = [logging.StreamHandler(sys.stdout)]
     if debug:
@@ -221,45 +116,26 @@ def setup_logging(debug=False):
     )
 
 
-# --- Loading SHACL and Ontology Files ---
-
-
-def load_base_shacl_shapes(root_dir):
-    namespace = {}
-    namespace = {"gx": os.path.join(root_dir, "gx", "gx_shacl.ttl")}
-    shacl_dir = os.path.join(root_dir, "base-ontologies")
-    for filename in os.listdir(shacl_dir):
-        if filename.endswith(".ttl"):
-            prefix = filename.split("_")[0]
-            namespace[prefix] = os.path.join(shacl_dir, filename)
-    return namespace
-
-
 def load_shacl_and_ontologies(
     root_dir,
     used_types,
-    dynamic_mapping: dict,
+    dynamic_prefixes: dict,
     file=None,
 ):
     logging.debug("Starting to load SHACL and ontology files.")
     shacl_graph = Graph()
-    loaded_files = set()
-    if dynamic_mapping:
-        for prefix, namespace in dynamic_mapping.items():
+    ont_graph = Graph()
+    if dynamic_prefixes:
+        for prefix, namespace in dynamic_prefixes.items():
             shacl_graph.bind(prefix, Namespace(namespace))
             logging.debug(f"Bound prefix {prefix} -> {namespace}")
-    namespaces = load_base_shacl_shapes(root_dir)
-    for prefix, file_path in namespaces.items():
-        logging.info(f"Loading mapped SHACL file for {prefix}: {file_path}")
-        shacl_graph.parse(file_path, format="turtle")
-        loaded_files.add(file_path)
     shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
     logging.debug(f"Found SHACL files: {shacl_files}")
     logging.debug(f"Found Ontology files: {ontology_files}")
 
     def is_relevant(graph, used_types):
-        sh_ns = dynamic_mapping.get("sh")
+        sh_ns = dynamic_prefixes.get("sh")
         if sh_ns:
             SH = Namespace(sh_ns)
         else:
@@ -277,7 +153,6 @@ def load_shacl_and_ontologies(
         tmp_graph.parse(shacl_file, format="turtle")
         if is_relevant(tmp_graph, used_types):
             shacl_graph += tmp_graph
-            loaded_files.add(shacl_file)
             print(f"✅ Loaded SHACL file into shacle graph: {shacl_file}", file=file)
 
     for ontology_file in ontology_files:
@@ -293,13 +168,12 @@ def load_shacl_and_ontologies(
         )
         logging.debug(f"Matched types: {matched_types}")
         if matched_types:
-            shacl_graph += ontology_graph
-            loaded_files.add(ontology_file)
+            ont_graph += ontology_graph
             print(
                 f"✅ Loaded Ontology file into shacle graph: {ontology_file}", file=file
             )
     logging.debug("Completed loading SHACL and ontology files.")
-    return shacl_graph
+    return shacl_graph, ont_graph
 
 
 # --- Namespace Extraction and Used Types ---
@@ -314,10 +188,15 @@ def extract_namespace(rdf_type_str):
         return f"{parsed.scheme}://{parsed.netloc}"
 
 
-def extract_used_types(data_graph, file=None):
+def extract_used_types(data_graph, dynamic_prefixes=None, root_dir=".", file=None):
     used_types = defaultdict(set)
     for _, _, rdf_type in data_graph.triples((None, RDF.type, None)):
         rdf_type_str = str(rdf_type)
+        # Resolve prefixed type if dynamic prefixes are available
+        if dynamic_prefixes:
+            rdf_type_str = resolve_prefixed_type(
+                rdf_type_str, dynamic_mapping=dynamic_prefixes, root_dir=root_dir
+            )
         namespace = extract_namespace(rdf_type_str)
         used_types[namespace].add(rdf_type_str)
     formatted_output = []
@@ -354,16 +233,6 @@ def load_jsonld_files(jsonld_files, file=None):
     return data_graph
 
 
-def print_validation_result_wrapper(
-    success: bool,
-    onto_files: list = None,
-    v_text: str = "",
-    exit_code: int = None,
-    file=None,
-):
-    print_validation_result(success, onto_files, v_text, exit_code, file=file)
-
-
 # --- Main Function ---
 
 
@@ -376,7 +245,6 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
     Returns:
         (return_code, message)
     """
-    from io import StringIO
 
     output_buffer = StringIO()
 
@@ -442,7 +310,9 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
             debug=debug,
         )
         if not conforms:
-            print_validation_result_wrapper(False, [onto_file], v_text, exit_code=None)
+            print_validate_jsonld_against_shacl_result(
+                False, [onto_file], v_text, exit_code=None
+            )
             print_out(f"❌ Ontology file {onto_file} failed SHACL validation.\n")
             return 200, output_buffer.getvalue()
         else:
@@ -465,7 +335,9 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
 
     # --- Step 6: Extract RDF Types from the Data Graph ---
     print_out("📌 Extracting RDF types from data graph...")
-    used_types = extract_used_types(data_graph, file=output_buffer)
+    used_types = extract_used_types(
+        data_graph, dynamic_prefixes, ".", file=output_buffer
+    )
 
     # --- Step 7: Load only necessary SHACL shapes based on detected RDF types ---
     print_out("📌 Loading only necessary SHACL shapes based on detected RDF types...")
@@ -473,7 +345,7 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
     script_directory = os.path.dirname(script_path)
     parent_directory = os.path.relpath(os.path.dirname(script_directory))
     logging.debug(f"Parent dir...: {parent_directory}")
-    shacl_graph = load_shacl_and_ontologies(
+    shacl_graph, ont_graph = load_shacl_and_ontologies(
         parent_directory,
         used_types,
         dynamic_prefixes,
@@ -485,14 +357,17 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
     conforms, _, v_text = validate(
         data_graph,
         shacl_graph=shacl_graph,
-        inference="rdfs",
+        ont_graph=ont_graph,
+        abort_on_first=True,
+        inference="owlrl",
+        validation_mode="strict",
         debug=debug,
     )
     logging.debug(f"Final overall validation: Conforms = {conforms}")
 
     # --- Step 9: Print Validation Report ---
     if not conforms:
-        print_validation_result_wrapper(
+        print_validate_jsonld_against_shacl_result(
             False,
             instance_files + reference_files,
             v_text,
@@ -501,7 +376,7 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
         )
         return 210, output_buffer.getvalue()
     else:
-        print_validation_result_wrapper(
+        print_validate_jsonld_against_shacl_result(
             True,
             instance_files + reference_files,
             v_text,

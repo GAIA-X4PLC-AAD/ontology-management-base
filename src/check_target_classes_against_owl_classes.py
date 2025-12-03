@@ -5,6 +5,10 @@ import sys
 
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
+from utils.print_formatting import (
+    format_validate_target_classes_against_owl_classes_result,
+)
+
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
 
@@ -62,69 +66,6 @@ def extract_ontology_classes(ontology_file: str) -> tuple:
     return ontology_classes, label_to_class
 
 
-def format_summary(
-    ontology_file,
-    num_ontology_classes,
-    num_shacl_classes,
-    matches,
-    missing_classes,
-    recovered_classes,
-    extra_classes,
-):
-    """
-    Format a summary of the validation results in a properly aligned boxed layout.
-    """
-    width = 150
-    border = "=" * width
-    separator = f"=={' ' * (width - 4)}=="
-
-    output_lines = []
-    output_lines.append("\n" + border)
-    output_lines.append(f"=={' VALIDATION SUMMARY ':^{width-4}}==")
-    output_lines.append(border)
-    output_lines.append(f"==  Ontology File: {ontology_file.ljust(width - 21)}==")
-    output_lines.append(separator)
-    output_lines.append(
-        f"==  🔹 Ontology Classes: {str(num_ontology_classes).ljust(width - 27)}=="
-    )
-    output_lines.append(
-        f"==  🔹 SHACL Target Classes: {str(num_shacl_classes).ljust(width - 31)}=="
-    )
-    output_lines.append(
-        f"==  ✅ Matched Classes: {str(len(matches) + len(recovered_classes)).ljust(width - 26)}=="
-    )
-    output_lines.append(
-        f"==  ❌ Missing Classes: {str(len(missing_classes)).ljust(width - 26)}=="
-    )
-    output_lines.append(
-        f"==  ⚠️ Extra Classes: {str(len(extra_classes)).ljust(width - 23)}=="
-    )
-    output_lines.append(border)
-
-    if missing_classes:
-        output_lines.append(
-            f"==  ❌ Missing SHACL Classes: {str(len(missing_classes)).ljust(width - 32)}=="
-        )
-        for cls in sorted(missing_classes):
-            output_lines.append(f"==  ❌ {cls.ljust(width - 9)}==")
-        output_lines.append(border)
-
-    if extra_classes:
-        output_lines.append(
-            f"==  ⚠️ Extra Ontology Classes: {str(len(extra_classes)).ljust(width - 32)}=="
-        )
-        for cls in sorted(extra_classes):
-            output_lines.append(f"==  ⚠️ {cls.ljust(width - 8)}==")
-        output_lines.append(border)
-
-    if missing_classes:
-        output_lines.append(f"=={' ❌ Validation failed! ':^{width-5}}==")
-    else:
-        output_lines.append(f"=={' ✅ Validation successful! ':^{width-5}}==")
-    output_lines.append(border)
-    return "\n".join(output_lines)
-
-
 def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, str]:
     """
     Validate if all target classes in the SHACL shapes are present in the ontology file as OWL classes.
@@ -163,7 +104,7 @@ def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, st
                 recovered_classes.add(missing)
         missing_classes -= recovered_classes
 
-        summary = format_summary(
+        summary = format_validate_target_classes_against_owl_classes_result(
             ontology_file,
             len(ontology_classes),
             len(shacl_classes),

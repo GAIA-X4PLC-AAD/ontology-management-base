@@ -153,7 +153,7 @@
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
           "@value": "4326",
-          "@type": "xsd:int"
+          "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",

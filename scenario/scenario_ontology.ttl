@@ -1,5 +1,5 @@
 @prefix scenario: <https://ontologies.envited-x.net/scenario/v4/ontology#> .
-@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/#> .
 @prefix environment-model: <https://ontologies.envited-x.net/environment-model/v4/ontology#> .
 @prefix hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .

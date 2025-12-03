@@ -1,31 +1,19 @@
 {
   "@context": {
+    "example_ontology": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
-    "sh": "http://www.w3.org/ns/shacl#",
-    "description_ontology": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/"
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/#",
+    "sh": "http://www.w3.org/ns/shacl#"
   },
   "@id": "did:web:registry.gaia-x.eu:ExampleServiceOffering:FLFqCz3kERDqhh-zK9f2CdKd8kQ6BCil6Z-J",
-  "@type": "description_ontology:ExampleServiceOffering",
-  "description_ontology:property1": {
-    "@value": "value of property 1",
-    "@type": "xsd:string"
+  "@type": "example_ontology:ExampleServiceOffering",
+  "example_ontology:property1": "Property 1 Value",
+  "example_ontology:property2": "Property 2 Value",
+  "example_ontology:belongsTo": {
+    "@id": "did:web:registry.gaia-x.eu:RelatedSelfDescription:123456789"
   },
-  "description_ontology:property2": [
-    {
-      "@value": "value of property 2",
-      "@type": "xsd:string"
-    },
-    {
-      "@value": "another value of property 2",
-      "@type": "xsd:string"
-    }
-  ],
-  "description_ontology:belongsTo": {
-    "@id": "https://www.example.org/id"
-  },
-  "description_ontology:hasJunctionIntersection": {
-    "@id": "openlabel:IntersectionTJunction"
+  "example_ontology:hasJunctionIntersection": {
+    "@id": "https://openlabel.asam.net/V1-0-0/ontologies/#IntersectionStaggered"
   }
 }

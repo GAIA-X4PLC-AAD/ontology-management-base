@@ -72,6 +72,7 @@ def check_jsonld_against_shacl_all():
     print("\n=== Checking JSON-LD against SHACL ===", flush=True)
     for ontology in ONTOLOGY_DIRS:
         folder_path = os.path.join(ROOT_DIR, ontology)
+        folder_path = os.path.relpath(folder_path, ROOT_DIR)
         print(
             f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}", flush=True
         )
@@ -228,10 +229,10 @@ def check_target_classes_all():
 
 def main():
     """Run all validation checks sequentially, aborting on the first failure."""
-    # check_ttl_syntax_all()
-    # check_jsonld_against_shacl_all()
+    check_ttl_syntax_all()
+    check_jsonld_against_shacl_all()
     check_failing_tests_all()
-    # check_target_classes_all()
+    check_target_classes_all()
     print("\n✅ All checks completed successfully!", flush=True)
 
 
