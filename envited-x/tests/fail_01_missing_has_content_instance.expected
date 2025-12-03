@@ -1,0 +1,59 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                           ['envited-x/tests/fail_01_missing_has_content_instance.json']                                            =
+======================================================================================================================================================
+======================================================================================================================================================
+=                                                                                                                                                    =
+= Validation Report                                                                                                                                  =
+=                                                                                                                                                    =
+= Conforms: False                                                                                                                                    =
+=                                                                                                                                                    =
+= Results (2):                                                                                                                                       =
+=                                                                                                                                                    =
+= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:message Literal("Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.", lang=en) ;  =
+= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path envited-x:hasContent ]                                                                    =
+=                                                                                                                                                    =
+= Focus Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
+=                                                                                                                                                    =
+= Result Path: envited-x:hasContent                                                                                                                  =
+=                                                                                                                                                    =
+= Message: Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                                          =
+=                                                                                                                                                    =
+= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:message Literal("A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) =
+= to provide additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one envited-x:hasContent  =
+= and one envited-x:hasFormat).", lang=en) ; sh:minCount Literal("0", datatype=xsd:integer) ; sh:node envited-x:DataResourceExtensionShape ; sh:path =
+= envited-x:hasDataResourceExtension ]                                                                                                               =
+=                                                                                                                                                    =
+= Focus Node: <did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw>                                                            =
+=                                                                                                                                                    =
+= Value Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
+=                                                                                                                                                    =
+= Result Path: envited-x:hasDataResourceExtension                                                                                                    =
+=                                                                                                                                                    =
+= Message: A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide additional      =
+= structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one envited-x:hasContent and one                =
+= envited-x:hasFormat).                                                                                                                              =
+= Details:                                                                                                                                           =
+=                                                                                                                                                    =
+= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:message Literal("Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.", lang=en) ;  =
+= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path envited-x:hasContent ]                                                                    =
+=                                                                                                                                                    =
+= Focus Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
+=                                                                                                                                                    =
+= Result Path: envited-x:hasContent                                                                                                                  =
+=                                                                                                                                                    =
+= Message: Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                                          =
+======================================================================================================================================================

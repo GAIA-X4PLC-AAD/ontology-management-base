@@ -1,116 +1,15 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                           ['manifest/tests/fail_03_wrong_spdx_identifier_instance.json']                                           =
+======================================================================================================================================================
+======================================================================================================================================================
 =                                                                                                                                                    =
 = Validation Report                                                                                                                                  =
 =                                                                                                                                                    =
 = Conforms: False                                                                                                                                    =
 =                                                                                                                                                    =
-= Results (2):                                                                                                                                       =
-=                                                                                                                                                    =
-= Constraint Violation in OrConstraintComponent (http://www.w3.org/ns/shacl#OrConstraintComponent):                                                  =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints.", lang=en) ;      =
-= sh:maxCount Literal("1", datatype=xsd:integer) ; sh:message Literal("Validation of SPDX identifier failed!", lang=en) ; sh:minCount Literal("1",   =
-= datatype=xsd:integer) ; sh:name Literal("spdx identifier", lang=en) ; sh:or ( [ sh:in ( Literal("LicenseRef-Custom-Commercial-Agreement")          =
-= Literal("LicenseRef-Policy-Smart-Contract") ) ] [ sh:in ( Literal("0BSD") Literal("AAL") Literal("Abstyles") Literal("AdaCore-doc")                =
-= Literal("Adobe-2006") Literal("Adobe-Glyph") Literal("ADSL") Literal("AFL-1.1") Literal("AFL-1.2") Literal("AFL-2.0") Literal("AFL-2.1")           =
-= Literal("AFL-3.0") Literal("Afmparse") Literal("AGPL-1.0-only") Literal("AGPL-1.0-or-later") Literal("AGPL-3.0-only") Literal("AGPL-3.0-or-later") =
-= Literal("Aladdin") Literal("AMDPLPA") Literal("AML") Literal("AMPAS") Literal("ANTLR-PD") Literal("ANTLR-PD-fallback") Literal("Apache-1.0")       =
-= Literal("Apache-1.1") Literal("Apache-2.0") Literal("APAFML") Literal("APL-1.0") Literal("App-s2p") Literal("APSL-1.0") Literal("APSL-1.1")        =
-= Literal("APSL-1.2") Literal("APSL-2.0") Literal("Arphic-1999") Literal("Artistic-1.0") Literal("Artistic-1.0-cl8") Literal("Artistic-1.0-Perl")    =
-= Literal("Artistic-2.0") Literal("ASWF-Digital-Assets-1.0") Literal("ASWF-Digital-Assets-1.1") Literal("Baekmuk") Literal("Bahyph") Literal("Barr") =
-= Literal("Beerware") Literal("Bitstream-Charter") Literal("Bitstream-Vera") Literal("BitTorrent-1.0") Literal("BitTorrent-1.1") Literal("blessing") =
-= Literal("BlueOak-1.0.0") Literal("Boehm-GC") Literal("Borceux") Literal("Brian-Gladman-3-Clause") Literal("BSD-1-Clause") Literal("BSD-2-Clause")  =
-= Literal("BSD-2-Clause-Patent") Literal("BSD-2-Clause-Views") Literal("BSD-3-Clause") Literal("BSD-3-Clause-Attribution") Literal("BSD-3-Clause-    =
-= Clear") Literal("BSD-3-Clause-LBNL") Literal("BSD-3-Clause-Modification") Literal("BSD-3-Clause-No-Military-License") Literal("BSD-3-Clause-No-    =
-= Nuclear-License") Literal("BSD-3-Clause-No-Nuclear-License-2014") Literal("BSD-3-Clause-No-Nuclear-Warranty") Literal("BSD-3-Clause-Open-MPI")     =
-= Literal("BSD-4-Clause") Literal("BSD-4-Clause-Shortened") Literal("BSD-4-Clause-UC") Literal("BSD-4.3RENO") Literal("BSD-4.3TAHOE") Literal("BSD-  =
-= Advertising-Acknowledgement") Literal("BSD-Protection") Literal("BSD-Source-Code") Literal("BSL-1.0") Literal("BUSL-1.1") Literal("bzip2-1.0.6")   =
-= Literal("C-UDA-1.0") Literal("CAL-1.0") Literal("CAL-1.0-Combined-Work-Exception") Literal("Caldera") Literal("CATOSL-1.1") Literal("CC-BY-1.0")   =
-= Literal("CC-BY-2.0") Literal("CC-BY-2.5") Literal("CC-BY-2.5-AU") Literal("CC-BY-3.0") Literal("CC-BY-3.0-AT") Literal("CC-BY-3.0-DE")             =
-= Literal("CC-BY-3.0-IGO") Literal("CC-BY-3.0-NL") Literal("CC-BY-3.0-US") Literal("CC-BY-4.0") Literal("CC-BY-NC-1.0") Literal("CC-BY-NC-2.0")      =
-= Literal("CC-BY-NC-2.5") Literal("CC-BY-NC-3.0") Literal("CC-BY-NC-3.0-DE") Literal("CC-BY-NC-4.0") Literal("CC-BY-NC-ND-1.0") Literal("CC-BY-NC-   =
-= ND-2.0") Literal("CC-BY-NC-ND-2.5") Literal("CC-BY-NC-ND-3.0") Literal("CC-BY-NC-ND-3.0-DE") Literal("CC-BY-NC-ND-3.0-IGO") Literal("CC-BY-NC-     =
-= ND-4.0") Literal("CC-BY-NC-SA-1.0") Literal("CC-BY-NC-SA-2.0") Literal("CC-BY-NC-SA-2.0-DE") Literal("CC-BY-NC-SA-2.0-FR") Literal("CC-BY-NC-      =
-= SA-2.0-UK") Literal("CC-BY-NC-SA-2.5") Literal("CC-BY-NC-SA-3.0") Literal("CC-BY-NC-SA-3.0-DE") Literal("CC-BY-NC-SA-3.0-IGO") Literal("CC-BY-NC-  =
-= SA-4.0") Literal("CC-BY-ND-1.0") Literal("CC-BY-ND-2.0") Literal("CC-BY-ND-2.5") Literal("CC-BY-ND-3.0") Literal("CC-BY-ND-3.0-DE") Literal("CC-   =
-= BY-ND-4.0") Literal("CC-BY-SA-1.0") Literal("CC-BY-SA-2.0") Literal("CC-BY-SA-2.0-UK") Literal("CC-BY-SA-2.1-JP") Literal("CC-BY-SA-2.5")          =
-= Literal("CC-BY-SA-3.0") Literal("CC-BY-SA-3.0-AT") Literal("CC-BY-SA-3.0-DE") Literal("CC-BY-SA-3.0-IGO") Literal("CC-BY-SA-4.0") Literal("CC-     =
-= PDDC") Literal("CC0-1.0") Literal("CDDL-1.0") Literal("CDDL-1.1") Literal("CDL-1.0") Literal("CDLA-Permissive-1.0") Literal("CDLA-Permissive-2.0") =
-= Literal("CDLA-Sharing-1.0") Literal("CECILL-1.0") Literal("CECILL-1.1") Literal("CECILL-2.0") Literal("CECILL-2.1") Literal("CECILL-B")            =
-= Literal("CECILL-C") Literal("CERN-OHL-1.1") Literal("CERN-OHL-1.2") Literal("CERN-OHL-P-2.0") Literal("CERN-OHL-S-2.0") Literal("CERN-OHL-W-2.0")  =
-= Literal("CFITSIO") Literal("checkmk") Literal("ClArtistic") Literal("Clips") Literal("CMU-Mach") Literal("CNRI-Jython") Literal("CNRI-Python")     =
-= Literal("CNRI-Python-GPL-Compatible") Literal("COIL-1.0") Literal("Community-Spec-1.0") Literal("Condor-1.1") Literal("copyleft-next-0.3.0")       =
-= Literal("copyleft-next-0.3.1") Literal("Cornell-Lossless-JPEG") Literal("CPAL-1.0") Literal("CPL-1.0") Literal("CPOL-1.02") Literal("Crossword")   =
-= Literal("CrystalStacker") Literal("CUA-OPL-1.0") Literal("Cube") Literal("curl") Literal("D-FSL-1.0") Literal("diffmark") Literal("DL-DE-BY-2.0")  =
-= Literal("DOC") Literal("Dotseqn") Literal("DRL-1.0") Literal("DSDP") Literal("dtoa") Literal("dvipdfm") Literal("ECL-1.0") Literal("ECL-2.0")      =
-= Literal("EFL-1.0") Literal("EFL-2.0") Literal("eGenix") Literal("Elastic-2.0") Literal("Entessa") Literal("EPICS") Literal("EPL-1.0")              =
-= Literal("EPL-2.0") Literal("ErlPL-1.1") Literal("etalab-2.0") Literal("EUDatagrid") Literal("EUPL-1.0") Literal("EUPL-1.1") Literal("EUPL-1.2")    =
-= Literal("Eurosym") Literal("Fair") Literal("FDK-AAC") Literal("Frameworx-1.0") Literal("FreeBSD-DOC") Literal("FreeImage") Literal("FSFAP")        =
-= Literal("FSFUL") Literal("FSFULLR") Literal("FSFULLRWD") Literal("FTL") Literal("GD") Literal("GFDL-1.1-invariants-only")                          =
-= Literal("GFDL-1.1-invariants-or-later") Literal("GFDL-1.1-no-invariants-only") Literal("GFDL-1.1-no-invariants-or-later") Literal("GFDL-1.1-only") =
-= Literal("GFDL-1.1-or-later") Literal("GFDL-1.2-invariants-only") Literal("GFDL-1.2-invariants-or-later") Literal("GFDL-1.2-no-invariants-only")    =
-= Literal("GFDL-1.2-no-invariants-or-later") Literal("GFDL-1.2-only") Literal("GFDL-1.2-or-later") Literal("GFDL-1.3-invariants-only")               =
-= Literal("GFDL-1.3-invariants-or-later") Literal("GFDL-1.3-no-invariants-only") Literal("GFDL-1.3-no-invariants-or-later") Literal("GFDL-1.3-only") =
-= Literal("GFDL-1.3-or-later") Literal("Giftware") Literal("GL2PS") Literal("Glide") Literal("Glulxe") Literal("GLWTPL") Literal("gnuplot")          =
-= Literal("GPL-1.0-only") Literal("GPL-1.0-or-later") Literal("GPL-2.0-only") Literal("GPL-2.0-or-later") Literal("GPL-3.0-only")                    =
-= Literal("GPL-3.0-or-later") Literal("Graphics-Gems") Literal("gSOAP-1.3b") Literal("HaskellReport") Literal("Hippocratic-2.1") Literal("HP-1986")  =
-= Literal("HPND") Literal("HPND-export-US") Literal("HPND-Markus-Kuhn") Literal("HPND-sell-variant") Literal("HPND-sell-variant-MIT-disclaimer")     =
-= Literal("HTMLTIDY") Literal("IBM-pibs") Literal("ICU") Literal("IEC-Code-Components-EULA") Literal("IJG") Literal("IJG-short")                     =
-= Literal("ImageMagick") Literal("iMatix") Literal("Imlib2") Literal("Info-ZIP") Literal("Inner-Net-2.0") Literal("Intel") Literal("Intel-ACPI")     =
-= Literal("Interbase-1.0") Literal("IPA") Literal("IPL-1.0") Literal("ISC") Literal("Jam") Literal("JasPer-2.0") Literal("JPL-image")                =
-= Literal("JPNIC") Literal("JSON") Literal("Kazlib") Literal("Knuth-CTAN") Literal("LAL-1.2") Literal("LAL-1.3") Literal("Latex2e")                  =
-= Literal("Latex2e-translated-notice") Literal("Leptonica") Literal("LGPL-2.0-only") Literal("LGPL-2.0-or-later") Literal("LGPL-2.1-only")           =
-= Literal("LGPL-2.1-or-later") Literal("LGPL-3.0-only") Literal("LGPL-3.0-or-later") Literal("LGPLLR") Literal("Libpng") Literal("libpng-2.0")       =
-= Literal("libselinux-1.0") Literal("libtiff") Literal("libutil-David-Nugent") Literal("LiLiQ-P-1.1") Literal("LiLiQ-R-1.1") Literal("LiLiQ-         =
-= Rplus-1.1") Literal("Linux-man-pages-1-para") Literal("Linux-man-pages-copyleft") Literal("Linux-man-pages-copyleft-2-para") Literal("Linux-man-   =
-= pages-copyleft-var") Literal("Linux-OpenIB") Literal("LOOP") Literal("LPL-1.0") Literal("LPL-1.02") Literal("LPPL-1.0") Literal("LPPL-1.1")        =
-= Literal("LPPL-1.2") Literal("LPPL-1.3a") Literal("LPPL-1.3c") Literal("LZMA-SDK-9.11-to-9.20") Literal("LZMA-SDK-9.22") Literal("MakeIndex")       =
-= Literal("Martin-Birgmeier") Literal("metamail") Literal("Minpack") Literal("MirOS") Literal("MIT") Literal("MIT-0") Literal("MIT-advertising")     =
-= Literal("MIT-CMU") Literal("MIT-enna") Literal("MIT-feh") Literal("MIT-Festival") Literal("MIT-Modern-Variant") Literal("MIT-open-group")          =
-= Literal("MIT-Wu") Literal("MITNFA") Literal("Motosoto") Literal("mpi-permissive") Literal("mpich2") Literal("MPL-1.0") Literal("MPL-1.1")          =
-= Literal("MPL-2.0") Literal("MPL-2.0-no-copyleft-exception") Literal("mplus") Literal("MS-LPL") Literal("MS-PL") Literal("MS-RL") Literal("MTLL")   =
-= Literal("MulanPSL-1.0") Literal("MulanPSL-2.0") Literal("Multics") Literal("Mup") Literal("NAIST-2003") Literal("NASA-1.3") Literal("Naumen")      =
-= Literal("NBPL-1.0") Literal("NCGL-UK-2.0") Literal("NCSA") Literal("Net-SNMP") Literal("NetCDF") Literal("Newsletr") Literal("NGPL")               =
-= Literal("NICTA-1.0") Literal("NIST-PD") Literal("NIST-PD-fallback") Literal("NIST-Software") Literal("NLOD-1.0") Literal("NLOD-2.0")               =
-= Literal("NLPL") Literal("Nokia") Literal("NOSL") Literal("Noweb") Literal("NPL-1.0") Literal("NPL-1.1") Literal("NPOSL-3.0") Literal("NRL")        =
-= Literal("NTP") Literal("NTP-0") Literal("O-UDA-1.0") Literal("OCCT-PL") Literal("OCLC-2.0") Literal("ODbL-1.0") Literal("ODC-By-1.0")              =
-= Literal("OFFIS") Literal("OFL-1.0") Literal("OFL-1.0-no-RFN") Literal("OFL-1.0-RFN") Literal("OFL-1.1") Literal("OFL-1.1-no-RFN")                  =
-= Literal("OFL-1.1-RFN") Literal("OGC-1.0") Literal("OGDL-Taiwan-1.0") Literal("OGL-Canada-2.0") Literal("OGL-UK-1.0") Literal("OGL-UK-2.0")         =
-= Literal("OGL-UK-3.0") Literal("OGTSL") Literal("OLDAP-1.1") Literal("OLDAP-1.2") Literal("OLDAP-1.3") Literal("OLDAP-1.4") Literal("OLDAP-2.0")    =
-= Literal("OLDAP-2.0.1") Literal("OLDAP-2.1") Literal("OLDAP-2.2") Literal("OLDAP-2.2.1") Literal("OLDAP-2.2.2") Literal("OLDAP-2.3")                =
-= Literal("OLDAP-2.4") Literal("OLDAP-2.5") Literal("OLDAP-2.6") Literal("OLDAP-2.7") Literal("OLDAP-2.8") Literal("OLFL-1.3") Literal("OML")        =
-= Literal("OpenPBS-2.3") Literal("OpenSSL") Literal("OPL-1.0") Literal("OPL-UK-3.0") Literal("OPUBL-1.0") Literal("OSET-PL-2.1") Literal("OSL-1.0")  =
-= Literal("OSL-1.1") Literal("OSL-2.0") Literal("OSL-2.1") Literal("OSL-3.0") Literal("Parity-6.0.0") Literal("Parity-7.0.0") Literal("PDDL-1.0")    =
-= Literal("PHP-3.0") Literal("PHP-3.01") Literal("Plexus") Literal("PolyForm-Noncommercial-1.0.0") Literal("PolyForm-Small-Business-1.0.0")          =
-= Literal("PostgreSQL") Literal("PSF-2.0") Literal("psfrag") Literal("psutils") Literal("Python-2.0") Literal("Python-2.0.1") Literal("Qhull")       =
-= Literal("QPL-1.0") Literal("QPL-1.0-INRIA-2004") Literal("Rdisc") Literal("RHeCos-1.1") Literal("RPL-1.1") Literal("RPL-1.5") Literal("RPSL-1.0")  =
-= Literal("RSA-MD") Literal("RSCPL") Literal("Ruby") Literal("SAX-PD") Literal("Saxpath") Literal("SCEA") Literal("SchemeReport")                    =
-= Literal("Sendmail") Literal("Sendmail-8.23") Literal("SGI-B-1.0") Literal("SGI-B-1.1") Literal("SGI-B-2.0") Literal("SGP4") Literal("SHL-0.5")     =
-= Literal("SHL-0.51") Literal("SimPL-2.0") Literal("SISSL") Literal("SISSL-1.2") Literal("Sleepycat") Literal("SMLNJ") Literal("SMPPL")              =
-= Literal("SNIA") Literal("snprintf") Literal("Spencer-86") Literal("Spencer-94") Literal("Spencer-99") Literal("SPL-1.0") Literal("SSH-OpenSSH")    =
-= Literal("SSH-short") Literal("SSPL-1.0") Literal("SugarCRM-1.1.3") Literal("SunPro") Literal("SWL") Literal("Symlinks") Literal("TAPR-OHL-1.0")    =
-= Literal("TCL") Literal("TCP-wrappers") Literal("TermReadKey") Literal("TMate") Literal("TORQUE-1.1") Literal("TOSL") Literal("TPDL")               =
-= Literal("TPL-1.0") Literal("TTWL") Literal("TU-Berlin-1.0") Literal("TU-Berlin-2.0") Literal("UCAR") Literal("UCL-1.0") Literal("Unicode-          =
-= DFS-2015") Literal("Unicode-DFS-2016") Literal("Unicode-TOU") Literal("UnixCrypt") Literal("Unlicense") Literal("UPL-1.0") Literal("Vim")          =
-= Literal("VOSTROM") Literal("VSL-1.0") Literal("W3C") Literal("W3C-19980720") Literal("W3C-20150513") Literal("w3m") Literal("Watcom-1.0")          =
-= Literal("Widget-Workshop") Literal("Wsuipa") Literal("WTFPL") Literal("X11") Literal("X11-distribute-modifications-variant")                       =
-= Literal("Xdebug-1.03") Literal("Xerox") Literal("Xfig") Literal("XFree86-1.1") Literal("xinetd") Literal("xlock") Literal("Xnet") Literal("xpp")   =
-= Literal("XSkat") Literal("YPL-1.0") Literal("YPL-1.1") Literal("Zed") Literal("Zend-2.0") Literal("Zimbra-1.3") Literal("Zimbra-1.4")              =
-= Literal("Zlib") Literal("zlib-acknowledgement") Literal("ZPL-1.1") Literal("ZPL-2.0") Literal("ZPL-2.1") ) ] ) ; sh:order Literal("1",             =
-= datatype=xsd:integer) ; sh:path gx:license ]                                                                                                       =
-=                                                                                                                                                    =
-= Focus Node: [ gx:license Literal("WRONG") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory                 =
-= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
-= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
-= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
-=                                                                                                                                                    =
-= Value Node: Literal("WRONG")                                                                                                                       =
-=                                                                                                                                                    =
-= Result Path: gx:license                                                                                                                            =
-=                                                                                                                                                    =
-= Message: Validation of SPDX identifier failed!                                                                                                     =
+= Results (3):                                                                                                                                       =
 =                                                                                                                                                    =
 = Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
 =                                                                                                                                                    =
@@ -237,4 +136,146 @@
 = Result Path: gx:license                                                                                                                            =
 =                                                                                                                                                    =
 = Message: Validation of SPDX identifier failed!                                                                                                     =
+=                                                                                                                                                    =
+= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:description Literal("Defines a link to the licensing terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ;       =
+= sh:message Literal("Validation of hasLink failed!", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("license data",    =
+= lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("2", datatype=xsd:integer) ; sh:path manifest:hasLink ; skos:example Literal("accessRole: =
+= isPublic, category: isLicense, hasFileMetadata: { mimeType: text/html, filePath: <https://opensource.org/license/mit> }", lang=en) ]               =
+=                                                                                                                                                    =
+= Focus Node: [ gx:license Literal("WRONG") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory                 =
+= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
+= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
+= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
+=                                                                                                                                                    =
+= Result Path: manifest:hasLink                                                                                                                      =
+=                                                                                                                                                    =
+= Message: Validation of hasLink failed!                                                                                                             =
+=                                                                                                                                                    =
+= Constraint Violation in OrConstraintComponent (http://www.w3.org/ns/shacl#OrConstraintComponent):                                                  =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:description Literal("Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints.", lang=en) ;      =
+= sh:maxCount Literal("1", datatype=xsd:integer) ; sh:message Literal("Validation of SPDX identifier failed!", lang=en) ; sh:minCount Literal("1",   =
+= datatype=xsd:integer) ; sh:name Literal("spdx identifier", lang=en) ; sh:or ( [ sh:in ( Literal("LicenseRef-Custom-Commercial-Agreement")          =
+= Literal("LicenseRef-Policy-Smart-Contract") ) ] [ sh:in ( Literal("0BSD") Literal("AAL") Literal("Abstyles") Literal("AdaCore-doc")                =
+= Literal("Adobe-2006") Literal("Adobe-Glyph") Literal("ADSL") Literal("AFL-1.1") Literal("AFL-1.2") Literal("AFL-2.0") Literal("AFL-2.1")           =
+= Literal("AFL-3.0") Literal("Afmparse") Literal("AGPL-1.0-only") Literal("AGPL-1.0-or-later") Literal("AGPL-3.0-only") Literal("AGPL-3.0-or-later") =
+= Literal("Aladdin") Literal("AMDPLPA") Literal("AML") Literal("AMPAS") Literal("ANTLR-PD") Literal("ANTLR-PD-fallback") Literal("Apache-1.0")       =
+= Literal("Apache-1.1") Literal("Apache-2.0") Literal("APAFML") Literal("APL-1.0") Literal("App-s2p") Literal("APSL-1.0") Literal("APSL-1.1")        =
+= Literal("APSL-1.2") Literal("APSL-2.0") Literal("Arphic-1999") Literal("Artistic-1.0") Literal("Artistic-1.0-cl8") Literal("Artistic-1.0-Perl")    =
+= Literal("Artistic-2.0") Literal("ASWF-Digital-Assets-1.0") Literal("ASWF-Digital-Assets-1.1") Literal("Baekmuk") Literal("Bahyph") Literal("Barr") =
+= Literal("Beerware") Literal("Bitstream-Charter") Literal("Bitstream-Vera") Literal("BitTorrent-1.0") Literal("BitTorrent-1.1") Literal("blessing") =
+= Literal("BlueOak-1.0.0") Literal("Boehm-GC") Literal("Borceux") Literal("Brian-Gladman-3-Clause") Literal("BSD-1-Clause") Literal("BSD-2-Clause")  =
+= Literal("BSD-2-Clause-Patent") Literal("BSD-2-Clause-Views") Literal("BSD-3-Clause") Literal("BSD-3-Clause-Attribution") Literal("BSD-3-Clause-    =
+= Clear") Literal("BSD-3-Clause-LBNL") Literal("BSD-3-Clause-Modification") Literal("BSD-3-Clause-No-Military-License") Literal("BSD-3-Clause-No-    =
+= Nuclear-License") Literal("BSD-3-Clause-No-Nuclear-License-2014") Literal("BSD-3-Clause-No-Nuclear-Warranty") Literal("BSD-3-Clause-Open-MPI")     =
+= Literal("BSD-4-Clause") Literal("BSD-4-Clause-Shortened") Literal("BSD-4-Clause-UC") Literal("BSD-4.3RENO") Literal("BSD-4.3TAHOE") Literal("BSD-  =
+= Advertising-Acknowledgement") Literal("BSD-Protection") Literal("BSD-Source-Code") Literal("BSL-1.0") Literal("BUSL-1.1") Literal("bzip2-1.0.6")   =
+= Literal("C-UDA-1.0") Literal("CAL-1.0") Literal("CAL-1.0-Combined-Work-Exception") Literal("Caldera") Literal("CATOSL-1.1") Literal("CC-BY-1.0")   =
+= Literal("CC-BY-2.0") Literal("CC-BY-2.5") Literal("CC-BY-2.5-AU") Literal("CC-BY-3.0") Literal("CC-BY-3.0-AT") Literal("CC-BY-3.0-DE")             =
+= Literal("CC-BY-3.0-IGO") Literal("CC-BY-3.0-NL") Literal("CC-BY-3.0-US") Literal("CC-BY-4.0") Literal("CC-BY-NC-1.0") Literal("CC-BY-NC-2.0")      =
+= Literal("CC-BY-NC-2.5") Literal("CC-BY-NC-3.0") Literal("CC-BY-NC-3.0-DE") Literal("CC-BY-NC-4.0") Literal("CC-BY-NC-ND-1.0") Literal("CC-BY-NC-   =
+= ND-2.0") Literal("CC-BY-NC-ND-2.5") Literal("CC-BY-NC-ND-3.0") Literal("CC-BY-NC-ND-3.0-DE") Literal("CC-BY-NC-ND-3.0-IGO") Literal("CC-BY-NC-     =
+= ND-4.0") Literal("CC-BY-NC-SA-1.0") Literal("CC-BY-NC-SA-2.0") Literal("CC-BY-NC-SA-2.0-DE") Literal("CC-BY-NC-SA-2.0-FR") Literal("CC-BY-NC-      =
+= SA-2.0-UK") Literal("CC-BY-NC-SA-2.5") Literal("CC-BY-NC-SA-3.0") Literal("CC-BY-NC-SA-3.0-DE") Literal("CC-BY-NC-SA-3.0-IGO") Literal("CC-BY-NC-  =
+= SA-4.0") Literal("CC-BY-ND-1.0") Literal("CC-BY-ND-2.0") Literal("CC-BY-ND-2.5") Literal("CC-BY-ND-3.0") Literal("CC-BY-ND-3.0-DE") Literal("CC-   =
+= BY-ND-4.0") Literal("CC-BY-SA-1.0") Literal("CC-BY-SA-2.0") Literal("CC-BY-SA-2.0-UK") Literal("CC-BY-SA-2.1-JP") Literal("CC-BY-SA-2.5")          =
+= Literal("CC-BY-SA-3.0") Literal("CC-BY-SA-3.0-AT") Literal("CC-BY-SA-3.0-DE") Literal("CC-BY-SA-3.0-IGO") Literal("CC-BY-SA-4.0") Literal("CC-     =
+= PDDC") Literal("CC0-1.0") Literal("CDDL-1.0") Literal("CDDL-1.1") Literal("CDL-1.0") Literal("CDLA-Permissive-1.0") Literal("CDLA-Permissive-2.0") =
+= Literal("CDLA-Sharing-1.0") Literal("CECILL-1.0") Literal("CECILL-1.1") Literal("CECILL-2.0") Literal("CECILL-2.1") Literal("CECILL-B")            =
+= Literal("CECILL-C") Literal("CERN-OHL-1.1") Literal("CERN-OHL-1.2") Literal("CERN-OHL-P-2.0") Literal("CERN-OHL-S-2.0") Literal("CERN-OHL-W-2.0")  =
+= Literal("CFITSIO") Literal("checkmk") Literal("ClArtistic") Literal("Clips") Literal("CMU-Mach") Literal("CNRI-Jython") Literal("CNRI-Python")     =
+= Literal("CNRI-Python-GPL-Compatible") Literal("COIL-1.0") Literal("Community-Spec-1.0") Literal("Condor-1.1") Literal("copyleft-next-0.3.0")       =
+= Literal("copyleft-next-0.3.1") Literal("Cornell-Lossless-JPEG") Literal("CPAL-1.0") Literal("CPL-1.0") Literal("CPOL-1.02") Literal("Crossword")   =
+= Literal("CrystalStacker") Literal("CUA-OPL-1.0") Literal("Cube") Literal("curl") Literal("D-FSL-1.0") Literal("diffmark") Literal("DL-DE-BY-2.0")  =
+= Literal("DOC") Literal("Dotseqn") Literal("DRL-1.0") Literal("DSDP") Literal("dtoa") Literal("dvipdfm") Literal("ECL-1.0") Literal("ECL-2.0")      =
+= Literal("EFL-1.0") Literal("EFL-2.0") Literal("eGenix") Literal("Elastic-2.0") Literal("Entessa") Literal("EPICS") Literal("EPL-1.0")              =
+= Literal("EPL-2.0") Literal("ErlPL-1.1") Literal("etalab-2.0") Literal("EUDatagrid") Literal("EUPL-1.0") Literal("EUPL-1.1") Literal("EUPL-1.2")    =
+= Literal("Eurosym") Literal("Fair") Literal("FDK-AAC") Literal("Frameworx-1.0") Literal("FreeBSD-DOC") Literal("FreeImage") Literal("FSFAP")        =
+= Literal("FSFUL") Literal("FSFULLR") Literal("FSFULLRWD") Literal("FTL") Literal("GD") Literal("GFDL-1.1-invariants-only")                          =
+= Literal("GFDL-1.1-invariants-or-later") Literal("GFDL-1.1-no-invariants-only") Literal("GFDL-1.1-no-invariants-or-later") Literal("GFDL-1.1-only") =
+= Literal("GFDL-1.1-or-later") Literal("GFDL-1.2-invariants-only") Literal("GFDL-1.2-invariants-or-later") Literal("GFDL-1.2-no-invariants-only")    =
+= Literal("GFDL-1.2-no-invariants-or-later") Literal("GFDL-1.2-only") Literal("GFDL-1.2-or-later") Literal("GFDL-1.3-invariants-only")               =
+= Literal("GFDL-1.3-invariants-or-later") Literal("GFDL-1.3-no-invariants-only") Literal("GFDL-1.3-no-invariants-or-later") Literal("GFDL-1.3-only") =
+= Literal("GFDL-1.3-or-later") Literal("Giftware") Literal("GL2PS") Literal("Glide") Literal("Glulxe") Literal("GLWTPL") Literal("gnuplot")          =
+= Literal("GPL-1.0-only") Literal("GPL-1.0-or-later") Literal("GPL-2.0-only") Literal("GPL-2.0-or-later") Literal("GPL-3.0-only")                    =
+= Literal("GPL-3.0-or-later") Literal("Graphics-Gems") Literal("gSOAP-1.3b") Literal("HaskellReport") Literal("Hippocratic-2.1") Literal("HP-1986")  =
+= Literal("HPND") Literal("HPND-export-US") Literal("HPND-Markus-Kuhn") Literal("HPND-sell-variant") Literal("HPND-sell-variant-MIT-disclaimer")     =
+= Literal("HTMLTIDY") Literal("IBM-pibs") Literal("ICU") Literal("IEC-Code-Components-EULA") Literal("IJG") Literal("IJG-short")                     =
+= Literal("ImageMagick") Literal("iMatix") Literal("Imlib2") Literal("Info-ZIP") Literal("Inner-Net-2.0") Literal("Intel") Literal("Intel-ACPI")     =
+= Literal("Interbase-1.0") Literal("IPA") Literal("IPL-1.0") Literal("ISC") Literal("Jam") Literal("JasPer-2.0") Literal("JPL-image")                =
+= Literal("JPNIC") Literal("JSON") Literal("Kazlib") Literal("Knuth-CTAN") Literal("LAL-1.2") Literal("LAL-1.3") Literal("Latex2e")                  =
+= Literal("Latex2e-translated-notice") Literal("Leptonica") Literal("LGPL-2.0-only") Literal("LGPL-2.0-or-later") Literal("LGPL-2.1-only")           =
+= Literal("LGPL-2.1-or-later") Literal("LGPL-3.0-only") Literal("LGPL-3.0-or-later") Literal("LGPLLR") Literal("Libpng") Literal("libpng-2.0")       =
+= Literal("libselinux-1.0") Literal("libtiff") Literal("libutil-David-Nugent") Literal("LiLiQ-P-1.1") Literal("LiLiQ-R-1.1") Literal("LiLiQ-         =
+= Rplus-1.1") Literal("Linux-man-pages-1-para") Literal("Linux-man-pages-copyleft") Literal("Linux-man-pages-copyleft-2-para") Literal("Linux-man-   =
+= pages-copyleft-var") Literal("Linux-OpenIB") Literal("LOOP") Literal("LPL-1.0") Literal("LPL-1.02") Literal("LPPL-1.0") Literal("LPPL-1.1")        =
+= Literal("LPPL-1.2") Literal("LPPL-1.3a") Literal("LPPL-1.3c") Literal("LZMA-SDK-9.11-to-9.20") Literal("LZMA-SDK-9.22") Literal("MakeIndex")       =
+= Literal("Martin-Birgmeier") Literal("metamail") Literal("Minpack") Literal("MirOS") Literal("MIT") Literal("MIT-0") Literal("MIT-advertising")     =
+= Literal("MIT-CMU") Literal("MIT-enna") Literal("MIT-feh") Literal("MIT-Festival") Literal("MIT-Modern-Variant") Literal("MIT-open-group")          =
+= Literal("MIT-Wu") Literal("MITNFA") Literal("Motosoto") Literal("mpi-permissive") Literal("mpich2") Literal("MPL-1.0") Literal("MPL-1.1")          =
+= Literal("MPL-2.0") Literal("MPL-2.0-no-copyleft-exception") Literal("mplus") Literal("MS-LPL") Literal("MS-PL") Literal("MS-RL") Literal("MTLL")   =
+= Literal("MulanPSL-1.0") Literal("MulanPSL-2.0") Literal("Multics") Literal("Mup") Literal("NAIST-2003") Literal("NASA-1.3") Literal("Naumen")      =
+= Literal("NBPL-1.0") Literal("NCGL-UK-2.0") Literal("NCSA") Literal("Net-SNMP") Literal("NetCDF") Literal("Newsletr") Literal("NGPL")               =
+= Literal("NICTA-1.0") Literal("NIST-PD") Literal("NIST-PD-fallback") Literal("NIST-Software") Literal("NLOD-1.0") Literal("NLOD-2.0")               =
+= Literal("NLPL") Literal("Nokia") Literal("NOSL") Literal("Noweb") Literal("NPL-1.0") Literal("NPL-1.1") Literal("NPOSL-3.0") Literal("NRL")        =
+= Literal("NTP") Literal("NTP-0") Literal("O-UDA-1.0") Literal("OCCT-PL") Literal("OCLC-2.0") Literal("ODbL-1.0") Literal("ODC-By-1.0")              =
+= Literal("OFFIS") Literal("OFL-1.0") Literal("OFL-1.0-no-RFN") Literal("OFL-1.0-RFN") Literal("OFL-1.1") Literal("OFL-1.1-no-RFN")                  =
+= Literal("OFL-1.1-RFN") Literal("OGC-1.0") Literal("OGDL-Taiwan-1.0") Literal("OGL-Canada-2.0") Literal("OGL-UK-1.0") Literal("OGL-UK-2.0")         =
+= Literal("OGL-UK-3.0") Literal("OGTSL") Literal("OLDAP-1.1") Literal("OLDAP-1.2") Literal("OLDAP-1.3") Literal("OLDAP-1.4") Literal("OLDAP-2.0")    =
+= Literal("OLDAP-2.0.1") Literal("OLDAP-2.1") Literal("OLDAP-2.2") Literal("OLDAP-2.2.1") Literal("OLDAP-2.2.2") Literal("OLDAP-2.3")                =
+= Literal("OLDAP-2.4") Literal("OLDAP-2.5") Literal("OLDAP-2.6") Literal("OLDAP-2.7") Literal("OLDAP-2.8") Literal("OLFL-1.3") Literal("OML")        =
+= Literal("OpenPBS-2.3") Literal("OpenSSL") Literal("OPL-1.0") Literal("OPL-UK-3.0") Literal("OPUBL-1.0") Literal("OSET-PL-2.1") Literal("OSL-1.0")  =
+= Literal("OSL-1.1") Literal("OSL-2.0") Literal("OSL-2.1") Literal("OSL-3.0") Literal("Parity-6.0.0") Literal("Parity-7.0.0") Literal("PDDL-1.0")    =
+= Literal("PHP-3.0") Literal("PHP-3.01") Literal("Plexus") Literal("PolyForm-Noncommercial-1.0.0") Literal("PolyForm-Small-Business-1.0.0")          =
+= Literal("PostgreSQL") Literal("PSF-2.0") Literal("psfrag") Literal("psutils") Literal("Python-2.0") Literal("Python-2.0.1") Literal("Qhull")       =
+= Literal("QPL-1.0") Literal("QPL-1.0-INRIA-2004") Literal("Rdisc") Literal("RHeCos-1.1") Literal("RPL-1.1") Literal("RPL-1.5") Literal("RPSL-1.0")  =
+= Literal("RSA-MD") Literal("RSCPL") Literal("Ruby") Literal("SAX-PD") Literal("Saxpath") Literal("SCEA") Literal("SchemeReport")                    =
+= Literal("Sendmail") Literal("Sendmail-8.23") Literal("SGI-B-1.0") Literal("SGI-B-1.1") Literal("SGI-B-2.0") Literal("SGP4") Literal("SHL-0.5")     =
+= Literal("SHL-0.51") Literal("SimPL-2.0") Literal("SISSL") Literal("SISSL-1.2") Literal("Sleepycat") Literal("SMLNJ") Literal("SMPPL")              =
+= Literal("SNIA") Literal("snprintf") Literal("Spencer-86") Literal("Spencer-94") Literal("Spencer-99") Literal("SPL-1.0") Literal("SSH-OpenSSH")    =
+= Literal("SSH-short") Literal("SSPL-1.0") Literal("SugarCRM-1.1.3") Literal("SunPro") Literal("SWL") Literal("Symlinks") Literal("TAPR-OHL-1.0")    =
+= Literal("TCL") Literal("TCP-wrappers") Literal("TermReadKey") Literal("TMate") Literal("TORQUE-1.1") Literal("TOSL") Literal("TPDL")               =
+= Literal("TPL-1.0") Literal("TTWL") Literal("TU-Berlin-1.0") Literal("TU-Berlin-2.0") Literal("UCAR") Literal("UCL-1.0") Literal("Unicode-          =
+= DFS-2015") Literal("Unicode-DFS-2016") Literal("Unicode-TOU") Literal("UnixCrypt") Literal("Unlicense") Literal("UPL-1.0") Literal("Vim")          =
+= Literal("VOSTROM") Literal("VSL-1.0") Literal("W3C") Literal("W3C-19980720") Literal("W3C-20150513") Literal("w3m") Literal("Watcom-1.0")          =
+= Literal("Widget-Workshop") Literal("Wsuipa") Literal("WTFPL") Literal("X11") Literal("X11-distribute-modifications-variant")                       =
+= Literal("Xdebug-1.03") Literal("Xerox") Literal("Xfig") Literal("XFree86-1.1") Literal("xinetd") Literal("xlock") Literal("Xnet") Literal("xpp")   =
+= Literal("XSkat") Literal("YPL-1.0") Literal("YPL-1.1") Literal("Zed") Literal("Zend-2.0") Literal("Zimbra-1.3") Literal("Zimbra-1.4")              =
+= Literal("Zlib") Literal("zlib-acknowledgement") Literal("ZPL-1.1") Literal("ZPL-2.0") Literal("ZPL-2.1") ) ] ) ; sh:order Literal("1",             =
+= datatype=xsd:integer) ; sh:path gx:license ]                                                                                                       =
+=                                                                                                                                                    =
+= Focus Node: [ gx:license Literal("WRONG") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory                 =
+= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
+= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
+= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
+=                                                                                                                                                    =
+= Value Node: Literal("WRONG")                                                                                                                       =
+=                                                                                                                                                    =
+= Result Path: gx:license                                                                                                                            =
+=                                                                                                                                                    =
+= Message: Validation of SPDX identifier failed!                                                                                                     =
+=                                                                                                                                                    =
+= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
+=                                                                                                                                                    =
+= Severity: sh:Violation                                                                                                                             =
+=                                                                                                                                                    =
+= Source Shape: [ sh:description Literal("Defines a link to the licensing terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ;       =
+= sh:message Literal("Validation of hasLink failed!", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("license data",    =
+= lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("2", datatype=xsd:integer) ; sh:path manifest:hasLink ; skos:example Literal("accessRole: =
+= isPublic, category: isLicense, hasFileMetadata: { mimeType: text/html, filePath: <https://opensource.org/license/mit> }", lang=en) ]               =
+=                                                                                                                                                    =
+= Focus Node: [ gx:license Literal("WRONG") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory                 =
+= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
+= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
+= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
+=                                                                                                                                                    =
+= Result Path: manifest:hasLink                                                                                                                      =
+=                                                                                                                                                    =
+= Message: Validation of hasLink failed!                                                                                                             =
 ======================================================================================================================================================
