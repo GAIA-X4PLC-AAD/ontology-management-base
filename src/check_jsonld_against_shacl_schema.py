@@ -6,6 +6,7 @@ import os
 import sys
 from collections import defaultdict
 from io import StringIO
+from typing import Dict, List
 from urllib.parse import urlparse
 
 from pyshacl import validate
@@ -13,10 +14,24 @@ from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
 from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
+ROOT_DIRECTORY = "."
+
 # Set the encoding for stdout and stderr to UTF-8 only when run as main
 if __name__ == "__main__":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+
+
+def setup_logging(debug=False):
+    handlers = [logging.StreamHandler(sys.stdout)]
+    if debug:
+        handlers.append(logging.FileHandler("output.log", mode="w"))
+    logging.basicConfig(
+        level=logging.DEBUG if debug else logging.INFO,
+        handlers=handlers,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        force=True,
+    )
 
 
 # --- Dynamic Prefix Extraction Functions ---
@@ -58,17 +73,19 @@ def load_dynamic_prefixes(files: list) -> dict:
     return dynamic_prefixes
 
 
-def resolve_manifest_local_path(name: str, file_type: str, root_dir: str = ".") -> str:
+def resolve_manifest_local_path(
+    name: str, file_type: str, root_dir: str = ROOT_DIRECTORY
+) -> str:
     filename = f"{name}_{file_type}.ttl"
     local_path = os.path.join(root_dir, name, filename)
-    logging.info(f"Resolved manifest local path for {name} ({file_type}): {local_path}")
+    print(f"Resolved manifest local path for {name} ({file_type}): {local_path}")
     return local_path
 
 
 def resolve_prefixed_type(
     json_type: str,
     context: dict = None,
-    root_dir: str = ".",
+    root_dir: str = ROOT_DIRECTORY,
     dynamic_mapping: dict = None,
 ) -> str:
     full_context = {}
@@ -102,18 +119,6 @@ def resolve_prefixed_type(
                     return local_ontology
             return resolved
     return json_type
-
-
-def setup_logging(debug=False):
-    handlers = [logging.StreamHandler(sys.stdout)]
-    if debug:
-        handlers.append(logging.FileHandler("output.log", mode="w"))
-    logging.basicConfig(
-        level=logging.DEBUG if debug else logging.INFO,
-        handlers=handlers,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        force=True,
-    )
 
 
 def load_shacl_and_ontologies(
@@ -188,7 +193,9 @@ def extract_namespace(rdf_type_str):
         return f"{parsed.scheme}://{parsed.netloc}"
 
 
-def extract_used_types(data_graph, dynamic_prefixes=None, root_dir=".", file=None):
+def extract_used_types(
+    data_graph, dynamic_prefixes=None, root_dir=ROOT_DIRECTORY, file=None
+):
     used_types = defaultdict(set)
     for _, _, rdf_type in data_graph.triples((None, RDF.type, None)):
         rdf_type_str = str(rdf_type)
@@ -212,22 +219,29 @@ def extract_used_types(data_graph, dynamic_prefixes=None, root_dir=".", file=Non
     return {rdf_type for types in used_types.values() for rdf_type in types}
 
 
-def load_jsonld_files(jsonld_files, file=None):
+def load_rdf_files(rdf_files, rdf_format, file=None):
     """
-    Loads JSON-LD files into an RDF graph and prints each file with its number.
+    Loads RDF files of a given format into an RDF graph and prints each file with its number.
+
+    Args:
+        rdf_files (list): List of file paths or URLs to RDF files.
+        rdf_format (str): Format of the RDF files (e.g., "json-ld", "turtle").
+        file: Optional file-like object to print output messages (default is None, which prints to stdout).
+
+    Returns:
+        rdflib.Graph: The RDF graph with all loaded data.
     """
     data_graph = Graph()
     failed_files = 0
-    for i, jsonld_file in enumerate(jsonld_files, start=1):
+
+    for i, rdf_file in enumerate(rdf_files, start=1):
         try:
-            data_graph.parse(jsonld_file, format="json-ld")
-            logging.debug(f"Loaded JSON-LD file: {jsonld_file}")
-            print(f"✅ [{i}/{len(jsonld_files)}] Loaded: {jsonld_file}", file=file)
+            data_graph.parse(rdf_file, format=rdf_format)
+            logging.debug(f"Loaded {rdf_format} file: {rdf_file}")
+            print(f"✅ [{i}/{len(rdf_files)}] Loaded: {rdf_file}", file=file)
         except Exception as e:
-            logging.error(f"Failed to load {jsonld_file}: {e}")
-            print(
-                f"❌ [{i}/{len(jsonld_files)}] Failed: {jsonld_file} → {e}", file=file
-            )
+            logging.error(f"Failed to load {rdf_file}: {e}")
+            print(f"❌ [{i}/{len(rdf_files)}] Failed: {rdf_file} → {e}", file=file)
             failed_files += 1
 
     return data_graph
@@ -331,7 +345,9 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
             elif path.endswith("_reference.json"):
                 reference_files.append(path)
     print_out("📌 Loading JSON-LD files into data graph...")
-    data_graph = load_jsonld_files(instance_files + reference_files, file=output_buffer)
+    data_graph = load_rdf_files(
+        instance_files + reference_files, rdf_format="json-ld", file=output_buffer
+    )
 
     # --- Step 6: Extract RDF Types from the Data Graph ---
     print_out("📌 Extracting RDF types from data graph...")
@@ -386,6 +402,112 @@ def validate_jsonld_against_shacl(paths: list, debug: bool = False) -> tuple[int
         return 0, output_buffer.getvalue()
 
 
+def build_dict_for_ontologies(
+    root_dir: str, paths: List[str]
+) -> Dict[str, Dict[str, List[str]]]:
+    """
+    Build a dictionary keyed by relative folder names with second-level keys:
+    'instance', 'reference', 'ontologies', 'shacle_shapes' each containing lists
+    of full file paths. The entry 'prefixes' will contain the dict ['prefix', 'full_uri'].
+
+    Args:
+        root_dir (str): Root directory of the project.
+        paths (List[str]): List of folder paths, JSON files, or other strings.
+
+    Returns:
+        Dict[str, Dict[str, List[str]]]: Nested dictionary as described.
+    """
+    data_dict: Dict[str, Dict[str, List[str]]] = {}
+
+    def init_dict_entry(folder_name: str):
+        if folder_name not in data_dict:
+            data_dict[folder_name] = {
+                "instance": [],
+                "reference": [],
+                "ontologies": [],
+                "shacle_shapes": [],
+                "prefixes": [],
+            }
+
+    collected_files = []
+
+    # Collect files from input paths
+    for p in paths:
+        full_path = os.path.join(root_dir, p)
+        if os.path.isdir(full_path):
+            # Add all *_instance.json and *_reference.json files in directory (non-recursive)
+            collected_files.extend(
+                glob.glob(os.path.join(full_path, "*_instance.json"))
+            )
+            collected_files.extend(
+                glob.glob(os.path.join(full_path, "*_reference.json"))
+            )
+        elif os.path.isfile(full_path) and full_path.endswith(".json"):
+            collected_files.append(full_path)
+            if full_path.endswith("_instance.json"):
+                directory = os.path.dirname(full_path)
+                collected_files.extend(
+                    glob.glob(os.path.join(directory, "*_reference.json"))
+                )
+        else:
+            # Ignore invalid or non-existent paths
+            pass
+
+    if not collected_files:
+        # No valid files found; return empty dict
+        return {}
+
+    # Separate instance and reference files explicitly provided or found so far
+    instance_files = [f for f in collected_files if f.endswith("_instance.json")]
+    reference_files = [f for f in collected_files if f.endswith("_reference.json")]
+
+    # Combine all instance and reference files for folder-based grouping
+    all_files = {"instance": instance_files, "reference": reference_files}
+
+    # Group files by relative folder and add to the dictionary under correct keys
+    for key in ["instance", "reference"]:
+        for file_path in all_files[key]:
+            # Determine folder relative to root_dir
+            rel_dir = os.path.relpath(os.path.dirname(file_path), root_dir)
+            folder_name = rel_dir.replace(os.sep, "/")  # normalize for consistent keys
+            init_dict_entry(folder_name)
+            full_path = os.path.normpath(file_path)
+            data_dict[folder_name][key].append(full_path)
+
+    # ontologies and shacle_shapes remain empty lists for now
+
+    return data_dict
+
+
+def add_prefixes_to_ontologies(ontology_dict: Dict[str, Dict[str, List[str]]]) -> None:
+    """
+    For each top-level ontology (e.g. 'envited-x', 'scenario'), extract unique prefixes
+    from all files listed under 'instance' and 'reference', and add a 'prefixes' dict
+    under each ontology containing these prefixes.
+
+    This function modifies the input dictionary in place.
+
+    Args:
+        ontology_dict (Dict[str, Dict[str, List[str]]]): Dictionary with ontology data,
+            expected to have keys like 'instance' and 'reference' with lists of file paths.
+    """
+    for ontology_key, contents in ontology_dict.items():
+        files_to_process = []
+        # Collect all instance and reference files for this ontology
+        for key in ["instance", "reference"]:
+            file_list = contents.get(key, [])
+            if file_list:
+                files_to_process.extend(file_list)
+
+        # Extract prefixes from these files using your existing function
+        prefixes = load_dynamic_prefixes(files_to_process) if files_to_process else {}
+
+        # Add or update the 'prefixes' key with the aggregated prefixes dictionary
+        contents["prefixes"] = prefixes
+
+        logging.debug(f"Added prefixes for ontology '{ontology_key}': {prefixes}")
+
+
 def main():
     debug = "--debug" in sys.argv
     if len(sys.argv) < 2:
@@ -395,6 +517,9 @@ def main():
         )
         sys.exit(100)
     paths = [os.path.normpath(arg) for arg in sys.argv[1:] if arg != "--debug"]
+
+    data_dict_4 = build_dict_for_ontologies(ROOT_DIRECTORY, paths)
+    add_prefixes_to_ontologies(data_dict_4)
 
     return_code, message = validate_jsonld_against_shacl(paths, debug)
     if return_code != 0:

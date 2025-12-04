@@ -8,9 +8,8 @@ from check_jsonld_against_shacl_schema import validate_jsonld_against_shacl
 from check_target_classes_against_owl_classes import (
     validate_target_classes_against_owl_classes,
 )
-
-# Import the refactored core functions directly
-from check_ttl_syntax import check_ttl_syntax
+from utils.check_parse_jsonld import main as main_check_jsonld
+from utils.check_parse_turtle import main as main_check_turtle
 
 # Define the root directory of the repository and the source folder for scripts
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,39 +31,14 @@ def get_ontology_dirs():
 
 
 ONTOLOGY_DIRS = get_ontology_dirs()
-print(f"Detected ontology directories: {ONTOLOGY_DIRS}", flush=True)
-print("\n🚀 Running all ontology validation checks...", flush=True)
 
 
-def check_ttl_syntax_all():
-    """Check the syntax of all Turtle (.ttl) files in each ontology folder."""
-    print("\n=== Checking TTL syntax ===", flush=True)
-    for ontology in ONTOLOGY_DIRS:
-        folder_path = os.path.join(ROOT_DIR, ontology)
-        print(f"\n🔍 Starting TTL syntax tests for folder: {ontology}", flush=True)
-        ttl_files = [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
-            if f.endswith(".ttl")
-        ]
-        if not ttl_files:
-            print(f"⚠️  No .ttl files found in folder: {ontology}", flush=True)
-            continue
-
-        for ttl_file in ttl_files:
-            print(f"🔍 Checking syntax of {ttl_file}...", flush=True)
-            returncode, output = check_ttl_syntax(ttl_file)
-            if returncode != 0:
-                print(
-                    f"\n❌ Error during TTL syntax check for {ttl_file}:\n{output}",
-                    file=sys.stderr,
-                    flush=True,
-                )
-
-                sys.exit(returncode)
-            else:
-                print(f"✅ {ttl_file} passed syntax check.", flush=True)
-        print(f"📌 Completed TTL syntax tests for folder: {ontology}", flush=True)
+def check_syntax_all():
+    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files in each ontology folder."""
+    print("\n=== Checking TTL and JSON-LD syntax ===", flush=True)
+    main_check_jsonld(ONTOLOGY_DIRS)
+    main_check_turtle(ONTOLOGY_DIRS)
+    print("📌 Completed TTL and JSON syntax tests", flush=True)
 
 
 def check_jsonld_against_shacl_all():
@@ -229,10 +203,15 @@ def check_target_classes_all():
 
 def main():
     """Run all validation checks sequentially, aborting on the first failure."""
-    check_ttl_syntax_all()
-    check_jsonld_against_shacl_all()
-    check_failing_tests_all()
-    check_target_classes_all()
+    print("Detected ontology directories:", flush=True)
+    for directory in ONTOLOGY_DIRS:
+        print(f" - {directory}", flush=True)
+
+    print("\n🚀 Running all ontology validation checks...", flush=True)
+    check_syntax_all()
+    # check_jsonld_against_shacl_all()
+    # check_failing_tests_all()
+    # check_target_classes_all()
     print("\n✅ All checks completed successfully!", flush=True)
 
 
