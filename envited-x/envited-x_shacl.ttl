@@ -72,7 +72,6 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     sh:targetClass envited-x:SimulationAsset .
 
 
-
 envited-x:ExtendedLinkShape a sh:NodeShape ;
   sh:property [
     sh:path manifest:hasAccessRole ;
@@ -94,6 +93,28 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
     ) ;
     sh:message "Category must be one of the envited-x defined categories." ;
   ] .
+
+
+#################################################################
+# Shape for envited-x:ManifestLink
+# (specialization of manifest:Link that points to manifests)
+#################################################################
+
+envited-x:ManifestLinkShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        sh:path manifest:hasCategory ;
+        sh:hasValue envited-x:isManifest ;
+        sh:message "Manifest links must have manifest:hasCategory envited-x:isManifest."@en ;
+    ] ;
+
+    sh:property [
+        sh:path manifest:iri ;
+        sh:minCount 1 ;
+        sh:message "Manifest links must specify manifest:iri pointing to the actual manifest (e.g. a DID)."@en ;
+    ];
+    sh:targetClass envited-x:ManifestLink .
 
 
 # Manifest Shape for additional constraints

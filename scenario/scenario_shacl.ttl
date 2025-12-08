@@ -9,7 +9,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-### **Scenario SHACL Shape**
+### Scenario SHACL Shape
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -22,7 +22,7 @@ scenario:ScenarioShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:path scenario:hasDataResourceExtension ;
-        sh:node scenario:DataResourceShapeExtension ;
+        sh:node scenario:DataResourceExtensionShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
@@ -45,7 +45,7 @@ scenario:ScenarioShape a sh:NodeShape ;
                 [ sh:node envited-x:ExtendedLinkShape ]
             )]
         ) ;
-        sh:message "Each scenario must have exactly one manifest, either inline (conforming to all of scenario:ManifestShape, manifest:ManifestShape, envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
+        sh:message "Each scenario must have exactly one manifest, either inline (conforming to all of scenario:ManifestShape, manifest:ManifestShape, envited-x:ManifestShape) or via link (manifest:LinkShape + envited-x:ExtendedLinkShape)."@en ;
     ] ;
     sh:targetClass scenario:Scenario .
 
@@ -118,7 +118,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:qualifiedValueShape [
             sh:and (
                 [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:extendedManifestShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
             ) ;
             sh:property [
                 sh:path manifest:hasCategory ;
@@ -135,7 +135,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:qualifiedValueShape [
             sh:and (
                 [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:extendedManifestShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
             ) ;
             sh:property [
                 sh:path manifest:hasCategory ;
@@ -146,7 +146,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Referenced Simulation Data'."@en ;
     ] ;
 
-    # Ensure at least one HD Map reference (either inline hdmap:HdMap or a manifest:Link that satisfies extendedManifestShape).
+    # Ensure at least one HD Map reference (either inline hdmap:HdMap or a manifest:Link that satisfies ExtendedLinkShape).
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
@@ -154,7 +154,7 @@ scenario:ManifestShape a sh:NodeShape ;
                 [ sh:node hdmap:HdMap ]
                 [ sh:and (
                     [ sh:node manifest:LinkShape ]
-                    [ sh:node envited-x:extendedManifestShape ]
+                    [ sh:node envited-x:ExtendedLinkShape ]
                 ) ]
             )
         ] ;
@@ -163,7 +163,7 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:description "Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap."@en ;
     ] ;
 
-    # Ensure at least one Environment Model reference (either inline environment-model:EnvironmentModel or a manifest:Link that satisfies extendedManifestShape).
+    # Ensure at least one Environment Model reference (either inline environment-model:EnvironmentModel or a manifest:Link that satisfies ExtendedLinkShape).
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
@@ -171,7 +171,7 @@ scenario:ManifestShape a sh:NodeShape ;
                 [ sh:node environment-model:EnvironmentModel ]
                 [ sh:and (
                     [ sh:node manifest:LinkShape ]
-                    [ sh:node envited-x:extendedManifestShape ]
+                    [ sh:node envited-x:ExtendedLinkShape ]
                 ) ]
             )
         ] ;
@@ -180,13 +180,13 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:description "Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel."@en ;
     ] ;
 
-    # Ensure at least one catalog reference via a manifest:Link that satisfies extendedManifestShape.
+    # Ensure at least one catalog reference via a manifest:Link that satisfies ExtendedLinkShape.
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
             sh:and (
                 [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:extendedManifestShape ]
+                [ sh:node envited-x:ExtendedLinkShape ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
@@ -197,8 +197,7 @@ scenario:ManifestShape a sh:NodeShape ;
     sh:targetClass scenario:Manifest .
 
 
-
-### **DataResourceExtension SHACL Shape**
+### DataResourceExtension SHACL Shape
 scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;

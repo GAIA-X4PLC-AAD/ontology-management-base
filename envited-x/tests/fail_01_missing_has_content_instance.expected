@@ -9,20 +9,7 @@
 =                                                                                                                                                    =
 = Conforms: False                                                                                                                                    =
 =                                                                                                                                                    =
-= Results (2):                                                                                                                                       =
-=                                                                                                                                                    =
-= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:message Literal("Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.", lang=en) ;  =
-= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path envited-x:hasContent ]                                                                    =
-=                                                                                                                                                    =
-= Focus Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
-=                                                                                                                                                    =
-= Result Path: envited-x:hasContent                                                                                                                  =
-=                                                                                                                                                    =
-= Message: Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                                          =
+= Results (1):                                                                                                                                       =
 =                                                                                                                                                    =
 = Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
 =                                                                                                                                                    =
@@ -30,14 +17,50 @@
 =                                                                                                                                                    =
 = Source Shape: [ sh:message Literal("A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) =
 = to provide additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one envited-x:hasContent  =
-= and one envited-x:hasFormat).", lang=en) ; sh:minCount Literal("0", datatype=xsd:integer) ; sh:node envited-x:DataResourceExtensionShape ; sh:path =
-= envited-x:hasDataResourceExtension ]                                                                                                               =
+= and one envited-x:hasFormat).", lang=en) ; sh:minCount Literal("0", datatype=xsd:integer) ; sh:node                                                =
+= <https://ontologies.envited-x.net/envited-x/v2/ontology#DataResourceExtensionShape> ; sh:path                                                      =
+= <https://ontologies.envited-x.net/envited-x/v2/ontology#hasDataResourceExtension> ]                                                                =
 =                                                                                                                                                    =
 = Focus Node: <did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw>                                                            =
 =                                                                                                                                                    =
-= Value Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
+= Value Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type [ owl:minCardinality Literal("0", datatype=xsd:integer)  =
+= ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality   =
+= Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;     =
+= rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class,             =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty              =
+= envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",       =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf  =
+= <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], [ owl:minCardinality             =
+= Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;        =
+= rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class,                =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty              =
+= envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",          =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [   =
+= owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class,     =
+= rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],  =
+= [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class,  =
+= rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type          =
+= owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty   =
+= envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",         =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [  =
+= owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class,    =
+= rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],  =
+= [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;    =
+= rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class,    =
+= rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class,                 =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ;        =
+= rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom        =
+= envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], =
+= rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], [ owl:onProperty envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ;   =
+= rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasFormat ; owl:someValuesFrom         =
+= envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasFormat ;         =
+= owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty            =
+= envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [     =
+= owl:onProperty envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;        =
+= rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],                  =
+= envited-x:DataResourceExtension, rdfs:Resource ]                                                                                                   =
 =                                                                                                                                                    =
-= Result Path: envited-x:hasDataResourceExtension                                                                                                    =
+= Result Path: <https://ontologies.envited-x.net/envited-x/v2/ontology#hasDataResourceExtension>                                                     =
 =                                                                                                                                                    =
 = Message: A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide additional      =
 = structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one envited-x:hasContent and one                =
@@ -49,11 +72,46 @@
 = Severity: sh:Violation                                                                                                                             =
 =                                                                                                                                                    =
 = Source Shape: [ sh:message Literal("Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.", lang=en) ;  =
-= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path envited-x:hasContent ]                                                                    =
+= sh:minCount Literal("1", datatype=xsd:integer) ; sh:path <https://ontologies.envited-x.net/envited-x/v2/ontology#hasContent> ]                     =
 =                                                                                                                                                    =
-= Focus Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type envited-x:DataResourceExtension, rdfs:Resource ]         =
+= Focus Node: [ envited-x:hasFormat [ rdf:type envited-x:Format, rdfs:Resource ] ; rdf:type [ owl:minCardinality Literal("0", datatype=xsd:integer)  =
+= ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality   =
+= Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;     =
+= rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class,             =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty              =
+= envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",       =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasDataSource ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf  =
+= <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], [ owl:minCardinality             =
+= Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;        =
+= rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class,                =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty              =
+= envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",          =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [   =
+= owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuality ; rdf:type owl:Class, owl:Restriction, rdfs:Class,     =
+= rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],  =
+= [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class,  =
+= rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type          =
+= owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty   =
+= envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0",         =
+= datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [  =
+= owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty envited-x:hasQuantity ; rdf:type owl:Class, owl:Restriction, rdfs:Class,    =
+= rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],  =
+= [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;    =
+= rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class,    =
+= rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ; rdf:type owl:Class,                 =
+= owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom envited-x:Content ;        =
+= rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasContent ; owl:someValuesFrom        =
+= envited-x:Content ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], =
+= rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], [ owl:onProperty envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ;   =
+= rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasFormat ; owl:someValuesFrom         =
+= envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty envited-x:hasFormat ;         =
+= owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:onProperty            =
+= envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [     =
+= owl:onProperty envited-x:hasFormat ; owl:someValuesFrom envited-x:Format ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ;        =
+= rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],                  =
+= envited-x:DataResourceExtension, rdfs:Resource ]                                                                                                   =
 =                                                                                                                                                    =
-= Result Path: envited-x:hasContent                                                                                                                  =
+= Result Path: <https://ontologies.envited-x.net/envited-x/v2/ontology#hasContent>                                                                   =
 =                                                                                                                                                    =
 = Message: Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                                          =
 ======================================================================================================================================================
