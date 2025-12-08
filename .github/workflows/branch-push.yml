@@ -128,6 +128,12 @@ jobs:
         run: |
           IFS=' ' # Set the Internal Field Separator to a space
           for DIRECTORY in ${CHANGED_DIRS}; do
+            # Skip any directory whose path includes '/tests/'
+            if [[ "$DIRECTORY" == *"/tests/"* ]] || [[ "$DIRECTORY" == tests* ]] || [[ "$DIRECTORY" == */tests ]]; then
+              echo "Skipping test directory: ${DIRECTORY}"
+              continue
+            fi
+
             echo "Processing changed directory: ${DIRECTORY}"
             python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
           done
