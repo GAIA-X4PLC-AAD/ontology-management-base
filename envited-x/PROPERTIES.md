@@ -17,6 +17,8 @@
 | SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
 | ExtendedLinkShape | manifest | hasAccessRole |  |  |  |  | envited-x_shacl.ttl |
 | ExtendedLinkShape | manifest | hasCategory |  |  |  |  | envited-x_shacl.ttl |
+| ManifestLinkShape | manifest | hasCategory |  |  |  |  | envited-x_shacl.ttl |
+| ManifestLinkShape | manifest | iri | 1 |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | rdf | type |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasManifestReference |  |  |  |  | envited-x_shacl.ttl |
 | ManifestShape | manifest | hasLicense |  |  |  |  | envited-x_shacl.ttl |
