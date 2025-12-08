@@ -88,7 +88,7 @@ jobs:
           IFS=' ' # Set the Internal Field Separator to a space
           for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
-            python3 -u src/check_ttl_syntax.py "${FILE}"
+            python3 -u src/utils/check_parse_turtle.py "${FILE}"
           done
 
   check-jsonld-against-schema:
