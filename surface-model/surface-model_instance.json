@@ -39,15 +39,15 @@
     "surface-model:hasQuality": {
       "@type": "surface-model:Quality",
       "surface-model:resolutionLongitudinal": {
-        "@value": 0.01,
+        "@value": "0.01",
         "@type": "xsd:float"
       },
       "surface-model:resolutionLateral": {
-        "@value": 0.01,
+        "@value": "0.01",
         "@type": "xsd:float"
       },
       "surface-model:orientation": {
-        "@value": -3.14159,
+        "@value": "-3.14159",
         "@type": "xsd:float"
       },
       "surface-model:platformExists": true,
@@ -56,11 +56,11 @@
     "surface-model:hasQuantity": {
       "@type": "surface-model:Quantity",
       "surface-model:length": {
-        "@value": 1.46,
+        "@value": "1.46",
         "@type": "xsd:float"
       },
       "surface-model:elevationRange": {
-        "@value": 25.00,
+        "@value": "25.00",
         "@type": "xsd:float"
       },
       "surface-model:mapDataField": true
@@ -92,19 +92,19 @@
         "georeference:hasBoundingBox": {
           "@type": "georeference:BoundingBox",
           "georeference:xMin": {
-            "@value": 11.608111,
+            "@value": "11.608111",
             "@type": "xsd:float"
           },
           "georeference:yMin": {
-            "@value": 48.331035,
+            "@value": "48.331035",
             "@type": "xsd:float"
           },
           "georeference:xMax": {
-            "@value": 11.610954,
+            "@value": "11.610954",
             "@type": "xsd:float"
           },
           "georeference:yMax": {
-            "@value": 48.341742,
+            "@value": "48.341742",
             "@type": "xsd:float"
           }
         }
@@ -112,28 +112,28 @@
       "georeference:hasGeodeticReferenceSystem": {
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
-          "@value": 451989,
+          "@value": "451989",
           "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
-            "@value": 48.045414,
+            "@value": "48.045414",
             "@type": "xsd:float"
           },
           "georeference:lon": {
-            "@value": 11.966206,
+            "@value": "11.966206",
             "@type": "xsd:float"
           }
         },
         "georeference:hasViewPoint": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
-            "@value": 48.045414,
+            "@value": "48.045414",
             "@type": "xsd:float"
           },
           "georeference:lon": {
-            "@value": 11.966206,
+            "@value": "11.966206",
             "@type": "xsd:float"
           }
         },

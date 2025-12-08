@@ -15,7 +15,7 @@
 surface-model: a owl:Ontology ;
     rdfs:label "Ontology definition for surface-model"@en ;
     rdfs:comment "An ontology with common classes used to describe a surface-model asset."@en ;
-    
+
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
         a foaf:Person ;
@@ -29,7 +29,7 @@ surface-model: a owl:Ontology ;
         a foaf:Person ;
         foaf:name "Carlo van Driesten" ;
         org:memberOf <https://www.bmwgroup.com/> ;
-    ] ;  
+    ] ;
 
     # Permanent identifier for the ontology (not version-specific)
     dcterms:identifier <https://ontologies.envited-x.net/surface-model> ;
@@ -68,7 +68,10 @@ surface-model:SurfaceModel a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty surface-model:hasManifest ;
-        owl:someValuesFrom envited-x:Manifest
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        ]
     ] .
 
 surface-model:DataResourceExtension a owl:Class ;
@@ -117,7 +120,8 @@ surface-model:Quantity a owl:Class ;
     rdfs:comment "Contains properties that describe the quantity of the surface model asset."@en ;
     rdfs:subClassOf envited-x:Quantity .
 
-### **Object Properties**
+
+### Object Properties
 
 surface-model:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataResourceExtension"@en ;
@@ -135,10 +139,14 @@ surface-model:hasDataResource a owl:ObjectProperty ;
 
 surface-model:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
-    rdfs:comment "Links a surface model asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:comment "Links a surface model asset to its manifest. May be inline or via link."@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain surface-model:SurfaceModel ;
-    rdfs:range envited-x:Manifest .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+    ] .
+
 
 surface-model:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;

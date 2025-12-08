@@ -65,7 +65,10 @@ environment-model:EnvironmentModel a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty environment-model:hasManifest ;
-        owl:someValuesFrom envited-x:Manifest
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        ]
     ] .
 
 #### Object Properties
@@ -78,13 +81,16 @@ environment-model:hasDataResource a owl:ObjectProperty ;
     rdfs:domain environment-model:EnvironmentModel ;
     rdfs:range envited-x:DataResource .
 
-### hasManifest (environment-model -> envited-x:Manifest)
+### hasManifest (environment-model -> envited-x:Manifest or envited-x:ManifestLink)
 environment-model:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
     rdfs:comment "Links an environment model asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain environment-model:EnvironmentModel ;
-    rdfs:range envited-x:Manifest .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+    ] .
 
 environment-model:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:label "has data resource extension"@en ;

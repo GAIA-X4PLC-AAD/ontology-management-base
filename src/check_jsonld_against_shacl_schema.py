@@ -885,10 +885,10 @@ def validate_jsonld_against_shacl(
         print_out("Error code 100: No valid files found in ontology_dict.")
         return 100, output_buffer.getvalue()
 
-    if inference_mode not in {"none", "rdfs", "owlrl"}:
+    if inference_mode not in {"none", "rdfs", "owlrl", "both"}:
         print_out(
             f"Error: Unsupported inference mode '{inference_mode}'. "
-            "Use one of: none, rdfs, owlrl."
+            "Use one of: none, rdfs, owlrl, both."
         )
         return 98, output_buffer.getvalue()
 
@@ -948,10 +948,11 @@ def validate_jsonld_against_shacl(
         data_graph,
         shacl_graph=shacl_graph,
         ont_graph=ont_graph,
-        abort_on_first=True,
+        abort_on_first=False,
         inference=inference_mode,
         validation_mode="strict",
         debug=debug,
+        inplace=False,
     )
 
     if not conforms:
@@ -1005,7 +1006,7 @@ def main() -> None:
         "--inference",
         type=str,
         default="rdfs",
-        choices=["none", "rdfs", "owlrl"],
+        choices=["none", "rdfs", "owlrl", "both"],
         help="Inference mode for pyshacl (default: rdfs)",
     )
 

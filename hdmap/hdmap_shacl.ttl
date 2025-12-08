@@ -33,7 +33,7 @@ hdmap:HdMapShape a sh:NodeShape ;
                 [ sh:node manifest:ManifestShape ]
                 [ sh:node envited-x:ManifestShape ]
             )]
-            
+
             ## Case 2: Linked manifest reference
             [ sh:and (
                 [ sh:node manifest:LinkShape ]
@@ -49,8 +49,8 @@ hdmap:HdMapShape a sh:NodeShape ;
 hdmap:DataResourceShapeExtension a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property 
-        [ 
+    sh:property
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:FormatShape ;
@@ -59,7 +59,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:order 1 ;
             sh:path hdmap:hasFormat
         ],
-        [ 
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentShape ;
@@ -67,8 +67,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
             sh:order 2 ;
             sh:path hdmap:hasContent
-        ],            
-        [ 
+        ],
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
@@ -76,8 +76,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
             sh:order 3 ;
             sh:path hdmap:hasQuantity
-        ],            
-        [ 
+        ],
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:QualityShape ;
@@ -86,7 +86,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:order 4 ;
             sh:path hdmap:hasQuality
         ],
-        [ 
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:DataSourceShape ;
@@ -95,7 +95,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:order 5 ;
             sh:path hdmap:hasDataSource
         ],
-        [ 
+        [
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
@@ -129,7 +129,7 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:message "Validation of levelOfDetail failed!"@en ;
             sh:name "level of detail"@en ;
             sh:order 2 ;
-            sh:path hdmap:levelOfDetail ], 
+            sh:path hdmap:levelOfDetail ],
         [ skos:example "right-hand traffic" ;
             sh:description "Indicates whether the HD map is designed for left or right-hand traffic."@en ;
             sh:in ("left-hand" "right-hand") ;
@@ -325,4 +325,4 @@ hdmap:Range2DShape a sh:NodeShape ;
             sh:name "min"@en ;
             sh:order 0 ;
             sh:path hdmap:min ] ;
-    sh:targetClass hdmap:Range2D .     
+    sh:targetClass hdmap:Range2D .

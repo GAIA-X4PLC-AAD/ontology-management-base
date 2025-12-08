@@ -84,7 +84,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 636673,
+          "@value": "636673",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -118,7 +118,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 5120,
+          "@value": "5120",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -167,7 +167,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 5678,
+          "@value": "5678",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -201,7 +201,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 1500,
+          "@value": "1500",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -235,7 +235,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 2400256,
+          "@value": "2400256",
           "@type": "xsd:integer"
         },
         "manifest:filename": {

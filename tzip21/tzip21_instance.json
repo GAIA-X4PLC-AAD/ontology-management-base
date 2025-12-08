@@ -17,7 +17,7 @@
     "@type": "xsd:string"
   },
   "tzip21:decimals": {
-    "@value": 0,
+    "@value": "0",
     "@type": "xsd:integer"
   },
   "tzip21:isBooleanAmount": {
@@ -122,7 +122,7 @@
         "@type": "xsd:string"
       },
       "tzip21:fileSize": {
-        "@value": 7711664,
+        "@value": "7711664",
         "@type": "xsd:integer"
       },
       "tzip21:fileName": {
@@ -145,7 +145,7 @@
         "@type": "xsd:string"
       },
       "tzip21:fileSize": {
-        "@value": 6574,
+        "@value": "6574",
         "@type": "xsd:integer"
       },
       "tzip21:fileName": {
@@ -168,7 +168,7 @@
         "@type": "xsd:string"
       },
       "tzip21:fileSize": {
-        "@value": 5572,
+        "@value": "5572",
         "@type": "xsd:integer"
       },
       "tzip21:fileName": {
@@ -191,7 +191,7 @@
         "@type": "xsd:string"
       },
       "tzip21:fileSize": {
-        "@value": 2397906,
+        "@value": "2397906",
         "@type": "xsd:integer"
       },
       "tzip21:fileName": {
