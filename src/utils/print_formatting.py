@@ -166,7 +166,7 @@ def print_validation_result(
         formatted_v_text = format_validation_report(v_text, width)
         print(formatted_v_text, file=file)
     if exit_code is not None:
-        print(f"Exiting with code {exit_code}")
+        print(f"Exiting with code {exit_code}", file=file)
         sys.exit(exit_code)
 
 

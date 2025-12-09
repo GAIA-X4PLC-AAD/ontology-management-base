@@ -9,7 +9,7 @@
 
 
 hdmap:HdMapShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [
         sh:path hdmap:hasDataResource ;
@@ -47,7 +47,7 @@ hdmap:HdMapShape a sh:NodeShape ;
     sh:targetClass hdmap:HdMap .
 
 hdmap:DataResourceShapeExtension a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property
         [
@@ -107,7 +107,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
     sh:targetClass hdmap:DataResourceExtension .
 
 hdmap:ContentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "[motorway, rural]" ;
             sh:description "Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
@@ -141,7 +141,7 @@ hdmap:ContentShape a sh:NodeShape ;
     sh:targetClass hdmap:Content .
 
 hdmap:DataSourceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
@@ -161,7 +161,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
     sh:targetClass hdmap:DataSource .
 
 hdmap:FormatShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
@@ -183,7 +183,7 @@ hdmap:FormatShape a sh:NodeShape ;
     sh:targetClass hdmap:Format .
 
 hdmap:QualityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -233,7 +233,7 @@ hdmap:QualityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quality .
 
 hdmap:QuantityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
@@ -311,7 +311,7 @@ hdmap:QuantityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quantity .
 
 hdmap:Range2DShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
             sh:description "The maximum value of the range."@en ;

@@ -1,3 +1,4 @@
+import contextlib
 import glob
 import json
 import logging
@@ -47,8 +48,14 @@ ROOT_DIRECTORY = "."
 # ---------------------------------------------------------------------------
 
 
-def setup_logging(debug: bool = False) -> None:
-    handlers = [logging.StreamHandler(sys.stdout)]
+def setup_logging(debug: bool = False, stream=None) -> None:
+    """
+    Configure logging. If 'stream' is provided, logs go there
+    (we use output_buffer inside validate_jsonld_against_shacl).
+    """
+    if stream is None:
+        stream = sys.stdout
+    handlers = [logging.StreamHandler(stream)]
     logging.basicConfig(
         level=logging.DEBUG if debug else logging.INFO,
         handlers=handlers,
@@ -743,7 +750,9 @@ def _select_relevant_ontologies(
     # Step 2: closure via ontology IRI / prefix graph
     iri_index = _build_ontology_iri_index(root_dir)
     deps = _build_ontology_dependencies(root_dir, iri_index)
-    all_relevant = _expand_ontology_dependencies_from(initially_relevant, deps)
+    all_relevant = _expand_ontology_dependencies_from(
+        initial_files=initially_relevant, deps=deps
+    )
 
     return all_relevant
 
@@ -869,7 +878,9 @@ def validate_jsonld_against_shacl(
     def print_out(*args, **kwargs) -> None:
         print(*args, **kwargs, file=output_buffer)
 
-    setup_logging(debug)
+    # Configure logging to write into the same buffer, so it ends
+    # up in the returned message (and thus in --logfile or stdout).
+    setup_logging(debug, stream=output_buffer)
     logger = logging.getLogger()
     if not debug:
         logger.disabled = True
@@ -944,16 +955,22 @@ def validate_jsonld_against_shacl(
         ontology_dict
     )
     print_out("🔍 Performing overall validation explicitly...")
-    conforms, _, v_text = validate(
-        data_graph,
-        shacl_graph=shacl_graph,
-        ont_graph=ont_graph,
-        abort_on_first=False,
-        inference=inference_mode,
-        validation_mode="strict",
-        debug=debug,
-        inplace=False,
-    )
+
+    # Capture *all* stdout/stderr from pyshacl.validate into output_buffer,
+    # so nothing leaks to the real console even if --logfile is set.
+    with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(
+        output_buffer
+    ):
+        conforms, _, v_text = validate(
+            data_graph,
+            shacl_graph=shacl_graph,
+            ont_graph=ont_graph,
+            abort_on_first=False,
+            inference=inference_mode,
+            validation_mode="strict",
+            debug=debug,
+            inplace=False,
+        )
 
     if not conforms:
         print_validate_jsonld_against_shacl_result(
@@ -1037,7 +1054,7 @@ def main() -> None:
         inference_mode=args.inference,
     )
 
-    # Print the final message once
+    # Print the final message once (to stdout or logfile, depending on redirection)
     print(message)
 
     if logfile_handle:
