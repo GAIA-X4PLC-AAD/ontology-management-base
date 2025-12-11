@@ -1,3 +1,22 @@
+#!/usr/bin/env python3
+"""
+Validate JSON-LD instance/reference files against SHACL with
+ontology dependency resolution driven by the data graph.
+
+New behaviour:
+
+- Accepts arbitrary *.json / *.jsonld instance files, e.g.
+    python check_jsonld_against_shacl.py \
+        examples/simpulseid-administrator-credential.json \
+        --root generated
+
+- Optional --root / --root-dir argument controls where SHACL and
+  ontology TTL files are searched (e.g. ./generated).
+
+- Old *_instance.json / *_reference.json pattern still works when
+  you pass directories as paths.
+"""
+
 import contextlib
 import glob
 import json
@@ -40,7 +59,7 @@ except ImportError:  # pragma: no cover - allow running outside repo
             print(validation_text, file=file)
 
 
-ROOT_DIRECTORY = "."
+DEFAULT_ROOT_DIRECTORY = "."
 
 
 # ---------------------------------------------------------------------------
@@ -222,7 +241,7 @@ def check_jsonld_context_coverage(file_path: str) -> Dict[str, Set[str]]:
 
 
 def resolve_manifest_local_path(
-    name: str, file_type: str, root_dir: str = ROOT_DIRECTORY
+    name: str, file_type: str, root_dir: str = DEFAULT_ROOT_DIRECTORY
 ) -> str:
     filename = f"{name}_{file_type}.ttl"
     local_path = os.path.join(root_dir, name, filename)
@@ -234,14 +253,11 @@ def resolve_json_type(
     json_type: str,
     namespace_prefixes: Dict[str, str],
     manifest_dir_url: str | None = None,
-    root_dir: str = ROOT_DIRECTORY,
+    root_dir: str = DEFAULT_ROOT_DIRECTORY,
 ) -> str:
     """
     Resolve a JSON-LD @type into a fully qualified IRI if possible,
     otherwise return the original string.
-
-    NOTE: In the current pipeline this is mostly relevant if the data graph
-    contains CURIE-style rdf:type values. For fully expanded IRIs it is a no-op.
     """
     if ":" in json_type and "://" not in json_type:
         prefix, local_name = json_type.split(":", 1)
@@ -369,23 +385,39 @@ def build_dict_for_ontologies(
         - 'shacle_shapes': List[str] (filled later with *relevant* schema files)
         - 'prefixes': Dict[str, str] (JSON-LD + schema prefixes)
         - 'context_issues': Dict[file_path, dict]
+
+    New semantics:
+
+    - If 'paths' contains directories:
+        we still collect *_instance.json and *_reference.json within them.
+
+    - If 'paths' contains files:
+        any *.json / *.jsonld file is accepted as an 'instance' file
+        (unless it ends with '_reference.json', which is treated as 'reference').
     """
     ontology_dict: Dict[str, Dict[str, object]] = {}
 
     collected_files: List[str] = []
 
-    # Collect instance/reference from given paths
     for p in paths:
-        full_path = os.path.join(root_dir, p)
+        # Interpret paths relative to current working directory, not root_dir.
+        full_path = os.path.abspath(p)
+
         if os.path.isdir(full_path):
+            # Legacy behaviour: directories with *_instance.json / *_reference.json.
             collected_files.extend(
                 glob.glob(os.path.join(full_path, "*_instance.json"))
             )
             collected_files.extend(
                 glob.glob(os.path.join(full_path, "*_reference.json"))
             )
-        elif os.path.isfile(full_path) and full_path.endswith(".json"):
+        elif os.path.isfile(full_path) and (
+            full_path.endswith(".json") or full_path.endswith(".jsonld")
+        ):
+            # Generic single JSON/JSON-LD file
             collected_files.append(full_path)
+            # Old pattern: from an explicit *_instance.json we still auto-add
+            # sibling *_reference.json files in the same directory.
             if full_path.endswith("_instance.json"):
                 directory = os.path.dirname(full_path)
                 collected_files.extend(
@@ -395,8 +427,18 @@ def build_dict_for_ontologies(
     if not collected_files:
         return {}
 
-    instance_files = [f for f in collected_files if f.endswith("_instance.json")]
-    reference_files = [f for f in collected_files if f.endswith("_reference.json")]
+    # New: classify generic JSON files
+    instance_files: List[str] = []
+    reference_files: List[str] = []
+
+    for f in collected_files:
+        if f.endswith("_reference.json"):
+            reference_files.append(f)
+        else:
+            # Any other JSON / JSON-LD file counts as "instance",
+            # including *_instance.json and arbitrary names like
+            # simpulseid-administrator-credential.json.
+            instance_files.append(f)
 
     # Group JSON-LD by folder
     for key, files in (("instance", instance_files), ("reference", reference_files)):
@@ -1007,7 +1049,22 @@ def main() -> None:
     parser.add_argument(
         "paths",
         nargs="+",
-        help="Files or folders containing instance/reference JSON(-LD)",
+        help=(
+            "JSON/JSON-LD files and/or directories. "
+            "Files are treated as instances; directories are scanned for "
+            "*_instance.json and *_reference.json."
+        ),
+    )
+    parser.add_argument(
+        "--root",
+        "--root-dir",
+        dest="root_dir",
+        type=str,
+        default=DEFAULT_ROOT_DIRECTORY,
+        help=(
+            "Root directory used to search for SHACL and ontology TTL files "
+            "(default: current directory)."
+        ),
     )
     parser.add_argument(
         "--debug",
@@ -1029,6 +1086,9 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    # Resolve root_dir once and pass it through
+    root_dir = os.path.abspath(args.root_dir)
+
     # Redirect stdout/stderr to logfile if requested
     original_stdout = sys.stdout
     original_stderr = sys.stderr
@@ -1038,9 +1098,12 @@ def main() -> None:
         sys.stdout = logfile_handle
         sys.stderr = logfile_handle
 
-    ontology_dict = build_dict_for_ontologies(ROOT_DIRECTORY, args.paths)
+    ontology_dict = build_dict_for_ontologies(root_dir, args.paths)
     if not ontology_dict:
-        print("Error code 100: No valid files found.", file=sys.stderr)
+        print(
+            f"Error code 100: No valid files found in given paths {args.paths}.",
+            file=sys.stderr,
+        )
         if logfile_handle:
             logfile_handle.close()
             sys.stdout = original_stdout
@@ -1048,7 +1111,7 @@ def main() -> None:
         sys.exit(100)
 
     return_code, message = validate_jsonld_against_shacl(
-        ROOT_DIRECTORY,
+        root_dir,
         ontology_dict,
         debug=args.debug,
         inference_mode=args.inference,
