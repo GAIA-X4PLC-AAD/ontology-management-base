@@ -206,6 +206,9 @@ def check_jsonld_context_coverage(file_path: str) -> Dict[str, Set[str]]:
     context = data.get("@context", {})
     declared_prefixes: Set[str] = set()
 
+    # NOTE: This coverage check only handles inline dict contexts. If @context is a list
+    # (e.g., remote contexts + local dict), this warning is expected and the result is
+    # conservative (declared_prefixes may be incomplete).
     if isinstance(context, dict):
         declared_prefixes = {k for k in context.keys() if isinstance(k, str)}
     else:
@@ -258,6 +261,10 @@ def resolve_json_type(
     """
     Resolve a JSON-LD @type into a fully qualified IRI if possible,
     otherwise return the original string.
+
+    NOTE: This resolver primarily handles CURIEs (prefix:local) using the
+    dynamically extracted prefix mapping. The manifest-based branch is
+    currently only used if 'manifest_dir_url' is provided by the caller.
     """
     if ":" in json_type and "://" not in json_type:
         prefix, local_name = json_type.split(":", 1)
@@ -315,6 +322,8 @@ def extract_used_types(
 
     rdf_type_pred = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")["type"]
 
+    # NOTE: manifest_dir_url is currently unused by this pipeline (kept for
+    # compatibility with the original script's manifest resolution logic).
     manifest_dir_url = None
     for _, _, obj in data_graph.triples((None, rdf_type_pred, None)):
         resolved_type = resolve_json_type(
@@ -339,7 +348,7 @@ def load_rdf_files(
     rdf_files: List[str],
     rdf_format: str = "json-ld",
     file=None,
-) -> Graph:
+) -> tuple[Graph, int, int]:
     """
     Load a list of RDF files into a single rdflib.Graph.
 
@@ -349,23 +358,35 @@ def load_rdf_files(
         file: Optional file-like object to print output messages.
 
     Returns:
-        rdflib.Graph: The RDF graph with all loaded data.
+        (Graph, loaded_count, failed_count):
+            - Graph: The RDF graph with all loaded data.
+            - loaded_count: number of files that parsed successfully
+            - failed_count: number of files that failed to parse
+
+    NOTE:
+        A common failure mode for JSON-LD is remote @context resolution.
+        If rdflib cannot fetch a remote context, parsing may fail and no triples
+        will be loaded.
     """
     if file is None:
         file = sys.stdout
 
     data_graph = Graph()
+    loaded_count = 0
+    failed_count = 0
 
     for i, rdf_file in enumerate(rdf_files, start=1):
         try:
             data_graph.parse(rdf_file, format=rdf_format)
+            loaded_count += 1
             logging.debug("Loaded %s file: %s", rdf_format, rdf_file)
             print(f"✅ [{i}/{len(rdf_files)}] Loaded: {rdf_file}", file=file)
         except Exception as e:  # pragma: no cover - defensive
+            failed_count += 1
             logging.error("Failed to load %s: %s", rdf_file, e)
             print(f"❌ [{i}/{len(rdf_files)}] Failed: {rdf_file} → {e}", file=file)
 
-    return data_graph
+    return data_graph, loaded_count, failed_count
 
 
 # ---------------------------------------------------------------------------
@@ -394,6 +415,10 @@ def build_dict_for_ontologies(
     - If 'paths' contains files:
         any *.json / *.jsonld file is accepted as an 'instance' file
         (unless it ends with '_reference.json', which is treated as 'reference').
+
+    NOTE:
+        Files are resolved relative to the current working directory. The 'root_dir'
+        is used for grouping (relative folder keys) and for schema discovery.
     """
     ontology_dict: Dict[str, Dict[str, object]] = {}
 
@@ -405,12 +430,8 @@ def build_dict_for_ontologies(
 
         if os.path.isdir(full_path):
             # Legacy behaviour: directories with *_instance.json / *_reference.json.
-            collected_files.extend(
-                glob.glob(os.path.join(full_path, "*_instance.json"))
-            )
-            collected_files.extend(
-                glob.glob(os.path.join(full_path, "*_reference.json"))
-            )
+            collected_files.extend(glob.glob(os.path.join(full_path, "*_instance.json")))
+            collected_files.extend(glob.glob(os.path.join(full_path, "*_reference.json")))
         elif os.path.isfile(full_path) and (
             full_path.endswith(".json") or full_path.endswith(".jsonld")
         ):
@@ -420,9 +441,7 @@ def build_dict_for_ontologies(
             # sibling *_reference.json files in the same directory.
             if full_path.endswith("_instance.json"):
                 directory = os.path.dirname(full_path)
-                collected_files.extend(
-                    glob.glob(os.path.join(directory, "*_reference.json"))
-                )
+                collected_files.extend(glob.glob(os.path.join(directory, "*_reference.json")))
 
     if not collected_files:
         return {}
@@ -463,6 +482,11 @@ def add_jsonld_prefixes_and_context_info(
     For each folder, extract prefixes from instance/reference JSON-LD files and
     store them under 'prefixes'. Also store context coverage issues per file
     under 'context_issues'.
+
+    NOTE:
+        Prefix extraction only considers inline @context dict entries. If the
+        document relies on remote contexts, the dynamic prefix mapping may be
+        incomplete unless those contexts are inlined in the JSON.
     """
     for folder_key, contents in ontology_dict.items():
         files_to_process: List[str] = []
@@ -586,7 +610,7 @@ def collect_instance_and_reference_files(
 def build_data_graph_from_dict(
     ontology_dict: Dict[str, Dict[str, object]],
     output_buffer: StringIO,
-) -> Graph:
+) -> tuple[Graph, int, int]:
 
     def print_out(*args, **kwargs) -> None:
         print(*args, **kwargs, file=output_buffer)
@@ -598,9 +622,10 @@ def build_data_graph_from_dict(
 
     if not all_jsonld_files:
         print_out("Error code 100: No instance/reference JSON-LD files found.")
-        return Graph()
+        return Graph(), 0, 0
 
     print_out("📌 Loading JSON-LD files into data graph...")
+    # NOTE: This loads only the JSON(-LD) files discovered from the CLI args.
     return load_rdf_files(all_jsonld_files, rdf_format="json-ld", file=output_buffer)
 
 
@@ -727,6 +752,11 @@ def _select_relevant_shacl_files(
     """
     Identify and load SHACL files whose sh:targetClass matches any of the
     rdf:type values seen in the data graph.
+
+    NOTE:
+        This requires that the data graph actually contains rdf:type triples.
+        If JSON-LD parsing fails (e.g., due to remote @context issues), used_types
+        may be empty and no SHACL files will be selected.
     """
     shacl_graph = Graph()
     shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
@@ -914,6 +944,10 @@ def validate_jsonld_against_shacl(
       are loaded for validation.
     - Ontologies themselves are NOT self-validated against their SHACL
       shapes (focus is purely on instance data).
+
+    IMPORTANT:
+    - If no JSON-LD data could be loaded (e.g., remote context resolution fails),
+      the script aborts validation to avoid false positives.
     """
     output_buffer = StringIO()
 
@@ -949,11 +983,29 @@ def validate_jsonld_against_shacl(
     add_jsonld_prefixes_and_context_info(ontology_dict)
 
     # 2) Data graph (instance + reference) – ONLY those discovered from CLI args
-    data_graph = build_data_graph_from_dict(ontology_dict, output_buffer)
+    data_graph, loaded_count, failed_count = build_data_graph_from_dict(
+        ontology_dict, output_buffer
+    )
+
+    # Abort if nothing could be loaded. Otherwise we get false positives.
+    if loaded_count == 0:
+        print_out(
+            "Error code 101: No JSON-LD data could be loaded (all parses failed). "
+            "Aborting validation to avoid false positives."
+        )
+        return 101, output_buffer.getvalue()
+
+    # Abort if the graph is empty (edge case: files loaded but produce no triples)
+    if len(data_graph) == 0:
+        print_out(
+            "Error code 102: Data graph is empty after loading JSON-LD. "
+            "Aborting validation to avoid false positives."
+        )
+        return 102, output_buffer.getvalue()
 
     # 3) Extract RDF types from the data graph
     print_out("📌 Extracting RDF types from data graph...")
-    # At this point we only have JSON-LD prefixes in the dict
+    # At this point we only have JSON-LD prefixes in the dict (schema prefixes are added later)
     jsonld_prefixes = build_global_prefix_mapping(ontology_dict)
     used_types = extract_used_types(
         data_graph, jsonld_prefixes, root_dir, file=output_buffer
