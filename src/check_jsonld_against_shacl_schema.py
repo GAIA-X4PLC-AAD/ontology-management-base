@@ -23,6 +23,7 @@ import json
 import logging
 import os
 import sys
+import tempfile
 from argparse import ArgumentParser
 from collections import Counter, defaultdict
 from io import StringIO
@@ -63,9 +64,205 @@ DEFAULT_ROOT_DIRECTORY = "."
 
 
 # ---------------------------------------------------------------------------
-# Logging
+# Local JSON-LD @context resolver (minimal integration)
 # ---------------------------------------------------------------------------
 
+def iri_to_namespace_hint(iri: str) -> str | None:
+    """
+    Derive a lowercase namespace "hint" from a remote context IRI.
+
+    Requirement:
+        "https://schema.ascs.digital/SimpulseId/v1/credentials" -> "simpulseid"
+
+    Heuristic:
+        - Use the first non-empty path segment
+        - Lower-case it
+    """
+    try:
+        parsed = urlparse(iri)
+    except Exception:
+        return None
+
+    path = parsed.path or ""
+    parts = [p for p in path.split("/") if p]
+    if not parts:
+        return None
+    return parts[0].lower()
+
+
+class LocalContextResolver:
+    """
+    Resolve remote JSON-LD @context IRIs to local files and rewrite JSON-LD inputs.
+
+    Why:
+        rdflib's JSON-LD parser fetches remote contexts over HTTPS. In your case,
+        that fetch fails with DNS/TLS issues, which prevents any triples
+        from being loaded and yields false-positive validations unless aborted.
+
+    How:
+        For JSON-LD inputs whose @context is a list or string of remote IRIs,
+        rewrite those entries to *inline* JSON-LD contexts loaded from local
+        JSON files under a context root directory (provided via --context-root).
+
+    New requirements implemented here:
+      * initialize with the context_root directory by adding the list of folder
+        names present as available local contexts
+      * only rewrite when @context contains remote URLs (string or list of strings)
+      * for a remote URL, derive a lowercase namespace hint from the URL path:
+            https://schema.ascs.digital/SimpulseId/v1/credentials -> simpulseid
+      * if that namespace exists as a folder under context_root, replace the URL
+        with the *contents* of:
+            context_root/<namespace>/<namespace>_context.jsonld
+        by rewriting the JSON file.
+      * if not found, do not change it (W3C contexts can resolve externally).
+    """
+
+    def __init__(self, context_root: str):
+        self.context_root = os.path.abspath(context_root)
+        self.available_namespaces: Set[str] = set()
+
+        if os.path.isdir(self.context_root):
+            for entry in os.listdir(self.context_root):
+                p = os.path.join(self.context_root, entry)
+                if os.path.isdir(p):
+                    self.available_namespaces.add(entry.lower())
+
+        logging.debug(
+            "LocalContextResolver initialized with context_root=%s, available_namespaces=%s",
+            self.context_root,
+            sorted(self.available_namespaces),
+        )
+
+    def _local_context_file_path(self, namespace: str) -> str:
+        """
+        Resolve local context file path:
+            context_root/<namespace>/<namespace>_context.jsonld
+        """
+        ns = namespace.lower()
+        filename = f"{ns}_context.jsonld"
+        return os.path.join(self.context_root, ns, filename)
+
+    def _load_local_context_object(self, namespace: str) -> dict | None:
+        """
+        Load the JSON-LD context file and return the context *object* (dict).
+
+        We accept either:
+          - a top-level {"@context": {...}} document
+          - or a top-level {...} dict that is itself the context object
+
+        Returns:
+            dict context object, or None if missing/unreadable/invalid.
+        """
+        local_path = self._local_context_file_path(namespace)
+        if not os.path.exists(local_path):
+            return None
+
+        try:
+            with open(local_path, "r", encoding="utf-8") as f:
+                ctx_data = json.load(f)
+        except Exception as e:
+            logging.warning("Failed to read local context file %s: %s", local_path, e)
+            return None
+
+        if isinstance(ctx_data, dict):
+            if "@context" in ctx_data and isinstance(ctx_data["@context"], dict):
+                return ctx_data["@context"]
+            # Some projects store the context mapping as the root object.
+            return ctx_data
+
+        logging.warning("Local context file %s is not a JSON object.", local_path)
+        return None
+
+    def _resolve_context_entry(self, entry):
+        """
+        Replace remote context URL with inline context object *only* if:
+          - entry is a remote URL, and
+          - its derived namespace exists as a folder under context_root, and
+          - the expected context file exists and can be loaded.
+        """
+        if isinstance(entry, str) and entry.startswith("http"):
+            namespace = iri_to_namespace_hint(entry)
+            if namespace and namespace.lower() in self.available_namespaces:
+                ctx_obj = self._load_local_context_object(namespace)
+                if ctx_obj is not None:
+                    logging.debug(
+                        "Resolved remote @context %s -> inline context from %s",
+                        entry,
+                        self._local_context_file_path(namespace),
+                    )
+                    return ctx_obj
+
+                logging.warning(
+                    "Namespace '%s' is available, but context file could not be loaded: %s",
+                    namespace,
+                    self._local_context_file_path(namespace),
+                )
+            else:
+                logging.debug(
+                    "No matching local namespace for remote @context %s (derived=%s). Leaving unchanged.",
+                    entry,
+                    namespace,
+                )
+
+        return entry
+
+    def rewrite_jsonld_file(self, jsonld_path: str) -> str:
+        """
+        Rewrite a JSON/JSON-LD file to replace remote @context IRIs with *inline*
+        JSON-LD context objects loaded from local files.
+
+        Returns:
+            The path to a temporary rewritten JSON file if changes were made,
+            otherwise the original jsonld_path is returned.
+
+        NOTE:
+            Temporary files are created only when a rewrite is necessary.
+        """
+        with open(jsonld_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        ctx = data.get("@context")
+        if ctx is None:
+            return jsonld_path
+
+        rewritten = False
+
+        # If context is already an inline dict, no resolving is needed.
+        if isinstance(ctx, dict):
+            # Inline dict context needs no network access; do nothing.
+            return jsonld_path
+
+        if isinstance(ctx, list):
+            new_ctx = []
+            for entry in ctx:
+                resolved = self._resolve_context_entry(entry)
+                if resolved != entry:
+                    rewritten = True
+                new_ctx.append(resolved)
+            data["@context"] = new_ctx
+        elif isinstance(ctx, str):
+            resolved = self._resolve_context_entry(ctx)
+            if resolved != ctx:
+                rewritten = True
+            data["@context"] = resolved
+        else:
+            # Unexpected structure; keep unchanged.
+            return jsonld_path
+
+        if not rewritten:
+            return jsonld_path
+
+        fd, tmp_path = tempfile.mkstemp(prefix="jsonld_rewritten_", suffix=".json")
+        os.close(fd)
+        with open(tmp_path, "w", encoding="utf-8") as out:
+            json.dump(data, out, ensure_ascii=False, indent=2)
+
+        return tmp_path
+
+
+# ---------------------------------------------------------------------------
+# Logging
+# ---------------------------------------------------------------------------
 
 def setup_logging(debug: bool = False, stream=None) -> None:
     """
@@ -348,6 +545,7 @@ def load_rdf_files(
     rdf_files: List[str],
     rdf_format: str = "json-ld",
     file=None,
+    context_resolver: LocalContextResolver | None = None,
 ) -> tuple[Graph, int, int]:
     """
     Load a list of RDF files into a single rdflib.Graph.
@@ -356,6 +554,8 @@ def load_rdf_files(
         rdf_files: List of file paths or URLs to RDF files.
         rdf_format: Format of the RDF files (e.g., "json-ld", "turtle").
         file: Optional file-like object to print output messages.
+        context_resolver: Optional LocalContextResolver used to rewrite JSON-LD @context
+            entries before parsing, avoiding network fetches.
 
     Returns:
         (Graph, loaded_count, failed_count):
@@ -367,6 +567,9 @@ def load_rdf_files(
         A common failure mode for JSON-LD is remote @context resolution.
         If rdflib cannot fetch a remote context, parsing may fail and no triples
         will be loaded.
+
+        If context_resolver is provided and rdf_format is JSON-LD, the input is
+        rewritten to inline local contexts for known namespaces.
     """
     if file is None:
         file = sys.stdout
@@ -374,10 +577,19 @@ def load_rdf_files(
     data_graph = Graph()
     loaded_count = 0
     failed_count = 0
+    temp_files_to_cleanup: List[str] = []
 
     for i, rdf_file in enumerate(rdf_files, start=1):
         try:
-            data_graph.parse(rdf_file, format=rdf_format)
+            parse_target = rdf_file
+            if rdf_format.lower() in {"json-ld", "jsonld"} and context_resolver:
+                # NOTE: Rewrite remote contexts to inline local contexts when possible.
+                rewritten = context_resolver.rewrite_jsonld_file(rdf_file)
+                if rewritten != rdf_file:
+                    temp_files_to_cleanup.append(rewritten)
+                parse_target = rewritten
+
+            data_graph.parse(parse_target, format=rdf_format)
             loaded_count += 1
             logging.debug("Loaded %s file: %s", rdf_format, rdf_file)
             print(f"✅ [{i}/{len(rdf_files)}] Loaded: {rdf_file}", file=file)
@@ -385,6 +597,13 @@ def load_rdf_files(
             failed_count += 1
             logging.error("Failed to load %s: %s", rdf_file, e)
             print(f"❌ [{i}/{len(rdf_files)}] Failed: {rdf_file} → {e}", file=file)
+
+    # Best-effort cleanup of rewritten temp files.
+    for tmp in temp_files_to_cleanup:
+        try:
+            os.remove(tmp)
+        except Exception:
+            pass
 
     return data_graph, loaded_count, failed_count
 
@@ -610,6 +829,7 @@ def collect_instance_and_reference_files(
 def build_data_graph_from_dict(
     ontology_dict: Dict[str, Dict[str, object]],
     output_buffer: StringIO,
+    context_resolver: LocalContextResolver | None = None,
 ) -> tuple[Graph, int, int]:
 
     def print_out(*args, **kwargs) -> None:
@@ -626,7 +846,12 @@ def build_data_graph_from_dict(
 
     print_out("📌 Loading JSON-LD files into data graph...")
     # NOTE: This loads only the JSON(-LD) files discovered from the CLI args.
-    return load_rdf_files(all_jsonld_files, rdf_format="json-ld", file=output_buffer)
+    return load_rdf_files(
+        all_jsonld_files,
+        rdf_format="json-ld",
+        file=output_buffer,
+        context_resolver=context_resolver,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -738,6 +963,48 @@ def _expand_ontology_dependencies_from(
                 queue.append(dep_norm)
 
     return sorted(closure)
+
+
+# ---------------------------------------------------------------------------
+# SHACL + ontology loading based on used rdf:type and ontology deps
+# ---------------------------------------------------------------------------
+
+
+def _select_relevant_shacl_files(
+    root_dir: str,
+    used_types: Set[str],
+) -> Tuple[List[str], Graph]:
+    """
+    Identify and load SHACL files whose sh:targetClass matches any of the
+    rdf:type values seen in the data graph.
+    """
+    shacl_graph = Graph()
+    shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
+
+    SH = Namespace("http://www.w3.org/ns/shacl#")
+    target_class_pred = SH["targetClass"]
+
+    relevant_files: List[str] = []
+
+    for shacl_file in shacl_files:
+        tmp_graph = Graph()
+        try:
+            tmp_graph.parse(shacl_file, format="turtle")
+        except Exception as e:  # defensive
+            logging.warning("Failed to parse SHACL file %s: %s", shacl_file, e)
+            continue
+
+        is_relevant = False
+        for _, _, rdf_type in tmp_graph.triples((None, target_class_pred, None)):
+            if str(rdf_type) in used_types:
+                is_relevant = True
+                break
+
+        if is_relevant:
+            relevant_files.append(shacl_file)
+            shacl_graph += tmp_graph
+
+    return relevant_files, shacl_graph
 
 
 # ---------------------------------------------------------------------------
@@ -931,6 +1198,7 @@ def validate_jsonld_against_shacl(
     ontology_dict: Dict[str, Dict[str, object]],
     debug: bool = False,
     inference_mode: str = "rdfs",
+    context_resolver: LocalContextResolver | None = None,
 ) -> Tuple[int, str]:
     """
     Main validation pipeline using ontology_dict built beforehand.
@@ -984,7 +1252,7 @@ def validate_jsonld_against_shacl(
 
     # 2) Data graph (instance + reference) – ONLY those discovered from CLI args
     data_graph, loaded_count, failed_count = build_data_graph_from_dict(
-        ontology_dict, output_buffer
+        ontology_dict, output_buffer, context_resolver=context_resolver
     )
 
     # Abort if nothing could be loaded. Otherwise we get false positives.
@@ -1119,6 +1387,16 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--context-root",
+        dest="context_root",
+        type=str,
+        default=None,
+        help=(
+            "Directory containing local JSON-LD context files used to resolve remote @context IRIs. "
+            "Default: <root>/contexts if it exists, otherwise <root>."
+        ),
+    )
+    parser.add_argument(
         "--debug",
         action="store_true",
         help="Enable debug logging",
@@ -1141,6 +1419,13 @@ def main() -> None:
     # Resolve root_dir once and pass it through
     root_dir = os.path.abspath(args.root_dir)
 
+    # Default context root: <root>/contexts if present, else <root>.
+    if args.context_root:
+        context_root = os.path.abspath(args.context_root)
+    else:
+        candidate = os.path.join(root_dir, "contexts")
+        context_root = candidate if os.path.isdir(candidate) else root_dir
+
     # Redirect stdout/stderr to logfile if requested
     original_stdout = sys.stdout
     original_stderr = sys.stderr
@@ -1162,11 +1447,14 @@ def main() -> None:
             sys.stderr = original_stderr
         sys.exit(100)
 
+    context_resolver = LocalContextResolver(context_root=context_root)
+
     return_code, message = validate_jsonld_against_shacl(
         root_dir,
         ontology_dict,
         debug=args.debug,
         inference_mode=args.inference,
+        context_resolver=context_resolver,
     )
 
     # Print the final message once (to stdout or logfile, depending on redirection)
