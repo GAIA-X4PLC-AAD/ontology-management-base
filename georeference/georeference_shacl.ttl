@@ -7,7 +7,6 @@
 
 georeference:GeoreferenceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type owl:sameAs ) ;
     sh:property [
         sh:maxCount 1 ;
         sh:minCount 1 ;
@@ -29,7 +28,6 @@ georeference:GeoreferenceShape a sh:NodeShape ;
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type owl:sameAs ) ;
     sh:or (
         [ sh:minCount 1 ; sh:path georeference:codeEPSG ]
         [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ]
@@ -85,7 +83,6 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
 
 georeference:BoundingBoxShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type owl:sameAs ) ;
     sh:property [
         skos:example "1.0" ;
         sh:datatype xsd:float ;
@@ -131,7 +128,6 @@ georeference:BoundingBoxShape a sh:NodeShape ;
 
 georeference:LatLonCoordinateShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type owl:sameAs ) ;
     sh:property [
         skos:example "52.540721" ;
         sh:datatype xsd:float ;
@@ -157,7 +153,6 @@ georeference:LatLonCoordinateShape a sh:NodeShape ;
 
 georeference:ProjectLocationShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type owl:sameAs ) ;
     sh:property [
         skos:example "DE-BY" ;
         sh:datatype xsd:string ;
