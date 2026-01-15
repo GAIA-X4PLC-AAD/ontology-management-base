@@ -1,20 +1,18 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                   ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_03_wrong_spdx_identifier_instance.json']                    =
+=                                           ['manifest/tests/fail_03_wrong_spdx_identifier_instance.json']                                           =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
-= -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: Na88f26ff4b2d4545ad2153e7382d02f5                                                                                             =
-=    Property:         https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#license                 =
-=    Error:            Validation of SPDX identifier failed!                                                                                         =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =
 =    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LicenseShape>. See details for more    =
 =                      information.                                                                                                                  =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#license                 =
+=    Error:            Validation of SPDX identifier failed!                                                                                         =
 ======================================================================================================================================================

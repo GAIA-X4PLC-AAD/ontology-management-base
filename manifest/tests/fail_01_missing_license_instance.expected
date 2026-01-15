@@ -1,13 +1,11 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                      ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_01_missing_license_instance.json']                       =
+=                                              ['manifest/tests/fail_01_missing_license_instance.json']                                              =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =

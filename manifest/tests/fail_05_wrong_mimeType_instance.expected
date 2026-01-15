@@ -1,25 +1,23 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                       ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_05_wrong_mimeType_instance.json']                       =
+=                                              ['manifest/tests/fail_05_wrong_mimeType_instance.json']                                               =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
-= -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: N1fd350ad5173475b8a051883bcb9062b                                                                                             =
-=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#mimeType                                                                =
-=    Error:            Validation of the MIME type failed!                                                                                           =
-= -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: Nd3b6a0e30651455195ab6ba17ce893f5                                                                                             =
-=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
-=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#FileMetadataShape>. See details for    =
-=                      more information.                                                                                                             =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasArtifacts                                                            =
 =    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LinkShape>. See details for more       =
 =                      information.                                                                                                                  =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#FileMetadataShape>. See details for    =
+=                      more information.                                                                                                             =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#mimeType                                                                =
+=    Error:            Validation of the MIME type failed!                                                                                           =
 ======================================================================================================================================================

@@ -1,25 +1,23 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                         ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_06_wrong_cid_instance.json']                          =
+=                                                 ['manifest/tests/fail_06_wrong_cid_instance.json']                                                 =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: N1327b6c1e46747f8989baf7e5f25dbf0                                                                                             =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#cid                                                                     =
 =    Error:            The CIDv1 identifier is not valid or is a CIDv0 identifier.                                                                   =
-= -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: Nb05f7f1979194ae0818f26c2a37b4857                                                                                             =
-=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
-=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#FileMetadataShape>. See details for    =
-=                      more information.                                                                                                             =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasArtifacts                                                            =
 =    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LinkShape>. See details for more       =
 =                      information.                                                                                                                  =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#FileMetadataShape>. See details for    =
+=                      more information.                                                                                                             =
 ======================================================================================================================================================

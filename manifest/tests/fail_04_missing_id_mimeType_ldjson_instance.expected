@@ -1,15 +1,13 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                 ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_04_missing_id_mimeType_ldjson_instance.json']                 =
+=                                        ['manifest/tests/fail_04_missing_id_mimeType_ldjson_instance.json']                                         =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: N9fe4a5210f7d40758d8b40ceb76fe6e4                                                                                             =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Error:            Node [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [  =
 =                      manifest:cid Literal("bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:string) ; manifest:filePath  =
 =                      Literal("ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:anyURI) ; manifest:fileSize        =

@@ -210,30 +210,35 @@ scenario:hasManifest a owl:ObjectProperty ;
 scenario:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:Content that describes the scenario's content."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:Content .
 
 scenario:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:DataSource that describes how the scenario was created."@en ;
+    rdfs:subPropertyOf envited-x:hasDataSource ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:DataSource .
 
 scenario:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:Format that describes the scenario's format details."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:Format .
 
 scenario:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quantity describing the scenario's quantity."@en ;
+    rdfs:subPropertyOf envited-x:hasQuantity ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:Quantity .
 
 scenario:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quality describing the scenario's accuracy or calibration."@en ;
+    rdfs:subPropertyOf envited-x:hasQuality ;
     rdfs:domain scenario:DataResourceExtension ;
     rdfs:range scenario:Quality .
 

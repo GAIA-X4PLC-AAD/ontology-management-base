@@ -1,15 +1,13 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                    ['/home/carlo/workspace/ontology-management-base/envited-x/tests/fail_01_missing_has_content_instance.json']                    =
+=                                           ['envited-x/tests/fail_01_missing_has_content_instance.json']                                            =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: N07d3c87e36164ba8890a57a74903b3cc                                                                                             =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Property:         https://ontologies.envited-x.net/envited-x/v2/ontology#hasContent                                                             =
 =    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =

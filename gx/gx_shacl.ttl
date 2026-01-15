@@ -410,7 +410,7 @@ gx:DataAccountExportShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:name "Request type" ;
             sh:path gx:requestType ] ;
-    sh:targetClass gx:dataAccountExport .
+    sh:targetClass gx:DataAccountExport .
 
 gx:SOTermsAndConditionsShape a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
@@ -851,8 +851,7 @@ gx:PostalAddressShape a sh:NodeShape ;
             sh:minCount 1 ;
             sh:path gx:countrySubdivisionCode ;
             sh:pattern "^[a-zA-Z]{2}-(?:[a-zA-Z]{1,3}|[0-9]{1,3})$" ] ;
-    sh:targetClass gx:headquarterAddress,
-        gx:legalAddress .
+    sh:targetClass gx:PostalAddress .
 
 gx:ServiceOfferingShape a sh:NodeShape ;
     sh:or ( [ sh:property gx:dependsOnExists ] [ sh:property gx:dependsOnNotExists ] ),

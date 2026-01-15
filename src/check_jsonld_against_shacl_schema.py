@@ -629,7 +629,7 @@ def build_dict_for_ontologies(
 
     for p in paths:
         # Interpret paths relative to current working directory, not root_dir.
-        full_path = os.path.abspath(p)
+        full_path = os.path.normpath(p)
 
         if os.path.isdir(full_path):
             # Legacy behaviour: directories with *_instance.json / *_reference.json.
@@ -996,7 +996,7 @@ def _select_relevant_shacl_files(
                 break
 
         if is_relevant:
-            relevant_files.append(shacl_file)
+            relevant_files.append(os.path.normpath(shacl_file))
             shacl_graph += tmp_graph
 
     return relevant_files, shacl_graph
@@ -1378,7 +1378,7 @@ def main() -> None:
     args = parser.parse_args()
 
     # Resolve root_dir once and pass it through
-    root_dir = os.path.abspath(args.root_dir)
+    root_dir = os.path.normpath(args.root_dir)
 
     # Default context root: <root>/contexts if present, else <root>.
     if args.context_root:

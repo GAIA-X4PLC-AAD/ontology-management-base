@@ -1,15 +1,13 @@
 ======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                          ❌ SHACL validation failed for:                                                           =
-=                                                                                                                                                    =
-=                 ['/home/carlo/workspace/ontology-management-base/envited-x/tests/fail_02_missing_iri_manifest_link_instance.json']                 =
+=                                        ['envited-x/tests/fail_02_missing_iri_manifest_link_instance.json']                                         =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
-=                                                                                                                                                    =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: Ne05a00d428fd469692a985ff1872b669                                                                                             =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Error:            Node [ manifest:hasAccessRole envited-x:isPublic ; manifest:hasCategory envited-x:isManifest ; manifest:hasFileMetadata [     =
 =                      manifest:filePath Literal("./manifest_reference.json", datatype=xsd:anyURI) ; manifest:mimeType                               =
 =                      Literal("application/ld+json", datatype=xsd:string) ; rdf:type [ owl:minCardinality Literal("0", datatype=xsd:integer) ;      =
