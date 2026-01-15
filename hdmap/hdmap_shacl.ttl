@@ -10,7 +10,7 @@
 
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:path hdmap:hasDataResource ;
         sh:node envited-x:DataResourceShape ;
@@ -48,7 +48,7 @@ hdmap:HdMapShape a sh:NodeShape ;
 
 hdmap:DataResourceShapeExtension a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property
         [
             sh:maxCount 1 ;
@@ -108,7 +108,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "[motorway, rural]" ;
             sh:description "Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
@@ -142,7 +142,7 @@ hdmap:ContentShape a sh:NodeShape ;
 
 hdmap:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
             sh:description "Specifies the name of the primary acquisition device."@en ;
@@ -162,7 +162,7 @@ hdmap:DataSourceShape a sh:NodeShape ;
 
 hdmap:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
             sh:description "Defines the version of the data format used for the HD map asset."@en ;
@@ -184,7 +184,7 @@ hdmap:FormatShape a sh:NodeShape ;
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Specifies the accuracy of traffic-relevant signals, signs and objects in metres."@en ;
@@ -234,7 +234,7 @@ hdmap:QualityShape a sh:NodeShape ;
 
 hdmap:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Specifies the total number of intersections defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 12.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/12_junctions/12_01_introduction.html)"@en ;
@@ -312,7 +312,7 @@ hdmap:QuantityShape a sh:NodeShape ;
 
 hdmap:Range2DShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:datatype xsd:float ;
             sh:description "The maximum value of the range."@en ;
             sh:message "Validation of max failed! Max should be greater than min."@en ;

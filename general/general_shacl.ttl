@@ -6,7 +6,7 @@
 
 general:GeneralShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:DescriptionShape ;
@@ -25,7 +25,7 @@ general:GeneralShape a sh:NodeShape ;
     
 general:DescriptionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:datatype xsd:string ;
             sh:description "A human readable name of the entity."@en ;
             skos:example "3D Model of Grafing"@en ;
@@ -46,7 +46,7 @@ general:DescriptionShape a sh:NodeShape ;
     
 general:DataShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:datatype xsd:float ;
             sh:description "Size of the data file(s) (e.g. xodr, 3d model zip) to be downloaded in MB (megabyte)."@en ;
             skos:example "5.8" ;

@@ -10,7 +10,7 @@
 # envited-x SHACL shape
 envited-x:SimulationAssetShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
 
     #################################################################
     # hasDataResource:
@@ -102,7 +102,7 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
 
 envited-x:ManifestLinkShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:path manifest:hasCategory ;
         sh:hasValue envited-x:isManifest ;
@@ -231,7 +231,7 @@ envited-x:ManifestShape a sh:NodeShape ;
 # SHACL Shape for envited-x:DataResource
 envited-x:DataResourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ 
         sh:path gx:name ;
         sh:datatype xsd:string ;
@@ -256,7 +256,7 @@ envited-x:DataResourceShape a sh:NodeShape ;
 # SHACL Shape for envited-x:DataResourceExtension
 envited-x:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
 
     # If an extension exists, it must have content...
     sh:property [
@@ -296,7 +296,7 @@ envited-x:DataResourceExtensionShape a sh:NodeShape ;
 # Minimal SHACL shape for envited-x:Content
 envited-x:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Content." ;
     sh:targetClass envited-x:Content .
 
@@ -304,7 +304,7 @@ envited-x:ContentShape a sh:NodeShape ;
 # Minimal SHACL shape for envited-x:DataSource
 envited-x:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:DataSource." ;
     sh:targetClass envited-x:DataSource .
 
@@ -312,7 +312,7 @@ envited-x:DataSourceShape a sh:NodeShape ;
 # Minimal SHACL shape for envited-x:Format
 envited-x:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Format." ;
     sh:targetClass envited-x:Format .
 
@@ -320,7 +320,7 @@ envited-x:FormatShape a sh:NodeShape ;
 # Minimal SHACL shape for envited-x:Quality
 envited-x:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Quality." ;
     sh:targetClass envited-x:Quality .
 
@@ -328,6 +328,6 @@ envited-x:QualityShape a sh:NodeShape ;
 # Minimal SHACL shape for envited-x:Quantity
 envited-x:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Quantity." ;
     sh:targetClass envited-x:Quantity .

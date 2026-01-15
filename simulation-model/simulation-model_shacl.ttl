@@ -7,7 +7,7 @@
 
 simulation-model:SimulationModelShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node general:GeneralShape ;
@@ -54,7 +54,7 @@ simulation-model:SimulationModelShape a sh:NodeShape ;
  
 simulation-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "OSMP 1.0/OSI 3.1.2/FMI 2.0" ;
             sh:datatype xsd:string ;
             sh:description "Format of model implementation, e.g. OSMP 1.0/OSI 3.1.2/FMI 2.0"@en ;
@@ -92,7 +92,7 @@ simulation-model:FormatShape a sh:NodeShape ;
 
 simulation-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "traffic participant" ;
             sh:datatype xsd:string ;
             sh:in ("traffic participant" "sensor" "vehicle dynamic" "actuator") ;
@@ -256,7 +256,7 @@ simulation-model:ContentShape a sh:NodeShape ;
 
 simulation-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "800" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "The maximum number of detections."@en ;
@@ -279,7 +279,7 @@ simulation-model:QuantityShape a sh:NodeShape ;
 
 simulation-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "This delivery is a pre-release and the model is intended to be used for checking the interfaces of the simulation toolchain. The model is not validated; thus it is not intended to be used for validation or verification of any sensor, especially not for ARS810 or ARS840. In particular, the existence of this model shall not be used to imply the existence of sensors ARS810 nor ARS840 nor their properties. This delivery is not developed according to process defined in ISO 26262 (Standard for Functional Safety)." ;
             sh:datatype xsd:string ;
             sh:description "Description of all limitations that apply to the model and its usage."@en ;
@@ -364,7 +364,7 @@ simulation-model:QualityShape a sh:NodeShape ;
 
 simulation-model:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "http://mywebsite.de/ModelSpecification.pdf" ;
             sh:datatype xsd:anyURI ;
             sh:description "Provide a link to the model specification document"@en ;

@@ -9,7 +9,7 @@
 
 environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:path environment-model:hasDataResource ;
         sh:node envited-x:DataResourceShape ;
@@ -47,7 +47,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
 
 environment-model:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:maxCount 1 ;
         sh:minCount 1 ;
@@ -105,7 +105,7 @@ environment-model:DataResourceExtensionShape a sh:NodeShape ;
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "Unreal Datasmith, Autodesk FBX, OpenSceneGraph, glTF" ;
         sh:datatype xsd:string ;
@@ -131,7 +131,7 @@ environment-model:FormatShape a sh:NodeShape ;
 
 environment-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "profile roads, extrude buildings, forests, trees, river, powerlines"@en ;
         sh:maxCount 1 ;
@@ -156,7 +156,7 @@ environment-model:ContentShape a sh:NodeShape ;
 
 environment-model:ProjectShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "Unreal" ;
         sh:datatype xsd:string ;
@@ -221,7 +221,7 @@ environment-model:ProjectShape a sh:NodeShape ;
 
 environment-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "PBR, highly detailed specific 3D buildings."@en ;
         sh:datatype xsd:string ;
@@ -259,7 +259,7 @@ environment-model:QualityShape a sh:NodeShape ;
 
 environment-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "12000" ;
         sh:datatype xsd:unsignedInt ;

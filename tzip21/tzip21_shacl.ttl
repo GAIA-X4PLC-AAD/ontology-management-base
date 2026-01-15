@@ -13,7 +13,7 @@ tzip21:AssetShape
   rdfs:label "Rich Metadata Asset Shape" ;
   sh:targetClass tzip21:Asset ;
   sh:closed false ;
-  sh:ignoredProperties ( rdf:type ) ;
+  
   dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
                       <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,
@@ -251,7 +251,7 @@ tzip21:FormatShape
   sh:targetClass tzip21:Format ;
   rdfs:label "Asset Format Shape" ;
   sh:closed false ;
-  sh:ignoredProperties ( rdf:type ) ;
+  
   sh:property [
       sh:path tzip21:uri ;
       sh:datatype xsd:anyURI ;
@@ -326,7 +326,7 @@ tzip21:AttributeShape
   sh:targetClass tzip21:Attribute ;
   rdfs:label "Asset Attribute Shape" ;
   sh:closed false ;
-  sh:ignoredProperties ( rdf:type ) ;
+  
   sh:property [
       sh:path tzip21:name ;
       sh:datatype xsd:string ;
@@ -360,7 +360,7 @@ tzip21:DataRateShape
   sh:targetClass tzip21:DataRate ;
   rdfs:label "Data Rate Shape" ;
   sh:closed false ;
-  sh:ignoredProperties ( rdf:type ) ;
+  
   sh:property [
       sh:path tzip21:value ;
       sh:datatype xsd:integer ;
@@ -386,7 +386,7 @@ tzip21:DimensionsShape
   sh:targetClass tzip21:Dimensions ;
   rdfs:label "Dimensions Shape" ;
   sh:closed false ;
-  sh:ignoredProperties ( rdf:type ) ;
+  
   sh:property [
       sh:path tzip21:value ;
       sh:datatype xsd:string ;

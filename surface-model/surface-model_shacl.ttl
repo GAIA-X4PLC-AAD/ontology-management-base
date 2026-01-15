@@ -10,7 +10,7 @@
 ### **SurfaceModel SHACL Shape**
 surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
@@ -50,7 +50,7 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
 ### **DataResourceExtension SHACL Shape**
 surface-model:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
@@ -92,7 +92,7 @@ surface-model:DataResourceExtensionShape a sh:NodeShape ;
 ### **Content SHACL Shape**
 surface-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "height" ;
             sh:datatype xsd:string ;
             sh:description "Specifies the content type (e.g., height, friction) used in the surface-model asset."@en ;
@@ -106,7 +106,7 @@ surface-model:ContentShape a sh:NodeShape ;
 ### **Format SHACL Shape**
 surface-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "ASAM OpenCRG" ;
             sh:description "Defines the format type of the surface model asset."@en ;
             sh:in ("ASAM OpenCRG" "DLM") ;
@@ -128,7 +128,7 @@ surface-model:FormatShape a sh:NodeShape ;
 ### **Quality SHACL Shape**
 surface-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [ skos:example "0.01" ;
           sh:datatype xsd:float ;
@@ -175,7 +175,7 @@ surface-model:QualityShape a sh:NodeShape ;
 ### **Quantity SHACL Shape**
 surface-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [ skos:example "yes" ;
           sh:datatype xsd:boolean ;

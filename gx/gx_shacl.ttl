@@ -346,7 +346,7 @@ gx:legalRegistrationNumberShape a sh:NodeShape ;
 <http://www.w3.org/2006/vcard/ns#AddressShape> a sh:NodeShape ;
     sh:closed false ;
     sh:description "Full address of the entity." ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ sh:datatype xsd:string ;
             sh:description "String of a street-address" ;
             sh:maxCount 1 ;

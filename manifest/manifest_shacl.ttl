@@ -8,7 +8,7 @@
 
 manifest:ManifestShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property
         [   sh:name "manifest reference"@en ;
             sh:description "Self-reference to the manifest.json providing the structure and list of contents for a domain specific asset."@en ;
@@ -44,7 +44,7 @@ manifest:ManifestShape a sh:NodeShape ;
 
 manifest:LicenseShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property
         [   sh:name "spdx identifier"@en ;
             sh:description "Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints."@en ;
@@ -169,7 +169,7 @@ manifest:LicenseShape a sh:NodeShape ;
 
 manifest:LinkShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:name "IRI"@en ;
         sh:description "IRI required if the file is RDF/JSON-LD."@en ;
@@ -269,7 +269,7 @@ manifest:LinkShape a sh:NodeShape ;
 
 manifest:FileMetadataShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [   # Path or location for local/remote retrieval
             sh:name "file location"@en ;
@@ -355,7 +355,7 @@ manifest:FileMetadataShape a sh:NodeShape ;
 
 manifest:DimensionsShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [
             sh:name "unit" ;

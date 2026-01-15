@@ -12,7 +12,7 @@
 ### Scenario SHACL Shape
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         sh:path scenario:hasDataResource ;
         sh:node envited-x:DataResourceShape ;
@@ -51,7 +51,7 @@ scenario:ScenarioShape a sh:NodeShape ;
 
 scenario:ManifestShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
 
     # The manifest node must be explicitly typed as scenario:Manifest.
     sh:property [
@@ -200,7 +200,7 @@ scenario:ManifestShape a sh:NodeShape ;
 ### DataResourceExtension SHACL Shape
 scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
@@ -248,7 +248,7 @@ scenario:DataResourceExtensionShape a sh:NodeShape ;
  
 scenario:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "ASAM OpenSCENARIO" ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
             sh:in ("ASAM OpenSCENARIO") ;
@@ -269,7 +269,7 @@ scenario:FormatShape a sh:NodeShape ;
 
 scenario:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
             sh:in ("Functional" "Logical" "Concrete") ;
@@ -364,7 +364,7 @@ scenario:ContentShape a sh:NodeShape ;
 
 scenario:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Specifies the total number of temporary traffic objects defined in the scenario asset."@en ;
@@ -401,7 +401,7 @@ scenario:QuantityShape a sh:NodeShape ;
 
 scenario:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements)."@en ;
@@ -424,7 +424,7 @@ scenario:QualityShape a sh:NodeShape ;
 
 scenario:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ skos:example "Real World Data" ;
             sh:description "Specifies the category of source data used to create the scenario."@en ;
             sh:maxCount 1 ;
