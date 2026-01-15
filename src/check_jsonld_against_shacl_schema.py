@@ -40,25 +40,7 @@ except ImportError as e:  # pragma: no cover - environment might not have pyshac
 else:
     PYSHACL_IMPORT_ERROR = None
 
-# Optional pretty printer from the original repo
-try:
-    from utils.print_formatting import print_validate_jsonld_against_shacl_result
-except ImportError:  # pragma: no cover - allow running outside repo
-
-    def print_validate_jsonld_against_shacl_result(
-        conforms: bool,
-        files: List[str],
-        validation_text: str,
-        exit_code: int | None = None,
-        file=None,
-    ) -> None:
-        if file is None:
-            file = sys.stdout
-        status = "PASSED" if conforms else "FAILED"
-        print(f"[{status}] Files: {', '.join(files)}", file=file)
-        if validation_text:
-            print(validation_text, file=file)
-
+from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
 DEFAULT_ROOT_DIRECTORY = "."
 
@@ -66,6 +48,7 @@ DEFAULT_ROOT_DIRECTORY = "."
 # ---------------------------------------------------------------------------
 # Local JSON-LD @context resolver (minimal integration)
 # ---------------------------------------------------------------------------
+
 
 def iri_to_namespace_hint(iri: str) -> str | None:
     """
@@ -263,6 +246,7 @@ class LocalContextResolver:
 # ---------------------------------------------------------------------------
 # Logging
 # ---------------------------------------------------------------------------
+
 
 def setup_logging(debug: bool = False, stream=None) -> None:
     """
@@ -649,8 +633,12 @@ def build_dict_for_ontologies(
 
         if os.path.isdir(full_path):
             # Legacy behaviour: directories with *_instance.json / *_reference.json.
-            collected_files.extend(glob.glob(os.path.join(full_path, "*_instance.json")))
-            collected_files.extend(glob.glob(os.path.join(full_path, "*_reference.json")))
+            collected_files.extend(
+                glob.glob(os.path.join(full_path, "*_instance.json"))
+            )
+            collected_files.extend(
+                glob.glob(os.path.join(full_path, "*_reference.json"))
+            )
         elif os.path.isfile(full_path) and (
             full_path.endswith(".json") or full_path.endswith(".jsonld")
         ):
@@ -660,7 +648,9 @@ def build_dict_for_ontologies(
             # sibling *_reference.json files in the same directory.
             if full_path.endswith("_instance.json"):
                 directory = os.path.dirname(full_path)
-                collected_files.extend(glob.glob(os.path.join(directory, "*_reference.json")))
+                collected_files.extend(
+                    glob.glob(os.path.join(directory, "*_reference.json"))
+                )
 
     if not collected_files:
         return {}
@@ -977,48 +967,6 @@ def _select_relevant_shacl_files(
     """
     Identify and load SHACL files whose sh:targetClass matches any of the
     rdf:type values seen in the data graph.
-    """
-    shacl_graph = Graph()
-    shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
-
-    SH = Namespace("http://www.w3.org/ns/shacl#")
-    target_class_pred = SH["targetClass"]
-
-    relevant_files: List[str] = []
-
-    for shacl_file in shacl_files:
-        tmp_graph = Graph()
-        try:
-            tmp_graph.parse(shacl_file, format="turtle")
-        except Exception as e:  # defensive
-            logging.warning("Failed to parse SHACL file %s: %s", shacl_file, e)
-            continue
-
-        is_relevant = False
-        for _, _, rdf_type in tmp_graph.triples((None, target_class_pred, None)):
-            if str(rdf_type) in used_types:
-                is_relevant = True
-                break
-
-        if is_relevant:
-            relevant_files.append(shacl_file)
-            shacl_graph += tmp_graph
-
-    return relevant_files, shacl_graph
-
-
-# ---------------------------------------------------------------------------
-# SHACL + ontology loading based on used rdf:type and ontology deps
-# ---------------------------------------------------------------------------
-
-
-def _select_relevant_shacl_files(
-    root_dir: str,
-    used_types: Set[str],
-) -> Tuple[List[str], Graph]:
-    """
-    Identify and load SHACL files whose sh:targetClass matches any of the
-    rdf:type values seen in the data graph.
 
     NOTE:
         This requires that the data graph actually contains rdf:type triples.
@@ -1199,6 +1147,7 @@ def validate_jsonld_against_shacl(
     debug: bool = False,
     inference_mode: str = "rdfs",
     context_resolver: LocalContextResolver | None = None,
+    logfile: str | None = None,
 ) -> Tuple[int, str]:
     """
     Main validation pipeline using ontology_dict built beforehand.
@@ -1323,7 +1272,8 @@ def validate_jsonld_against_shacl(
     with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(
         output_buffer
     ):
-        conforms, _, v_text = validate(
+        # [CHANGE] Capture report_graph
+        conforms, report_graph, v_text = validate(
             data_graph,
             shacl_graph=shacl_graph,
             ont_graph=ont_graph,
@@ -1335,10 +1285,14 @@ def validate_jsonld_against_shacl(
         )
 
     if not conforms:
+        # [CHANGE] Pass report_graph to print_validate_jsonld_against_shacl_result
+        # and suppress the verbose output by passing empty string for validation_text.
+        full_report = v_text if logfile else ""
         print_validate_jsonld_against_shacl_result(
             False,
             instance_files + reference_files,
-            v_text,
+            full_report,
+            report_graph=report_graph,
             exit_code=None,
             file=output_buffer,
         )
@@ -1455,6 +1409,7 @@ def main() -> None:
         debug=args.debug,
         inference_mode=args.inference,
         context_resolver=context_resolver,
+        logfile=args.logfile,
     )
 
     # Print the final message once (to stdout or logfile, depending on redirection)
