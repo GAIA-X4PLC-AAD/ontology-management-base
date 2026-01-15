@@ -1272,7 +1272,6 @@ def validate_jsonld_against_shacl(
     with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(
         output_buffer
     ):
-        # [CHANGE] Capture report_graph
         conforms, report_graph, v_text = validate(
             data_graph,
             shacl_graph=shacl_graph,
@@ -1284,10 +1283,18 @@ def validate_jsonld_against_shacl(
             inplace=False,
         )
 
+    if logfile:
+        try:
+            with open(logfile, "w", encoding="utf-8") as f:
+                f.write(v_text)
+        except Exception as e:
+            print_out(f"Error writing to logfile {logfile}: {e}")
+
     if not conforms:
         # [CHANGE] Pass report_graph to print_validate_jsonld_against_shacl_result
         # and suppress the verbose output by passing empty string for validation_text.
-        full_report = v_text if logfile else ""
+        # Ensure console output remains clean (summary only) regardless of logfile presence.
+        full_report = ""
         print_validate_jsonld_against_shacl_result(
             False,
             instance_files + reference_files,
@@ -1358,7 +1365,7 @@ def main() -> None:
     parser.add_argument(
         "--logfile",
         type=str,
-        help="Write full validator output to this file instead of stdout",
+        help="Write full validator output to this file.",
     )
     parser.add_argument(
         "--inference",
@@ -1380,25 +1387,12 @@ def main() -> None:
         candidate = os.path.join(root_dir, "contexts")
         context_root = candidate if os.path.isdir(candidate) else root_dir
 
-    # Redirect stdout/stderr to logfile if requested
-    original_stdout = sys.stdout
-    original_stderr = sys.stderr
-    logfile_handle = None
-    if args.logfile:
-        logfile_handle = open(args.logfile, "w", encoding="utf-8")
-        sys.stdout = logfile_handle
-        sys.stderr = logfile_handle
-
     ontology_dict = build_dict_for_ontologies(root_dir, args.paths)
     if not ontology_dict:
         print(
             f"Error code 100: No valid files found in given paths {args.paths}.",
             file=sys.stderr,
         )
-        if logfile_handle:
-            logfile_handle.close()
-            sys.stdout = original_stdout
-            sys.stderr = original_stderr
         sys.exit(100)
 
     context_resolver = LocalContextResolver(context_root=context_root)
@@ -1412,13 +1406,8 @@ def main() -> None:
         logfile=args.logfile,
     )
 
-    # Print the final message once (to stdout or logfile, depending on redirection)
+    # Print the final message once (to stdout)
     print(message)
-
-    if logfile_handle:
-        logfile_handle.close()
-        sys.stdout = original_stdout
-        sys.stderr = original_stderr
 
     sys.exit(return_code)
 

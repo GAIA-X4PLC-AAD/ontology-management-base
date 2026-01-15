@@ -1,27 +1,16 @@
 ======================================================================================================================================================
-=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                              ['manifest/tests/fail_01_missing_license_instance.json']                                              =
+=                                                          ❌ SHACL validation failed for:                                                           =
+=                                                                                                                                                    =
+=                      ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_01_missing_license_instance.json']                       =
+=                                                                                                                                                    =
 ======================================================================================================================================================
-======================================================================================================================================================
 =                                                                                                                                                    =
-= Validation Report                                                                                                                                  =
+=                                                           Structured Validation Errors:                                                            =
 =                                                                                                                                                    =
-= Conforms: False                                                                                                                                    =
-=                                                                                                                                                    =
-= Results (1):                                                                                                                                       =
-=                                                                                                                                                    =
-= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets)  =
-= with explicit license terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ;        =
-= sh:name Literal("license", lang=en) ; sh:node manifest:LicenseShape ; sh:order Literal("1", datatype=xsd:integer) ; sh:path manifest:hasLicense ]  =
-=                                                                                                                                                    =
-= Focus Node: <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>                                                             =
-=                                                                                                                                                    =
-= Result Path: manifest:hasLicense                                                                                                                   =
-=                                                                                                                                                    =
-= Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>->manifest:hasLicense                     =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =
+=    Error:            Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>-                             =
+=                      ><https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense>                                                           =
 ======================================================================================================================================================

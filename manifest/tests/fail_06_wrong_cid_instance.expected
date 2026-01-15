@@ -1,215 +1,25 @@
 ======================================================================================================================================================
-=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                                 ['manifest/tests/fail_06_wrong_cid_instance.json']                                                 =
+=                                                          ❌ SHACL validation failed for:                                                           =
+=                                                                                                                                                    =
+=                         ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_06_wrong_cid_instance.json']                          =
+=                                                                                                                                                    =
 ======================================================================================================================================================
-======================================================================================================================================================
 =                                                                                                                                                    =
-= Validation Report                                                                                                                                  =
-=                                                                                                                                                    =
-= Conforms: False                                                                                                                                    =
-=                                                                                                                                                    =
-= Results (5):                                                                                                                                       =
-=                                                                                                                                                    =
-= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Defines a link to the licensing terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ;       =
-= sh:message Literal("Validation of hasLink failed!", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("license data",    =
-= lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("2", datatype=xsd:integer) ; sh:path manifest:hasLink ; skos:example Literal("accessRole: =
-= isPublic, category: isLicense, hasFileMetadata: { mimeType: text/html, filePath: <https://opensource.org/license/mit> }", lang=en) ]               =
-=                                                                                                                                                    =
-= Focus Node: [ gx:license Literal("EPL-2.0") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory               =
-= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
-= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
-= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
-=                                                                                                                                                    =
-= Result Path: manifest:hasLink                                                                                                                      =
-=                                                                                                                                                    =
-= Message: Validation of hasLink failed!                                                                                                             =
-=                                                                                                                                                    =
-= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Defines the links to all relevant artifacts for a digital asset. This is extended by the domain specific   =
-= ontology.", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("artifact links", lang=en) ; sh:node manifest:LinkShape ;  =
-= sh:order Literal("2", datatype=xsd:integer) ; sh:path manifest:hasArtifacts ]                                                                      =
-=                                                                                                                                                    =
-= Focus Node: <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>                                                             =
-=                                                                                                                                                    =
-= Value Node: [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid   =
-= Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath                                      =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ]                                                                                          =
-=                                                                                                                                                    =
-= Result Path: manifest:hasArtifacts                                                                                                                 =
-=                                                                                                                                                    =
-= Message: Value does not conform to Shape manifest:LinkShape. See details for more information.                                                     =
-= Details:                                                                                                                                           =
-=                                                                                                                                                    =
-= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("file metadata", =
-= lang=en) ; sh:node manifest:FileMetadataShape ; sh:path manifest:hasFileMetadata ]                                                                 =
-=                                                                                                                                                    =
-= Focus Node: [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid   =
-= Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath                                      =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ]                                                                                          =
-=                                                                                                                                                    =
-= Value Node: [ manifest:cid Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath           =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ]                                                                                                                                    =
-=                                                                                                                                                    =
-= Result Path: manifest:hasFileMetadata                                                                                                              =
-=                                                                                                                                                    =
-= Message: Value does not conform to Shape manifest:FileMetadataShape. See details for more information.                                             =
-= Details:                                                                                                                                           =
-=                                                                                                                                                    =
-= Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#PatternConstraintComponent):                                        =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:datatype xsd:string ; sh:description Literal("Defines the IPFS CIDv1 identifier of the file.", lang=en) ; sh:maxCount           =
-= Literal("1", datatype=xsd:integer) ; sh:message Literal("The CIDv1 identifier is not valid or is a CIDv0 identifier.", lang=en) ; sh:minCount      =
-= Literal("0", datatype=xsd:integer) ; sh:name Literal("content identifier", lang=en) ; sh:order Literal("3", datatype=xsd:integer) ; sh:path        =
-= manifest:cid ; sh:pattern Literal("^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-                             =
-= km-z]{48,}|F[0-9A-F]{50,})$") ; skos:example Literal("bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um") ]                              =
-=                                                                                                                                                    =
-= Focus Node: [ manifest:cid Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath           =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ]                                                                                                                                    =
-=                                                                                                                                                    =
-= Value Node: Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string)                                              =
-=                                                                                                                                                    =
-= Result Path: manifest:cid                                                                                                                          =
-=                                                                                                                                                    =
-= Message: The CIDv1 identifier is not valid or is a CIDv0 identifier.                                                                               =
-=                                                                                                                                                    =
-= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets)  =
-= with explicit license terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ;        =
-= sh:name Literal("license", lang=en) ; sh:node manifest:LicenseShape ; sh:order Literal("1", datatype=xsd:integer) ; sh:path manifest:hasLicense ]  =
-=                                                                                                                                                    =
-= Focus Node: <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>                                                             =
-=                                                                                                                                                    =
-= Value Node: [ gx:license Literal("EPL-2.0") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory               =
-= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
-= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
-= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
-=                                                                                                                                                    =
-= Result Path: manifest:hasLicense                                                                                                                   =
-=                                                                                                                                                    =
-= Message: Value does not conform to Shape manifest:LicenseShape. See details for more information.                                                  =
-= Details:                                                                                                                                           =
-=                                                                                                                                                    =
-= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Defines a link to the licensing terms.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ;       =
-= sh:message Literal("Validation of hasLink failed!", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("license data",    =
-= lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("2", datatype=xsd:integer) ; sh:path manifest:hasLink ; skos:example Literal("accessRole: =
-= isPublic, category: isLicense, hasFileMetadata: { mimeType: text/html, filePath: <https://opensource.org/license/mit> }", lang=en) ]               =
-=                                                                                                                                                    =
-= Focus Node: [ gx:license Literal("EPL-2.0") ; manifest:licenseData [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory               =
-= manifest:isLicense ; manifest:hasFileMetadata [ manifest:filePath Literal("https://opensource.org/license/EPL-2.0", datatype=xsd:anyURI) ;         =
-= manifest:mimeType Literal("text/html", datatype=xsd:string) ; rdf:type manifest:FileMetadata, rdfs:Resource ] ; rdf:type manifest:Link,            =
-= rdfs:Resource ] ; rdf:type manifest:License, rdfs:Resource ]                                                                                       =
-=                                                                                                                                                    =
-= Result Path: manifest:hasLink                                                                                                                      =
-=                                                                                                                                                    =
-= Message: Validation of hasLink failed!                                                                                                             =
-=                                                                                                                                                    =
-= Constraint Violation in NodeConstraintComponent (http://www.w3.org/ns/shacl#NodeConstraintComponent):                                              =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("file metadata", =
-= lang=en) ; sh:node manifest:FileMetadataShape ; sh:path manifest:hasFileMetadata ]                                                                 =
-=                                                                                                                                                    =
-= Focus Node: [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [ manifest:cid   =
-= Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath                                      =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ] ; rdf:type manifest:Link, rdfs:Resource ]                                                                                          =
-=                                                                                                                                                    =
-= Value Node: [ manifest:cid Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath           =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ]                                                                                                                                    =
-=                                                                                                                                                    =
-= Result Path: manifest:hasFileMetadata                                                                                                              =
-=                                                                                                                                                    =
-= Message: Value does not conform to Shape manifest:FileMetadataShape. See details for more information.                                             =
-= Details:                                                                                                                                           =
-=                                                                                                                                                    =
-= Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#PatternConstraintComponent):                                        =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:datatype xsd:string ; sh:description Literal("Defines the IPFS CIDv1 identifier of the file.", lang=en) ; sh:maxCount           =
-= Literal("1", datatype=xsd:integer) ; sh:message Literal("The CIDv1 identifier is not valid or is a CIDv0 identifier.", lang=en) ; sh:minCount      =
-= Literal("0", datatype=xsd:integer) ; sh:name Literal("content identifier", lang=en) ; sh:order Literal("3", datatype=xsd:integer) ; sh:path        =
-= manifest:cid ; sh:pattern Literal("^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-                             =
-= km-z]{48,}|F[0-9A-F]{50,})$") ; skos:example Literal("bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um") ]                              =
-=                                                                                                                                                    =
-= Focus Node: [ manifest:cid Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath           =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ]                                                                                                                                    =
-=                                                                                                                                                    =
-= Value Node: Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string)                                              =
-=                                                                                                                                                    =
-= Result Path: manifest:cid                                                                                                                          =
-=                                                                                                                                                    =
-= Message: The CIDv1 identifier is not valid or is a CIDv0 identifier.                                                                               =
-=                                                                                                                                                    =
-= Constraint Violation in PatternConstraintComponent (http://www.w3.org/ns/shacl#PatternConstraintComponent):                                        =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:datatype xsd:string ; sh:description Literal("Defines the IPFS CIDv1 identifier of the file.", lang=en) ; sh:maxCount           =
-= Literal("1", datatype=xsd:integer) ; sh:message Literal("The CIDv1 identifier is not valid or is a CIDv0 identifier.", lang=en) ; sh:minCount      =
-= Literal("0", datatype=xsd:integer) ; sh:name Literal("content identifier", lang=en) ; sh:order Literal("3", datatype=xsd:integer) ; sh:path        =
-= manifest:cid ; sh:pattern Literal("^((?!Qm[1-9A-HJ-NP-Za-km-z]{44,})|b[A-Za-z2-7]{58,}|B[A-Z2-7]{58,}|z[1-9A-HJ-NP-Za-                             =
-= km-z]{48,}|F[0-9A-F]{50,})$") ; skos:example Literal("bafkreic6xmosvgr4a5735itquknu2ljf4fon7wohrzlmabepwkkxtih6um") ]                              =
-=                                                                                                                                                    =
-= Focus Node: [ manifest:cid Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string) ; manifest:filePath           =
-= Literal("./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:anyURI) ; manifest:fileSize Literal("2400256",                =
-= datatype=xsd:integer) ; manifest:filename Literal("TestfeldNiedersachsen_ALKS_ODR_sample_01.png", datatype=xsd:string) ; manifest:hasDimensions [  =
-= manifest:height Literal("850.0", datatype=xsd:float) ; manifest:unit Literal("pixels") ; manifest:width Literal("1095.0", datatype=xsd:float) ;    =
-= rdf:type manifest:Dimensions, rdfs:Resource ] ; manifest:mimeType Literal("image/png", datatype=xsd:string) ; rdf:type manifest:FileMetadata,      =
-= rdfs:Resource ]                                                                                                                                    =
-=                                                                                                                                                    =
-= Value Node: Literal("bafybeiakegwcrpeuylnurqns2pwim67tni6td4jdqoshwu7kvgvuncqi", datatype=xsd:string)                                              =
-=                                                                                                                                                    =
-= Result Path: manifest:cid                                                                                                                          =
-=                                                                                                                                                    =
-= Message: The CIDv1 identifier is not valid or is a CIDv0 identifier.                                                                               =
+=                                                           Structured Validation Errors:                                                            =
+=                                                                                                                                                    =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: N1327b6c1e46747f8989baf7e5f25dbf0                                                                                             =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#cid                                                                     =
+=    Error:            The CIDv1 identifier is not valid or is a CIDv0 identifier.                                                                   =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: Nb05f7f1979194ae0818f26c2a37b4857                                                                                             =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#FileMetadataShape>. See details for    =
+=                      more information.                                                                                                             =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasArtifacts                                                            =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LinkShape>. See details for more       =
+=                      information.                                                                                                                  =
 ======================================================================================================================================================

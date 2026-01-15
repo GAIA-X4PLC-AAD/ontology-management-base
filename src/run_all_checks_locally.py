@@ -127,7 +127,6 @@ def normalize_text(text: str) -> str:
         r"={10,}\n"  # first block start delimiter
         r"(?:\s*=.*\n)+"  # first block content lines
         r"={10,}\n"  # first block end delimiter
-        r"={10,}\n"  # second block start delimiter
         r"(?:\s*=.*\n)+"  # second block content lines
         r"={10,}"  # second block end delimiter
         r")"
@@ -192,7 +191,11 @@ def check_failing_tests_all():
                 flush=True,
             )
 
-            returncode, output = validate_jsonld_against_shacl([test_path], debug=False)
+            # Build dict first (fix for TypeError)
+            ontology_dict = build_dict_for_ontologies(ROOT_DIR, [test_path])
+            returncode, output = validate_jsonld_against_shacl(
+                ROOT_DIR, ontology_dict, debug=False
+            )
 
             if returncode == 210:
                 # Normalize output and expected output for comparison
@@ -286,6 +289,7 @@ def main():
     print("\n🚀 Running all ontology validation checks...", flush=True)
 
     # 1) Syntax checks
+    rc = 0
     rc = check_syntax_all()
     if rc != 0:
         print(
@@ -296,7 +300,7 @@ def main():
         sys.exit(rc)
 
     # 2) JSON-LD vs SHACL
-    # rc = check_jsonld_against_shacl_all()
+    rc = check_jsonld_against_shacl_all()
     if rc != 0:
         print(
             "\n❌ JSON-LD SHACL validation failed. Aborting further validation.",

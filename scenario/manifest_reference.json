@@ -41,7 +41,7 @@
     "gx:license": {
       "@value": "MPL-2.0"
     },
-    "manifest:licenseData": {
+    "manifest:hasLink": {
       "@type": "manifest:Link",
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",

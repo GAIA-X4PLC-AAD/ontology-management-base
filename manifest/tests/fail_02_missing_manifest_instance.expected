@@ -1,27 +1,16 @@
 ======================================================================================================================================================
-=                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                             ['manifest/tests/fail_02_missing_manifest_instance.json']                                              =
+=                                                          ❌ SHACL validation failed for:                                                           =
+=                                                                                                                                                    =
+=                      ['/home/carlo/workspace/ontology-management-base/manifest/tests/fail_02_missing_manifest_instance.json']                      =
+=                                                                                                                                                    =
 ======================================================================================================================================================
-======================================================================================================================================================
 =                                                                                                                                                    =
-= Validation Report                                                                                                                                  =
+=                                                           Structured Validation Errors:                                                            =
 =                                                                                                                                                    =
-= Conforms: False                                                                                                                                    =
-=                                                                                                                                                    =
-= Results (1):                                                                                                                                       =
-=                                                                                                                                                    =
-= Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):                                      =
-=                                                                                                                                                    =
-= Severity: sh:Violation                                                                                                                             =
-=                                                                                                                                                    =
-= Source Shape: [ sh:description Literal("Self-reference to the manifest.json providing the structure and list of contents for a domain specific     =
-= asset.", lang=en) ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:name Literal("manifest    =
-= reference", lang=en) ; sh:node manifest:LinkShape ; sh:order Literal("0", datatype=xsd:integer) ; sh:path manifest:hasManifestReference ]          =
-=                                                                                                                                                    =
-= Focus Node: <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>                                                             =
-=                                                                                                                                                    =
-= Result Path: manifest:hasManifestReference                                                                                                         =
-=                                                                                                                                                    =
-= Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>->manifest:hasManifestReference           =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasManifestReference                                                    =
+=    Error:            Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>-                             =
+=                      ><https://ontologies.envited-x.net/manifest/v5/ontology#hasManifestReference>                                                 =
 ======================================================================================================================================================

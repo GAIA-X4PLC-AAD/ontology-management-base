@@ -83,15 +83,30 @@ def format_filenames(filenames: list, width: int = 150) -> list:
 
 
 def _extract_and_sort_errors(report_graph: Graph):
-    """Helper to extract and sort errors from SHACL report graph."""
+    """Helper to extract, deduplicate, and sort errors from SHACL report graph."""
     SH = Namespace("http://www.w3.org/ns/shacl#")
     results = list(report_graph.subjects(RDF.type, SH.ValidationResult))
     error_rows = []
+    seen = set()
+
     for result in results:
         focus_node = report_graph.value(result, SH.focusNode)
         result_path = report_graph.value(result, SH.resultPath)
         result_message = report_graph.value(result, SH.resultMessage)
         severity = report_graph.value(result, SH.resultSeverity)
+
+        # Create a unique signature for this error based on its content
+        signature = (
+            str(focus_node) if focus_node else "",
+            str(result_path) if result_path else "",
+            str(result_message) if result_message else "",
+            str(severity) if severity else "",
+        )
+
+        if signature in seen:
+            continue
+        seen.add(signature)
+
         error_rows.append(
             {
                 "focus_node": focus_node,
@@ -100,6 +115,7 @@ def _extract_and_sort_errors(report_graph: Graph):
                 "severity": severity,
             }
         )
+
     # Sort deterministically
     error_rows.sort(
         key=lambda x: (
@@ -160,6 +176,7 @@ def print_validation_result(
 
     # 1. Top Border
     print(border_line, file=file)
+    _print_boxed_line(" ", width, file=file)
 
     # 2. Header
     for line in header_text:
@@ -175,13 +192,15 @@ def print_validation_result(
         formatted_filenames = format_filenames(onto_files, width)
         for line in formatted_filenames:
             print(f"= {line.center(inner_width)} =", file=file)
+        _print_boxed_line(" ", width, file=file)
+        print(border_line, file=file)
 
     # 4. Content (Errors)
     if not success and report_graph:
         # Structured Output inside the box
         _print_boxed_line(" ", width, file=file)
-        print(f"= {'-' * inner_width} =", file=file)
-        print(f"= {'Structured Validation Errors'.center(inner_width)} =", file=file)
+        print(f"= {'Structured Validation Errors:'.center(inner_width)} =", file=file)
+        _print_boxed_line(" ", width, file=file)
         print(f"= {'-' * inner_width} =", file=file)
 
         errors = _extract_and_sort_errors(report_graph)
