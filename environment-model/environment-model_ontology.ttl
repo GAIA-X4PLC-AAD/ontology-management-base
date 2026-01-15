@@ -95,13 +95,14 @@ environment-model:hasManifest a owl:ObjectProperty ;
 environment-model:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:label "has data resource extension"@en ;
     rdfs:comment "Links an environment model asset to its metadata extensions."@en ;
+    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
     rdfs:domain environment-model:EnvironmentModel ;
     rdfs:range environment-model:DataResourceExtension .
 
 environment-model:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "has georeference"@en ;
     rdfs:comment "Links an environment model to georeference information."@en ;
-    rdfs:domain environment-model:EnvironmentModel ;
+    rdfs:domain environment-model:DataResourceExtension ;
     rdfs:range georeference:Georeference .
 
 environment-model:hasFormat a owl:ObjectProperty ;

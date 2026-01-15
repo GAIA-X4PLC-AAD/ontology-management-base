@@ -270,8 +270,8 @@ def print_validation_result(
                 sep = "-" * inner_width
                 print(f"= {sep} =", file=file)
 
-    # 5. Bottom Border
-    print(border_line, file=file)
+        # 5. Bottom Border
+        print(border_line, file=file)
 
     if exit_code is not None:
         print(f"Exiting with code {exit_code}", file=file)
