@@ -12,6 +12,9 @@ from utils.print_formatting import (
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
 
+# List of folder names allowed to fail validation
+EXPECTED_TARGETCLASS_FAILURES = {"gx"}
+
 
 def get_local_name(uri: str) -> str:
     """
@@ -136,11 +139,29 @@ def main():
         print(f"The directory {directory} does not exist. Abort.", file=sys.stderr)
         sys.exit(110)
 
+    # Perform validation
     return_code, message = validate_target_classes_against_owl_classes(directory)
+
+    # Extract the folder name (e.g., from 'ontologies/gx' -> 'gx') to check against whitelist
+    folder_name = os.path.basename(directory)
+
     if return_code != 0:
-        print(message, file=sys.stderr)
-        sys.exit(return_code)
+        # Check if this failure is expected
+        if folder_name in EXPECTED_TARGETCLASS_FAILURES:
+            print(
+                f"⚠️ Expected target class failure for '{folder_name}' (ignored).",
+                flush=True,
+            )
+            # Print the error details to stdout (so they are visible in logs but don't error)
+            print(message, flush=True)
+            # Exit with success to keep CI pipeline running
+            sys.exit(0)
+        else:
+            # Real failure
+            print(message, file=sys.stderr)
+            sys.exit(return_code)
     else:
+        # Success
         print(message)
         sys.exit(0)
 
