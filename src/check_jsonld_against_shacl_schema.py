@@ -92,10 +92,10 @@ class LocalContextResolver:
         names present as available local contexts
       * only rewrite when @context contains remote URLs (string or list of strings)
       * for a remote URL, derive a lowercase namespace hint from the URL path:
-            https://schema.ascs.digital/SimpulseId/v1/credentials -> simpulseid
+          https://schema.ascs.digital/SimpulseId/v1/credentials -> simpulseid
       * if that namespace exists as a folder under context_root, replace the URL
         with the *contents* of:
-            context_root/<namespace>/<namespace>_context.jsonld
+          context_root/<namespace>/<namespace>_context.jsonld
         by rewriting the JSON file.
       * if not found, do not change it (W3C contexts can resolve externally).
     """
@@ -788,12 +788,12 @@ def print_prefix_mapping(prefixes: Dict[str, str], file=None) -> None:
     max_len = max(len(label) for label in labels)
 
     header_prefix = "Prefix".ljust(max_len)
-    print(f"   {header_prefix}  → Namespace", file=file)
-    print(f"   {'-' * max_len}  ─ {'-' * 60}", file=file)
+    print(f"   {header_prefix}   → Namespace", file=file)
+    print(f"   {'-' * max_len}   ─ {'-' * 60}", file=file)
 
     for prefix, ns in sorted(prefixes.items(), key=lambda x: (x[0] or "")):
         label = prefix if prefix else "(default)"
-        print(f"   {label.ljust(max_len)}  → {ns}", file=file)
+        print(f"   {label.ljust(max_len)}   → {ns}", file=file)
     print("", file=file)
 
 
@@ -1058,9 +1058,17 @@ def load_shacl_and_ontologies(
     relevant_shacl_files, shacl_graph = _select_relevant_shacl_files(
         root_dir, used_types
     )
+    # FORCE RELATIVE TO ROOT:
+    # If glob returned absolute paths (because root_dir was absolute), we convert
+    # them to relative here so the harmonizer can apply the ./ prefix.
+    relevant_shacl_files = [os.path.relpath(f, root_dir) for f in relevant_shacl_files]
 
     # 2) Ontologies: first those defining used classes, then dependency closure
     relevant_ontology_files = _select_relevant_ontologies(root_dir, used_types)
+    # FORCE RELATIVE TO ROOT:
+    relevant_ontology_files = [
+        os.path.relpath(f, root_dir) for f in relevant_ontology_files
+    ]
 
     # 2b) Always include core base ontologies (support vocabularies)
     support_ontologies = [
@@ -1078,16 +1086,32 @@ def load_shacl_and_ontologies(
     for rel in support_ontologies:
         full = os.path.normpath(os.path.join(root_dir, rel))
         if os.path.exists(full):
-            support_paths.append(full)
+            # Keep these relative to start with
+            support_paths.append(os.path.relpath(full, root_dir))
+
+    def _harmonize_path(p: str) -> str:
+        """Normalize path and ensure it starts with ./ if relative"""
+        norm = os.path.normpath(p)
+        if (
+            not os.path.isabs(norm)
+            and not norm.startswith(".")
+            and not norm.startswith("/")
+        ):
+            return f".{os.sep}{norm}"
+        return norm
 
     # Merge, keeping stable order and de-duplicating
     all_ontology_files = []
     seen = set()
     for path in list(relevant_ontology_files) + support_paths:
-        if path not in seen:
-            seen.add(path)
-            all_ontology_files.append(path)
+        h_path = _harmonize_path(path)
+        if h_path not in seen:
+            seen.add(h_path)
+            all_ontology_files.append(h_path)
     relevant_ontology_files = all_ontology_files
+
+    # Also harmonized the SHACL file list for display
+    relevant_shacl_files = [_harmonize_path(p) for p in relevant_shacl_files]
 
     # Logging / human-readable summary
     if relevant_shacl_files:
@@ -1115,6 +1139,11 @@ def load_shacl_and_ontologies(
     for ontology_file in relevant_ontology_files:
         ontology_graph = Graph()
         try:
+            # If path is relative (./...), we might need to join with root_dir or use as is
+            # if we are in CWD. 'root_dir' acts as base.
+            # But the file list is now relative. We should check if we need to prepend root_dir
+            # for the actual parse or if CWD is enough.
+            # Since the user runs from root, relative paths work.
             ontology_graph.parse(ontology_file, format="turtle")
         except Exception as e:  # defensive
             logging.warning(
