@@ -1,8 +1,8 @@
 {
   "@context": {
-    "hdmap": "https://ontologies.envited-x.net/hdmap/v4/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "hdmap": "https://ontologies.envited-x.net/hdmap/v5/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
@@ -210,7 +210,7 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"

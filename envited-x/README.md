@@ -19,7 +19,7 @@ An ENVITED-X simulation asset follows a standardized file structure and a sample
   - 📄 _`assetName_addition.[ext]` (optional)_
 - 📁 `documentation`
   - 📄 `assetName_documentation.[ext]`
-  - 📄 _`assetName_[Name].[ext]` (optional)_
+  - 📄 _`assetName_[Name].[ext]` (optional)\_
 - 📁 `metadata`
   - 📄 `[assetType]_instance.json`
 - 📁 _`validation-reports` (optional)_
@@ -27,7 +27,7 @@ An ENVITED-X simulation asset follows a standardized file structure and a sample
 - 📁 `media`
   - 📁 _`3d_preview` -> e.g. 3d preview files (optional)_
   - 📄 `assetName_01.png` _-> eyecatcher_
-  - 📄 _`assetName_[XX].png` -> impression (optional)_
+  - 📄 _`assetName_[XX].png` -> impression (optional)\_
   - 📄 _`assetName_other.[ext]` (optional)_
   - 📄 _`assetName_birdview.[ext]` (optional)_
 - 📄 `README.md` -> this README
@@ -102,10 +102,10 @@ The metadata instance file (`simulationAsset_instance.json`) fully describes the
 
 This simulation asset is aligned with a set of standardized ontologies to guarantee semantic consistency and interoperability:
 
-- **ENVITED-X Ontology**: [envited-x](https://ontologies.envited-x.net/envited-x/v2/ontology#)
+- **ENVITED-X Ontology**: [envited-x](https://ontologies.envited-x.net/envited-x/v3/ontology#)
 - **Manifest Ontology**: [manifest ontology v4](https://ontologies.envited-x.net/manifest/v5/ontology#)
-- **Scenario Ontology**: [scenario ontology v4](https://ontologies.envited-x.net/scenario/v4/ontology#)
-- **Georeference Ontology**: [georeference ontology v3](https://ontologies.envited-x.net/georeference/v3/ontology#)
+- **Scenario Ontology**: [scenario ontology v4](https://ontologies.envited-x.net/scenario/v5/ontology#)
+- **Georeference Ontology**: [georeference ontology v3](https://ontologies.envited-x.net/georeference/v4/ontology#)
 - **Gaia-X Shape**: [gx](https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#)
 - **Gaia-X Trust Framework**: [version 22.10](https://docs.gaia-x.eu/policy-rules-committee/trust-framework/22.10/)
 

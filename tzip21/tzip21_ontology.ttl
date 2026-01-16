@@ -35,7 +35,7 @@ tzip21: a owl:Ontology ;
     dcterms:conformsTo <https://ontologies.envited-x.net/tzip21/v1/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://ontologies.envited-x.net/envited-x> ;
+    dcterms:references <https://tzip.tezosagora.org/proposal/tzip-21/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 

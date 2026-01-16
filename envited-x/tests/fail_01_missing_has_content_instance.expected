@@ -8,11 +8,11 @@
 =                                                           Structured Validation Errors:                                                            =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: [BNODE]                                                                                                                       =
-=    Property:         https://ontologies.envited-x.net/envited-x/v2/ontology#hasContent                                                             =
+=    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasContent                                                             =
 =    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
-=    Property:         https://ontologies.envited-x.net/envited-x/v2/ontology#hasDataResourceExtension                                               =
+=    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasDataResourceExtension                                               =
 =    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
 =                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =
 =                      envited-x:hasContent and one envited-x:hasFormat).                                                                            =

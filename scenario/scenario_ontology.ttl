@@ -1,10 +1,10 @@
-@prefix scenario: <https://ontologies.envited-x.net/scenario/v4/ontology#> .
+@prefix scenario: <https://ontologies.envited-x.net/scenario/v5/ontology#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/#> .
-@prefix environment-model: <https://ontologies.envited-x.net/environment-model/v4/ontology#> .
-@prefix hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix environment-model: <https://ontologies.envited-x.net/environment-model/v5/ontology#> .
+@prefix hdmap: <https://ontologies.envited-x.net/hdmap/v5/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v4/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -43,14 +43,14 @@ scenario: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/scenario/v4/ontology#> ;
-    owl:versionInfo "v4" ;
+    owl:versionIRI <https://ontologies.envited-x.net/scenario/v5/ontology#> ;
+    owl:versionInfo "v5" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v4/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/scenario/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://www.asam.net/standards/detail/openscenario/> ;

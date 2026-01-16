@@ -219,7 +219,7 @@
         "@type": "xsd:string"
       },
       "tzip21:value": {
-        "@value": "https://ontologies.envited-x.net/hdmap/v4/ontology#",
+        "@value": "https://ontologies.envited-x.net/hdmap/v5/ontology#",
         "@type": "xsd:string"
       },
       "tzip21:type": {
@@ -234,7 +234,7 @@
         "@type": "xsd:string"
       },
       "tzip21:value": {
-        "@value": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+        "@value": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
         "@type": "xsd:string"
       },
       "tzip21:type": {
@@ -264,7 +264,7 @@
         "@type": "xsd:string"
       },
       "tzip21:value": {
-        "@value": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+        "@value": "https://ontologies.envited-x.net/georeference/v4/ontology#",
         "@type": "xsd:string"
       },
       "tzip21:type": {

@@ -1,7 +1,7 @@
 {
   "@context": {
-    "scenario": "https://ontologies.envited-x.net/scenario/v4/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "scenario": "https://ontologies.envited-x.net/scenario/v5/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "sh": "http://www.w3.org/ns/shacl#",
@@ -119,12 +119,22 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN" },
-      "skos:note": { "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media." },
+      "manifest:iri": {
+        "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
+      },
+      "skos:note": {
+        "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."
+      },
       "sh:conformsTo": [
-        { "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/scenario/v4/ontology#" }
+        {
+          "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/scenario/v5/ontology#"
+        }
       ],
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",
@@ -180,12 +190,22 @@
   "manifest:hasReferencedArtifacts": [
     {
       "@type": "manifest:Link",
-      "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8" },
-      "skos:note": { "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media." },
+      "manifest:iri": {
+        "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8"
+      },
+      "skos:note": {
+        "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."
+      },
       "sh:conformsTo": [
-        { "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/hdmap/v4/ontology#" }
+        {
+          "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/hdmap/v5/ontology#"
+        }
       ],
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",
@@ -213,12 +233,22 @@
     },
     {
       "@type": "manifest:Link",
-      "manifest:iri": { "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi" },
-      "skos:note": { "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media." },
+      "manifest:iri": {
+        "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi"
+      },
+      "skos:note": {
+        "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."
+      },
       "sh:conformsTo": [
-        { "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#" },
-        { "@id": "https://ontologies.envited-x.net/environment-model/v4/ontology#" }
+        {
+          "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/environment-model/v5/ontology#"
+        }
       ],
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",

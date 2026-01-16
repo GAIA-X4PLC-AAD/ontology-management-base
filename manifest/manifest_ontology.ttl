@@ -46,7 +46,7 @@ manifest: a owl:Ontology ;
     dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://ontologies.envited-x.net/envited-x> ;
+    dcterms:references <https://ontologies.envited-x.net/envited-x/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 

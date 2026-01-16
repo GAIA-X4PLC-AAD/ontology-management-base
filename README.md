@@ -186,7 +186,7 @@ This section describes guidelines that _must_ be followed when applying changes 
 
 ### General
 
-- For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class. In addition to that there must be an example on an instance of a SHACL Shape.  
+- For _every_ custom class modeled in an Ontology a SHACL Shape must be created that is linked to the class. In addition to that there must be an example on an instance of a SHACL Shape.
 - Class and attributes names must be in English.
 
 ### Directories & files
@@ -211,6 +211,8 @@ This section describes guidelines that _must_ be followed when applying changes 
 
   ```turtle
   @prefix sensor: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/sensor/> .
+  ```
+
 - The prefix of the ontology must match the prefix defined in the SHACL Shape.
 
 ### SHACL Shapes
@@ -225,11 +227,12 @@ This section describes guidelines that _must_ be followed when applying changes 
 - If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
 - Every TYPE B class must be subclass of `envited-x:SimulationAsset` and implement subclasses of this superclass. See e.g. `hdmap:HdMap`as an example.
 - Every TYPE A Shape linking to an ontology must **nest** the `general` Shape. Example:
+
   - Add prefix
 
     ```turtle
     @prefix general:https://ontologies.envited-x.net/general/v2/ontology# .
-    @prefix general:https://ontologies.envited-x.net/hdmap/v4/ontology .
+    @prefix general:https://ontologies.envited-x.net/hdmap/v5/ontology .
     ```
 
   - Nest the `GeneralShape` as a node. Replace `<your_prefix>` with the prefix of the ontology
@@ -252,7 +255,7 @@ The CI/CD pipeline is defined in the `.github/workflows` directory. The pipeline
 
 The file PROPERTIES.md will be generated automatically when a push to a non-main branch is executed. This file is existent in every subdirectory once there is a SHACL file containing properties. This should help to get a fast overview of the properties used in the SHACL files.
 
->NOTE: the PROPERTIES.md file should not be changed since it will be overwritten automatically.
+> NOTE: the PROPERTIES.md file should not be changed since it will be overwritten automatically.
 
 #### Check syntax of Turtle files
 
@@ -310,6 +313,6 @@ To handle and display rdf-files, especially .ttl files, you can use an IDE with 
 - If there are nested "external" shapes, e.g. `Range2DShape`, you should check whether it has been correctly attached into the correct structure in the instance file and is not duplicated. If it is duplicated, you should remove the duplicated part. This [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/25) leads to problems in the proof validation.
 
 - SD-Wizard does not process Logical Constraint Components. For example, if I use sh:xone in the shacl, all combinations are possible in the SD wizard, although only one field needs to be entered explicitly.
-I would expect that saving in export format is only enabled if the condition is met. See [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/27).
+  I would expect that saving in export format is only enabled if the condition is met. See [issue](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api/-/issues/27).
 
 > Feel free to contribute to the wizard to fix this or other issues in the gitlab repositories [backend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-api) or [frontend](https://gitlab.eclipse.org/eclipse/xfsc/self-description-tooling/sd-creation-wizard-frontend).

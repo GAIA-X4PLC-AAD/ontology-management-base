@@ -34,7 +34,7 @@
 =                      owl:Class, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:unionOf <http://recursion.too.deep>, <http://recursion.too.deep> =
 =                      ; rdf:type owl:Class, rdfs:Class, rdfs:Resource ; rdfs:subClassOf <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource =
 =                      ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], manifest:Link, rdfs:Resource ; sh:conformsTo                            =
-=                      <https://ontologies.envited-x.net/envited-x/v2/ontology#>, <https://ontologies.envited-x.net/manifest/v5/ontology#> ;         =
+=                      <https://ontologies.envited-x.net/envited-x/v3/ontology#>, <https://ontologies.envited-x.net/manifest/v5/ontology#> ;         =
 =                      skos:note Literal("Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation,     =
 =                      metadata, media.", datatype=xsd:string) ] must conform to one or more shapes in [ sh:property [ sh:not [ sh:pattern           =
 =                      Literal("^application/ld\+json$") ] ; sh:path ( <https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata>       =
@@ -53,7 +53,7 @@
 =                      <https://ontologies.envited-x.net/manifest/v5/ontology#mimeType> ) ; sh:pattern Literal("^application/ld\+json$") ] ]         =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
-=    Property:         https://ontologies.envited-x.net/envited-x/v2/ontology#hasManifest                                                            =
+=    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasManifest                                                            =
 =    Error:            Each SimulationAsset must have exactly one manifest. If linked, it MUST be of category envited-x:isManifest and include a     =
 =                      manifest:iri.                                                                                                                 =
 ======================================================================================================================================================

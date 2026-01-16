@@ -1,9 +1,9 @@
 {
   "@context": {
-    "surface-model": "https://ontologies.envited-x.net/surface-model/v5/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "surface-model": "https://ontologies.envited-x.net/surface-model/v6/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -152,7 +152,7 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
