@@ -24,6 +24,7 @@ import logging
 import os
 import sys
 import tempfile
+import time
 from argparse import ArgumentParser
 from collections import Counter, defaultdict
 from io import StringIO
@@ -43,6 +44,31 @@ else:
 from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
 DEFAULT_ROOT_DIRECTORY = "."
+
+
+class StepTimer:
+    def __init__(self):
+        self.start_time = time.perf_counter()
+        self.last_step_time = self.start_time
+
+    def mark_step(self, step_name: str):
+        """
+        Calculates duration and prints ONLY to the console (sys.stdout).
+        The 'file' argument is ignored for the timing message to ensure
+        benchmarks are not captured in the final report or logfile.
+        """
+        now = time.perf_counter()
+        duration = now - self.last_step_time
+        total = now - self.start_time
+        msg = (
+            f"⏱️  [STEP DONE: {step_name}] took {duration:.3f}s (Total: {total:.3f}s)\n"
+        )
+
+        # Always print to the actual terminal, regardless of the 'file' buffer
+        print(msg, file=sys.stdout)
+        sys.stdout.flush()
+
+        self.last_step_time = now
 
 
 # ---------------------------------------------------------------------------
@@ -1139,8 +1165,6 @@ def load_shacl_and_ontologies(
 # ---------------------------------------------------------------------------
 # Main validation orchestrator
 # ---------------------------------------------------------------------------
-
-
 def validate_jsonld_against_shacl(
     root_dir: str,
     ontology_dict: Dict[str, Dict[str, object]],
@@ -1149,6 +1173,8 @@ def validate_jsonld_against_shacl(
     context_resolver: LocalContextResolver | None = None,
     logfile: str | None = None,
 ) -> Tuple[int, str]:
+    output_buffer = StringIO()
+    timer = StepTimer()
     """
     Main validation pipeline using ontology_dict built beforehand.
     Returns (exit_code, output_text).
@@ -1166,85 +1192,74 @@ def validate_jsonld_against_shacl(
     - If no JSON-LD data could be loaded (e.g., remote context resolution fails),
       the script aborts validation to avoid false positives.
     """
-    output_buffer = StringIO()
 
     def print_out(*args, **kwargs) -> None:
+        # We print to the buffer for the return value/logfile
         print(*args, **kwargs, file=output_buffer)
+        # We also print to stdout immediately so the user sees progress
+        print(*args, **kwargs, file=sys.stdout)
+        sys.stdout.flush()
 
-    # Configure logging to write into the same buffer, so it ends
-    # up in the returned message (and thus in --logfile or stdout).
     setup_logging(debug, stream=output_buffer)
     logger = logging.getLogger()
     if not debug:
         logger.disabled = True
 
-    if PYSHACL_IMPORT_ERROR is not None:  # pragma: no cover - environment-only
+    if PYSHACL_IMPORT_ERROR is not None:
         print_out(
-            "Error: pyshacl is not installed. Validation cannot run. "
-            f"Import error: {PYSHACL_IMPORT_ERROR}"
+            f"Error: pyshacl is not installed. Import error: {PYSHACL_IMPORT_ERROR}"
         )
         return 99, output_buffer.getvalue()
 
     if not ontology_dict:
-        print_out("Error code 100: No valid files found in ontology_dict.")
+        print_out("Error code 100: No valid files found.")
         return 100, output_buffer.getvalue()
 
-    if inference_mode not in {"none", "rdfs", "owlrl", "both"}:
-        print_out(
-            f"Error: Unsupported inference mode '{inference_mode}'. "
-            "Use one of: none, rdfs, owlrl, both."
-        )
-        return 98, output_buffer.getvalue()
-
-    # 1) JSON-LD prefixes + context coverage
+    # --- Step 1: JSON-LD Analysis ---
+    print("🚀 Step 1: Analyzing JSON-LD contexts and prefixes...")
+    sys.stdout.flush()
     add_jsonld_prefixes_and_context_info(ontology_dict)
+    timer.mark_step("JSON-LD Prefix Analysis")
 
-    # 2) Data graph (instance + reference) – ONLY those discovered from CLI args
+    # --- Step 2: Build Data Graph ---
+    print("🚀 Step 2: Building Data Graph (Parsing JSON-LD files)...")
+    sys.stdout.flush()
     data_graph, loaded_count, failed_count = build_data_graph_from_dict(
         ontology_dict, output_buffer, context_resolver=context_resolver
     )
 
-    # Abort if nothing could be loaded. Otherwise we get false positives.
     if loaded_count == 0:
-        print_out(
-            "Error code 101: No JSON-LD data could be loaded (all parses failed). "
-            "Aborting validation to avoid false positives."
-        )
         return 101, output_buffer.getvalue()
-
-    # Abort if the graph is empty (edge case: files loaded but produce no triples)
     if len(data_graph) == 0:
-        print_out(
-            "Error code 102: Data graph is empty after loading JSON-LD. "
-            "Aborting validation to avoid false positives."
-        )
         return 102, output_buffer.getvalue()
 
-    # 3) Extract RDF types from the data graph
-    print_out("📌 Extracting RDF types from data graph...")
-    # At this point we only have JSON-LD prefixes in the dict (schema prefixes are added later)
+    timer.mark_step("Data Graph Loading")
+
+    # --- Step 3: Extract RDF Types ---
+    print("🚀 Step 3: Extracting RDF types to determine dependencies...")
+    sys.stdout.flush()
     jsonld_prefixes = build_global_prefix_mapping(ontology_dict)
     used_types = extract_used_types(
         data_graph, jsonld_prefixes, root_dir, file=output_buffer
     )
+    timer.mark_step("RDF Type Extraction")
 
-    # 4) Load only necessary SHACL & ontologies based on rdf:type usage
-    print_out(
-        "📌 Loading only necessary SHACL shapes and ontologies "
-        "based on namespaces in @context..."
-    )
-    # [CHANGE] Pass global prefixes to allow context-driven loading
+    # --- Step 4: Load SHACL & Ontologies ---
+    print("🚀 Step 4: Loading relevant SHACL shapes and Ontologies...")
+    sys.stdout.flush()
     shacl_graph, ont_graph, relevant_shacl_files, relevant_ontology_files = (
         load_shacl_and_ontologies(
             root_dir,
             used_types,
-            global_prefixes=jsonld_prefixes,  # Pass the map derived from context
+            global_prefixes=jsonld_prefixes,
             file=output_buffer,
         )
     )
+    timer.mark_step("Schema Loading (SHACL/OWL)")
 
-    # 5) Attach the relevant schema files back to the ontology_dict so we can
-    #    derive a *schema-aware* prefix mapping (restricted to actually used files).
+    # --- Step 5: Final Prefix Extension ---
+    print("🚀 Step 5: Final Prefix Extension...")
+    sys.stdout.flush()
     for path in relevant_ontology_files:
         rel_dir = os.path.relpath(os.path.dirname(path), root_dir)
         folder_name = rel_dir.replace(os.sep, "/")
@@ -1257,20 +1272,17 @@ def validate_jsonld_against_shacl(
         ensure_folder_entry(ontology_dict, folder_name)
         ontology_dict[folder_name]["shacle_shapes"].append(os.path.normpath(path))
 
-    # 6) Extend prefixes with those from the *relevant* schema files only
     extend_prefixes_with_schema_files(ontology_dict, root_dir)
-    dynamic_prefixes = build_global_prefix_mapping(ontology_dict)
-    if debug:
-        print_prefix_mapping(dynamic_prefixes, file=output_buffer)
+    timer.mark_step("Prefix Extension")
 
-    # 7) Final validation
+    # --- Step 6: Core Validation (The main bottleneck) ---
+    print(f"🚀 Step 6: Performing SHACL validation (Inference: {inference_mode})...")
+    sys.stdout.flush()
     instance_files, reference_files = collect_instance_and_reference_files(
         ontology_dict
     )
-    print_out("🔍 Performing overall validation explicitly...")
 
-    # Capture *all* stdout/stderr from pyshacl.validate into output_buffer,
-    # so nothing leaks to the real console even if --logfile is set.
+    # Note: we redirect pyshacl internal logs to our buffer
     with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(
         output_buffer
     ):
@@ -1285,22 +1297,18 @@ def validate_jsonld_against_shacl(
             inplace=False,
         )
 
+    timer.mark_step("PySHACL Validation Engine")
+
+    # Final reporting
     if logfile:
-        try:
-            with open(logfile, "w", encoding="utf-8") as f:
-                f.write(v_text)
-        except Exception as e:
-            print_out(f"Error writing to logfile {logfile}: {e}")
+        with open(logfile, "w", encoding="utf-8") as f:
+            f.write(v_text)
 
     if not conforms:
-        # [CHANGE] Pass report_graph to print_validate_jsonld_against_shacl_result
-        # and suppress the verbose output by passing empty string for validation_text.
-        # Ensure console output remains clean (summary only) regardless of logfile presence.
-        full_report = ""
         print_validate_jsonld_against_shacl_result(
             False,
             instance_files + reference_files,
-            full_report,
+            "",
             report_graph=report_graph,
             exit_code=None,
             file=output_buffer,
@@ -1409,6 +1417,7 @@ def main() -> None:
     )
 
     # Print the final message once (to stdout)
+    sys.stdout.flush()
     print(message)
 
     sys.exit(return_code)

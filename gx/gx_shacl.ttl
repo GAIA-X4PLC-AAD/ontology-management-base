@@ -9,7 +9,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://qudt.org/schema/qudt/floatPercentageShape> a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of percentage, according to https://qudt.org/2.1/schema/qudt" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Float Percentage" ;
@@ -44,7 +44,7 @@
     sh:targetClass <http://qudt.org/vocab/QuantityKind> .
 
 <http://qudt.org/vocab/quantitykind/DataRateShape> a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of 'Data Rate', according to http://qudt.org/quantitykind/DataRate." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
@@ -65,7 +65,7 @@
     sh:targetClass <http://qudt.org/vocab/quantitykind/DataRate> .
 
 <http://qudt.org/vocab/quantitykind/FrequencyDefinitionShape> a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of 'Frequency', according to http://qudt.org/quantitykind/FrequencyDefinition." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -86,7 +86,7 @@
     sh:targetClass <http://qudt.org/vocab/quantitykind/FrequencyDefinition> .
 
 <http://qudt.org/vocab/quantitykind/PowerShape> a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of 'Power', according to http://qudt.org/quantitykind/Power." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
@@ -107,7 +107,7 @@
     sh:targetClass <http://qudt.org/vocab/quantitykind/Power> .
 
 <http://qudt.org/vocab/quantitykind/TimeShape> a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of 'Time', according to http://qudt.org/quantitykind/Time." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
@@ -133,7 +133,7 @@ rdfs:DatatypeShape a sh:NodeShape ;
     sh:targetClass rdfs:Datatype .
 
 dcat:DistributionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
@@ -233,7 +233,7 @@ dcat:DistributionShape a sh:NodeShape ;
     sh:targetClass dcat:Distribution .
 
 odrl:AgreementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Policy Subclasses" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -288,7 +288,7 @@ odrl:AgreementShape a sh:NodeShape ;
     sh:targetClass odrl:Agreement .
 
 odrl:AssetShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Assets" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -306,7 +306,7 @@ odrl:AssetShape a sh:NodeShape ;
     sh:targetClass odrl:Asset .
 
 odrl:ConflictTermShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Policy Conflict Strategy" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -336,7 +336,7 @@ odrl:ConflictTermShape a sh:NodeShape ;
     sh:targetClass odrl:ConflictTerm .
 
 odrl:ConstraintOperandsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Logical Constraint Operands" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -366,7 +366,7 @@ odrl:ConstraintOperandsShape a sh:NodeShape ;
     sh:targetClass odrl:ConstraintOperands .
 
 odrl:ConstraintOperatorsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Constraint Operators" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -444,7 +444,7 @@ odrl:ConstraintOperatorsShape a sh:NodeShape ;
     sh:targetClass odrl:ConstraintOperators .
 
 odrl:ConstraintShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Constraints" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -480,7 +480,7 @@ odrl:ConstraintShape a sh:NodeShape ;
     sh:targetClass odrl:Constraint .
 
 odrl:DutyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Duties" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -559,7 +559,7 @@ odrl:DutyShape a sh:NodeShape ;
     sh:targetClass odrl:Duty .
 
 odrl:LogicalConstraintShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Logical Constraints" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -571,7 +571,7 @@ odrl:LogicalConstraintShape a sh:NodeShape ;
     sh:targetClass odrl:LogicalConstraint .
 
 odrl:OfferShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Policy Subclasses" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -617,7 +617,7 @@ odrl:OfferShape a sh:NodeShape ;
     sh:targetClass odrl:Offer .
 
 odrl:PartyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Parties" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Party assigned a responsibility." ;
@@ -661,7 +661,7 @@ odrl:PartyShape a sh:NodeShape ;
     sh:targetClass odrl:Party .
 
 odrl:PermissionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Permissions" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class odrl:Rule ;
@@ -729,7 +729,7 @@ odrl:PermissionShape a sh:NodeShape ;
     sh:targetClass odrl:Permission .
 
 odrl:PolicyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Policy" ;
     sh:ignoredProperties ( odrl:assignee rdf:type odrl:assigner ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -768,7 +768,7 @@ odrl:PolicyShape a sh:NodeShape ;
     sh:targetClass odrl:Policy .
 
 odrl:ProhibitionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Prohibitions" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:minCount 1 ;
@@ -836,7 +836,7 @@ odrl:ProhibitionShape a sh:NodeShape ;
     sh:targetClass odrl:Prohibition .
 
 odrl:RuleShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Rule" ;
     sh:ignoredProperties ( odrl:remedy rdf:type odrl:permission odrl:prohibition odrl:target odrl:obligation odrl:consequence ) ;
     sh:property [ sh:description "Party assigned a responsibility." ;
@@ -893,7 +893,7 @@ odrl:RuleShape a sh:NodeShape ;
     sh:targetClass odrl:Rule .
 
 odrl:SetShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "ODRL Core Vocabulary Terms related to Policy Subclasses" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -932,7 +932,7 @@ odrl:SetShape a sh:NodeShape ;
     sh:targetClass odrl:Set .
 
 gx:AccessControlManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the management of access controls within the organization." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -962,7 +962,7 @@ gx:AccessControlManagementShape a sh:NodeShape ;
     sh:targetClass gx:AccessControlManagement .
 
 gx:AccessUsagePolicyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "An access or usage policy expressed using a DSL (e.g., Rego or ODRL) (access control, throttling, usage, retention, ...)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The language in which the policy is expressed (e.g., ODRL, XACML, Rego, JSON-based policies)." ;
@@ -984,7 +984,7 @@ gx:AccessUsagePolicyShape a sh:NodeShape ;
     sh:targetClass gx:AccessUsagePolicy .
 
 gx:AddressShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Full address of the entity." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -1030,7 +1030,7 @@ gx:AddressShape a sh:NodeShape ;
     sh:targetClass gx:Address .
 
 gx:AssetsManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the management of assets related to security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Countries under whose laws the document is governed." ;
@@ -1060,7 +1060,7 @@ gx:AssetsManagementShape a sh:NodeShape ;
     sh:targetClass gx:AssetsManagement .
 
 gx:AvailabilityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual availability of connection defined in the SLA agreement. Availability is measured in the pseudo-unit \"percent\"." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Availability" ;
@@ -1081,7 +1081,7 @@ gx:AvailabilityShape a sh:NodeShape ;
     sh:targetClass gx:Availability .
 
 gx:AvailabilityZoneShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "An availability zone is an aggregation of resources - physical and abstract - in a non-redundant setup often associated with a single datacenter room" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Availability Zone" ;
@@ -1112,7 +1112,7 @@ gx:AvailabilityZoneShape a sh:NodeShape ;
     sh:targetClass gx:AvailabilityZone .
 
 gx:BackupPolicyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Describe data protection features based on Backup for storage services" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:RetentionDuration ;
@@ -1151,7 +1151,7 @@ gx:BackupPolicyShape a sh:NodeShape ;
     sh:targetClass gx:BackupPolicy .
 
 gx:BandWidthShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual bandwidth defined in the service level agreement (SLA)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Bandwidth" ;
@@ -1172,7 +1172,7 @@ gx:BandWidthShape a sh:NodeShape ;
     sh:targetClass gx:BandWidth .
 
 gx:BareMetalServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering bare metal computational capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Bare Metal Service Offering" ;
@@ -1331,7 +1331,7 @@ gx:BareMetalServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:BareMetalServiceOffering .
 
 gx:BaseContainerImageShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A set of tags for an image and a repository link" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Base Container Image" ;
@@ -1352,7 +1352,7 @@ gx:BaseContainerImageShape a sh:NodeShape ;
     sh:targetClass gx:BaseContainerImage .
 
 gx:BlockStorageConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents the attributes that are configurable at service instantiation for storage service offerings." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Block Storage Configuration" ;
@@ -1421,7 +1421,7 @@ gx:BlockStorageConfigurationShape a sh:NodeShape ;
     sh:targetClass gx:BlockStorageConfiguration .
 
 gx:BlockStorageServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering block storage capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Block Storage Service Offering" ;
@@ -1616,7 +1616,7 @@ gx:BlockStorageServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:BlockStorageServiceOffering .
 
 gx:BusinessContinuityMeasuresShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the measures to ensure business continuity during security events." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Countries under whose laws the document is governed." ;
@@ -1646,7 +1646,7 @@ gx:BusinessContinuityMeasuresShape a sh:NodeShape ;
     sh:targetClass gx:BusinessContinuityMeasures .
 
 gx:CPUShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Computational processing unit of virtual and physical machines." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:defaultValue "Other" ;
@@ -1745,7 +1745,7 @@ gx:CPUShape a sh:NodeShape ;
     sh:targetClass gx:CPU .
 
 gx:ChangeAndConfigurationManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the management of changes and configurations related to security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -1775,7 +1775,7 @@ gx:ChangeAndConfigurationManagementShape a sh:NodeShape ;
     sh:targetClass gx:ChangeAndConfigurationManagement .
 
 gx:CheckSumShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Detail on how to calculate or verify a checksum." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Algorithm used to create checksum." ;
@@ -1869,7 +1869,7 @@ gx:CodeArtifactShape a sh:NodeShape ;
     sh:targetClass gx:CodeArtifact .
 
 gx:ComplianceAssuranceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the assurance of compliance with security standards." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -1899,7 +1899,7 @@ gx:ComplianceAssuranceShape a sh:NodeShape ;
     sh:targetClass gx:ComplianceAssurance .
 
 gx:CompliantCredentialShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Snapshot of a credential deemed compliant by a compliance engine.  This uses a unique identifier and a hash to ensure the credential will not be modified in a near future." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compliant Credential" ;
@@ -1922,7 +1922,7 @@ gx:CompliantCredentialShape a sh:NodeShape ;
     sh:targetClass gx:CompliantCredential .
 
 gx:ComputeFunctionConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "InstantiationRequirements for compute functions." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Configuration" ;
@@ -1984,7 +1984,7 @@ gx:ComputeFunctionConfigurationShape a sh:NodeShape ;
     sh:targetClass gx:ComputeFunctionConfiguration .
 
 gx:ComputeFunctionQuotasShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Attributes describing quotas for compute functions" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Quotas" ;
@@ -2047,7 +2047,7 @@ gx:ComputeFunctionQuotasShape a sh:NodeShape ;
     sh:targetClass gx:ComputeFunctionQuotas .
 
 gx:ComputeFunctionRuntimeShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Attributes describing function runtimes" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Runtime" ;
@@ -2068,7 +2068,7 @@ gx:ComputeFunctionRuntimeShape a sh:NodeShape ;
     sh:targetClass gx:ComputeFunctionRuntime .
 
 gx:ComputeFunctionServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and providing compute functions capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Service Offering" ;
@@ -2270,7 +2270,7 @@ gx:ComputeFunctionServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ComputeFunctionServiceOffering .
 
 gx:ComputeFunctionTemplateShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Class for describing a template of compute function" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Template" ;
@@ -2368,7 +2368,7 @@ gx:ComputeFunctionTemplateShape a sh:NodeShape ;
     sh:targetClass gx:ComputeFunctionTemplate .
 
 gx:ComputeFunctionTriggerShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Attributes describing Compute Function Trigger" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Compute Function Trigger" ;
@@ -2533,7 +2533,7 @@ gx:ComputeServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ComputeServiceOffering .
 
 gx:ConfidentialComputingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Particular confidential computing technology used by flavors as defined in..." ;
@@ -2552,7 +2552,7 @@ gx:ConfidentialComputingShape a sh:NodeShape ;
     sh:targetClass gx:ConfidentialComputing .
 
 gx:ConnectivityConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "The connectivityConfiguration class encapsulates the configurable attributes of a ConnectivityServiceOffering." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Connectivity Configuration" ;
@@ -2736,7 +2736,7 @@ gx:ConnectivityServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ConnectivityServiceOffering .
 
 gx:ConsentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Information on the legitimate processing of information related to PII." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Consent" ;
@@ -2775,7 +2775,7 @@ gx:ConsentShape a sh:NodeShape ;
     sh:targetClass gx:Consent .
 
 gx:ContactInformationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contains contact details for an entity." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -2805,7 +2805,7 @@ gx:ContactInformationShape a sh:NodeShape ;
     sh:targetClass gx:ContactInformation .
 
 gx:ContainerImageShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Image available for containers." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Container Image" ;
@@ -2990,7 +2990,7 @@ gx:ContainerImageShape a sh:NodeShape ;
     sh:targetClass gx:ContainerImage .
 
 gx:ContainerResourceLimitsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "InstantiationRequirements for containers (available resources and associated limits)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Container Resource Limits" ;
@@ -3066,7 +3066,7 @@ gx:ContainerResourceLimitsShape a sh:NodeShape ;
     sh:targetClass gx:ContainerResourceLimits .
 
 gx:ContainerServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and providing containers." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Container Service Offering" ;
@@ -3225,7 +3225,7 @@ gx:ContainerServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ContainerServiceOffering .
 
 gx:CopyrightAndIntellectualPropertyDocumentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the provisions governing aspects regarding copyright or any other intellectual property rights." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -3255,7 +3255,7 @@ gx:CopyrightAndIntellectualPropertyDocumentShape a sh:NodeShape ;
     sh:targetClass gx:CopyrightAndIntellectualPropertyDocument .
 
 gx:CpuCapabilitiesShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:CPU ;
             sh:description "Hardware capabilities of phyisical CPU used by given flavor." ;
@@ -3289,7 +3289,7 @@ gx:CpuCapabilitiesShape a sh:NodeShape ;
     sh:targetClass gx:CpuCapabilities .
 
 gx:CustomerAuditingRightsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the customer auditing rights." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Countries under whose laws the document is governed." ;
@@ -3319,7 +3319,7 @@ gx:CustomerAuditingRightsShape a sh:NodeShape ;
     sh:targetClass gx:CustomerAuditingRights .
 
 gx:CustomerDataAccessTermsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the terms governing customer data access." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -3349,7 +3349,7 @@ gx:CustomerDataAccessTermsShape a sh:NodeShape ;
     sh:targetClass gx:CustomerDataAccessTerms .
 
 gx:CustomerDataProcessingTermsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the processing terms regarding any Customer data therein." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -3379,7 +3379,7 @@ gx:CustomerDataProcessingTermsShape a sh:NodeShape ;
     sh:targetClass gx:CustomerDataProcessingTerms .
 
 gx:CustomerInstructionsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Defines how customers can instruct the provider regarding data processing." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;
@@ -3397,7 +3397,7 @@ gx:CustomerInstructionsShape a sh:NodeShape ;
     sh:targetClass gx:CustomerInstructions .
 
 gx:DataAccountExportShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "List of methods to export data from your account out of the service." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The mean to request data retrieval: API, email, webform, unregisteredLetter, registeredLetter, supportCenter." ;
@@ -3424,7 +3424,7 @@ gx:DataAccountExportShape a sh:NodeShape ;
     sh:targetClass gx:DataAccountExport .
 
 gx:DataConsumerShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "is equivalent to Gaia-X Consumer" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -3474,14 +3474,14 @@ gx:DataConsumerShape a sh:NodeShape ;
     sh:targetClass gx:DataConsumer .
 
 gx:DataExchangeComponentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A service/resource used to make a data resource available." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Data Exchange Component" ;
     sh:targetClass gx:DataExchangeComponent .
 
 gx:DataLicensorShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "is equivalent to Gaia-X Licensor" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:Address ;
@@ -3531,7 +3531,7 @@ gx:DataLicensorShape a sh:NodeShape ;
     sh:targetClass gx:DataLicensor .
 
 gx:DataPortabilityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Which resource of the service offering is concerned by this data portability measure. For example, backup files, stored personal data, infrastructure description file (IaaS), etc." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;
@@ -3595,7 +3595,7 @@ gx:DataPortabilityShape a sh:NodeShape ;
     sh:targetClass gx:DataPortability .
 
 gx:DataProducerShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "is equivalent to Gaia-X ResourceOwner" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -3645,7 +3645,7 @@ gx:DataProducerShape a sh:NodeShape ;
     sh:targetClass gx:DataProducer .
 
 gx:DataProductShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "A resolvable link to the Terms and Conditions applying to that service." ;
@@ -3856,7 +3856,7 @@ gx:DataProductShape a sh:NodeShape ;
     sh:targetClass gx:DataProduct .
 
 gx:DataProductUsageContractShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:DataUsage ;
             sh:description "A resolvable link to Data Usage." ;
@@ -3946,7 +3946,7 @@ gx:DataProtectionPolicyShape a sh:NodeShape ;
     sh:targetClass gx:DataProtectionPolicy .
 
 gx:DataProtectionRegulationMeasuresShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document addressing requirement measures concerning GDPR (as GDPR Art. 28 (9))." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Countries under whose laws the document is governed." ;
@@ -3976,7 +3976,7 @@ gx:DataProtectionRegulationMeasuresShape a sh:NodeShape ;
     sh:targetClass gx:DataProtectionRegulationMeasures .
 
 gx:DataProviderShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "is equivalent to Gaia-X Provider" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:RegistrationNumber ;
@@ -4026,7 +4026,7 @@ gx:DataProviderShape a sh:NodeShape ;
     sh:targetClass gx:DataProvider .
 
 gx:DataResourceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A dataset exposed through a service instance." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Data Resource" ;
@@ -4118,7 +4118,7 @@ gx:DataResourceShape a sh:NodeShape ;
     sh:targetClass gx:DataResource .
 
 gx:DataSetShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "A resolvable link to the data exchange component that exposes the Data Product." ;
@@ -4191,7 +4191,7 @@ gx:DataSetShape a sh:NodeShape ;
     sh:targetClass gx:DataSet .
 
 gx:DataTransferShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Defines the basic structure for data transfers, including reasons and scope." ;
     sh:ignoredProperties ( gx:securingMechanism rdf:type gx:subProcessorManagement gx:subProcessor gx:country ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -4211,7 +4211,7 @@ gx:DataTransferShape a sh:NodeShape ;
     sh:targetClass gx:DataTransfer .
 
 gx:DataUsageAgreementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:DataProduct ;
             sh:description "A resolvable link to the Data Product Description Declaration (after negotiation)." ;
@@ -4256,7 +4256,7 @@ gx:DataUsageAgreementShape a sh:NodeShape ;
     sh:targetClass gx:DataUsageAgreement .
 
 gx:DataUsageShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "A human readable name of the entity." ;
@@ -4279,7 +4279,7 @@ gx:DataUsageShape a sh:NodeShape ;
     sh:targetClass gx:DataUsage .
 
 gx:DatacenterAllocationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Details specific situation within the datacenter where the service can be accessed." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Datacenter Allocation" ;
@@ -4322,7 +4322,7 @@ gx:DatacenterAllocationShape a sh:NodeShape ;
     sh:targetClass gx:DatacenterAllocation .
 
 gx:DatacenterShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A datacenter is an aggregation of availability zones" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Datacenter" ;
@@ -4392,7 +4392,7 @@ gx:DatacenterShape a sh:NodeShape ;
     sh:targetClass gx:Datacenter .
 
 gx:DevelopmentCycleSecurityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the security practices during the development cycle." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -4457,7 +4457,7 @@ gx:DeviceShape a sh:NodeShape ;
     sh:targetClass gx:Device .
 
 gx:DiskShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Capabilities of a physical or virtual hard drive." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -4514,7 +4514,7 @@ gx:DiskShape a sh:NodeShape ;
     sh:targetClass gx:Disk .
 
 gx:DocumentChangeProceduresShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the provisions governing changes, regardless of their kind." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -4544,7 +4544,7 @@ gx:DocumentChangeProceduresShape a sh:NodeShape ;
     sh:targetClass gx:DocumentChangeProcedures .
 
 gx:EORIShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "The Economic Operators Registration and Identification number (EORI)." ;
@@ -4562,7 +4562,7 @@ gx:EORIShape a sh:NodeShape ;
     sh:targetClass gx:EORI .
 
 gx:EUIDShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "The European Unique Identifier (EUID) for business located in the European Economic Area, Iceland, Liechtenstein or Norway and registered in the Business Registers Interconnection System (BRIS). This number can be found via the EU Business registers portal." ;
@@ -4574,7 +4574,7 @@ gx:EUIDShape a sh:NodeShape ;
     sh:targetClass gx:EUID .
 
 gx:EmployeeResponsibilitiesShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the responsibilities of employees in maintaining security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -4604,7 +4604,7 @@ gx:EmployeeResponsibilitiesShape a sh:NodeShape ;
     sh:targetClass gx:EmployeeResponsibilities .
 
 gx:EncryptionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Encryption capabilities of a Gaia-X entity." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Define key management method. Allowed values are: managed, BYOK, HYOK" ;
@@ -4624,7 +4624,7 @@ gx:EncryptionShape a sh:NodeShape ;
     sh:targetClass gx:Encryption .
 
 gx:EndpointShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "An endpoint is a mean to access and interact with a service or a resource." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:StandardConformity ;
@@ -4650,7 +4650,7 @@ gx:EndpointShape a sh:NodeShape ;
     sh:targetClass gx:Endpoint .
 
 gx:EnergyMixShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Details the composition of energy sources in a given mix." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:date ;
@@ -4677,7 +4677,7 @@ gx:EnergyMixShape a sh:NodeShape ;
     sh:targetClass gx:EnergyMix .
 
 gx:EnergyUsageEfficiencyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents the efficiency of energy usage in a resource." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;
@@ -4695,7 +4695,7 @@ gx:EnergyUsageEfficiencyShape a sh:NodeShape ;
     sh:targetClass gx:EnergyUsageEfficiency .
 
 gx:EnvironmentalImpactReportShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the terms governing customer data access." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -4725,7 +4725,7 @@ gx:EnvironmentalImpactReportShape a sh:NodeShape ;
     sh:targetClass gx:EnvironmentalImpactReport .
 
 gx:FederatorShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "is equivalent to Gaia-X Federator" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:Address ;
@@ -4775,7 +4775,7 @@ gx:FederatorShape a sh:NodeShape ;
     sh:targetClass gx:Federator .
 
 gx:FileStorageConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents the attributes that are configurable at service instantiation for storage service offerings." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "File Storage Configuration" ;
@@ -4844,7 +4844,7 @@ gx:FileStorageConfigurationShape a sh:NodeShape ;
     sh:targetClass gx:FileStorageConfiguration .
 
 gx:FileStorageServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering file storage capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "File Storage Service Offering" ;
@@ -5051,7 +5051,7 @@ gx:FileStorageServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:FileStorageServiceOffering .
 
 gx:GPSLocationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Physical GPS coordinates in ISO 6709:2008/Cor 1:2009 format." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -5088,7 +5088,7 @@ gx:GPSLocationShape a sh:NodeShape ;
     sh:targetClass gx:GPSLocation .
 
 gx:GPSUnitShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Definition of a geographical point." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
@@ -5127,7 +5127,7 @@ gx:GPSUnitShape a sh:NodeShape ;
     sh:targetClass gx:GPSUnit .
 
 gx:GPUShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Graphical processing unit of virtual and physical machines." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
@@ -5214,7 +5214,7 @@ gx:GaiaXShape a sh:NodeShape ;
     sh:targetClass gx:GaiaX .
 
 gx:GovernmentInvestigationManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the management of government investigations related to security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Countries under whose laws the document is governed." ;
@@ -5244,7 +5244,7 @@ gx:GovernmentInvestigationManagementShape a sh:NodeShape ;
     sh:targetClass gx:GovernmentInvestigationManagement .
 
 gx:HypervisorShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A special Gaia-X Software Resource describing a hypervisor to provided virtual machines." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -5325,7 +5325,7 @@ gx:HypervisorShape a sh:NodeShape ;
     sh:targetClass gx:Hypervisor .
 
 gx:IOPSShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Metric for IOps." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "IOPS" ;
@@ -5516,7 +5516,7 @@ gx:ImageShape a sh:NodeShape ;
     sh:targetClass gx:Image .
 
 gx:InformationSecurityOrganizationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the information security organization within the entity." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -5546,7 +5546,7 @@ gx:InformationSecurityOrganizationShape a sh:NodeShape ;
     sh:targetClass gx:InformationSecurityOrganization .
 
 gx:InformationSecurityPoliciesShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the policies governing information security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The MIME types associated with the legal document." ;
@@ -5576,7 +5576,7 @@ gx:InformationSecurityPoliciesShape a sh:NodeShape ;
     sh:targetClass gx:InformationSecurityPolicies .
 
 gx:InformationSecurityRiskManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the risk management related to information security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -5764,7 +5764,7 @@ gx:InstantiationRequirementShape a sh:NodeShape ;
     sh:targetClass gx:InstantiationRequirement .
 
 gx:InterconnectionPointIdentifierShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Interconnection Point Identifier is a unique Service Access Point that identifies the location where resources can interconnect." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Interconnection Point Identifier" ;
@@ -5823,7 +5823,7 @@ gx:InterconnectionPointIdentifierShape a sh:NodeShape ;
     sh:targetClass gx:InterconnectionPointIdentifier .
 
 gx:InterconnectionServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Interconnection Service Offering" ;
@@ -6046,7 +6046,7 @@ gx:InterconnectionServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:InterconnectionServiceOffering .
 
 gx:InternetExchangePointShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Physical infrastructure allowing participants to interconnect their networks hence avoiding the use of an upstream provider networks. IXPs are usually non-profit as the interconnected participants agree to share free transit." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Internet Exchange Point" ;
@@ -6129,7 +6129,7 @@ gx:InternetExchangePointShape a sh:NodeShape ;
     sh:targetClass gx:InternetExchangePoint .
 
 gx:InternetServiceProviderShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Organization providing internet access and related services" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Internet Service Provider" ;
@@ -6180,7 +6180,7 @@ gx:InternetServiceProviderShape a sh:NodeShape ;
     sh:targetClass gx:InternetServiceProvider .
 
 gx:IssuerShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "An issuer of W3C Verifiable Credentials and Verifiable Presentations." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Gaia-X terms and conditions this issuer agreed with in order to act as an issuer of Gaia-X compliant credentials." ;
@@ -6193,7 +6193,7 @@ gx:IssuerShape a sh:NodeShape ;
     sh:targetClass gx:Issuer .
 
 gx:JitterShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual jitter defined in the SLA. If not specified, then best effort is assumed." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Jitter" ;
@@ -6214,7 +6214,7 @@ gx:JitterShape a sh:NodeShape ;
     sh:targetClass gx:Jitter .
 
 gx:LabelCredentialShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Gaia-X compliance engine issued credential representing a Gaia-X conformity label level." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Label Credential" ;
@@ -6258,7 +6258,7 @@ gx:LabelCredentialShape a sh:NodeShape ;
     sh:targetClass gx:LabelCredential .
 
 gx:LatencyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual latency defined in the SLA. If not specified, then best effort is assumed." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Latency" ;
@@ -6279,7 +6279,7 @@ gx:LatencyShape a sh:NodeShape ;
     sh:targetClass gx:Latency .
 
 gx:LatestNShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Number of latest N outdated image versions, which will be valid." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:integer ;
@@ -6291,7 +6291,7 @@ gx:LatestNShape a sh:NodeShape ;
     sh:targetClass gx:LatestN .
 
 gx:LegalDocumentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A document that has legal significance, typically outlining terms, conditions, or regulations." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Legal Document" ;
@@ -6322,7 +6322,7 @@ gx:LegalDocumentShape a sh:NodeShape ;
     sh:targetClass gx:LegalDocument .
 
 gx:LegalPersonShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A legal person, who is uniquely identified by its registration number." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Legal Person" ;
@@ -6373,7 +6373,7 @@ gx:LegalPersonShape a sh:NodeShape ;
     sh:targetClass gx:LegalPerson .
 
 gx:LegallyBindingActShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the legally binding act." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The MIME types associated with the legal document." ;
@@ -6403,7 +6403,7 @@ gx:LegallyBindingActShape a sh:NodeShape ;
     sh:targetClass gx:LegallyBindingAct .
 
 gx:LegitimateInterestShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A legitimate interest entity describing reasons for processing personal identifiable information (PII)." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Legitimate Interest" ;
@@ -6426,7 +6426,7 @@ gx:LegitimateInterestShape a sh:NodeShape ;
     sh:targetClass gx:LegitimateInterest .
 
 gx:LeiCodeShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Unique LEI number as defined by https://www.gleif.org." ;
@@ -6448,7 +6448,7 @@ gx:LeiCodeShape a sh:NodeShape ;
     sh:targetClass gx:LeiCode .
 
 gx:LinkConnectivityServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Link Connectivity Service Offering" ;
@@ -6615,7 +6615,7 @@ gx:LinkConnectivityServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:LinkConnectivityServiceOffering .
 
 gx:LocalRegistrationNumberShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "The state issued company number." ;
@@ -6627,7 +6627,7 @@ gx:LocalRegistrationNumberShape a sh:NodeShape ;
     sh:targetClass gx:LocalRegistrationNumber .
 
 gx:MaintenanceSubscriptionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A maintenance subscriptions gives access to bug fixes, security fixes and function updates from software vendor." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:boolean ;
@@ -6654,7 +6654,7 @@ gx:MaintenanceSubscriptionShape a sh:NodeShape ;
     sh:targetClass gx:MaintenanceSubscription .
 
 gx:MeasureShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Defines a specific measure taken, including related legal documentation." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;
@@ -6674,7 +6674,7 @@ gx:MeasureShape a sh:NodeShape ;
     sh:targetClass gx:Measure .
 
 gx:MemoryCapabilitiesShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:float ;
             sh:defaultValue "1.0"^^xsd:float ;
@@ -6700,7 +6700,7 @@ gx:MemoryCapabilitiesShape a sh:NodeShape ;
     sh:targetClass gx:MemoryCapabilities .
 
 gx:MemoryShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Details with respect to properties and capabilities of RAM." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -6771,7 +6771,7 @@ gx:MemoryShape a sh:NodeShape ;
     sh:targetClass gx:Memory .
 
 gx:MemorySizeShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "The number of bytes, that can be stored on a digital storage." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Memory size" ;
@@ -6793,7 +6793,7 @@ gx:MemorySizeShape a sh:NodeShape ;
     sh:targetClass gx:MemorySize .
 
 gx:NetworkConnectivityServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type gx:connectedNetworkA gx:connectedNetworkZ gx:prefixSetA gx:connectionType gx:vlanConfiguration gx:prefixSetZ gx:interfaceType ) ;
     sh:name "Network Connectivity Service Offering" ;
@@ -6971,7 +6971,7 @@ gx:NetworkConnectivityServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:NetworkConnectivityServiceOffering .
 
 gx:ObjectStorageServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering object storage capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Object Storage Service Offering" ;
@@ -7183,7 +7183,7 @@ gx:ObjectStorageServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ObjectStorageServiceOffering .
 
 gx:OperatingSystemShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A special Gaia-X Software Resource describing an operating system." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Operation System" ;
@@ -7265,7 +7265,7 @@ gx:OperatingSystemShape a sh:NodeShape ;
     sh:targetClass gx:OperatingSystem .
 
 gx:OperationalSecurityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the operational security practices within the organization." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -7295,7 +7295,7 @@ gx:OperationalSecurityShape a sh:NodeShape ;
     sh:targetClass gx:OperationalSecurity .
 
 gx:PXEImageShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "PXE image for physical machines." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "PXE image" ;
@@ -7472,7 +7472,7 @@ gx:PXEImageShape a sh:NodeShape ;
     sh:targetClass gx:PXEImage .
 
 gx:PacketLossShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual packet loss of connection defined in the SLA agreement. If not specified, then best effort is assumed. packetLoss measured in the pseudo-unit \"percent\"" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Packet Loss" ;
@@ -7511,7 +7511,7 @@ gx:ParticipantShape a sh:NodeShape ;
     sh:targetClass gx:Participant .
 
 gx:PhysicalConnectivityServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Physical Connectivity Service Offering" ;
@@ -7680,7 +7680,7 @@ gx:PhysicalConnectivityServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:PhysicalConnectivityServiceOffering .
 
 gx:PhysicalInterconnectionPointIdentifierShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Physical Interconnection Point Identifier" ;
@@ -7763,7 +7763,7 @@ gx:PhysicalInterconnectionPointIdentifierShape a sh:NodeShape ;
     sh:targetClass gx:PhysicalInterconnectionPointIdentifier .
 
 gx:PhysicalResourceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A Physical resource is, but not limited to, a datacenter, a bare-metal service, a warehouse, a plant. Those are entities that have a weight and position in physical space." ;
     sh:ignoredProperties ( gx:participants rdf:type gx:interconnectionPointIdentifier ) ;
     sh:name "Physical Resource" ;
@@ -7832,7 +7832,7 @@ gx:PhysicalResourceShape a sh:NodeShape ;
     sh:targetClass gx:PhysicalResource .
 
 gx:PhysicalSecurityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the physical security measures within the organization." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -7862,7 +7862,7 @@ gx:PhysicalSecurityShape a sh:NodeShape ;
     sh:targetClass gx:PhysicalSecurity .
 
 gx:PointOfPresenceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Point of connection between separate communicating entities" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Point of Presence" ;
@@ -7945,7 +7945,7 @@ gx:PointOfPresenceShape a sh:NodeShape ;
     sh:targetClass gx:PointOfPresence .
 
 gx:ProcurementManagementSecurityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the security considerations in procurement management." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The MIME types associated with the legal document." ;
@@ -7975,7 +7975,7 @@ gx:ProcurementManagementSecurityShape a sh:NodeShape ;
     sh:targetClass gx:ProcurementManagementSecurity .
 
 gx:ProductSecurityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the security practices related to product development and maintenance." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -8005,7 +8005,7 @@ gx:ProductSecurityShape a sh:NodeShape ;
     sh:targetClass gx:ProductSecurity .
 
 gx:QoSMetricShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A quantity representing a performance level that is guaranteed to be met at least X% of the time." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "QoS Metric" ;
@@ -8026,7 +8026,7 @@ gx:QoSMetricShape a sh:NodeShape ;
     sh:targetClass gx:QoSMetric .
 
 gx:QoSShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual performance values defined in the Service Level Agreement." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Service offering performance values." ;
@@ -8096,7 +8096,7 @@ gx:QoSShape a sh:NodeShape ;
     sh:targetClass gx:QoS .
 
 gx:RegionShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A region is an aggregation of datacenters." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Region" ;
@@ -8134,7 +8134,7 @@ gx:RegistrationNumberShape a sh:NodeShape ;
     sh:targetClass gx:RegistrationNumber .
 
 gx:ReplicationPolicyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Describe data protection features based on Replication for storage services" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:boolean ;
@@ -8207,7 +8207,7 @@ gx:ResourceShape a sh:NodeShape ;
     sh:targetClass gx:Resource .
 
 gx:RetentionDurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Sub-class of Time with units relevant for retention durations." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -8228,7 +8228,7 @@ gx:RetentionDurationShape a sh:NodeShape ;
     sh:targetClass gx:RetentionDuration .
 
 gx:RoleAndResponsibilitiesShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the role and responsibilities of the provider and the customer." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -8258,7 +8258,7 @@ gx:RoleAndResponsibilitiesShape a sh:NodeShape ;
     sh:targetClass gx:RoleAndResponsibilities .
 
 gx:RoundTripTimeShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual roundTrip time defined in the SLA. If not specified, then best effort is assumed." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Round Trip Time" ;
@@ -8279,7 +8279,7 @@ gx:RoundTripTimeShape a sh:NodeShape ;
     sh:targetClass gx:RoundTripTime .
 
 gx:SecurityIncidentManagementShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the management of security incidents." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "The MIME types associated with the legal document." ;
@@ -8309,7 +8309,7 @@ gx:SecurityIncidentManagementShape a sh:NodeShape ;
     sh:targetClass gx:SecurityIncidentManagement .
 
 gx:ServerFlavorShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Description of the available hardware configuration, such as processor, ram and disk capacities, of a physical or virtual servers that can be launched." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Server Flavor" ;
@@ -8396,7 +8396,7 @@ gx:ServerFlavorShape a sh:NodeShape ;
     sh:targetClass gx:ServerFlavor .
 
 gx:ServiceAgreementOfferShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the ability to establish a contract per a set of governing law countries." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -8426,7 +8426,7 @@ gx:ServiceAgreementOfferShape a sh:NodeShape ;
     sh:targetClass gx:ServiceAgreementOffer .
 
 gx:ServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order." ;
     sh:ignoredProperties ( gx:connectivityQoS gx:instantiationReq dcterms:title gx:tenantSeparation gx:vlanConfiguration gx:versioning gx:prefixSetZ gx:termsAndConditions gx:circuitType gx:publicIpAddressProvisioning gx:computeFunctionAllowFSMount rdf:type gx:connectedNetworkA gx:computeFunctionAllowQuota gx:storageConfiguration gx:computeFunctionAllowVersioning dcterms:issued gx:connectionType gx:lifetimeManagement gx:computeFunctionEditor gx:dataUsageAgreements gx:aggregationOf gx:computeFunctionAllowAutoScaling gx:accessAttributes gx:computeFunctionDebugTools odrl:hasPolicy gx:storageConsistency dcterms:identifier gx:connectedNetworkZ gx:minimumSize gx:prefixSetA gx:dataViews gx:serviceType gx:computeFunctionConfiguration gx:maximumObjectSize dcat:contactPoint dcterms:license gx:dataLicensors gx:maximumSize gx:accessSemantics gx:codeArtifact gx:objectAPICompatibility gx:protocolType gx:computeFunctionAllowTimeout gx:obsoleteDateTime gx:connectivityConfiguration gx:interfaceType gx:ipVersion gx:multipleViews dcterms:conformsTo ) ;
     sh:name "Service Offering" ;
@@ -8565,7 +8565,7 @@ gx:ServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:ServiceOffering .
 
 gx:SignatureCheckTypeShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:boolean ;
             sh:description "Establish the if the Legal validity check needs to be enforced to the Signature. Possible values are Yes/No" ;
@@ -8603,7 +8603,7 @@ gx:SignatureCheckTypeShape a sh:NodeShape ;
     sh:targetClass gx:SignatureCheckType .
 
 gx:SignatureShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Value of the signature" ;
@@ -8627,7 +8627,7 @@ gx:SignatureShape a sh:NodeShape ;
     sh:targetClass gx:Signature .
 
 gx:SnapshotPolicyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Describe data protection features based on Snapshot for storage services" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:RetentionDuration ;
@@ -8659,7 +8659,7 @@ gx:SnapshotPolicyShape a sh:NodeShape ;
     sh:targetClass gx:SnapshotPolicy .
 
 gx:SoftwareResourceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A Gaia-X Virtual Resource describing an executable program." ;
     sh:ignoredProperties ( gx:operatingSystem gx:osDistribution gx:fileSize gx:watchDogAction gx:secureBoot gx:pxeImageDiskFormat rdf:type gx:computeFunctionTemplateRuntime gx:multiQueues gx:maintenance gx:baseContainerImage gx:gpuReq gx:computeFunctionName gx:videoRamSize gx:licenseIncluded gx:encryption gx:hwRngTypeOfImage gx:cpuReq gx:updateStrategy gx:containerFormat gx:ramReq gx:vmImageDiskFormat gx:computeFunctionDescription gx:rootDiskReq gx:vPMU gx:firmwareType gx:hypervisorType ) ;
     sh:name "Software Resource" ;
@@ -8734,7 +8734,7 @@ gx:SoftwareResourceShape a sh:NodeShape ;
     sh:targetClass gx:SoftwareResource .
 
 gx:StandardConformityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Details about standard applied to Gaia-X entities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -8762,7 +8762,7 @@ gx:StandardConformityShape a sh:NodeShape ;
     sh:targetClass gx:StandardConformity .
 
 gx:StorageConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents the attributes that are configurable at service instantiation for storage service offerings." ;
     sh:ignoredProperties ( rdf:type gx:fileSystemType gx:lowLevelBlockAccessProtocol gx:blockStorageTechnology gx:highLevelAccessProtocol ) ;
     sh:name "Storage Configuration" ;
@@ -8821,7 +8821,7 @@ gx:StorageConfigurationShape a sh:NodeShape ;
     sh:targetClass gx:StorageConfiguration .
 
 gx:StorageServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering storage capabilities." ;
     sh:ignoredProperties ( rdf:type gx:accessSemantics gx:objectAPICompatibility gx:maximumObjectSize gx:accessAttributes ) ;
     sh:name "Storage Service Offering" ;
@@ -9016,7 +9016,7 @@ gx:StorageServiceOfferingShape a sh:NodeShape ;
     sh:targetClass gx:StorageServiceOffering .
 
 gx:SubContractorShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents a subcontractor with specific legal and communication attributes." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Documents providing additional information about the subcontractor." ;
@@ -9047,7 +9047,7 @@ gx:SubContractorShape a sh:NodeShape ;
     sh:targetClass gx:SubContractor .
 
 gx:SubProcessorDataTransferShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Specifies data transfer to a sub-processor with associated management details." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;
@@ -9080,7 +9080,7 @@ gx:SubProcessorDataTransferShape a sh:NodeShape ;
     sh:targetClass gx:SubProcessorDataTransfer .
 
 gx:TargetPercentileShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Contractual percentile in the SLA. Usually referred to the number of frames the SLA metrics such as availability, latency and jitter can be guaranteed." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Target Percentile" ;
@@ -9101,7 +9101,7 @@ gx:TargetPercentileShape a sh:NodeShape ;
     sh:targetClass gx:TargetPercentile .
 
 gx:TaxIDShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Company tax ID used to identify it through the OpenCorporate service." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
@@ -9114,7 +9114,7 @@ gx:TaxIDShape a sh:NodeShape ;
     sh:targetClass gx:TaxID .
 
 gx:TermsAndConditionsShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Terms and Conditions applying to a service offering." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
@@ -9135,7 +9135,7 @@ gx:TermsAndConditionsShape a sh:NodeShape ;
     sh:targetClass gx:TermsAndConditions .
 
 gx:ThirdCountryDataTransferShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Specifies data transfer to a third country with relevant securing mechanisms." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Country to which the data can be transferred." ;
@@ -9167,7 +9167,7 @@ gx:ThirdCountryDataTransferShape a sh:NodeShape ;
     sh:targetClass gx:ThirdCountryDataTransfer .
 
 gx:ThroughputShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Metric for throughput." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Throughput" ;
@@ -9188,7 +9188,7 @@ gx:ThroughputShape a sh:NodeShape ;
     sh:targetClass gx:Throughput .
 
 gx:UpdateStrategyShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Cloud service customer expect cloud images to be updated regularly, in order to always get the image with the lasted patches. Technically, an updated image is a new image in cloud service' image catalogue having it's own unique image ID and replaces its old version. It is recommended to hide outdated version, but keep them referencable by its ID for a transition period for customers' convenience. This class defines important aspects of providers image update policy." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:description "Frequency, in which the provider updates the image on a regular basis. Possible values are: yearly, quarterly, monthly, weekly, daily, critical_bug, and never." ;
@@ -9222,7 +9222,7 @@ gx:UpdateStrategyShape a sh:NodeShape ;
     sh:targetClass gx:UpdateStrategy .
 
 gx:UserDocumentationMaintenanceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Legal document describing the maintenance of user documentation related to security." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalPerson ;
@@ -9252,7 +9252,7 @@ gx:UserDocumentationMaintenanceShape a sh:NodeShape ;
     sh:targetClass gx:UserDocumentationMaintenance .
 
 gx:VLANConfigurationShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TDB" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "VLAN configuration" ;
@@ -9281,7 +9281,7 @@ gx:VLANConfigurationShape a sh:NodeShape ;
     sh:targetClass gx:VLANConfiguration .
 
 gx:VMImageShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Image for virtual machines." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "VM image" ;
@@ -9486,7 +9486,7 @@ gx:VMImageShape a sh:NodeShape ;
     sh:targetClass gx:VMImage .
 
 gx:VatIDShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "The VAT identification number." ;
@@ -9503,7 +9503,7 @@ gx:VatIDShape a sh:NodeShape ;
     sh:targetClass gx:VatID .
 
 gx:VirtualInterconnectionPointIdentifierShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "TBD" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Virtual Interconnection Point Identifier" ;
@@ -9560,7 +9560,7 @@ gx:VirtualInterconnectionPointIdentifierShape a sh:NodeShape ;
     sh:targetClass gx:VirtualInterconnectionPointIdentifier .
 
 gx:VirtualMachineServiceOfferingShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "A digital service available for order and offering computational capabilities." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:name "Virtual Machine Service Offering" ;
@@ -9762,7 +9762,7 @@ gx:VirtualResourceShape a sh:NodeShape ;
     sh:targetClass gx:VirtualResource .
 
 gx:WaterUsageEffectivenessShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:description "Represents the effectiveness of water usage in a resource." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class gx:LegalDocument ;

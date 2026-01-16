@@ -1,0 +1,26 @@
+{
+  "@context": {
+    "gx": "https://w3id.org/gaia-x/development#",
+    "vcard": "http://www.w3.org/2006/vcard/ns#"
+  },
+  "@graph": [
+    {
+      "@id": "did:web:did.ascs.digital:participants:bmw",
+      "@type": "gx:LegalPerson",
+      "gx:registrationNumber": {
+        "@type": "gx:VatID",
+        "gx:vatID": "DE123456789"
+      },
+      "gx:headquartersAddress": {
+        "@type": "gx:Address",
+        "gx:countryCode": "DE",
+        "gx:region": "DE21"
+      },
+      "gx:legalAddress": {
+        "@type": "gx:Address",
+        "gx:countryCode": "DE",
+        "gx:region": "DE21"
+      }
+    }
+  ]
+}

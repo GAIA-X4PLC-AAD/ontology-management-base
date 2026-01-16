@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "schema": "https://schema.org/"
+  },
+  "@graph": [
+    {
+      "@id": "https://www.gaia-x4plcaad.info/claims/data-resource/46a1daa4-d7f6-4844-bf70-55675bdb23b3",
+      "@type": "gx:DataResource",
+      "schema:name": "Generated Data Resource",
+      "schema:description": "Generated description.",
+      "gx:copyrightOwnedBy": "did:web:did.ascs.digital:participants:bmw",
+      "gx:license": "Apache-2.0",
+      "gx:obsoleteDateTime": {
+        "@value": "2025-03-28T12:29:44Z",
+        "@type": "xsd:dateTime"
+      },
+      "gx:expirationDateTime": {
+        "@value": "2025-03-28T12:29:44Z",
+        "@type": "xsd:dateTime"
+      },
+      "gx:containsPII": false,
+      "gx:resourcePolicy": "package access_control; default allow = false;",
+      "gx:producedBy": {
+        "@id": "did:web:did.ascs.digital:participants:bmw"
+      },
+      "gx:exposedThrough": {
+        "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3"
+      }
+    },
+    {
+      "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3",
+      "@type": [
+        "gx:ServiceOffering",
+        "gx:DataExchangeComponent"
+      ],
+      "gx:providedBy": {
+        "@id": "did:web:did.ascs.digital:participants:bmw"
+      },
+      "gx:servicePolicy": {
+        "@type": "gx:AccessUsagePolicy",
+        "gx:policyLanguage": "Rego",
+        "gx:policyDocument": "allow;"
+      },
+      "gx:serviceOfferingTermsAndConditions": {
+        "@type": "gx:TermsAndConditions",
+        "gx:url": {
+          "@value": "https://www.msg.group/terms",
+          "@type": "xsd:anyURI"
+        },
+        "gx:hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "gx:dataAccountExport": {
+        "@type": "gx:DataAccountExport",
+        "gx:formatType": "application/json",
+        "gx:requestType": "API",
+        "gx:accessType": "digital"
+      }
+    }
+  ]
+}

@@ -15,7 +15,9 @@ The core Gaia-X ontologies are integrated as a Git submodule to ensure version c
 * **Submodule Location:** `ontology-management-base/service-characteristics`
 
 > [!IMPORTANT]  
-> **Note on Folder Structure:** > The actual submodule is located at `ontology-management-base/service-characteristics`. The `gx/` directory in this folder is used specifically for local examples and instructions.
+> **Note on Folder Structure:** > The actual submodule is located at `ontology-management-base/service-characteristics`.
+> The `gx/` directory in this folder is used specifically for local examples, instructions and a copy of the shacl shape and ontology.
+> The `sh:closed true ;` was manually replaced with `sh:closed true ;`.
 
 ### 🛠️ Setup Instructions
 
