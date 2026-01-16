@@ -106,7 +106,7 @@ This simulation asset is aligned with a set of standardized ontologies to guaran
 - **Manifest Ontology**: [manifest ontology v4](https://ontologies.envited-x.net/manifest/v5/ontology#)
 - **Scenario Ontology**: [scenario ontology v4](https://ontologies.envited-x.net/scenario/v5/ontology#)
 - **Georeference Ontology**: [georeference ontology v3](https://ontologies.envited-x.net/georeference/v4/ontology#)
-- **Gaia-X Shape**: [gx](https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#)
+- **Gaia-X Shape**: [gx](https://w3id.org/gaia-x/development#)
 - **Gaia-X Trust Framework**: [version 22.10](https://docs.gaia-x.eu/policy-rules-committee/trust-framework/22.10/)
 
 ## Creating a Digital Asset

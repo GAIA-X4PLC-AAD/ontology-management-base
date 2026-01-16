@@ -1,69 +1,112 @@
-# Gaia-X ontology and SHACL shapes 2210
+# Gaia-X Ontology & SHACL Shapes (Version 25.11)
 
-## Table of Contents
+## 🏗️ Ontology & Schema Management
 
-1. [Introduction](#introduction)
-2. [Source](#source)
-3. [Conversion](#conversion)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
+This directory manages the ontologies and shapes for the **Gaia-X Trust Framework Model**.
+The workflow has transitioned to a **LinkML-based distribution**.
+This repository provides the necessary artifacts for building and validating Gaia-X Credentials.
 
-## Introduction
+### 📦 Source & Submodule Configuration
 
-This repository contains the ontology and shapes for the Gaia-X Trust Framework Model 2210. `gx_instance.json` is just a minimal example for the validation pipeline and a full list of instances can be found in this repository [https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example](https://github.com/GAIA-X4PLC-AAD/gaia-x-compliant-claims-example).
+The core Gaia-X ontologies are integrated as a Git submodule to ensure version consistency and easy updates.
 
-## Source
+* **Upstream Source:** [Gaia-X Service Characteristics](https://gitlab.com/gaia-x/technical-committee/service-characteristics-working-group/service-characteristics)
+* **Current Version (Tag):** `25.11`
+* **Submodule Location:** `ontology-management-base/service-characteristics`
 
-The source of the ontologies and shapes is the gaia-x lab registry:
+> [!IMPORTANT]  
+> **Note on Folder Structure:** > The actual submodule is located at `ontology-management-base/service-characteristics`. The `gx/` directory in this folder is used specifically for local examples and instructions.
 
-- Ontology
-  - <https://registry.lab.gaia-x.eu/v1/api/trusted-schemas-registry/v2/schemas/gax-trust-framework>
-- SHACL shapes
-  - <https://registry.lab.gaia-x.eu/v1/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
+### 🛠️ Setup Instructions
 
-Both ontologies and SHACL shapes were copied into the `./input/01_original` directory. The downloaded files are only available in JSON-LD format. 
+To initialize the environment and fetch the required ontology files, run the following commands:
 
-## Conversion
+1. **Initialize and update the submodule:**
 
-The files in the `./input/01_original` directory are converted into turtle format with the help of the python based conversion tool stored in `./src/jsonldtottlconverter.py`. The converted files are stored in the root directory of this repository.
+   ```bash
+   git submodule update --init --recursive
+   ```
 
-### Corrections of the original JSON-LD files
+2. **Verify the current version:**
 
-The conversion tool also corrects some issues in the original JSON-LD files and stores them into the directory `./input/02_corrected`.
+   ```bash
+   cd ontology-management-base/service-characteristics
+   git status
+   # verify that tag 25.11 is checked out
+   ```
 
-- change namespace in ontology from `http://w3id.org/gaia-x/gax-trust-framework` to `https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework` so it fits to the referenced namespace in the shapes. Otherwise the ontology and the shapes would not have a relation.
-- append the suffix `Shape` to certain Shapes where this suffix is missing. This is necessary because of a name clash between ontology and shacl shapes if the names are equal.
-- Correction of the `http://www.w3.org/2006/vcard/ns#Address`: The node becomes `AddressShape` and the link to this shape as a node also references the `AddressShape` instead of the `Address` node.
-- change LegalPerson to LegalParticipant in the ontology since LegalPerson is not existing the shacl shape and [gx wizard](https://wizard.lab.gaia-x.eu/) generates participant credentials as LegalParticipant.
-- change the subClassOf relation of Participant, Resource and ServiceOffering subclasses in the ontology since they point to rdfs:subClassOf <http://w3id.org/gaia-x/core#Participant> and not rdfs:subClassOf <https://w3id.org/gaia-x/core#Participant> (http instead of https). The http prefix will not be considered as a valid gaia-x prefix.
-- change how legalRegistrationNumber is embedded in the LegalParticipantShape (not nested but linked via IRI).
-- added legalRegistrationNumber as ontology class since it is missing in the ontology.
-- change linkage between `DataResource`, `PhysicalResource`, `InstantiatedVirtualResource` and `LegalParticipant` from `sh:class` and nodeKind:IRI to `sh:node`. Same correction for the linkage between `DataResource` and `ServiceOffering` (via `exposedThrough`).
-  > Note: this change is necessary because of an issue in the federated catalogue. Even onboarded participants cannot be resolved. This is NOT an issue of the vocabulary! Reason to change: we want the semantic and schema verifications enabled in the catalogue in general. So we 'only' **disable** the check of the links described (which are done by the compliance service anyway).
+### ⚙️ Transformation Workflow
 
-The concrete changes can be made visible by comparing the original and corrected files.
+This setup is designed to generate downstream artifacts from the LinkML source using **npm**. This ensures that the SHACL and OWL files remain consistent with the upstream Gaia-X definitions.
 
-## Installation
+The process follows these steps:
 
-A python installation is mandatory to execute the python script.
-No additional libraries are needed since only standard libraries are used.
-For Ubuntu 24.04 on WSL2 you need to install the necessary pip package in a virtual environment:
+1. **Source**: LinkML YAML files are pulled from the `service-characteristics` submodule located at `ontology-management-base/service-characteristics`.
+2. **Transformation**: NPM scripts (defined in `package.json`) trigger the LinkML generator tools to process these YAML definitions.
+3. **Output Artifacts**:
+   * **SHACL Shapes**: Used for validating the structure and constraints of Gaia-X Credentials.
+   * **OWL Ontologies**: Used for semantic reasoning and defining the relationship between entities in the Gaia-X ecosystem.
 
-```bash
-sudo apt-get install python3-full
-python3 -m venv ./.venv/
-source .venv/bin/activate
-python3 -m pip install rdflib
-```
+## 2. Installation (Linux/WSL2)
 
-## Usage
+To manage these artifacts, you must have Node.js and npm installed to pull the official ontology package.
+
+Paste these commands into your terminal to install the toolchain:
 
 ```bash
-cd gx/src
-py jsonldtottlconverter.py
+sudo apt update
+sudo apt install -y nodejs npm
+node -v
+npm -v
 ```
 
-## Contributing
+## 3. Usage & Artifact Generation
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+The ontology is distributed as an NPM package, ensuring your SHACL shapes stay in sync with the official Gaia-X release.
+
+### Instructions
+
+1. Navigate to the folder of your previously initialized submodule service-characteristics:
+
+   ```bash
+   cd ~/workspace/ontology-management-base/service-characteristics
+   ```
+
+2. Install the official Gaia-X ontology package:
+
+   ```bash
+   npm install --save @gaia-x/ontology
+   ```
+
+### Resulting Directory Structure
+
+The package creates a structured directory under `node_modules/@gaia-x/ontology`:
+
+* **context/**: JSON-LD Context files.
+* **ontology/**: OWL Ontology files.
+* **shapes/**: SHACL Shapes for validation.
+
+You can now copy the generated artifacts into the `gx/` folder, ensuring you follow the project's naming convention:
+
+* Rename the OWL ontology to **`gx_ontology.ttl`** * Rename the SHACL shape to **`gx_shacl.ttl`**
+
+Example command to sync these files:
+
+```bash
+cp node_modules/@gaia-x/ontology/ontology/ontology.owl.ttl gx/gx_ontology.ttl
+cp node_modules/@gaia-x/ontology/shapes/shapes.shacl.ttl gx/gx_shacl.ttl
+```
+
+## 4. Why this changed (Deprecation of Python Tooling)
+
+In previous versions, manual Python scripts were used to "correct" JSON-LD files. This is now deprecated because:
+
+* **Source of Truth**: Artifacts are generated directly from the Link-ML source.
+* **Upstream Fixes**: Issues like the LegalPerson vs LegalParticipant naming clash are resolved in the official build.
+* **Compliance**: You are guaranteed to use the same shapes used by official Gaia-X Compliance Services.
+
+## 5. Contributing
+
+* **Do not edit** files in node_modules directly.
+* Propose changes to the Gaia-X Service Characteristics GitLab within the linkml/ YAML definitions.
+* Run npm update @compliance-service/ontology to receive the latest artifacts.

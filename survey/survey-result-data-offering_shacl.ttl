@@ -3,7 +3,7 @@
 @prefix survey: <https://ontologies.envited-x.net/survey/v5/ontology#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 survey:SurveyResultDataOfferingShape
 	a sh:NodeShape ; 

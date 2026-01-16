@@ -13,6 +13,6 @@
 =                      information.                                                                                                                  =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: [BNODE]                                                                                                                       =
-=    Property:         https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#license                 =
+=    Property:         https://w3id.org/gaia-x/development#license                                                                                   =
 =    Error:            Validation of SPDX identifier failed!                                                                                         =
 ======================================================================================================================================================

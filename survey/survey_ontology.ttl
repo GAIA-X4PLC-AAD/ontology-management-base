@@ -7,7 +7,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 survey: a owl:Ontology ;
     rdfs:label "Ontology definition for survey"@en ;
@@ -53,7 +53,7 @@ survey: a owl:Ontology ;
     dcterms:conformsTo <https://ontologies.envited-x.net/survey/v5/shape#> ;
 
     # Additional references to documentation or related ontologies
-    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 survey:belongsTo rdf:type owl:ObjectProperty ;

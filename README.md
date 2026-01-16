@@ -15,6 +15,7 @@ constraints.
 ```bash
 git clone https://github.com/GAIA-X4PLC-AAD/ontology-management-base.git
 cd ontology-management-base
+git submodule update --init --recursive
 ```
 
 ### 2️⃣ Install Python Environment (Optional but Recommended)
@@ -112,16 +113,25 @@ For each test case, there is a corresponding `.expected` file that defines the e
 Example content:
 
 ```bash
-Validation Report
-Conforms: False
-Results (1):
-Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
-        Severity: sh:Violation
-        Source Shape: [ sh:description Literal("Defines the license(s) valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms.", lang=en) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:node manifest:LicenseShape ; sh:order Literal("1", datatype=xsd:integer) ; sh:path manifest:license ]
-        Focus Node: <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>
-        Result Path: manifest:license
-        Message: Less than 1 values on <did:web:registry.gaia-x.eu:Manifest:fail_missing_license_instance>->manifest:license
-
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                           ['envited-x/tests/fail_01_missing_has_content_instance.json']                                            =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasContent                                                             =
+=    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
+=    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasDataResourceExtension                                               =
+=    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
+=                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =
+=                      envited-x:hasContent and one envited-x:hasFormat).                                                                            =
+======================================================================================================================================================
 ```
 
 ### **Running Tests Locally**

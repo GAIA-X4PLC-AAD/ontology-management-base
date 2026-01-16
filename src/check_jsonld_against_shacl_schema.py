@@ -30,7 +30,7 @@ from io import StringIO
 from typing import Dict, List, Set, Tuple
 from urllib.parse import urlparse
 
-from rdflib import OWL, RDF, RDFS, Graph, Namespace
+from rdflib import OWL, RDF, Graph, Namespace
 
 try:
     from pyshacl import validate
@@ -956,121 +956,98 @@ def _expand_ontology_dependencies_from(
 
 
 # ---------------------------------------------------------------------------
-# SHACL + ontology loading based on used rdf:type and ontology deps
+# SHACL + ontology loading based on context namespaces AND used types
 # ---------------------------------------------------------------------------
 
 
-def _select_relevant_shacl_files(
-    root_dir: str,
-    used_types: Set[str],
-) -> Tuple[List[str], Graph]:
-    """
-    Identify and load SHACL files whose sh:targetClass matches any of the
-    rdf:type values seen in the data graph.
-
-    NOTE:
-        This requires that the data graph actually contains rdf:type triples.
-        If JSON-LD parsing fails (e.g., due to remote @context issues), used_types
-        may be empty and no SHACL files will be selected.
-    """
-    shacl_graph = Graph()
-    shacl_files = glob.glob(f"{root_dir}/**/*_shacl.ttl", recursive=True)
-
-    SH = Namespace("http://www.w3.org/ns/shacl#")
-    target_class_pred = SH["targetClass"]
-
-    relevant_files: List[str] = []
-
-    for shacl_file in shacl_files:
-        tmp_graph = Graph()
-        try:
-            tmp_graph.parse(shacl_file, format="turtle")
-        except Exception as e:  # defensive
-            logging.warning("Failed to parse SHACL file %s: %s", shacl_file, e)
-            continue
-
-        is_relevant = False
-        for _, _, rdf_type in tmp_graph.triples((None, target_class_pred, None)):
-            if str(rdf_type) in used_types:
-                is_relevant = True
-                break
-
-        if is_relevant:
-            relevant_files.append(os.path.normpath(shacl_file))
-            shacl_graph += tmp_graph
-
-    return relevant_files, shacl_graph
-
-
-def _select_relevant_ontologies(
-    root_dir: str,
-    used_types: Set[str],
-) -> List[str]:
-    """
-    Find ontologies that define classes which appear in used_types,
-    then expand them transitively via namespace-based ontology dependencies.
-    """
-    ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
-
-    # Step 1: ontologies that define at least one used class
-    initially_relevant: List[str] = []
-    for ontology_file in ontology_files:
-        ontology_graph = Graph()
-        try:
-            ontology_graph.parse(ontology_file, format="turtle")
-        except Exception as e:  # defensive
-            logging.warning("Failed to parse ontology %s: %s", ontology_file, e)
-            continue
-
-        defined_classes = set(ontology_graph.subjects(RDF.type, OWL.Class)).union(
-            ontology_graph.subjects(RDF.type, RDFS.Class)
-        )
-        defined_iris = {str(cls) for cls in defined_classes}
-        matched_types = defined_iris.intersection(used_types)
-
-        logging.debug("In %s, defined classes: %s", ontology_file, defined_iris)
-        logging.debug("Matched types with data: %s", matched_types)
-
-        if matched_types:
-            initially_relevant.append(ontology_file)
-
-    # Step 2: closure via ontology IRI / prefix graph
-    iri_index = _build_ontology_iri_index(root_dir)
-    deps = _build_ontology_dependencies(root_dir, iri_index)
-    all_relevant = _expand_ontology_dependencies_from(
-        initial_files=initially_relevant, deps=deps
-    )
-
-    return all_relevant
+def _get_namespace_from_iri(iri: str, prefix_mapping: Dict[str, str]) -> str | None:
+    """Determine folder/namespace key from an IRI string using the prefix mapping."""
+    for prefix, namespace_url in prefix_mapping.items():
+        if iri.startswith(namespace_url):
+            return prefix
+    return None
 
 
 def load_shacl_and_ontologies(
     root_dir: str,
     used_types: Set[str],
+    global_prefixes: Dict[str, str],
     file=None,
 ) -> Tuple[Graph, Graph, List[str], List[str]]:
+    """
+    Load SHACL and Ontology files based on the namespaces defined in the JSON-LD context.
+    Also validates that all used types belong to a namespace present in the context.
+    """
     if file is None:
         file = sys.stdout
 
-    logging.debug("Starting to load SHACL and ontology files.")
+    logging.debug("Starting to load SHACL and ontology files based on context.")
 
-    # 1) SHACL: data-driven via sh:targetClass
-    relevant_shacl_files, shacl_graph = _select_relevant_shacl_files(
-        root_dir, used_types
+    # Step 1: Identify all namespaces referenced in the JSON-LD context
+    # These become the "targets" for loading folders.
+    target_namespaces = set(global_prefixes.keys())
+
+    # Step 2: Check coverage of used_types
+    # If a type's namespace is NOT in the context, warn the user.
+    for rdf_type in used_types:
+        ns_key = _get_namespace_from_iri(rdf_type, global_prefixes)
+        if ns_key and ns_key not in target_namespaces:
+            print(
+                f"⚠️  WARNING: rdf:type '{rdf_type}' belongs to namespace '{ns_key}' "
+                "which was NOT found in the global @context prefixes. "
+                "Validation rules for this type might be missing.",
+                file=file,
+            )
+            # Optionally add it to targets so we try to load it anyway?
+            # target_namespaces.add(ns_key)
+        elif not ns_key:
+            # Type might be a full IRI not covered by any prefix, or a local IRI.
+            logging.debug("Could not determine namespace key for type: %s", rdf_type)
+
+    # Step 3: Collect files from the targeted folders
+    # We assume folder name matches the namespace prefix key (e.g. "gx" -> "./gx")
+    relevant_shacl_files: List[str] = []
+    initial_ontology_files: List[str] = []
+
+    for ns in target_namespaces:
+        folder_path = os.path.join(root_dir, ns)
+        if os.path.isdir(folder_path):
+            # Load all SHACL and Ontology files in this namespace folder
+            # Recursively finding files ensures we get nested structures if any
+            shacl_in_folder = glob.glob(f"{folder_path}/**/*_shacl.ttl", recursive=True)
+            onto_in_folder = glob.glob(
+                f"{folder_path}/**/*_ontology.ttl", recursive=True
+            )
+            relevant_shacl_files.extend(shacl_in_folder)
+            initial_ontology_files.extend(onto_in_folder)
+        else:
+            logging.debug(
+                "Namespace '%s' in context does not match any local folder '%s'. Skipping.",
+                ns,
+                folder_path,
+            )
+
+    # Step 4: Resolve ontology dependencies transitively
+    # Even if we load 'gx', it might depend on 'skos' which isn't in the context.
+    iri_index = _build_ontology_iri_index(root_dir)
+    deps = _build_ontology_dependencies(root_dir, iri_index)
+    relevant_ontology_files = _expand_ontology_dependencies_from(
+        initial_files=initial_ontology_files, deps=deps
     )
-    # FORCE RELATIVE TO ROOT:
-    # If glob returned absolute paths (because root_dir was absolute), we convert
-    # them to relative here so the harmonizer can apply the ./ prefix.
-    relevant_shacl_files = [os.path.relpath(f, root_dir) for f in relevant_shacl_files]
 
-    # 2) Ontologies: first those defining used classes, then dependency closure
-    relevant_ontology_files = _select_relevant_ontologies(root_dir, used_types)
-    # FORCE RELATIVE TO ROOT:
-    relevant_ontology_files = [
-        os.path.relpath(f, root_dir) for f in relevant_ontology_files
-    ]
+    # FORCE RELATIVE TO ROOT & HARMONIZE PATHS
+    def _harmonize_path(p: str) -> str:
+        rel = os.path.relpath(p, root_dir)
+        norm = os.path.normpath(rel)
+        if (
+            not os.path.isabs(norm)
+            and not norm.startswith(".")
+            and not norm.startswith("/")
+        ):
+            return f".{os.sep}{norm}"
+        return norm
 
-    # 2b) Always include core base ontologies (support vocabularies)
+    # 2b) Always include core base ontologies (support vocabularies) if present
     support_ontologies = [
         "base-ontologies/rdf/rdf_ontology.ttl",
         "base-ontologies/rdfs/rdfs_ontology.ttl",
@@ -1082,84 +1059,78 @@ def load_shacl_and_ontologies(
         "base-ontologies/prov/prov_ontology.ttl",
     ]
 
-    support_paths: List[str] = []
+    final_ontology_paths = []
+    seen = set()
+
+    # Add relevant ontologies + support ontologies
+    for path in relevant_ontology_files:
+        h = _harmonize_path(path)
+        if h not in seen:
+            seen.add(h)
+            final_ontology_paths.append(h)
+
     for rel in support_ontologies:
         full = os.path.normpath(os.path.join(root_dir, rel))
         if os.path.exists(full):
-            # Keep these relative to start with
-            support_paths.append(os.path.relpath(full, root_dir))
+            h = _harmonize_path(full)
+            if h not in seen:
+                seen.add(h)
+                final_ontology_paths.append(h)
 
-    def _harmonize_path(p: str) -> str:
-        """Normalize path and ensure it starts with ./ if relative"""
-        norm = os.path.normpath(p)
-        if (
-            not os.path.isabs(norm)
-            and not norm.startswith(".")
-            and not norm.startswith("/")
-        ):
-            return f".{os.sep}{norm}"
-        return norm
-
-    # Merge, keeping stable order and de-duplicating
-    all_ontology_files = []
-    seen = set()
-    for path in list(relevant_ontology_files) + support_paths:
-        h_path = _harmonize_path(path)
-        if h_path not in seen:
-            seen.add(h_path)
-            all_ontology_files.append(h_path)
-    relevant_ontology_files = all_ontology_files
-
-    # Also harmonized the SHACL file list for display
-    relevant_shacl_files = [_harmonize_path(p) for p in relevant_shacl_files]
+    relevant_ontology_files = sorted(final_ontology_paths)
+    relevant_shacl_files = sorted(
+        [_harmonize_path(p) for p in set(relevant_shacl_files)]
+    )
 
     # Logging / human-readable summary
     if relevant_shacl_files:
-        print("📌 Relevant SHACL files to load:", file=file)
-        for path in sorted(relevant_shacl_files):
+        print("📌 Relevant SHACL files to load (Context-Driven):", file=file)
+        for path in relevant_shacl_files:
             print(f"   {path}", file=file)
     else:
         print(
-            "📌 No relevant SHACL files found for the detected rdf:type values.",
+            "📌 No relevant SHACL files found for the namespaces in @context.",
             file=file,
         )
 
     if relevant_ontology_files:
-        print("📌 Relevant ontology files to load:", file=file)
-        for path in sorted(relevant_ontology_files):
+        print("📌 Relevant ontology files to load (Context-Driven):", file=file)
+        for path in relevant_ontology_files:
             print(f"   {path}", file=file)
     else:
         print(
-            "📌 No relevant ontology files found for the detected rdf:type values.",
+            "📌 No relevant ontology files found for the namespaces in @context.",
             file=file,
         )
 
-    # 3) Actually parse ontology files into a single graph
+    # 3) Parse Ontology Files
     ont_graph = Graph()
     for ontology_file in relevant_ontology_files:
-        ontology_graph = Graph()
+        tmp_graph = Graph()
         try:
-            # If path is relative (./...), we might need to join with root_dir or use as is
-            # if we are in CWD. 'root_dir' acts as base.
-            # But the file list is now relative. We should check if we need to prepend root_dir
-            # for the actual parse or if CWD is enough.
-            # Since the user runs from root, relative paths work.
-            ontology_graph.parse(ontology_file, format="turtle")
-        except Exception as e:  # defensive
+            tmp_graph.parse(ontology_file, format="turtle")
+            ont_graph += tmp_graph
+            print(
+                f"✅ Loaded Ontology file into ontology graph: {ontology_file}",
+                file=file,
+            )
+        except Exception as e:
             logging.warning(
                 "Failed to parse ontology %s when building ontology graph: %s",
                 ontology_file,
                 e,
             )
-            continue
-        ont_graph += ontology_graph
-        print(
-            f"✅ Loaded Ontology file into ontology graph: {ontology_file}", file=file
-        )
 
-    # 4) SHACL already parsed
-    for shacl_file in sorted(relevant_shacl_files):
-        print(f"✅ Loaded SHACL file into shacl graph: {shacl_file}", file=file)
+    # 4) Parse SHACL Files
+    shacl_graph = Graph()
+    for shacl_file in relevant_shacl_files:
+        tmp_graph = Graph()
+        try:
+            tmp_graph.parse(shacl_file, format="turtle")
+            shacl_graph += tmp_graph
+            print(f"✅ Loaded SHACL file into shacl graph: {shacl_file}", file=file)
+        except Exception as e:
+            logging.warning("Failed to parse SHACL file %s: %s", shacl_file, e)
 
     logging.debug("Completed loading SHACL and ontology files.")
     return shacl_graph, ont_graph, relevant_shacl_files, relevant_ontology_files
@@ -1260,12 +1231,14 @@ def validate_jsonld_against_shacl(
     # 4) Load only necessary SHACL & ontologies based on rdf:type usage
     print_out(
         "📌 Loading only necessary SHACL shapes and ontologies "
-        "based on detected RDF types..."
+        "based on namespaces in @context..."
     )
+    # [CHANGE] Pass global prefixes to allow context-driven loading
     shacl_graph, ont_graph, relevant_shacl_files, relevant_ontology_files = (
         load_shacl_and_ontologies(
             root_dir,
             used_types,
+            global_prefixes=jsonld_prefixes,  # Pass the map derived from context
             file=output_buffer,
         )
     )

@@ -1,6 +1,6 @@
 {
     "@context": {
-        "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+        "gx": "https://w3id.org/gaia-x/development#",
         "vv-report": "https://ontologies.envited-x.net/vv-report/v1/ontology#",
         "general": "https://ontologies.envited-x.net/general/v2/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",

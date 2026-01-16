@@ -8,3 +8,4 @@ autopep8==2.3.2
 pre-commit==4.5.1
 keycloak_client==0.15.4
 requests==2.32.3
+linkml==1.9.6
