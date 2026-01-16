@@ -77,13 +77,13 @@ scenario:Scenario a owl:Class ;
     ] ;
     # Scenario must have a manifest, either:
     #  - an inline scenario:Manifest instance, or
-    #  - a scenario:ManifestLink whose target is a scenario:Manifest.
+    #  - a manifest:Link.
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasManifest ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( scenario:Manifest scenario:ManifestLink )
+            owl:unionOf ( scenario:Manifest manifest:Link )
         ]
     ] .
 
@@ -145,17 +145,6 @@ scenario:Manifest a owl:Class ;
         owl:onClass manifest:Link
     ] .
 
-# Link class that points to an external Scenario manifest
-scenario:ManifestLink a owl:Class ;
-    rdfs:label "Class definition for ManifestLink"@en ;
-    rdfs:comment "A link to an external Scenario manifest resource. The linked resource MUST be typed as scenario:Manifest."@en ;
-    rdfs:subClassOf manifest:Link ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:iri ;
-        owl:someValuesFrom scenario:Manifest
-    ] .
-
 scenario:Format a owl:Class ;
     rdfs:label "Class definition for Format"@en ;
     rdfs:comment "Contains properties that describe the format of the scenario asset."@en ;
@@ -199,12 +188,18 @@ scenario:hasDataResource a owl:ObjectProperty ;
 
 scenario:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
-    rdfs:comment "Links a scenario asset to its manifest. In data, this MAY be an inline scenario:Manifest node or a scenario:ManifestLink (a manifest:Link whose target is a scenario:Manifest)."@en ;
+    rdfs:comment """
+                Links an Scenario asset to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node (embedded manifest structure), or
+                - an manifest:Link node (a link that points via manifest:iri
+                to an external manifest representation, typically identified by a DID).
+                """@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain scenario:Scenario ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( scenario:Manifest scenario:ManifestLink )
+        owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
 scenario:hasContent a owl:ObjectProperty ;

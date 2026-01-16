@@ -70,7 +70,7 @@ surface-model:SurfaceModel a owl:Class ;
         owl:onProperty surface-model:hasManifest ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+            owl:unionOf ( envited-x:Manifest manifest:Link )
         ]
     ] .
 
@@ -144,7 +144,7 @@ surface-model:hasManifest a owl:ObjectProperty ;
     rdfs:domain surface-model:SurfaceModel ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
 

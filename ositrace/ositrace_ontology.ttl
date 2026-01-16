@@ -65,7 +65,7 @@ ositrace:OSITrace a owl:Class ;
         owl:onProperty ositrace:hasManifest ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+            owl:unionOf ( envited-x:Manifest manifest:Link )
         ]
     ] .
 
@@ -163,15 +163,21 @@ ositrace:hasDataResource a owl:ObjectProperty ;
     rdfs:domain ositrace:OSITrace ;
     rdfs:range envited-x:DataResource .
 
-### hasManifest (ositrace -> envited-x:Manifest or envited-x:ManifestLink)
+### hasManifest (ositrace -> envited-x:Manifest or manifest:Link)
 ositrace:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
-    rdfs:comment "Links an OSI trace asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:comment """
+                Links an OSI Trace asset to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node (embedded manifest structure), or
+                - an manifest:Link node (a link that points via manifest:iri
+                to an external manifest representation, typically identified by a DID).
+                """@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain ositrace:OSITrace ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
 ### hasGeoreference (DataResourceExtension -> georeference:Georeference)

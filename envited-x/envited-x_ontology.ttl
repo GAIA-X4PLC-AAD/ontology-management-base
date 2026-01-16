@@ -140,19 +140,6 @@ envited-x:Manifest a owl:Class ;
     rdfs:comment "Defines a general manifest structure that can be extended for specific asset types, such as HD maps or vehicle models."@en ;
     rdfs:subClassOf manifest:Manifest .
 
-### ManifestLink (for linked manifests)
-envited-x:ManifestLink a owl:Class ;
-    rdfs:label "Class definition for ManifestLink"@en ;
-    rdfs:comment """
-Represents a manifest link node in the ENVITED-X context.
-
-It is a specialization of manifest:Link that:
-- has category envited-x:isManifest, and
-- typically points via manifest:iri (e.g. DID) to an external envited-x manifest
-  representation (e.g. a separate manifest JSON-LD document).
-"""@en ;
-    rdfs:subClassOf manifest:Link .
-
 envited-x:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
     rdfs:comment "Defines the content that can be extended for specific asset types."@en .
@@ -195,21 +182,19 @@ envited-x:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:DataResourceExtension .
 
-### hasManifest (SimulationAsset -> Manifest OR ManifestLink)
+### hasManifest (SimulationAsset -> inline Manifest OR Link)
 envited-x:hasManifest a owl:ObjectProperty ;
     rdfs:label "has manifest"@en ;
-    rdfs:comment """
-Links a simulation asset or its subclass to the associated manifest.
-
-The value can be either:
-- an inline envited-x:Manifest node (embedded manifest structure), or
-- an envited-x:ManifestLink node (a manifest:Link that points via manifest:iri
-  to an external manifest representation, typically identified by a DID).
-"""@en ;
+    rdfs:comment """Links a simulation asset or its subclass to the associated manifest.
+                    The value can be either:
+                    - an inline envited-x:Manifest node (embedded manifest structure), or
+                    - a manifest:Link node (a link that points via manifest:iri
+                    to an external manifest representation, typically identified by a DID).
+                    """@en ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
 ### hasContent (DataResourceExtension -> Content)

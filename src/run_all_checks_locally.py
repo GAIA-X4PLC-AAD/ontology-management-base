@@ -39,17 +39,15 @@ ONTOLOGY_DIRS = get_ontology_dirs()
 
 
 def check_syntax_all() -> int:
-    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files."""
+    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files, aborting on the first error."""
     print("\n=== Checking JSON-LD syntax ===", flush=True)
-    overall_ret = 0
-
     json_ret, json_results = validate_jsonld_files(ONTOLOGY_DIRS)
     for code, msg in json_results:
         if code == 0:
             print(msg)
         else:
             print(msg, file=sys.stderr)
-        overall_ret |= code
+            return code  # Abort immediately on JSON-LD syntax error
 
     print("\n=== Checking TTL syntax ===", flush=True)
     ttl_ret, ttl_results = validate_turtle_files(ONTOLOGY_DIRS)
@@ -58,22 +56,20 @@ def check_syntax_all() -> int:
             print(msg)
         else:
             print(msg, file=sys.stderr)
-        overall_ret |= code
+            return code  # Abort immediately on TTL syntax error
 
     print("📌 Completed TTL and JSON syntax tests", flush=True)
-    return overall_ret
+    return 0
 
 
 def check_jsonld_against_shacl_all() -> int:
-    """Validate JSON-LD files against SHACL schemas for each ontology folder."""
+    """Validate JSON-LD files against SHACL schemas, aborting on the first failure."""
     print("\n=== Checking JSON-LD against SHACL ===", flush=True)
-    overall_ret = 0
 
     for ontology in ONTOLOGY_DIRS:
         print(
             f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}", flush=True
         )
-        # Fix: Pass explicitly relative path starting with ./
         ontology_dict = build_dict_for_ontologies(
             ROOT_DIR, [os.path.join(".", ontology)]
         )
@@ -84,8 +80,7 @@ def check_jsonld_against_shacl_all() -> int:
                 file=sys.stderr,
                 flush=True,
             )
-            overall_ret |= 100
-            continue
+            return 100  # Abort if no files found
 
         returncode, output = validate_jsonld_against_shacl(
             ROOT_DIR, ontology_dict, debug=False, inference_mode="rdfs"
@@ -97,11 +92,11 @@ def check_jsonld_against_shacl_all() -> int:
 
         if returncode != 0:
             print(
-                f"\n❌ Error during JSON-LD SHACL validation for folder '{ontology}'.",
+                f"\n❌ Error during JSON-LD SHACL validation for folder '{ontology}'. Aborting.",
                 file=sys.stderr,
                 flush=True,
             )
-            overall_ret |= returncode
+            return returncode  # Abort immediately on SHACL failure
         else:
             print(f"✅ {ontology} conforms to SHACL constraints.", flush=True)
 
@@ -109,13 +104,12 @@ def check_jsonld_against_shacl_all() -> int:
             f"📌 Completed JSON-LD SHACL validation for folder: {ontology}", flush=True
         )
 
-    return overall_ret
+    return 0
 
 
 def check_failing_tests_all() -> int:
-    """Run failing test cases and compare output to expected results."""
+    """Run failing test cases, aborting on the first discrepancy."""
     print("\n=== Running failing tests ===", flush=True)
-    overall_ret = 0
 
     for ontology in ONTOLOGY_DIRS:
         folder_path = os.path.join(ROOT_DIR, ontology)
@@ -131,7 +125,6 @@ def check_failing_tests_all() -> int:
         )
 
         for test in fail_tests:
-            # Fix: Manually construct ./ relative path to avoid normpath stripping it
             rel_path = os.path.relpath(os.path.join(test_folder, test), ROOT_DIR)
             test_path = f".{os.sep}{rel_path}"
             expected_output_path = os.path.splitext(test_path)[0] + ".expected"
@@ -142,8 +135,7 @@ def check_failing_tests_all() -> int:
                     file=sys.stderr,
                     flush=True,
                 )
-                overall_ret |= 1
-                continue
+                return 1  # Abort if missing expectation
 
             with open(expected_output_path, "r", encoding="utf-8") as f:
                 expected_output = f.read().strip()
@@ -165,29 +157,27 @@ def check_failing_tests_all() -> int:
                     )
                 else:
                     print(
-                        f"\n❌ Error during comparison for {test_path}.",
+                        f"\n❌ Error: Output discrepancy for {test_path}. Aborting.",
                         file=sys.stderr,
                         flush=True,
                     )
-                    overall_ret |= 1
+                    return 1  # Abort on output mismatch
             else:
                 print(
-                    f"\n❌ Test {test_path} did not return expected error code 210 (got {returncode}).",
+                    f"\n❌ Test {test_path} did not return code 210 (got {returncode}). Aborting.",
                     file=sys.stderr,
                     flush=True,
                 )
-                overall_ret |= returncode or 1
+                return returncode or 1
 
-    return overall_ret
+    return 0
 
 
 def check_target_classes_all() -> int:
-    """Validate if all target classes in the SHACL shapes exist in the ontology."""
+    """Validate target classes against OWL, aborting on the first unexpected error."""
     print("\n=== Checking target classes against OWL classes ===", flush=True)
-    overall_ret = 0
 
     for ontology in ONTOLOGY_DIRS:
-        # Fix: Use relative path ./ontology for consistency
         folder_path = os.path.join(".", ontology)
         print(f"\n🔍 Checking target classes in folder: {ontology}", flush=True)
         returncode, output = validate_target_classes_against_owl_classes(folder_path)
@@ -204,19 +194,19 @@ def check_target_classes_all() -> int:
                 )
                 continue
             print(
-                f"\n❌ Error {returncode} during target class validation for {ontology}.",
+                f"\n❌ Error {returncode} during target class validation for {ontology}. Aborting.",
                 file=sys.stderr,
                 flush=True,
             )
-            overall_ret |= returncode
+            return returncode  # Abort on target class error
         else:
             print(f"✅ Target classes are correctly defined in {ontology}.", flush=True)
 
-    return overall_ret
+    return 0
 
 
 def main():
-    """Run all validation checks sequentially, aborting on the first failure phase."""
+    """Run all validation checks sequentially, aborting on the first failure."""
     print("Detected ontology directories:", flush=True)
     for directory in ONTOLOGY_DIRS:
         print(f" - {directory}", flush=True)
@@ -235,7 +225,7 @@ def main():
         rc = phase_func()
         if rc != 0:
             print(
-                f"\n❌ {name} phase failed (code {rc}). Aborting.",
+                f"\n❌ {name} phase failed (code {rc}). Aborting test run.",
                 file=sys.stderr,
                 flush=True,
             )

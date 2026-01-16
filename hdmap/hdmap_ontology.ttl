@@ -72,7 +72,7 @@ hdmap:HdMap a owl:Class ;
         owl:onProperty hdmap:hasManifest ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+            owl:unionOf ( envited-x:Manifest manifest:Link )
         ]
     ] .
 
@@ -160,22 +160,21 @@ hdmap:hasDataResource a owl:ObjectProperty ;
     rdfs:domain hdmap:HdMap ;
     rdfs:range envited-x:DataResource .
 
-### hasManifest (HdMap -> envited-x:Manifest OR envited-x:ManifestLink)
+### hasManifest (HdMap -> envited-x:Manifest OR manifest:Link)
 hdmap:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
     rdfs:comment """
-Links an HD map asset to its manifest.
-
-The value can be either:
-- an inline envited-x:Manifest node (embedded manifest structure), or
-- an envited-x:ManifestLink node (a manifest:Link that points via manifest:iri
-  to an external manifest representation, typically identified by a DID).
-"""@en ;
+                Links an HD map asset to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node (embedded manifest structure), or
+                - an manifest:Link node (a link that points via manifest:iri
+                to an external manifest representation, typically identified by a DID).
+                """@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain hdmap:HdMap ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:Manifest envited-x:ManifestLink )
+        owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
 ### hasContent (DataResourceExtension -> Content)

@@ -11,13 +11,20 @@
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
     
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    # while maintaining the "exactly 1" requirement often required for specific domain assets.
     sh:property [
         sh:path hdmap:hasDataResource ;
-        sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResource object containing name and description."@en ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each HD map must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
     ] ;
+
+    # 2) hasDataResourceExtension: Maintaining the mandatory domain-specific extension.
     sh:property [
         sh:path hdmap:hasDataResourceExtension ;
         sh:node hdmap:DataResourceShapeExtension ;
@@ -25,24 +32,20 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
     sh:property [
         sh:path hdmap:hasManifest ;
-        sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
-
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
-        ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have exactly one manifest, either inline or via link."@en ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+
+            # Case 2: Linked manifest reference
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each HD map must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
     ] ;
     sh:targetClass hdmap:HdMap .
 

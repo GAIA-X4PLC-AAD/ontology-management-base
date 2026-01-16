@@ -11,40 +11,44 @@
 ositrace:OSITraceShape a sh:NodeShape ;
     sh:closed false ;
     
-    sh:property 
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node ositrace:DataResourceExtensionShape ;
-          sh:name "data resource extension"@en ;
-          sh:description "DataResourceExtension containing additional metadata about the OSI trace."@en ;
-          sh:order 1 ;
-          sh:path ositrace:hasDataResourceExtension ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node envited-x:DataResourceShape ;
-          sh:name "data resource"@en ;
-          sh:description "Links to an envited-x:DataResource that describes the raw data asset."@en ;
-          sh:order 2 ;
-          sh:path ositrace:hasDataResource ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
-            
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    sh:property [
+        sh:path ositrace:hasDataResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-          sh:name "manifest"@en ;
-          sh:description "Manifest file describing the OSI trace metadata."@en ;
-          sh:order 3 ;
-          sh:path ositrace:hasManifest ] ;
+        sh:message "Each OSI trace must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:order 2 ;
+    ],
+
+    # 2) hasDataResourceExtension: Mandatory domain-specific extension for OSI traces.
+    [
+        sh:path ositrace:hasDataResourceExtension ;
+        sh:node ositrace:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each OSI trace must have one associated DataResourceExtension object with content, format, quality, quantity, and dataSource."@en ;
+        sh:order 1 ;
+    ],
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    [
+        sh:path ositrace:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
+            # Case 2: Linked manifest reference (improved logic from Point A)
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each OSI trace must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
+        sh:order 3 ;
+    ] ;
     sh:targetClass ositrace:OSITrace .
 
 ### DataResourceExtension SHACL Shape

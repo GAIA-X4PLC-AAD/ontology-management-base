@@ -13,46 +13,50 @@
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
     
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
     sh:property [
         sh:path scenario:hasDataResource ;
-        sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResource object containing name and description."@en ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each Scenario must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
     ] ;
+
+    # 2) hasDataResourceExtension: Mandatory domain-specific extension for Scenarios.
     sh:property [
         sh:path scenario:hasDataResourceExtension ;
         sh:node scenario:DataResourceExtensionShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+        sh:message "Each Scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
     sh:property [
         sh:path scenario:hasManifest ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            ## Case 1: Inline manifest must conform to all three required shapes
+            # Case 1: Inline manifest node
             [ sh:and (
                 [ sh:node manifest:ManifestShape ]
                 [ sh:node envited-x:ManifestShape ]
                 [ sh:node scenario:ManifestShape ]
             )]
             
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
+            # Case 2: Linked manifest reference (reusing the improved logic from Point A)
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
-        sh:message "Each scenario must have exactly one manifest, either inline (conforming to all of scenario:ManifestShape, manifest:ManifestShape, envited-x:ManifestShape) or via link (manifest:LinkShape + envited-x:ExtendedLinkShape)."@en ;
+        sh:message "Each Scenario must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
     ] ;
     sh:targetClass scenario:Scenario .
 
 scenario:ManifestShape a sh:NodeShape ;
     sh:closed false ;
     
-
     # The manifest node must be explicitly typed as scenario:Manifest.
     sh:property [
         sh:path rdf:type ;

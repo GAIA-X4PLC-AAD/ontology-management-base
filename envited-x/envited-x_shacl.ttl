@@ -56,17 +56,19 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
     #################################################################
     # hasManifest: exactly one, inline OR link.
     #################################################################
+    # envited-x:SimulationAssetShape improvements
     sh:property [
         sh:path envited-x:hasManifest ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            # Case 1: Inline manifest must conform to both required shapes
+            # Case 1: Inline manifest node
             [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
             # Case 2: Linked manifest reference
-            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
-        sh:message "Each SimulationAsset must have exactly one value for envited-x:hasManifest. That value MUST be either (a) an inline manifest node conforming to both manifest:ManifestShape and envited-x:ManifestShape, or (b) a manifest:Link that conforms to envited-x:ExtendedLinkShape and points to an external manifest representation."@en ;
+        sh:message "Each SimulationAsset must have exactly one manifest. If linked, it MUST be of category envited-x:isManifest and include a manifest:iri."@en ;
     ] ;
 
     sh:targetClass envited-x:SimulationAsset .
@@ -96,25 +98,24 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
 
 
 #################################################################
-# Shape for envited-x:ManifestLink
+# Shape for manifest:Link
 # (specialization of manifest:Link that points to manifests)
 #################################################################
-
-envited-x:ManifestLinkShape a sh:NodeShape ;
-    sh:closed false ;
+envited-x:ManifestLinkReferenceShape a sh:NodeShape ;
+    sh:node manifest:LinkShape ;           # Ensures base link metadata (filePath, mimeType)
+    sh:node envited-x:ExtendedLinkShape ;    # Ensures envited-x specific roles/categories
     
+    # Specific Narrowing for Manifests:
     sh:property [
         sh:path manifest:hasCategory ;
-        sh:hasValue envited-x:isManifest ;
-        sh:message "Manifest links must have manifest:hasCategory envited-x:isManifest."@en ;
+        sh:hasValue envited-x:isManifest ;   # Forces the category to be specifically isManifest
+        sh:message "A link used in hasManifest must have the category envited-x:isManifest."@en ;
     ] ;
-
     sh:property [
         sh:path manifest:iri ;
         sh:minCount 1 ;
-        sh:message "Manifest links must specify manifest:iri pointing to the actual manifest (e.g. a DID)."@en ;
-    ];
-    sh:targetClass envited-x:ManifestLink .
+        sh:message "A linked manifest reference must specify a manifest:iri (e.g., a DID)."@en ;
+    ] .
 
 
 # Manifest Shape for additional constraints
