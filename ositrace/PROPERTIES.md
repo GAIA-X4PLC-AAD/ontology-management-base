@@ -8,9 +8,9 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| OSITraceShape | ositrace | hasDataResourceExtension | 1 | 1 | DataResourceExtension containing additional metadata about the OSI trace. |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | hasDataResource | 1 | 1 | Links to an envited-x:DataResource that describes the raw data asset. |  | ositrace_shacl.ttl |
-| OSITraceShape | ositrace | hasManifest | 1 | 1 | Manifest file describing the OSI trace metadata. |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | hasDataResource | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | hasDataResourceExtension | 1 | 1 |  |  | ositrace_shacl.ttl |
+| OSITraceShape | ositrace | hasManifest | 1 | 1 |  |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasContent | 1 | 1 | Attributes describing the content of the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasFormat | 1 | 1 | File format details of the OSI trace. |  | ositrace_shacl.ttl |
 | DataResourceExtensionShape | ositrace | hasQuality | 1 | 1 | Quality metrics of the OSI trace. |  | ositrace_shacl.ttl |

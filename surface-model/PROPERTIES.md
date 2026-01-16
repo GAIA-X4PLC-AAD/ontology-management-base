@@ -8,9 +8,9 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SurfaceModelShape | surface-model | hasDataResourceExtension | 1 | 1 | DataResourceExtension containing additional metadata about the surface model. |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | hasDataResource | 1 | 1 | Links to an envited-x:DataResource that describes the raw data asset. |  | surface-model_shacl.ttl |
-| SurfaceModelShape | surface-model | hasManifest | 1 | 1 | Manifest file describing the surface model metadata. |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | hasDataResource | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | hasDataResourceExtension | 1 | 1 |  |  | surface-model_shacl.ttl |
+| SurfaceModelShape | surface-model | hasManifest | 1 | 1 |  |  | surface-model_shacl.ttl |
 | DataResourceExtensionShape | surface-model | hasContent | 1 | 1 | Attributes describing the content type of the surface model. |  | surface-model_shacl.ttl |
 | DataResourceExtensionShape | surface-model | hasFormat | 1 | 1 | File format details of the surface model. |  | surface-model_shacl.ttl |
 | DataResourceExtensionShape | surface-model | hasQuality | 1 | 1 | Quality metrics of the surface model. |  | surface-model_shacl.ttl |
