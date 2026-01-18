@@ -233,15 +233,15 @@ envited-x:hasQuantity a owl:ObjectProperty ;
     rdfs:range envited-x:Quantity .
 
 ### Define specific category types as named individuals, extending manifest categories
-envited-x:isManifest a manifest:Category, owl:NamedIndividual ;
+envited-x:isManifest a manifest:ManifestCategory, owl:NamedIndividual ;
     rdfs:label "Manifest Category"@en ;
     rdfs:comment "Indicates that the artifact category is a manifest in the envited-x context."@en .
 
-envited-x:isLicense a manifest:Category, owl:NamedIndividual ;
+envited-x:isLicense a manifest:LicenseCategory, owl:NamedIndividual ;
     rdfs:label "License Category"@en ;
     rdfs:comment "Indicates that the artifact category is a license file in the envited-x context."@en .
 
-envited-x:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+envited-x:isMiscellaneous a manifest:MiscellaneousCategory, owl:NamedIndividual ;
     rdfs:label "Miscellaneous Category"@en ;
     rdfs:comment "Indicates that the artifact category is miscellaneous in the envited-x context."@en .
 

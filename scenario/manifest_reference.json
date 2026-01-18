@@ -9,7 +9,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6",
+  "@id": "did:web:registry.envited-x.net:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6",
   "@type": [
     "envited-x:Manifest",
     "scenario:Manifest"
@@ -120,7 +120,7 @@
     {
       "@type": "manifest:Link",
       "manifest:iri": {
-        "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
+        "@id": "did:web:registry.envited-x.net:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
       },
       "skos:note": {
         "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."
@@ -191,7 +191,7 @@
     {
       "@type": "manifest:Link",
       "manifest:iri": {
-        "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8"
+        "@id": "did:web:registry.envited-x.net:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8"
       },
       "skos:note": {
         "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."
@@ -234,7 +234,7 @@
     {
       "@type": "manifest:Link",
       "manifest:iri": {
-        "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi"
+        "@id": "did:web:registry.envited-x.net:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi"
       },
       "skos:note": {
         "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media."

@@ -7,17 +7,22 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
+  "@id": "did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
   "@type": "envited-x:SimulationAsset",
   "envited-x:hasDataResource": {
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "3D Model in Grafing",
-      "@type": "xsd:string"
+    "gx:name": "3D Model in Grafing",
+    "gx:description": "A 3D model representing the town district with traffic signs.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:policy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
+    "gx:producedBy": {
+      "@id": "did:web:did.ascs.digital:participants:msg"
     },
-    "gx:description": {
-      "@value": "A 3D model representing the town district with traffic signs.",
-      "@type": "xsd:string"
+    "gx:exposedThrough": {
+      "@id": "did:web:registry.envited-x.net::SimulationAsset:vK9zP4rN2mQt7XjL5bS8yH3cW1dGf6A8"
     }
   },
   "envited-x:hasManifest": {

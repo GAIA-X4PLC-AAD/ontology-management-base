@@ -9,7 +9,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "gx": "https://w3id.org/gaia-x/development#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@id": "did:web:registry.envited-x.net:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
   "@type": "surface-model:SurfaceModel",
   "surface-model:hasDataResource": {
     "@type": "envited-x:DataResource",
@@ -144,7 +144,7 @@
   "surface-model:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
+      "@id": "did:web:registry.envited-x.net:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

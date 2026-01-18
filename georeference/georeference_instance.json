@@ -5,7 +5,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
+  "@id": "did:web:registry.envited-x.net:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
   "@type": "georeference:Georeference",
   "georeference:hasProjectLocation": {
     "@type": "georeference:ProjectLocation",

@@ -12,8 +12,8 @@
       "@type": "gx:DataResource",
       "schema:name": "Generated Data Resource",
       "schema:description": "Generated description.",
-      "gx:copyrightOwnedBy": "did:web:did.ascs.digital:participants:bmw",
-      "gx:license": "Apache-2.0",
+      "gx:copyrightOwnedBy": "did:web:did.ascs.digital:participants:msg",
+      "gx:license": "EPL-2.0",
       "gx:obsoleteDateTime": {
         "@value": "2025-03-28T12:29:44Z",
         "@type": "xsd:dateTime"
@@ -25,7 +25,7 @@
       "gx:containsPII": false,
       "gx:resourcePolicy": "package access_control; default allow = false;",
       "gx:producedBy": {
-        "@id": "did:web:did.ascs.digital:participants:bmw"
+        "@id": "did:web:did.ascs.digital:participants:msg"
       },
       "gx:exposedThrough": {
         "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3"
@@ -38,7 +38,7 @@
         "gx:DataExchangeComponent"
       ],
       "gx:providedBy": {
-        "@id": "did:web:did.ascs.digital:participants:bmw"
+        "@id": "did:web:did.ascs.digital:participants:msg"
       },
       "gx:servicePolicy": {
         "@type": "gx:AccessUsagePolicy",

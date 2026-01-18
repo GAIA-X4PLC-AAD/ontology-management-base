@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "gx": "https://w3id.org/gaia-x/development#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "did:web:did.ascs.digital:participants:msg",
+  "@type": "gx:LegalPerson",
+  "gx:name": "msg systems ag",
+  "gx:registrationNumber": {
+    "@type": "gx:VatID",
+    "gx:vatID": "DE811677674"
+  },
+  "gx:headquartersAddress": {
+    "@type": "gx:Address",
+    "gx:countryCode": "DE",
+    "gx:region": "DE11"
+  },
+  "gx:legalAddress": {
+    "@type": "gx:Address",
+    "gx:countryCode": "DE",
+    "gx:region": "DE11"
+  }
+}

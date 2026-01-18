@@ -8,7 +8,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "TBD",
+  "@id": "did:web:registry.gaia-x.eu:AutomotiveSimulator:qR5mT7nW2pZ4vK9zP8yH3cW1dGf6A8",
   "@type": "automotive-simulator:AutomotiveSimulator",
   "automotive-simulator:general": {
     "@type": "general:General",
@@ -19,22 +19,8 @@
         "@type": "xsd:string"
       },
       "general:description": {
-        "@value": "An extension of the CARLA simulator by various degradation models for perceptionsensors that cover effects of internal failures, external failures and security attacks. Delivered as two docker files (preqrequiste and carla.docker)",
+        "@value": "An extension of the CARLA simulator by various degradation models for perception sensors that cover effects of internal failures, external failures and security attacks.",
         "@type": "xsd:string"
-      }
-    },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": 0.0004845,
-        "@type": "xsd:float"
-      }
-    },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": 0.001348,
-        "@type": "xsd:float"
       }
     }
   },
@@ -42,40 +28,40 @@
   "automotive-simulator:softwareVersion": "0.9.15",
   "automotive-simulator:sensorFailureFlag": true,
   "automotive-simulator:sensorAttackFlag": true,
-  "automotive-simulator:scenarioDefinition": "ASAM OpenSCENARIO 2.x",
-  "automotive-simulator:scenarioDefinition": "ASAM OpenSCENARIO 1.x",
-  "automotive-simulator:scenarioDefinition": "scenic",
-  "automotive-simulator:interface": "ROS1",
-  "automotive-simulator:interface": "ROS2",
-  "automotive-simulator:interface": "TCP",
-  "simulated-sensor:SimulatedSensor": {
-    "simulated-sensor:sensorIdentifier": "sensor.other.radar",
-    "simulated-sensor:sensorType": {
-      "@type": "simulated-sensor:Radar"
+  "automotive-simulator:scenarioDefinition": [
+    "ASAM OpenSCENARIO 2.x",
+    "ASAM OpenSCENARIO 1.x",
+    "scenic"
+  ],
+  "automotive-simulator:interface": [
+    "ROS1",
+    "ROS2",
+    "TCP"
+  ],
+  "simulated-sensor:simulatedSensor": [
+    {
+      "@type": "simulated-sensor:SimulatedSensor",
+      "simulated-sensor:sensorIdentifier": "sensor.other.radar",
+      "simulated-sensor:sensorType": {
+        "@type": "simulated-sensor:Radar"
+      }
+    },
+    {
+      "@type": "simulated-sensor:SimulatedSensor",
+      "simulated-sensor:sensorIdentifier": "sensor.other.lidar",
+      "simulated-sensor:sensorType": {
+        "@type": "simulated-sensor:Lidar"
+      }
+    },
+    {
+      "@type": "simulated-sensor:SimulatedSensor",
+      "simulated-sensor:sensorIdentifier": "sensor.camera.rgb",
+      "simulated-sensor:sensorType": {
+        "@type": "simulated-sensor:Camera",
+        "simulated-sensor:rgbFlag": true,
+        "simulated-sensor:3dflag": false,
+        "simulated-sensor:depthFlag": false
+      }
     }
-  },
-  "simulated-sensor:SimulatedSensor": {
-    "simulated-sensor:sensorIdentifier": "sensor.other.lidar",
-    "simulated-sensor:sensorType": {
-      "@type": "simulated-sensor:Lidar"
-    }
-  },
-  "simulated-sensor:SimulatedSensor": {
-    "simulated-sensor:sensorIdentifier": "sensor.camera.rgb",
-    "simulated-sensor:sensorType": {
-      "@type": "simulated-sensor:Camera",
-      "simulated-sensor:rgbFlag": true,
-      "simulated-sensor:3dflag": false,
-      "simulated-sensor:depthFlag": false
-    }
-  },
-  "simulated-sensor:SimulatedSensor": {
-    "simulated-sensor:sensorIdentifier": "sensor.camera.depth",
-    "simulated-sensor:sensorType": {
-      "@type": "simulated-sensor:Camera",
-      "simulated-sensor:rgbFlag": false,
-      "simulated-sensor:3dflag": false,
-      "simulated-sensor:depthFlag": true
-    }
-  }
+  ]
 }

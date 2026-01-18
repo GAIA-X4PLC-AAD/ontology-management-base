@@ -7,26 +7,44 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "sh": "http://www.w3.org/ns/shacl#"
   },
-  "@id": "did:web:registry.gaia-x.eu:envited-x:vK9zP4rN2mQt7XjL5bS8yH3cW1dGf6A8",
+  "@id": "did:web:did.envited-x.net:SimulationAsset:z4W8vN2mR7pL5qK9bS1yH3cW1dGf6A8",
   "@type": "envited-x:SimulationAsset",
   "envited-x:hasDataResource": {
+    "@id": "did:web:did.envited-x.net:DataResource:h3kG6rW9mQ1vYpL4bS2yH3cW1dGf6A8",
     "@type": "envited-x:DataResource",
     "gx:name": "3D Model in Grafing",
     "gx:description": "A 3D model representing the town district with traffic signs.",
     "gx:version": "1.0.0",
     "gx:license": "EPL-2.0",
-    "gx:policy": "allow",
+    "gx:resourcePolicy": "allow",
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
     "gx:producedBy": {
-      "@id": "did:web:did.ascs.digital:participants:bmw"
+      "@id": "did:web:did.ascs.digital:participants:bmw",
+      "@type": "gx:LegalPerson",
+      "gx:name": "Bayerische Motoren Werke Aktiengesellschaft (BMW AG)",
+      "gx:registrationNumber": {
+        "@type": "gx:VatID",
+        "gx:vatID": "DE129273398"
+      },
+      "gx:headquartersAddress": {
+        "@type": "gx:Address",
+        "gx:countryCode": "DE",
+        "gx:region": "DE21"
+      },
+      "gx:legalAddress": {
+        "@type": "gx:Address",
+        "gx:countryCode": "DE",
+        "gx:region": "DE21"
+      }
     },
     "gx:exposedThrough": {
-      "@id": "did:web:registry.gaia-x.eu:envited-x:vK9zP4rN2mQt7XjL5bS8yH3cW1dGf6A8"
+      "@id": "did:web:did.ascs.digital:services:trust-anchor",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "envited-x:hasManifest": {
-    "@id": "did:web:registry.gaia-x.eu:Manifest:v9R2nTpW8mXq4YkL7bJz5AfG3dH6eS1c",
+    "@id": "did:web:registry.envited-x.net:Manifest:v9R2nTpW8mXq4YkL7bJz5AfG3dH6eS1c",
     "@type": "envited-x:Manifest",
     "manifest:hasManifestReference": {
       "@type": "manifest:Link",
@@ -51,30 +69,27 @@
       }
     },
     "manifest:hasLicense": {
-      "@type": "manifest:License",
-      "gx:license": {
-        "@value": "EPL-2.0"
+      "manifest:iri": {
+      "@id": "did:web:registry.envited-x.net::DataResource:h3kG6rW9mQ1vYpL4bS2yH3cW1dGf6A8"
       },
-      "manifest:hasLink": {
-        "@type": "manifest:Link",
-        "manifest:hasAccessRole": {
-          "@type": "manifest:AccessRole",
-          "@id": "envited-x:isPublic"
+      "@type": "manifest:Link",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isLicense"
+      },
+      "manifest:hasFileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:filePath": {
+          "@value": "https://opensource.org/license/EPL-2.0",
+          "@type": "xsd:anyURI"
         },
-        "manifest:hasCategory": {
-          "@type": "manifest:Category",
-          "@id": "envited-x:isLicense"
-        },
-        "manifest:hasFileMetadata": {
-          "@type": "manifest:FileMetadata",
-          "manifest:filePath": {
-            "@value": "https://opensource.org/license/EPL-2.0",
-            "@type": "xsd:anyURI"
-          },
-          "manifest:mimeType": {
-            "@value": "text/html",
-            "@type": "xsd:string"
-          }
+        "manifest:mimeType": {
+          "@value": "text/html",
+          "@type": "xsd:string"
         }
       }
     },
@@ -251,11 +266,11 @@
             "@type": "manifest:Dimensions",
             "manifest:unit": "pixels",
             "manifest:width": {
-              "@value": "1095",
+              "@value": "1095.0",
               "@type": "xsd:float"
             },
             "manifest:height": {
-              "@value": "850",
+              "@value": "850.0",
               "@type": "xsd:float"
             }
           }

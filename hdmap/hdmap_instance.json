@@ -9,7 +9,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+  "@id": "did:web:registry.envited-x.net:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
   "@type": "hdmap:HdMap",
   "hdmap:hasDataResource": {
     "@type": "envited-x:DataResource",
@@ -124,7 +124,7 @@
     },
     "hdmap:hasGeoreference": {
       "@type": "georeference:Georeference",
-      "@id": "did:web:registry.gaia-x.eu:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+      "@id": "did:web:registry.envited-x.net:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
       "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
@@ -202,7 +202,7 @@
   "hdmap:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
+      "@id": "did:web:registry.envited-x.net:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

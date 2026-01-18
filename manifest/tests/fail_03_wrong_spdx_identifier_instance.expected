@@ -7,7 +7,7 @@
 =                                                                                                                                                    =
 =                                                           Structured Validation Errors:                                                            =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                      =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =
 =    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LicenseShape>. See details for more    =
 =                      information.                                                                                                                  =

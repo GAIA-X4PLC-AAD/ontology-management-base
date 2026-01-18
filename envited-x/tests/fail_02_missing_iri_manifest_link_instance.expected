@@ -52,7 +52,7 @@
 =                      <https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata>                                                       =
 =                      <https://ontologies.envited-x.net/manifest/v5/ontology#mimeType> ) ; sh:pattern Literal("^application/ld\+json$") ] ]         =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
 =    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasManifest                                                            =
 =    Error:            Each SimulationAsset must have exactly one manifest. If linked, it MUST be of category envited-x:isManifest and include a     =
 =                      manifest:iri.                                                                                                                 =

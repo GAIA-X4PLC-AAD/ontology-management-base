@@ -9,7 +9,7 @@
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "gx": "https://w3id.org/gaia-x/development#"
   },
-  "@id": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+  "@id": "did:web:registry.envited-x.net:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
   "@type": "ositrace:OSITrace",
   "ositrace:hasDataResource": {
     "@type": "envited-x:DataResource",
@@ -106,7 +106,7 @@
     },
     "ositrace:hasGeoreference": {
       "@type": "georeference:Georeference",
-      "@id": "did:web:registry.gaia-x.eu:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+      "@id": "did:web:registry.envited-x.net:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
       "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
@@ -184,7 +184,7 @@
   "ositrace:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4"
+      "@id": "did:web:registry.envited-x.net:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

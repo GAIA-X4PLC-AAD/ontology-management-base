@@ -69,7 +69,7 @@
     "@type": "xsd:anyURI"
   },
   "tzip21:identifier": {
-    "@value": "did:web:registry.gaia-x.eu:HdMap:DjHgK5ErTBow1Ya3J05tW9l12skGWgZn6kA9",
+    "@value": "did:web:registry.envited-x.net:HdMap:DjHgK5ErTBow1Ya3J05tW9l12skGWgZn6kA9",
     "@type": "xsd:string"
   },
   "tzip21:externalUri": {

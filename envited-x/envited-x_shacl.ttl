@@ -102,13 +102,13 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
 # (specialization of manifest:Link that points to manifests)
 #################################################################
 envited-x:ManifestLinkReferenceShape a sh:NodeShape ;
-    sh:node manifest:LinkShape ;           # Ensures base link metadata (filePath, mimeType)
-    sh:node envited-x:ExtendedLinkShape ;    # Ensures envited-x specific roles/categories
+    sh:node manifest:LinkShape ;
+    sh:node envited-x:ExtendedLinkShape ;
     
     # Specific Narrowing for Manifests:
     sh:property [
         sh:path manifest:hasCategory ;
-        sh:hasValue envited-x:isManifest ;   # Forces the category to be specifically isManifest
+        sh:hasValue envited-x:isManifest ;
         sh:message "A link used in hasManifest must have the category envited-x:isManifest."@en ;
     ] ;
     sh:property [
@@ -117,6 +117,23 @@ envited-x:ManifestLinkReferenceShape a sh:NodeShape ;
         sh:message "A linked manifest reference must specify a manifest:iri (e.g., a DID)."@en ;
     ] .
 
+#################################################################
+# Specialized Link for licenses within the envited-x context
+#################################################################
+envited-x:LicenseLinkReferenceShape a sh:NodeShape ;
+    sh:node manifest:LinkShape ;
+    sh:node envited-x:ExtendedLinkShape ;
+    
+    sh:property [
+        sh:path manifest:hasCategory ;
+        sh:hasValue envited-x:isLicense ;
+        sh:message "A link used in hasLicense must have the category envited-x:isLicense."@en ;
+    ] ;
+    sh:property [
+        sh:path manifest:iri ;
+        sh:minCount 1 ;
+        sh:message "A linked license reference must specify a license:iri (e.g., a DID)."@en ;
+    ] .
 
 # Manifest Shape for additional constraints
 envited-x:ManifestShape a sh:NodeShape ;
@@ -136,23 +153,14 @@ envited-x:ManifestShape a sh:NodeShape ;
         sh:qualifiedMaxCount 1 ;
         sh:message "An envited-x manifest must contain exactly one manifest reference link with an envited-x access role and category."@en ;
     ] ;
+    # Updated property in envited-x:ManifestShape
     sh:property [
         sh:path manifest:hasLicense ;
-        sh:qualifiedValueShape [
-            sh:node manifest:LicenseShape ;
-            sh:property [
-                sh:path manifest:hasLink ;
-                sh:qualifiedValueShape [
-                    sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-                ] ;
-                sh:qualifiedMinCount 1 ;
-                sh:qualifiedMaxCount 1 ;
-                sh:message "A license must contain exactly one link with an envited-x access role and category."@en ;
-            ]
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:qualifiedMaxCount 1 ;
-        sh:message "An envited-x manifest must contain exactly one license link with an envited-x access role and category."@en ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        # Point directly to a specialized Link shape instead of the removed wrapper
+        sh:node envited-x:LicenseLinkReferenceShape ; 
+        sh:message "An envited-x manifest must contain exactly one license link with an envited-x access role and category envited-x:isLicense."@en ;
     ] ;
     
     # Property shape for artifact links:
@@ -250,6 +258,22 @@ envited-x:DataResourceShape a sh:NodeShape ;
         sh:message "Each SimulationAsset must have a textual description of the entity."@en ;
         skos:example "Town district with traffic signs."@en ;
         sh:order 1 
+    ] ;
+    sh:property [
+        sh:name "license identifier"@en ;
+        sh:description "Allows custom commercial identifiers in addition to Gaia-X standard SPDX checks."@en ;
+        sh:path gx:license ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Branch 1: Specific custom identifiers allowed by ENVITED-X
+            [ sh:in ("LicenseRef-Custom-Commercial-Agreement" "LicenseRef-Policy-Smart-Contract") ]
+            
+            # Branch 2: Any string (to allow standard SPDX identifiers to pass 
+            # through this local check so Gaia-X can validate them).
+            [ sh:datatype xsd:string ]
+        ) ;
+        sh:message "The gx:license must be either a standard SPDX identifier (validated by Gaia-X) or one of the ENVITED-X custom commercial identifiers."@en ;
+        sh:order 2 
     ] ;
     sh:targetClass envited-x:DataResource .
 

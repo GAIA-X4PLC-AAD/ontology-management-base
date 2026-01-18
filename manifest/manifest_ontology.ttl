@@ -78,16 +78,6 @@ manifest:Manifest a owl:Class ;
     ] .
 
 
-manifest:License a owl:Class ;
-    rdfs:label "Class definition for License"@en ;
-    rdfs:comment "General subclass of Link for defining the license of an asset."@en ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:hasLink ;
-        owl:cardinality 1
-    ] .
-
-
 manifest:Link a owl:Class ;
     rdfs:label "Class definition for Link"@en ;
     rdfs:comment """Defines a Link instance that connects to data and mandatory metadata
@@ -133,9 +123,9 @@ manifest:hasManifestReference a owl:ObjectProperty ;
 
 manifest:hasLicense a owl:ObjectProperty ;
     rdfs:label "has License"@en ;
-    rdfs:comment "Associates a Manifest instance with its corresponding License; only applicable within Manifest instances."@en ;
+    rdfs:comment "Associates a Manifest instance with its corresponding license; only applicable within Manifest instances."@en ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:License .
+    rdfs:range manifest:Link .
 
 
 manifest:hasArtifacts a owl:ObjectProperty ;
@@ -196,15 +186,25 @@ manifest:hasCategory a owl:ObjectProperty ;
     rdfs:domain manifest:Link ;
     rdfs:range manifest:Category .
 
-## Define specific category types as named individuals (NOT subclasses)
-manifest:isManifest a manifest:Category, owl:NamedIndividual ;
+# New Category Classes
+manifest:LicenseCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+manifest:ManifestCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+manifest:MiscellaneousCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+# Base individual updated to the new class
+manifest:isLicense a manifest:LicenseCategory, owl:NamedIndividual ;
+    rdfs:label "License Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a license."@en .
+
+manifest:isManifest a manifest:ManifestCategory, owl:NamedIndividual ;
     rdfs:label "Manifest Category"@en ;
     rdfs:comment "Indicates that the artifact category is a manifest."@en .
 
-manifest:isLicense a manifest:Category, owl:NamedIndividual ;
-    rdfs:label "License Category"@en ;
-    rdfs:comment "Indicates that the artifact category is a license file."@en .
-
-manifest:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+manifest:isMiscellaneous a manifest:Miscellaneous, owl:NamedIndividual ;
     rdfs:label "Miscellaneous Category"@en ;
     rdfs:comment "Indicates that the artifact category is miscellaneous."@en .

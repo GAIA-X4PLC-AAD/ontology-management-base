@@ -126,7 +126,7 @@ Example content:
 =    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasContent                                                             =
 =    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:envited-x:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
 =    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasDataResourceExtension                                               =
 =    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
 =                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =
@@ -237,7 +237,6 @@ This section describes guidelines that _must_ be followed when applying changes 
 - If explanations are required, meaningful descriptions should be added. Example: 'Size of the file to be downloaded in MB.'
 - Every TYPE B class must be subclass of `envited-x:SimulationAsset` and implement subclasses of this superclass. See e.g. `hdmap:HdMap`as an example.
 - Every TYPE A Shape linking to an ontology must **nest** the `general` Shape. Example:
-
   - Add prefix
 
     ```turtle

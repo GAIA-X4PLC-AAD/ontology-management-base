@@ -10,7 +10,7 @@
     "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#",
     "environment-model": "https://ontologies.envited-x.net/environment-model/v5/ontology#"
   },
-  "@id": "did:web:registry.gaia-x.eu:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
+  "@id": "did:web:registry.envited-x.net:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
   "@type": "environment-model:EnvironmentModel",
   "environment-model:hasDataResource": {
     "@type": "envited-x:DataResource",
@@ -167,7 +167,7 @@
   "environment-model:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:p2yv4S6Z7FXc9qJaLy1B3mEGtiRuLoK8hcsN"
+      "@id": "did:web:registry.envited-x.net:Manifest:p2yv4S6Z7FXc9qJaLy1B3mEGtiRuLoK8hcsN"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

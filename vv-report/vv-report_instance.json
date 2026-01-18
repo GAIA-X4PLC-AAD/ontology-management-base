@@ -7,7 +7,7 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#"
     },
-    "@id": "did:web:registry.gaia-x.eu:VVReport:.............",
+    "@id": "did:web:registry.gaia-x.eu:VVReport:h4kG79Sk3MvP6WzL5bS8yH3cW1dGf6A8",
     "@type": "vv-report:VvReport",
     "vv-report:general": {
         "@type": "general:General",

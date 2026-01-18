@@ -9,7 +9,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
+  "@id": "did:web:registry.envited-x.net:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
   "@type": "scenario:Scenario",
   "scenario:hasDataResource": {
     "@type": "envited-x:DataResource",
@@ -169,7 +169,7 @@
   "scenario:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6"
+      "@id": "did:web:registry.envited-x.net:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

@@ -470,7 +470,7 @@ def resolve_json_type(
     otherwise return the original string.
 
     NOTE: This resolver primarily handles CURIEs (prefix:local) using the
-    dynamically extracted prefix mapping. The manifest-based branch is
+     dynamically extracted prefix mapping. The manifest-based branch is
     currently only used if 'manifest_dir_url' is provided by the caller.
     """
     if ":" in json_type and "://" not in json_type:
@@ -670,9 +670,13 @@ def build_dict_for_ontologies(
         ):
             # Generic single JSON/JSON-LD file
             collected_files.append(full_path)
+
             # Old pattern: from an explicit *_instance.json we still auto-add
-            # sibling *_reference.json files in the same directory.
-            if full_path.endswith("_instance.json"):
+            # sibling *_reference.json files in the same directory, UNLESS
+            # it is an *_inline_instance.json file.
+            if full_path.endswith("_instance.json") and not full_path.endswith(
+                "_inline_instance.json"
+            ):
                 directory = os.path.dirname(full_path)
                 collected_files.extend(
                     glob.glob(os.path.join(directory, "*_reference.json"))
