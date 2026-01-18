@@ -1,7 +1,7 @@
 ======================================================================================================================================================
 =                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                                           ['envited-x/tests/fail_01_missing_has_content_instance.json']                                            =
+=                   ['envited-x/tests/fail_01_missing_has_content_instance.json', 'base-references/gx_legalperson_reference.json']                   =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
@@ -11,7 +11,7 @@
 =    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasContent                                                             =
 =    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                                     =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                          =
 =    Property:         https://ontologies.envited-x.net/envited-x/v3/ontology#hasDataResourceExtension                                               =
 =    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
 =                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =

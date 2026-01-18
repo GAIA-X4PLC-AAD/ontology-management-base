@@ -10,19 +10,21 @@
   "@id": "did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
   "@type": "envited-x:SimulationAsset",
   "envited-x:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8",
     "@type": "envited-x:DataResource",
     "gx:name": "3D Model in Grafing",
     "gx:description": "A 3D model representing the town district with traffic signs.",
     "gx:version": "1.0.0",
     "gx:license": "EPL-2.0",
-    "gx:policy": "allow",
+    "gx:resourcePolicy": "allow",
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
     "gx:producedBy": {
       "@id": "did:web:did.ascs.digital:participants:bmw"
     },
     "gx:exposedThrough": {
-      "@id": "did:web:registry.envited-x.net::SimulationAsset:vK9zP4rN2mQt7XjL5bS8yH3cW1dGf6A8"
+      "@id": "did:web:did.ascs.digital:services:trust-anchor",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "envited-x:hasDataResourceExtension": {
@@ -37,7 +39,7 @@
       "@id": "did:web:registry.envited-x.net:Manifest:ksfw72PrV1L9XYsZxJqTg9Ounh2Qez4cMEm1"
     },
     "skos:note": {
-      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@value": "Reference to the simulation asset manifest.",
       "@type": "xsd:string"
     },
     "sh:conformsTo": [

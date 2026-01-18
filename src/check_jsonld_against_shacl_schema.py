@@ -28,6 +28,14 @@ from urllib.parse import urlparse
 
 from rdflib import OWL, RDF, Graph, Namespace
 
+# Optimization: Attempt to use Oxigraph for much faster graph operations
+try:
+    import oxrdflib  # noqa: F401
+
+    FAST_STORE = "oxigraph"
+except ImportError:
+    FAST_STORE = "default"
+
 try:
     from pyshacl import validate
 except ImportError as e:  # pragma: no cover - environment might not have pyshacl
@@ -39,6 +47,7 @@ else:
 from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
 DEFAULT_ROOT_DIRECTORY = "."
+CACHE_FILENAME = ".ontology_iri_cache.json"
 
 
 class StepTimer:
@@ -287,7 +296,8 @@ def extract_prefixes_from_ttl(file_path: str) -> Dict[str, str]:
     Parses a Turtle (TTL) file and extracts the @prefix / @base definitions
     into a dictionary.
     """
-    g = Graph()
+    # Suggestion 3: Use fast store
+    g = Graph(store=FAST_STORE)
     g.parse(file_path, format="turtle")
     prefixes = {prefix: str(namespace) for prefix, namespace in g.namespaces()}
     logging.debug("Extracted prefixes from TTL %s: %s", file_path, prefixes)
@@ -541,7 +551,8 @@ def load_rdf_files(
     if file is None:
         file = sys.stdout
 
-    data_graph = Graph()
+    # Suggestion 3: Use fast store
+    data_graph = Graph(store=FAST_STORE)
     loaded_count = 0
     failed_count = 0
     temp_files_to_cleanup: List[str] = []
@@ -849,7 +860,8 @@ def build_data_graph_from_dict(
 
     if not all_jsonld_files:
         print_out("Error code 100: No instance/reference JSON-LD files found.")
-        return Graph(), 0, 0
+        # Suggestion 3: Fast Store
+        return Graph(store=FAST_STORE), 0, 0
 
     print_out("📌 Loading JSON-LD files into data graph...")
     # NOTE: This loads only the JSON(-LD) files discovered from the CLI args.
@@ -881,31 +893,96 @@ def _build_ontology_iri_index(root_dir: str) -> Dict[str, str]:
     Scans for all *_ontology.ttl files and builds a map where:
     Key = Ontology IRI (from owl:Ontology)
     Value = File path
+
+    Uses a cache file to avoid re-parsing unchanged TTL files.
     """
+    cache_path = os.path.join(root_dir, CACHE_FILENAME)
+    cache: Dict[str, Dict[str, object]] = {}
+
+    # Load cache if exists
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path, "r", encoding="utf-8") as f:
+                cache = json.load(f)
+        except Exception as e:
+            logging.warning("Failed to load ontology cache: %s. Rebuilding.", e)
+
     iri_to_file: Dict[str, str] = {}
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
 
+    updated_cache = {}
+    cache_dirty = False
+
     for onto in ontology_files:
-        g = Graph()
+        onto_norm = os.path.normpath(onto)
         try:
-            g.parse(onto, format="turtle")
-        except Exception as e:  # defensive
-            logging.warning("Failed to parse ontology %s for IRI index: %s", onto, e)
+            mtime = os.path.getmtime(onto_norm)
+        except OSError:
+            continue  # File might have vanished
+
+        # Check cache
+        cached_entry = cache.get(onto_norm)
+        if cached_entry and cached_entry.get("mtime") == mtime:
+            # Cache hit
+            print(f"📦 Cache hit for: {onto_norm}")
+            iri = cached_entry.get("iri")
+            if iri:
+                # Add to current index
+                if iri in iri_to_file and iri_to_file[iri] != onto_norm:
+                    logging.warning(
+                        "Ontology IRI %s defined by multiple files: %s, %s",
+                        iri,
+                        iri_to_file[iri],
+                        onto_norm,
+                    )
+                else:
+                    iri_to_file[iri] = onto_norm
+
+                # Keep in updated cache
+                updated_cache[onto_norm] = cached_entry
+                continue
+
+        # Cache miss or stale: Parse file
+        # Suggestion 3: Fast Store
+        g = Graph(store=FAST_STORE)
+        try:
+            g.parse(onto_norm, format="turtle")
+        except Exception as e:
+            logging.warning(
+                "Failed to parse ontology %s for IRI index: %s", onto_norm, e
+            )
             continue
 
+        found_iri = None
         for s in g.subjects(RDF.type, OWL.Ontology):
             iri_raw = str(s)
-            iri = normalize_iri(iri_raw)
-            # If there are multiple, we keep the first; log and continue
-            if iri in iri_to_file and iri_to_file[iri] != onto:
+            found_iri = normalize_iri(iri_raw)
+
+            if found_iri in iri_to_file and iri_to_file[found_iri] != onto_norm:
                 logging.warning(
                     "Ontology IRI %s defined by multiple files: %s, %s",
                     iri_raw,
-                    iri_to_file[iri],
-                    onto,
+                    iri_to_file[found_iri],
+                    onto_norm,
                 )
             else:
-                iri_to_file[iri] = onto
+                iri_to_file[found_iri] = onto_norm
+
+            # Optimization: usually only one ontology per file.
+            break
+
+        if found_iri:
+            updated_cache[onto_norm] = {"mtime": mtime, "iri": found_iri}
+            cache_dirty = True
+
+    # Check if we need to save cache (if entries changed or files removed)
+    if cache_dirty or len(updated_cache) != len(cache):
+        try:
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(updated_cache, f, indent=2)
+            logging.debug("Updated ontology IRI cache at %s", cache_path)
+        except Exception as e:
+            logging.warning("Failed to write ontology cache: %s", e)
 
     logging.debug("Ontology IRI index: %s", iri_to_file)
     return iri_to_file
@@ -924,7 +1001,8 @@ def _build_ontology_dependencies(
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
 
     for onto in ontology_files:
-        g = Graph()
+        # Suggestion 3: Fast Store
+        g = Graph(store=FAST_STORE)
         try:
             g.parse(onto, format="turtle")
         except Exception as e:  # defensive
@@ -1120,10 +1198,10 @@ def load_shacl_and_ontologies(
             file=file,
         )
 
-    # 3) Parse Ontology Files
-    ont_graph = Graph()
+    # Suggestion 3: Fast Store Initialization
+    ont_graph = Graph(store=FAST_STORE)
     for ontology_file in relevant_ontology_files:
-        tmp_graph = Graph()
+        tmp_graph = Graph(store=FAST_STORE)
         try:
             tmp_graph.parse(ontology_file, format="turtle")
             ont_graph += tmp_graph
@@ -1132,21 +1210,26 @@ def load_shacl_and_ontologies(
                 file=file,
             )
         except Exception as e:
+            # FIX: Explicitly print the error to the output buffer so the user can see it
+            # even if debug logging is disabled.
+            print(f"❌ Failed to parse ontology {ontology_file}: {e}", file=file)
             logging.warning(
                 "Failed to parse ontology %s when building ontology graph: %s",
                 ontology_file,
                 e,
             )
 
-    # 4) Parse SHACL Files
-    shacl_graph = Graph()
+    # Suggestion 3: Fast Store Initialization
+    shacl_graph = Graph(store=FAST_STORE)
     for shacl_file in relevant_shacl_files:
-        tmp_graph = Graph()
+        tmp_graph = Graph(store=FAST_STORE)
         try:
             tmp_graph.parse(shacl_file, format="turtle")
             shacl_graph += tmp_graph
             print(f"✅ Loaded SHACL file into shacl graph: {shacl_file}", file=file)
         except Exception as e:
+            # FIX: Explicitly print the error to the output buffer.
+            print(f"❌ Failed to parse SHACL file {shacl_file}: {e}", file=file)
             logging.warning("Failed to parse SHACL file %s: %s", shacl_file, e)
 
     logging.debug("Completed loading SHACL and ontology files.")
@@ -1184,7 +1267,9 @@ def validate_jsonld_against_shacl(
     setup_logging(debug, stream=output_buffer)
     logger = logging.getLogger()
     if not debug:
-        logger.disabled = True
+        # FIX: Do not disable the logger completely, as it hides warnings.
+        # Set level to WARNING to show critical issues while hiding INFO/DEBUG.
+        logger.setLevel(logging.WARNING)
 
     if PYSHACL_IMPORT_ERROR is not None:
         print_out(
@@ -1267,6 +1352,10 @@ def validate_jsonld_against_shacl(
     with contextlib.redirect_stdout(output_buffer), contextlib.redirect_stderr(
         output_buffer
     ):
+        # Suggestion 2: Use inplace=True to significantly reduce memory/time overhead
+        # Note: We reverted to inplace=False because Oxigraph is strict about RDF correctness,
+        # and standard reasoners (like owlrl) might generate triples (e.g. literal subjects)
+        # that are technically invalid in strict RDF, causing a crash.
         conforms, report_graph, v_text = validate(
             data_graph,
             shacl_graph=shacl_graph,
