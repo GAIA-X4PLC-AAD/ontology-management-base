@@ -5,16 +5,11 @@ ontology dependency resolution driven by the data graph.
 
 New behaviour:
 
-- Accepts arbitrary *.json / *.jsonld instance files, e.g.
-    python check_jsonld_against_shacl.py \
-        examples/simpulseid-administrator-credential.json \
-        --root generated
-
-- Optional --root / --root-dir argument controls where SHACL and
-  ontology TTL files are searched (e.g. ./generated).
-
-- Old *_instance.json / *_reference.json pattern still works when
-  you pass directories as paths.
+- Accepts arbitrary *.json / *.jsonld instance files.
+- Automatically resolves dependency reference files from a 'base-references'
+  directory based on the naming prefix of the loaded instance file.
+- Optional --root / --root-dir argument controls where SHACL,
+  ontology TTL files, and base-references are searched.
 """
 
 import contextlib
@@ -47,15 +42,20 @@ DEFAULT_ROOT_DIRECTORY = "."
 
 
 class StepTimer:
+    """
+    A utility to measure and display the execution time of specific workflow steps.
+    It prints directly to stdout to ensure timing info is visible immediately
+    and not hidden in buffered output reports.
+    """
+
     def __init__(self):
         self.start_time = time.perf_counter()
         self.last_step_time = self.start_time
 
     def mark_step(self, step_name: str):
         """
-        Calculates duration and prints ONLY to the console (sys.stdout).
-        The 'file' argument is ignored for the timing message to ensure
-        benchmarks are not captured in the final report or logfile.
+        Calculates the duration since the last mark, prints it to the console,
+        and updates the timestamp for the next step.
         """
         now = time.perf_counter()
         duration = now - self.last_step_time
@@ -78,14 +78,12 @@ class StepTimer:
 
 def iri_to_namespace_hint(iri: str) -> str | None:
     """
-    Derive a lowercase namespace "hint" from a remote context IRI.
+    Extracts a likely namespace string (hint) from a remote URL.
 
-    Requirement:
+    Example:
         "https://schema.ascs.digital/SimpulseId/v1/credentials" -> "simpulseid"
 
-    Heuristic:
-        - Use the first non-empty path segment
-        - Lower-case it
+    Used to map remote Context URLs to local folder names.
     """
     try:
         parsed = urlparse(iri)
@@ -101,32 +99,18 @@ def iri_to_namespace_hint(iri: str) -> str | None:
 
 class LocalContextResolver:
     """
-    Resolve remote JSON-LD @context IRIs to local files and rewrite JSON-LD inputs.
+    Handles the resolution of JSON-LD @context fields.
 
-    Why:
-        rdflib's JSON-LD parser fetches remote contexts over HTTPS. In your case,
-        that fetch fails with DNS/TLS issues, which prevents any triples
-        from being loaded and yields false-positive validations unless aborted.
-
-    How:
-        For JSON-LD inputs whose @context is a list or string of remote IRIs,
-        rewrite those entries to *inline* JSON-LD contexts loaded from local
-        JSON files under a context root directory (provided via --context-root).
-
-    New requirements implemented here:
-      * initialize with the context_root directory by adding the list of folder
-        names present as available local contexts
-      * only rewrite when @context contains remote URLs (string or list of strings)
-      * for a remote URL, derive a lowercase namespace hint from the URL path:
-          https://schema.ascs.digital/SimpulseId/v1/credentials -> simpulseid
-      * if that namespace exists as a folder under context_root, replace the URL
-        with the *contents* of:
-          context_root/<namespace>/<namespace>_context.jsonld
-        by rewriting the JSON file.
-      * if not found, do not change it (W3C contexts can resolve externally).
+    Its primary purpose is to intercept remote URLs in @context (which often
+    fail to load due to firewall or DNS issues) and replace them with the
+    contents of local .jsonld files stored in a 'contexts' directory.
     """
 
     def __init__(self, context_root: str):
+        """
+        Scans the context_root directory to identify which namespaces
+        are available locally.
+        """
         self.context_root = os.path.abspath(context_root)
         self.available_namespaces: Set[str] = set()
 
@@ -143,24 +127,15 @@ class LocalContextResolver:
         )
 
     def _local_context_file_path(self, namespace: str) -> str:
-        """
-        Resolve local context file path:
-            context_root/<namespace>/<namespace>_context.jsonld
-        """
+        """Constructs the expected filesystem path for a local context file."""
         ns = namespace.lower()
         filename = f"{ns}_context.jsonld"
         return os.path.join(self.context_root, ns, filename)
 
     def _load_local_context_object(self, namespace: str) -> dict | None:
         """
-        Load the JSON-LD context file and return the context *object* (dict).
-
-        We accept either:
-          - a top-level {"@context": {...}} document
-          - or a top-level {...} dict that is itself the context object
-
-        Returns:
-            dict context object, or None if missing/unreadable/invalid.
+        Reads a local JSON-LD context file and extracts the dictionary
+        that should replace the remote URL reference.
         """
         local_path = self._local_context_file_path(namespace)
         if not os.path.exists(local_path):
@@ -184,10 +159,8 @@ class LocalContextResolver:
 
     def _resolve_context_entry(self, entry):
         """
-        Replace remote context URL with inline context object *only* if:
-          - entry is a remote URL, and
-          - its derived namespace exists as a folder under context_root, and
-          - the expected context file exists and can be loaded.
+        Checks a specific @context entry. If it is a URL and matches a local
+        namespace, returns the local JSON object; otherwise returns the entry as-is.
         """
         if isinstance(entry, str) and entry.startswith("http"):
             namespace = iri_to_namespace_hint(entry)
@@ -217,15 +190,9 @@ class LocalContextResolver:
 
     def rewrite_jsonld_file(self, jsonld_path: str) -> str:
         """
-        Rewrite a JSON/JSON-LD file to replace remote @context IRIs with *inline*
-        JSON-LD context objects loaded from local files.
-
-        Returns:
-            The path to a temporary rewritten JSON file if changes were made,
-            otherwise the original jsonld_path is returned.
-
-        NOTE:
-            Temporary files are created only when a rewrite is necessary.
+        Reads a JSON-LD file. If it contains remote context URLs that can be
+        resolved locally, it writes a modified copy to a temporary file
+        (with contexts inlined) and returns the path to that temporary file.
         """
         with open(jsonld_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -238,7 +205,6 @@ class LocalContextResolver:
 
         # If context is already an inline dict, no resolving is needed.
         if isinstance(ctx, dict):
-            # Inline dict context needs no network access; do nothing.
             return jsonld_path
 
         if isinstance(ctx, list):
@@ -276,8 +242,8 @@ class LocalContextResolver:
 
 def setup_logging(debug: bool = False, stream=None) -> None:
     """
-    Configure logging. If 'stream' is provided, logs go there
-    (we use output_buffer inside validate_jsonld_against_shacl).
+    Sets up the logging configuration. It allows redirecting logs to a
+    specific stream (like a StringIO buffer) to capture output for reports.
     """
     if stream is None:
         stream = sys.stdout
@@ -296,7 +262,10 @@ def setup_logging(debug: bool = False, stream=None) -> None:
 
 
 def ensure_folder_entry(ontology_dict: Dict[str, Dict], folder_name: str) -> None:
-    """Make sure a folder key exists in ontology_dict with all expected subfields."""
+    """
+    Initializes a standardized dictionary entry for a specific ontology folder
+    if it doesn't already exist.
+    """
     if folder_name not in ontology_dict:
         ontology_dict[folder_name] = {
             "instance": [],
@@ -314,6 +283,10 @@ def ensure_folder_entry(ontology_dict: Dict[str, Dict], folder_name: str) -> Non
 
 
 def extract_prefixes_from_ttl(file_path: str) -> Dict[str, str]:
+    """
+    Parses a Turtle (TTL) file and extracts the @prefix / @base definitions
+    into a dictionary.
+    """
     g = Graph()
     g.parse(file_path, format="turtle")
     prefixes = {prefix: str(namespace) for prefix, namespace in g.namespaces()}
@@ -322,6 +295,10 @@ def extract_prefixes_from_ttl(file_path: str) -> Dict[str, str]:
 
 
 def extract_prefixes_from_jsonld(file_path: str) -> Dict[str, str]:
+    """
+    Parses a JSON-LD file and extracts prefix mappings defined in its @context.
+    Only handles inline definitions, not remote ones.
+    """
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -350,8 +327,8 @@ def merge_prefix_mappings(
     source: str = "",
 ) -> Dict[str, str]:
     """
-    Merge 'additions' into 'base'. If a prefix already exists with
-    a different URI, log a warning but keep the original mapping.
+    Merges new prefix definitions into a base dictionary.
+    Warns if the same prefix key maps to a different URI.
     """
     for prefix, uri in additions.items():
         if prefix in base and base[prefix] != uri:
@@ -373,6 +350,10 @@ def merge_prefix_mappings(
 
 
 def _collect_used_prefixes_in_json_value(value) -> Set[str]:
+    """
+    Recursively checks a JSON object to find CURIEs (e.g. "prefix:Value")
+    and collects the used prefixes.
+    """
     used: Set[str] = set()
     if isinstance(value, str):
         # crude CURIE detection: "prefix:local", but not full IRIs or JSON-LD keywords
@@ -398,14 +379,8 @@ def _collect_used_prefixes_in_json_value(value) -> Set[str]:
 
 def check_jsonld_context_coverage(file_path: str) -> Dict[str, Set[str]]:
     """
-    Check whether @context of file_path defines all prefixes that are actually used
-    in the JSON-LD document.
-
-    Returns a dict with keys:
-        - 'declared': set[str]
-        - 'used': set[str]
-        - 'missing': set[str]
-        - 'unused': set[str]
+    Analyzes a JSON-LD file to ensure all prefixes used in the data
+    (as CURIEs) are actually declared in the @context.
     """
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -413,9 +388,7 @@ def check_jsonld_context_coverage(file_path: str) -> Dict[str, Set[str]]:
     context = data.get("@context", {})
     declared_prefixes: Set[str] = set()
 
-    # NOTE: This coverage check only handles inline dict contexts. If @context is a list
-    # (e.g., remote contexts + local dict), this warning is expected and the result is
-    # conservative (declared_prefixes may be incomplete).
+    # NOTE: This coverage check only handles inline dict contexts.
     if isinstance(context, dict):
         declared_prefixes = {k for k in context.keys() if isinstance(k, str)}
     else:
@@ -453,6 +426,10 @@ def check_jsonld_context_coverage(file_path: str) -> Dict[str, Set[str]]:
 def resolve_manifest_local_path(
     name: str, file_type: str, root_dir: str = DEFAULT_ROOT_DIRECTORY
 ) -> str:
+    """
+    Constructs a local file path based on a standard naming convention
+    (folder/folder_type.ttl).
+    """
     filename = f"{name}_{file_type}.ttl"
     local_path = os.path.join(root_dir, name, filename)
     print(f"Resolved manifest local path for {name} ({file_type}): {local_path}")
@@ -466,18 +443,15 @@ def resolve_json_type(
     root_dir: str = DEFAULT_ROOT_DIRECTORY,
 ) -> str:
     """
-    Resolve a JSON-LD @type into a fully qualified IRI if possible,
-    otherwise return the original string.
-
-    NOTE: This resolver primarily handles CURIEs (prefix:local) using the
-     dynamically extracted prefix mapping. The manifest-based branch is
-    currently only used if 'manifest_dir_url' is provided by the caller.
+    Converts a JSON-LD @type value (which might be a CURIE) into a full IRI
+    using the available prefix mappings.
     """
     if ":" in json_type and "://" not in json_type:
         prefix, local_name = json_type.split(":", 1)
         if prefix in namespace_prefixes:
             return namespace_prefixes[prefix] + local_name
     elif manifest_dir_url is not None:
+        # Legacy logic for resolving types via manifest manifests (mostly unused now)
         parsed_url = urlparse(manifest_dir_url)
         if parsed_url.path.endswith("/"):
             manifest_dir_url = manifest_dir_url.rstrip("/")
@@ -521,6 +495,10 @@ def extract_used_types(
     root_dir: str,
     file=None,
 ) -> Set[str]:
+    """
+    Scans the loaded data graph for all 'rdf:type' triples and resolves them
+    to full IRIs. Used to determine which ontologies are needed.
+    """
     if file is None:
         file = sys.stdout
     print("📌 Extracting all rdf:type from data graph...", file=file)
@@ -529,8 +507,6 @@ def extract_used_types(
 
     rdf_type_pred = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")["type"]
 
-    # NOTE: manifest_dir_url is currently unused by this pipeline (kept for
-    # compatibility with the original script's manifest resolution logic).
     manifest_dir_url = None
     for _, _, obj in data_graph.triples((None, rdf_type_pred, None)):
         resolved_type = resolve_json_type(
@@ -558,28 +534,9 @@ def load_rdf_files(
     context_resolver: LocalContextResolver | None = None,
 ) -> tuple[Graph, int, int]:
     """
-    Load a list of RDF files into a single rdflib.Graph.
-
-    Args:
-        rdf_files: List of file paths or URLs to RDF files.
-        rdf_format: Format of the RDF files (e.g., "json-ld", "turtle").
-        file: Optional file-like object to print output messages.
-        context_resolver: Optional LocalContextResolver used to rewrite JSON-LD @context
-            entries before parsing, avoiding network fetches.
-
-    Returns:
-        (Graph, loaded_count, failed_count):
-            - Graph: The RDF graph with all loaded data.
-            - loaded_count: number of files that parsed successfully
-            - failed_count: number of files that failed to parse
-
-    NOTE:
-        A common failure mode for JSON-LD is remote @context resolution.
-        If rdflib cannot fetch a remote context, parsing may fail and no triples
-        will be loaded.
-
-        If context_resolver is provided and rdf_format is JSON-LD, the input is
-        rewritten to inline local contexts for known namespaces.
+    Aggregates content from multiple RDF files into a single rdflib Graph.
+    Includes logic to rewrite JSON-LD files via the context_resolver to
+    prevent network calls.
     """
     if file is None:
         file = sys.stdout
@@ -593,7 +550,7 @@ def load_rdf_files(
         try:
             parse_target = rdf_file
             if rdf_format.lower() in {"json-ld", "jsonld"} and context_resolver:
-                # NOTE: Rewrite remote contexts to inline local contexts when possible.
+                # Rewrite remote contexts to inline local contexts when possible.
                 rewritten = context_resolver.rewrite_jsonld_file(rdf_file)
                 if rewritten != rdf_file:
                     temp_files_to_cleanup.append(rewritten)
@@ -628,30 +585,20 @@ def build_dict_for_ontologies(
     paths: List[str],
 ) -> Dict[str, Dict[str, object]]:
     """
-    Build a dictionary keyed by relative folder names with second-level keys:
-        - 'instance': List[str]
-        - 'reference': List[str]
-        - 'ontologies': List[str] (filled later with *relevant* schema files)
-        - 'shacle_shapes': List[str] (filled later with *relevant* schema files)
-        - 'prefixes': Dict[str, str] (JSON-LD + schema prefixes)
-        - 'context_issues': Dict[file_path, dict]
+    Scans the provided paths to organize files by their containing folder.
 
-    New semantics:
-
-    - If 'paths' contains directories:
-        we still collect *_instance.json and *_reference.json within them.
-
-    - If 'paths' contains files:
-        any *.json / *.jsonld file is accepted as an 'instance' file
-        (unless it ends with '_reference.json', which is treated as 'reference').
-
-    NOTE:
-        Files are resolved relative to the current working directory. The 'root_dir'
-        is used for grouping (relative folder keys) and for schema discovery.
+    NEW FUNCTIONALITY:
+    When an instance file is found, it extracts the file's prefix (e.g., 'envited-x'
+    from 'envited-x_instance.json') and automatically scans the 'base-references'
+    directory for any corresponding reference files (e.g., 'envited-x_manifest_reference.json')
+    and adds them to the validation set.
     """
     ontology_dict: Dict[str, Dict[str, object]] = {}
 
     collected_files: List[str] = []
+
+    # Define the base-references directory
+    base_refs_dir = os.path.join(root_dir, "base-references")
 
     for p in paths:
         # Interpret paths relative to current working directory, not root_dir.
@@ -685,7 +632,7 @@ def build_dict_for_ontologies(
     if not collected_files:
         return {}
 
-    # New: classify generic JSON files
+    # Classify generic JSON files
     instance_files: List[str] = []
     reference_files: List[str] = []
 
@@ -693,9 +640,6 @@ def build_dict_for_ontologies(
         if f.endswith("_reference.json"):
             reference_files.append(f)
         else:
-            # Any other JSON / JSON-LD file counts as "instance",
-            # including *_instance.json and arbitrary names like
-            # simpulseid-administrator-credential.json.
             instance_files.append(f)
 
     # Group JSON-LD by folder
@@ -705,6 +649,33 @@ def build_dict_for_ontologies(
             folder_name = rel_dir.replace(os.sep, "/")
             ensure_folder_entry(ontology_dict, folder_name)
             ontology_dict[folder_name][key].append(os.path.normpath(file_path))
+
+    # -----------------------------------------------------------------------
+    # NEW: Resolve Reference Files from 'base-references' based on Prefix
+    # -----------------------------------------------------------------------
+    if os.path.isdir(base_refs_dir):
+        for inst_file in instance_files:
+            # Determine the key/folder for this instance
+            rel_dir = os.path.relpath(os.path.dirname(inst_file), root_dir)
+            folder_name = rel_dir.replace(os.sep, "/")
+
+            # Determine prefix: 'envited-x_instance.json' -> 'envited-x'
+            filename = os.path.basename(inst_file)
+            prefix = filename.split("_")[0]
+
+            # Find matching reference files in base-references
+            matching_refs = glob.glob(
+                os.path.join(base_refs_dir, f"{prefix}*reference.json")
+            )
+
+            # Add them to the dictionary for this folder if not already present
+            for ref_path in matching_refs:
+                ref_norm = os.path.normpath(ref_path)
+                if ref_norm not in ontology_dict[folder_name]["reference"]:
+                    ontology_dict[folder_name]["reference"].append(ref_norm)
+                    print(
+                        f"🔗 Auto-linked reference: {os.path.basename(ref_norm)} -> {filename}"
+                    )
 
     return ontology_dict
 
@@ -718,14 +689,9 @@ def add_jsonld_prefixes_and_context_info(
     ontology_dict: Dict[str, Dict[str, object]],
 ) -> None:
     """
-    For each folder, extract prefixes from instance/reference JSON-LD files and
-    store them under 'prefixes'. Also store context coverage issues per file
-    under 'context_issues'.
-
-    NOTE:
-        Prefix extraction only considers inline @context dict entries. If the
-        document relies on remote contexts, the dynamic prefix mapping may be
-        incomplete unless those contexts are inlined in the JSON.
+    Iterates through all collected instance and reference files to:
+    1. Extract their JSON-LD prefixes.
+    2. Check for missing prefix declarations in their @context.
     """
     for folder_key, contents in ontology_dict.items():
         files_to_process: List[str] = []
@@ -759,9 +725,8 @@ def extend_prefixes_with_schema_files(
     root_dir: str,
 ) -> None:
     """
-    For each folder, also extract prefixes from TTL-based ontology and
-    SHACL files that are *actually used* (attached to the dict) and merge
-    them into the folder's 'prefixes'.
+    Extracts prefixes from the loaded ontology and SHACL TTL files and
+    merges them into the dictionary's prefix list.
     """
     for folder_key, contents in ontology_dict.items():
         ttl_files: List[str] = []
@@ -793,7 +758,8 @@ def build_global_prefix_mapping(
     ontology_dict: Dict[str, Dict[str, object]],
 ) -> Dict[str, str]:
     """
-    Merge all folder-level 'prefixes' into a single global mapping.
+    Consolidates prefix mappings from all folders into a single global
+    map for IRI resolution.
     """
     global_prefixes: Dict[str, str] = {}
     for folder_key, contents in ontology_dict.items():
@@ -804,7 +770,10 @@ def build_global_prefix_mapping(
 
 
 def print_prefix_mapping(prefixes: Dict[str, str], file=None) -> None:
-    """Pretty-print the dynamic prefix mapping."""
+    """
+    Helper function to print the resolved prefix-to-namespace mapping
+    in a readable table format.
+    """
     if file is None:
         file = sys.stdout
 
@@ -818,12 +787,12 @@ def print_prefix_mapping(prefixes: Dict[str, str], file=None) -> None:
     max_len = max(len(label) for label in labels)
 
     header_prefix = "Prefix".ljust(max_len)
-    print(f"   {header_prefix}   → Namespace", file=file)
-    print(f"   {'-' * max_len}   ─ {'-' * 60}", file=file)
+    print(f"   {header_prefix}    → Namespace", file=file)
+    print(f"   {'-' * max_len}    ─ {'-' * 60}", file=file)
 
     for prefix, ns in sorted(prefixes.items(), key=lambda x: (x[0] or "")):
         label = prefix if prefix else "(default)"
-        print(f"   {label.ljust(max_len)}   → {ns}", file=file)
+        print(f"   {label.ljust(max_len)}    → {ns}", file=file)
     print("", file=file)
 
 
@@ -835,6 +804,10 @@ def print_prefix_mapping(prefixes: Dict[str, str], file=None) -> None:
 def collect_instance_and_reference_files(
     ontology_dict: Dict[str, Dict[str, object]],
 ) -> Tuple[List[str], List[str]]:
+    """
+    Flattens the per-folder lists of files into two master lists:
+    one for instances and one for references.
+    """
     instance_files: List[str] = []
     reference_files: List[str] = []
     for contents in ontology_dict.values():
@@ -851,6 +824,10 @@ def build_data_graph_from_dict(
     output_buffer: StringIO,
     context_resolver: LocalContextResolver | None = None,
 ) -> tuple[Graph, int, int]:
+    """
+    Orchestrates the loading of the Data Graph by collecting all instance
+    and reference files and parsing them.
+    """
 
     def print_out(*args, **kwargs) -> None:
         print(*args, **kwargs, file=output_buffer)
@@ -880,12 +857,9 @@ def build_data_graph_from_dict(
 
 
 def normalize_iri(iri: str) -> str:
-    """Normalize IRIs/namespaces for comparison.
-
-    We strip any trailing "#" or "/" characters so that ontology IRIs
-    like ``.../owl``, ``.../owl/`` and ``.../owl#`` all collapse to the
-    same canonical form. This improves matching between prefixes and
-    ontology IRIs across different modelling styles.
+    """
+    Standardizes IRIs by removing trailing slashes or hash signs to
+    ensure reliable string comparisons.
     """
     while iri.endswith("#") or iri.endswith("/"):
         iri = iri[:-1]
@@ -894,8 +868,9 @@ def normalize_iri(iri: str) -> str:
 
 def _build_ontology_iri_index(root_dir: str) -> Dict[str, str]:
     """
-    Map ontology IRI (the subject of rdf:type owl:Ontology)
-    to the local *_ontology.ttl file that defines it.
+    Scans for all *_ontology.ttl files and builds a map where:
+    Key = Ontology IRI (from owl:Ontology)
+    Value = File path
     """
     iri_to_file: Dict[str, str] = {}
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
@@ -931,11 +906,9 @@ def _build_ontology_dependencies(
     iri_to_file: Dict[str, str],
 ) -> Dict[str, Set[str]]:
     """
-    For each *_ontology.ttl, determine which *other* ontologies it depends on,
-    based on prefixes whose namespace matches a known ontology IRI.
-
-    The edge direction is:
-        current_ontology  --(uses namespace of)-->  depended_ontology
+    Constructs a dependency graph between ontology files.
+    A dependency exists if Ontology A defines a prefix that points
+    to the IRI of Ontology B.
     """
     deps: Dict[str, Set[str]] = defaultdict(set)
     ontology_files = glob.glob(f"{root_dir}/**/*_ontology.ttl", recursive=True)
@@ -966,10 +939,8 @@ def _expand_ontology_dependencies_from(
     deps: Dict[str, Set[str]],
 ) -> List[str]:
     """
-    Starting from 'initial_files', follow ontology dependencies transitively
-    using the 'deps' graph.
-
-    Only ontologies reachable along this graph will be returned.
+    Performs a transitive closure on the dependency graph to find all
+    ontology files required by the initial set.
     """
     closure: Set[str] = set(os.path.normpath(f) for f in initial_files)
     queue: List[str] = list(closure)
@@ -991,7 +962,10 @@ def _expand_ontology_dependencies_from(
 
 
 def _get_namespace_from_iri(iri: str, prefix_mapping: Dict[str, str]) -> str | None:
-    """Determine folder/namespace key from an IRI string using the prefix mapping."""
+    """
+    Reverse look-up: Given a full IRI, determines the associated prefix
+    (namespace key) from the mapping.
+    """
     for prefix, namespace_url in prefix_mapping.items():
         if iri.startswith(namespace_url):
             return prefix
@@ -1005,8 +979,13 @@ def load_shacl_and_ontologies(
     file=None,
 ) -> Tuple[Graph, Graph, List[str], List[str]]:
     """
-    Load SHACL and Ontology files based on the namespaces defined in the JSON-LD context.
-    Also validates that all used types belong to a namespace present in the context.
+    Determines which SHACL and Ontology files to load.
+
+    Strategy:
+    1. Identify namespaces used in the Data Graph (via global_prefixes).
+    2. Load all files in folders matching those namespaces.
+    3. Resolve transitive dependencies using OWL imports/prefixes.
+    4. Validate that all used rdf:types map to a known namespace.
     """
     if file is None:
         file = sys.stdout
@@ -1028,8 +1007,6 @@ def load_shacl_and_ontologies(
                 "Validation rules for this type might be missing.",
                 file=file,
             )
-            # Optionally add it to targets so we try to load it anyway?
-            # target_namespaces.add(ns_key)
         elif not ns_key:
             # Type might be a full IRI not covered by any prefix, or a local IRI.
             logging.debug("Could not determine namespace key for type: %s", rdf_type)
@@ -1177,25 +1154,15 @@ def validate_jsonld_against_shacl(
     context_resolver: LocalContextResolver | None = None,
     logfile: str | None = None,
 ) -> Tuple[int, str]:
+    """
+    The master controller function that orchestrates the entire validation pipeline:
+    1. Analysis of JSON-LD contexts.
+    2. Construction of the Data Graph.
+    3. Discovery of required Ontologies/Shapes based on data types.
+    4. Execution of the PySHACL validator.
+    """
     output_buffer = StringIO()
     timer = StepTimer()
-    """
-    Main validation pipeline using ontology_dict built beforehand.
-    Returns (exit_code, output_text).
-
-    Semantics:
-    - Only the JSON(-LD) instance/reference files discovered from the CLI
-      arguments are loaded into the data graph.
-    - Based on the rdf:type values found there, only the *relevant*
-      SHACL shapes and ontologies (plus their ontology dependencies)
-      are loaded for validation.
-    - Ontologies themselves are NOT self-validated against their SHACL
-      shapes (focus is purely on instance data).
-
-    IMPORTANT:
-    - If no JSON-LD data could be loaded (e.g., remote context resolution fails),
-      the script aborts validation to avoid false positives.
-    """
 
     def print_out(*args, **kwargs) -> None:
         # We print to the buffer for the return value/logfile
