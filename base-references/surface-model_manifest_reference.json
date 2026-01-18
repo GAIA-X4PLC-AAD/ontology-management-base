@@ -22,7 +22,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./manifest_instance.json",
+        "@value": "./surface-model_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
@@ -32,30 +32,27 @@
     }
   },
   "manifest:hasLicense": {
-    "@type": "manifest:License",
-    "gx:license": {
-      "@value": "EPL-2.0"
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.envited-x.net::DataResource:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4"
     },
-    "manifest:hasLink": {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isPublic"
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isLicense"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "https://opensource.org/license/EPL-2.0",
+        "@type": "xsd:anyURI"
       },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isLicense"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://opensource.org/license/EPL-2.0",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+      "manifest:mimeType": {
+        "@value": "text/html",
+        "@type": "xsd:string"
       }
     }
   },
@@ -232,11 +229,11 @@
           "@type": "manifest:Dimensions",
           "manifest:unit": "pixels",
           "manifest:width": {
-            "@value": "1095",
+            "@value": "1095.0",
             "@type": "xsd:float"
           },
           "manifest:height": {
-            "@value": "850",
+            "@value": "850.0",
             "@type": "xsd:float"
           }
         }

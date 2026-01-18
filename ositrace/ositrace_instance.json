@@ -12,14 +12,21 @@
   "@id": "did:web:registry.envited-x.net:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
   "@type": "ositrace:OSITrace",
   "ositrace:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Cut-out scenario on testing ground",
-      "@type": "xsd:string"
+    "gx:name": "Cut-out scenario on testing ground",
+    "gx:description": "OSI SensorData trace of cut-out scenario on testing ground.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
+    "gx:producedBy": {
+      "@id": "did:web:did.ascs.digital:participants:bmw"
     },
-    "gx:description": {
-      "@value": "OSI SensorData trace of cut-out scenario on testing ground.",
-      "@type": "xsd:string"
+    "gx:exposedThrough": {
+      "@id": "did:web:did.ascs.digital:services:trust-anchor",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "ositrace:hasDataResourceExtension": {

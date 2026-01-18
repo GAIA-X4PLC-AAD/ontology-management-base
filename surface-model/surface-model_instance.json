@@ -9,17 +9,24 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "gx": "https://w3id.org/gaia-x/development#"
   },
-  "@id": "did:web:registry.envited-x.net:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@id": "did:web:registry.envited-x.net:SurfaceModel:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
   "@type": "surface-model:SurfaceModel",
   "surface-model:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Sample Surface Model Data",
-      "@type": "xsd:string"
+    "gx:name": "Sample Surface Model Data",
+    "gx:description": "A detailed surface model for simulation applications.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
+    "gx:producedBy": {
+      "@id": "did:web:did.ascs.digital:participants:bmw"
     },
-    "gx:description": {
-      "@value": "A detailed surface model for simulation applications.",
-      "@type": "xsd:string"
+    "gx:exposedThrough": {
+      "@id": "did:web:did.ascs.digital:services:trust-anchor",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "surface-model:hasDataResourceExtension": {

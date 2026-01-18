@@ -12,7 +12,7 @@
       "@type": "gx:DataResource",
       "schema:name": "Generated Data Resource",
       "schema:description": "Generated description.",
-      "gx:copyrightOwnedBy": "did:web:did.ascs.digital:participants:msg",
+      "gx:copyrightOwnedBy": "did:web:did.ascs.digital:participants:bmw",
       "gx:license": "EPL-2.0",
       "gx:obsoleteDateTime": {
         "@value": "2025-03-28T12:29:44Z",
@@ -25,7 +25,7 @@
       "gx:containsPII": false,
       "gx:resourcePolicy": "package access_control; default allow = false;",
       "gx:producedBy": {
-        "@id": "did:web:did.ascs.digital:participants:msg"
+        "@id": "did:web:did.ascs.digital:participants:bmw"
       },
       "gx:exposedThrough": {
         "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3"
@@ -38,7 +38,7 @@
         "gx:DataExchangeComponent"
       ],
       "gx:providedBy": {
-        "@id": "did:web:did.ascs.digital:participants:msg"
+        "@id": "did:web:did.ascs.digital:participants:bmw"
       },
       "gx:servicePolicy": {
         "@type": "gx:AccessUsagePolicy",
@@ -48,7 +48,7 @@
       "gx:serviceOfferingTermsAndConditions": {
         "@type": "gx:TermsAndConditions",
         "gx:url": {
-          "@value": "https://www.msg.group/terms",
+          "@value": "https://www.bmwgroup.com/terms",
           "@type": "xsd:anyURI"
         },
         "gx:hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

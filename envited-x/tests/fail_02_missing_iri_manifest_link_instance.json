@@ -19,7 +19,7 @@
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
     "gx:producedBy": {
-      "@id": "did:web:did.ascs.digital:participants:msg"
+      "@id": "did:web:did.ascs.digital:participants:bmw"
     },
     "gx:exposedThrough": {
       "@id": "did:web:registry.envited-x.net::SimulationAsset:vK9zP4rN2mQt7XjL5bS8yH3cW1dGf6A8"

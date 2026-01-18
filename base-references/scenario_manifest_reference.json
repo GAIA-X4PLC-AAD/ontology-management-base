@@ -27,7 +27,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./manifest_reference.json",
+        "@value": "./scenario_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
@@ -37,30 +37,27 @@
     }
   },
   "manifest:hasLicense": {
-    "@type": "manifest:License",
-    "gx:license": {
-      "@value": "MPL-2.0"
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
     },
-    "manifest:hasLink": {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isPublic"
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isLicense"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "https://www.eclipse.org/legal/epl-2.0/",
+        "@type": "xsd:anyURI"
       },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isLicense"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://www.mozilla.org/en-US/MPL/2.0/",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+      "manifest:mimeType": {
+        "@value": "text/html",
+        "@type": "xsd:string"
       }
     }
   },
@@ -182,6 +179,35 @@
         },
         "manifest:filename": {
           "@value": "scenario_preview.png",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    {
+      "@type": "manifest:Link",
+      "manifest:hasAccessRole": {
+        "@type": "manifest:AccessRole",
+        "@id": "envited-x:isPublic"
+      },
+      "manifest:hasCategory": {
+        "@type": "manifest:Category",
+        "@id": "envited-x:isSimulationData"
+      },
+      "skos:note": {
+        "@value": "Vehicle Catalog Reference (Required by Scenario Schema)"
+      },
+      "manifest:hasFileMetadata": {
+        "@type": "manifest:FileMetadata",
+        "manifest:filePath": {
+          "@value": "./catalogs/VehicleCatalog.xosc",
+          "@type": "xsd:anyURI"
+        },
+        "manifest:mimeType": {
+          "@value": "application/x-openscenario+xml",
+          "@type": "xsd:string"
+        },
+        "manifest:filename": {
+          "@value": "VehicleCatalog.xosc",
           "@type": "xsd:string"
         }
       }

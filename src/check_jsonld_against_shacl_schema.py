@@ -663,10 +663,20 @@ def build_dict_for_ontologies(
             filename = os.path.basename(inst_file)
             prefix = filename.split("_")[0]
 
-            # Find matching reference files in base-references
-            matching_refs = glob.glob(
-                os.path.join(base_refs_dir, f"{prefix}*reference.json")
-            )
+            # Determine prefix: 'envited-x_instance.json' -> 'envited-x'
+            filename = os.path.basename(inst_file)
+            prefix = filename.split("_")[0]
+
+            # PATTERN STRATEGY:
+            # 1. Always look for references matching the instance prefix (e.g. 'envited-x')
+            # 2. Always include 'gx' references as they are the shared base layer (LegalPerson, etc.)
+            search_patterns = {f"{prefix}*reference.json"}
+            if prefix != "gx":
+                search_patterns.add("gx*reference.json")
+
+            matching_refs = []
+            for pattern in search_patterns:
+                matching_refs.extend(glob.glob(os.path.join(base_refs_dir, pattern)))
 
             # Add them to the dictionary for this folder if not already present
             for ref_path in matching_refs:

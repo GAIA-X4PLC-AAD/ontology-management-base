@@ -22,7 +22,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./manifest_instance.json",
+        "@value": "./envited-x_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
