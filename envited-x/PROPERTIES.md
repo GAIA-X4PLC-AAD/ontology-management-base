@@ -11,8 +11,7 @@
 
 | Shape | Property prefix | Property | MinCount | MaxCount | Description | Datatype/NodeKind | Filename |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| SimulationAssetShape | envited-x | hasDataResource | 1 |  |  |  | envited-x_shacl.ttl |
-| SimulationAssetShape | envited-x | hasDataResource |  |  |  |  | envited-x_shacl.ttl |
+| SimulationAssetShape | envited-x | hasDataResource | 1 | 1 |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasDataResourceExtension | 0 |  |  |  | envited-x_shacl.ttl |
 | SimulationAssetShape | envited-x | hasManifest | 1 | 1 |  |  | envited-x_shacl.ttl |
 | ExtendedLinkShape | manifest | hasAccessRole |  |  |  |  | envited-x_shacl.ttl |
