@@ -11,8 +11,4 @@
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasManifestReference                                                    =
 =    Error:            Less than 1 values on <did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>-                         =
 =                      ><https://ontologies.envited-x.net/manifest/v5/ontology#hasManifestReference>                                                 =
-= -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:did.ascs.digital:participants:bmw                                                                                     =
-=    Property:         https://w3id.org/gaia-x/development#registrationNumber                                                                        =
-=    Error:            Value does not have class <https://w3id.org/gaia-x/development#RegistrationNumber>                                            =
 ======================================================================================================================================================

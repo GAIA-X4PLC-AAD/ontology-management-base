@@ -31,30 +31,24 @@
     }
   },
   "manifest:hasLicense": {
-    "@type": "manifest:License",
-    "gx:license": {
-      "@value": "EPL-2.0"
+    "@type": "manifest:Link",
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "manifest:isPublic"
     },
-    "manifest:hasLink": {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "manifest:isPublic"
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "manifest:isLicense"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "https://opensource.org/license/EPL-2.0",
+        "@type": "xsd:anyURI"
       },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "manifest:isLicense"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://opensource.org/license/EPL-2.0",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+      "manifest:mimeType": {
+        "@value": "text/html",
+        "@type": "xsd:string"
       }
     }
   },

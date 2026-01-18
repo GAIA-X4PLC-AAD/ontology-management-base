@@ -3,7 +3,6 @@
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
@@ -32,30 +31,24 @@
     }
   },
   "manifest:hasLicense": {
-    "@type": "manifest:License",
-    "gx:license": {
-      "@value": "WRONG"
+    "@type": "manifest:Link",
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "manifest:isPublic"
     },
-    "manifest:hasLink": {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "manifest:isPublic"
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "manifest:isWRONG"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "https://opensource.org/license/EPL-2.0",
+        "@type": "xsd:anyURI"
       },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "manifest:isLicense"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://opensource.org/license/EPL-2.0",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+      "manifest:mimeType": {
+        "@value": "text/html",
+        "@type": "xsd:string"
       }
     }
   },

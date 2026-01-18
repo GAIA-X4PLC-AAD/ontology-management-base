@@ -48,6 +48,21 @@ from utils.print_formatting import print_validate_jsonld_against_shacl_result
 
 DEFAULT_ROOT_DIRECTORY = "."
 CACHE_FILENAME = ".ontology_iri_cache.json"
+# Standard IANA URI schemes that should be treated as absolute URIs,
+# not missing CURIE prefixes, if they appear in the data.
+KNOWN_URI_SCHEMES = {
+    "http",
+    "https",
+    "ftp",
+    "mailto",
+    "did",
+    "urn",
+    "tel",
+    "geo",
+    "ssh",
+    "git",
+    "file",
+}
 
 
 class StepTimer:
@@ -361,29 +376,46 @@ def merge_prefix_mappings(
 
 def _collect_used_prefixes_in_json_value(value) -> Set[str]:
     """
-    Recursively checks a JSON object to find CURIEs (e.g. "prefix:Value")
-    and collects the used prefixes.
+    Recursively checks a JSON object to find potential CURIEs (e.g. "prefix:Value")
+    and collects the used prefixes, filtering out known absolute URI schemes.
     """
     used: Set[str] = set()
+
+    def _extract_scheme(text: str) -> str | None:
+        """Helper to safely extract a valid scheme/prefix from a string."""
+        if ":" not in text or text.startswith("@"):
+            return None
+        try:
+            # urlparse is robust and handles standard URI syntax (RFC 3986)
+            parsed = urlparse(text)
+            scheme = parsed.scheme
+            # A valid scheme/prefix must be a non-empty string.
+            # We filter out known IANA schemes (like 'did', 'http') so they
+            # aren't flagged as 'missing prefixes'.
+            if scheme and scheme not in KNOWN_URI_SCHEMES:
+                return scheme
+        except Exception:
+            pass
+        return None
+
     if isinstance(value, str):
-        # crude CURIE detection: "prefix:local", but not full IRIs or JSON-LD keywords
-        if ":" in value and "://" not in value and not value.startswith("@"):
-            prefix = value.split(":", 1)[0]
-            if prefix:
-                used.add(prefix)
+        prefix = _extract_scheme(value)
+        if prefix:
+            used.add(prefix)
+
     elif isinstance(value, dict):
         for k, v in value.items():
-            if (
-                isinstance(k, str)
-                and ":" in k
-                and "://" not in k
-                and not k.startswith("@")
-            ):
-                used.add(k.split(":", 1)[0])
+            # Check the property key (e.g., "gx:name")
+            prefix = _extract_scheme(k)
+            if prefix:
+                used.add(prefix)
+            # Recursively check the value
             used |= _collect_used_prefixes_in_json_value(v)
+
     elif isinstance(value, list):
         for item in value:
             used |= _collect_used_prefixes_in_json_value(item)
+
     return used
 
 
