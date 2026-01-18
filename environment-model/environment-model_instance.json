@@ -7,7 +7,7 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "environment-model": "https://ontologies.envited-x.net/environment-model/v5/ontology#"
   },
   "@id": "did:web:registry.envited-x.net:EnvironmentModel:6w462bGIheP4YgwebemsXr3yjIqvhi90EDIi",
@@ -23,7 +23,7 @@
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
     "gx:producedBy": {
-      "@id": "did:web:did.ascs.digital:participants:bmw"
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
     "gx:exposedThrough": {
       "@id": "did:web:did.ascs.digital:services:trust-anchor",

@@ -70,7 +70,7 @@
     },
     "manifest:hasLicense": {
       "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net::DataResource:h3kG6rW9mQ1vYpL4bS2yH3cW1dGf6A8"
+        "@id": "did:web:registry.envited-x.net::DataResource:h3kG6rW9mQ1vYpL4bS2yH3cW1dGf6A8"
       },
       "@type": "manifest:Link",
       "manifest:hasAccessRole": {

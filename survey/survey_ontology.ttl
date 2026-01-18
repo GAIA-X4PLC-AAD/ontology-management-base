@@ -1,4 +1,4 @@
-@prefix survey: <https://ontologies.envited-x.net/survey/v5/ontology#> .
+@prefix survey: <https://ontologies.envited-x.net/survey/v6/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -8,6 +8,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 
 survey: a owl:Ontology ;
     rdfs:label "Ontology definition for survey"@en ;
@@ -43,22 +44,20 @@ survey: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/survey/v5/ontology#> ;
-    owl:versionInfo "v5" ;
+    owl:versionIRI <https://ontologies.envited-x.net/survey/v6/ontology#> ;
+    owl:versionInfo "v6" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/survey/v5/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/survey/v6/shape#> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
-survey:belongsTo rdf:type owl:ObjectProperty ;
-    rdfs:domain survey:SurveyResultDataOffering ;
-    rdfs:range survey:SurveyServiceOffering .
+# Classes
 
 survey:SurveyResultDataOffering rdf:type owl:Class ;
     rdfs:subClassOf gx:DataResource ;
@@ -69,3 +68,46 @@ survey:SurveyServiceOffering rdf:type owl:Class ;
     rdfs:subClassOf gx:SoftwareResource ;
     rdfs:label "Class definition for SurveyServiceOffering"@en ; 
     rdfs:comment "The survey service offering refers to the invitation to a participate in a survey."@en .
+
+# Properties
+
+survey:belongsTo rdf:type owl:ObjectProperty ;
+    rdfs:label "belongs to"@en ;
+    rdfs:comment "Reference to the survey service offering this result belongs to."@en ;
+    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:range survey:SurveyServiceOffering .
+
+survey:general rdf:type owl:ObjectProperty ;
+    rdfs:label "general"@en ;
+    rdfs:comment "General information about the survey."@en ;
+    rdfs:range general:General .
+
+survey:surveyStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "survey start time"@en ;
+    rdfs:comment "When the survey was started."@en ;
+    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:range xsd:dateTime .
+
+survey:surveyCloseTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "survey close time"@en ;
+    rdfs:comment "When the survey was closed."@en ;
+    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:range xsd:dateTime .
+
+survey:surveyUrl rdf:type owl:DatatypeProperty ;
+    rdfs:label "survey URL"@en ;
+    rdfs:comment "URL to access the survey."@en ;
+    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:range xsd:string .
+
+survey:surveyCreationTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "survey creation time"@en ;
+    rdfs:comment "When the survey was created."@en ;
+    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:range xsd:dateTime .
+
+survey:surveyEndTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "survey end time"@en ;
+    rdfs:comment "When the survey will end automatically."@en ;
+    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:range xsd:dateTime .

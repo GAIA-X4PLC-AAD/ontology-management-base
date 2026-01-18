@@ -240,7 +240,7 @@ This section describes guidelines that _must_ be followed when applying changes 
   - Add prefix
 
     ```turtle
-    @prefix general:https://ontologies.envited-x.net/general/v2/ontology# .
+    @prefix general:https://ontologies.envited-x.net/general/v3/ontology# .
     @prefix general:https://ontologies.envited-x.net/hdmap/v5/ontology .
     ```
 

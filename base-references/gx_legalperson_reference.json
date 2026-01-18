@@ -1,23 +1,31 @@
 {
   "@context": {
     "gx": "https://w3id.org/gaia-x/development#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/"
   },
-  "@id": "did:web:did.ascs.digital:participants:bmw",
+  "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam",
   "@type": "gx:LegalPerson",
-  "gx:name": "Bayerische Motoren Werke Aktiengesellschaft (BMW AG)",
+  "gx:name": "The GAIA-X 4 PLC AAD Project Team",
   "gx:registrationNumber": {
-    "@type": "gx:VatID",
-    "gx:vatID": "DE129273398"
+    "@type": "gx:TaxID",
+    "schema:taxID": "1234567890",
+    "gx:countryCode": "DE"
   },
   "gx:headquartersAddress": {
     "@type": "gx:Address",
     "gx:countryCode": "DE",
-    "gx:region": "DE21"
+    "gx:region": "DE30",
+    "gx:locality": "Berlin",
+    "gx:street-address": "Sample Street 1",
+    "gx:postal-code": "10115"
   },
   "gx:legalAddress": {
     "@type": "gx:Address",
     "gx:countryCode": "DE",
-    "gx:region": "DE21"
+    "gx:region": "DE30",
+    "gx:locality": "Berlin",
+    "gx:street-address": "Sample Street 1",
+    "gx:postal-code": "10115"
   }
 }

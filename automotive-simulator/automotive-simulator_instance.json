@@ -1,12 +1,14 @@
 {
   "@context": {
-    "general": "https://ontologies.envited-x.net/general/v2/ontology#",
-    "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v1/ontology#",
+    "general": "https://ontologies.envited-x.net/general/v3/ontology#",
+    "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v2/ontology#",
     "automotive-simulator": "https://ontologies.envited-x.net/automotive-simulator/v1/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:registry.gaia-x.eu:AutomotiveSimulator:qR5mT7nW2pZ4vK9zP8yH3cW1dGf6A8",
   "@type": "automotive-simulator:AutomotiveSimulator",
@@ -21,6 +23,13 @@
       "general:description": {
         "@value": "An extension of the CARLA simulator by various degradation models for perception sensors that cover effects of internal failures, external failures and security attacks.",
         "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "534634.0",
+        "@type": "xsd:float"
       }
     }
   },
@@ -38,20 +47,68 @@
     "ROS2",
     "TCP"
   ],
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:exposedThrough": {
+    "@id": "http://example.org/data-exchange-component",
+    "@type": "gx:DataExchangeComponent"
+  },
+  "gx:copyrightOwnedBy": {
+    "@value": "The GAIA-X 4 PLC AAD Project Team",
+    "@type": "xsd:string"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:containsPII": false,
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "auto-sim-001",
+  "dcterms:title": "Automotive Simulator Data Resource",
   "simulated-sensor:simulatedSensor": [
     {
       "@type": "simulated-sensor:SimulatedSensor",
       "simulated-sensor:sensorIdentifier": "sensor.other.radar",
       "simulated-sensor:sensorType": {
         "@type": "simulated-sensor:Radar"
-      }
+      },
+      "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      },
+      "gx:exposedThrough": {
+        "@id": "http://example.org/data-exchange-component",
+        "@type": "gx:DataExchangeComponent"
+      },
+      "gx:copyrightOwnedBy": {
+        "@value": "The GAIA-X 4 PLC AAD Project Team",
+        "@type": "xsd:string"
+      },
+      "gx:license": "EPL-2.0",
+      "gx:containsPII": false,
+      "gx:resourcePolicy": "allow intent",
+      "dcterms:identifier": "sensor-radar-001",
+      "dcterms:title": "Simulated Radar Sensor"
     },
     {
       "@type": "simulated-sensor:SimulatedSensor",
       "simulated-sensor:sensorIdentifier": "sensor.other.lidar",
       "simulated-sensor:sensorType": {
         "@type": "simulated-sensor:Lidar"
-      }
+      },
+      "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      },
+      "gx:exposedThrough": {
+        "@id": "http://example.org/data-exchange-component",
+        "@type": "gx:DataExchangeComponent"
+      },
+      "gx:copyrightOwnedBy": {
+        "@value": "The GAIA-X 4 PLC AAD Project Team",
+        "@type": "xsd:string"
+      },
+      "gx:license": "EPL-2.0",
+      "gx:containsPII": false,
+      "gx:resourcePolicy": "allow intent",
+      "dcterms:identifier": "sensor-lidar-001",
+      "dcterms:title": "Simulated Lidar Sensor"
     },
     {
       "@type": "simulated-sensor:SimulatedSensor",
@@ -59,9 +116,25 @@
       "simulated-sensor:sensorType": {
         "@type": "simulated-sensor:Camera",
         "simulated-sensor:rgbFlag": true,
-        "simulated-sensor:3dflag": false,
+        "simulated-sensor:flag3D": false,
         "simulated-sensor:depthFlag": false
-      }
+      },
+      "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      },
+      "gx:exposedThrough": {
+        "@id": "http://example.org/data-exchange-component",
+        "@type": "gx:DataExchangeComponent"
+      },
+      "gx:copyrightOwnedBy": {
+        "@value": "The GAIA-X 4 PLC AAD Project Team",
+        "@type": "xsd:string"
+      },
+      "gx:license": "EPL-2.0",
+      "gx:containsPII": false,
+      "gx:resourcePolicy": "allow intent",
+      "dcterms:identifier": "sensor-camera-001",
+      "dcterms:title": "Simulated Camera Sensor"
     }
   ]
 }

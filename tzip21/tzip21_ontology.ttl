@@ -6,6 +6,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 tzip21: a owl:Ontology ;
     rdfs:label "Ontology definition for tzip21"@en ;
@@ -18,30 +19,21 @@ tzip21: a owl:Ontology ;
         org:memberOf <https://www.bmwgroup.com/> ;
     ] ;
 
-    # Permanent identifier for the ontology (not version-specific)
     dcterms:identifier <https://ontologies.envited-x.net/tzip21> ;
-
-    # GitHub repository where the ontology is maintained
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
-
-    # Specific GitHub release used for publishing this version
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
-
-    # Versioning
     owl:versionIRI <https://ontologies.envited-x.net/tzip21/v1/ontology#> ;
     owl:versionInfo "v1" ;
-
-    # Reference to SHACL validation rules
     dcterms:conformsTo <https://ontologies.envited-x.net/tzip21/v1/shape#> ;
-
-    # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://tzip.tezosagora.org/proposal/tzip-21/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
+# --- Classes ---
 
 tzip21:Asset a owl:Class ;
     rdfs:label "Class definition for Asset"@en ;
-    rdfs:comment "A class representing a rich metadata asset."@en ;
+    rdfs:comment "A class representing a rich metadata asset, acting as a Service Offering in Gaia-X."@en ;
+    rdfs:subClassOf gx:ServiceOffering ; # CHANGED: Now a ServiceOffering
     dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,
@@ -63,3 +55,166 @@ tzip21:Dimensions a owl:Class ;
     rdfs:label "Class definition for Dimensions"@en ;
     rdfs:comment "A class representing the dimensions of an asset."@en .
 
+# --- Object Properties ---
+
+tzip21:formats a owl:ObjectProperty ;
+    rdfs:label "formats"@en ;
+    rdfs:domain tzip21:Asset ;
+    rdfs:range tzip21:Format .
+
+tzip21:attributes a owl:ObjectProperty ;
+    rdfs:label "attributes"@en ;
+    rdfs:domain tzip21:Asset ;
+    rdfs:range tzip21:Attribute .
+
+tzip21:assets a owl:ObjectProperty ;
+    rdfs:label "nested assets"@en ;
+    rdfs:domain tzip21:Asset ;
+    rdfs:range tzip21:Asset .
+
+tzip21:dimensions a owl:ObjectProperty ;
+    rdfs:label "dimensions"@en ;
+    rdfs:domain tzip21:Format ;
+    rdfs:range tzip21:Dimensions .
+
+tzip21:dataRate a owl:ObjectProperty ;
+    rdfs:label "data rate"@en ;
+    rdfs:domain tzip21:Format ;
+    rdfs:range tzip21:DataRate .
+
+# --- Datatype Properties ---
+
+tzip21:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:range xsd:string .
+
+tzip21:symbol a owl:DatatypeProperty ;
+    rdfs:label "symbol"@en ;
+    rdfs:range xsd:string .
+
+tzip21:decimals a owl:DatatypeProperty ;
+    rdfs:label "decimals"@en ;
+    rdfs:range xsd:integer .
+
+tzip21:description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:range xsd:string .
+
+tzip21:minter a owl:DatatypeProperty ;
+    rdfs:label "minter"@en ;
+    rdfs:range xsd:string .
+
+tzip21:creators a owl:DatatypeProperty ;
+    rdfs:label "creators"@en ;
+    rdfs:range xsd:string .
+
+tzip21:contributors a owl:DatatypeProperty ;
+    rdfs:label "contributors"@en ;
+    rdfs:range xsd:string .
+
+tzip21:publishers a owl:DatatypeProperty ;
+    rdfs:label "publishers"@en ;
+    rdfs:range xsd:string .
+
+tzip21:date a owl:DatatypeProperty ;
+    rdfs:label "date"@en ;
+    rdfs:range xsd:dateTime .
+
+tzip21:blockLevel a owl:DatatypeProperty ;
+    rdfs:label "block level"@en ;
+    rdfs:range xsd:integer .
+
+tzip21:type a owl:DatatypeProperty ;
+    rdfs:label "type"@en ;
+    rdfs:range xsd:string .
+
+tzip21:tags a owl:DatatypeProperty ;
+    rdfs:label "tags"@en ;
+    rdfs:range xsd:string .
+
+tzip21:genres a owl:DatatypeProperty ;
+    rdfs:label "genres"@en ;
+    rdfs:range xsd:string .
+
+tzip21:language a owl:DatatypeProperty ;
+    rdfs:label "language"@en ;
+    rdfs:range xsd:language .
+
+tzip21:identifier a owl:DatatypeProperty ;
+    rdfs:label "identifier"@en ;
+    rdfs:range xsd:string .
+
+tzip21:rights a owl:DatatypeProperty ;
+    rdfs:label "rights"@en ;
+    rdfs:range xsd:string .
+
+tzip21:rightsUri a owl:DatatypeProperty ;
+    rdfs:label "rights URI"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:artifactUri a owl:DatatypeProperty ;
+    rdfs:label "artifact URI"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:displayUri a owl:DatatypeProperty ;
+    rdfs:label "display URI"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:thumbnailUri a owl:DatatypeProperty ;
+    rdfs:label "thumbnail URI"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:externalUri a owl:DatatypeProperty ;
+    rdfs:label "external URI"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:isTransferable a owl:DatatypeProperty ;
+    rdfs:label "is transferable"@en ;
+    rdfs:range xsd:boolean .
+
+tzip21:isBooleanAmount a owl:DatatypeProperty ;
+    rdfs:label "is boolean amount"@en ;
+    rdfs:range xsd:boolean .
+
+tzip21:shouldPreferSymbol a owl:DatatypeProperty ;
+    rdfs:label "should prefer symbol"@en ;
+    rdfs:range xsd:boolean .
+
+tzip21:ttl a owl:DatatypeProperty ;
+    rdfs:label "TTL"@en ;
+    rdfs:range xsd:integer .
+
+tzip21:uri a owl:DatatypeProperty ;
+    rdfs:label "uri"@en ;
+    rdfs:range xsd:anyURI .
+
+tzip21:hash a owl:DatatypeProperty ;
+    rdfs:label "hash"@en ;
+    rdfs:range xsd:string .
+
+tzip21:mimeType a owl:DatatypeProperty ;
+    rdfs:label "mime type"@en ;
+    rdfs:range xsd:string .
+
+tzip21:fileSize a owl:DatatypeProperty ;
+    rdfs:label "file size"@en ;
+    rdfs:range xsd:integer .
+
+tzip21:fileName a owl:DatatypeProperty ;
+    rdfs:label "file name"@en ;
+    rdfs:range xsd:string .
+
+tzip21:duration a owl:DatatypeProperty ;
+    rdfs:label "duration"@en ;
+    rdfs:range xsd:time .
+
+tzip21:value a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:range [
+        a rdfs:Datatype ;
+        owl:unionOf (xsd:string xsd:integer xsd:float)
+    ] .
+
+tzip21:unit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:range xsd:string .

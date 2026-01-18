@@ -14,32 +14,22 @@ envited-x:SimulationAssetShape a sh:NodeShape ;
 
     #################################################################
     # hasDataResource:
-    #  - At least one inline envited-x:DataResource is REQUIRED.
-    #  - Additional values MAY be manifest:Link + envited-x:ExtendedLinkShape.
+    #  - Flexible: Can be Inline (envited-x:DataResourceShape)
+    #  - OR Linked (manifest:LinkShape + envited-x:ExtendedLinkShape)
+    #  This supports "Draft" assets where the full DataResource isn't known yet.
     #################################################################
-
-    # 1) Guard: every hasDataResource value must be either
-    #    - an inline DataResource (envited-x:DataResourceShape), OR
-    #    - a link (manifest:LinkShape + envited-x:ExtendedLinkShape).
     sh:property [
         sh:path envited-x:hasDataResource ;
         sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:or (
+            # Option A: Full Inline Content
             [ sh:node envited-x:DataResourceShape ]
+            
+            # Option B: Link Reference (No specific IRI protocol restricted)
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each value of envited-x:hasDataResource MUST be either (a) an inline envited-x:DataResource conforming to envited-x:DataResourceShape, or (b) a manifest:Link that conforms to envited-x:ExtendedLinkShape (for external or later-extended Gaia-X metadata)."@en ;
-    ] ;
-
-    # 2) Cardinality: there must be AT LEAST ONE inline DataResource.
-    #    (Links are optional extras.)
-    sh:property [
-        sh:path envited-x:hasDataResource ;
-        sh:qualifiedValueShape [
-            sh:node envited-x:DataResourceShape
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:message "Each SimulationAsset must have at least one INLINE envited-x:DataResource (conforming to envited-x:DataResourceShape) that provides gx:name and gx:description."@en ;
+        sh:message "envited-x:hasDataResource must be either (a) an inline envited-x:DataResource, or (b) a valid manifest:Link (LinkShape + ExtendedLinkShape)."@en ;
     ] ;
 
     #################################################################

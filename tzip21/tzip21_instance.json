@@ -5,8 +5,10 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcterms": "http://purl.org/dc/terms/"
   },
+  "@id": "did:web:registry.envited-x.net:Asset:TestfeldNiedersachsen_ALKS_ODR_sample",
   "@type": "tzip21:Asset",
   "tzip21:name": {
     "@value": "TestfeldNiedersachsen_ALKS_ODR_sample",
@@ -108,7 +110,7 @@
   ],
   "tzip21:formats": [
     {
-      "@type": "tzip21:FormatShape",
+      "@type": "tzip21:Format",
       "tzip21:uri": {
         "@value": "https://assets.envited-x.net/bafybeifo6ve5i6542vi6ruuflxdqtcmcisdtwlqefq2e5a33tljsaqxhpm",
         "@type": "xsd:anyURI"
@@ -131,7 +133,7 @@
       }
     },
     {
-      "@type": "tzip21:FormatShape",
+      "@type": "tzip21:Format",
       "tzip21:uri": {
         "@value": "ipfs://bafkreicuwg3s4uvei2iu2p5eobozghdodtwhwoi6qiawhwqj3nflrk6dxi",
         "@type": "xsd:anyURI"
@@ -154,7 +156,7 @@
       }
     },
     {
-      "@type": "tzip21:FormatShape",
+      "@type": "tzip21:Format",
       "tzip21:uri": {
         "@value": "ipfs://bafkreie2yjoudxlayordup63se7wbj6vroaoyqzcuixqcchpmd23ufno6u",
         "@type": "xsd:anyURI"
@@ -177,7 +179,7 @@
       }
     },
     {
-      "@type": "tzip21:FormatShape",
+      "@type": "tzip21:Format",
       "tzip21:uri": {
         "@value": "ipfs://bafybeief5r2xgciehzhx6c4kbooifsnbjpiifjei36lpi3kzcdmpr2wvue",
         "@type": "xsd:anyURI"
@@ -199,7 +201,7 @@
         "@type": "xsd:string"
       },
       "tzip21:dimensions": {
-        "@type": "tzip21:DimensionsShape",
+        "@type": "tzip21:Dimensions",
         "tzip21:value": {
           "@value": "1095x850",
           "@type": "xsd:string"
@@ -213,7 +215,7 @@
   ],
   "tzip21:attributes": [
     {
-      "@type": "tzip21:AttributeShape",
+      "@type": "tzip21:Attribute",
       "tzip21:name": {
         "@value": "de.gaiax4plcaad.ontology-management-base.hdmap.ontology",
         "@type": "xsd:string"
@@ -228,7 +230,7 @@
       }
     },
     {
-      "@type": "tzip21:AttributeShape",
+      "@type": "tzip21:Attribute",
       "tzip21:name": {
         "@value": "de.gaiax4plcaad.ontology-management-base.envited-x.metadata",
         "@type": "xsd:string"
@@ -243,7 +245,7 @@
       }
     },
     {
-      "@type": "tzip21:AttributeShape",
+      "@type": "tzip21:Attribute",
       "tzip21:name": {
         "@value": "de.gaiax4plcaad.ontology-management-base.manifest.ontology",
         "@type": "xsd:string"
@@ -258,17 +260,56 @@
       }
     },
     {
-      "@type": "tzip21:AttributeShape",
+      "@type": "tzip21:Attribute",
       "tzip21:name": {
         "@value": "de.gaiax4plcaad.ontology-management-base.georeference.metadata",
         "@type": "xsd:string"
       },
       "tzip21:value": {
-        "@value": "https://ontologies.envited-x.net/georeference/v4/ontology#",
+        "@value": "https://ontologies.envited-x.net/georeference/v5/ontology#",
         "@type": "xsd:string"
       },
       "tzip21:type": {
         "@value": "uri",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "gx:providedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:termsAndConditions": [
+    {
+      "@type": "gx:TermsAndConditions",
+      "gx:url": {
+        "@value": "https://www.mozilla.org/en-US/MPL/2.0/",
+        "@type": "xsd:anyURI"
+      },
+      "gx:hash": {
+        "@value": "2498777085732948759324875",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "gx:policy": [
+    {
+      "@value": "default-policy",
+      "@type": "xsd:string"
+    }
+  ],
+  "gx:dataAccountExport": [
+    {
+      "@type": "gx:DataAccountExport",
+      "gx:requestType": {
+        "@value": "email",
+        "@type": "xsd:string"
+      },
+      "gx:accessType": {
+        "@value": "digital",
+        "@type": "xsd:string"
+      },
+      "gx:formatType": {
+        "@value": "application/json",
         "@type": "xsd:string"
       }
     }

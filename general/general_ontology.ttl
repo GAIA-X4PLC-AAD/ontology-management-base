@@ -1,4 +1,4 @@
-@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -8,7 +8,7 @@
 @prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix gax-core: <https://w3id.org/gaia-x/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 general: a owl:Ontology ;
     rdfs:label "Ontology definition for general"@en ;
@@ -35,18 +35,20 @@ general: a owl:Ontology ;
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/general/v2/ontology#> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/general/v3/ontology#> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/general/v2/shacl#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/general/v3/shacl#> ;
 
     # Additional references
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+# Classes
+
 general:General a owl:Class ;
     rdfs:label "Class definition for General"@en ;
-    rdfs:comment "General properties common for all simulation assets. An asset is a container with all relevant data to understand and use. The ontology General contains classes reused in other simulation ontologies."@en .
+    rdfs:comment "General properties common for all simulation assets."@en .
 
 general:Description a owl:Class ;
     rdfs:label "Class definition for Description"@en ;
@@ -55,3 +57,35 @@ general:Description a owl:Class ;
 general:Data a owl:Class ;
     rdfs:label "Class definition for Data"@en ;
     rdfs:comment "General data properties of the simulation asset."@en .
+
+# Properties
+
+general:data a owl:ObjectProperty ;
+    rdfs:label "data"@en ;
+    rdfs:comment "Reference to the data properties object."@en ;
+    rdfs:domain general:General ;
+    rdfs:range general:Data .
+
+general:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "A human readable name of the entity."@en ;
+    rdfs:domain general:Description ;
+    rdfs:range xsd:string .
+
+# Note: general:description is used both as a link to the Description class 
+# and as a string property inside that class.
+general:description a rdf:Property ;
+    rdfs:label "description"@en ;
+    rdfs:comment "General description property (used for both object linkage and text content)."@en .
+
+general:size a owl:DatatypeProperty ;
+    rdfs:label "size"@en ;
+    rdfs:comment "Size of the data file(s) in MB."@en ;
+    rdfs:domain general:Data ;
+    rdfs:range xsd:float .
+
+general:recordingTime a owl:DatatypeProperty ;
+    rdfs:label "recording time"@en ;
+    rdfs:comment "Time of data acquisition."@en ;
+    rdfs:domain general:Data ;
+    rdfs:range xsd:dateTime .

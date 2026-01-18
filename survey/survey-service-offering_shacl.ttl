@@ -1,8 +1,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix survey: <https://ontologies.envited-x.net/survey/v5/ontology#> .
+@prefix survey: <https://ontologies.envited-x.net/survey/v6/ontology#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 @prefix gx: <https://w3id.org/gaia-x/development#> .
 
 survey:SurveyServiceOfferingShape

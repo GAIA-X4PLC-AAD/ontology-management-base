@@ -1,12 +1,14 @@
 {
     "@context": {
-        "general": "https://ontologies.envited-x.net/general/v2/ontology#",
-        "simulation-model": "https://ontologies.envited-x.net/simulation-model/v1/ontology#",
+        "general": "https://ontologies.envited-x.net/general/v3/ontology#",
+        "simulation-model": "https://ontologies.envited-x.net/simulation-model/v2/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
-        "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#"
+        "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
+        "gx": "https://w3id.org/gaia-x/development#",
+        "dcterms": "http://purl.org/dc/terms/"
     },
     "@id": "did:web:registry.gaia-x.eu:SimulationModel:2Jt36BA9ODxKZJ5yWRtF4BLDUkuvFL59IPra",
     "@type": "simulation-model:SimulationModel",
@@ -37,144 +39,160 @@
     },
     "simulation-model:format": {
         "@type": "simulation-model:Format",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelImplementationFormat": {
+        "simulation-model:modelImplementationFormat": {
             "@value": "OSMP 1.0/OSI 3.1.2/FMI 2.0",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelPreconditions": {
+        "simulation-model:modelPreconditions": {
             "@value": "Object-list input contains accurate bounding box values",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelImplementationPreconditions": {
+        "simulation-model:modelImplementationPreconditions": {
             "@value": "Model needs Windows 10 1809 or newer with nVidia Drivers version 389.12 or newer and OpenCL 2.0 capable GPU",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelIntegrationRequirements": {
+        "simulation-model:modelIntegrationRequirements": {
             "@value": "http://mywebsite.de/Requirements.pdf",
             "@type": "xsd:anyURI"
         }
     },
     "simulation-model:content": {
         "@type": "simulation-model:Content",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelType": "sensor",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelManufacturer": {
+        "simulation-model:modelType": "sensor",
+        "simulation-model:modelManufacturer": {
             "@value": "OpenMSL Project Group",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelFamily": {
+        "simulation-model:modelFamily": {
             "@value": "Sensor Family X4000",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelName": {
+        "simulation-model:modelName": {
             "@value": "X4101",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelVersion": {
+        "simulation-model:modelVersion": {
             "@value": "1.2.2",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelReleasedate": {
+        "simulation-model:modelReleasedate": {
             "@value": "2024-11-26T12:37:15",
             "@type": "xsd:dateTime"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelReleasestatus": {
+        "simulation-model:modelReleasestatus": {
             "@value": "Released",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelGuid": {
+        "simulation-model:modelGuid": {
             "@value": "7ae4-210f-dead-beef-042",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelPurpose": {
+        "simulation-model:modelPurpose": {
             "@value": "HAD function validation in OEM environment at object-list level",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelModellingApproach": {
+        "simulation-model:modelModellingApproach": {
             "@value": "model is purely object-list driven, weather effects are not modelled.",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorManufacturer": {
+        "simulation-model:sensorManufacturer": {
             "@value": "Sample company.",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorFamily": {
+        "simulation-model:sensorFamily": {
             "@value": "ARS5XX",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorName": {
+        "simulation-model:sensorName": {
             "@value": "ARS548",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorVersion": {
+        "simulation-model:sensorVersion": {
             "@value": "1.0.0",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorManufacturerPartnumber": {
+        "simulation-model:sensorManufacturerPartnumber": {
             "@value": "A123",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorType": {
+        "simulation-model:sensorType": {
             "@value": "object-output",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorTechnology": {
+        "simulation-model:sensorTechnology": {
             "@value": "radar",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#sensorTechnologyVariant": {
+        "simulation-model:sensorTechnologyVariant": {
             "@value": "long-range",
             "@type": "xsd:string"
         }
     },
     "simulation-model:quality": {
         "@type": "simulation-model:Quality",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelLimitations": {
+        "simulation-model:modelLimitations": {
             "@value": "This delivery is a pre-release and the model is intended to be used for checking the interfaces of the simulation toolchain. The model is not validated; thus it is not intended to be used for validation or verification of any sensor, especially not for ARS810 or ARS840. In particular, the existence of this model shall not be used to imply the existence of sensors ARS810 nor ARS840 nor their properties. This delivery is not developed according to process defined in ISO 26262 (Standard for Functional Safety).",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelValidityRange": {
+        "simulation-model:modelValidityRange": {
             "@value": "Sensor model is only accurate up to sensor/vehicle speeds of less than 150km/h",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelVerificationStatus": true,
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelVerificationReport": {
+        "simulation-model:modelVerificationStatus": true,
+        "simulation-model:modelVerificationReport": {
             "@value": "http://mywebsite.de/VerficiationReport.pdf",
             "@type": "xsd:anyURI"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelValidationStatus": true,
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelValidationPlatform": {
+        "simulation-model:modelValidationStatus": true,
+        "simulation-model:modelValidationPlatform": {
             "@value": "PMSF FMIBench 1.9.9.4 using osi3test 0.6.0 on Windows 10 1809",
             "@type": "xsd:string"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelValidationReport": {
+        "simulation-model:modelValidationReport": {
             "@value": "did:web:registry.gaia-x.eu:Validation:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
             "@type": "xsd:anyURI"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelValidationConcept": {
+        "simulation-model:modelValidationConcept": {
             "@value": "http://mywebsite.de/ValidationConcept.md",
             "@type": "xsd:anyURI"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelImplementationPerformanceCharacteristics": {
+        "simulation-model:modelImplementationPerformanceCharacteristics": {
             "@value": "Potentially real-time capable, if less than 100 objects in object list input at any one time",
             "@type": "xsd:string"
         }
     },
     "simulation-model:dataSource": {
         "@type": "simulation-model:DataSource",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#modelSpecification": {
+        "simulation-model:modelSpecification": {
             "@value": "http://mywebsite.de/ModelSpecification.pdf",
             "@type": "xsd:anyURI"
         }
     },
     "simulation-model:quantity": {
         "@type": "simulation-model:Quantity",
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#maxDetections": {
+        "simulation-model:maxDetections": {
             "@value": "800",
             "@type": "xsd:unsignedInt"
         },
-        "https://ontologies.envited-x.net/simulation-model/v1/ontology#maxObjects": {
+        "simulation-model:maxObjects": {
             "@value": "50",
             "@type": "xsd:unsignedInt"
         }
-    }
+    },
+    "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+        "@id": "http://example.org/data-exchange-component",
+        "@type": "gx:DataExchangeComponent"
+    },
+    "gx:copyrightOwnedBy": {
+        "@value": "The GAIA-X 4 PLC AAD Project Team",
+        "@type": "xsd:string"
+    },
+    "gx:license": "EPL-2.0",
+    "gx:containsPII": false,
+    "gx:resourcePolicy": "allow intent",
+    "dcterms:identifier": "simulation-model-example-001",
+    "dcterms:title": "Simulation Model Example Data Resource"
 }

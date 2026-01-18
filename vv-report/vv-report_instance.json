@@ -1,11 +1,12 @@
 {
     "@context": {
         "gx": "https://w3id.org/gaia-x/development#",
-        "vv-report": "https://ontologies.envited-x.net/vv-report/v1/ontology#",
-        "general": "https://ontologies.envited-x.net/general/v2/ontology#",
+        "vv-report": "https://ontologies.envited-x.net/vv-report/v2/ontology#",
+        "general": "https://ontologies.envited-x.net/general/v3/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "skos": "http://www.w3.org/2004/02/skos/core#"
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dcterms": "http://purl.org/dc/terms/"
     },
     "@id": "did:web:registry.gaia-x.eu:VVReport:h4kG79Sk3MvP6WzL5bS8yH3cW1dGf6A8",
     "@type": "vv-report:VvReport",
@@ -174,5 +175,21 @@
                 }
             }
         }
-    ]
+    ],
+    "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+        "@id": "http://example.org/data-exchange-component",
+        "@type": "gx:DataExchangeComponent"
+    },
+    "gx:copyrightOwnedBy": {
+        "@value": "The GAIA-X 4 PLC AAD Project Team",
+        "@type": "xsd:string"
+    },
+    "gx:license": "EPL-2.0",
+    "gx:containsPII": false,
+    "gx:resourcePolicy": "allow intent",
+    "dcterms:identifier": "vv-report-001",
+    "dcterms:title": "ARS548 V&V Report Data Resource"
 }

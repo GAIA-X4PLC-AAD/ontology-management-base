@@ -49,7 +49,6 @@ An ENVITED-X simulation asset follows a standardized file structure and a sample
 
 - 📁 **metadata**  
   Holds structured metadata files (`simulationAsset_instance.json`), including:
-
   - Asset identification and descriptive information
   - Detailed metadata conforming to ENVITED-X ontologies and Gaia-X-specific metadata standards.
 
@@ -81,7 +80,6 @@ A structured manifest serving as a registry of all contained files and external 
 The metadata instance file (`simulationAsset_instance.json`) fully describes the asset and integrates:
 
 - **Core Metadata (envited-x:DataResource)**
-
   - **Name**: Human-readable asset name.
   - **Description**: Brief description of the asset’s purpose.
 
@@ -105,7 +103,7 @@ This simulation asset is aligned with a set of standardized ontologies to guaran
 - **ENVITED-X Ontology**: [envited-x](https://ontologies.envited-x.net/envited-x/v3/ontology#)
 - **Manifest Ontology**: [manifest ontology v4](https://ontologies.envited-x.net/manifest/v5/ontology#)
 - **Scenario Ontology**: [scenario ontology v4](https://ontologies.envited-x.net/scenario/v5/ontology#)
-- **Georeference Ontology**: [georeference ontology v3](https://ontologies.envited-x.net/georeference/v4/ontology#)
+- **Georeference Ontology**: [georeference ontology v3](https://ontologies.envited-x.net/georeference/v5/ontology#)
 - **Gaia-X Shape**: [gx](https://w3id.org/gaia-x/development#)
 - **Gaia-X Trust Framework**: [version 22.10](https://docs.gaia-x.eu/policy-rules-committee/trust-framework/22.10/)
 

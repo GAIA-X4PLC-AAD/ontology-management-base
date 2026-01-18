@@ -8,7 +8,7 @@ from rdflib import RDF, Graph, Namespace
 
 
 def normalize_text(text: str) -> str:
-    """Standardizes text by scrubbing variable blank node IDs and absolute paths for test comparison."""
+    """Standardizes text by scrubbing variable blank node IDs for test comparison."""
     text = unicodedata.normalize("NFC", text)
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     text = _clean(text)
@@ -24,7 +24,6 @@ def _clean(val) -> str:
     if val is None:
         return ""
     v = str(val)
-    v = re.sub(r"/.*/ontology-management-base/", "[ROOT]/", v)
     v = re.sub(r"N[a-f0-9]{32}", "[BNODE]", v)
     return v
 

@@ -3,7 +3,7 @@
 @prefix hdmap: <https://ontologies.envited-x.net/hdmap/v5/ontology#> .
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v4/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -13,7 +13,9 @@
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
     
-    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    # 1) hasDataResource: 
+    # Flexible: Allows either an INLINE DataResource (when fully defined) 
+    # OR a Link (for draft/reference workflows where exposedThrough isn't known yet).
     sh:property [
         sh:path scenario:hasDataResource ;
         sh:minCount 1 ;
@@ -22,10 +24,10 @@ scenario:ScenarioShape a sh:NodeShape ;
             [ sh:node envited-x:DataResourceShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each Scenario must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:message "Each Scenario must have exactly one DataResource (Inline or Linked)."@en ;
     ] ;
 
-    # 2) hasDataResourceExtension: Mandatory domain-specific extension for Scenarios.
+    # 2) hasDataResourceExtension
     sh:property [
         sh:path scenario:hasDataResourceExtension ;
         sh:node scenario:DataResourceExtensionShape ;
@@ -34,7 +36,7 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:message "Each Scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
 
-    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    # 3) hasManifest
     sh:property [
         sh:path scenario:hasManifest ;
         sh:minCount 1 ;
@@ -47,10 +49,10 @@ scenario:ScenarioShape a sh:NodeShape ;
                 [ sh:node scenario:ManifestShape ]
             )]
             
-            # Case 2: Linked manifest reference (reusing the improved logic from Point A)
+            # Case 2: Linked manifest reference
             [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
-        sh:message "Each Scenario must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
+        sh:message "Each Scenario must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest."@en ;
     ] ;
     sh:targetClass scenario:Scenario .
 
@@ -63,34 +65,24 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:hasValue scenario:Manifest ;
         sh:message "The manifest node must be explicitly typed as scenario:Manifest."@en ;
     ] ;
-    # Property shape for artifact links:
+    
+    # [FIXED] Aligned with envited-x and manifest ontologies (Direct Link)
+    sh:property [
+        sh:path manifest:hasLicense ;
+        sh:node envited-x:LicenseLinkReferenceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "A scenario manifest must contain exactly one license link conforming to envited-x:LicenseLinkReferenceShape (category envited-x:isLicense)."@en ;
+    ] ;
+    
+    # Property shape for manifest reference:
     sh:property [
         sh:path manifest:hasManifestReference ;
         sh:qualifiedValueShape [
-            sh:node [ 
-            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
+            sh:node envited-x:ManifestLinkReferenceShape ;
         ] ;
         sh:qualifiedMinCount 1 ;
-        sh:message "An scenario manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
-    ] ;
-    sh:property [
-        sh:path manifest:hasLicense ;
-        sh:qualifiedValueShape [
-            sh:node manifest:LicenseShape ;
-            sh:property [
-                sh:path manifest:hasLink ;
-                sh:qualifiedValueShape [
-                    sh:node [ 
-                    sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-                    ] ;
-                ] ;
-                sh:qualifiedMinCount 1 ;
-                sh:message "A license must contain at least one link with an envited-x access role and category."@en ;
-            ]
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:message "An scenario manifest must contain at least one license link with an envited-x access role and category."@en ;
+        sh:message "A scenario manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
     ] ;
     
     # Property shape for artifact links:
@@ -98,22 +90,23 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
             sh:node [ 
-            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+                sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
             ] ;
         ] ;
         sh:qualifiedMinCount 1 ;
-        sh:message "An scenario manifest must contain at least one artifact link with an envited-x access role and category."@en ;
+        sh:message "A scenario manifest must contain at least one artifact link with an envited-x access role and category."@en ;
     ] ;
+
     # Property shape for external artifact links:
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
             sh:node [ 
-            sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
+                sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
             ] ;
         ] ;
         sh:qualifiedMinCount 0 ;
-        sh:message "If provided, a scenario manifest's referenced artifact links must have an envited-x access role and category."@en ;
+        sh:message "If provided, referenced artifact links must have an envited-x access role and category."@en ;
     ] ;
 
     # Ensure at least two manifest:Link(s) in hasArtifacts categorized as simulationData.
@@ -129,7 +122,7 @@ scenario:ManifestShape a sh:NodeShape ;
                 sh:hasValue envited-x:isSimulationData ;
             ]
         ] ;
-        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMinCount 2 ; # NARROWING: Base requires 0 or 1, Scenario requires 2.
         sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
     ] ;
 
@@ -150,7 +143,8 @@ scenario:ManifestShape a sh:NodeShape ;
         sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Referenced Simulation Data'."@en ;
     ] ;
 
-    # Ensure at least one HD Map reference (either inline hdmap:HdMap or a manifest:Link that satisfies ExtendedLinkShape).
+    # Ensure at least one HD Map reference
+    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
@@ -159,15 +153,21 @@ scenario:ManifestShape a sh:NodeShape ;
                 [ sh:and (
                     [ sh:node manifest:LinkShape ]
                     [ sh:node envited-x:ExtendedLinkShape ]
+                    [ sh:property [ 
+                        sh:path manifest:hasCategory ; 
+                        sh:hasValue envited-x:isReferencedSimulationData 
+                      ] 
+                    ]
                 ) ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "HD Map reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one HD Map, either inline or via a manifest:Link referencing hdmap:HdMap."@en ;
+        sh:description "Each scenario:Manifest must reference at least one HD Map."@en ;
     ] ;
 
-    # Ensure at least one Environment Model reference (either inline environment-model:EnvironmentModel or a manifest:Link that satisfies ExtendedLinkShape).
+    # Ensure at least one Environment Model reference
+    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
@@ -176,21 +176,32 @@ scenario:ManifestShape a sh:NodeShape ;
                 [ sh:and (
                     [ sh:node manifest:LinkShape ]
                     [ sh:node envited-x:ExtendedLinkShape ]
+                    [ sh:property [ 
+                        sh:path manifest:hasCategory ; 
+                        sh:hasValue envited-x:isReferencedSimulationData 
+                      ] 
+                    ]
                 ) ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:name "Environment Model reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one Environment Model, either inline or via a manifest:Link referencing environment-model:EnvironmentModel."@en ;
+        sh:description "Each scenario:Manifest must reference at least one Environment Model."@en ;
     ] ;
 
-    # Ensure at least one catalog reference via a manifest:Link that satisfies ExtendedLinkShape.
+    # Ensure at least one catalog reference
+    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
             sh:and (
                 [ sh:node manifest:LinkShape ]
                 [ sh:node envited-x:ExtendedLinkShape ]
+                [ sh:property [ 
+                    sh:path manifest:hasCategory ; 
+                    sh:hasValue envited-x:isSimulationData 
+                  ] 
+                ]
             )
         ] ;
         sh:qualifiedMinCount 1 ;
@@ -209,242 +220,32 @@ scenario:DataResourceExtensionShape a sh:NodeShape ;
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:ContentShape ;
-          sh:name "content"@en ;
-          sh:description "Attributes describing the content of the scenario."@en ;
-          sh:order 1 ;
           sh:path scenario:hasContent ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:FormatShape ;
-          sh:name "format"@en ;
-          sh:description "File format details of the scenario."@en ;
-          sh:order 2 ;
           sh:path scenario:hasFormat ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:QualityShape ;
-          sh:name "quality"@en ;
-          sh:description "Quality metrics of the scenario."@en ;
-          sh:order 3 ;
           sh:path scenario:hasQuality ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:QuantityShape ;
-          sh:name "quantity"@en ;
-          sh:description "Quantitative metrics describing the scenario."@en ;
-          sh:order 4 ;
           sh:path scenario:hasQuantity ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:DataSourceShape ;
-          sh:name "data source"@en ;
-          sh:description "Data sources used to create the scenario."@en ;
-          sh:order 5 ;
           sh:path scenario:hasDataSource ],
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node georeference:GeoreferenceShape ;
-          sh:name "georeference"@en ;
-          sh:description "Georeferencing information for the scenario."@en ;
-          sh:order 6 ;
           sh:path scenario:hasGeoreference ] ;
     sh:targetClass scenario:DataResourceExtension .
- 
-scenario:FormatShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    sh:property [ skos:example "ASAM OpenSCENARIO" ;
-            sh:description "Defines the type of data format used for the scenario asset."@en ;
-            sh:in ("ASAM OpenSCENARIO") ;
-            sh:maxCount 1 ;
-            sh:message "Validation of type failed!"@en ;
-            sh:name "type"@en ;
-            sh:order 1 ;
-            sh:path scenario:formatType ],
-        [ skos:example "1.5" ;
-            sh:datatype xsd:string ;
-            sh:description "Defines the version of the data format used for the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of version failed!"@en ;
-            sh:name "version"@en ;
-            sh:order 2 ;
-            sh:path scenario:version ] ;
-    sh:targetClass scenario:Format .
 
-scenario:ContentShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    sh:property [ skos:example "Functional, Logical, Concrete" ;
-            sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
-            sh:in ("Functional" "Logical" "Concrete") ;
-            sh:maxCount 1 ;
-            sh:message "Validation of type failed!"@en ;
-            sh:name "abstraction level"@en ;
-            sh:order 1 ;
-            sh:path scenario:abstractionLevel ],
-        [ skos:example "2009-06-30T18:30:00+02:00" ;
-            sh:datatype xsd:dateTime ;
-            sh:description "Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario)."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of timeDate failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "time date"@en ;
-            sh:order 2 ;
-            sh:path scenario:timeDate ],
-        [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)"@en ;
-            sh:datatype xsd:string ;
-            sh:description "Defines the purpose of the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of aim failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "aim"@en ;
-            sh:order 3 ;
-            sh:path scenario:aim ],
-        [ skos:example "GlobalPosition" ;
-            skos:example "ParameterDeclaration" ;
-            sh:datatype xsd:string ;
-            sh:description "Specifies which functions (e.g., actions) from the standard are utilized."@en ;
-            sh:message "Validation of usedStandardFunctions failed!"@en ;
-            sh:maxCount 1 ;
-            sh:minCount 0 ;
-            sh:name "used functions in the standard"@en ;
-            sh:order 4 ;
-            sh:path scenario:usedStandardFunctions ],
-        [ skos:example "via trajectory, via support points"@en ;
-            sh:datatype xsd:string ;
-            sh:description "Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of movementDescription failed!"@en ;
-            sh:name "movement description"@en ;
-            sh:order 5 ;
-            sh:path scenario:movementDescription ],
-        [ skos:example "stopIfTTCLowerThan" ;
-            sh:datatype xsd:string ;
-            sh:description "Defines scenario- or domain-specific commands or actions used in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of customCommands failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "custom commands"@en ;
-            sh:order 6 ;
-            sh:path scenario:customCommands ],
-        [ skos:example "194.01" ;
-            sh:datatype xsd:float ;
-            sh:description "Defines the azimuth of the sun in degrees."@en ;
-            sh:message "Validation of sunAzimuth failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "sun azimuth"@en ;
-            sh:order 10 ;
-            sh:minInclusive -360 ;
-            sh:maxInclusive 360 ;
-            sh:path scenario:sunAzimuth ],
-        [ skos:example "kangaroo crossing" ;
-            sh:datatype xsd:string ;
-            sh:description "Indicates which country-specific traffic signs are used in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of countrySpecificSign failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "country specific sign"@en ;
-            sh:order 11 ;
-            sh:path scenario:countrySpecificSign ],
-        [ skos:example "tuk tuk" ;
-            sh:datatype xsd:string ;
-            sh:description "Indicates which country-specific participants are used in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of countrySpecificTrafficParticipants failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "country specific traffic participants"@en ;
-            sh:order 12 ;
-            sh:path scenario:countrySpecificTrafficParticipants ],
-        [ skos:example "germany, not applicable" ;
-            sh:datatype xsd:string ;
-            sh:description "Indicates the country of origin for the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of country failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "country"@en ;
-            sh:order 13 ;
-            sh:path scenario:country ] ;
-    sh:targetClass scenario:Content .
-
-scenario:QuantityShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    sh:property [ skos:example "2" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the total number of temporary traffic objects defined in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of temporaryTrafficObjects failed!"@en ;
-            sh:name "temporary traffic objects"@en ;
-            sh:order 1 ;
-            sh:path scenario:temporaryTrafficObjects ],
-        [ skos:example "10" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the total number of traffic objects defined in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of numberTrafficObjects failed!"@en ;
-            sh:name "number traffic objects"@en ;
-            sh:order 2 ;
-            sh:path scenario:numberTrafficObjects ],
-        [ skos:example "myDriver, BestPedestrianController2000" ;
-            sh:datatype xsd:string ;
-            sh:description "Specifies the simulation core controllers (internal or external) used in the scenario."@en ;
-            sh:message "Validation of controllers failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "controllers"@en ;
-            sh:order 3 ;
-            sh:path scenario:controllers ],
-        [ skos:example "8" ;
-            sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the total number of permanent traffic objects defined in the scenario asset."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of permanentTrafficObjects failed!"@en ;
-            sh:name "permanent traffic objects"@en ;
-            sh:order 4 ;
-            sh:path scenario:permanentTrafficObjects ] ;
-    sh:targetClass scenario:Quantity .
-
-scenario:QualityShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    sh:property [ skos:example "0.1" ;
-            sh:datatype xsd:float ;
-            sh:description "Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements)."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of accuracyObjects failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "accuracy objects"@en ;
-            sh:order 1 ;
-            sh:path scenario:accuracyObjects ],
-        [ skos:example "Static sensor calibration performed at <origin> using system XYZ"@en ;
-            sh:datatype xsd:string ;
-            sh:description "Describes the calibration steps performed prior to the measurements."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of calibration failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "calibration"@en ;
-            sh:order 2 ;
-            sh:path scenario:calibration ] ;
-    sh:targetClass scenario:Quality .
-
-scenario:DataSourceShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    sh:property [ skos:example "Real World Data" ;
-            sh:description "Specifies the category of source data used to create the scenario."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of source type failed!"@en ;
-            sh:in ("Accident Database" "Real World Data" "Analytical Hazard Based Approach" "Formal Verification" "Operational Design Domain" "Ontology" "Standards, Regulations, Guidelines" "Real-world Deployment and Trials") ;
-            sh:minCount 0 ;
-            sh:name "source type"@en ;
-            sh:order 1 ;
-            sh:path scenario:sourceType ],
-        [ skos:example "Test drives on proving ground XYZ and system ABC"@en ;
-            sh:datatype xsd:string ;
-            sh:description "Provides a detailed description of the source data used."@en ;
-            sh:maxCount 1 ;
-            sh:message "Validation of source description failed!"@en ;
-            sh:minCount 0 ;
-            sh:name "source description"@en ;
-            sh:order 2 ;
-            sh:path scenario:sourceDescription ] ;
-    sh:targetClass scenario:DataSource .
+# Minimal shapes for connected nodes
+scenario:FormatShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Format .
+scenario:ContentShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Content .
+scenario:QuantityShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Quantity .
+scenario:QualityShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Quality .
+scenario:DataSourceShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:DataSource .

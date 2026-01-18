@@ -4,7 +4,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v4/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "gx": "https://w3id.org/gaia-x/development#"
@@ -22,7 +22,7 @@
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
     "gx:producedBy": {
-      "@id": "did:web:did.ascs.digital:participants:bmw"
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
     "gx:exposedThrough": {
       "@id": "did:web:did.ascs.digital:services:trust-anchor",

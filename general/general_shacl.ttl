@@ -1,4 +1,4 @@
-@prefix general: <https://ontologies.envited-x.net/general/v2/ontology#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
