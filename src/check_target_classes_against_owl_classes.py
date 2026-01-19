@@ -13,7 +13,7 @@ from utils.print_formatting import (
 SH = Namespace("http://www.w3.org/ns/shacl#")
 
 # List of folder names allowed to fail validation
-EXPECTED_TARGETCLASS_FAILURES = {"gx"}
+EXPECTED_TARGETCLASS_FAILURES = set()
 
 
 def get_local_name(uri: str) -> str:
@@ -25,6 +25,17 @@ def get_local_name(uri: str) -> str:
         return uri.rsplit("#", 1)[1].lower()
     else:
         return uri.rsplit("/", 1)[-1].lower()
+
+
+def extract_classes_from_graph(graph: Graph) -> set:
+    """
+    Extract local names of all classes (OWL and RDFS) from a graph.
+    """
+    classes = {get_local_name(str(cls)) for cls in graph.subjects(RDF.type, OWL.Class)}
+    classes.update(
+        {get_local_name(str(cls)) for cls in graph.subjects(RDF.type, RDFS.Class)}
+    )
+    return classes
 
 
 def extract_shacl_classes(directory: str) -> set:
@@ -55,9 +66,7 @@ def extract_ontology_classes(ontology_file: str) -> tuple:
     ontology_graph = Graph()
     ontology_graph.parse(ontology_file, format="turtle")
 
-    ontology_classes = {
-        get_local_name(str(cls)) for cls in ontology_graph.subjects(RDF.type, OWL.Class)
-    }
+    ontology_classes = extract_classes_from_graph(ontology_graph)
 
     label_to_class = {}
     for cls, label in ontology_graph.subject_objects(RDFS.label):
@@ -69,38 +78,65 @@ def extract_ontology_classes(ontology_file: str) -> tuple:
     return ontology_classes, label_to_class
 
 
+def get_base_ontology_classes(base_dir: str) -> set:
+    """
+    Recursively load classes from all .ttl files in the base-ontologies directory.
+    This provides context for external classes (e.g. schema.org) that are locally mirrored.
+    """
+    base_classes = set()
+    if not os.path.isdir(base_dir):
+        return base_classes
+
+    for root, _, files in os.walk(base_dir):
+        for file in files:
+            if file.endswith(".ttl"):
+                try:
+                    g = Graph()
+                    g.parse(os.path.join(root, file), format="turtle")
+                    base_classes.update(extract_classes_from_graph(g))
+                except Exception:
+                    # Silently ignore parsing errors in base ontologies to keep validation focused
+                    pass
+    return base_classes
+
+
 def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, str]:
     """
-    Validate if all target classes in the SHACL shapes are present in the ontology file as OWL classes.
-    - Passes if ontology_classes ⊇ shacl_classes (matching by local name, case-insensitive)
-    - Warns if ontology_classes has more classes than shacl_classes
-    - Fails if shacl_classes contains classes not found in ontology_classes
-
-    Returns:
-        (return_code, message) where return_code=0 means success,
-        200 means missing classes found (failure),
-        100 means no ontology files found (warning),
-        other codes can be defined as needed.
+    Validate if all target classes in the SHACL shapes are present in the ontology files
+    (either locally or in the base-ontologies).
     """
     ontology_files = glob.glob(os.path.join(directory, "*ontology.ttl"))
     if not ontology_files:
         message = f"⚠️  No ontology files found in {directory}. Skipping target class validation."
-        # Return a non-zero code to indicate a warning or special condition
         return 100, message
+
+    # Locate base-ontologies (assuming sibling structure)
+    abs_dir = os.path.abspath(directory)
+    root_dir = os.path.dirname(abs_dir)
+    base_ontologies_dir = os.path.join(root_dir, "base-ontologies")
+    base_classes = get_base_ontology_classes(base_ontologies_dir)
 
     full_message = []
     for ontology_file in ontology_files:
         ontology_classes, label_to_class = extract_ontology_classes(ontology_file)
+
+        # Combine local classes with base classes
+        valid_classes = ontology_classes.union(base_classes)
+
         shacl_classes = extract_shacl_classes(directory)
 
         # Convert all to lowercase for case-insensitive matching
-        ontology_classes_lower = {cls.lower() for cls in ontology_classes}
+        valid_classes_lower = {cls.lower() for cls in valid_classes}
         shacl_classes_lower = {cls.lower() for cls in shacl_classes}
 
-        matches = ontology_classes_lower & shacl_classes_lower
-        missing_classes = shacl_classes_lower - ontology_classes_lower
-        extra_classes = ontology_classes_lower - shacl_classes_lower
+        matches = valid_classes_lower & shacl_classes_lower
+        missing_classes = shacl_classes_lower - valid_classes_lower
 
+        # Check against pure local classes for "extra" reporting (optional, keeps output clean)
+        local_classes_lower = {cls.lower() for cls in ontology_classes}
+        extra_classes = local_classes_lower - shacl_classes_lower
+
+        # Try to recover missing classes using labels (only for local labels)
         recovered_classes = set()
         for missing in list(missing_classes):
             if missing in label_to_class:
@@ -109,7 +145,7 @@ def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, st
 
         summary = format_validate_target_classes_against_owl_classes_result(
             ontology_file,
-            len(ontology_classes),
+            len(valid_classes),
             len(shacl_classes),
             matches,
             missing_classes,
@@ -119,10 +155,8 @@ def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, st
         full_message.append(summary)
 
         if missing_classes:
-            # Failure: missing classes found
             return 200, "\n".join(full_message)
 
-    # If no missing classes found, success
     return 0, "\n".join(full_message)
 
 
@@ -142,32 +176,25 @@ def main():
     # Perform validation
     return_code, message = validate_target_classes_against_owl_classes(directory)
 
-    # Extract the folder name (e.g., from 'ontologies/gx' -> 'gx') to check against whitelist
     folder_name = os.path.basename(directory)
 
     if return_code != 0:
-        # Check if this failure is expected
         if folder_name in EXPECTED_TARGETCLASS_FAILURES:
             print(
                 f"⚠️ Expected target class failure for '{folder_name}' (ignored).",
                 flush=True,
             )
-            # Print the error details to stdout (so they are visible in logs but don't error)
             print(message, flush=True)
-            # Exit with success to keep CI pipeline running
             sys.exit(0)
         else:
-            # Real failure
             print(message, file=sys.stderr)
             sys.exit(return_code)
     else:
-        # Success
         print(message)
         sys.exit(0)
 
 
 if __name__ == "__main__":
-    # Set the encoding for stdout to UTF-8
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
     main()

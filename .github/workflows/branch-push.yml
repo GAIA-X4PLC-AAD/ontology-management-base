@@ -117,7 +117,7 @@ jobs:
         if: env.FILES_HAVE_CHANGED == 'true'
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12.0
+          python-version: 3.12.3
 
       - name: Install additional libraries
         if: env.FILES_HAVE_CHANGED == 'true'

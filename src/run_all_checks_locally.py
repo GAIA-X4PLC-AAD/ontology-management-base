@@ -25,7 +25,7 @@ EXCLUDED_FOLDERS = {
     "service-characteristics",
     "node_modules",
 }
-EXPECTED_TARGETCLASS_FAILURES = {"gx"}  # ontologies allowed to fail this check
+EXPECTED_TARGETCLASS_FAILURES = set()  # ontologies allowed to fail this check
 
 
 def get_ontology_dirs():
@@ -222,9 +222,9 @@ def main():
     # Sequence of checks; script will exit if any check returns a non-zero code.
     check_phases = [
         ("Syntax", check_syntax_all),
+        ("Target Classes", check_target_classes_all),
         ("JSON-LD SHACL", check_jsonld_against_shacl_all),
         ("Failing Tests", check_failing_tests_all),
-        ("Target Classes", check_target_classes_all),
     ]
 
     for name, phase_func in check_phases:
