@@ -93,48 +93,59 @@ scenario:ScenarioManifestConstraints a sh:NodeShape ;
 ### DataResourceExtension SHACL Shape
 scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:property 
-        [ sh:maxCount 1 ;
+        [ 
           sh:minCount 1 ;
           sh:node scenario:ContentOrTagShape ;
           sh:name "content"@en ;
           sh:description "Attributes describing the content of the scenario."@en ;
           sh:order 1 ;
-          sh:path scenario:hasContent ],
-        [ sh:maxCount 1 ;
+          sh:path scenario:hasContent
+        ],
+        [ 
+          sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:FormatShape ;
           sh:name "format"@en ;
           sh:description "File format details of the scenario."@en ;
           sh:order 2 ;
-          sh:path scenario:hasFormat ],
-        [ sh:maxCount 1 ;
+          sh:path scenario:hasFormat 
+        ],
+        [ 
+          sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:QualityShape ;
           sh:name "quality"@en ;
           sh:description "Quality metrics of the scenario."@en ;
           sh:order 3 ;
-          sh:path scenario:hasQuality ],
-        [ sh:maxCount 1 ;
+          sh:path scenario:hasQuality
+        ],
+        [ 
+          sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:QuantityShape ;
           sh:name "quantity"@en ;
           sh:description "Quantitative metrics describing the scenario."@en ;
           sh:order 4 ;
-          sh:path scenario:hasQuantity ],
-        [ sh:maxCount 1 ;
+          sh:path scenario:hasQuantity
+        ],
+        [
+          sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node scenario:DataSourceShape ;
           sh:name "data source"@en ;
           sh:description "Data sources used to create the scenario."@en ;
           sh:order 5 ;
-          sh:path scenario:hasDataSource ],
-        [ sh:maxCount 1 ;
+          sh:path scenario:hasDataSource
+        ],
+        [
+          sh:maxCount 1 ;
           sh:minCount 1 ;
           sh:node georeference:GeoreferenceShape ;
           sh:name "georeference"@en ;
           sh:description "Georeferencing information for the scenario."@en ;
           sh:order 6 ;
-          sh:path scenario:hasGeoreference ] ;
+          sh:path scenario:hasGeoreference 
+        ] ;
     sh:targetClass scenario:DataResourceExtension .
 
 ### New Union Shape for Content

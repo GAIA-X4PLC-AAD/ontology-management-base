@@ -1,26 +1,36 @@
 {
   "@context": {
-    "hdmap": "https://ontologies.envited-x.net/hdmap/v4/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "hdmap": "https://ontologies.envited-x.net/hdmap/v5/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "@vocab": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/"
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+  "@id": "did:web:registry.envited-x.net:HdMap:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
   "@type": "hdmap:HdMap",
   "hdmap:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:vP8mX2qL9kR5wJ3zN7bH4dC1fG0tY6",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Test HD Map Dataset",
-      "@type": "xsd:string"
+    "gx:name": "Test HD Map Dataset",
+    "gx:description": "A sample HD map dataset for testing, covering an urban environment.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
-    "gx:description": {
-      "@value": "A sample HD map dataset for testing, covering an urban environment.",
-      "@type": "xsd:string"
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "hdmap:hasDataResourceExtension": {
@@ -45,7 +55,7 @@
         "hdmap:trafficDirection": "right-hand"
       },
       {
-        "@type": "openlabel:Odd",
+        "@type": "openlabel:OddScenery",
         "openlabel:LaneSpecificationDimensions": false,
         "openlabel:laneSpecificationDimensionsValue": {
           "@type": "xsd:decimal",
@@ -135,7 +145,7 @@
     },
     "hdmap:hasGeoreference": {
       "@type": "georeference:Georeference",
-      "@id": "did:web:registry.gaia-x.eu:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
+      "@id": "did:web:registry.envited-x.net:Georeference:wDgNY3gZAxMe3LjhdAZ9TbPiYnQ-yybNhCu8",
       "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
@@ -182,7 +192,7 @@
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
           "@value": "32632",
-          "@type": "xsd:int"
+          "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
@@ -213,7 +223,7 @@
   "hdmap:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
+      "@id": "did:web:registry.envited-x.net:Manifest:zBH3LtNPDUjg60r1EAXdEtvqRM2EVWrXIv7q"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
@@ -221,7 +231,7 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"

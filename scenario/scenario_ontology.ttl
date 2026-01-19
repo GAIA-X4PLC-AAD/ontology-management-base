@@ -96,7 +96,7 @@ scenario:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasContent ;
-        owl:cardinality 1
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty scenario:hasDataSource ;

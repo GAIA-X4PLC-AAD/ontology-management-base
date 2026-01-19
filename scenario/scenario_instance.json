@@ -67,8 +67,8 @@
       {
         "@type": "openlabel:Odd",
         "openlabel:DrivableAreaEdge": [
-          "EdgeShoulderPavedOrGravel",
-          "EdgeLineMarkers"
+          { "@id": "openlabel:EdgeShoulderPavedOrGravel" },
+          { "@id": "openlabel:EdgeLineMarkers" }
         ]
       },
       {

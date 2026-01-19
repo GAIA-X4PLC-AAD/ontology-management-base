@@ -63,7 +63,6 @@ hdmap:DataResourceExtensionShape a sh:NodeShape ;
             sh:path hdmap:hasFormat
         ],
         [
-            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node hdmap:ContentOrOddSceneryShape ; # Refactored to use the Union Shape
             sh:message "Each item of hasContent must conform to either Scenario Content or OpenLABEL ODD Scenery."@en ;

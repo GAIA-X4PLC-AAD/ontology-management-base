@@ -86,7 +86,7 @@ hdmap:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
-        owl:cardinality 1
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataSource ;

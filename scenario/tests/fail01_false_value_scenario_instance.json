@@ -5,6 +5,7 @@
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "@vocab": "https://openlabel.asam.net/V1-0-0/ontologies/",
     "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -238,7 +239,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./manifest_reference.json",
+        "@value": "./base-references/scenario_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
