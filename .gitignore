@@ -2,5 +2,7 @@
 /.idea/
 /.playground/
 /.vscode/
+/node_modules/
 **/__pycache__/
-output.log
+*.log
+.ontology_iri_cache.json

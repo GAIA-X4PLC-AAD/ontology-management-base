@@ -1,0 +1,3 @@
+[submodule "service-characteristics"]
+	path = service-characteristics
+	url = git@gitlab.com:gaia-x/technical-committee/service-characteristics-working-group/service-characteristics.git

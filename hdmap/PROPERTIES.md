@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- hdmap: <https://ontologies.envited-x.net/hdmap/v4/ontology#>
+- hdmap: <https://ontologies.envited-x.net/hdmap/v5/ontology#>
 
 ## List of SHACL Properties
 
@@ -30,14 +30,14 @@
 | QualityShape | hdmap | accuracyLaneModelHeight | 0 | 1 | Specifies the accuracy of the lane model's height in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | precision | 0 | 1 | Specifies the relative precision of the measured road network in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | accuracyLaneModel2d | 0 | 1 | Specifies the accuracy of the lane model in the 2D plane in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberIntersections |  | 1 | Specifies the total number of intersections defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 12.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/12_junctions/12_01_introduction.html) | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberIntersections |  | 1 | Specifies the total number of intersections defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | numberTrafficLights |  | 1 | Specifies the number of all traffic lights defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | rangeOfModeling | 0 | 1 | Indicates the distance (in metres) to which the area beyond the traffic area has been modeled. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberOutlines |  | 1 | Specifies the number of all outline objects defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.3 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_03_object_outline.html) | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | speedLimit |  | 1 | Specifies the range of speed limits defined in the HD map, using the unit specified in the HD map. See ASAM OpenDRIVE 1.8.1 Annex A.1.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_491DC05E_01C6_49b3_83BE_A06DD81F9C35) |  | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberOutlines |  | 1 | Specifies the number of all outline objects defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | speedLimit |  | 1 | Specifies the range of speed limits defined in the HD map. |  | hdmap_shacl.ttl |
 | QuantityShape | hdmap | length |  | 1 | Defines the total length (sum of road lengths) of the road network in kilometres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | elevationRange |  | 1 | Specifies the difference between the maximum and minimum height of the road elevation profiles in metres. See ASAM OpenDRIVE 1.8.1 Chapter 10.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_05_elevation.html) | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberObjects |  | 1 | Specifies the number of all objects in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_01_introduction.html) | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberTrafficSigns |  | 1 | Specifies the number of all traffic signs (signals) in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 14.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/14_signals/14_01_introduction.html) | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | elevationRange |  | 1 | Specifies the difference between the maximum and minimum height of the road elevation profiles in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberObjects |  | 1 | Specifies the number of all objects in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberTrafficSigns |  | 1 | Specifies the number of all traffic signs (signals) in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
 | Range2DShape | hdmap | max |  |  | The maximum value of the range. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | Range2DShape | hdmap | min |  |  | The minimum value of the range. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |

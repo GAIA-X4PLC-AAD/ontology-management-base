@@ -20,6 +20,7 @@ It also supports **mixing standard HDMap content with OpenLABEL annotations** (e
 ---
 
 ## Contents of this folder
+
 - **`tests/`** – Example files used for validation.
 - **`hdmap_instance.json`**: A sample JSON-LD instance of an HDMap asset for reference and testing.
 - **`hdmap_ontology.ttl`** – The HDMap model (concepts and relationships).
@@ -27,6 +28,7 @@ It also supports **mixing standard HDMap content with OpenLABEL annotations** (e
 - **`manifest_reference.json`**: A machine-readable manifest that lists all files in the package and relevant external references. It follows the ENVITED-X/Manifest model so tools can reliably discover content and permissions.
 - **`PROPERTIES.md`**: An auto-generated summary of SHACL properties found in this folder.
 - **`README.md`**: This readme file.
+
 ---
 
 ## What a valid HDMap looks like
@@ -63,6 +65,7 @@ Each item under this property may be **either**:
   ]
 }
 ```
+
 If an item under hdmap:hasContent does not match one of these three options, validation will fail.
 
 ### How to Run SHACL Validation Tests
@@ -71,21 +74,23 @@ See the root guide for the canonical commands and explanations:
 [Running Tests Locally](../README.md#running-tests-locally)
 
 Example command for this folder:
+
 ```bash
 python3 check_jsonld_against_shacl_schema.py \hdmap\hdmap_instance.json
 ```
 
 ## Common validation issues
+
 * Misspelled values
 Example: a lane type written as "drivng" instead of "driving".
 Fix: Use allowed values shown in the examples or documentation.
 
-* Missing required content
+- Missing required content
 A report indicating a missing section means that section must be added (e.g., an item of type hdmap:Content under hasContent).
 
-* Properties in the wrong place
+- Properties in the wrong place
 Some shapes are “closed,” allowing only listed properties.
 Fix: Remove extra properties or move them to the correct section.
 
-* OpenLABEL flags without values
+- OpenLABEL flags without values
 If a flag such as openlabel:LaneSpecificationDimensions is set to true, and the shape expects a companion value (e.g., laneSpecificationDimensionsValue), include that value.

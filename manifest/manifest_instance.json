@@ -1,13 +1,12 @@
 {
   "@context": {
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
-    "sh": "http://www.w3.org/ns/shacl#",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
+  "@id": "did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
   "@type": "manifest:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
@@ -32,30 +31,24 @@
     }
   },
   "manifest:hasLicense": {
-    "@type": "manifest:License",
-    "gx:license": {
-      "@value": "EPL-2.0"
+    "@type": "manifest:Link",
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "manifest:isPublic"
     },
-    "manifest:hasLink": {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "manifest:isPublic"
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "manifest:isLicense"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "https://opensource.org/license/EPL-2.0",
+        "@type": "xsd:anyURI"
       },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "manifest:isLicense"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "https://opensource.org/license/EPL-2.0",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:mimeType": {
-          "@value": "text/html",
-          "@type": "xsd:string"
-        }
+      "manifest:mimeType": {
+        "@value": "text/html",
+        "@type": "xsd:string"
       }
     }
   },
@@ -85,7 +78,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 636673,
+          "@value": "636673",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -119,7 +112,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 5120,
+          "@value": "5120",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -130,6 +123,21 @@
     },
     {
       "@type": "manifest:Link",
+      "manifest:iri": {
+        "@id": "did:web:registry.envited-x.net:HdMap:DjHgK5ErTBow1Ya3J05tW9l12skGWgZn6kA9"
+      },
+      "skos:note": {
+        "@value": "Referenced HD Map Asset.",
+        "@type": "xsd:string"
+      },
+      "sh:conformsTo": [
+        {
+          "@id": "https://ontologies.envited-x.net/hdmap/v2/ontology#"
+        },
+        {
+          "@id": "https://ontologies.envited-x.net/manifest/v2/ontology"
+        }
+      ],
       "manifest:hasAccessRole": {
         "@type": "manifest:AccessRole",
         "@id": "manifest:isPublic"
@@ -149,11 +157,11 @@
           "@type": "xsd:string"
         },
         "manifest:mimeType": {
-          "@value": "application/json",
+          "@value": "application/ld+json",
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 5678,
+          "@value": "5678",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -187,7 +195,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 1500,
+          "@value": "1500",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -221,7 +229,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": 2400256,
+          "@value": "2400256",
           "@type": "xsd:integer"
         },
         "manifest:filename": {

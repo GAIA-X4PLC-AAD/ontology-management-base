@@ -3,7 +3,7 @@
 ## Prefixes
 
 - automotive-simulator: <https://ontologies.envited-x.net/automotive-simulator/v1/ontology#>
-- simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#>
+- simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v2/ontology#>
 
 ## List of SHACL Properties
 

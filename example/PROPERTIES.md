@@ -2,8 +2,8 @@
 
 ## Prefixes
 
-- description_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/>
-- example_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/>
+- description_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/description_ontology/#>
+- example_ontology: <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/#>
 
 ## List of SHACL Properties
 

@@ -1,7 +1,7 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v5/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -9,48 +9,52 @@
 
 ### OSITrace SHACL Shape
 ositrace:OSITraceShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property 
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node ositrace:DataResourceExtensionShape ;
-          sh:name "data resource extension"@en ;
-          sh:description "DataResourceExtension containing additional metadata about the OSI trace."@en ;
-          sh:order 1 ;
-          sh:path ositrace:hasDataResourceExtension ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node envited-x:DataResourceShape ;
-          sh:name "data resource"@en ;
-          sh:description "Links to an envited-x:DataResource that describes the raw data asset."@en ;
-          sh:order 2 ;
-          sh:path ositrace:hasDataResource ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
-            
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
+    sh:closed false ;
+    
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    sh:property [
+        sh:path ositrace:hasDataResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-          sh:name "manifest"@en ;
-          sh:description "Manifest file describing the OSI trace metadata."@en ;
-          sh:order 3 ;
-          sh:path ositrace:hasManifest ] ;
+        sh:message "Each OSI trace must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:order 2 ;
+    ],
+
+    # 2) hasDataResourceExtension: Mandatory domain-specific extension for OSI traces.
+    [
+        sh:path ositrace:hasDataResourceExtension ;
+        sh:node ositrace:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each OSI trace must have one associated DataResourceExtension object with content, format, quality, quantity, and dataSource."@en ;
+        sh:order 1 ;
+    ],
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    [
+        sh:path ositrace:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
+            # Case 2: Linked manifest reference (improved logic from Point A)
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each OSI trace must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
+        sh:order 3 ;
+    ] ;
     sh:targetClass ositrace:OSITrace .
 
 ### DataResourceExtension SHACL Shape
 ositrace:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
@@ -96,8 +100,8 @@ ositrace:DataResourceExtensionShape a sh:NodeShape ;
     sh:targetClass ositrace:DataResourceExtension .
 
 ositrace:ContentShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "[motorway, rural]" ;
             sh:description "Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3"@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
@@ -181,8 +185,8 @@ ositrace:ContentShape a sh:NodeShape ;
     sh:targetClass ositrace:Content .
 
 ositrace:DataSourceShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "PMSF DroneTracker; ARS 548 Sensor Output" ;
             sh:datatype xsd:string ;
             sh:description "Main acquisition device"@en ;
@@ -201,8 +205,8 @@ ositrace:DataSourceShape a sh:NodeShape ;
     sh:targetClass ositrace:DataSource .
 
 ositrace:FormatShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "3.7.0" ;
             sh:datatype xsd:string ;
             sh:description "Version of data format"@en ;
@@ -222,8 +226,8 @@ ositrace:FormatShape a sh:NodeShape ;
     sh:targetClass ositrace:Format .
 
 ositrace:QualityShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
             sh:description "Accuracy of traffic relevant objects, signs and signals."@en ;
@@ -280,7 +284,7 @@ ositrace:QualityShape a sh:NodeShape ;
             sh:path ositrace:calibration ],
         [ skos:example "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar" ;
             sh:datatype xsd:anyURI ;
-            sh:description "Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://ontologies.envited-x.net/vv-report/v1/ontology#."@en ;
+            sh:description "Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://ontologies.envited-x.net/vv-report/v2/ontology#."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of validationReport failed!"@en ;
             sh:minCount 0 ;
@@ -299,8 +303,8 @@ ositrace:QualityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quality .
 
 ositrace:QuantityShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "1000" ;
             sh:datatype xsd:unsignedInt ;
             sh:description "Number of frames/messages in the trace file."@en ;
@@ -312,8 +316,8 @@ ositrace:QuantityShape a sh:NodeShape ;
     sh:targetClass ositrace:Quantity .
 
 ositrace:MovingObjectShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "42" ;
             sh:datatype xsd:unsignedLong ;
             sh:description "Moving object identifier in trace file."@en ;
@@ -334,8 +338,8 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:targetClass ositrace:MovingObject .
 
 ositrace:EventShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
             sh:datatype xsd:dateTimeStamp ;
             sh:description "Exact timestamp of the event in the recorded trace."@en ;

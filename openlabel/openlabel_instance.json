@@ -27,11 +27,11 @@
     "ex:scenarioDefinition": false,
     "ex:scenarioDefinitionLanguageURI": false,
     "ex:scenarioDescription": {
-      "@type": "xds:literal",
+      "@type": "xsd:literal",
       "@value": "ALKS Scenario 4.2_1 FullyBlockingTarget Template"
     },
     "ex:scenarioName": {
-      "@type": "xds:literal",
+      "@type": "xsd:literal",
       "@value": "ALKS_Scenario_4.2_1_FullyBlockingTarget_TEMPLATE.xosc"
     },
     "ex:scenarioParentReference": false,

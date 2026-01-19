@@ -1,6 +1,6 @@
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -10,40 +10,57 @@
 # envited-x SHACL shape
 envited-x:SimulationAssetShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
+
+    #################################################################
+    # hasDataResource:
+    #  - Flexible: Can be Inline (envited-x:DataResourceShape)
+    #  - OR Linked (manifest:LinkShape + envited-x:ExtendedLinkShape)
+    #  This supports "Draft" assets where the full DataResource isn't known yet.
+    #################################################################
     sh:property [
         sh:path envited-x:hasDataResource ;
-        sh:node envited-x:DataResourceShape ;
         sh:minCount 1 ;
-        sh:maxCount 1 ; # Exactly ONE DataResource per SimulationAsset
-        sh:message "Each SimulationAsset must have exactly one associated DataResource, which provides essential metadata such as name and description."@en ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Option A: Full Inline Content
+            [ sh:node envited-x:DataResourceShape ]
+            
+            # Option B: Link Reference (No specific IRI protocol restricted)
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "envited-x:hasDataResource must be either (a) an inline envited-x:DataResource, or (b) a valid manifest:Link (LinkShape + ExtendedLinkShape)."@en ;
     ] ;
+
+    #################################################################
+    # hasDataResourceExtension: optional, but if present must conform
+    # to envited-x:DataResourceExtensionShape (hasContent + hasFormat).
+    #################################################################
     sh:property [
         sh:path envited-x:hasDataResourceExtension ;
         sh:node envited-x:DataResourceExtensionShape ;
         sh:minCount 0 ;  # Optional
-        sh:message """A SimulationAsset may have one or more DataResourceExtensions (e.g., georeference metadata, sensor calibration) 
-                      to provide additional structured metadata. These extensions do not represent standalone retrievable data assets."""@en ;
+        sh:message "A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one envited-x:hasContent and one envited-x:hasFormat)."@en ;
     ] ;
+
+    #################################################################
+    # hasManifest: exactly one, inline OR link.
+    #################################################################
+    # envited-x:SimulationAssetShape improvements
     sh:property [
         sh:path envited-x:hasManifest ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
             
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
+            # Case 2: Linked manifest reference
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
-        sh:message "Each SimulationAsset must have exactly one manifest, either inline (conforming to both manifest:ManifestShape and envited-x:ManifestShape) or via link (manifest:LinkShape)."@en ;
+        sh:message "Each SimulationAsset must have exactly one manifest. If linked, it MUST be of category envited-x:isManifest and include a manifest:iri."@en ;
     ] ;
+
     sh:targetClass envited-x:SimulationAsset .
 
 
@@ -51,7 +68,7 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
   sh:property [
     sh:path manifest:hasAccessRole ;
     sh:in ( envited-x:isPublic envited-x:isOwner envited-x:isRegistered ) ;
-    sh:message "Access role must be one of the envited‑x defined access roles." ;
+    sh:message "Access role must be one of the envited-x defined access roles." ;
   ] ;
   sh:property [
     sh:path manifest:hasCategory ;
@@ -60,16 +77,54 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
       envited-x:isLicense
       envited-x:isMiscellaneous
       envited-x:isSimulationData
-      envited-x:isReferencedSimulationData
+
       envited-x:isDocumentation
       envited-x:isMedia
       envited-x:isMetadata
       envited-x:isValidationReport
     ) ;
-    sh:message "Category must be one of the envited‑x defined categories." ;
+    sh:message "Category must be one of the envited-x defined categories." ;
   ] .
 
-  
+
+#################################################################
+# Shape for manifest:Link
+# (specialization of manifest:Link that points to manifests)
+#################################################################
+envited-x:ManifestLinkReferenceShape a sh:NodeShape ;
+    sh:node manifest:LinkShape ;
+    sh:node envited-x:ExtendedLinkShape ;
+    
+    # Specific Narrowing for Manifests:
+    sh:property [
+        sh:path manifest:hasCategory ;
+        sh:hasValue envited-x:isManifest ;
+        sh:message "A link used in hasManifest must have the category envited-x:isManifest."@en ;
+    ] ;
+    sh:property [
+        sh:path manifest:iri ;
+        sh:minCount 1 ;
+        sh:message "A linked manifest reference must specify a manifest:iri (e.g., a DID)."@en ;
+    ] .
+
+#################################################################
+# Specialized Link for licenses within the envited-x context
+#################################################################
+envited-x:LicenseLinkReferenceShape a sh:NodeShape ;
+    sh:node manifest:LinkShape ;
+    sh:node envited-x:ExtendedLinkShape ;
+    
+    sh:property [
+        sh:path manifest:hasCategory ;
+        sh:hasValue envited-x:isLicense ;
+        sh:message "A link used in hasLicense must have the category envited-x:isLicense."@en ;
+    ] ;
+    sh:property [
+        sh:path manifest:iri ;
+        sh:minCount 1 ;
+        sh:message "A linked license reference must specify a license:iri (e.g., a DID)."@en ;
+    ] .
+
 # Manifest Shape for additional constraints
 envited-x:ManifestShape a sh:NodeShape ;
     sh:closed false ;
@@ -82,39 +137,27 @@ envited-x:ManifestShape a sh:NodeShape ;
     sh:property [
         sh:path manifest:hasManifestReference ;
         sh:qualifiedValueShape [
-            sh:node [ 
             sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
         ] ;
         sh:qualifiedMinCount 1 ;
-        sh:message "An envited-x manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
+        sh:qualifiedMaxCount 1 ;
+        sh:message "An envited-x manifest must contain exactly one manifest reference link with an envited-x access role and category."@en ;
     ] ;
+    # Updated property in envited-x:ManifestShape
     sh:property [
         sh:path manifest:hasLicense ;
-        sh:qualifiedValueShape [
-            sh:node manifest:LicenseShape ;
-            sh:property [
-                sh:path manifest:hasLink ;
-                sh:qualifiedValueShape [
-                    sh:node [ 
-                    sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-                    ] ;
-                ] ;
-                sh:qualifiedMinCount 1 ;
-                sh:message "A license must contain at least one link with an envited-x access role and category."@en ;
-            ]
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:message "An envited-x manifest must contain at least one license link with an envited-x access role and category."@en ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        # Point directly to a specialized Link shape instead of the removed wrapper
+        sh:node envited-x:LicenseLinkReferenceShape ; 
+        sh:message "An envited-x manifest must contain exactly one license link with an envited-x access role and category envited-x:isLicense."@en ;
     ] ;
     
     # Property shape for artifact links:
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
-            sh:node [ 
             sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:message "An envited-x manifest must contain at least one artifact link with an envited-x access role and category."@en ;
@@ -123,14 +166,12 @@ envited-x:ManifestShape a sh:NodeShape ;
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
         sh:qualifiedValueShape [
-            sh:node [ 
             sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
         ] ;
         sh:qualifiedMinCount 0 ;
         sh:message "If provided, referenced artifact links must have an envited-x access role and category."@en ;
     ] ;
-    ## Ensure at least one `manifest:Link` for each required category
+    # Ensure at least one `manifest:Link` for each required category
     sh:property [
         sh:path manifest:hasArtifacts ;
         sh:qualifiedValueShape [
@@ -189,7 +230,7 @@ envited-x:ManifestShape a sh:NodeShape ;
 # SHACL Shape for envited-x:DataResource
 envited-x:DataResourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [ 
         sh:path gx:name ;
         sh:datatype xsd:string ;
@@ -208,72 +249,100 @@ envited-x:DataResourceShape a sh:NodeShape ;
         skos:example "Town district with traffic signs."@en ;
         sh:order 1 
     ] ;
+    sh:property [
+        sh:name "license identifier"@en ;
+        sh:description "Allows custom commercial identifiers in addition to Gaia-X standard SPDX checks."@en ;
+        sh:path gx:license ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Branch 1: Specific custom identifiers allowed by ENVITED-X
+            [ sh:in ("LicenseRef-Custom-Commercial-Agreement" "LicenseRef-Policy-Smart-Contract") ]
+            
+            # Branch 2: Any string (to allow standard SPDX identifiers to pass 
+            # through this local check so Gaia-X can validate them).
+            [ sh:datatype xsd:string ]
+        ) ;
+        sh:message "The gx:license must be either a standard SPDX identifier (validated by Gaia-X) or one of the ENVITED-X custom commercial identifiers."@en ;
+        sh:order 2 
+    ] ;
     sh:targetClass envited-x:DataResource .
+
 
 # SHACL Shape for envited-x:DataResourceExtension
 envited-x:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
-    # Constraint to ensure at least one hasContent and one hasFormat
+    
+
+    # If an extension exists, it must have content...
     sh:property [
         sh:path envited-x:hasContent ;
-        sh:minCount 1 ;  # At least one hasContent must be present
-    ] ;
-    sh:property [
-        sh:path envited-x:hasFormat ;
-        sh:minCount 1 ;  # At least one hasFormat must be present
+        sh:minCount 1 ;
+        sh:message "Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent."@en ;
     ] ;
 
-    # Check for subclasses of DataResourceExtension
+    # ...and format
     sh:property [
-        sh:path envited-x:hasDataResourceExtension ;  # Assuming this is the property linking to subclasses
-        sh:node [
-            a sh:NodeShape ;
-            sh:targetClass envited-x:DataResourceExtension ;  # Targeting the DataResourceExtension class
-            sh:property [
-                sh:path envited-x:hasContent ;
-                sh:minCount 1 ;  # At least one hasContent must be present
-            ] ;
-            sh:property [
-                sh:path envited-x:hasFormat ;
-                sh:minCount 1 ;  # At least one hasFormat must be present
-            ] ;
-        ]
+        sh:path envited-x:hasFormat ;
+        sh:minCount 1 ;
+        sh:message "Each DataResourceExtension must link to at least one envited-x:Format via envited-x:hasFormat."@en ;
     ] ;
+
+    # Optional extras (minCount 0 is the default, you can omit these completely
+    # unless you want a custom message)
+    sh:property [
+        sh:path envited-x:hasDataSource ;
+        sh:minCount 0 ;
+        sh:message "Optional: a DataResourceExtension may specify how the asset was created via envited-x:hasDataSource."@en ;
+    ] ;
+    sh:property [
+        sh:path envited-x:hasQuality ;
+        sh:minCount 0 ;
+        sh:message "Optional: a DataResourceExtension may specify quality information via envited-x:hasQuality."@en ;
+    ] ;
+    sh:property [
+        sh:path envited-x:hasQuantity ;
+        sh:minCount 0 ;
+        sh:message "Optional: a DataResourceExtension may specify quantity-related information via envited-x:hasQuantity."@en ;
+    ] ;
+
     sh:targetClass envited-x:DataResourceExtension .
 
 
 # Minimal SHACL shape for envited-x:Content
 envited-x:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Content." ;
     sh:targetClass envited-x:Content .
+
 
 # Minimal SHACL shape for envited-x:DataSource
 envited-x:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:DataSource." ;
     sh:targetClass envited-x:DataSource .
+
 
 # Minimal SHACL shape for envited-x:Format
 envited-x:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Format." ;
     sh:targetClass envited-x:Format .
+
 
 # Minimal SHACL shape for envited-x:Quality
 envited-x:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Quality." ;
     sh:targetClass envited-x:Quality .
+
 
 # Minimal SHACL shape for envited-x:Quantity
 envited-x:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:message "Node must be of type envited-x:Quantity." ;
     sh:targetClass envited-x:Quantity .

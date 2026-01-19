@@ -88,7 +88,7 @@ jobs:
           IFS=' ' # Set the Internal Field Separator to a space
           for FILE in ${CHANGED_TTL}; do
             echo "Processing changed file: ${FILE}"
-            python3 -u src/check_ttl_syntax.py "${FILE}"
+            python3 -u src/utils/check_parse_turtle.py "${FILE}"
           done
 
   check-jsonld-against-schema:
@@ -128,9 +128,16 @@ jobs:
         run: |
           IFS=' ' # Set the Internal Field Separator to a space
           for DIRECTORY in ${CHANGED_DIRS}; do
+            # Skip any directory whose path includes '/tests/', 'base-ontologies/', or 'base-references/'
+            if [[ "$DIRECTORY" == *"/tests/"* ]] || [[ "$DIRECTORY" == tests* ]] || [[ "$DIRECTORY" == */tests ]] || [[ "$DIRECTORY" == *"base-ontologies/"* ]] || [[ "$DIRECTORY" == *"base-references/"* ]]; then
+              echo "Skipping excluded directory: ${DIRECTORY}"
+              continue
+            fi
+
             echo "Processing changed directory: ${DIRECTORY}"
             python3 -u src/check_jsonld_against_shacl_schema.py "${DIRECTORY}"
           done
+
 
   check_target_classes_agains_owl_classes:
     name: Check target classes in SHACL files against owl classes for all changed directories

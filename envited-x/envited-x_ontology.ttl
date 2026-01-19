@@ -1,10 +1,10 @@
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -37,17 +37,17 @@ envited-x: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.3> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v2/ontology#> ;
-    owl:versionInfo "v2" ;
+    owl:versionIRI <https://ontologies.envited-x.net/envited-x/v3/ontology#> ;
+    owl:versionInfo "v3" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v2/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v3/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 
@@ -78,7 +78,10 @@ envited-x:SimulationAsset a owl:Class ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty envited-x:hasDataResource ; 
-        owl:someValuesFrom envited-x:DataResource 
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     # Optional coupling to DataResourceExtension
     rdfs:subClassOf [ 
@@ -86,7 +89,7 @@ envited-x:SimulationAsset a owl:Class ;
         owl:onProperty envited-x:hasDataResourceExtension ; 
         owl:minCardinality 0
     ] ;
-    # Coupling to a Manifest
+    # Coupling to a Manifest (exactly one value for envited-x:hasManifest)
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty envited-x:hasManifest ;  
@@ -171,7 +174,10 @@ envited-x:hasDataResource a owl:ObjectProperty ;
     rdfs:label "has data resource"@en ;
     rdfs:comment "Links a simulation asset or its subclass to its associated DataResource, which provides essential metadata such as name and description."@en ;
     rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 ### hasDataResourceExtension (SimulationAsset -> DataResourceExtension)
 envited-x:hasDataResourceExtension a owl:ObjectProperty ;
@@ -182,12 +188,20 @@ envited-x:hasDataResourceExtension a owl:ObjectProperty ;
     rdfs:domain envited-x:SimulationAsset ;
     rdfs:range envited-x:DataResourceExtension .
 
-### hasManifest (SimulationAsset -> Manifest)
+### hasManifest (SimulationAsset -> inline Manifest OR Link)
 envited-x:hasManifest a owl:ObjectProperty ;
     rdfs:label "has manifest"@en ;
-    rdfs:comment "Links a simulation asset or its subclass to the associated manifest that describes its structure and content."@en ;
+    rdfs:comment """Links a simulation asset or its subclass to the associated manifest.
+                    The value can be either:
+                    - an inline envited-x:Manifest node (embedded manifest structure), or
+                    - a manifest:Link node (a link that points via manifest:iri
+                    to an external manifest representation, typically identified by a DID).
+                    """@en ;
     rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:Manifest .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
 
 ### hasContent (DataResourceExtension -> Content)
 envited-x:hasContent a owl:ObjectProperty ;
@@ -225,25 +239,21 @@ envited-x:hasQuantity a owl:ObjectProperty ;
     rdfs:range envited-x:Quantity .
 
 ### Define specific category types as named individuals, extending manifest categories
-envited-x:isManifest a manifest:Category, owl:NamedIndividual ;
+envited-x:isManifest a manifest:ManifestCategory, owl:NamedIndividual ;
     rdfs:label "Manifest Category"@en ;
     rdfs:comment "Indicates that the artifact category is a manifest in the envited-x context."@en .
 
-envited-x:isLicense a manifest:Category, owl:NamedIndividual ;
+envited-x:isLicense a manifest:LicenseCategory, owl:NamedIndividual ;
     rdfs:label "License Category"@en ;
     rdfs:comment "Indicates that the artifact category is a license file in the envited-x context."@en .
 
-envited-x:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+envited-x:isMiscellaneous a manifest:MiscellaneousCategory, owl:NamedIndividual ;
     rdfs:label "Miscellaneous Category"@en ;
     rdfs:comment "Indicates that the artifact category is miscellaneous in the envited-x context."@en .
 
 envited-x:isSimulationData a manifest:Category, owl:NamedIndividual ;
     rdfs:label "Simulation Data Category"@en ;
     rdfs:comment "Indicates that the artifact category is simulation data."@en .
-
-envited-x:isReferencedSimulationData a manifest:Category, owl:NamedIndividual ;
-    rdfs:label "Referenced Simulation Data Category"@en ;
-    rdfs:comment "Indicates that the artifact category is referenced simulation data in the envited-x context."@en .
 
 envited-x:isDocumentation a manifest:Category, owl:NamedIndividual ;
     rdfs:label "Documentation Category"@en ;
@@ -265,7 +275,6 @@ envited-x:isValidationReport a manifest:Category, owl:NamedIndividual ;
 envited-x:isPublic a manifest:AccessRole, owl:NamedIndividual ;
     rdfs:label "Public Access Role"@en ;
     rdfs:comment "Indicates that the artifact access role is public in the envited-x context."@en .
-
 
 envited-x:isOwner a manifest:AccessRole, owl:NamedIndividual ;
     rdfs:label "Owner Access Role"@en ;

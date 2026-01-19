@@ -1,4 +1,4 @@
-@prefix simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#> .
+@prefix simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v2/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -31,7 +31,7 @@ simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
         sh:order 1 ;
         sh:description "Name/Identifier of the sensor in the simulator."@en ;
     ] ;
-    # mountingPosition TODO: Perhaps this is too specific, not all simulators will use the same metric/parametrization for this
+    # mountingPosition
     sh:property [
         skos:example "Front-mid" ;
         sh:path simulated-sensor:mountingPosition ;
@@ -126,7 +126,7 @@ simulated-sensor:LidarShape a sh:NodeShape ;
 # CAMERA
 simulated-sensor:CameraShape a sh:NodeShape ;
     sh:targetClass simulated-sensor:Camera ;
-    # rgbFlag (boolean) to indicate whether camera is RGB camera
+    # rgbFlag (boolean)
     sh:property [
         skos:example "true" ;
         sh:path simulated-sensor:rgbFlag ;
@@ -137,10 +137,10 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:order 0 ;
         sh:description "If true, camera is RGB camera."@en ;
     ] ;
-    # 3dFlag (boolean) to indicate whether camera is 3D camera
+    # flag3D (boolean) - Renamed from 3dflag
     sh:property [
         skos:example "false" ;
-        sh:path simulated-sensor:3dflag ;
+        sh:path simulated-sensor:flag3D ;
         sh:datatype xsd:boolean ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
@@ -148,7 +148,7 @@ simulated-sensor:CameraShape a sh:NodeShape ;
         sh:order 1 ;
         sh:description "If true, camera is 3D camera."@en ;
     ] ;
-    # depthFlag (boolean) to indicate whether camera is depth camera
+    # depthFlag (boolean)
     sh:property [
         skos:example "false" ;
         sh:path simulated-sensor:depthFlag ;
@@ -206,7 +206,3 @@ simulated-sensor:FieldOfViewShape a sh:NodeShape ;
         sh:order 2 ;
         sh:description "FoV angle 3 (optional, depending on simulator and sensor type)."@en
     ] .
-
-
-
-

@@ -1,12 +1,13 @@
-@prefix simulation-model: <https://ontologies.envited-x.net/simulation-model/v1/ontology#> .
+@prefix simulation-model: <https://ontologies.envited-x.net/simulation-model/v2/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 
 simulation-model: a owl:Ontology ;
     rdfs:label "Ontology definition for simulation-model"@en ;
@@ -26,18 +27,20 @@ simulation-model: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/simulation-model/v1/ontology#> ;
-    owl:versionInfo "v1" ;
+    owl:versionIRI <https://ontologies.envited-x.net/simulation-model/v2/ontology#> ;
+    owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v1/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulation-model/v2/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
     dcterms:references <https://fmi-standard.org/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
+
+# Classes
 
 simulation-model:SimulationModel a owl:Class ;
     rdfs:label "SimulationModel"@en ;
@@ -63,3 +66,210 @@ simulation-model:Quality a owl:Class ;
 simulation-model:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
     rdfs:comment "Class with attributes for the data source of a simulation model."@en .
+
+# Properties
+
+simulation-model:general a owl:ObjectProperty ;
+    rdfs:label "general"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range general:General .
+
+simulation-model:format a owl:ObjectProperty ;
+    rdfs:label "format"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range simulation-model:Format .
+
+simulation-model:content a owl:ObjectProperty ;
+    rdfs:label "content"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range simulation-model:Content .
+
+simulation-model:quantity a owl:ObjectProperty ;
+    rdfs:label "quantity"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range simulation-model:Quantity .
+
+simulation-model:quality a owl:ObjectProperty ;
+    rdfs:label "quality"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range simulation-model:Quality .
+
+simulation-model:dataSource a owl:ObjectProperty ;
+    rdfs:label "dataSource"@en ;
+    rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range simulation-model:DataSource .
+
+# Format properties
+simulation-model:modelImplementationFormat a owl:DatatypeProperty ;
+    rdfs:label "model implementation format"@en ;
+    rdfs:domain simulation-model:Format ;
+    rdfs:range xsd:string .
+
+simulation-model:modelPreconditions a owl:DatatypeProperty ;
+    rdfs:label "model preconditions"@en ;
+    rdfs:domain simulation-model:Format ;
+    rdfs:range xsd:string .
+
+simulation-model:modelImplementationPreconditions a owl:DatatypeProperty ;
+    rdfs:label "model implementation preconditions"@en ;
+    rdfs:domain simulation-model:Format ;
+    rdfs:range xsd:string .
+
+simulation-model:modelIntegrationRequirements a owl:DatatypeProperty ;
+    rdfs:label "model integration requirements"@en ;
+    rdfs:domain simulation-model:Format ;
+    rdfs:range xsd:anyURI .
+
+# Content properties
+simulation-model:modelType a owl:DatatypeProperty ;
+    rdfs:label "model type"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelManufacturer a owl:DatatypeProperty ;
+    rdfs:label "model manufacturer"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelFamily a owl:DatatypeProperty ;
+    rdfs:label "model family"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelName a owl:DatatypeProperty ;
+    rdfs:label "model name"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelVersion a owl:DatatypeProperty ;
+    rdfs:label "model version"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelReleasedate a owl:DatatypeProperty ;
+    rdfs:label "model release date"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:dateTime .
+
+simulation-model:modelReleasestatus a owl:DatatypeProperty ;
+    rdfs:label "model release status"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelGuid a owl:DatatypeProperty ;
+    rdfs:label "model GUID"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelPurpose a owl:DatatypeProperty ;
+    rdfs:label "model purpose"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:modelModellingApproach a owl:DatatypeProperty ;
+    rdfs:label "model modelling approach"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorManufacturer a owl:DatatypeProperty ;
+    rdfs:label "sensor manufacturer"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorFamily a owl:DatatypeProperty ;
+    rdfs:label "sensor family"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorName a owl:DatatypeProperty ;
+    rdfs:label "sensor name"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorVersion a owl:DatatypeProperty ;
+    rdfs:label "sensor version"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorManufacturerPartnumber a owl:DatatypeProperty ;
+    rdfs:label "sensor manufacturer partnumber"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorType a owl:DatatypeProperty ;
+    rdfs:label "sensor type"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorTechnology a owl:DatatypeProperty ;
+    rdfs:label "sensor technology"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+simulation-model:sensorTechnologyVariant a owl:DatatypeProperty ;
+    rdfs:label "sensor technology variant"@en ;
+    rdfs:domain simulation-model:Content ;
+    rdfs:range xsd:string .
+
+# Quantity properties
+simulation-model:maxDetections a owl:DatatypeProperty ;
+    rdfs:label "maximum number of detections"@en ;
+    rdfs:domain simulation-model:Quantity ;
+    rdfs:range xsd:unsignedInt .
+
+simulation-model:maxObjects a owl:DatatypeProperty ;
+    rdfs:label "maximum number of detected objects"@en ;
+    rdfs:domain simulation-model:Quantity ;
+    rdfs:range xsd:unsignedInt .
+
+# Quality properties
+simulation-model:modelLimitations a owl:DatatypeProperty ;
+    rdfs:label "model limitations"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:string .
+
+simulation-model:modelValidityRange a owl:DatatypeProperty ;
+    rdfs:label "model validity range"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:string .
+
+simulation-model:modelVerificationStatus a owl:DatatypeProperty ;
+    rdfs:label "model verification status"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:boolean .
+
+simulation-model:modelVerificationReport a owl:DatatypeProperty ;
+    rdfs:label "model verification report"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:anyURI .
+
+simulation-model:modelValidationStatus a owl:DatatypeProperty ;
+    rdfs:label "model validation status"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:boolean .
+
+simulation-model:modelValidationPlatform a owl:DatatypeProperty ;
+    rdfs:label "model validation platform"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:string .
+
+simulation-model:modelValidationReport a owl:DatatypeProperty ;
+    rdfs:label "model validation report"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:anyURI .
+
+simulation-model:modelValidationConcept a owl:DatatypeProperty ;
+    rdfs:label "model validation concept"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:anyURI .
+
+simulation-model:modelImplementationPerformanceCharacteristics a owl:DatatypeProperty ;
+    rdfs:label "model implementation performance characteristics"@en ;
+    rdfs:domain simulation-model:Quality ;
+    rdfs:range xsd:string .
+
+# DataSource properties
+simulation-model:modelSpecification a owl:DatatypeProperty ;
+    rdfs:label "model specification"@en ;
+    rdfs:domain simulation-model:DataSource ;
+    rdfs:range xsd:anyURI .

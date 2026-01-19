@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- vv-report: <https://ontologies.envited-x.net/vv-report/v1/ontology#>
+- vv-report: <https://ontologies.envited-x.net/vv-report/v2/ontology#>
 
 ## List of SHACL Properties
 

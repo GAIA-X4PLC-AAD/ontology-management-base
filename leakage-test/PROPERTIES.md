@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- leakage-test: <https://ontologies.envited-x.net/leakage-test/v1/ontology#>
+- leakage-test: <https://ontologies.envited-x.net/leakage-test/v2/ontology#>
 
 ## List of SHACL Properties
 

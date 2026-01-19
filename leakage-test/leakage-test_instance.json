@@ -1,15 +1,17 @@
 {
   "@context": {
+    "leakage-test": "https://ontologies.envited-x.net/leakage-test/v2/ontology#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "leakage-test": "https://ontologies.envited-x.net/leakage-test/v1/ontology#",
-    "general": "https://ontologies.envited-x.net/general/v2/ontology#",
-    "sh": "http://www.w3.org/ns/shacl#"
+    "general": "https://ontologies.envited-x.net/general/v3/ontology#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:registry.gaia-x.eu:LeakageTest:ToPMmddr1jaiN7BOeLS-NdyioTxnZVcjwZnJ",
   "@type": "leakage-test:LeakageTest",
   "leakage-test:processParameter": {
-    "@type": "leakage-test:processParameter",
+    "@type": "leakage-test:ProcessParameter",
     "leakage-test:codingRFID": {
       "@type": "leakage-test:CodingRFID",
       "leakage-test:setpoint": 16
@@ -82,5 +84,15 @@
         "@type": "xsd:dateTime"
       }
     }
-  }
+  },
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "leakage-test-001",
+  "dcterms:title": "Leakage Test Resource"
 }

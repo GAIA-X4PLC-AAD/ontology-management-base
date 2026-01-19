@@ -3,8 +3,7 @@
 ## Prefixes
 
 - manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#>
-- rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-- scenario: <https://ontologies.envited-x.net/scenario/v4/ontology#>
+- scenario: <https://ontologies.envited-x.net/scenario/v5/ontology#>
 
 ## List of SHACL Properties
 

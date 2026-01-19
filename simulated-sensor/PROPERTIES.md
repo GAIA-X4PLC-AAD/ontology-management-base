@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#>
+- simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v2/ontology#>
 
 ## List of SHACL Properties
 
@@ -18,7 +18,7 @@
 | LidarShape | simulated-sensor | distance | 0 | 1 | Covered distance or range in metres. | <http://www.w3.org/2001/XMLSchema#float> | simulated-sensor_shacl.ttl |
 | LidarShape | simulated-sensor | fieldOfView | 0 | 1 | Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV). |  | simulated-sensor_shacl.ttl |
 | CameraShape | simulated-sensor | rgbFlag | 0 | 1 | If true, camera is RGB camera. | <http://www.w3.org/2001/XMLSchema#boolean> | simulated-sensor_shacl.ttl |
-| CameraShape | simulated-sensor | 3dflag | 0 | 1 | If true, camera is 3D camera. | <http://www.w3.org/2001/XMLSchema#boolean> | simulated-sensor_shacl.ttl |
+| CameraShape | simulated-sensor | flag3D | 0 | 1 | If true, camera is 3D camera. | <http://www.w3.org/2001/XMLSchema#boolean> | simulated-sensor_shacl.ttl |
 | CameraShape | simulated-sensor | depthFlag | 0 | 1 | If true, camera is depth camera. | <http://www.w3.org/2001/XMLSchema#boolean> | simulated-sensor_shacl.ttl |
 | CameraShape | simulated-sensor | fieldOfView | 0 | 1 | Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV). |  | simulated-sensor_shacl.ttl |
 | FieldOfViewShape | simulated-sensor | fovAngle1 | 1 | 1 | FoV angle 1 (mandatory if FoV attribute is used). | <http://www.w3.org/2001/XMLSchema#float> | simulated-sensor_shacl.ttl |

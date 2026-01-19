@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- general: <https://ontologies.envited-x.net/general/v2/ontology#>
+- general: <https://ontologies.envited-x.net/general/v3/ontology#>
 
 ## List of SHACL Properties
 

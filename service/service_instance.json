@@ -1,7 +1,8 @@
 {
   "@context": {
-    "general": "https://ontologies.envited-x.net/general/v2/ontology#",
     "service": "https://ontologies.envited-x.net/service/v1/ontology#",
+    "general": "https://ontologies.envited-x.net/general/v3/ontology#",
+    "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
@@ -32,6 +33,16 @@
         "@type": "xsd:dateTime"
       }
     }
+  },
+  "gx:version": "1.0.0",
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow",
+  "gx:containsPII": false,
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
   "service:requiredFile": [
     {

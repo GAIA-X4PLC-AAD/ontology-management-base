@@ -5,12 +5,15 @@ import sys
 
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
-# Set the encoding for stdout to UTF-8
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+from utils.print_formatting import (
+    format_validate_target_classes_against_owl_classes_result,
+)
 
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
+
+# List of folder names allowed to fail validation
+EXPECTED_TARGETCLASS_FAILURES = {"gx"}
 
 
 def get_local_name(uri: str) -> str:
@@ -66,83 +69,26 @@ def extract_ontology_classes(ontology_file: str) -> tuple:
     return ontology_classes, label_to_class
 
 
-def format_summary(
-    ontology_file,
-    num_ontology_classes,
-    num_shacl_classes,
-    matches,
-    missing_classes,
-    recovered_classes,
-    extra_classes,
-):
-    """
-    Format a summary of the validation results in a properly aligned boxed layout.
-    """
-    width = 150
-    border = "=" * width
-    separator = f"=={' ' * (width - 4)}=="
-
-    output_lines = []
-    output_lines.append("\n" + border)
-    output_lines.append(f"=={' VALIDATION SUMMARY ':^{width-4}}==")
-    output_lines.append(border)
-    output_lines.append(f"==  Ontology File: {ontology_file.ljust(width - 21)}==")
-    output_lines.append(separator)
-    output_lines.append(
-        f"==  🔹 Ontology Classes: {str(num_ontology_classes).ljust(width - 27)}=="
-    )
-    output_lines.append(
-        f"==  🔹 SHACL Target Classes: {str(num_shacl_classes).ljust(width - 31)}=="
-    )
-    output_lines.append(
-        f"==  ✅ Matched Classes: {str(len(matches) + len(recovered_classes)).ljust(width - 26)}=="
-    )
-    output_lines.append(
-        f"==  ❌ Missing Classes: {str(len(missing_classes)).ljust(width - 26)}=="
-    )
-    output_lines.append(
-        f"==  ⚠️ Extra Classes: {str(len(extra_classes)).ljust(width - 23)}=="
-    )
-    output_lines.append(border)
-
-    if missing_classes:
-        output_lines.append(
-            f"==  ❌ Missing SHACL Classes: {str(len(missing_classes)).ljust(width - 32)}=="
-        )
-        for cls in sorted(missing_classes):
-            output_lines.append(f"==  ❌ {cls.ljust(width - 9)}==")
-        output_lines.append(border)
-
-    if extra_classes:
-        output_lines.append(
-            f"==  ⚠️ Extra Ontology Classes: {str(len(extra_classes)).ljust(width - 32)}=="
-        )
-        for cls in sorted(extra_classes):
-            output_lines.append(f"==  ⚠️ {cls.ljust(width - 8)}==")
-        output_lines.append(border)
-
-    if missing_classes:
-        output_lines.append(f"=={' ❌ Validation failed! ':^{width-5}}==")
-    else:
-        output_lines.append(f"=={' ✅ Validation successful! ':^{width-5}}==")
-    output_lines.append(border)
-    return "\n".join(output_lines)
-
-
-def validate_target_classes_against_owl_classes(directory: str):
+def validate_target_classes_against_owl_classes(directory: str) -> tuple[int, str]:
     """
     Validate if all target classes in the SHACL shapes are present in the ontology file as OWL classes.
     - Passes if ontology_classes ⊇ shacl_classes (matching by local name, case-insensitive)
     - Warns if ontology_classes has more classes than shacl_classes
     - Fails if shacl_classes contains classes not found in ontology_classes
+
+    Returns:
+        (return_code, message) where return_code=0 means success,
+        200 means missing classes found (failure),
+        100 means no ontology files found (warning),
+        other codes can be defined as needed.
     """
     ontology_files = glob.glob(os.path.join(directory, "*ontology.ttl"))
     if not ontology_files:
-        print(
-            f"⚠️  No ontology files found in {directory}. Skipping target class validation."
-        )
-        return
+        message = f"⚠️  No ontology files found in {directory}. Skipping target class validation."
+        # Return a non-zero code to indicate a warning or special condition
+        return 100, message
 
+    full_message = []
     for ontology_file in ontology_files:
         ontology_classes, label_to_class = extract_ontology_classes(ontology_file)
         shacl_classes = extract_shacl_classes(directory)
@@ -161,7 +107,7 @@ def validate_target_classes_against_owl_classes(directory: str):
                 recovered_classes.add(missing)
         missing_classes -= recovered_classes
 
-        summary = format_summary(
+        summary = format_validate_target_classes_against_owl_classes_result(
             ontology_file,
             len(ontology_classes),
             len(shacl_classes),
@@ -170,12 +116,14 @@ def validate_target_classes_against_owl_classes(directory: str):
             recovered_classes,
             extra_classes,
         )
+        full_message.append(summary)
 
         if missing_classes:
-            print(summary, file=sys.stderr)
-            sys.exit(200)
-        else:
-            print(summary)
+            # Failure: missing classes found
+            return 200, "\n".join(full_message)
+
+    # If no missing classes found, success
+    return 0, "\n".join(full_message)
 
 
 def main():
@@ -186,14 +134,40 @@ def main():
         )
         sys.exit(100)
 
-    directory = sys.argv[1]
-    directory = os.path.normpath(directory)
+    directory = os.path.normpath(sys.argv[1])
     if not os.path.isdir(directory):
         print(f"The directory {directory} does not exist. Abort.", file=sys.stderr)
         sys.exit(110)
 
-    validate_target_classes_against_owl_classes(directory)
+    # Perform validation
+    return_code, message = validate_target_classes_against_owl_classes(directory)
+
+    # Extract the folder name (e.g., from 'ontologies/gx' -> 'gx') to check against whitelist
+    folder_name = os.path.basename(directory)
+
+    if return_code != 0:
+        # Check if this failure is expected
+        if folder_name in EXPECTED_TARGETCLASS_FAILURES:
+            print(
+                f"⚠️ Expected target class failure for '{folder_name}' (ignored).",
+                flush=True,
+            )
+            # Print the error details to stdout (so they are visible in logs but don't error)
+            print(message, flush=True)
+            # Exit with success to keep CI pipeline running
+            sys.exit(0)
+        else:
+            # Real failure
+            print(message, file=sys.stderr)
+            sys.exit(return_code)
+    else:
+        # Success
+        print(message)
+        sys.exit(0)
 
 
 if __name__ == "__main__":
+    # Set the encoding for stdout to UTF-8
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
     main()

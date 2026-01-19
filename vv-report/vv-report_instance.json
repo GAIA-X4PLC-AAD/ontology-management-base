@@ -1,13 +1,14 @@
 {
     "@context": {
-        "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
-        "vv-report": "https://ontologies.envited-x.net/vv-report/v1/ontology#",
-        "general": "https://ontologies.envited-x.net/general/v2/ontology#",
+        "gx": "https://w3id.org/gaia-x/development#",
+        "vv-report": "https://ontologies.envited-x.net/vv-report/v2/ontology#",
+        "general": "https://ontologies.envited-x.net/general/v3/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "skos": "http://www.w3.org/2004/02/skos/core#"
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dcterms": "http://purl.org/dc/terms/"
     },
-    "@id": "did:web:registry.gaia-x.eu:VVReport:.............",
+    "@id": "did:web:registry.gaia-x.eu:VVReport:h4kG79Sk3MvP6WzL5bS8yH3cW1dGf6A8",
     "@type": "vv-report:VvReport",
     "vv-report:general": {
         "@type": "general:General",
@@ -106,7 +107,7 @@
             },
             "vv-report:conceptSpecificData": {
                 "modeling-simulation-spice-credibility-level": {
-                    "@value": 1,
+                    "@value": "1",
                     "@type": "xsd:integer"
                 }
             }
@@ -169,10 +170,25 @@
             },
             "vv-report:conceptSpecificData": {
                 "modeling-simulation-spice-credibility-level": {
-                    "@value": 1,
+                    "@value": "1",
                     "@type": "xsd:integer"
                 }
             }
         }
-    ]
+    ],
+    "gx:producedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+        "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+        "@type": "gx:DataExchangeComponent"
+    },
+    "gx:copyrightOwnedBy": {
+        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:license": "EPL-2.0",
+    "gx:containsPII": false,
+    "gx:resourcePolicy": "allow intent",
+    "dcterms:identifier": "vv-report-001",
+    "dcterms:title": "ARS548 V&V Report Data Resource"
 }
