@@ -61,8 +61,7 @@ scenario: a owl:Ontology ;
 scenario:Scenario a owl:Class ;
     rdfs:label "Class definition for Scenario"@en ;
     rdfs:comment "General properties for defining a scenario asset, including format, content, data sources, quantity, and quality attributes."@en ;
-    rdfs:subClassOf envited-x:SimulationAsset ,
-                    openlabel:Scenario ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
     # Scenario must have a scenario-specific data resource extension
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -76,14 +75,14 @@ scenario:Scenario a owl:Class ;
         owl:someValuesFrom envited-x:DataResource
     ] ;
     # Scenario must have a manifest, either:
-    #  - an inline scenario:Manifest instance, or
+    #  - an inline envited-x:Manifest instance, or
     #  - a manifest:Link.
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasManifest ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( scenario:Manifest manifest:Link )
+            owl:unionOf ( envited-x:Manifest manifest:Link )
         ]
     ] .
 
@@ -115,34 +114,6 @@ scenario:DataResourceExtension a owl:Class ;
         a owl:Restriction ;
         owl:onProperty scenario:hasGeoreference ;
         owl:cardinality 1
-    ] .
-
-scenario:Manifest a owl:Class ;
-    rdfs:label "Class definition for Manifest"@en ;
-    rdfs:comment "A scenario-specific extension of envited-x:Manifest. Ensures that a Scenario manifest contains references to an HD Map, an Environment Model, and catalogs."@en ;
-    rdfs:subClassOf envited-x:Manifest ;
-    ### hasReferencedArtifacts
-    # Restriction ensuring at least 2 referenced artifacts
-    # (Scenario -> Manifest -> hdmap:HdMap)
-    # (Scenario -> Manifest -> environment-model:EnvironmentModel)
-    # (Scenario -> Manifest -> manifest:Link to these)
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:hasReferencedArtifacts ;
-        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-        owl:onClass [
-            a owl:Class ;
-            owl:unionOf ( environment-model:EnvironmentModel hdmap:HdMap manifest:Link )
-        ]
-    ] ;
-    ### hasArtifacts
-    # Ensuring catalogs are referenced separately
-    # (Scenario -> Manifest -> manifest:Link to catalogs)
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:hasArtifacts ;
-        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-        owl:onClass manifest:Link
     ] .
 
 scenario:Format a owl:Class ;

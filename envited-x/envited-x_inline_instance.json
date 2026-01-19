@@ -18,7 +18,9 @@
     "gx:license": "EPL-2.0",
     "gx:resourcePolicy": "allow",
     "gx:containsPII": false,
-    "gx:copyrightOwnedBy": "The GAIA-X 4 PLC AAD Project Team",
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
     "gx:producedBy": {
       "@id": "did:web:did.ascs.digital:participants:bmw",
       "@type": "gx:LegalPerson",
@@ -39,7 +41,7 @@
       }
     },
     "gx:exposedThrough": {
-      "@id": "did:web:did.ascs.digital:services:trust-anchor",
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
       "@type": "gx:DataExchangeComponent"
     }
   },

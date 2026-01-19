@@ -89,8 +89,7 @@
     "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
   "gx:copyrightOwnedBy": {
-    "@value": "The GAIA-X 4 PLC AAD Project Team",
-    "@type": "xsd:string"
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
   "gx:license": "EPL-2.0",
   "gx:resourcePolicy": "allow intent",

@@ -77,7 +77,7 @@ envited-x:ExtendedLinkShape a sh:NodeShape ;
       envited-x:isLicense
       envited-x:isMiscellaneous
       envited-x:isSimulationData
-      envited-x:isReferencedSimulationData
+
       envited-x:isDocumentation
       envited-x:isMedia
       envited-x:isMetadata

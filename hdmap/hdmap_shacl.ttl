@@ -5,14 +5,14 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
-    
-    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
-    # while maintaining the "exactly 1" requirement often required for specific domain assets.
+    sh:targetClass hdmap:HdMap ;
+
+    # 1) hasDataResource
     sh:property [
         sh:path hdmap:hasDataResource ;
         sh:minCount 1 ;
@@ -24,32 +24,33 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:message "Each HD map must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
     ] ;
 
-    # 2) hasDataResourceExtension: Maintaining the mandatory domain-specific extension.
+    # 2) hasDataResourceExtension
     sh:property [
         sh:path hdmap:hasDataResourceExtension ;
-        sh:node hdmap:DataResourceShapeExtension ;
+        # [IMPROVEMENT] Renamed for naming consistency (was DataResourceShapeExtension)
+        sh:node hdmap:DataResourceExtensionShape ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
 
-    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    # 3) hasManifest
     sh:property [
         sh:path hdmap:hasManifest ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            # Case 1: Inline manifest node
+            # Case 1: Inline manifest node (Validates against standard Manifest rules)
             [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
 
-            # Case 2: Linked manifest reference
+            # Case 2: Linked manifest reference (Validates the link itself)
             [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
         sh:message "Each HD map must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
-    ] ;
-    sh:targetClass hdmap:HdMap .
+    ] .
 
-hdmap:DataResourceShapeExtension a sh:NodeShape ;
+# [IMPROVEMENT] Renamed from DataResourceShapeExtension
+hdmap:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property
@@ -76,7 +77,7 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:minCount 1 ;
             sh:node hdmap:QuantityShape ;
             sh:name "quantity object"@en ;
-            sh:description "Contains properties to describe the quantity (e.g. number of intersections, traffic lights, signs, length, range of speed limits/elevations) of the HD map asset."@en ;
+            sh:description "Contains properties to describe the quantity of the HD map asset."@en ;
             sh:order 3 ;
             sh:path hdmap:hasQuantity
         ],
@@ -102,7 +103,8 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            sh:name "has georeferenz"@en ;
+            # [IMPROVEMENT] Typo fixed: "georeferenz" -> "georeference"
+            sh:name "has georeference"@en ; 
             sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
             sh:order 6 ;
             sh:path hdmap:hasGeoreference ;
@@ -111,23 +113,24 @@ hdmap:DataResourceShapeExtension a sh:NodeShape ;
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:Content ;
     
     sh:property [ skos:example "[motorway, rural]" ;
-            sh:description "Lists the road types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 10.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_04_road_type.html)"@en ;
+            sh:description "Lists the road types used in the HD map asset."@en ;
             sh:in ("bicycle" "lowSpeed" "motorway" "pedestrian" "rural" "townArterial" "townCollector" "townExpressway" "townLocal" "townPlayStreet" "townPrivate" "town" "unknown") ;
             sh:message "Validation of roadTypes failed!"@en ;
             sh:name "road types"@en ;
             sh:order 0 ;
             sh:path hdmap:roadTypes ],
         [ skos:example "shoulder, curb, ..." ;
-            sh:description "Lists the lanes types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Chapter 11.7.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/11_lanes/11_07_lane_properties.html)."@en ;
+            sh:description "Lists the lanes types used in the HD map asset."@en ;
             sh:in ("biking" "border" "connectingRamp" "curb" "driving" "entry" "exit" "median" "none" "offRamp" "onRamp" "parking" "restricted" "shoulder" "slipLane" "stop" "walking") ;
             sh:message "Validation of laneTypes failed!"@en ;
             sh:name "lane types"@en ;
             sh:order 1 ;
             sh:path hdmap:laneTypes ],
         [ skos:example "trees, street lamps, road patches, ..." ;
-            sh:description "Lists the object types used in the HD map asset. See ASAM OpenDRIVE 1.8.1 Annex A.4.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_C47587D0_7173_42df_8BB7_36B2C598D95F)"@en ;
+            sh:description "Lists the object types used in the HD map asset."@en ;
             sh:in ("barrier" "bike" "building" "bus" "car" "crosswalk" "gantry" "motorbike") ;
             sh:message "Validation of levelOfDetail failed!"@en ;
             sh:name "level of detail"@en ;
@@ -140,11 +143,11 @@ hdmap:ContentShape a sh:NodeShape ;
             sh:message "Validation of trafficDirection failed!"@en ;
             sh:name "traffic direction"@en ;
             sh:order 3 ;
-            sh:path hdmap:trafficDirection ] ;
-    sh:targetClass hdmap:Content .
+            sh:path hdmap:trafficDirection ] .
 
 hdmap:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:DataSource ;
     
     sh:property [ skos:example "3DMS system, Trimble xyz, Riegl xyz" ;
             sh:datatype xsd:string ;
@@ -160,11 +163,11 @@ hdmap:DataSourceShape a sh:NodeShape ;
             sh:message "Validation of usedDataSources failed!"@en ;
             sh:name "used data sources"@en ;
             sh:order 0 ;
-            sh:path hdmap:usedDataSources ] ;
-    sh:targetClass hdmap:DataSource .
+            sh:path hdmap:usedDataSources ] .
 
 hdmap:FormatShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:Format ;
     
     sh:property [ skos:example "1.8.1" ;
             sh:datatype xsd:string ;
@@ -182,11 +185,11 @@ hdmap:FormatShape a sh:NodeShape ;
             sh:message "Validation of type failed!"@en ;
             sh:name "type"@en ;
             sh:order 0 ;
-            sh:path hdmap:formatType ] ;
-    sh:targetClass hdmap:Format .
+            sh:path hdmap:formatType ] .
 
 hdmap:QualityShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:Quality ;
     
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -232,15 +235,15 @@ hdmap:QualityShape a sh:NodeShape ;
             sh:minCount 0 ;
             sh:name "accuracy lane model 2d"@en ;
             sh:order 1 ;
-            sh:path hdmap:accuracyLaneModel2d ] ;
-    sh:targetClass hdmap:Quality .
+            sh:path hdmap:accuracyLaneModel2d ] .
 
 hdmap:QuantityShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:Quantity ;
     
     sh:property [ skos:example "5" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the total number of intersections defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 12.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/12_junctions/12_01_introduction.html)"@en ;
+            sh:description "Specifies the total number of intersections defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberIntersections failed!"@en ;
             sh:name "number intersections"@en ;
@@ -265,14 +268,14 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:rangeOfModeling ],
         [ skos:example "100" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all outline objects defined in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.3 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_03_object_outline.html)"@en ;
+            sh:description "Specifies the number of all outline objects defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberOutlines failed!"@en ;
             sh:name "number outlines"@en ;
             sh:order 6 ;
             sh:path hdmap:numberOutlines ],
         [ skos:example "[10,50] km/h" ;
-            sh:description "Specifies the range of speed limits defined in the HD map, using the unit specified in the HD map. See ASAM OpenDRIVE 1.8.1 Annex A.1.4 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/16_annexes/enumerations/map_uml_enumerations.html#top-EAID_491DC05E_01C6_49b3_83BE_A06DD81F9C35)"@en ;
+            sh:description "Specifies the range of speed limits defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of speedLimit failed!"@en ;
             sh:name "speed limit"@en ;
@@ -289,7 +292,7 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:length ],
         [ skos:example "2.22" ;
             sh:datatype xsd:float ;
-            sh:description "Specifies the difference between the maximum and minimum height of the road elevation profiles in metres. See ASAM OpenDRIVE 1.8.1 Chapter 10.5 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/10_roads/10_05_elevation.html)"@en ;
+            sh:description "Specifies the difference between the maximum and minimum height of the road elevation profiles in metres."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of elevationRange failed!"@en ;
             sh:name "elevation range"@en ;
@@ -297,7 +300,7 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:elevationRange ],
         [ skos:example "200" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all objects in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 13.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/13_objects/13_01_introduction.html)"@en ;
+            sh:description "Specifies the number of all objects in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberObjects failed!"@en ;
             sh:name "number objects"@en ;
@@ -305,27 +308,32 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:path hdmap:numberObjects ],
         [ skos:example "155" ;
             sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the number of all traffic signs (signals) in the HD map. See ASAM OpenDRIVE 1.8.1 Chapter 14.1 (https://publications.pages.asam.net/standards/ASAM_OpenDRIVE/ASAM_OpenDRIVE_Specification/latest/specification/14_signals/14_01_introduction.html)"@en ;
+            sh:description "Specifies the number of all traffic signs (signals) in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficSigns failed!"@en ;
             sh:name "number traffic signs"@en ;
             sh:order 4 ;
-            sh:path hdmap:numberTrafficSigns ] ;
-    sh:targetClass hdmap:Quantity .
+            sh:path hdmap:numberTrafficSigns ] .
 
 hdmap:Range2DShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass hdmap:Range2D ;
     
-    sh:property [ sh:datatype xsd:float ;
+    sh:property [ 
+            sh:datatype xsd:float ;
             sh:description "The maximum value of the range."@en ;
             sh:message "Validation of max failed! Max should be greater than min."@en ;
             sh:name "max"@en ;
             sh:order 1 ;
-            sh:path hdmap:max ],
-        [ sh:datatype xsd:float ;
+            sh:path hdmap:max 
+        ],
+        [ 
+            sh:datatype xsd:float ;
+            # [IMPROVEMENT] Added actual logic to enforce that Min <= Max
+            sh:lessThanOrEquals hdmap:max ; 
             sh:description "The minimum value of the range."@en ;
-            sh:message "Validation of min failed! Min should be less than max."@en ;
+            sh:message "Validation of min failed! Min should be less than or equal to max."@en ;
             sh:name "min"@en ;
             sh:order 0 ;
-            sh:path hdmap:min ] ;
-    sh:targetClass hdmap:Range2D .
+            sh:path hdmap:min 
+        ] .

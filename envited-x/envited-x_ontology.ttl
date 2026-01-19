@@ -249,10 +249,6 @@ envited-x:isSimulationData a manifest:Category, owl:NamedIndividual ;
     rdfs:label "Simulation Data Category"@en ;
     rdfs:comment "Indicates that the artifact category is simulation data."@en .
 
-envited-x:isReferencedSimulationData a manifest:Category, owl:NamedIndividual ;
-    rdfs:label "Referenced Simulation Data Category"@en ;
-    rdfs:comment "Indicates that the artifact category is referenced simulation data in the envited-x context."@en .
-
 envited-x:isDocumentation a manifest:Category, owl:NamedIndividual ;
     rdfs:label "Documentation Category"@en ;
     rdfs:comment "Indicates that the artifact category is documentation in the envited-x context."@en .

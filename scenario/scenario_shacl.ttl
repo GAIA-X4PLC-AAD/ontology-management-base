@@ -12,10 +12,8 @@
 ### Scenario SHACL Shape
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
-    
-    # 1) hasDataResource: 
-    # Flexible: Allows either an INLINE DataResource (when fully defined) 
-    # OR a Link (for draft/reference workflows where exposedThrough isn't known yet).
+
+    # 1) hasDataResource
     sh:property [
         sh:path scenario:hasDataResource ;
         sh:minCount 1 ;
@@ -33,7 +31,7 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:node scenario:DataResourceExtensionShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each Scenario must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+        sh:message "Each Scenario must have one associated DataResourceExtension."@en ;
     ] ;
 
     # 3) hasManifest
@@ -42,210 +40,153 @@ scenario:ScenarioShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            # Case 1: Inline manifest node
+            # Case 1: Linked manifest reference
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+
+            # Case 2: Inline manifest node
             [ sh:and (
                 [ sh:node manifest:ManifestShape ]
                 [ sh:node envited-x:ManifestShape ]
-                [ sh:node scenario:ManifestShape ]
+                [ sh:node scenario:ScenarioManifestConstraints ] 
             )]
-            
-            # Case 2: Linked manifest reference
-            [ sh:node envited-x:ManifestLinkReferenceShape ]
         ) ;
-        sh:message "Each Scenario must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest."@en ;
+        sh:message "Each Scenario must have exactly one manifest (Inline or Linked)."@en ;
     ] ;
     sh:targetClass scenario:Scenario .
 
-scenario:ManifestShape a sh:NodeShape ;
-    sh:closed false ;
-    
-    # The manifest node must be explicitly typed as scenario:Manifest.
-    sh:property [
-        sh:path rdf:type ;
-        sh:hasValue scenario:Manifest ;
-        sh:message "The manifest node must be explicitly typed as scenario:Manifest."@en ;
-    ] ;
-    
-    # [FIXED] Aligned with envited-x and manifest ontologies (Direct Link)
-    sh:property [
-        sh:path manifest:hasLicense ;
-        sh:node envited-x:LicenseLinkReferenceShape ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "A scenario manifest must contain exactly one license link conforming to envited-x:LicenseLinkReferenceShape (category envited-x:isLicense)."@en ;
-    ] ;
-    
-    # Property shape for manifest reference:
-    sh:property [
-        sh:path manifest:hasManifestReference ;
-        sh:qualifiedValueShape [
-            sh:node envited-x:ManifestLinkReferenceShape ;
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:message "A scenario manifest must contain at least one manifest reference link with an envited-x access role and category."@en ;
-    ] ;
-    
-    # Property shape for artifact links:
-    sh:property [
-        sh:path manifest:hasArtifacts ;
-        sh:qualifiedValueShape [
-            sh:node [ 
-                sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:message "A scenario manifest must contain at least one artifact link with an envited-x access role and category."@en ;
-    ] ;
 
-    # Property shape for external artifact links:
+### Scenario Specific Manifest Constraints
+scenario:ScenarioManifestConstraints a sh:NodeShape ;
+    
+    # "A scenario MAY have an hdmap and environment model"
     sh:property [
         sh:path manifest:hasReferencedArtifacts ;
-        sh:qualifiedValueShape [
-            sh:node [ 
-                sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape )
-            ] ;
-        ] ;
-        sh:qualifiedMinCount 0 ;
-        sh:message "If provided, referenced artifact links must have an envited-x access role and category."@en ;
-    ] ;
-
-    # Ensure at least two manifest:Link(s) in hasArtifacts categorized as simulationData.
-    sh:property [
-        sh:path manifest:hasArtifacts ;
-        sh:qualifiedValueShape [
-            sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            ) ;
-            sh:property [
-                sh:path manifest:hasCategory ;
-                sh:hasValue envited-x:isSimulationData ;
-            ]
-        ] ;
-        sh:qualifiedMinCount 2 ; # NARROWING: Base requires 0 or 1, Scenario requires 2.
-        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Simulation Data'."@en ;
-    ] ;
-
-    # Ensure at least two manifest:Link(s) in hasReferencedArtifacts categorized as referencedSimulationData.
-    sh:property [
-        sh:path manifest:hasReferencedArtifacts ;
-        sh:qualifiedValueShape [
-            sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            ) ;
-            sh:property [
-                sh:path manifest:hasCategory ;
-                sh:hasValue envited-x:isReferencedSimulationData ;
-            ]
-        ] ;
-        sh:qualifiedMinCount 2 ;
-        sh:message "The scenario:Manifest must contain at least 2 manifest:Link(s) with category 'Referenced Simulation Data'."@en ;
-    ] ;
-
-    # Ensure at least one HD Map reference
-    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
-    sh:property [
-        sh:path manifest:hasReferencedArtifacts ;
-        sh:qualifiedValueShape [
+        
+        # Validates EVERY item in the list against these options
+        sh:node [
+            a sh:NodeShape ;
             sh:or (
-                [ sh:node hdmap:HdMap ]
+                # Option A: Full inline HD Map (Points to the SHAPE, not the Class)
+                [ sh:node hdmap:HdMapShape ] 
+                
+                # Option B: Full inline Environment Model (Points to the SHAPE)
+                [ sh:node environment-model:EnvironmentModelShape ]
+
+                # Option C: Valid Link with category 'Simulation Data'
                 [ sh:and (
                     [ sh:node manifest:LinkShape ]
                     [ sh:node envited-x:ExtendedLinkShape ]
                     [ sh:property [ 
                         sh:path manifest:hasCategory ; 
-                        sh:hasValue envited-x:isReferencedSimulationData 
+                        sh:hasValue envited-x:isSimulationData ;
+                        sh:message "Referenced Artifacts in a Scenario MUST be of category 'Simulation Data' (since they are already distinguished by being in the 'referencedArtifacts' list)." 
                       ] 
                     ]
-                ) ]
+                )]
             )
         ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:name "HD Map reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one HD Map."@en ;
-    ] ;
-
-    # Ensure at least one Environment Model reference
-    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
-    sh:property [
-        sh:path manifest:hasReferencedArtifacts ;
-        sh:qualifiedValueShape [
-            sh:or (
-                [ sh:node environment-model:EnvironmentModel ]
-                [ sh:and (
-                    [ sh:node manifest:LinkShape ]
-                    [ sh:node envited-x:ExtendedLinkShape ]
-                    [ sh:property [ 
-                        sh:path manifest:hasCategory ; 
-                        sh:hasValue envited-x:isReferencedSimulationData 
-                      ] 
-                    ]
-                ) ]
-            )
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:name "Environment Model reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one Environment Model."@en ;
-    ] ;
-
-    # Ensure at least one catalog reference
-    # [RECOMMENDED FIX] Tightened to ensure Link has correct Category
-    sh:property [
-        sh:path manifest:hasArtifacts ;
-        sh:qualifiedValueShape [
-            sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-                [ sh:property [ 
-                    sh:path manifest:hasCategory ; 
-                    sh:hasValue envited-x:isSimulationData 
-                  ] 
-                ]
-            )
-        ] ;
-        sh:qualifiedMinCount 1 ;
-        sh:name "catalog reference"@en ;
-        sh:description "Each scenario:Manifest must reference at least one catalog via a manifest:Link."@en ;
-    ] ;
-
-    sh:targetClass scenario:Manifest .
+        sh:message "Any referenced artifact provided must be either an HD Map, an Environment Model, or a valid link with category 'Simulation Data'."@en ;
+    ] .
 
 
 ### DataResourceExtension SHACL Shape
 scenario:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
+    sh:targetClass scenario:DataResourceExtension ;
     
     sh:property 
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:ContentShape ;
-          sh:path scenario:hasContent ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:FormatShape ;
-          sh:path scenario:hasFormat ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:QualityShape ;
-          sh:path scenario:hasQuality ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:QuantityShape ;
-          sh:path scenario:hasQuantity ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node scenario:DataSourceShape ;
-          sh:path scenario:hasDataSource ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node georeference:GeoreferenceShape ;
-          sh:path scenario:hasGeoreference ] ;
-    sh:targetClass scenario:DataResourceExtension .
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node scenario:ContentShape ; sh:path scenario:hasContent ],
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node scenario:FormatShape ; sh:path scenario:hasFormat ],
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node scenario:QualityShape ; sh:path scenario:hasQuality ],
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node scenario:QuantityShape ; sh:path scenario:hasQuantity ],
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node scenario:DataSourceShape ; sh:path scenario:hasDataSource ],
+        [ sh:maxCount 1 ; sh:minCount 1 ; sh:node georeference:GeoreferenceShape ; sh:path scenario:hasGeoreference ] .
 
-# Minimal shapes for connected nodes
-scenario:FormatShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Format .
-scenario:ContentShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Content .
-scenario:QuantityShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Quantity .
-scenario:QualityShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:Quality .
-scenario:DataSourceShape a sh:NodeShape ; sh:closed false ; sh:targetClass scenario:DataSource .
+### Detailed Shapes (Expanded based on Instance Data)
+
+scenario:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass scenario:Format ;
+    sh:property [
+        sh:path scenario:formatType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "Format type is required (e.g. 'ASAM OpenSCENARIO')."@en ;
+    ],
+    [
+        sh:path scenario:version ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "Format version is required."@en ;
+    ] .
+
+scenario:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass scenario:Content ;
+    sh:property [
+        sh:path scenario:abstractionLevel ;
+        sh:in ("Logical" "Functional" "Concrete") ;
+        sh:message "Abstraction level must be Logical, Functional, or Concrete."@en ;
+    ],
+    [
+        sh:path scenario:country ;
+        sh:datatype xsd:string ;
+    ],
+    [
+        sh:path scenario:aim ;
+        sh:datatype xsd:string ;
+    ],
+    [
+        sh:path scenario:movementDescription ;
+        sh:datatype xsd:string ;
+    ],
+    [   # Added based on your latest snippet
+        sh:path scenario:customCommands ;
+        sh:datatype xsd:string ;
+    ] .
+
+scenario:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass scenario:Quantity ;
+    sh:property [
+        sh:path scenario:numberTrafficObjects ;
+        sh:datatype xsd:unsignedInt ;
+        sh:message "Number of traffic objects must be an unsigned integer."@en ;
+    ],
+    [
+        sh:path scenario:permanentTrafficObjects ;
+        sh:datatype xsd:unsignedInt ;
+    ],
+    [
+        sh:path scenario:temporaryTrafficObjects ;
+        sh:datatype xsd:unsignedInt ;
+    ],
+    [
+        sh:path scenario:controllers ;
+        sh:datatype xsd:string ;
+    ] .
+
+scenario:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass scenario:Quality ;
+    sh:property [
+        sh:path scenario:accuracyObjects ;
+        sh:datatype xsd:float ;
+    ],
+    [
+        sh:path scenario:calibration ;
+        sh:datatype xsd:string ;
+    ] .
+
+scenario:DataSourceShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass scenario:DataSource ;
+    sh:property [
+        sh:path scenario:sourceType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ],
+    [
+        sh:path scenario:sourceDescription ;
+        sh:datatype xsd:string ;
+    ] .

@@ -45,12 +45,11 @@
     "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
   "gx:exposedThrough": {
-    "@id": "http://example.org/data-exchange-component",
-    "@type": "gx:DataExchangeComponent"
-  },
+        "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+        "@type": "gx:DataExchangeComponent"
+      },
   "gx:copyrightOwnedBy": {
-    "@value": "The GAIA-X 4 PLC AAD Project Team",
-    "@type": "xsd:string"
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
   "gx:license": "EPL-2.0",
   "gx:containsPII": false,

@@ -10,7 +10,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:registry.envited-x.net:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6",
-  "@type": "scenario:Manifest",
+  "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
     "manifest:hasAccessRole": {
@@ -236,7 +236,7 @@
       },
       "manifest:hasCategory": {
         "@type": "manifest:Category",
-        "@id": "envited-x:isReferencedSimulationData"
+        "@id": "envited-x:isSimulationData"
       },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
@@ -279,7 +279,7 @@
       },
       "manifest:hasCategory": {
         "@type": "manifest:Category",
-        "@id": "envited-x:isReferencedSimulationData"
+        "@id": "envited-x:isSimulationData"
       },
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
