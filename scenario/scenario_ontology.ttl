@@ -72,7 +72,10 @@ scenario:Scenario a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     # Scenario must have a manifest, either:
     #  - an inline envited-x:Manifest instance, or
@@ -155,7 +158,10 @@ scenario:hasDataResource a owl:ObjectProperty ;
     rdfs:comment "Links a scenario asset to a standard DataResource instance from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain scenario:Scenario ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 scenario:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;

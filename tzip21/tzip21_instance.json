@@ -55,11 +55,11 @@
     "@type": "xsd:string"
   },
   "tzip21:rights": {
-    "@value": "MPL-2.0",
+    "@value": "EPL-2.0",
     "@type": "xsd:string"
   },
   "tzip21:rightsUri": {
-    "@value": "https://www.mozilla.org/en-US/MPL/2.0/",
+    "@value": "https://opensource.org/license/EPL-2.0",
     "@type": "xsd:anyURI"
   },
   "tzip21:language": {
@@ -217,7 +217,7 @@
     {
       "@type": "tzip21:Attribute",
       "tzip21:name": {
-        "@value": "de.gaiax4plcaad.ontology-management-base.hdmap.ontology",
+        "@value": "net.envited-x.ontology-management-base.hdmap.ontology",
         "@type": "xsd:string"
       },
       "tzip21:value": {
@@ -232,7 +232,7 @@
     {
       "@type": "tzip21:Attribute",
       "tzip21:name": {
-        "@value": "de.gaiax4plcaad.ontology-management-base.envited-x.metadata",
+        "@value": "net.envited-x.ontology-management-base.envited-x.metadata",
         "@type": "xsd:string"
       },
       "tzip21:value": {
@@ -247,7 +247,7 @@
     {
       "@type": "tzip21:Attribute",
       "tzip21:name": {
-        "@value": "de.gaiax4plcaad.ontology-management-base.manifest.ontology",
+        "@value": "net.envited-x.ontology-management-base.manifest.ontology",
         "@type": "xsd:string"
       },
       "tzip21:value": {
@@ -262,7 +262,7 @@
     {
       "@type": "tzip21:Attribute",
       "tzip21:name": {
-        "@value": "de.gaiax4plcaad.ontology-management-base.georeference.metadata",
+        "@value": "net.envited-x.ontology-management-base.georeference.metadata",
         "@type": "xsd:string"
       },
       "tzip21:value": {
@@ -278,15 +278,15 @@
   "gx:providedBy": {
     "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
   },
-  "gx:termsAndConditions": [
+  "gx:serviceOfferingTermsAndConditions": [
     {
       "@type": "gx:TermsAndConditions",
       "gx:url": {
-        "@value": "https://www.mozilla.org/en-US/MPL/2.0/",
+        "@value": "https://docs.github.com/api/article/body?pathname=/en/site-policy/github-terms/github-terms-of-service",
         "@type": "xsd:anyURI"
       },
       "gx:hash": {
-        "@value": "2498777085732948759324875",
+        "@value": "bc5659f155f74d7ed712a07e10df872c07bfc931d2a35dffe6af13c3fdf0e3d7",
         "@type": "xsd:string"
       }
     }
@@ -300,18 +300,9 @@
   "gx:dataAccountExport": [
     {
       "@type": "gx:DataAccountExport",
-      "gx:requestType": {
-        "@value": "email",
-        "@type": "xsd:string"
-      },
-      "gx:accessType": {
-        "@value": "digital",
-        "@type": "xsd:string"
-      },
-      "gx:formatType": {
-        "@value": "application/json",
-        "@type": "xsd:string"
-      }
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/ld+json"
     }
   ]
 }

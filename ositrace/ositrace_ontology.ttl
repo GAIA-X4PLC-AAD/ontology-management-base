@@ -58,7 +58,10 @@ ositrace:OSITrace a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -161,7 +164,10 @@ ositrace:hasDataResource a owl:ObjectProperty ;
     rdfs:comment "Links an OSI trace asset to a standard DataResource instance from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain ositrace:OSITrace ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 ### hasManifest (ositrace -> envited-x:Manifest or manifest:Link)
 ositrace:hasManifest a owl:ObjectProperty ;

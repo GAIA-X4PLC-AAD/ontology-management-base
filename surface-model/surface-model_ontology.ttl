@@ -63,7 +63,10 @@ surface-model:SurfaceModel a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty surface-model:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -135,7 +138,10 @@ surface-model:hasDataResource a owl:ObjectProperty ;
     rdfs:comment "Links a surface model asset to a standard DataResource instance from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain surface-model:SurfaceModel ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 surface-model:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;

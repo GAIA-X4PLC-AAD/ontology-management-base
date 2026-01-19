@@ -65,7 +65,10 @@ hdmap:HdMap a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -158,7 +161,10 @@ hdmap:hasDataResource a owl:ObjectProperty ;
     rdfs:comment "Links an HD map asset to a standard DataResource instance from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain hdmap:HdMap ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 ### hasManifest (HdMap -> envited-x:Manifest OR manifest:Link)
 hdmap:hasManifest a owl:ObjectProperty ;

@@ -78,7 +78,10 @@ envited-x:SimulationAsset a owl:Class ;
     rdfs:subClassOf [ 
         a owl:Restriction ; 
         owl:onProperty envited-x:hasDataResource ; 
-        owl:someValuesFrom envited-x:DataResource 
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     # Optional coupling to DataResourceExtension
     rdfs:subClassOf [ 
@@ -171,7 +174,10 @@ envited-x:hasDataResource a owl:ObjectProperty ;
     rdfs:label "has data resource"@en ;
     rdfs:comment "Links a simulation asset or its subclass to its associated DataResource, which provides essential metadata such as name and description."@en ;
     rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
 ### hasDataResourceExtension (SimulationAsset -> DataResourceExtension)
 envited-x:hasDataResourceExtension a owl:ObjectProperty ;
