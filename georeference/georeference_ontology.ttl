@@ -1,9 +1,9 @@
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -35,17 +35,17 @@ georeference: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.2> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/georeference/v3/ontology#> ;
-    owl:versionInfo "v3" ;
+    owl:versionIRI <https://ontologies.envited-x.net/georeference/v5/ontology#> ;
+    owl:versionInfo "v5" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v3/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/georeference/v5/shape#> ;
 
     # References to related ontologies
-    dcterms:references <https://ontologies.envited-x.net/hdmap/v4/ontology#> ;
+    dcterms:references <https://ontologies.envited-x.net/hdmap/v5/ontology#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 georeference:Georeference a owl:Class ;
@@ -135,3 +135,89 @@ georeference:hasViewPoint a owl:ObjectProperty ;
     rdfs:comment "Defines the viewpoint position of the asset in world coordinates. OPTIONAL."@en ;
     rdfs:domain georeference:GeodeticReferenceSystem ;
     rdfs:range georeference:LatLonCoordinate .
+
+### **Datatype Properties (Missing definitions added)**
+
+georeference:codeEPSG a owl:DatatypeProperty ;
+    rdfs:label "EPSG code"@en ;
+    rdfs:comment "Defines the projection EPSG code for the asset."@en ;
+    rdfs:domain georeference:GeodeticReferenceSystem ;
+    rdfs:range xsd:integer .
+
+georeference:coordinateSystemName a owl:DatatypeProperty ;
+    rdfs:label "coordinate system name"@en ;
+    rdfs:comment "Describes the coordinate system name of the asset as an alternative to the EPSG code."@en ;
+    rdfs:domain georeference:GeodeticReferenceSystem ;
+    rdfs:range xsd:string .
+
+georeference:heightSystem a owl:DatatypeProperty ;
+    rdfs:label "height system"@en ;
+    rdfs:comment "Defines the height system type of the asset."@en ;
+    rdfs:domain georeference:GeodeticReferenceSystem ;
+    rdfs:range xsd:string .
+
+georeference:lat a owl:DatatypeProperty ;
+    rdfs:label "latitude"@en ;
+    rdfs:comment "Defines a world latitude value in degrees."@en ;
+    rdfs:domain georeference:LatLonCoordinate ;
+    rdfs:range xsd:float .
+
+georeference:lon a owl:DatatypeProperty ;
+    rdfs:label "longitude"@en ;
+    rdfs:comment "Defines a world longitude value in degrees."@en ;
+    rdfs:domain georeference:LatLonCoordinate ;
+    rdfs:range xsd:float .
+
+georeference:country a owl:DatatypeProperty ;
+    rdfs:label "country"@en ;
+    rdfs:comment "Defines an ISO 3166-1, alpha-2 code for the country."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range xsd:string .
+
+georeference:state a owl:DatatypeProperty ;
+    rdfs:label "state"@en ;
+    rdfs:comment "Defines an ISO 3166-2 code for the state or province."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range xsd:string .
+
+georeference:region a owl:DatatypeProperty ;
+    rdfs:label "region"@en ;
+    rdfs:comment "Specifies the name of the region."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range xsd:string .
+
+georeference:city a owl:DatatypeProperty ;
+    rdfs:label "city"@en ;
+    rdfs:comment "Specifies the name of the city."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range xsd:string .
+
+georeference:relationOrArea a owl:DatatypeProperty ;
+    rdfs:label "relation or area"@en ;
+    rdfs:comment "Describes the area in which the asset is located."@en ;
+    rdfs:domain georeference:ProjectLocation ;
+    rdfs:range xsd:string .
+
+georeference:xMin a owl:DatatypeProperty ;
+    rdfs:label "xMin"@en ;
+    rdfs:comment "Defines the minimum bounding box value along the x-axis."@en ;
+    rdfs:domain georeference:BoundingBox ;
+    rdfs:range xsd:float .
+
+georeference:yMin a owl:DatatypeProperty ;
+    rdfs:label "yMin"@en ;
+    rdfs:comment "Defines the minimum bounding box value along the y-axis."@en ;
+    rdfs:domain georeference:BoundingBox ;
+    rdfs:range xsd:float .
+
+georeference:xMax a owl:DatatypeProperty ;
+    rdfs:label "xMax"@en ;
+    rdfs:comment "Defines the maximum bounding box value along the x-axis."@en ;
+    rdfs:domain georeference:BoundingBox ;
+    rdfs:range xsd:float .
+
+georeference:yMax a owl:DatatypeProperty ;
+    rdfs:label "yMax"@en ;
+    rdfs:comment "Defines the maximum bounding box value along the y-axis."@en ;
+    rdfs:domain georeference:BoundingBox ;
+    rdfs:range xsd:float .

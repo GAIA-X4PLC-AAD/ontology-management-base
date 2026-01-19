@@ -1,0 +1,406 @@
+@prefix tzip21: <https://ontologies.envited-x.net/tzip21/v1/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+#################################################################
+# Rich Metadata Asset Shape (TZIP-021 + TZIP-012 Token Metadata)
+#################################################################
+tzip21:AssetShape
+  a sh:NodeShape ;
+  rdfs:label "Rich Metadata Asset Shape" ;
+  sh:targetClass tzip21:Asset ;
+  sh:closed false ;
+  
+  dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
+                      <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
+                      <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,
+                      <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-21/tzip-21.md> ;
+  # Token metadata from TZIP-012:
+  sh:property [
+      sh:path tzip21:name ;
+      sh:datatype xsd:string ;
+      rdfs:label "Token Name" ;
+      sh:description "A UTF-8 string giving a display name to the token. (Highly recommended from TZIP-012)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:symbol ;
+      sh:datatype xsd:string ;
+      rdfs:label "Token Symbol" ;
+      sh:description "A UTF-8 string for the short identifier of the token (e.g. XTZ, EUR, etc.). (Highly recommended from TZIP-012)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:decimals ;
+      sh:datatype xsd:integer ;
+      rdfs:label "Token Decimals" ;
+      sh:description "An integer defining the position of the decimal point in token balances for display purposes. (Required by TZIP-012)" ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ] ;
+  # TZIP-021 Rich Metadata properties:
+  sh:property [
+      sh:path tzip21:description ;
+      sh:datatype xsd:string ;
+      rdfs:label "Description" ;
+      sh:description "General notes, abstracts, or summaries about the contents of an asset. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:minter ;
+      sh:datatype xsd:string ;
+      rdfs:label "Minter" ;
+      sh:description "The tz address responsible for minting the asset. Expected format: tzaddress. (Recommended for semi‑fungible and NFT tokens)" ;
+      sh:pattern "^(tz1|tz2|tz3|tz4)[1-9A-HJ-NP-Za-km-z]{33}$" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:creators ;
+      sh:datatype xsd:string ;
+      rdfs:label "Creators" ;
+      sh:description "Array of unique strings representing the primary creators of the asset. (Recommended for semi‑fungible and NFT tokens)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:contributors ;
+      sh:datatype xsd:string ;
+      rdfs:label "Contributors" ;
+      sh:description "Array of unique strings representing those who made substantial creative contributions. (Optional)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:publishers ;
+      sh:datatype xsd:string ;
+      rdfs:label "Publishers" ;
+      sh:description "Array of unique strings representing those primarily responsible for distributing the asset. (Optional)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:date ;
+      sh:datatype xsd:dateTime ;
+      rdfs:label "Date" ;
+      sh:description "A date associated with the creation or availability of the asset, per JSON Schema. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:blockLevel ;
+      sh:datatype xsd:integer ;
+      rdfs:label "Block Level" ;
+      sh:description "Chain block level associated with the asset. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:type ;
+      sh:datatype xsd:string ;
+      rdfs:label "Type" ;
+      sh:description "A broad definition of the content type of the asset. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:tags ;
+      sh:datatype xsd:string ;
+      rdfs:label "Tags" ;
+      sh:description "Array of unique strings that describe the subject or content of the asset. (Recommended for Multimedia NFTs)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:genres ;
+      sh:datatype xsd:string ;
+      rdfs:label "Genres" ;
+      sh:description "Array of unique strings that describe the genres of the asset. (Optional)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:language ;
+      sh:datatype xsd:language ;
+      rdfs:label "Language" ;
+      sh:description "The language of the asset’s intellectual content (per RFC 1766). (Optional)" ;
+      sh:pattern "^[a-z]{2,3}(-[A-Z]{2})?$" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:identifier ;
+      sh:datatype xsd:string ;
+      rdfs:label "Identifier" ;
+      sh:description "A unique identifier (e.g. URL, URN, UUID, ISBN) for the asset. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:rights ;
+      sh:datatype xsd:string ;
+      rdfs:label "Rights" ;
+      sh:description "A statement about the asset rights. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:rightsUri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "Rights URI" ;
+      sh:description "A URI linking to a statement of rights. Format: uri-reference. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:artifactUri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "Artifact URI" ;
+      sh:description "A URI to the asset. Format: uri-reference. (Recommended for semi‑fungible and NFT tokens)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:displayUri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "Display URI" ;
+      sh:description "A URI to an image of the asset for display purposes. Format: uri-reference. (Recommended for semi‑fungible and NFT tokens)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:thumbnailUri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "Thumbnail URI" ;
+      sh:description "A URI to a scaled-down image for wallets/clients (max recommended size: 350x350px). Format: uri-reference. (Recommended for fungible and NFT tokens)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:externalUri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "External URI" ;
+      sh:description "A URI with additional information about the asset. Format: uri-reference. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:isTransferable ;
+      sh:datatype xsd:boolean ;
+      rdfs:label "Is Transferable" ;
+      sh:description "Indicates if tokens are transferable. Default is true." ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:defaultValue true ;
+  ],
+  [
+      sh:path tzip21:isBooleanAmount ;
+      sh:datatype xsd:boolean ;
+      rdfs:label "Is Boolean Amount" ;
+      sh:description "Indicates whether an account’s balance can only be 0 or 1. Default is false. (Recommended for nonfungible tokens)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:defaultValue false ;
+  ],
+  [
+      sh:path tzip21:shouldPreferSymbol ;
+      sh:datatype xsd:boolean ;
+      rdfs:label "Should Prefer Symbol" ;
+      sh:description "Indicates if a symbol should be shown instead of a name. Default is false." ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:defaultValue false ;
+  ],
+  [
+      sh:path tzip21:ttl ;
+      sh:datatype xsd:integer ;
+      rdfs:label "TTL" ;
+      sh:description "Time-to-live (in seconds) for metadata caching. Default is 0 (indefinite caching). If used, it is advised not to set below 600 seconds." ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+      sh:defaultValue 0 ;
+  ],
+  [
+      sh:path tzip21:formats ;
+      sh:node tzip21:FormatShape ;
+      rdfs:label "Formats" ;
+      sh:description "An array of format objects describing various representations of the asset. (Optional)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:attributes ;
+      sh:node tzip21:AttributeShape ;
+      rdfs:label "Attributes" ;
+      sh:description "An array of attribute objects providing custom properties. Attribute names must be unique within the array. (Optional)" ;
+      sh:minCount 0 ;
+  ],
+  [
+      sh:path tzip21:assets ;
+      sh:node tzip21:AssetShape ;
+      rdfs:label "Nested Assets" ;
+      sh:description "An array of asset objects for describing collections or composite resources. (Optional)" ;
+      sh:minCount 0 ;
+  ] .
+
+#################################################################
+# Format Shape (for representing alternative representations of an asset)
+#################################################################
+tzip21:FormatShape
+  a sh:NodeShape ;
+  sh:targetClass tzip21:Format ;
+  rdfs:label "Asset Format Shape" ;
+  sh:closed false ;
+  
+  sh:property [
+      sh:path tzip21:uri ;
+      sh:datatype xsd:anyURI ;
+      rdfs:label "Format URI" ;
+      sh:description "A URI to the asset in this format. Format: uri-reference. (Recommended)" ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:hash ;
+      sh:datatype xsd:string ;
+      rdfs:label "Hash" ;
+      sh:description "Checksum hash of the asset content in this format. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:mimeType ;
+      sh:datatype xsd:string ;
+      rdfs:label "MIME Type" ;
+      sh:description "Media (MIME) type as registered by IANA. (Optional)" ;
+      sh:pattern "^[a-z]+\\/[a-z0-9.+-]+$" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:fileSize ;
+      sh:datatype xsd:integer ;
+      rdfs:label "File Size" ;
+      sh:description "Size in bytes of the asset content in this format. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:fileName ;
+      sh:datatype xsd:string ;
+      rdfs:label "File Name" ;
+      sh:description "Display filename for the asset in this format. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:duration ;
+      sh:datatype xsd:time ;
+      rdfs:label "Duration" ;
+      sh:description "Time duration of the asset content in this format. Format: time. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:dimensions ;
+      sh:node tzip21:DimensionsShape ;
+      rdfs:label "Dimensions" ;
+      sh:description "Dimensions of the asset content (e.g. ‘512x512’ with unit ‘px’)." ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:dataRate ;
+      sh:node tzip21:DataRateShape ;
+      rdfs:label "Data Rate" ;
+      sh:description "Data rate at which the asset content was captured (e.g. 320 kbps)." ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ] .
+
+#################################################################
+# Attribute Shape (for custom asset properties)
+#################################################################
+tzip21:AttributeShape
+  a sh:NodeShape ;
+  sh:targetClass tzip21:Attribute ;
+  rdfs:label "Asset Attribute Shape" ;
+  sh:closed false ;
+  
+  sh:property [
+      sh:path tzip21:name ;
+      sh:datatype xsd:string ;
+      rdfs:label "Attribute Name" ;
+      sh:description "Name of the attribute. Must be unique within the attributes array." ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:value ;
+      sh:datatype xsd:string ;
+      rdfs:label "Attribute Value" ;
+      sh:description "Value of the attribute." ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:type ;
+      sh:datatype xsd:string ;
+      rdfs:label "Attribute Type" ;
+      sh:description "Type of the attribute value (e.g. number, integer, percentage) for display purposes. (Optional)" ;
+      sh:minCount 0 ;
+      sh:maxCount 1 ;
+  ] .
+
+#################################################################
+# DataRate Shape (for representing media capture rates)
+#################################################################
+tzip21:DataRateShape
+  a sh:NodeShape ;
+  sh:targetClass tzip21:DataRate ;
+  rdfs:label "Data Rate Shape" ;
+  sh:closed false ;
+  
+  sh:property [
+      sh:path tzip21:value ;
+      sh:datatype xsd:integer ;
+      rdfs:label "Data Rate Value" ;
+      sh:description "Numeric value of the data rate." ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:unit ;
+      sh:datatype xsd:string ;
+      rdfs:label "Data Rate Unit" ;
+      sh:description "Unit for the data rate (e.g. 'kbps')." ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ] .
+
+#################################################################
+# Dimensions Shape (for representing asset dimensions)
+#################################################################
+tzip21:DimensionsShape
+  a sh:NodeShape ;
+  sh:targetClass tzip21:Dimensions ;
+  rdfs:label "Dimensions Shape" ;
+  sh:closed false ;
+  
+  sh:property [
+      sh:path tzip21:value ;
+      sh:datatype xsd:string ;
+      rdfs:label "Dimensions Value" ;
+      sh:description "The dimensions value (e.g. '512x512')." ;
+      sh:pattern "^\\d+x\\d+$" ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ],
+  [
+      sh:path tzip21:unit ;
+      sh:datatype xsd:string ;
+      rdfs:label "Dimensions Unit" ;
+      sh:description "The unit of measurement for the dimensions (e.g. 'px')." ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+  ] .

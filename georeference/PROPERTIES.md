@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#>
+- georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#>
 
 ## List of SHACL Properties
 
@@ -12,7 +12,7 @@
 | GeoreferenceShape | georeference | hasGeodeticReferenceSystem | 1 | 1 | This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system. |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | hasOrigin | 1 | 1 | Defines the center position of the asset in world coordinates. |  | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | hasViewPoint |  | 1 | Defines the imported viewpoint position of the asset in world coordinates. |  | georeference_shacl.ttl |
-| GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | Defines the projection EPSG code for the asset. | <http://www.w3.org/2001/XMLSchema#int> | georeference_shacl.ttl |
+| GeodeticReferenceSystemShape | georeference | codeEPSG |  | 1 | Defines the projection EPSG code for the asset. | <http://www.w3.org/2001/XMLSchema#integer> | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | coordinateSystemName |  | 1 | Describes the coordinate system name of the asset as an alternative to the EPSG code. | <http://www.w3.org/2001/XMLSchema#string> | georeference_shacl.ttl |
 | GeodeticReferenceSystemShape | georeference | heightSystem |  | 1 | Defines the height system type of the asset. |  | georeference_shacl.ttl |
 | BoundingBoxShape | georeference | xMin | 1 | 1 | Defines the minimum bounding box value along the x-axis. | <http://www.w3.org/2001/XMLSchema#float> | georeference_shacl.ttl |

@@ -27,15 +27,15 @@ repos:
         pass_filenames: true
 
       - id: jsonld-lint
-        name: JSON-LD Linter
-        entry: python src/jsonld_lint.py
+        name: JSON-LD Parser
+        entry: python src/utils/check_parse_jsonld.py
         language: system
         types: [json]
         files: \.json$
 
       - id: turtle-lint
-        name: Turtle Linter
-        entry: python src/turtle_lint.py
+        name: Turtle Parser
+        entry: python src/utils/check_parse_turtle.py
         language: system
         types: [text]
         files: \.(ttl)$

@@ -1,14 +1,14 @@
-@prefix leakage-test: <https://ontologies.envited-x.net/leakage-test/v1/ontology#> .
+@prefix leakage-test: <https://ontologies.envited-x.net/leakage-test/v2/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
-
+@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 
 leakage-test: a owl:Ontology ;
 	rdfs:label "Ontology for leakage-test"@en ;
@@ -27,18 +27,20 @@ leakage-test: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/leakage-test/v1/ontology#> ;
-    owl:versionInfo "v1" ;
+    owl:versionIRI <https://ontologies.envited-x.net/leakage-test/v2/ontology#> ;
+    owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v1/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/leakage-test/v2/shape#> ;
 
     # Additional references to documentation or related ontologies
-    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
+
+# Classes
 
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for LeakageTest"@en ;
@@ -72,3 +74,65 @@ leakage-test:MaximumPressure a owl:Class ;
 leakage-test:MinimumPressure a owl:Class ;
 	rdfs:label "Class definition for MinimumPressure"@en ;
 	rdfs:comment "Attributes for minimum pressure of a leakage test."@en .
+
+# Properties
+
+leakage-test:general a owl:ObjectProperty ;
+    rdfs:label "general"@en ;
+    rdfs:comment "General information about the leakage test."@en ;
+    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:range general:General .
+
+leakage-test:machineParameter a owl:ObjectProperty ;
+    rdfs:label "machine parameter"@en ;
+    rdfs:comment "Machine parameters for the test."@en ;
+    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:range leakage-test:MachineParameter .
+
+leakage-test:processParameter a owl:ObjectProperty ;
+    rdfs:label "process parameter"@en ;
+    rdfs:comment "Process parameters for the test."@en ;
+    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:range leakage-test:ProcessParameter .
+
+leakage-test:codingRFID a owl:ObjectProperty ;
+    rdfs:label "coding RFID"@en ;
+    rdfs:domain leakage-test:ProcessParameter ;
+    rdfs:range leakage-test:CodingRFID .
+
+leakage-test:codingTestAdapter a owl:ObjectProperty ;
+    rdfs:label "coding test adapter"@en ;
+    rdfs:domain leakage-test:ProcessParameter ;
+    rdfs:range leakage-test:CodingTestAdapter .
+
+leakage-test:codingDownholder a owl:ObjectProperty ;
+    rdfs:label "coding downholder"@en ;
+    rdfs:domain leakage-test:ProcessParameter ;
+    rdfs:range leakage-test:CodingDownholder .
+
+leakage-test:maximumPressure a owl:ObjectProperty ;
+    rdfs:label "maximum pressure"@en ;
+    rdfs:domain leakage-test:MachineParameter ;
+    rdfs:range leakage-test:MaximumPressure .
+
+leakage-test:minimumPressure a owl:ObjectProperty ;
+    rdfs:label "minimum pressure"@en ;
+    rdfs:domain leakage-test:MachineParameter ;
+    rdfs:range leakage-test:MinimumPressure .
+
+leakage-test:setpoint a owl:DatatypeProperty ;
+    rdfs:label "setpoint"@en ;
+    rdfs:comment "Target value."@en ;
+    rdfs:range xsd:float . 
+
+leakage-test:lowerTolerance a owl:DatatypeProperty ;
+    rdfs:label "lower tolerance"@en ;
+    rdfs:range xsd:float .
+
+leakage-test:upperTolerance a owl:DatatypeProperty ;
+    rdfs:label "upper tolerance"@en ;
+    rdfs:range xsd:float .
+
+leakage-test:unit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
+    rdfs:range xsd:string .

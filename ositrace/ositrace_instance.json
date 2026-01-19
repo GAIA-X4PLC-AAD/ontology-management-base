@@ -1,25 +1,34 @@
 {
   "@context": {
-    "ositrace": "https://ontologies.envited-x.net/ositrace/v4/ontology#",
+    "ositrace": "https://ontologies.envited-x.net/ositrace/v5/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+    "gx": "https://w3id.org/gaia-x/development#"
   },
-  "@id": "did:web:registry.gaia-x.eu:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+  "@id": "did:web:registry.envited-x.net:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
   "@type": "ositrace:OSITrace",
   "ositrace:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Cut-out scenario on testing ground",
-      "@type": "xsd:string"
+    "gx:name": "Cut-out scenario on testing ground",
+    "gx:description": "OSI SensorData trace of cut-out scenario on testing ground.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
-    "gx:description": {
-      "@value": "OSI SensorData trace of cut-out scenario on testing ground.",
-      "@type": "xsd:string"
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "ositrace:hasDataResourceExtension": {
@@ -106,7 +115,7 @@
     },
     "ositrace:hasGeoreference": {
       "@type": "georeference:Georeference",
-      "@id": "did:web:registry.gaia-x.eu:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+      "@id": "did:web:registry.envited-x.net:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
       "georeference:hasProjectLocation": {
         "@type": "georeference:ProjectLocation",
         "georeference:country": {
@@ -153,7 +162,7 @@
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
           "@value": "4326",
-          "@type": "xsd:int"
+          "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
@@ -184,7 +193,7 @@
   "ositrace:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4"
+      "@id": "did:web:registry.envited-x.net:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
@@ -192,7 +201,7 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"

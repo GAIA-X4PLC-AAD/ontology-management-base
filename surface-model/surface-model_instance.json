@@ -1,25 +1,34 @@
 {
   "@context": {
-    "surface-model": "https://ontologies.envited-x.net/surface-model/v5/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
+    "surface-model": "https://ontologies.envited-x.net/surface-model/v6/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+    "gx": "https://w3id.org/gaia-x/development#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Manifest:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@id": "did:web:registry.envited-x.net:SurfaceModel:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
   "@type": "surface-model:SurfaceModel",
   "surface-model:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Sample Surface Model Data",
-      "@type": "xsd:string"
+    "gx:name": "Sample Surface Model Data",
+    "gx:description": "A detailed surface model for simulation applications.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
-    "gx:description": {
-      "@value": "A detailed surface model for simulation applications.",
-      "@type": "xsd:string"
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "surface-model:hasDataResourceExtension": {
@@ -113,7 +122,7 @@
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
           "@value": "451989",
-          "@type": "xsd:int"
+          "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
@@ -144,7 +153,7 @@
   "surface-model:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
+      "@id": "did:web:registry.envited-x.net:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
@@ -152,7 +161,7 @@
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"

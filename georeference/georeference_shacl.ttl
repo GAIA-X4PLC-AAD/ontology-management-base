@@ -1,12 +1,12 @@
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 georeference:GeoreferenceShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
     sh:property [
         sh:maxCount 1 ;
         sh:minCount 1 ;
@@ -27,8 +27,7 @@ georeference:GeoreferenceShape a sh:NodeShape ;
     sh:targetClass georeference:Georeference .
 
 georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
     sh:or (
         [ sh:minCount 1 ; sh:path georeference:codeEPSG ]
         [ sh:minCount 1 ; sh:path georeference:coordinateSystemName ]
@@ -54,7 +53,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
         sh:path georeference:hasViewPoint
     ], [
         skos:example "32632" ;
-        sh:datatype xsd:int ;
+        sh:datatype xsd:integer ;
         sh:description "Defines the projection EPSG code for the asset."@en ;
         sh:message "Validation of codeEPSG failed!"@en ;
         sh:name "EPSG code"@en ;
@@ -83,8 +82,7 @@ georeference:GeodeticReferenceSystemShape a sh:NodeShape ;
     sh:targetClass georeference:GeodeticReferenceSystem .
 
 georeference:BoundingBoxShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
     sh:property [
         skos:example "1.0" ;
         sh:datatype xsd:float ;
@@ -129,8 +127,7 @@ georeference:BoundingBoxShape a sh:NodeShape ;
     sh:targetClass georeference:BoundingBox .
 
 georeference:LatLonCoordinateShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
     sh:property [
         skos:example "52.540721" ;
         sh:datatype xsd:float ;
@@ -155,8 +152,7 @@ georeference:LatLonCoordinateShape a sh:NodeShape ;
     sh:targetClass georeference:LatLonCoordinate .
 
 georeference:ProjectLocationShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
     sh:property [
         skos:example "DE-BY" ;
         sh:datatype xsd:string ;

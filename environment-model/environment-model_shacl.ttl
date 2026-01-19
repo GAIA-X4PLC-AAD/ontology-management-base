@@ -1,22 +1,28 @@
-@prefix environment-model: <https://ontologies.envited-x.net/environment-model/v4/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix environment-model: <https://ontologies.envited-x.net/environment-model/v5/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 environment-model:EnvironmentModelShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
     sh:property [
         sh:path environment-model:hasDataResource ;
-        sh:node environment-model:DataResourceShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each environment model must have one associated DataResource object containing name and description."@en ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each environment model must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
     ],
+
+    # 2) hasDataResourceExtension: Maintaining the mandatory domain-specific extension.
     [
         sh:path environment-model:hasDataResourceExtension ;
         sh:node environment-model:DataResourceExtensionShape ;
@@ -24,30 +30,27 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:message "Each environment model must have one associated DataResourceExtension object with format, content, quantity, quality, and georeference."@en ;
     ],
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
     [
         sh:path environment-model:hasManifest ;
-        sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
-            
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
-        ) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each environment model must have exactly one manifest."@en ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
+            # Case 2: Linked manifest reference
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each environment model must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
     ] ;
     sh:targetClass environment-model:EnvironmentModel .
 
+
 environment-model:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [
         sh:maxCount 1 ;
         sh:minCount 1 ;
@@ -105,7 +108,7 @@ environment-model:DataResourceExtensionShape a sh:NodeShape ;
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "Unreal Datasmith, Autodesk FBX, OpenSceneGraph, glTF" ;
         sh:datatype xsd:string ;
@@ -131,7 +134,7 @@ environment-model:FormatShape a sh:NodeShape ;
 
 environment-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "profile roads, extrude buildings, forests, trees, river, powerlines"@en ;
         sh:maxCount 1 ;
@@ -156,7 +159,7 @@ environment-model:ContentShape a sh:NodeShape ;
 
 environment-model:ProjectShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "Unreal" ;
         sh:datatype xsd:string ;
@@ -221,7 +224,7 @@ environment-model:ProjectShape a sh:NodeShape ;
 
 environment-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "PBR, highly detailed specific 3D buildings."@en ;
         sh:datatype xsd:string ;
@@ -259,7 +262,7 @@ environment-model:QualityShape a sh:NodeShape ;
 
 environment-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    sh:ignoredProperties ( rdf:type ) ;
+    
     sh:property [
         skos:example "12000" ;
         sh:datatype xsd:unsignedInt ;

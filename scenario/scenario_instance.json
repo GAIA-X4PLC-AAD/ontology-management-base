@@ -1,29 +1,34 @@
 {
   "@context": {
-    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
-    "environment-model": "https://ontologies.envited-x.net/environment-model/v4/ontology#",
-    "envited-x": "https://ontologies.envited-x.net/envited-x/v2/ontology#",
-    "gx": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
-    "scenario": "https://ontologies.envited-x.net/scenario/v4/ontology#",
+    "scenario": "https://ontologies.envited-x.net/scenario/v5/ontology#",
+    "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
+    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
+    "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
+    "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "hdmap": "https://ontologies.envited-x.net/hdmap/v4/ontology#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "georeference": "https://ontologies.envited-x.net/georeference/v3/ontology#",
-    "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#"
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
+  "@id": "did:web:registry.envited-x.net:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
   "@type": "scenario:Scenario",
   "scenario:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
     "@type": "envited-x:DataResource",
-    "gx:name": {
-      "@value": "Scenario Example",
-      "@type": "xsd:string"
+    "gx:name": "Scenario Example",
+    "gx:description": "A sample description of a non-existing scenario.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
     },
-    "gx:description": {
-      "@value": "A sample description of a non-existing scenario.",
-      "@type": "xsd:string"
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
     }
   },
   "scenario:hasDataResourceExtension": {
@@ -59,7 +64,7 @@
     "scenario:hasQuality": {
       "@type": "scenario:Quality",
       "scenario:accuracyObjects": {
-        "@value": 0.02,
+        "@value": "0.02",
         "@type": "xsd:float"
       },
       "scenario:calibration": {
@@ -121,19 +126,19 @@
         "georeference:hasBoundingBox": {
           "@type": "georeference:BoundingBox",
           "georeference:xMin": {
-            "@value": 10.720740862799195,
+            "@value": "10.720740862799195",
             "@type": "xsd:float"
           },
           "georeference:yMin": {
-            "@value": 52.29672229543727,
+            "@value": "52.29672229543727",
             "@type": "xsd:float"
           },
           "georeference:xMax": {
-            "@value": 10.73043220969724,
+            "@value": "10.73043220969724",
             "@type": "xsd:float"
           },
           "georeference:yMax": {
-            "@value": 52.31580272353997,
+            "@value": "52.31580272353997",
             "@type": "xsd:float"
           }
         }
@@ -141,28 +146,28 @@
       "georeference:hasGeodeticReferenceSystem": {
         "@type": "georeference:GeodeticReferenceSystem",
         "georeference:codeEPSG": {
-          "@value": 32632,
-          "@type": "xsd:int"
+          "@value": "32632",
+          "@type": "xsd:integer"
         },
         "georeference:hasOrigin": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
-            "@value": 52.27532946399296,
+            "@value": "52.27532946399296",
             "@type": "xsd:float"
           },
           "georeference:lon": {
-            "@value": 10.685571633942278,
+            "@value": "10.685571633942278",
             "@type": "xsd:float"
           }
         },
         "georeference:hasViewPoint": {
           "@type": "georeference:LatLonCoordinate",
           "georeference:lat": {
-            "@value": 52.30626250948862,
+            "@value": "52.30626250948862",
             "@type": "xsd:float"
           },
           "georeference:lon": {
-            "@value": 10.72558653623446,
+            "@value": "10.72558653623446",
             "@type": "xsd:float"
           }
         },
@@ -173,21 +178,21 @@
   "scenario:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.gaia-x.eu:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6"
+      "@id": "did:web:registry.envited-x.net:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6"
     },
     "skos:note": {
-      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@value": "Reference to the scenario manifest.",
       "@type": "xsd:string"
     },
     "sh:conformsTo": [
       {
-        "@id": "https://ontologies.envited-x.net/envited-x/v2/ontology#"
+        "@id": "https://ontologies.envited-x.net/envited-x/v3/ontology#"
       },
       {
         "@id": "https://ontologies.envited-x.net/manifest/v5/ontology#"
       },
       {
-        "@id": "https://ontologies.envited-x.net/scenario/v4/ontology#"
+        "@id": "https://ontologies.envited-x.net/scenario/v5/ontology#"
       }
     ],
     "manifest:hasAccessRole": {

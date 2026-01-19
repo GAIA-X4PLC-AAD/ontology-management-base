@@ -1,0 +1,18 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                      ['manifest/tests/fail_03_wrong_category_instance.json', 'base-references/gx_legalperson_reference.json']                      =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasCategory                                                             =
+=    Error:            A link used in hasLicense must have a category belonging to manifest:LicenseCategory.                                         =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LicenseLinkReferenceShape>. See        =
+=                      details for more information.                                                                                                 =
+======================================================================================================================================================

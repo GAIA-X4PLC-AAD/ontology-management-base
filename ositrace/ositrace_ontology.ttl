@@ -1,15 +1,15 @@
-@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v4/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix ositrace: <https://ontologies.envited-x.net/ositrace/v5/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 ositrace: a owl:Ontology ;
     rdfs:label "Ontology definition for ositrace"@en ;
@@ -33,14 +33,14 @@ ositrace: a owl:Ontology ;
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.4> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v4/ontology#> ;
-    owl:versionInfo "v4" ;
+    owl:versionIRI <https://ontologies.envited-x.net/ositrace/v5/ontology#> ;
+    owl:versionInfo "v5" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v4/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/ositrace/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies/specifications
     dcterms:references <https://github.com/OpenSimulationInterface> ;
@@ -58,12 +58,18 @@ ositrace:OSITrace a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasDataResource ;
-        owl:someValuesFrom envited-x:DataResource
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:DataResource manifest:Link )
+        ]
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasManifest ;
-        owl:someValuesFrom envited-x:Manifest
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:Manifest manifest:Link )
+        ]
     ] .
 
 ositrace:DataResourceExtension a owl:Class ;
@@ -158,15 +164,27 @@ ositrace:hasDataResource a owl:ObjectProperty ;
     rdfs:comment "Links an OSI trace asset to a standard DataResource instance from envited-x."@en ;
     rdfs:subPropertyOf envited-x:hasDataResource ;
     rdfs:domain ositrace:OSITrace ;
-    rdfs:range envited-x:DataResource .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:DataResource manifest:Link )
+    ] .
 
-### hasManifest (ositrace -> envited-x:Manifest)
+### hasManifest (ositrace -> envited-x:Manifest or manifest:Link)
 ositrace:hasManifest a owl:ObjectProperty ;
     rdfs:label "Object property: hasManifest"@en ;
-    rdfs:comment "Links an OSI trace asset to its specific manifest, extending the standard manifest structure from envited-x."@en ;
+    rdfs:comment """
+                Links an OSI Trace asset to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node (embedded manifest structure), or
+                - an manifest:Link node (a link that points via manifest:iri
+                to an external manifest representation, typically identified by a DID).
+                """@en ;
     rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain ositrace:OSITrace ;
-    rdfs:range envited-x:Manifest .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
 
 ### hasGeoreference (DataResourceExtension -> georeference:Georeference)
 ositrace:hasGeoreference a owl:ObjectProperty ;

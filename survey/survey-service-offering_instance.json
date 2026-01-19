@@ -1,8 +1,10 @@
 {
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "survey": "https://ontologies.envited-x.net/survey/v5/ontology#",
-    "general": "https://ontologies.envited-x.net/general/v2/ontology#"
+    "survey": "https://ontologies.envited-x.net/survey/v6/ontology#",
+    "general": "https://ontologies.envited-x.net/general/v3/ontology#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw",
   "@type": "survey:SurveyServiceOffering",
@@ -39,5 +41,15 @@
         "@type": "xsd:float"
       }
     }
-  }
+  },
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "survey-service-001",
+  "dcterms:title": "Semiconductor Survey Service"
 }

@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- environment-model: <https://ontologies.envited-x.net/environment-model/v4/ontology#>
+- environment-model: <https://ontologies.envited-x.net/environment-model/v5/ontology#>
 
 ## List of SHACL Properties
 

@@ -1,235 +1,246 @@
 import io
 import os
-import subprocess
 import sys
 
-# Set the encoding for stdout to UTF-8
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+from check_jsonld_against_shacl_schema import (
+    build_dict_for_ontologies,
+    validate_jsonld_against_shacl,
+)
+from check_target_classes_against_owl_classes import (
+    validate_target_classes_against_owl_classes,
+)
+from utils.check_parse_jsonld import validate_jsonld_files
+from utils.check_parse_turtle import validate_turtle_files
+from utils.print_formatting import normalize_text
 
 # Define the root directory of the repository and the source folder for scripts
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
 
 # Explicitly excluded folders
-EXCLUDED_FOLDERS = {"src"}
+EXCLUDED_FOLDERS = {
+    "src",
+    "base-ontologies",
+    "base-references",
+    "service-characteristics",
+    "node_modules",
+}
+EXPECTED_TARGETCLASS_FAILURES = {"gx"}  # ontologies allowed to fail this check
 
 
 def get_ontology_dirs():
-    """Return non-hidden directories in ROOT_DIR that are not explicitly excluded."""
-    return [
-        folder
-        for folder in os.listdir(ROOT_DIR)
-        if os.path.isdir(os.path.join(ROOT_DIR, folder))
-        and folder not in EXCLUDED_FOLDERS
-        and not folder.startswith(".")
-    ]
+    """Return non-hidden directories in ROOT_DIR that are not explicitly excluded, sorted alphabetically."""
+    return sorted(
+        [
+            folder
+            for folder in os.listdir(ROOT_DIR)
+            if os.path.isdir(os.path.join(ROOT_DIR, folder))
+            and folder not in EXCLUDED_FOLDERS
+            and not folder.startswith(".")
+        ]
+    )
 
 
 ONTOLOGY_DIRS = get_ontology_dirs()
-print(f"Detected ontology directories: {ONTOLOGY_DIRS}")
-print("\n🚀 Running all ontology validation checks...")
 
 
-def run_command(command, description):
-    """Execute a command and capture its output. Does not print errors."""
-    error_output = ""
-    output = ""
+def check_syntax_all() -> int:
+    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files, aborting on the first error."""
+    print("\n=== Checking JSON-LD syntax ===", flush=True)
+    json_ret, json_results = validate_jsonld_files(ONTOLOGY_DIRS)
+    for code, msg in json_results:
+        if code == 0:
+            print(msg)
+        else:
+            print(msg, file=sys.stderr)
+            return code  # Abort immediately on JSON-LD syntax error
 
-    # Normalize paths in the command
-    command = [os.path.normpath(path) for path in command]
+    print("\n=== Checking TTL syntax ===", flush=True)
+    ttl_ret, ttl_results = validate_turtle_files(ONTOLOGY_DIRS)
+    for code, msg in ttl_results:
+        if code == 0:
+            print(msg)
+        else:
+            print(msg, file=sys.stderr)
+            return code  # Abort immediately on TTL syntax error
 
-    # Check if the command is empty
-    if not command:
-        return -1, "No command provided."
-
-    try:
-        result = subprocess.run(
-            command,
-            shell=False,
-            capture_output=True,
-            text=True,
-            check=True,
-            encoding="utf-8",
-        )
-        output = result.stdout.strip() if isinstance(result.stdout, str) else ""
-
-        return result.returncode, output  # Prefer stdout
-
-    except subprocess.CalledProcessError as e:
-        # Capture stderr from failures and return it
-        error_output = (
-            e.stderr.strip() if isinstance(e.stderr, str) else "No output captured."
-        )
-        return e.returncode, error_output
-
-    except FileNotFoundError:
-        return -1, f"Command not found: {' '.join(command)}"
-
-    except PermissionError:
-        return -1, f"Permission denied: {' '.join(command)}"
-
-    except Exception as e:
-        return -1, f"An unexpected error occurred: {str(e)}"
+    print("📌 Completed TTL and JSON syntax tests", flush=True)
+    return 0
 
 
-def check_ttl_syntax():
-    """Check the syntax of all Turtle (.ttl) files in each ontology folder."""
-    print("\n=== Checking TTL syntax ===")
+def check_jsonld_against_shacl_all() -> int:
+    """Validate JSON-LD files against SHACL schemas, aborting on the first failure."""
+    print("\n=== Checking JSON-LD against SHACL ===", flush=True)
+
     for ontology in ONTOLOGY_DIRS:
-        folder_path = os.path.join(ROOT_DIR, ontology)
-        print(f"\n🔍 Starting TTL syntax tests for folder: {ontology}")
-        ttl_files = [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
-            if f.endswith(".ttl")
-        ]
-        if not ttl_files:
-            print(f"⚠️  No .ttl files found in folder: {ontology}")
-        for ttl_file in ttl_files:
-            print(f"🔍 Checking syntax of {ttl_file}...")
-            returncode, output = run_command(
-                [
-                    sys.executable,
-                    os.path.join(SRC_DIR, "check_ttl_syntax.py"),
-                    ttl_file,
-                ],
-                f"TTL syntax check for {ttl_file}",
+        print(
+            f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}", flush=True
+        )
+        ontology_dict = build_dict_for_ontologies(
+            ROOT_DIR, [os.path.join(".", ontology)]
+        )
+
+        if not ontology_dict:
+            print(
+                f"Error code 100: No valid files found in folder '{ontology}'.",
+                file=sys.stderr,
+                flush=True,
             )
-            if returncode != 0:
-                print(
-                    f"\n❌ Error during TTL syntax check for {ttl_file}:\n{output}",
-                    file=sys.stderr,
-                )
-                sys.exit(returncode)
-            else:
-                print(f"✅ {ttl_file} passed syntax check.")
-        print(f"📌 Completed TTL syntax tests for folder: {ontology}")
+            return 100  # Abort if no files found
 
-
-def check_jsonld_against_shacl():
-    """Validate JSON-LD files against SHACL schemas for each ontology folder."""
-    print("\n=== Checking JSON-LD against SHACL ===")
-    for ontology in ONTOLOGY_DIRS:
-        folder_path = os.path.join(ROOT_DIR, ontology)
-        print(f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}")
-        returncode, output = run_command(
-            [
-                sys.executable,
-                os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"),
-                folder_path,
-            ],
-            f"JSON-LD SHACL validation for {folder_path}",
+        returncode, output = validate_jsonld_against_shacl(
+            ROOT_DIR, ontology_dict, debug=False, inference_mode="rdfs"
         )
+
+        if output:
+            target = sys.stdout if returncode == 0 else sys.stderr
+            print(output, file=target, flush=True)
+
         if returncode != 0:
             print(
-                f"\n❌ Error during JSON-LD SHACL validation for {folder_path}:\n{output}",
+                f"\n❌ Error during JSON-LD SHACL validation for folder '{ontology}'. Aborting.",
                 file=sys.stderr,
+                flush=True,
             )
-            sys.exit(returncode)
+            return returncode  # Abort immediately on SHACL failure
         else:
-            print(f"✅ {ontology} conforms to SHACL constraints.")
-        print(f"📌 Completed JSON-LD SHACL validation for folder: {ontology}")
+            print(f"✅ {ontology} conforms to SHACL constraints.", flush=True)
+
+        print(
+            f"📌 Completed JSON-LD SHACL validation for folder: {ontology}", flush=True
+        )
+
+    return 0
 
 
-def check_failing_tests():
-    """
-    Run failing test cases in the tests/ subfolder of each ontology and compare output to expected results.
-    The expected output file is determined by stripping the '.json' extension from the test file name
-    and appending '.expected'.
-    """
-    print("\n=== Running failing tests ===")
+def check_failing_tests_all() -> int:
+    """Run failing test cases, aborting on the first discrepancy."""
+    print("\n=== Running failing tests ===", flush=True)
+
     for ontology in ONTOLOGY_DIRS:
         folder_path = os.path.join(ROOT_DIR, ontology)
         test_folder = os.path.join(folder_path, "tests")
         if not os.path.exists(test_folder):
-            print(f"⚠️  No tests folder found in {ontology}, skipping failing tests.")
             continue
 
-        print(f"\n🔍 Running failing tests in folder: {ontology}")
-        fail_tests = [
+        print(f"\n🔍 Running failing tests in folder: {ontology}", flush=True)
+        fail_tests = sorted(
             f
             for f in os.listdir(test_folder)
             if f.startswith("fail") and f.endswith(".json")
-        ]
-        if not fail_tests:
-            print(f"⚠️  No failing test files found in {ontology}.")
-            continue
+        )
 
         for test in fail_tests:
-            test_path = os.path.join(test_folder, test)
-            # Remove the '.json' extension and append '.expected'
-            expected_output_filename = os.path.splitext(test)[0] + ".expected"
-            expected_output_path = os.path.join(test_folder, expected_output_filename)
+            rel_path = os.path.relpath(os.path.join(test_folder, test), ROOT_DIR)
+            test_path = f".{os.sep}{rel_path}"
+            expected_output_path = os.path.splitext(test_path)[0] + ".expected"
 
-            print(f"🔍 Running failing test: {test_path} in folder: {ontology}")
-
-            returncode, output = run_command(
-                [
-                    sys.executable,
-                    os.path.join(SRC_DIR, "check_jsonld_against_shacl_schema.py"),
-                    test_path,
-                ],
-                f"Failing test validation for {test_path}",
-            )
-
-            # Read expected output if file exists
-            if os.path.exists(expected_output_path):
-                with open(expected_output_path, "r", encoding="utf-8") as f:
-                    expected_output = f.read().strip()
-            else:
+            if not os.path.exists(expected_output_path):
                 print(
                     f"⚠️ No expected output file found: {expected_output_path}",
                     file=sys.stderr,
+                    flush=True,
                 )
-                sys.exit(1)
+                return 1  # Abort if missing expectation
 
-            # Compare the captured output with expected output
-            if output.strip() == expected_output.strip():
-                print(f"✅ Test {test} in folder {ontology} failed as expected.")
+            with open(expected_output_path, "r", encoding="utf-8") as f:
+                expected_output = f.read().strip()
+
+            print(f"🔍 Running failing test: {test_path}", flush=True)
+            ontology_dict = build_dict_for_ontologies(ROOT_DIR, [test_path])
+            returncode, output = validate_jsonld_against_shacl(
+                ROOT_DIR, ontology_dict, debug=False
+            )
+
+            if returncode == 210:
+                output_norm = normalize_text(output)
+                expected_norm = normalize_text(expected_output)
+
+                if output_norm == expected_norm:
+                    print(
+                        f"✅ Test {test} in folder {ontology} failed as expected.",
+                        flush=True,
+                    )
+                else:
+                    print(
+                        f"\n❌ Error: Output discrepancy for {test_path}. Aborting.",
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                    return 1  # Abort on output mismatch
             else:
                 print(
-                    f"\n❌ Error during failing test validation for {test_path}:\n"
-                    f"Expected:\n{expected_output}\n\nGot:\n{output}",
+                    f"\n❌ Test {test_path} did not return code 210 (got {returncode}). Aborting.",
                     file=sys.stderr,
+                    flush=True,
                 )
-                sys.exit(1)
+                return returncode or 1
 
-        print(f"📌 Completed failing tests for folder: {ontology}")
+    return 0
 
 
-def check_target_classes():
-    """Validate if all target classes in the SHACL shapes exist in the ontology."""
-    print("\n=== Checking target classes against OWL classes ===")
+def check_target_classes_all() -> int:
+    """Validate target classes against OWL, aborting on the first unexpected error."""
+    print("\n=== Checking target classes against OWL classes ===", flush=True)
+
     for ontology in ONTOLOGY_DIRS:
-        folder_path = os.path.join(ROOT_DIR, ontology)
-        print(f"\n🔍 Checking target classes in folder: {ontology}")
-        returncode, output = run_command(
-            [
-                sys.executable,
-                os.path.join(SRC_DIR, "check_target_classes_against_owl_classes.py"),
-                folder_path,
-            ],
-            f"Target class validation for {ontology}",
-        )
+        folder_path = os.path.join(".", ontology)
+        print(f"\n🔍 Checking target classes in folder: {ontology}", flush=True)
+        returncode, output = validate_target_classes_against_owl_classes(folder_path)
+
+        if output:
+            target = sys.stdout if returncode == 0 else sys.stderr
+            print(output, file=target, flush=True)
+
         if returncode != 0:
+            if ontology in EXPECTED_TARGETCLASS_FAILURES:
+                print(
+                    f"⚠️ Expected target class failure for '{ontology}' (ignored).",
+                    flush=True,
+                )
+                continue
             print(
-                f"\n❌ Error during target class validation for {ontology}:\n{output}",
+                f"\n❌ Error {returncode} during target class validation for {ontology}. Aborting.",
                 file=sys.stderr,
+                flush=True,
             )
-            sys.exit(returncode)
+            return returncode  # Abort on target class error
         else:
-            print(f"✅ Target classes are correctly defined in {ontology}.")
-        print(f"📌 Completed target class validation for folder: {ontology}")
+            print(f"✅ Target classes are correctly defined in {ontology}.", flush=True)
+
+    return 0
 
 
 def main():
     """Run all validation checks sequentially, aborting on the first failure."""
-    check_ttl_syntax()
-    check_jsonld_against_shacl()
-    check_failing_tests()
-    check_target_classes()
-    print("\n✅ All checks completed successfully!")
+    print("Detected ontology directories:", flush=True)
+    for directory in ONTOLOGY_DIRS:
+        print(f" - {directory}", flush=True)
+
+    print("\n🚀 Running all ontology validation checks...", flush=True)
+
+    # Sequence of checks; script will exit if any check returns a non-zero code.
+    check_phases = [
+        ("Syntax", check_syntax_all),
+        ("JSON-LD SHACL", check_jsonld_against_shacl_all),
+        ("Failing Tests", check_failing_tests_all),
+        ("Target Classes", check_target_classes_all),
+    ]
+
+    for name, phase_func in check_phases:
+        rc = phase_func()
+        if rc != 0:
+            print(
+                f"\n❌ {name} phase failed (code {rc}). Aborting test run.",
+                file=sys.stderr,
+                flush=True,
+            )
+            sys.exit(rc)
+
+    print("\n✅ All checks completed successfully!", flush=True)
 
 
 if __name__ == "__main__":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
     main()

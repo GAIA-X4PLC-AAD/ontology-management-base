@@ -1,0 +1,21 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                      ['manifest/tests/fail_05_wrong_mimeType_instance.json', 'base-references/gx_legalperson_reference.json']                      =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasArtifacts                                                            =
+=    Error:            Value does not conform to Shape manifest:LinkShape. See details for more information.                                         =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata                                                         =
+=    Error:            Value does not conform to Shape manifest:FileMetadataShape. See details for more information.                                 =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#mimeType                                                                =
+=    Error:            Validation of the MIME type failed!                                                                                           =
+======================================================================================================================================================

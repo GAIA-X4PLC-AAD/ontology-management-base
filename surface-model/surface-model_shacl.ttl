@@ -1,56 +1,60 @@
-@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v5/ontology#> .
-@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v2/ontology#> .
+@prefix surface-model: <https://ontologies.envited-x.net/surface-model/v6/ontology#> .
+@prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix georeference: <https://ontologies.envited-x.net/georeference/v3/ontology#> .
+@prefix georeference: <https://ontologies.envited-x.net/georeference/v5/ontology#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-### **SurfaceModel SHACL Shape**
+### SurfaceModel SHACL Shape (Updated)
 surface-model:SurfaceModelShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property 
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node surface-model:DataResourceExtensionShape ;
-          sh:name "data resource extension"@en ;
-          sh:description "DataResourceExtension containing additional metadata about the surface model."@en ;
-          sh:order 1 ;
-          sh:path surface-model:hasDataResourceExtension ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:node envited-x:DataResourceShape ;
-          sh:name "data resource"@en ;
-          sh:description "Links to an envited-x:DataResource that describes the raw data asset."@en ;
-          sh:order 2 ;
-          sh:path surface-model:hasDataResource ],
-        [ sh:maxCount 1 ;
-          sh:minCount 1 ;
-          sh:or (
-            ## Case 1: Inline manifest must conform to both required shapes
-            [ sh:and (
-                [ sh:node manifest:ManifestShape ]
-                [ sh:node envited-x:ManifestShape ]
-            )]
-            
-            ## Case 2: Linked manifest reference
-            [ sh:and (
-                [ sh:node manifest:LinkShape ]
-                [ sh:node envited-x:ExtendedLinkShape ]
-            )]
+    sh:closed false ;
+    
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    sh:property [
+        sh:path surface-model:hasDataResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-          sh:name "manifest"@en ;
-          sh:description "Manifest file describing the surface model metadata."@en ;
-          sh:order 3 ;
-          sh:path surface-model:hasManifest ] ;
+        sh:message "Each surface model must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:order 2 ;
+    ],
+
+    # 2) hasDataResourceExtension: Mandatory domain-specific extension for surface models.
+    [
+        sh:path surface-model:hasDataResourceExtension ;
+        sh:node surface-model:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each surface model must have one associated DataResourceExtension object with content, format, quality, quantity, and georeference."@en ;
+        sh:order 1 ;
+    ],
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    [
+        sh:path surface-model:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
+            # Case 2: Linked manifest reference (improved logic from Point A)
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each surface model must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
+        sh:order 3 ;
+    ] ;
     sh:targetClass surface-model:SurfaceModel .
 
 ### **DataResourceExtension SHACL Shape**
 surface-model:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
@@ -91,8 +95,8 @@ surface-model:DataResourceExtensionShape a sh:NodeShape ;
 
 ### **Content SHACL Shape**
 surface-model:ContentShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "height" ;
             sh:datatype xsd:string ;
             sh:description "Specifies the content type (e.g., height, friction) used in the surface-model asset."@en ;
@@ -105,8 +109,8 @@ surface-model:ContentShape a sh:NodeShape ;
 
 ### **Format SHACL Shape**
 surface-model:FormatShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property [ skos:example "ASAM OpenCRG" ;
             sh:description "Defines the format type of the surface model asset."@en ;
             sh:in ("ASAM OpenCRG" "DLM") ;
@@ -127,8 +131,8 @@ surface-model:FormatShape a sh:NodeShape ;
 
 ### **Quality SHACL Shape**
 surface-model:QualityShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property 
         [ skos:example "0.01" ;
           sh:datatype xsd:float ;
@@ -174,8 +178,8 @@ surface-model:QualityShape a sh:NodeShape ;
 
 ### **Quantity SHACL Shape**
 surface-model:QuantityShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
+    sh:closed false ;
+    
     sh:property 
         [ skos:example "yes" ;
           sh:datatype xsd:boolean ;

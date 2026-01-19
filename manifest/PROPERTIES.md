@@ -2,7 +2,6 @@
 
 ## Prefixes
 
-- gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#>
 - manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#>
 - sh: <http://www.w3.org/ns/shacl#>
 - skos: <http://www.w3.org/2004/02/skos/core#>
@@ -15,8 +14,8 @@
 | ManifestShape | manifest | hasLicense | 1 | 1 | Defines the license valid for all content referenced in the manifest. Does not apply to linked data(sets) with explicit license terms. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasArtifacts | 1 |  | Defines the links to all relevant artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
 | ManifestShape | manifest | hasReferencedArtifacts | 0 |  | Defines the links to all related referenced artifacts for a digital asset. This is extended by the domain specific ontology. |  | manifest_shacl.ttl |
-| LicenseShape | gx | license | 1 | 1 | Reuses SPDX constraints from Gaia-X Trust Framework, with additional custom constraints. |  | manifest_shacl.ttl |
-| LicenseShape | manifest | hasLink | 1 | 1 | Defines a link to the licensing terms. |  | manifest_shacl.ttl |
+| LicenseLinkReferenceShape | manifest | hasCategory |  |  |  |  | manifest_shacl.ttl |
+| ManifestLinkReferenceShape | manifest | hasCategory |  |  |  |  | manifest_shacl.ttl |
 | LinkShape | manifest | iri | 0 | 1 | IRI required if the file is RDF/JSON-LD. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |
 | LinkShape | skos | note | 0 | 1 | Additional information about the manifest reference. | <http://www.w3.org/2001/XMLSchema#string> | manifest_shacl.ttl |
 | LinkShape | sh | conformsTo | 0 |  | Specifies ontology conformance. | <http://www.w3.org/ns/shacl#IRI> | manifest_shacl.ttl |

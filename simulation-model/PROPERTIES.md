@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- simulation-model: <https://ontologies.envited-x.net/simulation-model/v1/ontology#>
+- simulation-model: <https://ontologies.envited-x.net/simulation-model/v2/ontology#>
 
 ## List of SHACL Properties
 

@@ -1,13 +1,13 @@
-@prefix simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#> .
+@prefix simulated-sensor: <https://ontologies.envited-x.net/simulated-sensor/v2/ontology#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/#> .
 
 simulated-sensor: a owl:Ontology ;
     rdfs:label "Ontology definition for simulated-sensor"@en ;
@@ -28,25 +28,24 @@ simulated-sensor: a owl:Ontology ;
         org:memberOf <https://iqz-wuppertal.de/> ;
     ] ;  
 
-    # Permanent identifier for the ontology (not version-specific)
+    # Permanent identifier for the ontology
     dcterms:identifier <https://ontologies.envited-x.net/simulated-sensor> ;
 
-    # GitHub repository where the ontology is maintained
+    # GitHub repository
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
-    # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
-
     # Versioning
-    owl:versionIRI <https://ontologies.envited-x.net/simulated-sensor/v1/ontology#> ;
-    owl:versionInfo "v1" ;
+    owl:versionIRI <https://ontologies.envited-x.net/simulated-sensor/v2/ontology#> ;
+    owl:versionInfo "v2" ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://ontologies.envited-x.net/simulated-sensor/v1/shape#> ;
+    dcterms:conformsTo <https://ontologies.envited-x.net/simulated-sensor/v2/shape#> ;
 
-    # Additional references to documentation or related ontologies
-    dcterms:references <https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#> ;
+    # Additional references
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
+
+# --- Classes ---
 
 simulated-sensor:SimulatedSensor a owl:Class ;
     rdfs:label "Class definition for SimulatedSensor"@en ; 
@@ -68,3 +67,79 @@ simulated-sensor:Camera a owl:Class ;
 simulated-sensor:FieldOfView a owl:Class ;
     rdfs:label "Class definition for FieldOfView"@en ; 
     rdfs:comment "A Field of View (FoV) of a perception sensor as float angles in an automotive driving simulator."@en .
+
+# --- Object Properties ---
+
+simulated-sensor:sensorType a owl:ObjectProperty ;
+    rdfs:label "sensor type"@en ;
+    rdfs:comment "The specific type/configuration of the sensor (e.g. Radar, Lidar, Camera)."@en ;
+    rdfs:domain simulated-sensor:SimulatedSensor ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf (simulated-sensor:Radar simulated-sensor:Lidar simulated-sensor:Camera)
+    ] .
+
+simulated-sensor:fieldOfView a owl:ObjectProperty ;
+    rdfs:label "field of view"@en ;
+    rdfs:comment "Field of view angles."@en ;
+    rdfs:range simulated-sensor:FieldOfView .
+
+# --- Datatype Properties ---
+
+simulated-sensor:sensorIdentifier a owl:DatatypeProperty ;
+    rdfs:label "sensor identifier"@en ;
+    rdfs:comment "Name/Identifier of the sensor in the simulator."@en ;
+    rdfs:domain simulated-sensor:SimulatedSensor ;
+    rdfs:range xsd:string .
+
+simulated-sensor:mountingPosition a owl:DatatypeProperty ;
+    rdfs:label "mounting position"@en ;
+    rdfs:comment "Possible mounting positions of the sensor."@en ;
+    rdfs:domain simulated-sensor:SimulatedSensor ;
+    rdfs:range xsd:string .
+
+simulated-sensor:numberOfBeams a owl:DatatypeProperty ;
+    rdfs:label "number of beams"@en ;
+    rdfs:comment "Number of beams sent by the sensor."@en ;
+    rdfs:range xsd:integer .
+
+simulated-sensor:distance a owl:DatatypeProperty ;
+    rdfs:label "distance"@en ;
+    rdfs:comment "Covered distance or range in metres."@en ;
+    rdfs:range xsd:float .
+
+simulated-sensor:rgbFlag a owl:DatatypeProperty ;
+    rdfs:label "RGB flag"@en ;
+    rdfs:comment "If true, camera is RGB camera."@en ;
+    rdfs:domain simulated-sensor:Camera ;
+    rdfs:range xsd:boolean .
+
+simulated-sensor:flag3D a owl:DatatypeProperty ;
+    rdfs:label "3D flag"@en ;
+    rdfs:comment "If true, camera is 3D camera."@en ;
+    rdfs:domain simulated-sensor:Camera ;
+    rdfs:range xsd:boolean .
+
+simulated-sensor:depthFlag a owl:DatatypeProperty ;
+    rdfs:label "depth flag"@en ;
+    rdfs:comment "If true, camera is depth camera."@en ;
+    rdfs:domain simulated-sensor:Camera ;
+    rdfs:range xsd:boolean .
+
+simulated-sensor:fovAngle1 a owl:DatatypeProperty ;
+    rdfs:label "FoV angle 1"@en ;
+    rdfs:comment "FoV angle 1 (mandatory if FoV attribute is used)."@en ;
+    rdfs:domain simulated-sensor:FieldOfView ;
+    rdfs:range xsd:float .
+
+simulated-sensor:fovAngle2 a owl:DatatypeProperty ;
+    rdfs:label "FoV angle 2"@en ;
+    rdfs:comment "FoV angle 2 (optional)."@en ;
+    rdfs:domain simulated-sensor:FieldOfView ;
+    rdfs:range xsd:float .
+
+simulated-sensor:fovAngle3 a owl:DatatypeProperty ;
+    rdfs:label "FoV angle 3"@en ;
+    rdfs:comment "FoV angle 3 (optional)."@en ;
+    rdfs:domain simulated-sensor:FieldOfView ;
+    rdfs:range xsd:float .

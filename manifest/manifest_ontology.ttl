@@ -1,7 +1,7 @@
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -46,7 +46,7 @@ manifest: a owl:Ontology ;
     dcterms:conformsTo <https://ontologies.envited-x.net/manifest/v5/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://ontologies.envited-x.net/envited-x/v1/ontology#> ;
+    dcterms:references <https://ontologies.envited-x.net/envited-x/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 
@@ -75,16 +75,6 @@ manifest:Manifest a owl:Class ;
         a owl:Restriction ; 
         owl:onProperty manifest:hasReferencedArtifacts ;  
         owl:minCardinality 0
-    ] .
-
-
-manifest:License a owl:Class ;
-    rdfs:label "Class definition for License"@en ;
-    rdfs:comment "General subclass of Link for defining the license of an asset."@en ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty manifest:hasLink ;
-        owl:cardinality 1
     ] .
 
 
@@ -133,9 +123,9 @@ manifest:hasManifestReference a owl:ObjectProperty ;
 
 manifest:hasLicense a owl:ObjectProperty ;
     rdfs:label "has License"@en ;
-    rdfs:comment "Associates a Manifest instance with its corresponding License; only applicable within Manifest instances."@en ;
+    rdfs:comment "Associates a Manifest instance with its corresponding license; only applicable within Manifest instances."@en ;
     rdfs:domain manifest:Manifest ;
-    rdfs:range manifest:License .
+    rdfs:range manifest:Link .
 
 
 manifest:hasArtifacts a owl:ObjectProperty ;
@@ -196,15 +186,25 @@ manifest:hasCategory a owl:ObjectProperty ;
     rdfs:domain manifest:Link ;
     rdfs:range manifest:Category .
 
-## Define specific category types as named individuals (NOT subclasses)
-manifest:isManifest a manifest:Category, owl:NamedIndividual ;
+# New Category Classes
+manifest:LicenseCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+manifest:ManifestCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+manifest:MiscellaneousCategory a owl:Class ;
+    rdfs:subClassOf manifest:Category .
+
+# Base individual updated to the new class
+manifest:isLicense a manifest:LicenseCategory, owl:NamedIndividual ;
+    rdfs:label "License Category"@en ;
+    rdfs:comment "Indicates that the artifact category is a license."@en .
+
+manifest:isManifest a manifest:ManifestCategory, owl:NamedIndividual ;
     rdfs:label "Manifest Category"@en ;
     rdfs:comment "Indicates that the artifact category is a manifest."@en .
 
-manifest:isLicense a manifest:Category, owl:NamedIndividual ;
-    rdfs:label "License Category"@en ;
-    rdfs:comment "Indicates that the artifact category is a license file."@en .
-
-manifest:isMiscellaneous a manifest:Category, owl:NamedIndividual ;
+manifest:isMiscellaneous a manifest:Miscellaneous, owl:NamedIndividual ;
     rdfs:label "Miscellaneous Category"@en ;
     rdfs:comment "Indicates that the artifact category is miscellaneous."@en .

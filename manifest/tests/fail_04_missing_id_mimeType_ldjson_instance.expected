@@ -1,0 +1,54 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                ['manifest/tests/fail_04_missing_id_mimeType_ldjson_instance.json', 'base-references/gx_legalperson_reference.json']                =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Error:            Node [ manifest:hasAccessRole manifest:isPublic ; manifest:hasCategory manifest:isMiscellaneous ; manifest:hasFileMetadata [  =
+=                      manifest:cid Literal("bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:string) ; manifest:filePath  =
+=                      Literal("ipfs://bafkreifsu25wkyq7oecmtam3mguuoov2zmjp6xi3chuf5plajagdjfoule", datatype=xsd:anyURI) ; manifest:fileSize        =
+=                      Literal("5678", datatype=xsd:integer) ; manifest:filename Literal("domainMetadata.json", datatype=xsd:string) ;               =
+=                      manifest:mimeType Literal("application/ld+json", datatype=xsd:string) ; rdf:type [ owl:minCardinality Literal("0",            =
+=                      datatype=xsd:integer) ; owl:onProperty manifest:hasDimensions ; rdf:type owl:Class, owl:Restriction, rdfs:Class,              =
+=                      rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty                      =
+=                      manifest:hasDimensions ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [                   =
+=                      owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty manifest:hasDimensions ; rdf:type owl:Class,           =
+=                      owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:minCardinality Literal("0", datatype=xsd:integer) ;        =
+=                      owl:onProperty manifest:hasDimensions ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf      =
+=                      <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], manifest:FileMetadata,       =
+=                      rdfs:Resource ] ; rdf:type [ owl:cardinality Literal("1", datatype=xsd:integer) ; owl:onProperty manifest:hasFileMetadata ;   =
+=                      rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:cardinality Literal("1",               =
+=                      datatype=xsd:integer) ; owl:onProperty manifest:hasFileMetadata ; rdf:type owl:Class, owl:Restriction, rdfs:Class,            =
+=                      rdfs:Resource ; rdfs:subClassOf [ owl:cardinality Literal("1", datatype=xsd:integer) ; owl:onProperty                         =
+=                      manifest:hasFileMetadata ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:cardinality =
+=                      Literal("1", datatype=xsd:integer) ; owl:onProperty manifest:hasFileMetadata ; rdf:type owl:Class, owl:Restriction,           =
+=                      rdfs:Class, rdfs:Resource ; rdfs:subClassOf [ owl:cardinality Literal("1", datatype=xsd:integer) ; owl:onProperty             =
+=                      manifest:hasFileMetadata ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf                   =
+=                      <http://recursion.too.deep>, rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ], rdfs:Resource ],             =
+=                      manifest:Link, rdfs:Resource ; sh:conformsTo <https://ontologies.envited-x.net/hdmap/v2/ontology#>,                           =
+=                      <https://ontologies.envited-x.net/manifest/v2/ontology> ; skos:note Literal("Referenced HD Map Asset.", datatype=xsd:string)  =
+=                      ] must conform to one or more shapes in [ sh:property [ sh:not [ sh:pattern Literal("^application/ld\+json$") ] ; sh:path (   =
+=                      <https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata>                                                       =
+=                      <https://ontologies.envited-x.net/manifest/v5/ontology#mimeType> ) ] ] , [ sh:property [ sh:message Literal("This link is a   =
+=                      manifest reference so the extra properties are not required.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path [   =
+=                      sh:inversePath <https://ontologies.envited-x.net/manifest/v5/ontology#hasManifestReference> ] ], [ sh:minCount Literal("1",   =
+=                      datatype=xsd:integer) ; sh:path ( <https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata>                     =
+=                      <https://ontologies.envited-x.net/manifest/v5/ontology#mimeType> ) ; sh:pattern Literal("^application/ld\+json$") ] ] , [     =
+=                      sh:property [ sh:message Literal("If the MIME type is 'application/ld+json' and not a manifest reference, a skos:note is      =
+=                      required.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path skos:note ], [ sh:message Literal("If the MIME type is =
+=                      'application/ld+json' and not a manifest reference, an IRI is required.") ; sh:minCount Literal("1", datatype=xsd:integer) ;  =
+=                      sh:path <https://ontologies.envited-x.net/manifest/v5/ontology#iri> ], [ sh:message Literal("If the MIME type is              =
+=                      'application/ld+json' and not a manifest reference, ontology conformance is required.") ; sh:minCount Literal("1",            =
+=                      datatype=xsd:integer) ; sh:path sh:conformsTo ], [ sh:minCount Literal("1", datatype=xsd:integer) ; sh:path (                 =
+=                      <https://ontologies.envited-x.net/manifest/v5/ontology#hasFileMetadata>                                                       =
+=                      <https://ontologies.envited-x.net/manifest/v5/ontology#mimeType> ) ; sh:pattern Literal("^application/ld\+json$") ] ]         =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasArtifacts                                                            =
+=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LinkShape>. See details for more       =
+=                      information.                                                                                                                  =
+======================================================================================================================================================

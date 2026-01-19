@@ -2,8 +2,10 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v1/ontology#",
-    "sh": "http://www.w3.org/ns/shacl#"
+    "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v2/ontology#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "gx": "https://w3id.org/gaia-x/development#",
+    "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:registry.gaia-x.eu:SimulatedSensor:B6gYmAU2PiHe8c3aqSbazCkrE7sUfCkRPFv2",
   "@type": "simulated-sensor:SimulatedSensor",
@@ -30,5 +32,20 @@
     }
   },
   "simulated-sensor:sensorIdentifier": "sensor.other.radar",
-  "simulated-sensor:mountingPosition": "Front-mid"
+  "simulated-sensor:mountingPosition": "Front-mid",
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:exposedThrough": {
+    "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+    "@type": "gx:DataExchangeComponent"
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:containsPII": false,
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "sensor-radar-002",
+  "dcterms:title": "Simulated Radar Sensor Standalone"
 }

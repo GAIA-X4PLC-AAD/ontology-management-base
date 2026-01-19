@@ -2,7 +2,7 @@
 
 ## Prefixes
 
-- survey: <https://ontologies.envited-x.net/survey/v5/ontology#>
+- survey: <https://ontologies.envited-x.net/survey/v6/ontology#>
 
 ## List of SHACL Properties
 
