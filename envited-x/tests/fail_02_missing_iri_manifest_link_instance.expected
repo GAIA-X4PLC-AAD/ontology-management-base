@@ -9,7 +9,7 @@
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Error:            Node [ manifest:hasAccessRole envited-x:isPublic ; manifest:hasCategory envited-x:isManifest ; manifest:hasFileMetadata [     =
-=                      manifest:filePath Literal("./manifest_reference.json", datatype=xsd:anyURI) ; manifest:mimeType                               =
+=                      manifest:filePath Literal("./base-references/envited-x_manifest_reference.json", datatype=xsd:anyURI) ; manifest:mimeType                               =
 =                      Literal("application/ld+json", datatype=xsd:string) ; rdf:type [ owl:minCardinality Literal("0", datatype=xsd:integer) ;      =
 =                      owl:onProperty manifest:hasDimensions ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ; rdfs:subClassOf [    =
 =                      owl:minCardinality Literal("0", datatype=xsd:integer) ; owl:onProperty manifest:hasDimensions ; rdf:type owl:Class,           =

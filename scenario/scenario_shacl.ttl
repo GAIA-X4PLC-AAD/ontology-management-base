@@ -149,7 +149,7 @@ scenario:ContentOrTagShape a sh:NodeShape ;
 
 ### Detailed Shapes (Expanded based on Instance Data)
 scenario:FormatShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "ASAM OpenSCENARIO" ;
             sh:description "Defines the type of data format used for the scenario asset."@en ;
@@ -170,7 +170,7 @@ scenario:FormatShape a sh:NodeShape ;
     sh:targetClass scenario:Format .
 
 scenario:ContentShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Functional, Logical, Concrete" ;
             sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
@@ -265,7 +265,7 @@ scenario:ContentShape a sh:NodeShape ;
     sh:targetClass scenario:Content .
 
 scenario:QuantityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2" ;
             sh:datatype xsd:unsignedInt ;
@@ -302,7 +302,7 @@ scenario:QuantityShape a sh:NodeShape ;
     sh:targetClass scenario:Quantity .
 
 scenario:QualityShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "0.1" ;
             sh:datatype xsd:float ;
@@ -325,7 +325,7 @@ scenario:QualityShape a sh:NodeShape ;
     sh:targetClass scenario:Quality .
 
 scenario:DataSourceShape a sh:NodeShape ;
-    sh:closed true ;
+    sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "Real World Data" ;
             sh:description "Specifies the category of source data used to create the scenario."@en ;

@@ -36,9 +36,9 @@ It also supports **mixing standard HDMap content with OpenLABEL annotations** (e
 A typical file includes the property **`hdmap:hasContent`**.  
 Each item under this property may be **either**:
 
-1) **HDMap content** (roads/lanes), or  
-2) **OpenLABEL ODD** content (e.g., flags + values), or  
-3) **A simple boolean flag** (for minimal OpenLABEL cases)
+1. **HDMap content** (roads/lanes), or
+2. **OpenLABEL ODD** content (e.g., flags + values), or
+3. **A simple boolean flag** (for minimal OpenLABEL cases)
 
 ### Example: mixing HDMap + OpenLABEL
 
@@ -60,7 +60,10 @@ Each item under this property may be **either**:
     {
       "@type": "openlabel:Odd",
       "openlabel:LaneSpecificationDimensions": true,
-      "openlabel:laneSpecificationDimensionsValue": { "@type": "xsd:decimal", "@value": "3.5" }
+      "openlabel:laneSpecificationDimensionsValue": {
+        "@type": "xsd:decimal",
+        "@value": "3.5"
+      }
     }
   ]
 }
@@ -81,16 +84,16 @@ python3 check_jsonld_against_shacl_schema.py \hdmap\hdmap_instance.json
 
 ## Common validation issues
 
-* Misspelled values
-Example: a lane type written as "drivng" instead of "driving".
-Fix: Use allowed values shown in the examples or documentation.
+- Misspelled values
+  Example: a lane type written as "drivng" instead of "driving".
+  Fix: Use allowed values shown in the examples or documentation.
 
 - Missing required content
-A report indicating a missing section means that section must be added (e.g., an item of type hdmap:Content under hasContent).
+  A report indicating a missing section means that section must be added (e.g., an item of type hdmap:Content under hasContent).
 
 - Properties in the wrong place
-Some shapes are “closed,” allowing only listed properties.
-Fix: Remove extra properties or move them to the correct section.
+  Some shapes are “closed,” allowing only listed properties.
+  Fix: Remove extra properties or move them to the correct section.
 
 - OpenLABEL flags without values
-If a flag such as openlabel:LaneSpecificationDimensions is set to true, and the shape expects a companion value (e.g., laneSpecificationDimensionsValue), include that value.
+  If a flag such as openlabel:LaneSpecificationDimensions is set to true, and the shape expects a companion value (e.g., laneSpecificationDimensionsValue), include that value.

@@ -238,7 +238,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./manifest_reference.json",
+        "@value": "./base-references/hdmap_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {

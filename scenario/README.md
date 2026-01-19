@@ -20,6 +20,7 @@ It also supports **mixing native scenario content with OpenLABEL annotations** (
 ---
 
 ## Contents of this folder
+
 - **`tests/`** – Example files used for validation.
 - **`manifest_reference.json`**: A machine-readable manifest that lists all files in the package and relevant external references.
 - **`PROPERTIES.md`**: An auto-generated summary of SHACL properties found in this folder.
@@ -35,9 +36,9 @@ It also supports **mixing native scenario content with OpenLABEL annotations** (
 A typical file includes the property **`scenario:hasContent`**.  
 Each item under this property may be **either**:
 
-1) **Scenario content**, or  
-2) **OpenLABEL tag** content, or  
-3) **A simple boolean flag** (for minimal OpenLABEL cases)
+1. **Scenario content**, or
+2. **OpenLABEL tag** content, or
+3. **A simple boolean flag** (for minimal OpenLABEL cases)
 
 ### Example: mixing Scenario + OpenLABEL
 
@@ -62,11 +63,14 @@ Each item under this property may be **either**:
   ]
 }
 ```
+
 ### How to Run SHACL Validation Tests
 
 See the root guide for the canonical commands and explanations:  
 [Running Tests Locally](../README.md#running-tests-locally)
 
 Example command for this folder:
+
 ```bash
 python3 check_jsonld_against_shacl_schema.py \scenario\scenario_instance.json
+```
