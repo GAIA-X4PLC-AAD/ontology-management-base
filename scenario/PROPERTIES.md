@@ -13,7 +13,7 @@
 | ScenarioShape | scenario | hasDataResourceExtension | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioShape | scenario | hasManifest | 1 | 1 |  |  | scenario_shacl.ttl |
 | ScenarioManifestConstraints | manifest | hasReferencedArtifacts |  |  |  |  | scenario_shacl.ttl |
-| DataResourceExtensionShape | scenario | hasContent | 1 | 1 | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
+| DataResourceExtensionShape | scenario | hasContent | 1 |  | Attributes describing the content of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasFormat | 1 | 1 | File format details of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuality | 1 | 1 | Quality metrics of the scenario. |  | scenario_shacl.ttl |
 | DataResourceExtensionShape | scenario | hasQuantity | 1 | 1 | Quantitative metrics describing the scenario. |  | scenario_shacl.ttl |
