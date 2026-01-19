@@ -4,7 +4,7 @@
 
 - dcat: <http://www.w3.org/ns/dcat#>
 - dcterms: <http://purl.org/dc/terms/>
-- gx: <https://w3id.org/gaia-x/development#>
+- gx: <https://w3id.org/gaia-x/development/>
 - odrl: <http://www.w3.org/ns/odrl/2/>
 - schema: <https://schema.org/>
 

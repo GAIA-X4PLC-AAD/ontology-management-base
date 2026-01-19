@@ -1056,6 +1056,11 @@ def validate_jsonld_against_shacl(
 
     setup_logging(debug, buffer_stream=output_buffer)
 
+    if FAST_STORE == "oxigraph":
+        print_out("🚀 Performance: Oxigraph (oxrdflib) is loaded and active.")
+    else:
+        print_out("🐢 Performance: Oxigraph not found, using default rdflib store.")
+
     if PYSHACL_IMPORT_ERROR:
         print_out(f"Error: pyshacl not installed: {PYSHACL_IMPORT_ERROR}")
         return 99, output_buffer.getvalue()

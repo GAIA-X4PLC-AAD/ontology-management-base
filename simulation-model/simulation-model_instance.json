@@ -7,7 +7,7 @@
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
         "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
-        "gx": "https://w3id.org/gaia-x/development#",
+        "gx": "https://w3id.org/gaia-x/development/",
         "dcterms": "http://purl.org/dc/terms/"
     },
     "@id": "did:web:registry.gaia-x.eu:SimulationModel:2Jt36BA9ODxKZJ5yWRtF4BLDUkuvFL59IPra",

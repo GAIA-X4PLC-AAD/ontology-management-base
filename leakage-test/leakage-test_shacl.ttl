@@ -1,6 +1,6 @@
 @prefix general: <https://ontologies.envited-x.net/general/v3/ontology#> .
 @prefix leakage-test: <https://ontologies.envited-x.net/leakage-test/v2/ontology#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

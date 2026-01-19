@@ -1,6 +1,6 @@
 @prefix envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#> .
 @prefix manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -47,7 +47,7 @@ envited-x: a owl:Ontology ;
     dcterms:conformsTo <https://ontologies.envited-x.net/envited-x/v3/shape#> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://w3id.org/gaia-x/development#> ;
+    dcterms:references <https://w3id.org/gaia-x/development/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 

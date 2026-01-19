@@ -3,7 +3,7 @@
 ## Prefixes
 
 - envited-x: <https://ontologies.envited-x.net/envited-x/v3/ontology#>
-- gx: <https://w3id.org/gaia-x/development#>
+- gx: <https://w3id.org/gaia-x/development/>
 - manifest: <https://ontologies.envited-x.net/manifest/v5/ontology#>
 - rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 

@@ -37,7 +37,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 
 ## Content of an Ontology
 # Every Ontology needs to be declared as an OWL-Ontology by including a triple

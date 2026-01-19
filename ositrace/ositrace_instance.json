@@ -7,7 +7,7 @@
     "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
-    "gx": "https://w3id.org/gaia-x/development#"
+    "gx": "https://w3id.org/gaia-x/development/"
   },
   "@id": "did:web:registry.envited-x.net:OSITrace:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
   "@type": "ositrace:OSITrace",

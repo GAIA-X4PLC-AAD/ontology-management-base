@@ -1,6 +1,6 @@
 {
     "@context": {
-        "gx": "https://w3id.org/gaia-x/development#",
+        "gx": "https://w3id.org/gaia-x/development/",
         "vv-report": "https://ontologies.envited-x.net/vv-report/v2/ontology#",
         "general": "https://ontologies.envited-x.net/general/v3/ontology#",
         "sh": "http://www.w3.org/ns/shacl#",
