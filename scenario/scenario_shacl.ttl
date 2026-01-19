@@ -90,10 +90,8 @@ scenario:ScenarioManifestConstraints a sh:NodeShape ;
     ] .
 
 
-### **DataResourceExtension SHACL Shape**
+### DataResourceExtension SHACL Shape
 scenario:DataResourceExtensionShape a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:property 
         [ sh:maxCount 1 ;
           sh:minCount 1 ;
