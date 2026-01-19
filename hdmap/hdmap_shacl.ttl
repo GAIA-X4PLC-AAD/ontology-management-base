@@ -5,7 +5,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 hdmap:HdMapShape a sh:NodeShape ;
@@ -68,9 +68,9 @@ hdmap:DataResourceExtensionShape a sh:NodeShape ;
             sh:node hdmap:ContentOrOddSceneryShape ; # Refactored to use the Union Shape
             sh:message "Each item of hasContent must conform to either Scenario Content or OpenLABEL ODD Scenery."@en ;
             sh:name "content object"@en ;
-            sh:description "Defines the content of the HD map asset."@en ;
+            sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
             sh:order 2 ;
-            sh:path hdmap:hasContent ;
+            sh:path hdmap:hasContent
         ],
         [
             sh:maxCount 1 ;

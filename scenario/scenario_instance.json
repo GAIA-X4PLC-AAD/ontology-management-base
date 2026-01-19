@@ -4,6 +4,7 @@
     "envited-x": "https://ontologies.envited-x.net/envited-x/v3/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/#",
     "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -42,50 +43,50 @@
         "@type": "xsd:string"
       }
     },
-    "scenario:hasContent": [{
-      "@type": "scenario:Content",
-      "scenario:abstractionLevel": "Logical",
-      "scenario:country": {
-        "@value": "Germany",
-        "@type": "xsd:string"
+    "scenario:hasContent": [
+      {
+        "@type": "scenario:Content",
+        "scenario:abstractionLevel": "Logical",
+        "scenario:country": {
+          "@value": "Germany",
+          "@type": "xsd:string"
+        },
+        "scenario:aim": {
+          "@value": "Test sensor perception range.",
+          "@type": "xsd:string"
+        },
+        "scenario:movementDescription": {
+          "@value": "FollowTrajectory",
+          "@type": "xsd:string"
+        },
+        "scenario:customCommands": {
+          "@value": "UserDefinedAction: TurnAround",
+          "@type": "xsd:string"
+        }
       },
-      "scenario:aim": {
-        "@value": "Test sensor perception range.",
-        "@type": "xsd:string"
+      {
+        "@type": "openlabel:Odd",
+        "ex:DrivableAreaEdge": [
+          "EdgeShoulderPavedOrGravel",
+          "EdgeLineMarkers"
+        ]
       },
-      "scenario:movementDescription": {
-        "@value": "FollowTrajectory",
-        "@type": "xsd:string"
-      },
-      "scenario:customCommands": {
-        "@value": "UserDefinedAction: TurnAround",
-        "@type": "xsd:string"
+      {
+        "@type": "openlabel:Behaviour",
+        "openlabel:MotionDecelerate": true,
+        "openlabel:motionDecelerateValue": {
+          "@type": "schema:QuantitativeValue",
+          "schema:maxValue": "4.444",
+          "schema:minValue": "0.053"
+        },
+        "openlabel:MotionDrive": true,
+        "openlabel:motionDriveValue": {
+          "@type": "schema:QuantitativeValue",
+          "schema:maxValue": "60.001",
+          "schema:minValue": "0.01"
+        }
       }
-    },
-    {
-      "@type": "openlabel:Odd",
-      "ex:DrivableAreaEdge": [
-      "EdgeShoulderPavedOrGravel",
-      "EdgeLineMarkers"
-      ]
-    },
-    {
-      "@type": "openlabel:Behaviour",
-      "openlabel:MotionDecelerate": true,
-      "openlabel:motionDecelerateValue": {
-        "@type": "schema:QuantitativeValue",
-        "schema:maxValue": "4.444",
-        "schema:minValue": "0.053"
-      },
-      "openlabel:MotionDrive": true,
-      "openlabel:motionDriveValue": {
-        "@type": "schema:QuantitativeValue",
-        "schema:maxValue": "60.001",
-        "schema:minValue": "0.01"
-      }
-    }
-    ]
-    ,
+    ],
     "scenario:hasQuality": {
       "@type": "scenario:Quality",
       "scenario:accuracyObjects": {
