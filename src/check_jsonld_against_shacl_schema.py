@@ -191,7 +191,11 @@ class LocalContextResolver:
         if self.context_root.is_dir():
             for entry in self.context_root.iterdir():
                 if entry.is_dir():
-                    self.available_namespaces.add(entry.name.lower())
+                    ns = entry.name.lower()
+                    # Check if the context file actually exists before registering the namespace
+                    expected_file = entry / f"{ns}_context.jsonld"
+                    if expected_file.exists():
+                        self.available_namespaces.add(ns)
 
         logging.debug(
             "LocalContextResolver initialized with context_root=%s, available_namespaces=%s",
@@ -275,6 +279,14 @@ class LocalContextResolver:
             if resolved != ctx:
                 rewritten = True
                 new_ctx = resolved
+        # Handle inline dictionary contexts recursively
+        elif isinstance(ctx, dict):
+            new_ctx = {}
+            for k, v in ctx.items():
+                resolved = self._resolve_context_entry(v)
+                if resolved != v:
+                    rewritten = True
+                new_ctx[k] = resolved
 
         if rewritten:
             data["@context"] = new_ctx
@@ -329,6 +341,24 @@ def ensure_folder_entry(ontology_dict: Dict[str, Dict], folder_name: str) -> Non
             "prefixes": {},
             "context_issues": {},
         }
+
+
+def _extract_ids_from_json_file(file_path: Path) -> Set[str]:
+    """Helper to extract defined @ids from a JSON-LD file (supports flat or graph)."""
+    ids = set()
+    try:
+        with file_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Support single object or @graph array
+        objs = data.get("@graph", [data]) if isinstance(data, dict) else [data]
+        if isinstance(objs, list):
+            for obj in objs:
+                if isinstance(obj, dict) and "@id" in obj:
+                    ids.add(obj["@id"])
+    except Exception:
+        pass
+    return ids
 
 
 # ---------------------------------------------------------------------------
@@ -394,6 +424,10 @@ def _collect_used_prefixes_in_json_value(value: Any) -> Set[str]:
 
     def _extract_scheme(text: str) -> Optional[str]:
         """Strictly safe URI scheme extraction."""
+        # FIX: Ignore text with spaces (URIs/CURIEs typically don't have spaces)
+        if " " in text:
+            return None
+
         if ":" not in text or text.startswith("@"):
             return None
         try:
@@ -483,7 +517,6 @@ def resolve_json_type(
     # 3. Fallback / Manifest Logic (Legacy)
     if manifest_dir_url is not None:
         # ... logic for manifest resolution if needed ...
-        # (Simplified for professional refactor: typically avoided in strict RDF)
         pass
 
     return json_type
@@ -628,8 +661,17 @@ def build_dict_for_ontologies(
             ensure_folder_entry(ontology_dict, folder_name)
             ontology_dict[folder_name][key].append(f)
 
-    # 4. Auto-Resolve Base References (Regex enhanced)
+    # 4. Auto-Resolve Base References (Smart Scan)
     if base_refs_dir.is_dir():
+
+        # 4a. Pre-scan "Global" references (starting with 'gx_') for their defined @ids
+        # This allows us to only load them if referenced in the instance file.
+        global_ref_map: List[Tuple[Path, Set[str]]] = []
+        for ref_file in base_refs_dir.glob("gx*reference.json"):
+            found_ids = _extract_ids_from_json_file(ref_file)
+            if found_ids:
+                global_ref_map.append((ref_file, found_ids))
+
         for inst_file in instance_files:
             try:
                 rel_dir = inst_file.parent.relative_to(root_dir)
@@ -641,10 +683,29 @@ def build_dict_for_ontologies(
             prefix_match = re.match(r"^([^_]+)_", inst_file.name)
             prefix = prefix_match.group(1) if prefix_match else inst_file.stem
 
-            # Find matching references
+            # A. Local/Sibling Reference matching (e.g. hdmap -> hdmap_manifest)
             matching_refs = set(base_refs_dir.glob(f"{prefix}*reference.json"))
+
+            # B. Smart Global Reference matching (Replaces the blind "load all gx*")
+            # Only load gx_ references if their IDs are actually used in the file.
             if prefix != "gx":
-                matching_refs.update(base_refs_dir.glob("gx*reference.json"))
+                try:
+                    # Read file content once to check for ID usage
+                    # (Simple string check is usually sufficient and fast for DIDs)
+                    content_str = inst_file.read_text(encoding="utf-8")
+
+                    for ref_path, defined_ids in global_ref_map:
+                        # Optimization: if already matched by prefix (unlikely for 'gx' vs 'hdmap'), skip
+                        if ref_path in matching_refs:
+                            continue
+
+                        # Check if any ID defined in the ref file is present in the instance
+                        for ref_id in defined_ids:
+                            if ref_id in content_str:
+                                matching_refs.add(ref_path)
+                                break
+                except Exception as e:
+                    logging.debug(f"Skipping smart ref scan for {inst_file}: {e}")
 
             for ref_path in matching_refs:
                 if ref_path not in ontology_dict[folder_name]["reference"]:

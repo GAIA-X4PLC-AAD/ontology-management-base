@@ -9,7 +9,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 hdmap: a owl:Ontology ;
     rdfs:label "Ontology definition for hdmap"@en ;
@@ -86,7 +86,7 @@ hdmap:DataResourceExtension a owl:Class ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
-        owl:cardinality 1
+        owl:minCardinality 1
     ] , [
         a owl:Restriction ;
         owl:onProperty hdmap:hasDataSource ;
@@ -183,13 +183,19 @@ hdmap:hasManifest a owl:ObjectProperty ;
         owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
+# Union class for HDMap Content or OpenLABEL OddScenery
+hdmap:ContentOrOddScenery a owl:Class ;
+    rdfs:label "Content or OpenLabel OddScenery"@en ;
+    rdfs:comment "Combines HDMap content with OpenLABEL's OddScenery."@en ;
+    owl:unionOf (hdmap:Content openlabel:OddScenery) .
+
 ### hasContent (DataResourceExtension -> Content)
 hdmap:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
     rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Content that describes the HD map`s content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
     rdfs:domain hdmap:DataResourceExtension ;
-    rdfs:range hdmap:Content .
+    rdfs:range hdmap:ContentOrOddScenery .
 
 ### hasDataSource (DataResourceExtension -> DataSource)
 hdmap:hasDataSource a owl:ObjectProperty ;

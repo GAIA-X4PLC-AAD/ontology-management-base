@@ -3,7 +3,7 @@
     "example_ontology": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/examples/example_ontology/#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
     "sh": "http://www.w3.org/ns/shacl#"
   },
   "@id": "did:web:registry.gaia-x.eu:ExampleServiceOffering:FLFqCz3kERDqhh-zK9f2CdKd8kQ6BCil6Z-J",

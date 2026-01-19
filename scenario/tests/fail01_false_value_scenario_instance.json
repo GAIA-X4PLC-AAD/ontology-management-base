@@ -5,6 +5,7 @@
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
+    "@vocab": "https://openlabel.asam.net/V1-0-0/ontologies/",
     "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -16,8 +17,14 @@
   "scenario:hasDataResource": {
     "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
     "@type": "envited-x:DataResource",
-    "gx:name": "Scenario Example",
-    "gx:description": "A sample description of a non-existing scenario.",
+    "gx:name": {
+      "@value": "Scenario Example",
+      "@type": "xsd:string"
+    },
+    "gx:description": {
+      "@value": "A sample description of a non-existing scenario.",
+      "@type": "xsd:string"
+    },
     "gx:version": "1.0.0",
     "gx:license": "EPL-2.0",
     "gx:resourcePolicy": "allow",
@@ -73,17 +80,17 @@
       },
       {
         "@type": "openlabel:Behaviour",
-        "openlabel:MotionDecelerate": true,
+        "openlabel:MotionDecelerate": false,
         "openlabel:motionDecelerateValue": {
           "@type": "schema:QuantitativeValue",
-          "schema:maxValue": "4.444",
-          "schema:minValue": "0.053"
+          "schema:maxValue": 4.444,
+          "schema:minValue": 0.053
         },
         "openlabel:MotionDrive": true,
         "openlabel:motionDriveValue": {
           "@type": "schema:QuantitativeValue",
-          "schema:maxValue": "60.001",
-          "schema:minValue": "0.01"
+          "schema:maxValue": 60.001,
+          "schema:minValue": 0.01
         }
       }
     ],
@@ -101,15 +108,15 @@
     "scenario:hasQuantity": {
       "@type": "scenario:Quantity",
       "scenario:numberTrafficObjects": {
-        "@value": 1,
+        "@value": "1",
         "@type": "xsd:unsignedInt"
       },
       "scenario:temporaryTrafficObjects": {
-        "@value": 0,
+        "@value": "0",
         "@type": "xsd:unsignedInt"
       },
       "scenario:permanentTrafficObjects": {
-        "@value": 1,
+        "@value": "1",
         "@type": "xsd:unsignedInt"
       },
       "scenario:controllers": {

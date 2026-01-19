@@ -154,6 +154,14 @@ This script:
 
 By maintaining a structured set of failing test cases, we ensure that the ontologies remain robust and enforce the intended constraints effectively. 🚀
 
+### Quick Single-File Validation
+
+To validate a single JSON-LD instance against the SHACL shapes, run:
+
+```bash
+python3 src/check_jsonld_against_shacl_schema.py path/to/your_instance.json
+```
+
 ### Creating a new Ontology & Shape
 
 In the case you want to create a new Class which is not suitable for the existing Ontologies, you should create a new Ontology

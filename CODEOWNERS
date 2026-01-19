@@ -74,3 +74,6 @@
 # vv-report directory (Maurizio AND Carlo)
 /vv-report @localhorst87
 /vv-report @jdsika
+
+# openlabel directory (Nicolas)
+/openlabel @buggreen

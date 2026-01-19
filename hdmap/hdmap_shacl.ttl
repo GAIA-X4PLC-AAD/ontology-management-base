@@ -6,7 +6,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
@@ -27,7 +27,6 @@ hdmap:HdMapShape a sh:NodeShape ;
     # 2) hasDataResourceExtension
     sh:property [
         sh:path hdmap:hasDataResourceExtension ;
-        # [IMPROVEMENT] Renamed for naming consistency (was DataResourceShapeExtension)
         sh:node hdmap:DataResourceExtensionShape ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -49,7 +48,7 @@ hdmap:HdMapShape a sh:NodeShape ;
         sh:message "Each HD map must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
     ] .
 
-# [IMPROVEMENT] Renamed from DataResourceShapeExtension
+
 hdmap:DataResourceExtensionShape a sh:NodeShape ;
     sh:closed false ;
     
@@ -64,9 +63,9 @@ hdmap:DataResourceExtensionShape a sh:NodeShape ;
             sh:path hdmap:hasFormat
         ],
         [
-            sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:node hdmap:ContentShape ;
+            sh:node hdmap:ContentOrOddSceneryShape ; # Refactored to use the Union Shape
+            sh:message "Each item of hasContent must conform to either Scenario Content or OpenLABEL ODD Scenery."@en ;
             sh:name "content object"@en ;
             sh:description "Defines the content (road types, lane types, object types, traffic direction) of the HD map asset."@en ;
             sh:order 2 ;
@@ -103,13 +102,21 @@ hdmap:DataResourceExtensionShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:node georeference:GeoreferenceShape ;
-            # [IMPROVEMENT] Typo fixed: "georeferenz" -> "georeference"
             sh:name "has georeference"@en ; 
             sh:message "Each HD map must link to a georeference dataset defining the location/projection of the HD map asset."@en ;
             sh:order 6 ;
             sh:path hdmap:hasGeoreference ;
         ] ;
     sh:targetClass hdmap:DataResourceExtension .
+
+hdmap:ContentOrOddSceneryShape a sh:NodeShape ;
+    sh:description "HDMap Content or OpenLABEL ODD Scenery Union Shape"@en ;
+    sh:or (
+        [ sh:node hdmap:ContentShape ]
+        [ sh:node openlabel:OddShape ] # Validates against the external OpenLABEL shape
+        [ sh:node xsd:boolean ]
+    ) ;
+    sh:message "Each item of hasContent must conform to either Scenario Content or OpenLABEL Tag."@en .
 
 hdmap:ContentShape a sh:NodeShape ;
     sh:closed false ;

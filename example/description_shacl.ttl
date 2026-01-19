@@ -5,7 +5,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/#> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 ### The following lines provide the actual content of the SHACL Shape, i. e. the constraints we want to set for a specific object
 description_ontology:ExampleServiceOfferingShape # This is the subject our predicates & objects will refer to
