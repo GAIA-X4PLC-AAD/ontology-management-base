@@ -1,6 +1,19 @@
+import sys
+
+# Hard check for Python 3.12+
+if sys.version_info < (3, 12):
+    print(
+        f"❌ Error: This project requires Python 3.12+. You are running {sys.version.split()[0]}.",
+        file=sys.stderr,
+    )
+    print(
+        "   Please upgrade your Python environment to match the CI configuration.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+import argparse
 import io
 import os
-import sys
 
 from check_jsonld_against_shacl_schema import (
     build_dict_for_ontologies,
@@ -212,32 +225,54 @@ def check_target_classes_all() -> int:
 
 
 def main():
-    """Run all validation checks sequentially, aborting on the first failure."""
-    print("Detected ontology directories:", flush=True)
-    for directory in ONTOLOGY_DIRS:
-        print(f" - {directory}", flush=True)
+    """Run validation checks based on arguments."""
 
-    print("\n🚀 Running all ontology validation checks...", flush=True)
+    # 1. Add Argument Parsing
+    parser = argparse.ArgumentParser(description="Run ontology validation checks.")
+    parser.add_argument(
+        "--check",
+        type=str,
+        choices=["all", "syntax", "target-classes", "shacl", "failing-tests"],
+        default="all",
+        help="Specific check to run (default: all)",
+    )
+    args = parser.parse_args()
 
-    # Sequence of checks; script will exit if any check returns a non-zero code.
-    check_phases = [
-        ("Syntax", check_syntax_all),
-        ("Target Classes", check_target_classes_all),
-        ("JSON-LD SHACL", check_jsonld_against_shacl_all),
-        ("Failing Tests", check_failing_tests_all),
-    ]
+    print(f"Detected ontology directories: {[d for d in ONTOLOGY_DIRS]}", flush=True)
 
-    for name, phase_func in check_phases:
+    # 2. Define the Mapping
+    check_map = {
+        "syntax": [("Syntax", check_syntax_all)],
+        "target-classes": [("Target Classes", check_target_classes_all)],
+        "shacl": [("JSON-LD SHACL", check_jsonld_against_shacl_all)],
+        "failing-tests": [("Failing Tests", check_failing_tests_all)],
+    }
+
+    # If 'all', combine the lists in the desired order
+    if args.check == "all":
+        checks_to_run = (
+            check_map["syntax"]
+            + check_map["target-classes"]
+            + check_map["shacl"]
+            + check_map["failing-tests"]
+        )
+    else:
+        checks_to_run = check_map[args.check]
+
+    print(f"\n🚀 Running check mode: {args.check.upper()} ...", flush=True)
+
+    # 3. Execution Loop
+    for name, phase_func in checks_to_run:
         rc = phase_func()
         if rc != 0:
             print(
-                f"\n❌ {name} phase failed (code {rc}). Aborting test run.",
+                f"\n❌ {name} phase failed (code {rc}). Aborting.",
                 file=sys.stderr,
                 flush=True,
             )
             sys.exit(rc)
 
-    print("\n✅ All checks completed successfully!", flush=True)
+    print(f"\n✅ {args.check.upper()} checks completed successfully!", flush=True)
 
 
 if __name__ == "__main__":

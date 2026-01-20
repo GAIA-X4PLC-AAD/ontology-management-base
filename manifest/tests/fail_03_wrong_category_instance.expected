@@ -1,7 +1,7 @@
 ======================================================================================================================================================
 =                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                      ['manifest/tests/fail_03_wrong_category_instance.json', 'base-references/gx_legalperson_reference.json']                      =
+=                                              ['manifest/tests/fail_03_wrong_category_instance.json']                                               =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
@@ -13,6 +13,5 @@
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
 =    Property:         https://ontologies.envited-x.net/manifest/v5/ontology#hasLicense                                                              =
-=    Error:            Value does not conform to Shape <https://ontologies.envited-x.net/manifest/v5/ontology#LicenseLinkReferenceShape>. See        =
-=                      details for more information.                                                                                                 =
+=    Error:            Value does not conform to Shape manifest:LicenseLinkReferenceShape. See details for more information.                         =
 ======================================================================================================================================================

@@ -6,3 +6,5 @@
 **/__pycache__/
 *.log
 .ontology_iri_cache.json
+*.egg-info/
+
