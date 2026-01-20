@@ -147,7 +147,9 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 5 ;
             sh:path ositrace:scenarioIdentifier ],
         [ skos:example "2024-05-11T13:20:03.250320Z" ;
-            sh:datatype xsd:dateTimeStamp ;
+            sh:datatype xsd:dateTime ;
+            sh:pattern ".*(Z|[+-]\\d{2}:\\d{2})$" ;
+            sh:message "Value must be a valid timestamp with a timezone (ending in 'Z' or '+/-HH:MM')."@en ;
             sh:description "Exact start timestamp of the recorded trace"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of startTime failed!"@en ;
@@ -156,7 +158,9 @@ ositrace:ContentShape a sh:NodeShape ;
             sh:order 6 ;
             sh:path ositrace:startTime ],
         [ skos:example "2024-05-11T13:20:05.250120Z" ;
-            sh:datatype xsd:dateTimeStamp ;
+            sh:datatype xsd:dateTime ;
+            sh:pattern ".*(Z|[+-]\\d{2}:\\d{2})$" ;
+            sh:message "Value must be a valid timestamp with a timezone (ending in 'Z' or '+/-HH:MM')."@en ;
             sh:description "Exact stop timestamp of the recorded trace"@en ;
             sh:maxCount 1 ;
             sh:message "Validation of stopTime failed!"@en ;
@@ -306,7 +310,8 @@ ositrace:QuantityShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property [ skos:example "1000" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Number of frames/messages in the trace file."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberFrames failed!"@en ;
@@ -319,7 +324,8 @@ ositrace:MovingObjectShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property [ skos:example "42" ;
-            sh:datatype xsd:unsignedLong ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Moving object identifier in trace file."@en ;
             sh:minCount 1 ;
             sh:maxcount 1 ;
@@ -341,7 +347,9 @@ ositrace:EventShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property [ skos:example "2024-05-11T13:20:03.250320Z" ;
-            sh:datatype xsd:dateTimeStamp ;
+            sh:datatype xsd:dateTime ;
+            sh:pattern ".*(Z|[+-]\\d{2}:\\d{2})$" ;
+            sh:message "Value must be a valid timestamp with a timezone (ending in 'Z' or '+/-HH:MM')."@en ;
             sh:description "Exact timestamp of the event in the recorded trace."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of time failed!"@en ;

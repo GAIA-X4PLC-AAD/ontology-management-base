@@ -17,15 +17,17 @@ Key Features:
      - Intercepts remote context IRIs (e.g., "https://w3id.org/...") and maps them to
        local files, enabling fully offline validation and stability.
 
-  3. **Optimized Performance**:
-     - Prioritizes `oxrdflib` (Oxigraph) for high-performance RDF parsing.
-     - Implements caching for ontology IRI-to-File mappings.
-     - Uses regex-based pre-scanning to identify ontology IRIs without full graph parsing.
+  3. **Optimized Performance (Hybrid Strategy)**:
+     - **Loading**: Prioritizes `oxrdflib` (Oxigraph) for fast parsing.
+     - **Inference**: Uses customized SPARQL updates for instant RDFS inference in Rust,
+       bypassing the slow Python-based `owlrl` engine.
+     - **Validation**: Automatically switches to standard in-memory graphs for validation
+       to avoid Python-Rust FFI overhead during high-frequency triple iteration.
 
   4. **Robust Path Handling**:
      - Built on `pathlib` for cross-platform compatibility.
      - Enforces relative path reporting in logs to ensure consistent, readable output
-       that matches expected test baselines (avoiding absolute path noise).
+       that matches expected test baselines.
 
   5. **In-Memory Processing**:
      - Performs JSON-LD context rewriting in-memory to ensure thread safety and
@@ -39,6 +41,8 @@ Arguments:
     --root:         Root directory of the ontology repository (default: current dir).
     --context-root: Directory containing local context files (default: <root>/contexts).
     --inference:    Inference mode for PySHACL (rdfs, owlrl, none, both).
+    --debug:        Enable debug logging (Script logs to Console; PySHACL logs to File if --logfile provided).
+    --logfile:      Write validation report (and PySHACL debug logs if --debug) to file.
 """
 
 import json
@@ -154,6 +158,48 @@ def to_rel_path(path: Union[Path, str], root: Path) -> str:
     except ValueError:
         # Fallback if path is not relative to root
         return str(path)
+
+
+# ---------------------------------------------------------------------------
+# Optimization Helper: SPARQL Inference
+# ---------------------------------------------------------------------------
+
+
+def perform_fast_rdfs_inference(graph: Graph):
+    """
+    Executes SPARQL Updates to materialize common RDFS inferences (subClassOf, subPropertyOf).
+    This replaces the 'owlrl' Python engine for the most common use-case ('rdfs'),
+    avoiding compatibility crashes with Oxigraph and providing massive speedups.
+    """
+    logging.info("⚡ Running optimized SPARQL RDFS inference...")
+
+    # 1. Resolve SubClasses: ?s a ?child . ?child subClassOf+ ?parent . -> ?s a ?parent
+    # This is the 99% use case for SHACL validation (matching types).
+    query_subclass = """
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    INSERT {
+        ?s a ?parent .
+    }
+    WHERE {
+        ?s a ?child .
+        ?child rdfs:subClassOf+ ?parent .
+    }
+    """
+    graph.update(query_subclass)
+
+    # 2. Resolve SubProperties (Optional but good for completeness):
+    # ?s ?subProp ?o . ?subProp subPropertyOf+ ?superProp . -> ?s ?superProp ?o
+    query_subprop = """
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    INSERT {
+        ?s ?superProp ?o .
+    }
+    WHERE {
+        ?s ?subProp ?o .
+        ?subProp rdfs:subPropertyOf+ ?superProp .
+    }
+    """
+    graph.update(query_subprop)
 
 
 # ---------------------------------------------------------------------------
@@ -301,29 +347,73 @@ class LocalContextResolver:
 
 
 def setup_logging(
-    debug: bool = False, buffer_stream: Optional[StringIO] = None
+    debug: bool = False,
+    buffer_stream: Optional[StringIO] = None,
+    logfile: Optional[Path] = None,
 ) -> None:
     """
-    Configures logging to output to both the console (optionally) and a buffer.
+    Configures logging.
+    - Script logs (root) -> Console (and Buffer).
+    - PySHACL logs -> Logfile ONLY (if debug is enabled).
     """
-    handlers = []
+    root_logger = logging.getLogger()
+    # Ensure Root level captures DEBUG if debug is enabled
+    root_logger.setLevel(logging.DEBUG if debug else logging.INFO)
 
-    # 1. Handler for the return value buffer (captures everything)
+    # Reset handlers to avoid duplicates
+    root_logger.handlers = []
+
+    formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
+
+    # 1. Console Handler (Script output)
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(formatter)
+
+    # CASE 3 FIX: If we have debug=True AND a logfile, we want the CONSOLE to stay clean (INFO only).
+    # The debug logs will be routed to the file via the file_handler attached to root.
+    if debug and logfile:
+        console_handler.setLevel(logging.INFO)
+    else:
+        # Case 4 (debug only) or Case 1/2 (no debug): Console follows root level
+        console_handler.setLevel(logging.NOTSET)
+
+    root_logger.addHandler(console_handler)
+
+    # 2. Buffer Handler (Capture for return value)
     if buffer_stream:
         stream_handler = logging.StreamHandler(buffer_stream)
-        handlers.append(stream_handler)
+        stream_handler.setFormatter(formatter)
+        root_logger.addHandler(stream_handler)
 
-    # 2. Handler for stdout (for user visibility)
-    # We always print INFO+ to stdout. Debug only if requested.
-    console_handler = logging.StreamHandler(sys.stdout)
-    handlers.append(console_handler)
+    # 3. Logfile Handler (Script output to file)
+    file_handler = None
+    if logfile:
+        # Open in 'w' mode to clear previous logs on startup
+        file_handler = logging.FileHandler(logfile, mode="w", encoding="utf-8")
+        file_handler.setFormatter(formatter)
+        # We attach the file handler to Root so it captures Script DEBUG logs (Prefix Extension)
+        root_logger.addHandler(file_handler)
 
-    logging.basicConfig(
-        level=logging.DEBUG if debug else logging.INFO,
-        handlers=handlers,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        force=True,
-    )
+    # 4. PySHACL Logger Configuration
+    # We explicitly control pyshacl logger.
+    pyshacl_logger = logging.getLogger("pyshacl")
+
+    if debug:
+        pyshacl_logger.setLevel(logging.DEBUG)
+        # Requirement: Pyshacl debug output must NOT go to console.
+        # We stop propagation so it doesn't hit the Root->ConsoleHandler.
+        pyshacl_logger.propagate = False
+
+        if file_handler:
+            # Case 3: Pyshacl debugs go to file (via the handler we created above).
+            pyshacl_logger.addHandler(file_handler)
+        else:
+            # Case 4: --debug only -> Pyshacl debugs suppressed from console.
+            # (User didn't ask for pyshacl logs on console in Case 4, only "logger.debug" from script).
+            pyshacl_logger.addHandler(logging.NullHandler())
+    else:
+        # Case 1 & 2: No debug -> Pyshacl stays silent.
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -1054,7 +1144,16 @@ def validate_jsonld_against_shacl(
         print(*args, **kwargs, file=sys.stdout)
         sys.stdout.flush()
 
-    setup_logging(debug, buffer_stream=output_buffer)
+    setup_logging(
+        debug,
+        buffer_stream=output_buffer,
+        logfile=Path(logfile) if logfile else None,
+    )
+
+    if FAST_STORE == "oxigraph":
+        print_out("🚀 Performance: Oxigraph (oxrdflib) is loaded and active.")
+    else:
+        print_out("🐢 Performance: Oxigraph not found, using default rdflib store.")
 
     if PYSHACL_IMPORT_ERROR:
         print_out(f"Error: pyshacl not installed: {PYSHACL_IMPORT_ERROR}")
@@ -1130,21 +1229,68 @@ def validate_jsonld_against_shacl(
     with timer.step("PySHACL Validation Engine"):
         # Professional: Don't swallow output. Capture return values.
         # Note: We rely on pyshacl's own logging or return values.
+
+        # LOGIC FOR INFERENCE STRATEGY
+        # 1. 'rdfs' -> Optimized manual SPARQL update (inplace=True)
+        # 2. 'owlrl'/'both' -> Standard slow pyshacl (inplace=False) to avoid crashes
+        # 3. 'none' -> Optimized (inplace=True)
+
+        pyshacl_inference_option = inference_mode
+        # OPTIMIZATION: Default to inplace=False (copying to Memory graph)
+        # because PySHACL iterates much faster over Python Memory triples
+        # than via the Oxigraph FFI bridge.
+
+        if FAST_STORE == "oxigraph":
+            if inference_mode == "rdfs":
+                # STRATEGY 1: Hybrid RDFS (Manual SPARQL + Oxigraph)
+                print_out(
+                    "⚡ Hybrid Mode: Merging graphs and running fast SPARQL inference on Oxigraph."
+                )
+
+                # 1. Merge ontologies into data (Fast in Rust)
+                data_graph += ont_graph
+
+                # 2. Run Inference (Fast in Rust)
+                perform_fast_rdfs_inference(data_graph)
+
+                # 3. Disable pyshacl's slow internal inference
+                pyshacl_inference_option = "none"
+
+                # 4. We will allow inplace=False below to copy this inferred graph
+                # to a fresh Memory graph for the fastest possible validation loop.
+
+            elif inference_mode in ["owlrl", "both"]:
+                # STRATEGY 2: Fallback for Complex Inference
+                print_out(f"⚠️  Complex inference '{inference_mode}' detected.")
+                print_out(
+                    "   Oxigraph does not support complex OWLRL inference in-place."
+                )
+                print_out(
+                    "   Falling back to standard (slower) processing to avoid crashes."
+                )
+
+        # EXECUTE VALIDATION
+        # inplace=False ensures we validate on a Memory graph (Fast iteration),
+        # regardless of whether we loaded using Oxigraph or not.
         conforms, report_graph, v_text = validate(
             data_graph,
             shacl_graph=shacl_graph,
-            ont_graph=ont_graph,
+            ont_graph=ont_graph,  # safe to pass even if merged, pyshacl handles it
             abort_on_first=False,
-            inference=inference_mode,
+            inference=pyshacl_inference_option,
             validation_mode="strict",
             debug=debug,
-            inplace=False,
+            inplace=False,  # <--- FORCE COPY TO MEMORY FOR SPEED
         )
-        # Increased loglevel
+        # Increased loglevel for internal tracking (goes to root logger)
         logging.debug(v_text)
 
     if logfile:
-        with open(logfile, "w", encoding="utf-8") as f:
+        # If debug is True, pyshacl logs have already been written to the file (via setup_logging).
+        # We append the validation report to the end.
+        # If debug is False, the file was not touched by setup_logging, so we open in 'w' to create it.
+        mode = "a" if debug else "w"
+        with open(logfile, mode, encoding="utf-8") as f:
             f.write(v_text)
 
     # Convert paths back to str for the legacy printer function, ensuring they are relative
@@ -1153,6 +1299,7 @@ def validate_jsonld_against_shacl(
     ]
 
     if not conforms:
+        # Pass empty string for v_text to suppress detailed report in console output
         print_validate_jsonld_against_shacl_result(
             False, all_files_str, "", report_graph, exit_code=None, file=output_buffer
         )

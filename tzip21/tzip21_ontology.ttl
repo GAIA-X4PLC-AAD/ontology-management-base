@@ -6,7 +6,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 
 tzip21: a owl:Ontology ;
     rdfs:label "Ontology definition for tzip21"@en ;
@@ -20,12 +20,19 @@ tzip21: a owl:Ontology ;
     ] ;
 
     dcterms:identifier <https://ontologies.envited-x.net/tzip21> ;
+
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
+
     owl:versionIRI <https://ontologies.envited-x.net/tzip21/v1/ontology#> ;
+
     owl:versionInfo "v1" ;
+
     dcterms:conformsTo <https://ontologies.envited-x.net/tzip21/v1/shape#> ;
+
     dcterms:references <https://tzip.tezosagora.org/proposal/tzip-21/> ;
+    
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 # --- Classes ---

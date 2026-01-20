@@ -7,7 +7,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
-    "gx": "https://w3id.org/gaia-x/development#"
+    "gx": "https://w3id.org/gaia-x/development/"
   },
   "@id": "did:web:registry.envited-x.net:SurfaceModel:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
   "@type": "surface-model:SurfaceModel",

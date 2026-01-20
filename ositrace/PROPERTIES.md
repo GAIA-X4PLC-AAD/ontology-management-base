@@ -23,8 +23,8 @@
 | ContentShape | ositrace | trafficDirection |  | 1 | Traffic direction, i.e. right-hand or left-hand traffic |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | granularity | 1 |  | Level of granularity of sensor data |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | scenarioIdentifier |  |  | Identifier of scenario performed in the trace file | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
-| ContentShape | ositrace | startTime | 1 | 1 | Exact start timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
-| ContentShape | ositrace | stopTime | 1 | 1 | Exact stop timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
+| ContentShape | ositrace | startTime | 1 | 1 | Exact start timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTime> | ositrace_shacl.ttl |
+| ContentShape | ositrace | stopTime | 1 | 1 | Exact stop timestamp of the recorded trace | <http://www.w3.org/2001/XMLSchema#dateTime> | ositrace_shacl.ttl |
 | ContentShape | ositrace | hasHostMovingObject | 1 | 1 | Host moving object in trace file |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | hasTargetMovingObject |  |  | Target moving object(s) in trace file |  | ositrace_shacl.ttl |
 | ContentShape | ositrace | hasEvent | 0 |  | Description of events of interest in trace file |  | ositrace_shacl.ttl |
@@ -40,9 +40,9 @@
 | QualityShape | ositrace | calibration | 0 | 1 | Description of any calibration steps performed prior to measurement. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | QualityShape | ositrace | validationReport | 0 | 1 | Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://ontologies.envited-x.net/vv-report/v2/ontology#. | <http://www.w3.org/2001/XMLSchema#anyURI> | ositrace_shacl.ttl |
 | QualityShape | ositrace | validationReportType | 0 | 1 | Type of OSI trace validation report, if any exists. As mime-type. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
-| QuantityShape | ositrace | numberFrames |  | 1 | Number of frames/messages in the trace file. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | ositrace_shacl.ttl |
-| MovingObjectShape | ositrace | identifier | 1 |  | Moving object identifier in trace file. | <http://www.w3.org/2001/XMLSchema#unsignedLong> | ositrace_shacl.ttl |
+| QuantityShape | ositrace | numberFrames |  | 1 | Number of frames/messages in the trace file. | <http://www.w3.org/2001/XMLSchema#integer> | ositrace_shacl.ttl |
+| MovingObjectShape | ositrace | identifier | 1 |  | Moving object identifier in trace file. | <http://www.w3.org/2001/XMLSchema#integer> | ositrace_shacl.ttl |
 | MovingObjectShape | ositrace | description |  | 1 | Description of moving object in the trace file. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
-| EventShape | ositrace | time | 1 | 1 | Exact timestamp of the event in the recorded trace. | <http://www.w3.org/2001/XMLSchema#dateTimeStamp> | ositrace_shacl.ttl |
+| EventShape | ositrace | time | 1 | 1 | Exact timestamp of the event in the recorded trace. | <http://www.w3.org/2001/XMLSchema#dateTime> | ositrace_shacl.ttl |
 | EventShape | ositrace | tag | 1 |  | Unique tag of the event in trace file. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |
 | EventShape | ositrace | description |  | 1 | Description of event in the trace file. | <http://www.w3.org/2001/XMLSchema#string> | ositrace_shacl.ttl |

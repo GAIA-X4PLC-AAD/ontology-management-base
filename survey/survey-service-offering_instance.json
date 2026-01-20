@@ -3,7 +3,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "survey": "https://ontologies.envited-x.net/survey/v6/ontology#",
     "general": "https://ontologies.envited-x.net/general/v3/ontology#",
-    "gx": "https://w3id.org/gaia-x/development#",
+    "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw",

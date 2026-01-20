@@ -31,10 +31,10 @@
 | ContentShape | scenario | countrySpecificSign | 0 | 1 | Indicates which country-specific traffic signs are used in the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | countrySpecificTrafficParticipants | 0 | 1 | Indicates which country-specific participants are used in the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | ContentShape | scenario | country | 0 | 1 | Indicates the country of origin for the scenario asset. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| QuantityShape | scenario | temporaryTrafficObjects |  | 1 | Specifies the total number of temporary traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
-| QuantityShape | scenario | numberTrafficObjects |  | 1 | Specifies the total number of traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
+| QuantityShape | scenario | temporaryTrafficObjects |  | 1 | Specifies the total number of temporary traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#integer> | scenario_shacl.ttl |
+| QuantityShape | scenario | numberTrafficObjects |  | 1 | Specifies the total number of traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#integer> | scenario_shacl.ttl |
 | QuantityShape | scenario | controllers | 0 |  | Specifies the simulation core controllers (internal or external) used in the scenario. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
-| QuantityShape | scenario | permanentTrafficObjects |  | 1 | Specifies the total number of permanent traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | scenario_shacl.ttl |
+| QuantityShape | scenario | permanentTrafficObjects |  | 1 | Specifies the total number of permanent traffic objects defined in the scenario asset. | <http://www.w3.org/2001/XMLSchema#integer> | scenario_shacl.ttl |
 | QualityShape | scenario | accuracyObjects | 0 | 1 | Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements). | <http://www.w3.org/2001/XMLSchema#float> | scenario_shacl.ttl |
 | QualityShape | scenario | calibration | 0 | 1 | Describes the calibration steps performed prior to the measurements. | <http://www.w3.org/2001/XMLSchema#string> | scenario_shacl.ttl |
 | DataSourceShape | scenario | sourceType | 0 | 1 | Specifies the category of source data used to create the scenario. |  | scenario_shacl.ttl |

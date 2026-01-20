@@ -9,6 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 
 ### Scenario SHACL Shape
 scenario:ScenarioShape a sh:NodeShape ;
@@ -279,7 +280,8 @@ scenario:QuantityShape a sh:NodeShape ;
     sh:closed false;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ skos:example "2" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the total number of temporary traffic objects defined in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of temporaryTrafficObjects failed!"@en ;
@@ -287,7 +289,8 @@ scenario:QuantityShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path scenario:temporaryTrafficObjects ],
         [ skos:example "10" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the total number of traffic objects defined in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficObjects failed!"@en ;
@@ -303,7 +306,8 @@ scenario:QuantityShape a sh:NodeShape ;
             sh:order 3 ;
             sh:path scenario:controllers ],
         [ skos:example "8" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the total number of permanent traffic objects defined in the scenario asset."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of permanentTrafficObjects failed!"@en ;

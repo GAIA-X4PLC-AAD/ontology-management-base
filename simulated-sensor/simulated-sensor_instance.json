@@ -4,7 +4,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "simulated-sensor": "https://ontologies.envited-x.net/simulated-sensor/v2/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "gx": "https://w3id.org/gaia-x/development#",
+    "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:registry.gaia-x.eu:SimulatedSensor:B6gYmAU2PiHe8c3aqSbazCkrE7sUfCkRPFv2",

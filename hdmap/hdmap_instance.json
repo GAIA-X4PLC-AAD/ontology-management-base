@@ -5,7 +5,7 @@
     "georeference": "https://ontologies.envited-x.net/georeference/v5/ontology#",
     "manifest": "https://ontologies.envited-x.net/manifest/v5/ontology#",
     "sh": "http://www.w3.org/ns/shacl#",
-    "gx": "https://w3id.org/gaia-x/development#",
+    "gx": "https://w3id.org/gaia-x/development/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },

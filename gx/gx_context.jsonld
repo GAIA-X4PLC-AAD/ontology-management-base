@@ -9,7 +9,7 @@
       "cred": "https://www.w3.org/2018/credentials#",
       "dcat": "http://www.w3.org/ns/dcat#",
       "dct": "http://purl.org/dc/terms/",
-      "gx": "https://w3id.org/gaia-x/development#",
+      "gx": "https://w3id.org/gaia-x/development/",
       "httpsschema": "https://schema.org/",
       "httpsvcard": "https://www.w3.org/2006/vcard/ns#",
       "linkml": "https://w3id.org/linkml/",
@@ -18,7 +18,7 @@
       "qudtschema": "http://qudt.org/schema/qudt/",
       "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
       "skos": "http://www.w3.org/2004/02/skos/core#",
-      "@vocab": "https://w3id.org/gaia-x/development#",
+      "@vocab": "https://w3id.org/gaia-x/development/",
       "accessAttributes": {
          "@context": {
             "text": "skos:notation",

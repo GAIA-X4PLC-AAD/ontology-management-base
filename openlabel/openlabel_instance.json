@@ -76,20 +76,20 @@
     "openlabel:MotionAccelerate": true,
     "openlabel:motionAccelerateValue": {
       "@type": "schema:QuantitativeValue",
-      "schema:maxValue": 2.5,
-      "schema:minValue": 0.5
+      "schema:maxValue": "2.5",
+      "schema:minValue": "0.5"
     },
     "openlabel:MotionDecelerate": true,
     "openlabel:motionDecelerateValue": {
       "@type": "schema:QuantitativeValue",
-      "schema:maxValue": 4.444,
-      "schema:minValue": 0.053
+      "schema:maxValue": "4.444",
+      "schema:minValue": "0.053"
     },
     "openlabel:MotionDrive": true,
     "openlabel:motionDriveValue": {
       "@type": "schema:QuantitativeValue",
-      "schema:maxValue": 60.001,
-      "schema:minValue": 0.0
+      "schema:maxValue": "60.001",
+      "schema:minValue": "0.0"
     },
     "openlabel:MotionAway": true,
     "openlabel:MotionCross": false,

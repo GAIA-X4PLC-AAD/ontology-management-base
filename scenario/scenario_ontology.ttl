@@ -12,6 +12,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
 
 scenario: a owl:Ontology ;
     rdfs:label "Ontology definition for scenario"@en ;
@@ -181,9 +182,9 @@ scenario:hasManifest a owl:ObjectProperty ;
 
 # Declare a union class combining scenario:Content and openlabel:Tag
 scenario:ContentOrTag a owl:Class ;
-                      rdfs:label "Content or OpenLabel Tag"@en ;
-                      rdfs:comment "Combines HDMap content with OpenLABEL's OddScenery."@en ;
-                      owl:unionOf (scenario:Content openlabel:Tag) .
+    rdfs:label "Content or OpenLabel Tag"@en ;
+    rdfs:comment "Combines Scenario content with OpenLABEL's Tag."@en ;
+    owl:unionOf (scenario:Content openlabel:Tag) .
 
 scenario:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;

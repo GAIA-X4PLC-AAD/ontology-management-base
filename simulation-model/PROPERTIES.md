@@ -36,8 +36,8 @@
 | ContentShape | simulation-model | sensorType |  | 1 | Type of Output of Sensor. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | sensorTechnology |  | 1 | HW Technology of sensor. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | ContentShape | simulation-model | sensorTechnologyVariant |  | 1 | HW Technology variant of sensor. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
-| QuantityShape | simulation-model | maxDetections | 0 | 1 | The maximum number of detections. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | simulation-model_shacl.ttl |
-| QuantityShape | simulation-model | maxObjects | 0 | 1 | The maximum number of objects. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | simulation-model_shacl.ttl |
+| QuantityShape | simulation-model | maxDetections | 0 | 1 | The maximum number of detections. | <http://www.w3.org/2001/XMLSchema#integer> | simulation-model_shacl.ttl |
+| QuantityShape | simulation-model | maxObjects | 0 | 1 | The maximum number of objects. | <http://www.w3.org/2001/XMLSchema#integer> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | modelLimitations | 0 | 1 | Description of all limitations that apply to the model and its usage. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | modelValidityRange | 0 | 1 | Restrictions on the model validity, typically on quantifiable aspects. | <http://www.w3.org/2001/XMLSchema#string> | simulation-model_shacl.ttl |
 | QualityShape | simulation-model | modelVerificationStatus | 1 | 1 | Is the model verified | <http://www.w3.org/2001/XMLSchema#boolean> | simulation-model_shacl.ttl |
