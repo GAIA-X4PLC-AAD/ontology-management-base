@@ -99,11 +99,11 @@
 | OddShape | openlabel | DaySunElevation |  |  | Validation class for daySunElevation | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |
 | OddShape | openlabel | daySunElevationValue |  |  | Sun Elevation (degrees) (Refer to BSI PAS-1883 Section 5.3.3.a.1). | <http://www.w3.org/2001/XMLSchema#decimal> | openlabel_shacl.ttl |
 | OddShape | openlabel | TrafficAgentDensity |  |  | Validation class for trafficAgentDensity | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |
-| OddShape | openlabel | trafficAgentDensityValue |  |  | Density (vehicles/km) (Refer to BSI PAS-1883 Section 5.4.a.1). | <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> | openlabel_shacl.ttl |
+| OddShape | openlabel | trafficAgentDensityValue |  |  | Density (vehicles/km) (Refer to BSI PAS-1883 Section 5.4.a.1). | <http://www.w3.org/2001/XMLSchema#integer> | openlabel_shacl.ttl |
 | OddShape | openlabel | TrafficFlowRate |  |  | Validation class for trafficFlowRate | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |
-| OddShape | openlabel | trafficFlowRateValue |  |  | Rate (vehicles/h) (Refer to BSI PAS-1883 Section 5.4.a.3). | <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> | openlabel_shacl.ttl |
+| OddShape | openlabel | trafficFlowRateValue |  |  | Rate (vehicles/h) (Refer to BSI PAS-1883 Section 5.4.a.3). | <http://www.w3.org/2001/XMLSchema#integer> | openlabel_shacl.ttl |
 | OddShape | openlabel | TrafficVolume |  |  | Validation class for trafficVolume | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |
-| OddShape | openlabel | trafficVolumeValue |  |  | Volume (vehicle km) (Refer to BSI PAS-1883 Section 5.4.a.2). | <http://www.w3.org/2001/XMLSchema#nonNegativeInteger> | openlabel_shacl.ttl |
+| OddShape | openlabel | trafficVolumeValue |  |  | Volume (vehicle km) (Refer to BSI PAS-1883 Section 5.4.a.2). | <http://www.w3.org/2001/XMLSchema#integer> | openlabel_shacl.ttl |
 | OddShape | openlabel | LaneSpecificationDimensions |  |  | Validation class for laneSpecificationDimensions | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |
 | OddShape | openlabel | laneSpecificationDimensionsValue |  |  | Lane width (m) (Refer to BSI PAS-1883 Section 5.2.3.4.a). |  | openlabel_shacl.ttl |
 | OddShape | openlabel | LaneSpecificationLaneCount |  |  | Validation class for laneSpecificationLaneCount | <http://www.w3.org/2001/XMLSchema#boolean> | openlabel_shacl.ttl |

@@ -30,14 +30,14 @@
 | QualityShape | hdmap | accuracyLaneModelHeight | 0 | 1 | Specifies the accuracy of the lane model's height in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | precision | 0 | 1 | Specifies the relative precision of the measured road network in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QualityShape | hdmap | accuracyLaneModel2d | 0 | 1 | Specifies the accuracy of the lane model in the 2D plane in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberIntersections |  | 1 | Specifies the total number of intersections defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberTrafficLights |  | 1 | Specifies the number of all traffic lights defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberIntersections |  | 1 | Specifies the total number of intersections defined in the HD map. | <http://www.w3.org/2001/XMLSchema#integer> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberTrafficLights |  | 1 | Specifies the number of all traffic lights defined in the HD map. | <http://www.w3.org/2001/XMLSchema#integer> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | rangeOfModeling | 0 | 1 | Indicates the distance (in metres) to which the area beyond the traffic area has been modeled. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberOutlines |  | 1 | Specifies the number of all outline objects defined in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberOutlines |  | 1 | Specifies the number of all outline objects defined in the HD map. | <http://www.w3.org/2001/XMLSchema#integer> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | speedLimit |  | 1 | Specifies the range of speed limits defined in the HD map. |  | hdmap_shacl.ttl |
 | QuantityShape | hdmap | length |  | 1 | Defines the total length (sum of road lengths) of the road network in kilometres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | QuantityShape | hdmap | elevationRange |  | 1 | Specifies the difference between the maximum and minimum height of the road elevation profiles in metres. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberObjects |  | 1 | Specifies the number of all objects in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
-| QuantityShape | hdmap | numberTrafficSigns |  | 1 | Specifies the number of all traffic signs (signals) in the HD map. | <http://www.w3.org/2001/XMLSchema#unsignedInt> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberObjects |  | 1 | Specifies the number of all objects in the HD map. | <http://www.w3.org/2001/XMLSchema#integer> | hdmap_shacl.ttl |
+| QuantityShape | hdmap | numberTrafficSigns |  | 1 | Specifies the number of all traffic signs (signals) in the HD map. | <http://www.w3.org/2001/XMLSchema#integer> | hdmap_shacl.ttl |
 | Range2DShape | hdmap | max |  |  | The maximum value of the range. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
 | Range2DShape | hdmap | min |  |  | The minimum value of the range. | <http://www.w3.org/2001/XMLSchema#float> | hdmap_shacl.ttl |
