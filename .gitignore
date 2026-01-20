@@ -1,10 +1,14 @@
+# folders
 /.venv/
 /.idea/
 /.playground/
 /.vscode/
 /node_modules/
 **/__pycache__/
+/build/
+/dist/
+
+# files
 *.log
 .ontology_iri_cache.json
 *.egg-info/
-
