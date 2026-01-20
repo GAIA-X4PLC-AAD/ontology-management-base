@@ -1,3 +1,4 @@
+import argparse
 import io
 import os
 import sys
@@ -17,14 +18,52 @@ from utils.print_formatting import normalize_text
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
 
-# Explicitly excluded folders
+
+def parse_gitignore_patterns(root_dir):
+    """
+    Parses .gitignore to find folders that should be ignored.
+    Returns a set of folder names.
+    """
+    gitignore_path = os.path.join(root_dir, ".gitignore")
+    ignored_folders = set()
+
+    if os.path.exists(gitignore_path):
+        with open(gitignore_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                # Skip comments and empty lines
+                if not line or line.startswith("#"):
+                    continue
+
+                # Check for directory patterns (e.g., "/build/", "dist/", ".venv/")
+                # We strip leading/trailing slashes to match os.listdir() output
+                clean_name = line.strip("/")
+
+                # If the line was originally a directory (ended in /) or is a common build folder
+                # we add it to exclusions.
+                if line.endswith("/") or os.path.isdir(
+                    os.path.join(root_dir, clean_name)
+                ):
+                    ignored_folders.add(clean_name)
+
+    return ignored_folders
+
+
+# 1. Start with valid repository folders that are NOT ontologies (Must keep these!)
 EXCLUDED_FOLDERS = {
     "src",
     "base-ontologies",
     "base-references",
     "service-characteristics",
-    "node_modules",
+    ".git",
+    ".github",
+    ".idea",
+    ".vscode",
 }
+
+# 2. Add dynamic folders from .gitignore (build, dist, .venv, etc.)
+EXCLUDED_FOLDERS.update(parse_gitignore_patterns(ROOT_DIR))
+
 EXPECTED_TARGETCLASS_FAILURES = set()  # ontologies allowed to fail this check
 
 
@@ -211,33 +250,88 @@ def check_target_classes_all() -> int:
     return 0
 
 
+# --- CLI / Main Logic ---
 def main():
-    """Run all validation checks sequentially, aborting on the first failure."""
-    print("Detected ontology directories:", flush=True)
-    for directory in ONTOLOGY_DIRS:
-        print(f" - {directory}", flush=True)
+    """Run validation checks based on arguments."""
 
-    print("\n🚀 Running all ontology validation checks...", flush=True)
+    # 1. Enforce Python 3.12+ (Hard Check)
+    if sys.version_info < (3, 12):
+        print(
+            f"❌ Error: This project requires Python 3.12+. You are running {sys.version.split()[0]}.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
-    # Sequence of checks; script will exit if any check returns a non-zero code.
-    check_phases = [
-        ("Syntax", check_syntax_all),
-        ("Target Classes", check_target_classes_all),
-        ("JSON-LD SHACL", check_jsonld_against_shacl_all),
-        ("Failing Tests", check_failing_tests_all),
-    ]
+    # 2. Enforce Virtual Environment
+    # Checks if the script is running in a standard venv or a Conda environment
+    in_venv = (
+        (sys.prefix != sys.base_prefix)
+        or ("CONDA_DEFAULT_ENV" in os.environ)
+        or ("GITHUB_ACTIONS" in os.environ)
+    )
 
-    for name, phase_func in check_phases:
+    if not in_venv:
+        print(
+            "❌ Error: You are NOT running inside a virtual environment.",
+            file=sys.stderr,
+        )
+        print(
+            "   Please activate your virtual environment before running this script:",
+            file=sys.stderr,
+        )
+        print("     python3 -m venv .venv", file=sys.stderr)
+        print(
+            "     source .venv/bin/activate  # (On Windows: .venv\\Scripts\\activate)",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # 3. Argument Parsing
+    parser = argparse.ArgumentParser(description="Run ontology validation checks.")
+    parser.add_argument(
+        "--check",
+        type=str,
+        choices=["all", "syntax", "target-classes", "shacl", "failing-tests"],
+        default="all",
+        help="Specific check to run (default: all)",
+    )
+    args = parser.parse_args()
+
+    print(f"Detected ontology directories: {ONTOLOGY_DIRS}", flush=True)
+
+    # 4. Define the Mapping
+    check_map = {
+        "syntax": [("Syntax", check_syntax_all)],
+        "target-classes": [("Target Classes", check_target_classes_all)],
+        "shacl": [("JSON-LD SHACL", check_jsonld_against_shacl_all)],
+        "failing-tests": [("Failing Tests", check_failing_tests_all)],
+    }
+
+    # If 'all', combine the lists in the desired order
+    if args.check == "all":
+        checks_to_run = (
+            check_map["syntax"]
+            + check_map["target-classes"]
+            + check_map["shacl"]
+            + check_map["failing-tests"]
+        )
+    else:
+        checks_to_run = check_map[args.check]
+
+    print(f"\n🚀 Running check mode: {args.check.upper()} ...", flush=True)
+
+    # 5. Execution Loop
+    for name, phase_func in checks_to_run:
         rc = phase_func()
         if rc != 0:
             print(
-                f"\n❌ {name} phase failed (code {rc}). Aborting test run.",
+                f"\n❌ {name} phase failed (code {rc}). Aborting.",
                 file=sys.stderr,
                 flush=True,
             )
             sys.exit(rc)
 
-    print("\n✅ All checks completed successfully!", flush=True)
+    print(f"\n✅ {args.check.upper()} checks completed successfully!", flush=True)
 
 
 if __name__ == "__main__":

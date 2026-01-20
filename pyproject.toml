@@ -1,3 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ontology-management-base"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "rdflib>=7.5.0",
+    "rdflib-jsonld>=0.6.2",
+    "pyshacl>=0.31.0",
+    "keycloak_client>=0.15.4",
+    "requests>=2.32.5",
+    "linkml>=1.9.6",
+    "oxrdflib>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.12.0",
+    "flake8>=7.1.2",
+    "isort>=7.0.0",
+    "pre-commit>=4.5.1",
+]
+
+# --- Tool Config (Keep existing) ---
 [tool.black]
 line-length = 88
 

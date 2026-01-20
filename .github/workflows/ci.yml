@@ -1,0 +1,133 @@
+name: CI Pipeline
+
+on:
+  # Run on pushes ONLY to the main branch (after merge)
+  push:
+    branches: [ main ]
+  
+  # Run on any Pull Request targeting the main branch
+  pull_request:
+    branches: [ main ]
+
+  # Allow manual runs
+  workflow_dispatch:
+
+# Cancel any running jobs if a new commit is pushed to the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # --- JOB 1: Standards & Syntax (Fastest) ---
+  # This runs Black, Isort, Flake8 AND the JSON/TTL syntax checks defined in your pre-commit config.
+  standards-and-syntax:
+    name: 🎨 Standards & Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - name: Install dependencies
+        # Installs 'dev' dependencies (pre-commit, black, flake8) defined in pyproject.toml
+        run: pip install ".[dev]"
+      
+      # Runs all hooks defined in .pre-commit-config.yaml on all files
+      - name: Run pre-commit (Lint + Syntax)
+        run: pre-commit run --all-files
+
+  # --- JOB 2: SHACL Validation (Logic) ---
+  # Runs in parallel with Job 1
+  validate-shacl:
+    name: ⚖️ SHACL Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+          
+      - name: Install dependencies
+        # Installs only runtime dependencies (rdflib, pyshacl) defined in pyproject.toml
+        run: pip install .
+
+      # Uses the argument we added to run ONLY SHACL checks
+      - name: Run SHACL Checks
+        run: python3 src/run_all_checks_locally.py --check shacl
+
+  # --- JOB 3: OWL Consistency (Logic) ---
+  validate-owl:
+    name: 🦉 OWL Classes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Run Target Class Checks
+        run: python3 src/run_all_checks_locally.py --check target-classes
+
+  # --- JOB 4: Regression Tests ---
+  # Ensures known failing test cases still behave as expected
+  regression-tests:
+    name: 🧪 Regression Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Run Failing Tests
+        run: python3 src/run_all_checks_locally.py --check failing-tests
+
+  # --- JOB 5: Documentation ---
+  # Only runs if the syntax checks (Job 1) passed
+  generate-docs:
+    name: 📄 Generate Documentation
+    needs: [standards-and-syntax]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed to check git status
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Run Generator
+        run: python3 src/readme_generator.py
+
+      - name: Commit changes
+        run: |
+          # Check if any PROPERTIES.md files changed
+          if [[ -n $(git status --porcelain "*/PROPERTIES.md") ]]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add */PROPERTIES.md
+            git commit -m "docs: auto-generate PROPERTIES.md [skip ci]"
+            git push
+          else
+            echo "No documentation changes detected."
+          fi

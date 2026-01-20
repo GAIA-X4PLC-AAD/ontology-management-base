@@ -1,7 +1,8 @@
 ======================================================================================================================================================
 =                                                           ❌ SHACL validation failed for:                                                          =
 =                                                                                                                                                    =
-=                   ['envited-x/tests/fail_01_missing_has_content_instance.json', 'base-references/gx_legalperson_reference.json']                   =
+=          ['envited-x/tests/fail_01_missing_has_content_instance.json', 'base-references/gx_dataexchangecomponent_reference.json', 'base-           =
+=                                                     references/gx_legalperson_reference.json']                                                     =
 =                                                                                                                                                    =
 ======================================================================================================================================================
 =                                                                                                                                                    =
