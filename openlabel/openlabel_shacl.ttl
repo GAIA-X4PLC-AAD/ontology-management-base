@@ -681,7 +681,8 @@ openlabel:OddShape a sh:NodeShape ;
           sh:name "subjectVehicleSpeedValue"@en ;
           sh:order 34 ;
           sh:or (
-              [ sh:datatype xsd:nonNegativeInteger ;
+              [ sh:datatype xsd:integer ;
+                sh:minInclusive 0 ;
                 sh:description "Single decimal value representing subjectVehicleSpeedValue (km/h)."@en ;
                 sh:message "subjectVehicleSpeedValue must be a single decimal."@en ;
                 sh:name "nonNegativeInteger"@en ;
@@ -772,7 +773,8 @@ openlabel:OddShape a sh:NodeShape ;
           sh:order 45 ;
           sh:path openlabel:TrafficAgentDensity ] ,
 
-        [ sh:datatype xsd:nonNegativeInteger ;
+        [ sh:datatype xsd:integer ;
+          sh:minInclusive 0 ;
           sh:description "Density (vehicles/km) (Refer to BSI PAS-1883 Section 5.4.a.1)."@en ;
           sh:message "Validation of trafficAgentDensityValue failed!"@en ;
           sh:name "trafficAgentDensityValue"@en ;
@@ -787,7 +789,8 @@ openlabel:OddShape a sh:NodeShape ;
           sh:order 47 ;
           sh:path openlabel:TrafficFlowRate ] ,
 
-        [ sh:datatype xsd:nonNegativeInteger ;
+        [ sh:datatype xsd:integer ;
+          sh:minInclusive 0 ;
           sh:description "Rate (vehicles/h) (Refer to BSI PAS-1883 Section 5.4.a.3)."@en ;
           sh:message "Validation of trafficFlowRateValue failed!"@en ;
           sh:name "trafficFlowRateValue"@en ;
@@ -802,7 +805,8 @@ openlabel:OddShape a sh:NodeShape ;
           sh:order 49 ;
           sh:path openlabel:TrafficVolume ] ,
 
-        [ sh:datatype xsd:nonNegativeInteger ;
+        [ sh:datatype xsd:integer ;
+          sh:minInclusive 0 ;
           sh:description "Volume (vehicle km) (Refer to BSI PAS-1883 Section 5.4.a.2)."@en ;
           sh:message "Validation of trafficVolumeValue failed!"@en ;
           sh:name "trafficVolumeValue"@en ;
@@ -849,7 +853,8 @@ openlabel:OddShape a sh:NodeShape ;
           sh:name "laneSpecificationLaneCountValue"@en ;
           sh:order 54 ;
           sh:or (
-              [ sh:datatype xsd:positiveInteger ;
+              [ sh:datatype xsd:integer ;
+                sh:minInclusive 1 ;
                 sh:description "Number of lanes (Unit) (Refer to BSI PAS-1883 Section 5.2.3.4.d) "@en ;
                 sh:message "laneSpecificationLaneCountValue must be a single positiveInteger."@en ;
                 # FIXED: Name copy-paste error

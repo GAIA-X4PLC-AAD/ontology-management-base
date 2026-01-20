@@ -249,7 +249,8 @@ hdmap:QuantityShape a sh:NodeShape ;
     sh:targetClass hdmap:Quantity ;
     
     sh:property [ skos:example "5" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the total number of intersections defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberIntersections failed!"@en ;
@@ -257,7 +258,8 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:order 2 ;
             sh:path hdmap:numberIntersections ],
         [ skos:example "0" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the number of all traffic lights defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficLights failed!"@en ;
@@ -274,7 +276,8 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:order 8 ;
             sh:path hdmap:rangeOfModeling ],
         [ skos:example "100" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the number of all outline objects defined in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberOutlines failed!"@en ;
@@ -306,7 +309,8 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:order 1 ;
             sh:path hdmap:elevationRange ],
         [ skos:example "200" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the number of all objects in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberObjects failed!"@en ;
@@ -314,7 +318,8 @@ hdmap:QuantityShape a sh:NodeShape ;
             sh:order 5 ;
             sh:path hdmap:numberObjects ],
         [ skos:example "155" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Specifies the number of all traffic signs (signals) in the HD map."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberTrafficSigns failed!"@en ;

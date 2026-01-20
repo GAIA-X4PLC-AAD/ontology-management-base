@@ -265,7 +265,8 @@ environment-model:QuantityShape a sh:NodeShape ;
     
     sh:property [
         skos:example "12000" ;
-        sh:datatype xsd:unsignedInt ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
         sh:description "Defines the total number of geometries (all triangles with a material assignment), counting each instance only once."@en ;
         sh:maxCount 1 ;
         sh:message "Validation of geometryCount failed!"@en ;
@@ -275,7 +276,8 @@ environment-model:QuantityShape a sh:NodeShape ;
     ],
     [
         skos:example "16000000" ;
-        sh:datatype xsd:unsignedInt ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
         sh:description "Defines the total number of triangles, counting each instance only once."@en ;
         sh:maxCount 1 ;
         sh:message "Validation of triangleCount failed!"@en ;
@@ -285,7 +287,8 @@ environment-model:QuantityShape a sh:NodeShape ;
     ],
     [
         skos:example "179" ;
-        sh:datatype xsd:unsignedInt ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
         sh:description "Specifies the total number of textures used."@en ;
         sh:maxCount 1 ;
         sh:message "Validation of textureMaterialCount failed!"@en ;

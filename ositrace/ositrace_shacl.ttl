@@ -306,7 +306,8 @@ ositrace:QuantityShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property [ skos:example "1000" ;
-            sh:datatype xsd:unsignedInt ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
             sh:description "Number of frames/messages in the trace file."@en ;
             sh:maxCount 1 ;
             sh:message "Validation of numberFrames failed!"@en ;

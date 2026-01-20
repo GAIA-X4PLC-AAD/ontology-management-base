@@ -20,12 +20,19 @@ tzip21: a owl:Ontology ;
     ] ;
 
     dcterms:identifier <https://ontologies.envited-x.net/tzip21> ;
+
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
+
     owl:versionIRI <https://ontologies.envited-x.net/tzip21/v1/ontology#> ;
+
     owl:versionInfo "v1" ;
+
     dcterms:conformsTo <https://ontologies.envited-x.net/tzip21/v1/shape#> ;
+
     dcterms:references <https://tzip.tezosagora.org/proposal/tzip-21/> ;
+    
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 # --- Classes ---
