@@ -87,6 +87,8 @@ CACHE_FILENAME = ".ontology_iri_cache.json"
 DIR_NAME_BASE_ONTOLOGIES = "base-ontologies"
 DIR_NAME_BASE_REFERENCES = "base-references"
 DIR_NAME_CONTEXTS = "contexts"
+DIR_NAME_GENERATED = "generated"
+DIR_NAME_ONTOLOGY_MANAGEMENT_BASE = "ontology-management-base"
 
 # Professional: Allow-list for URI schemes to distinguish absolute URIs from CURIEs
 KNOWN_URI_SCHEMES = {
@@ -1049,9 +1051,23 @@ def load_shacl_and_ontologies(
     initial_ontology_files: List[Path] = []
 
     # Map prefixes to folders
+    # [UPDATED] Robust search for namespace folders across submodules and generated dirs
+    search_paths = [
+        root_dir,
+        root_dir / DIR_NAME_GENERATED,
+        root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE,
+        root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE / DIR_NAME_BASE_ONTOLOGIES,
+    ]
+
     for ns in target_namespaces:
-        folder_path = root_dir / ns
-        if folder_path.is_dir():
+        folder_path = None
+        for base_path in search_paths:
+            candidate = base_path / ns
+            if candidate.is_dir():
+                folder_path = candidate
+                break
+
+        if folder_path and folder_path.is_dir():
             relevant_shacl_files.extend(folder_path.rglob("*_shacl.ttl"))
             initial_ontology_files.extend(folder_path.rglob("*_ontology.ttl"))
 
@@ -1064,12 +1080,17 @@ def load_shacl_and_ontologies(
 
     # Add Support Ontologies (Dynamic Scan)
     # [UPDATED] Use constant and scan recursively for any *_ontology.ttl
-    base_ontologies_dir = root_dir / DIR_NAME_BASE_ONTOLOGIES
+    # We check standard location AND submodule location
+    potential_base_dirs = [
+        root_dir / DIR_NAME_BASE_ONTOLOGIES,
+        root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE / DIR_NAME_BASE_ONTOLOGIES,
+    ]
 
-    if base_ontologies_dir.is_dir():
-        for support_file in base_ontologies_dir.rglob("*_ontology.ttl"):
-            if support_file not in relevant_ontology_files:
-                relevant_ontology_files.append(support_file)
+    for base_ontologies_dir in potential_base_dirs:
+        if base_ontologies_dir.is_dir():
+            for support_file in base_ontologies_dir.rglob("*_ontology.ttl"):
+                if support_file not in relevant_ontology_files:
+                    relevant_ontology_files.append(support_file)
 
     # Sort
     relevant_ontology_files.sort()
