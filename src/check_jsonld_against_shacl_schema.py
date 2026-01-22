@@ -579,16 +579,37 @@ def _collect_used_prefixes_in_json_value(value: Any) -> Set[str]:
     return used
 
 
-def check_jsonld_context_coverage(file_path: Path) -> Dict[str, Set[str]]:
-    with file_path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
+def check_jsonld_context_coverage(
+    file_path: Path, context_resolver: Optional[LocalContextResolver] = None
+) -> Dict[str, Set[str]]:
+    
+    # 1. Try to load RESOLVED content (uses local *_context.jsonld files if available)
+    data = None
+    if context_resolver:
+        try:
+            _, data = context_resolver.resolve_jsonld_content(file_path)
+        except Exception:
+            pass
+            
+    # 2. Fallback to raw load if resolver missing or failed
+    if data is None:
+        with file_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
 
     context = data.get("@context", {})
     declared_prefixes: Set[str] = set()
 
+    # Helper to extract keys whether context is a dict or list of dicts
+    def _extract_keys(ctx):
+        if isinstance(ctx, dict):
+            return {k for k in ctx.keys() if isinstance(k, str)}
+        return set()
+
     if isinstance(context, dict):
-        declared_prefixes = {k for k in context.keys() if isinstance(k, str)}
-    # Note: Lists of contexts are harder to statically analyze for declarations without full resolution
+        declared_prefixes = _extract_keys(context)
+    elif isinstance(context, list):
+        for item in context:
+            declared_prefixes.update(_extract_keys(item))
 
     used_prefixes = _collect_used_prefixes_in_json_value(data)
     missing = used_prefixes - declared_prefixes
@@ -877,7 +898,8 @@ def add_jsonld_prefixes_and_context_info(
             for file_path in contents.get(key, []):
                 files_to_process.append(file_path)
                 if file_path.suffix in {".json", ".jsonld"}:
-                    coverage = check_jsonld_context_coverage(file_path)
+                    # UPDATED: Pass the context_resolver here
+                    coverage = check_jsonld_context_coverage(file_path, context_resolver)
                     context_issues[file_path] = coverage
 
         prefixes: Dict[str, str] = {}
