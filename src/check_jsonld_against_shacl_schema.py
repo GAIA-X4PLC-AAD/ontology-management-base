@@ -1119,12 +1119,11 @@ def load_shacl_and_ontologies(
     else:
         # Standard Smart Discovery (Default)
         target_namespaces = set(global_prefixes.keys())
+        
+        # [UPDATED] Build Index Early for Type-based Discovery
+        iri_index = _build_ontology_iri_index(root_dir)
 
-        # Check for missing namespaces in used_types
-        for rdf_type in used_types:
-            _ = urlparse(rdf_type)
-            pass
-
+        # 1. Prefix-based Discovery (Existing Logic)
         # Map prefixes to folders
         search_paths = [
             root_dir,
@@ -1144,9 +1143,27 @@ def load_shacl_and_ontologies(
             if folder_path and folder_path.is_dir():
                 relevant_shacl_files.extend(folder_path.rglob("*_shacl.ttl"))
                 initial_ontology_files.extend(folder_path.rglob("*_ontology.ttl"))
+        
+        # 2. Type-based Discovery (New Logic)
+        # Scan used types to find their defining ontologies using the IRI index
+        for rdf_type in used_types:
+            for onto_iri, onto_file in iri_index.items():
+                # Check if the type starts with the Ontology IRI (Namespace check)
+                # We append / or # to ensure we don't partial match a shorter IRI
+                if rdf_type.startswith(onto_iri + "/") or rdf_type.startswith(onto_iri + "#"):
+                    if onto_file not in initial_ontology_files:
+                        initial_ontology_files.append(onto_file)
+                        
+                        # Heuristic: Try to find sibling SHACL
+                        shacl_candidate = onto_file.parent / f"{onto_file.stem.replace('_ontology', '_shacl')}.ttl"
+                        if shacl_candidate.exists() and shacl_candidate not in relevant_shacl_files:
+                            relevant_shacl_files.append(shacl_candidate)
 
     # Resolve Dependencies (Always run, even if forced, to get transitive imports like SKOS/DCTERMS)
-    iri_index = _build_ontology_iri_index(root_dir)
+    # Re-build or reuse IRI index? We built it above if not forced. If forced, we need it now.
+    if force_load_generated:
+        iri_index = _build_ontology_iri_index(root_dir)
+        
     deps = _build_ontology_dependencies(root_dir, iri_index)
     relevant_ontology_files = _expand_ontology_dependencies_from(
         initial_ontology_files, deps
