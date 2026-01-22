@@ -1077,8 +1077,11 @@ def load_shacl_and_ontologies(
 
     # [UPDATED] Robust: Force-load all generated schemas and core GX if flag is set
     if force_load_generated:
-        print("⚠️  Force Load Enabled: Loading all schemas in 'generated' and 'gx'...", file=file)
-        
+        print(
+            "⚠️  Force Load Enabled: Loading all schemas in 'generated' and 'gx'...",
+            file=file,
+        )
+
         # 1. Load everything from 'generated' (Project specific)
         generated_dir = root_dir / DIR_NAME_GENERATED
         if generated_dir.is_dir():
@@ -1090,7 +1093,7 @@ def load_shacl_and_ontologies(
         if gx_dir.is_dir():
             relevant_shacl_files.extend(gx_dir.rglob("*_shacl.ttl"))
             initial_ontology_files.extend(gx_dir.rglob("*_ontology.ttl"))
-    
+
     else:
         # Standard Smart Discovery (Default)
         target_namespaces = set(global_prefixes.keys())
@@ -1428,12 +1431,7 @@ def main() -> None:
     args = parser.parse_args()
     root_dir = Path(args.root_dir).resolve()
 
-    if args.context_root:
-        context_root = Path(args.context_root).resolve()
-    else:
-        # [UPDATED] Use constant
-        candidate = root_dir / DIR_NAME_CONTEXTS
-        context_root = candidate if candidate.is_dir() else root_dir
+    # context_root logic removed as it was unused and causing flake8 F841
 
     ontology_dict = build_dict_for_ontologies(root_dir, args.paths)
 
