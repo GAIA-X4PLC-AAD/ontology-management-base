@@ -2,6 +2,7 @@ import argparse
 import io
 import os
 import sys
+from typing import List
 
 from check_jsonld_against_shacl_schema import (
     build_dict_for_ontologies,
@@ -80,13 +81,10 @@ def get_ontology_dirs():
     )
 
 
-ONTOLOGY_DIRS = get_ontology_dirs()
-
-
-def check_syntax_all() -> int:
+def check_syntax_all(ontology_dirs: List[str]) -> int:
     """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files, aborting on the first error."""
     print("\n=== Checking JSON-LD syntax ===", flush=True)
-    json_ret, json_results = validate_jsonld_files(ONTOLOGY_DIRS)
+    json_ret, json_results = validate_jsonld_files(ontology_dirs)
     for code, msg in json_results:
         if code == 0:
             print(msg)
@@ -95,7 +93,7 @@ def check_syntax_all() -> int:
             return code  # Abort immediately on JSON-LD syntax error
 
     print("\n=== Checking TTL syntax ===", flush=True)
-    ttl_ret, ttl_results = validate_turtle_files(ONTOLOGY_DIRS)
+    ttl_ret, ttl_results = validate_turtle_files(ontology_dirs)
     for code, msg in ttl_results:
         if code == 0:
             print(msg)
@@ -107,11 +105,11 @@ def check_syntax_all() -> int:
     return 0
 
 
-def check_jsonld_against_shacl_all() -> int:
+def check_jsonld_against_shacl_all(ontology_dirs: List[str]) -> int:
     """Validate JSON-LD files against SHACL schemas, aborting on the first failure."""
     print("\n=== Checking JSON-LD against SHACL ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         print(
             f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}", flush=True
         )
@@ -152,11 +150,11 @@ def check_jsonld_against_shacl_all() -> int:
     return 0
 
 
-def check_failing_tests_all() -> int:
+def check_failing_tests_all(ontology_dirs: List[str]) -> int:
     """Run failing test cases, aborting on the first discrepancy."""
     print("\n=== Running failing tests ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         folder_path = os.path.join(ROOT_DIR, ontology)
         test_folder = os.path.join(folder_path, "tests")
         if not os.path.exists(test_folder):
@@ -218,11 +216,11 @@ def check_failing_tests_all() -> int:
     return 0
 
 
-def check_target_classes_all() -> int:
+def check_target_classes_all(ontology_dirs: List[str]) -> int:
     """Validate target classes against OWL, aborting on the first unexpected error."""
     print("\n=== Checking target classes against OWL classes ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         folder_path = os.path.join(".", ontology)
         print(f"\n🔍 Checking target classes in folder: {ontology}", flush=True)
         returncode, output = validate_target_classes_against_owl_classes(folder_path)
@@ -295,16 +293,43 @@ def main():
         default="all",
         help="Specific check to run (default: all)",
     )
+    parser.add_argument(
+        "--folder",
+        type=str,
+        default=None,
+        help="Specific folder to run checks on (overrides automatic discovery).",
+    )
     args = parser.parse_args()
 
-    print(f"Detected ontology directories: {ONTOLOGY_DIRS}", flush=True)
+    # 4. Determine Target Directories
+    if args.folder:
+        if not os.path.exists(args.folder):
+            print(
+                f"❌ Error: The specific folder '{args.folder}' does not exist.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        # Use the single provided folder
+        ontology_dirs = [args.folder]
+    else:
+        # Use automatic discovery
+        ontology_dirs = get_ontology_dirs()
 
-    # 4. Define the Mapping
+    print(f"Detected ontology directories: {ontology_dirs}", flush=True)
+
+    # 5. Define the Mapping
+    # NOTE: We now use lambda to pass `ontology_dirs` to the functions
     check_map = {
-        "syntax": [("Syntax", check_syntax_all)],
-        "target-classes": [("Target Classes", check_target_classes_all)],
-        "shacl": [("JSON-LD SHACL", check_jsonld_against_shacl_all)],
-        "failing-tests": [("Failing Tests", check_failing_tests_all)],
+        "syntax": [("Syntax", lambda: check_syntax_all(ontology_dirs))],
+        "target-classes": [
+            ("Target Classes", lambda: check_target_classes_all(ontology_dirs))
+        ],
+        "shacl": [
+            ("JSON-LD SHACL", lambda: check_jsonld_against_shacl_all(ontology_dirs))
+        ],
+        "failing-tests": [
+            ("Failing Tests", lambda: check_failing_tests_all(ontology_dirs))
+        ],
     }
 
     # If 'all', combine the lists in the desired order
@@ -320,7 +345,7 @@ def main():
 
     print(f"\n🚀 Running check mode: {args.check.upper()} ...", flush=True)
 
-    # 5. Execution Loop
+    # 6. Execution Loop
     for name, phase_func in checks_to_run:
         rc = phase_func()
         if rc != 0:
