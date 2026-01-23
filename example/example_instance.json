@@ -14,6 +14,6 @@
     "@id": "did:web:registry.gaia-x.eu:RelatedSelfDescription:123456789"
   },
   "example_ontology:hasJunctionIntersection": {
-    "@id": "https://openlabel.asam.net/V1-0-0/ontologies/#IntersectionStaggered"
+    "@id": "https://openlabel.asam.net/V1-0-0/ontologies/IntersectionStaggered"
   }
 }

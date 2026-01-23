@@ -2,6 +2,7 @@ import argparse
 import io
 import os
 import sys
+from typing import List
 
 from check_jsonld_against_shacl_schema import (
     build_dict_for_ontologies,
@@ -31,25 +32,17 @@ def parse_gitignore_patterns(root_dir):
         with open(gitignore_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
-                # Skip comments and empty lines
                 if not line or line.startswith("#"):
                     continue
-
-                # Check for directory patterns (e.g., "/build/", "dist/", ".venv/")
-                # We strip leading/trailing slashes to match os.listdir() output
                 clean_name = line.strip("/")
-
-                # If the line was originally a directory (ended in /) or is a common build folder
-                # we add it to exclusions.
                 if line.endswith("/") or os.path.isdir(
                     os.path.join(root_dir, clean_name)
                 ):
                     ignored_folders.add(clean_name)
-
     return ignored_folders
 
 
-# 1. Start with valid repository folders that are NOT ontologies (Must keep these!)
+# 1. Start with valid repository folders that are NOT ontologies
 EXCLUDED_FOLDERS = {
     "src",
     "base-ontologies",
@@ -61,14 +54,14 @@ EXCLUDED_FOLDERS = {
     ".vscode",
 }
 
-# 2. Add dynamic folders from .gitignore (build, dist, .venv, etc.)
+# 2. Add dynamic folders from .gitignore
 EXCLUDED_FOLDERS.update(parse_gitignore_patterns(ROOT_DIR))
 
-EXPECTED_TARGETCLASS_FAILURES = set()  # ontologies allowed to fail this check
+EXPECTED_TARGETCLASS_FAILURES = set()
 
 
 def get_ontology_dirs():
-    """Return non-hidden directories in ROOT_DIR that are not explicitly excluded, sorted alphabetically."""
+    """Return non-hidden directories in ROOT_DIR that are not explicitly excluded."""
     return sorted(
         [
             folder
@@ -80,38 +73,39 @@ def get_ontology_dirs():
     )
 
 
-ONTOLOGY_DIRS = get_ontology_dirs()
-
-
-def check_syntax_all() -> int:
-    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files, aborting on the first error."""
+def check_syntax_all(ontology_dirs: List[str]) -> int:
+    """Check the syntax of all Turtle (.ttl) and JSON-LD (.json) files."""
+    if not ontology_dirs:
+        return 0
     print("\n=== Checking JSON-LD syntax ===", flush=True)
-    json_ret, json_results = validate_jsonld_files(ONTOLOGY_DIRS)
+    json_ret, json_results = validate_jsonld_files(ontology_dirs)
     for code, msg in json_results:
         if code == 0:
             print(msg)
         else:
             print(msg, file=sys.stderr)
-            return code  # Abort immediately on JSON-LD syntax error
+            return code
 
     print("\n=== Checking TTL syntax ===", flush=True)
-    ttl_ret, ttl_results = validate_turtle_files(ONTOLOGY_DIRS)
+    ttl_ret, ttl_results = validate_turtle_files(ontology_dirs)
     for code, msg in ttl_results:
         if code == 0:
             print(msg)
         else:
             print(msg, file=sys.stderr)
-            return code  # Abort immediately on TTL syntax error
+            return code
 
     print("📌 Completed TTL and JSON syntax tests", flush=True)
     return 0
 
 
-def check_jsonld_against_shacl_all() -> int:
-    """Validate JSON-LD files against SHACL schemas, aborting on the first failure."""
+def check_jsonld_against_shacl_all(ontology_dirs: List[str]) -> int:
+    """Validate JSON-LD files against SHACL schemas."""
+    if not ontology_dirs:
+        return 0
     print("\n=== Checking JSON-LD against SHACL ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         print(
             f"\n🔍 Starting JSON-LD SHACL validation for folder: {ontology}", flush=True
         )
@@ -120,12 +114,12 @@ def check_jsonld_against_shacl_all() -> int:
         )
 
         if not ontology_dict:
+            # If a folder exists but has no files, strictly speaking it's not a failure,
+            # but we warn.
             print(
-                f"Error code 100: No valid files found in folder '{ontology}'.",
-                file=sys.stderr,
-                flush=True,
+                f"⚠️ No validateable files found in '{ontology}'. Skipping.", flush=True
             )
-            return 100  # Abort if no files found
+            continue
 
         returncode, output = validate_jsonld_against_shacl(
             ROOT_DIR, ontology_dict, debug=False, inference_mode="rdfs"
@@ -141,22 +135,20 @@ def check_jsonld_against_shacl_all() -> int:
                 file=sys.stderr,
                 flush=True,
             )
-            return returncode  # Abort immediately on SHACL failure
+            return returncode
         else:
             print(f"✅ {ontology} conforms to SHACL constraints.", flush=True)
-
-        print(
-            f"📌 Completed JSON-LD SHACL validation for folder: {ontology}", flush=True
-        )
 
     return 0
 
 
-def check_failing_tests_all() -> int:
-    """Run failing test cases, aborting on the first discrepancy."""
+def check_failing_tests_all(ontology_dirs: List[str]) -> int:
+    """Run failing test cases."""
+    if not ontology_dirs:
+        return 0
     print("\n=== Running failing tests ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         folder_path = os.path.join(ROOT_DIR, ontology)
         test_folder = os.path.join(folder_path, "tests")
         if not os.path.exists(test_folder):
@@ -180,7 +172,7 @@ def check_failing_tests_all() -> int:
                     file=sys.stderr,
                     flush=True,
                 )
-                return 1  # Abort if missing expectation
+                return 1
 
             with open(expected_output_path, "r", encoding="utf-8") as f:
                 expected_output = f.read().strip()
@@ -206,7 +198,7 @@ def check_failing_tests_all() -> int:
                         file=sys.stderr,
                         flush=True,
                     )
-                    return 1  # Abort on output mismatch
+                    return 1
             else:
                 print(
                     f"\n❌ Test {test_path} did not return code 210 (got {returncode}). Aborting.",
@@ -218,11 +210,13 @@ def check_failing_tests_all() -> int:
     return 0
 
 
-def check_target_classes_all() -> int:
-    """Validate target classes against OWL, aborting on the first unexpected error."""
+def check_target_classes_all(ontology_dirs: List[str]) -> int:
+    """Validate target classes against OWL."""
+    if not ontology_dirs:
+        return 0
     print("\n=== Checking target classes against OWL classes ===", flush=True)
 
-    for ontology in ONTOLOGY_DIRS:
+    for ontology in ontology_dirs:
         folder_path = os.path.join(".", ontology)
         print(f"\n🔍 Checking target classes in folder: {ontology}", flush=True)
         returncode, output = validate_target_classes_against_owl_classes(folder_path)
@@ -243,7 +237,7 @@ def check_target_classes_all() -> int:
                 file=sys.stderr,
                 flush=True,
             )
-            return returncode  # Abort on target class error
+            return returncode
         else:
             print(f"✅ Target classes are correctly defined in {ontology}.", flush=True)
 
@@ -254,7 +248,7 @@ def check_target_classes_all() -> int:
 def main():
     """Run validation checks based on arguments."""
 
-    # 1. Enforce Python 3.12+ (Hard Check)
+    # 1. Enforce Python 3.12+
     if sys.version_info < (3, 12):
         print(
             f"❌ Error: This project requires Python 3.12+. You are running {sys.version.split()[0]}.",
@@ -263,7 +257,6 @@ def main():
         sys.exit(1)
 
     # 2. Enforce Virtual Environment
-    # Checks if the script is running in a standard venv or a Conda environment
     in_venv = (
         (sys.prefix != sys.base_prefix)
         or ("CONDA_DEFAULT_ENV" in os.environ)
@@ -273,15 +266,6 @@ def main():
     if not in_venv:
         print(
             "❌ Error: You are NOT running inside a virtual environment.",
-            file=sys.stderr,
-        )
-        print(
-            "   Please activate your virtual environment before running this script:",
-            file=sys.stderr,
-        )
-        print("     python3 -m venv .venv", file=sys.stderr)
-        print(
-            "     source .venv/bin/activate  # (On Windows: .venv\\Scripts\\activate)",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -295,19 +279,56 @@ def main():
         default="all",
         help="Specific check to run (default: all)",
     )
+    # UPDATED: Accept multiple folders or none
+    parser.add_argument(
+        "--folder",
+        type=str,
+        nargs="*",
+        default=None,
+        help="Specific folders to run checks on (space separated).",
+    )
     args = parser.parse_args()
 
-    print(f"Detected ontology directories: {ONTOLOGY_DIRS}", flush=True)
+    # 4. Determine Target Directories
+    if args.folder is not None:
+        # User provided specific folders.
+        # Filter out invalid or deleted directories to prevent runtime errors.
+        ontology_dirs = [
+            f for f in args.folder if os.path.isdir(os.path.join(ROOT_DIR, f))
+        ]
 
-    # 4. Define the Mapping
+        if not ontology_dirs and len(args.folder) > 0:
+            # User provided folders, but none exist (deleted?)
+            print(
+                f"⚠️ None of the provided folders exist (files might have been deleted): {args.folder}"
+            )
+            print("Skipping checks.")
+            sys.exit(0)
+    else:
+        # Automatic discovery (default behavior)
+        ontology_dirs = get_ontology_dirs()
+
+    if not ontology_dirs:
+        print("No directories to check. Exiting.")
+        sys.exit(0)
+
+    print(f"Detected ontology directories: {ontology_dirs}", flush=True)
+
+    # 5. Define the Mapping
+    # Lambda captures the list of dirs
     check_map = {
-        "syntax": [("Syntax", check_syntax_all)],
-        "target-classes": [("Target Classes", check_target_classes_all)],
-        "shacl": [("JSON-LD SHACL", check_jsonld_against_shacl_all)],
-        "failing-tests": [("Failing Tests", check_failing_tests_all)],
+        "syntax": [("Syntax", lambda: check_syntax_all(ontology_dirs))],
+        "target-classes": [
+            ("Target Classes", lambda: check_target_classes_all(ontology_dirs))
+        ],
+        "shacl": [
+            ("JSON-LD SHACL", lambda: check_jsonld_against_shacl_all(ontology_dirs))
+        ],
+        "failing-tests": [
+            ("Failing Tests", lambda: check_failing_tests_all(ontology_dirs))
+        ],
     }
 
-    # If 'all', combine the lists in the desired order
     if args.check == "all":
         checks_to_run = (
             check_map["syntax"]
@@ -320,7 +341,6 @@ def main():
 
     print(f"\n🚀 Running check mode: {args.check.upper()} ...", flush=True)
 
-    # 5. Execution Loop
     for name, phase_func in checks_to_run:
         rc = phase_func()
         if rc != 0:

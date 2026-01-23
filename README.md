@@ -48,6 +48,13 @@ pre-commit run --all-files
 ### 5️⃣ Run Tests Locally
 
 ```bash
+# Check an individual json instance against their ontologies and shacl shapes
+python3 src/check_jsonld_against_shacl_schema.py example/example_instance.json
+# Check all instances in a folder against their ontologies and shacl shapes
+python3 src/check_jsonld_against_shacl_schema.py example/
+# Execute all implemented tests for an ontology (folder)
+python3 src/run_all_checks_locally.py --folder example/
+# Long test run executed an all ontologies in this repository
 python3 src/run_all_checks_locally.py
 ```
 

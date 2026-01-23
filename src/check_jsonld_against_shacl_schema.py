@@ -34,12 +34,13 @@ Key Features:
        avoid temporary file artifacts.
 
 Usage:
-    python3 check_jsonld_against_shacl_schema.py [paths...] [--root <dir>] [--context-root <dir>]
+    python3 check_jsonld_against_shacl_schema.py [paths...] [--root <dir>] [--force-load]
 
 Arguments:
     paths:          One or more JSON-LD files or directories to validate.
     --root:         Root directory of the ontology repository (default: current dir).
     --context-root: Directory containing local context files (default: <root>/contexts).
+    --force-load:   Force load all ontologies from 'generated/' and 'gx/' directories, bypassing discovery.
     --inference:    Inference mode for PySHACL (rdfs, owlrl, none, both).
     --debug:        Enable debug logging (Script logs to Console; PySHACL logs to File if --logfile provided).
     --logfile:      Write validation report (and PySHACL debug logs if --debug) to file.
@@ -87,6 +88,8 @@ CACHE_FILENAME = ".ontology_iri_cache.json"
 DIR_NAME_BASE_ONTOLOGIES = "base-ontologies"
 DIR_NAME_BASE_REFERENCES = "base-references"
 DIR_NAME_CONTEXTS = "contexts"
+DIR_NAME_GENERATED = "generated"
+DIR_NAME_ONTOLOGY_MANAGEMENT_BASE = "ontology-management-base"
 
 # Professional: Allow-list for URI schemes to distinguish absolute URIs from CURIEs
 KNOWN_URI_SCHEMES = {
@@ -227,35 +230,51 @@ def iri_to_namespace_hint(iri: str) -> Optional[str]:
 class LocalContextResolver:
     """
     Handles resolution of remote JSON-LD @context IRIs to local files.
-    Professional Update: No longer writes temporary files; returns dicts/objects.
+    Scans multiple directories (generated, ontology-base, contexts) to find matching namespaces.
     """
 
-    def __init__(self, context_root: Union[Path, str]):
-        self.context_root = Path(context_root).resolve()
-        self.available_namespaces: Set[str] = set()
+    def __init__(self, root_dir: Path):
+        self.root_dir = root_dir.resolve()
+        self.namespace_map: Dict[str, Path] = {}
 
-        if self.context_root.is_dir():
-            for entry in self.context_root.iterdir():
+        # Define directories to search for context subfolders
+        # The script will look for: root/<search_dir>/<namespace>/<namespace>_context.jsonld
+        search_dirs = [
+            DIR_NAME_GENERATED,  # e.g. root/generated/simpulseid/...
+            DIR_NAME_ONTOLOGY_MANAGEMENT_BASE,  # e.g. root/ontology-management-base/gx/...
+            DIR_NAME_CONTEXTS,  # e.g. root/contexts/some-lib/...
+            ".",  # e.g. root/my-lib/...
+        ]
+
+        logging.debug(f"Initializing LocalContextResolver with root: {self.root_dir}")
+
+        for dir_name in search_dirs:
+            base_path = self.root_dir / dir_name
+            if not base_path.is_dir():
+                continue
+
+            # Iterate over subdirectories (potential namespaces)
+            for entry in base_path.iterdir():
                 if entry.is_dir():
                     ns = entry.name.lower()
-                    # Check if the context file actually exists before registering the namespace
+
+                    # We expect the file to be named <namespace>_context.jsonld inside the folder
                     expected_file = entry / f"{ns}_context.jsonld"
+
                     if expected_file.exists():
-                        self.available_namespaces.add(ns)
-
-        logging.debug(
-            "LocalContextResolver initialized with context_root=%s, available_namespaces=%s",
-            self.context_root,
-            sorted(self.available_namespaces),
-        )
-
-    def _local_context_file_path(self, namespace: str) -> Path:
-        ns = namespace.lower()
-        return self.context_root / ns / f"{ns}_context.jsonld"
+                        if ns not in self.namespace_map:
+                            self.namespace_map[ns] = expected_file
+                            logging.debug(
+                                f"✅ Registered local context for '{ns}': {to_rel_path(expected_file, self.root_dir)}"
+                            )
+                        else:
+                            logging.debug(
+                                f"Skipping duplicate context for '{ns}' in {dir_name}"
+                            )
 
     def _load_local_context_object(self, namespace: str) -> Optional[dict]:
-        local_path = self._local_context_file_path(namespace)
-        if not local_path.exists():
+        local_path = self.namespace_map.get(namespace.lower())
+        if not local_path:
             return None
 
         try:
@@ -276,26 +295,23 @@ class LocalContextResolver:
     def _resolve_context_entry(self, entry: Any) -> Any:
         if isinstance(entry, str) and entry.startswith("http"):
             namespace = iri_to_namespace_hint(entry)
-            if namespace and namespace.lower() in self.available_namespaces:
+
+            # If we found a local file for this namespace, use it
+            if namespace and namespace.lower() in self.namespace_map:
                 ctx_obj = self._load_local_context_object(namespace)
                 if ctx_obj is not None:
                     logging.debug(
-                        "Resolved remote @context %s -> inline context from %s",
+                        "Resolved remote @context %s -> inline from %s",
                         entry,
-                        self._local_context_file_path(namespace),
+                        self.namespace_map[namespace.lower()].name,
                     )
                     return ctx_obj
 
-                logging.warning(
-                    "Namespace '%s' available, but context file load failed: %s",
-                    namespace,
-                    self._local_context_file_path(namespace),
-                )
-            else:
-                logging.debug(
-                    "No local namespace for remote @context %s. Leaving unchanged.",
-                    entry,
-                )
+            logging.debug(
+                "No local file found for remote @context %s (Hint: %s). Leaving unchanged.",
+                entry,
+                namespace,
+            )
         return entry
 
     def resolve_jsonld_content(self, jsonld_path: Path) -> Tuple[bool, Any]:
@@ -303,8 +319,12 @@ class LocalContextResolver:
         Reads a JSON-LD file and attempts to resolve remote contexts.
         Returns: (was_modified: bool, content: dict/list)
         """
-        with jsonld_path.open("r", encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with jsonld_path.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            logging.error(f"Failed to load JSON-LD file {jsonld_path}: {e}")
+            return False, {}
 
         ctx = data.get("@context")
         if ctx is None:
@@ -325,7 +345,6 @@ class LocalContextResolver:
             if resolved != ctx:
                 rewritten = True
                 new_ctx = resolved
-        # Handle inline dictionary contexts recursively
         elif isinstance(ctx, dict):
             new_ctx = {}
             for k, v in ctx.items():
@@ -464,9 +483,21 @@ def extract_prefixes_from_ttl(file_path: Path) -> Dict[str, str]:
     return prefixes
 
 
-def extract_prefixes_from_jsonld(file_path: Path) -> Dict[str, str]:
-    with file_path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
+def extract_prefixes_from_jsonld(
+    file_path: Path, context_resolver: Optional[LocalContextResolver] = None
+) -> Dict[str, str]:
+    # UPDATED: Use context_resolver to get the resolved content first
+    data = None
+    if context_resolver:
+        try:
+            _, data = context_resolver.resolve_jsonld_content(file_path)
+        except Exception:
+            pass
+
+    # Fallback to reading file directly if resolver didn't work or wasn't provided
+    if data is None:
+        with file_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
 
     context = data.get("@context", {})
     prefix_mapping: Dict[str, str] = {}
@@ -548,16 +579,37 @@ def _collect_used_prefixes_in_json_value(value: Any) -> Set[str]:
     return used
 
 
-def check_jsonld_context_coverage(file_path: Path) -> Dict[str, Set[str]]:
-    with file_path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
+def check_jsonld_context_coverage(
+    file_path: Path, context_resolver: Optional[LocalContextResolver] = None
+) -> Dict[str, Set[str]]:
+
+    # 1. Try to load RESOLVED content (uses local *_context.jsonld files if available)
+    data = None
+    if context_resolver:
+        try:
+            _, data = context_resolver.resolve_jsonld_content(file_path)
+        except Exception:
+            pass
+
+    # 2. Fallback to raw load if resolver missing or failed
+    if data is None:
+        with file_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
 
     context = data.get("@context", {})
     declared_prefixes: Set[str] = set()
 
+    # Helper to extract keys whether context is a dict or list of dicts
+    def _extract_keys(ctx):
+        if isinstance(ctx, dict):
+            return {k for k in ctx.keys() if isinstance(k, str)}
+        return set()
+
     if isinstance(context, dict):
-        declared_prefixes = {k for k in context.keys() if isinstance(k, str)}
-    # Note: Lists of contexts are harder to statically analyze for declarations without full resolution
+        declared_prefixes = _extract_keys(context)
+    elif isinstance(context, list):
+        for item in context:
+            declared_prefixes.update(_extract_keys(item))
 
     used_prefixes = _collect_used_prefixes_in_json_value(data)
     missing = used_prefixes - declared_prefixes
@@ -836,6 +888,7 @@ def collect_instance_and_reference_files(
 
 def add_jsonld_prefixes_and_context_info(
     ontology_dict: Dict[str, Dict[str, object]],
+    context_resolver: Optional[LocalContextResolver] = None,
 ) -> None:
     for folder_key, contents in ontology_dict.items():
         files_to_process: List[Path] = []
@@ -845,12 +898,16 @@ def add_jsonld_prefixes_and_context_info(
             for file_path in contents.get(key, []):
                 files_to_process.append(file_path)
                 if file_path.suffix in {".json", ".jsonld"}:
-                    coverage = check_jsonld_context_coverage(file_path)
+                    # UPDATED: Pass the context_resolver here
+                    coverage = check_jsonld_context_coverage(
+                        file_path, context_resolver
+                    )
                     context_issues[file_path] = coverage
 
         prefixes: Dict[str, str] = {}
         for json_file in files_to_process:
-            mapping = extract_prefixes_from_jsonld(json_file)
+            # UPDATED: Pass context_resolver
+            mapping = extract_prefixes_from_jsonld(json_file, context_resolver)
             merge_prefix_mappings(prefixes, mapping, source=folder_key)
 
         contents["prefixes"] = prefixes
@@ -1033,30 +1090,90 @@ def load_shacl_and_ontologies(
     root_dir: Path,
     used_types: Set[str],
     global_prefixes: Dict[str, str],
+    force_load_generated: bool = False,
     file=None,
 ) -> Tuple[Graph, Graph, List[Path], List[Path]]:
 
     if file is None:
         file = sys.stdout
-    target_namespaces = set(global_prefixes.keys())
-
-    # Check for missing namespaces
-    for rdf_type in used_types:
-        _ = urlparse(rdf_type)
-        pass
-
     relevant_shacl_files: List[Path] = []
     initial_ontology_files: List[Path] = []
 
-    # Map prefixes to folders
-    for ns in target_namespaces:
-        folder_path = root_dir / ns
-        if folder_path.is_dir():
-            relevant_shacl_files.extend(folder_path.rglob("*_shacl.ttl"))
-            initial_ontology_files.extend(folder_path.rglob("*_ontology.ttl"))
+    # [UPDATED] Robust: Force-load all generated schemas and core GX if flag is set
+    if force_load_generated:
+        print(
+            "⚠️  Force Load Enabled: Loading all schemas in 'generated' and 'gx'...",
+            file=file,
+        )
 
-    # Resolve Dependencies
-    iri_index = _build_ontology_iri_index(root_dir)
+        # 1. Load everything from 'generated' (Project specific)
+        generated_dir = root_dir / DIR_NAME_GENERATED
+        if generated_dir.is_dir():
+            relevant_shacl_files.extend(generated_dir.rglob("*_shacl.ttl"))
+            initial_ontology_files.extend(generated_dir.rglob("*_ontology.ttl"))
+
+        # 2. Load 'gx' from ontology-management-base (Core)
+        gx_dir = root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE / "gx"
+        if gx_dir.is_dir():
+            relevant_shacl_files.extend(gx_dir.rglob("*_shacl.ttl"))
+            initial_ontology_files.extend(gx_dir.rglob("*_ontology.ttl"))
+
+    else:
+        # Standard Smart Discovery (Default)
+        target_namespaces = set(global_prefixes.keys())
+
+        # [UPDATED] Build Index Early for Type-based Discovery
+        iri_index = _build_ontology_iri_index(root_dir)
+
+        # 1. Prefix-based Discovery (Existing Logic)
+        # Map prefixes to folders
+        search_paths = [
+            root_dir,
+            root_dir / DIR_NAME_GENERATED,
+            root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE,
+            root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE / DIR_NAME_BASE_ONTOLOGIES,
+        ]
+
+        for ns in target_namespaces:
+            folder_path = None
+            for base_path in search_paths:
+                candidate = base_path / ns
+                if candidate.is_dir():
+                    folder_path = candidate
+                    break
+
+            if folder_path and folder_path.is_dir():
+                relevant_shacl_files.extend(folder_path.rglob("*_shacl.ttl"))
+                initial_ontology_files.extend(folder_path.rglob("*_ontology.ttl"))
+
+        # 2. Type-based Discovery (New Logic)
+        # Scan used types to find their defining ontologies using the IRI index
+        for rdf_type in used_types:
+            for onto_iri, onto_file in iri_index.items():
+                # Check if the type starts with the Ontology IRI (Namespace check)
+                # We append / or # to ensure we don't partial match a shorter IRI
+                if rdf_type.startswith(onto_iri + "/") or rdf_type.startswith(
+                    onto_iri + "#"
+                ):
+                    if onto_file not in initial_ontology_files:
+                        initial_ontology_files.append(onto_file)
+
+                        # Heuristic: Try to find sibling SHACL
+                        shacl_candidate = (
+                            onto_file.parent
+                            / f"{onto_file.stem.replace('_ontology', '_shacl')}.ttl"
+                        )
+                        if (
+                            shacl_candidate.exists()
+                            and shacl_candidate not in relevant_shacl_files
+                        ):
+                            relevant_shacl_files.append(shacl_candidate)
+
+    # Resolve Dependencies (Always run, even if forced, to get transitive imports like SKOS/DCTERMS)
+    # Re-build or reuse IRI index? We built it above if not forced. If forced, we need it now.
+    if force_load_generated:
+        iri_index = _build_ontology_iri_index(root_dir)
+
     deps = _build_ontology_dependencies(root_dir, iri_index)
     relevant_ontology_files = _expand_ontology_dependencies_from(
         initial_ontology_files, deps
@@ -1064,12 +1181,17 @@ def load_shacl_and_ontologies(
 
     # Add Support Ontologies (Dynamic Scan)
     # [UPDATED] Use constant and scan recursively for any *_ontology.ttl
-    base_ontologies_dir = root_dir / DIR_NAME_BASE_ONTOLOGIES
+    # We check standard location AND submodule location
+    potential_base_dirs = [
+        root_dir / DIR_NAME_BASE_ONTOLOGIES,
+        root_dir / DIR_NAME_ONTOLOGY_MANAGEMENT_BASE / DIR_NAME_BASE_ONTOLOGIES,
+    ]
 
-    if base_ontologies_dir.is_dir():
-        for support_file in base_ontologies_dir.rglob("*_ontology.ttl"):
-            if support_file not in relevant_ontology_files:
-                relevant_ontology_files.append(support_file)
+    for base_ontologies_dir in potential_base_dirs:
+        if base_ontologies_dir.is_dir():
+            for support_file in base_ontologies_dir.rglob("*_ontology.ttl"):
+                if support_file not in relevant_ontology_files:
+                    relevant_ontology_files.append(support_file)
 
     # Sort
     relevant_ontology_files.sort()
@@ -1077,12 +1199,12 @@ def load_shacl_and_ontologies(
 
     # Output
     if relevant_shacl_files:
-        print("📌 Relevant SHACL files to load (Context-Driven):", file=file)
+        print("📌 Relevant SHACL files to load:", file=file)
         for path in relevant_shacl_files:
             print(f"   {to_rel_path(path, root_dir)}", file=file)
 
     if relevant_ontology_files:
-        print("📌 Relevant ontology files to load (Context-Driven):", file=file)
+        print("📌 Relevant ontology files to load:", file=file)
         for path in relevant_ontology_files:
             print(f"   {to_rel_path(path, root_dir)}", file=file)
 
@@ -1130,6 +1252,7 @@ def validate_jsonld_against_shacl(
     inference_mode: str = "rdfs",
     context_resolver: Optional[LocalContextResolver] = None,
     logfile: Optional[str] = None,
+    force_load: bool = False,
 ) -> Tuple[int, str]:
 
     # Ensure root_dir is Path
@@ -1166,7 +1289,8 @@ def validate_jsonld_against_shacl(
     # Step 1
     print("🚀 Step 1: Analyzing JSON-LD contexts and prefixes...")
     with timer.step("JSON-LD Prefix Analysis"):
-        add_jsonld_prefixes_and_context_info(ontology_dict)
+        # UPDATED: Pass context_resolver
+        add_jsonld_prefixes_and_context_info(ontology_dict, context_resolver)
 
     # Step 2
     print("🚀 Step 2: Building Data Graph (Parsing JSON-LD files)...")
@@ -1198,7 +1322,11 @@ def validate_jsonld_against_shacl(
     print("🚀 Step 4: Loading relevant SHACL shapes and Ontologies...")
     with timer.step("Schema Loading (SHACL/OWL)"):
         shacl_graph, ont_graph, rel_shacl, rel_onto = load_shacl_and_ontologies(
-            root_dir, used_types, jsonld_prefixes, file=output_buffer
+            root_dir,
+            used_types,
+            jsonld_prefixes,
+            force_load_generated=force_load,
+            file=output_buffer,
         )
 
     # Step 5
@@ -1332,7 +1460,7 @@ def main() -> None:
         "--context-root",
         dest="context_root",
         default=None,
-        help="Local context directory.",
+        help="Local context directory (Legacy).",
     )
     parser.add_argument("--debug", action="store_true", help="Enable debug logging.")
     parser.add_argument("--logfile", help="Write output to file.")
@@ -1342,16 +1470,17 @@ def main() -> None:
         choices=["none", "rdfs", "owlrl", "both"],
         help="Inference mode.",
     )
+    # [UPDATED] Add Force Load Flag
+    parser.add_argument(
+        "--force-load",
+        action="store_true",
+        help="Force load all ontologies in generated/ and gx/ directories, bypassing discovery.",
+    )
 
     args = parser.parse_args()
     root_dir = Path(args.root_dir).resolve()
 
-    if args.context_root:
-        context_root = Path(args.context_root).resolve()
-    else:
-        # [UPDATED] Use constant
-        candidate = root_dir / DIR_NAME_CONTEXTS
-        context_root = candidate if candidate.is_dir() else root_dir
+    # context_root logic removed as it was unused and causing flake8 F841
 
     ontology_dict = build_dict_for_ontologies(root_dir, args.paths)
 
@@ -1362,7 +1491,8 @@ def main() -> None:
         )
         sys.exit(100)
 
-    context_resolver = LocalContextResolver(context_root=context_root)
+    # UPDATED: Initialize the smarter resolver with root_dir
+    context_resolver = LocalContextResolver(root_dir=root_dir)
 
     return_code, message = validate_jsonld_against_shacl(
         root_dir,
@@ -1371,6 +1501,7 @@ def main() -> None:
         inference_mode=args.inference,
         context_resolver=context_resolver,
         logfile=args.logfile,
+        force_load=args.force_load,  # Pass the flag down
     )
 
     print(message)
