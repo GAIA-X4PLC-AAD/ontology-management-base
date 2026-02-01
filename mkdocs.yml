@@ -1,0 +1,81 @@
+site_name: ENVITED-X Ontology Management
+site_description: Ontology validation tools and documentation for the ENVITED-X ecosystem
+site_url: https://gaia-x4plc-aad.github.io/ontology-management-base/
+repo_url: https://github.com/gaia-x4plc-aad/ontology-management-base
+repo_name: gaia-x4plc-aad/ontology-management-base
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: false
+            show_root_heading: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+      - Repository Structure: getting-started/structure.md
+  - Validation Tools:
+      - Overview: validation/index.md
+      - SHACL Validation: validation/check-jsonld-against-shacl.md
+      - Target Class Validation: validation/check-target-classes.md
+      - Run All Checks: validation/run-all-checks.md
+      - Documentation Generator: validation/readme-generator.md
+  - Architecture:
+      - Ontology Discovery: architecture/ontology-discovery.md
+      - IRI Patterns: architecture/iri-patterns.md
+      - OWL Imports: architecture/owl-imports.md
+  - Ontologies:
+      - Catalog: ontologies/index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gaia-x4plc-aad/ontology-management-base

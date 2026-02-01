@@ -1,0 +1,17 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                        ['tests/data/manifest/invalid/fail_03_wrong_category_instance.json']                                        =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasCategory                                                                    =
+=    Error:            A link used in hasLicense must have a category belonging to manifest:LicenseCategory.                                         =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasLicense                                                                     =
+=    Error:            Value does not conform to Shape manifest:LicenseLinkReferenceShape. See details for more information.                         =
+======================================================================================================================================================

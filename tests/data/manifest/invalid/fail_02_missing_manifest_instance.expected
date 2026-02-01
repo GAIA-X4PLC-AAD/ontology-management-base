@@ -1,0 +1,14 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                       ['tests/data/manifest/invalid/fail_02_missing_manifest_instance.json']                                       =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasManifestReference                                                           =
+=    Error:            Less than 1 values on                                                                                                         =
+=                      <did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2>->manifest:hasManifestReference                 =
+======================================================================================================================================================

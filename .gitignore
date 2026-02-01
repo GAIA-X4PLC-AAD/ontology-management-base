@@ -12,3 +12,4 @@
 *.log
 .ontology_iri_cache.json
 *.egg-info/
+.repo_registry_cache.json

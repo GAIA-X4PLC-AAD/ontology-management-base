@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "service": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1/",
+    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "did:web:registry.gaia-x.eu:Service:ocneDSjk294DNJe7dh893Djndj93DN89jhDj",
+  "@type": "service:Service",
+  "service:general": {
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "general:name": {
+        "@value": "Example Service",
+        "@type": "xsd:string"
+      },
+      "general:description": {
+        "@value": "Description of Example Service",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "0.0",
+        "@type": "xsd:float"
+      },
+      "general:recordingTime": {
+        "@value": "2024-08-19T18:05:00",
+        "@type": "xsd:dateTime"
+      }
+    }
+  },
+  "gx:version": "1.0.0",
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow",
+  "gx:containsPII": false,
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "service:requiredFile": [
+    {
+      "@type": "service:RequiredFile",
+      "service:description": {
+        "@value": "A scenario following the ASAM OpenSCENARIO version 2.0.0 standard as a .osc file",
+        "@type": "xsd:string"
+      },
+      "service:specification": {
+        "@value": "https://www.asam.net/standards/detail/openscenario/v200/",
+        "@type": "xsd:anyURI"
+      }
+    },
+    {
+      "@type": "service:RequiredFile",
+      "service:description": {
+        "@value": "A road network following the ASAM OpenDRIVE v1.8.0 standard as a .xodr file",
+        "@type": "xsd:string"
+      },
+      "service:specification": {
+        "@value": "https://www.asam.net/standards/detail/opendrive/",
+        "@type": "xsd:anyURI"
+      }
+    }
+  ],
+  "service:resultingFile": {
+    "@type": "service:ResultingFile",
+    "service:description": {
+      "@value": "The ground-truth data of the executed simulation following the ASAM OSI v3.7.0 standard as a .osi file",
+      "@type": "xsd:string"
+    },
+    "service:specification": {
+      "@value": "https://www.asam.net/standards/detail/osi/",
+      "@type": "xsd:anyURI"
+    }
+  }
+}

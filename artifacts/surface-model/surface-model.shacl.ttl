@@ -1,0 +1,215 @@
+@prefix surface-model: <https://w3id.org/ascs-ev/envited-x/surface-model/v6/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
+@prefix georeference: <https://w3id.org/ascs-ev/envited-x/georeference/v5/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# The Shapes Graph URI appends "/shapes" to the Ontology URI
+<https://w3id.org/ascs-ev/envited-x/surface-model/v6/shapes>
+    a owl:Ontology ;
+    # The Shapes Graph must import the Domain Ontology
+    owl:imports <https://w3id.org/ascs-ev/envited-x/surface-model/v6> .
+
+### SurfaceModel SHACL Shape (Updated)
+surface-model:SurfaceModelShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    sh:property [
+        sh:path surface-model:hasDataResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each surface model must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:order 2 ;
+    ],
+
+    # 2) hasDataResourceExtension: Mandatory domain-specific extension for surface models.
+    [
+        sh:path surface-model:hasDataResourceExtension ;
+        sh:node surface-model:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each surface model must have one associated DataResourceExtension object with content, format, quality, quantity, and georeference."@en ;
+        sh:order 1 ;
+    ],
+
+    # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
+    [
+        sh:path surface-model:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Case 1: Inline manifest node
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            
+            # Case 2: Linked manifest reference (improved logic from Point A)
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each surface model must have exactly one manifest. If linked, it must be a valid envited-x link specifically of category envited-x:isManifest and include a manifest:iri."@en ;
+        sh:order 3 ;
+    ] ;
+    sh:targetClass surface-model:SurfaceModel .
+
+### **DataResourceExtension SHACL Shape**
+surface-model:DataResourceExtensionShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    sh:property 
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node surface-model:ContentShape ;
+          sh:name "data"@en ;
+          sh:description "Attributes describing the content type of the surface model."@en ;
+          sh:order 1 ;
+          sh:path surface-model:hasContent ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node surface-model:FormatShape ;
+          sh:name "format"@en ;
+          sh:description "File format details of the surface model."@en ;
+          sh:order 2 ;
+          sh:path surface-model:hasFormat ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node surface-model:QualityShape ;
+          sh:name "quality"@en ;
+          sh:description "Quality metrics of the surface model."@en ;
+          sh:order 3 ;
+          sh:path surface-model:hasQuality ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node surface-model:QuantityShape ;
+          sh:name "quantity"@en ;
+          sh:description "Quantitative metrics describing the surface model."@en ;
+          sh:order 4 ;
+          sh:path surface-model:hasQuantity ],
+        [ sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node georeference:GeoreferenceShape ;
+          sh:name "georeference"@en ;
+          sh:description "Georeferencing information for the surface model."@en ;
+          sh:order 5 ;
+          sh:path surface-model:hasGeoreference ] ;
+    sh:targetClass surface-model:DataResourceExtension .
+
+### **Content SHACL Shape**
+surface-model:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    sh:property [ skos:example "height" ;
+            sh:datatype xsd:string ;
+            sh:description "Specifies the content type (e.g., height, friction) used in the surface-model asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "content type"@en ;
+            sh:order 0 ;
+            sh:path surface-model:contentType ] ;
+    sh:targetClass surface-model:Content .
+
+### **Format SHACL Shape**
+surface-model:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    sh:property [ skos:example "ASAM OpenCRG" ;
+            sh:description "Defines the format type of the surface model asset."@en ;
+            sh:in ("ASAM OpenCRG" "DLM") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "format type"@en ;
+            sh:order 0 ;
+            sh:path surface-model:formatType ],
+        [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Defines the version of the surface model's format."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 1 ;
+            sh:path surface-model:version ] ;
+    sh:targetClass surface-model:Format .
+
+### **Quality SHACL Shape**
+surface-model:QualityShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    sh:property 
+        [ skos:example "0.01" ;
+          sh:datatype xsd:float ;
+          sh:description "Specifies the longitudinal resolution (s) in meters."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of resolutionLongitudinal failed!"@en ;
+          sh:name "resolution longitudinal"@en ;
+          sh:order 0 ;
+          sh:path surface-model:resolutionLongitudinal ],
+        [ skos:example "-3.14159" ;
+          sh:datatype xsd:float ;
+          sh:description "Specifies the alignment at the starting position in radians."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of orientation failed!"@en ;
+          sh:name "orientation"@en ;
+          sh:order 1 ;
+          sh:path surface-model:orientation ],
+        [ skos:example "true" ;
+          sh:datatype xsd:boolean ;
+          sh:description "Indicates whether a horizontal start platform exists."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of platformExists failed!"@en ;
+          sh:name "platform exists"@en ;
+          sh:order 2 ;
+          sh:path surface-model:platformExists ],
+        [ skos:example "true" ;
+          sh:datatype xsd:boolean ;
+          sh:description "Indicates whether there is a smooth ramp from the platform to the road."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of rampExists failed!"@en ;
+          sh:name "ramp exists"@en ;
+          sh:order 3 ;
+          sh:path surface-model:rampExists ],
+        [ skos:example "0.01" ;
+          sh:datatype xsd:float ;
+          sh:description "Specifies the lateral resolution (t) in meters."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of resolutionLateral failed!"@en ;
+          sh:name "resolution lateral"@en ;
+          sh:order 4 ;
+          sh:path surface-model:resolutionLateral ] ;
+    sh:targetClass surface-model:Quality .
+
+### **Quantity SHACL Shape**
+surface-model:QuantityShape a sh:NodeShape ;
+    sh:closed false ;
+    
+    sh:property 
+        [ skos:example "yes" ;
+          sh:datatype xsd:boolean ;
+          sh:description "Indicates whether the projection system is included in the dataset."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of mapDataField failed!"@en ;
+          sh:name "map data field"@en ;
+          sh:order 0 ;
+          sh:path surface-model:mapDataField ],
+        [ skos:example "25" ;
+          sh:datatype xsd:float ;
+          sh:description "Indicates the difference between the maximum and minimum elevation values in meters."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of elevationRange failed!"@en ;
+          sh:name "elevation range"@en ;
+          sh:order 1 ;
+          sh:path surface-model:elevationRange ],
+        [ skos:example "1.46" ;
+          sh:datatype xsd:float ;
+          sh:description "Defines the total length of all elements in kilometers."@en ;
+          sh:maxCount 1 ;
+          sh:message "Validation of length failed!"@en ;
+          sh:name "length"@en ;
+          sh:order 2 ;
+          sh:path surface-model:length ] ;
+    sh:targetClass surface-model:Quantity .

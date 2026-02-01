@@ -1,0 +1,192 @@
+{
+  "@context": {
+    "gx": "https://w3id.org/gaia-x/development/",
+    "vv-report": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/",
+    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "did:web:registry.gaia-x.eu:VVReport:h4kG79Sk3MvP6WzL5bS8yH3cW1dGf6A8",
+  "@type": "vv-report:VvReport",
+  "vv-report:general": {
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "general:name": {
+        "@value": "ARS548 simulation model V&V report",
+        "@type": "xsd:string"
+      },
+      "general:description": {
+        "@value": "V&V Report of the radar sensor simulation model of the Continental ARS548 radar sensor",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "0.008",
+        "@type": "xsd:float"
+      }
+    }
+  },
+  "vv-report:systemUnderTest": {
+    "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:gADlioH767wrmg4t6uUTj0wgADlioH534hrhSF",
+    "@type": "xsd:anyURI"
+  },
+  "vv-report:evaluations": [
+    {
+      "@type": "vv-report:Evaluation",
+      "vv-report:metric": {
+        "@type": "vv-report:Metric",
+        "vv-report:metricTitle": {
+          "@value": "Model output OSI validation",
+          "@type": "xsd:string"
+        },
+        "vv-report:metricDescription": {
+          "@value": "Running the model open-loop with a defined OSI SensorView input and checking the compliance of the OSI SensorData output with predefined rules",
+          "@type": "xsd:string"
+        },
+        "vv-report:metricReference": {
+          "@value": "https://github.com/OpenSimulationInterface/osi-validation",
+          "@type": "xsd:anyURI"
+        }
+      },
+      "vv-report:inputData": [
+        {
+          "@type": "vv-report:InputData",
+          "vv-report:inputDescription": {
+            "@value": "The FMU as the system under test",
+            "@type": "xsd:string"
+          },
+          "vv-report:inputReference": {
+            "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:gADlioH767wrmg4t6uUTj0wgADlioH534hrhSF",
+            "@type": "xsd:anyURI"
+          }
+        },
+        {
+          "@type": "vv-report:InputData",
+          "vv-report:inputDescription": {
+            "@value": "The OSI SensorView that will be used as input to the FMU",
+            "@type": "xsd:string"
+          },
+          "vv-report:inputReference": {
+            "@value": "https://github.com/OpenSimulationInterface/osi-validation/raw/refs/heads/master/data/20240221T141700Z_sv_300_2112_10_one_moving_object.osi",
+            "@type": "xsd:anyURI"
+          }
+        }
+      ],
+      "vv-report:parameters": [
+        {
+          "@type": "vv-report:Parameter",
+          "vv-report:parameterName": {
+            "@value": "verbose",
+            "@type": "xsd:string"
+          },
+          "vv-report:parameterDescription": {
+            "@value": "If set to true, extensive checks, according to XY, will be carried out",
+            "@type": "xsd:string"
+          },
+          "vv-report:parameterValue": {
+            "@value": false,
+            "@type": "xsd:boolean"
+          }
+        }
+      ],
+      "vv-report:result": {
+        "@type": "vv-report:Result",
+        "vv-report:resultTestPassed": {
+          "@value": true,
+          "@type": "xsd:boolean"
+        },
+        "vv-report:resultVerifiable": {
+          "@value": false,
+          "@type": "xsd:boolean"
+        }
+      },
+      "vv-report:conceptSpecificData": {
+        "modeling-simulation-spice-credibility-level": {
+          "@value": "1",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    {
+      "@type": "vv-report:Evaluation",
+      "vv-report:metric": {
+        "@type": "vv-report:Metric",
+        "vv-report:metricTitle": {
+          "@value": "FMU modelDescription check",
+          "@type": "xsd:string"
+        },
+        "vv-report:metricDescription": {
+          "@value": "Checking the modelDescription.xml of an FMU: Validation against the XML schema, uniqueness and validity of variable names, completeness and integrity of the ModelStructure, required start values, combinations of causality and variability, units",
+          "@type": "xsd:string"
+        },
+        "vv-report:metricReference": {
+          "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:bffa3d7670fc3ac3a49a257de0d4b44fdfbc12d9bd7aa329647cf73018f529f4",
+          "@type": "xsd:anyURI"
+        }
+      },
+      "vv-report:inputData": [
+        {
+          "@type": "vv-report:InputData",
+          "vv-report:inputDescription": {
+            "@value": "The FMU as the system under test",
+            "@type": "xsd:string"
+          },
+          "vv-report:inputReference": {
+            "@value": "https://gaiax4plcaad.dlr.de/asset/did:op:gADlioH767wrmg4t6uUTj0wgADlioH534hrhSF",
+            "@type": "xsd:anyURI"
+          }
+        }
+      ],
+      "vv-report:result": {
+        "@type": "vv-report:Result",
+        "vv-report:resultTestPassed": {
+          "@value": false,
+          "@type": "xsd:boolean"
+        },
+        "vv-report:resultLog": {
+          "@value": "The attribute timestamp is missing in the SensorData output",
+          "@type": "xsd:string"
+        },
+        "vv-report:resultVerifiable": {
+          "@value": true,
+          "@type": "xsd:boolean"
+        },
+        "vv-report:resultVerification": {
+          "@type": "vv-report:ResultVerification",
+          "vv-report:resultVerificationDescription": {
+            "@value": "The log of the according compute job in the OVAL ecosystem with the given metric and input data",
+            "@type": "xsd:string"
+          },
+          "vv-report:resultVerificationReference": {
+            "@value": "https://gaiax4plcaad.dlr.de/history/4HGk8794tHFJDG3kiuvdf2fdGD4q6",
+            "@type": "xsd:anyURI"
+          }
+        }
+      },
+      "vv-report:conceptSpecificData": {
+        "modeling-simulation-spice-credibility-level": {
+          "@value": "1",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  ],
+  "gx:producedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:exposedThrough": {
+    "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+    "@type": "gx:DataExchangeComponent"
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:containsPII": false,
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "vv-report-001",
+  "dcterms:title": "ARS548 V&V Report Data Resource"
+}

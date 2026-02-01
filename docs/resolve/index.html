@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Resolver - ENVITED-X</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --error: #cc0000;
+            --success: #00cc66;
+            --bg: #f5f5f5;
+            --text: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg);
+            color: var(--text);
+        }
+        h1 { color: var(--primary); }
+        .status { padding: 1rem; border-radius: 4px; margin: 1rem 0; }
+        .status.loading { background: #e3f2fd; border: 1px solid #90caf9; }
+        .status.success { background: #e8f5e9; border: 1px solid #a5d6a7; }
+        .status.error { background: #ffebee; border: 1px solid #ef9a9a; }
+        .info { background: #fff; padding: 1rem; border-radius: 4px; margin: 1rem 0; }
+        code { background: #e0e0e0; padding: 0.2rem 0.4rem; border-radius: 2px; }
+        a { color: var(--primary); }
+        .params { font-family: monospace; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>ENVITED-X Ontology Resolver</h1>
+
+    <div id="status" class="status loading">
+        <strong>Resolving...</strong>
+        <p>Looking up ontology version in registry.</p>
+    </div>
+
+    <div id="info" class="info" style="display:none;">
+        <h3>Request Parameters</h3>
+        <div class="params" id="params"></div>
+    </div>
+
+    <div id="manual" style="display:none;">
+        <h2>Manual Resolution</h2>
+        <p>Use the following URL pattern to resolve ontologies:</p>
+        <code>?ontology=NAME&version=VERSION&format=FORMAT&resource=RESOURCE</code>
+
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>ontology</strong> (required): Ontology name (e.g., <code>envited-x</code>, <code>hdmap</code>)</li>
+            <li><strong>version</strong>: Semantic version (<code>v1</code>, <code>v2</code>, etc.) or <code>latest</code> (default)</li>
+            <li><strong>format</strong>: Output format - <code>turtle</code> (default), <code>jsonld</code>, or <code>shacl</code></li>
+            <li><strong>resource</strong>: Resource type - <code>ontology</code> (default), <code>shacl</code>, or <code>instance</code></li>
+        </ul>
+
+        <h3>Examples</h3>
+        <ul>
+            <li><a href="?ontology=envited-x&version=latest">Latest ENVITED-X ontology</a></li>
+            <li><a href="?ontology=hdmap&version=v1&format=turtle">HD Map v1 in Turtle</a></li>
+            <li><a href="?ontology=scenario&resource=shacl">Scenario SHACL shapes</a></li>
+        </ul>
+    </div>
+
+    <script>
+    (async function() {
+        const BASE_URL = 'https://raw.githubusercontent.com/gaia-x4plc-aad/ontology-management-base';
+        const REGISTRY_URL = './registry.json';
+
+        const statusEl = document.getElementById('status');
+        const infoEl = document.getElementById('info');
+        const paramsEl = document.getElementById('params');
+        const manualEl = document.getElementById('manual');
+
+        function showError(message) {
+            statusEl.className = 'status error';
+            statusEl.innerHTML = `<strong>Error</strong><p>${message}</p>`;
+            manualEl.style.display = 'block';
+        }
+
+        function showSuccess(message, url) {
+            statusEl.className = 'status success';
+            statusEl.innerHTML = `<strong>Redirecting...</strong><p>${message}</p><p><a href="${url}">${url}</a></p>`;
+        }
+
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const ontology = params.get('ontology');
+        const version = params.get('version') || 'latest';
+        const format = params.get('format') || 'turtle';
+        const resource = params.get('resource') || 'ontology';
+
+        // Show parameters
+        if (ontology) {
+            paramsEl.innerHTML = `
+                ontology: ${ontology}<br>
+                version: ${version}<br>
+                format: ${format}<br>
+                resource: ${resource}
+            `;
+            infoEl.style.display = 'block';
+        }
+
+        // If no ontology specified, show manual page
+        if (!ontology) {
+            statusEl.style.display = 'none';
+            manualEl.style.display = 'block';
+            return;
+        }
+
+        try {
+            // Fetch registry
+            const response = await fetch(REGISTRY_URL);
+            if (!response.ok) {
+                throw new Error(`Registry not found (${response.status})`);
+            }
+
+            const registry = await response.json();
+
+            // Look up ontology
+            const ontoEntry = registry.ontologies?.[ontology];
+            if (!ontoEntry) {
+                throw new Error(`Ontology "${ontology}" not found in registry. Available: ${Object.keys(registry.ontologies || {}).join(', ')}`);
+            }
+
+            // Resolve version
+            let resolvedVersion = version;
+            if (version === 'latest') {
+                resolvedVersion = ontoEntry.latest;
+            }
+
+            const versionEntry = ontoEntry.versions?.[resolvedVersion];
+            if (!versionEntry) {
+                throw new Error(`Version "${resolvedVersion}" not found for "${ontology}". Available: ${Object.keys(ontoEntry.versions || {}).join(', ')}`);
+            }
+
+            // Get release tag
+            const releaseTag = versionEntry.releaseTag;
+
+            // Determine file path
+            let filePath;
+            if (resource === 'shacl') {
+                filePath = versionEntry.files?.shacl;
+            } else if (resource === 'instance') {
+                filePath = versionEntry.files?.instance;
+            } else {
+                filePath = versionEntry.files?.ontology;
+            }
+
+            if (!filePath) {
+                throw new Error(`Resource "${resource}" not available for "${ontology}" ${resolvedVersion}`);
+            }
+
+            // Build target URL
+            const targetUrl = `${BASE_URL}/${releaseTag}/${filePath}`;
+
+            // Show success and redirect
+            showSuccess(`Resolved to ${releaseTag}`, targetUrl);
+
+            // Redirect after short delay to show the resolution
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);
+
+        } catch (error) {
+            showError(error.message);
+        }
+    })();
+    </script>
+</body>
+</html>

@@ -28,14 +28,22 @@ repos:
 
       - id: jsonld-lint
         name: JSON-LD Parser
-        entry: python src/utils/check_parse_jsonld.py
+        entry: python3 src/tools/utils/check_parse_jsonld.py
         language: system
         types: [json]
-        files: \.json$
+        files: \.(json|jsonld)$
 
       - id: turtle-lint
         name: Turtle Parser
-        entry: python src/utils/check_parse_turtle.py
+        entry: python3 src/tools/utils/check_parse_turtle.py
         language: system
         types: [text]
         files: \.(ttl)$
+
+      - id: update-registry
+        name: Update Ontology Registry and Catalog
+        entry: bash .git/hooks/update-registry-hook.sh
+        language: system
+        pass_filenames: false
+        files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$
+        stages: [pre-commit]

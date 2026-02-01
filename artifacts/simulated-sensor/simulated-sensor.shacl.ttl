@@ -1,0 +1,215 @@
+@prefix simulated-sensor: <https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# The Shapes Graph URI appends "/shapes" to the Ontology URI
+<https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/shapes>
+    a owl:Ontology ;
+    # The Shapes Graph must import the Domain Ontology
+    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2> .
+
+simulated-sensor:SimulatedSensorShape a sh:NodeShape ;
+    sh:targetClass simulated-sensor:SimulatedSensor ;
+    # Ensure at least one sensor is available
+    sh:property [
+        skos:example "Radar" ;
+        sh:path simulated-sensor:sensorType ;
+        sh:minCount 1 ;
+        sh:maxCount 1;
+        sh:name "sensor type"@en ;
+        sh:or (
+            [ sh:node simulated-sensor:RadarShape ]
+            [ sh:node simulated-sensor:LidarShape ]
+            [ sh:node simulated-sensor:CameraShape ]
+        ) ;
+        sh:order 0 ;
+        sh:description "Perception and other relevant sensors for autonomous driving."@en ;
+    ] ;
+    # sensorIdentifier (string)
+     sh:property [
+        skos:example "RADAR" ;
+        sh:path simulated-sensor:sensorIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "sensor identifier"@en ;
+        sh:order 1 ;
+        sh:description "Name/Identifier of the sensor in the simulator."@en ;
+    ] ;
+    # mountingPosition
+    sh:property [
+        skos:example "Front-mid" ;
+        sh:path simulated-sensor:mountingPosition ;
+        sh:datatype xsd:string ;
+        sh:in ("Front-left" "Front-right" "Front-mid" "Top-left" "Top-right" "Top-mid" "Back-left" "Back-right" "Back-mid") ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "mounting position"@en ;
+        sh:order 2 ;
+        sh:description "Possible mounting positions of the radar."@en ;
+    ] . 
+
+# Available sensors
+# RADAR
+simulated-sensor:RadarShape a sh:NodeShape ;
+    sh:targetClass simulated-sensor:Radar ;
+    # numberOfBeams (integer)
+    sh:property [
+        skos:example "1500" ;
+        sh:path simulated-sensor:numberOfBeams ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:name "number of beams"@en ;
+        sh:order 0 ;
+        sh:description "Number of beams sent by the radar sensor."@en ;
+    ] ;
+    # distance (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:distance ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
+        sh:name "distance"@en ;
+        sh:order 1 ;
+        sh:description "Covered distance or range in metres."@en ;
+    ] ;
+    # fieldOfView (Tuple of three floats)
+    sh:property [
+        skos:example "30.0 70.0 20.0" ;
+        sh:name "FoV"@en ;
+        sh:node simulated-sensor:FieldOfViewShape ;
+        sh:path simulated-sensor:fieldOfView ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:order 2 ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
+    ] .
+
+# LIDAR
+simulated-sensor:LidarShape a sh:NodeShape ;
+    sh:targetClass simulated-sensor:Lidar ;
+    # numberOfBeams (integer)
+    sh:property [
+        skos:example "1500" ;
+        sh:path simulated-sensor:numberOfBeams ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
+        sh:name "number of beams"@en ;
+        sh:order 0 ;
+        sh:description "Number of beams sent by the lidar sensor."@en ;
+    ] ;
+    # distance (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:distance ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0;
+        sh:name "distance"@en ;
+        sh:order 1 ;
+        sh:description "Covered distance or range in metres."@en ;
+    ] ;
+    # fieldOfView (Tuple of three floats)
+    sh:property [
+        skos:example "30.0 70.0 20.0" ;
+        sh:name "FoV"@en ;
+        sh:node simulated-sensor:FieldOfViewShape ;
+        sh:path simulated-sensor:fieldOfView ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:order 2 ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
+    ] .
+
+# CAMERA
+simulated-sensor:CameraShape a sh:NodeShape ;
+    sh:targetClass simulated-sensor:Camera ;
+    # rgbFlag (boolean)
+    sh:property [
+        skos:example "true" ;
+        sh:path simulated-sensor:rgbFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "RGB flag"@en ;
+        sh:order 0 ;
+        sh:description "If true, camera is RGB camera."@en ;
+    ] ;
+    # flag3D (boolean) - Renamed from 3dflag
+    sh:property [
+        skos:example "false" ;
+        sh:path simulated-sensor:flag3D ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "3D flag"@en ;
+        sh:order 1 ;
+        sh:description "If true, camera is 3D camera."@en ;
+    ] ;
+    # depthFlag (boolean)
+    sh:property [
+        skos:example "false" ;
+        sh:path simulated-sensor:depthFlag ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "depth flag"@en ;
+        sh:order 2 ;
+        sh:description "If true, camera is depth camera."@en ;
+    ] ;
+    # fieldOfView (Tuple of three floats)
+    sh:property [
+        skos:example "30.0 70.0 20.0" ;
+        sh:name "FoV"@en ;
+        sh:node simulated-sensor:FieldOfViewShape ;
+        sh:path simulated-sensor:fieldOfView ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:order 3 ;
+        sh:description "Field of view angles, supporting up to three values (e.g., horizontal, upper, and lower FoV)."@en ;
+    ] .
+
+simulated-sensor:FieldOfViewShape a sh:NodeShape ;
+    sh:targetClass simulated-sensor:FieldOfView ;
+    # fov angle 1 (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:fovAngle1 ;
+        sh:datatype xsd:float ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "FoV angle 1"@en ;
+        sh:order 0 ;
+        sh:description "FoV angle 1 (mandatory if FoV attribute is used)."@en
+    ] ;
+    # fov angle 2 (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:fovAngle2 ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "FoV angle 2"@en ;
+        sh:order 1 ;
+        sh:description "FoV angle 2 (optional, depending on simulator and sensor type)."@en
+    ] ;
+    # fov angle 3 (float)
+    sh:property [
+        skos:example "30.0" ;
+        sh:path simulated-sensor:fovAngle3 ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:name "FoV angle 3"@en ;
+        sh:order 2 ;
+        sh:description "FoV angle 3 (optional, depending on simulator and sensor type)."@en
+    ] .

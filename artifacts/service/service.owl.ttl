@@ -1,0 +1,51 @@
+@prefix service: <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
+
+<https://w3id.org/gaia-x4plcaad/ontologies/service/v1> a owl:Ontology ;
+    rdfs:label "Ontology definition for a simulation service"@en ;
+
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:contributor [
+        a foaf:Person ;
+        foaf:name "Valentin Fischer" ;
+        org:memberOf <https://www.tracetronic.de/> ;
+    ] ;  
+
+    # Permanent identifier for the ontology (not version-specific)
+    dcterms:identifier <https://w3id.org/gaia-x4plcaad/ontologies/service> ;
+
+    # GitHub repository where the ontology is maintained
+    dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
+
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+
+    # Versioning
+    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> ;
+    owl:versionInfo "v1" ;
+
+    # Reference to SHACL validation rules
+    dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes> ;
+
+    # Additional references to documentation or related ontologies
+    dcterms:references <https://w3id.org/gaia-x/development/> ;
+    rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
+
+service:Service a owl:Class ;
+    rdfs:label "Class definition for Service"@en ;
+    rdfs:comment "Attributes for simulation services."@en ;
+    rdfs:subClassOf gx:SoftwareResource .
+
+service:RequiredFile a owl:Class ;
+    rdfs:label "Class definition for RequiredFile"@en ;
+    rdfs:comment "Attributes for required files of simulation services."@en .
+
+service:ResultingFile a owl:Class ;
+    rdfs:label "Class definition for ResultingFile"@en ;
+    rdfs:comment "Attributes for resulting files of simulation services."@en .

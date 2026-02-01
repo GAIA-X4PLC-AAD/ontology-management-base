@@ -1,0 +1,21 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                        ['tests/data/manifest/invalid/fail_05_wrong_mimeType_instance.json']                                        =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasArtifacts                                                                   =
+=    Error:            Value does not conform to Shape manifest:LinkShape. See details for more information.                                         =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasFileMetadata                                                                =
+=    Error:            Value does not conform to Shape manifest:FileMetadataShape. See details for more information.                                 =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/mimeType                                                                       =
+=    Error:            Validation of the MIME type failed!                                                                                           =
+======================================================================================================================================================

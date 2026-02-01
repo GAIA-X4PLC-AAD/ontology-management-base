@@ -1,79 +1,140 @@
-# github CODEOWNERS file to define owners of sub directories.
-# Find a detailled description for github CODEOWNERS here:
-# https://docs.github.com/de/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-# Each line is a file pattern followed by one or more owners.
+# GitHub CODEOWNERS file to define owners of sub directories.
+# Find a detailed description for GitHub CODEOWNERS here:
+# https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-# root directory and default handling (Robert OR Lena). Subsequent definitions will overwrite a previous definition.
-/* @robertschubert @lenasauermann
+# =============================================================================
+# ROOT & DEFAULT
+# =============================================================================
+# Root directory and default handling.
+* @robertschubert @jdsika
 
-# examples directory (Robert OR Justin)
-/examples @robertschubert @JustinDxx
+# =============================================================================
+# INFRASTRUCTURE & TOOLING
+# =============================================================================
+# Source code and tooling (Carlo)
+/src/ @jdsika
 
-# scenario directory (Rico OR Fin AND Robert)
-/scenario @rcrswld @heuerfin
-/scenario @robertschubert
+# Exceptions: authhandler and uploaders (Robert OR Justin)
+/src/authhandler/ @robertschubert @JustinDxx
+/src/uploaders/ @robertschubert @JustinDxx
 
-# sensor directory (Rico AND Justin)
-/sensor @rcrswld
-/sensor @JustinDxx
+# CI/CD workflows (Carlo)
+/.github/ @jdsika
 
-# src directory and default handling (Robert OR Justin)
-/src @robertschubert @JustinDxx
+# Documentation infrastructure
+/docs/ @jdsika
+/mkdocs.yml @jdsika
 
-# survey directory (Philipp AND Robert)
-/survey @robertschubert
-/survey @phi981
+# Configuration
+/config/ @jdsika
+/pyproject.toml @jdsika
 
-# gx directory (Robert OR Lena)
-/gx @robertschubert @lenasauermann
+# =============================================================================
+# EXTERNAL DEPENDENCIES
+# =============================================================================
+# Imported ontologies (Carlo)
+/imports/ @jdsika
 
-# environment-model directory (Mirco AND Robert)
-/environment-model @robertschubert
-/environment-model @MircoNierenz
+# Test data and fixtures (Carlo by default)
+/tests/ @jdsika
 
-# hdmap directory (Sebastian AND Robert)
-/hdmap @robertschubert
-/hdmap @3Dbastian
+# Ontology catalog and registry (Carlo)
+/artifacts/catalog-v001.xml @jdsika
+/docs/registry.json @jdsika
 
-# general directory (Mirco AND Robert)
-/general @robertschubert
-/general @MircoNierenz
+# =============================================================================
+# CORE ONTOLOGIES
+# =============================================================================
 
-# envited-x directory (Mirco OR Carlo)
-/envited-x @jdsika @MircoNierenz
+# envited-x core (Mirco OR Carlo)
+/artifacts/envited-x/ @jdsika @MircoNierenz
+/tests/data/envited-x/ @jdsika @MircoNierenz
 
-# georeference directory (Robert AND (Sebastian OR Mirco))
-/georeference @robertschubert
-/georeference @3Dbastian @MircoNierenz
+# general (Mirco AND Robert) -> Treated as OR by GitHub
+/artifacts/general/ @robertschubert @MircoNierenz
+/tests/data/general/ @robertschubert @MircoNierenz
 
-# service directory (Valentin AND Robert)
-/service @robertschubert
-/service @ValentinFischerTT
+# manifest (Robert OR Carlo)
+/artifacts/manifest/ @jdsika @robertschubert
+/tests/data/manifest/ @jdsika @robertschubert
 
-# surface-model directory (Sebastian AND Robert)
-/surface-model @robertschubert
-/surface-model @3Dbastian
+# gx - Gaia-X (Robert OR Lena)
+/artifacts/gx/ @robertschubert @lenasauermann
+/tests/data/gx/ @robertschubert @lenasauermann
 
-# ositrace directory (Pierre AND Carlo)
-/ositrace @jdsika
-/ositrace @pmai
+# =============================================================================
+# APPLICATION ONTOLOGIES
+# =============================================================================
 
-# simulated-sensor directory (Rhea)
-/simulated-sensor @telina
+# scenario (Rico OR Fin AND Robert) -> Treated as Flat OR List
+/artifacts/scenario/ @rcrswld @heuerfin @robertschubert
+/tests/data/scenario/ @rcrswld @heuerfin @robertschubert
 
-# automotive-simulator directory (Rhea)
-/automotive-simulator @telina
+# hdmap (Sebastian AND Robert) -> Treated as OR
+/artifacts/hdmap/ @robertschubert @3Dbastian
+/tests/data/hdmap/ @robertschubert @3Dbastian
 
-# leakage-test directory (Selcan AND Robert Or Lena)
-/leakage-test @selcan-k
-/leakage-test @robertschubert @lenasauermann
+# environment-model (Mirco AND Robert) -> Treated as OR
+/artifacts/environment-model/ @robertschubert @MircoNierenz
+/tests/data/environment-model/ @robertschubert @MircoNierenz
 
-# manifest directory (Robert OR Carlo)
-/manifest @jdsika @robertschubert
+# surface-model (Sebastian AND Robert) -> Treated as OR
+/artifacts/surface-model/ @robertschubert @3Dbastian
+/tests/data/surface-model/ @robertschubert @3Dbastian
 
-# vv-report directory (Maurizio AND Carlo)
-/vv-report @localhorst87
-/vv-report @jdsika
+# georeference (Robert AND (Sebastian OR Mirco)) -> Treated as Flat OR List
+/artifacts/georeference/ @robertschubert @3Dbastian @MircoNierenz
+/tests/data/georeference/ @robertschubert @3Dbastian @MircoNierenz
 
-# openlabel directory (Nicolas)
-/openlabel @buggreen
+# simulation-model (Robert)
+/artifacts/simulation-model/ @robertschubert
+
+# automotive-simulator (Rhea)
+/artifacts/automotive-simulator/ @telina
+/tests/data/automotive-simulator/ @telina
+
+# =============================================================================
+# SENSOR & DATA ONTOLOGIES
+# =============================================================================
+
+# ositrace (Pierre AND Carlo) -> Treated as OR
+/artifacts/ositrace/ @jdsika @pmai
+/tests/data/ositrace/ @jdsika @pmai
+
+# simulated-sensor (Rhea)
+/artifacts/simulated-sensor/ @telina
+/tests/data/simulated-sensor/ @telina
+
+# openlabel (Nicolas)
+/artifacts/openlabel/ @buggreen
+/tests/data/openlabel/ @buggreen
+
+# =============================================================================
+# UTILITY ONTOLOGIES
+# =============================================================================
+
+# service (Valentin AND Robert) -> Treated as OR
+/artifacts/service/ @robertschubert @ValentinFischerTT
+/tests/data/service/ @robertschubert @ValentinFischerTT
+
+# survey (Philipp AND Robert) -> Treated as OR
+/artifacts/survey/ @robertschubert @phi981
+/tests/data/survey/ @robertschubert @phi981
+
+# vv-report (Maurizio AND Carlo) -> Treated as OR
+/artifacts/vv-report/ @localhorst87 @jdsika
+/tests/data/vv-report/ @localhorst87 @jdsika
+
+# leakage-test (Selcan AND Robert OR Lena) -> Treated as Flat OR List
+/artifacts/leakage-test/ @selcan-k @robertschubert @lenasauermann
+/tests/data/leakage-test/ @selcan-k @robertschubert @lenasauermann
+
+# tzip21 (Robert)
+/artifacts/tzip21/ @robertschubert
+/tests/data/tzip21/ @robertschubert
+
+# example (Robert OR Justin)
+/artifacts/example/ @robertschubert @JustinDxx
+/artifacts/description/ @robertschubert @JustinDxx
+/tests/data/example/ @robertschubert @JustinDxx
+/tests/data/description/ @robertschubert @JustinDxx

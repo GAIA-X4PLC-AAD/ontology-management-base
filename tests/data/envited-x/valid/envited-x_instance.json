@@ -1,0 +1,69 @@
+{
+  "@context": {
+    "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+    "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@id": "did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
+  "@type": "envited-x:SimulationAsset",
+  "envited-x:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8",
+    "@type": "envited-x:DataResource",
+    "gx:name": "3D Model in Grafing",
+    "gx:description": "A 3D model representing the town district with traffic signs.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
+    }
+  },
+  "envited-x:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.envited-x.net:Manifest:ksfw72PrV1L9XYsZxJqTg9Ounh2Qez4cMEm1"
+    },
+    "skos:note": {
+      "@value": "Reference to the simulation asset manifest.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/"
+      },
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/manifest/v5/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./base-references/envited-x_manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
+}

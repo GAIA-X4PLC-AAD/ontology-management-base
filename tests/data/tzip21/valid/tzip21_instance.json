@@ -1,0 +1,303 @@
+{
+  "@context": {
+    "tzip21": "https://w3id.org/ascs-ev/envited-x/tzip21/v1/",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "did:web:registry.envited-x.net:Asset:TestfeldNiedersachsen_ALKS_ODR_sample",
+  "@type": "tzip21:Asset",
+  "tzip21:name": {
+    "@value": "TestfeldNiedersachsen_ALKS_ODR_sample",
+    "@type": "xsd:string"
+  },
+  "tzip21:description": {
+    "@value": "simple hdmap example file on Testfeld Niedersachsen for ALKS scenario",
+    "@type": "xsd:string"
+  },
+  "tzip21:decimals": {
+    "@value": "0",
+    "@type": "xsd:integer"
+  },
+  "tzip21:isBooleanAmount": {
+    "@value": true,
+    "@type": "xsd:boolean"
+  },
+  "tzip21:minter": {
+    "@value": "tz1cZaiTjNSN7x4VZjTQGYBVz4p8eEcVcYkz",
+    "@type": "xsd:string"
+  },
+  "tzip21:creators": [
+    {
+      "@value": "Automotive Solution Center for Simulation e.V.",
+      "@type": "xsd:string"
+    }
+  ],
+  "tzip21:publishers": [
+    {
+      "@value": "Automotive Solution Center for Simulation e.V.",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "ENVITED-X Data Space",
+      "@type": "xsd:string"
+    }
+  ],
+  "tzip21:date": {
+    "@value": "2025-02-17T00:00:00+00:00",
+    "@type": "xsd:dateTime"
+  },
+  "tzip21:type": {
+    "@value": "EVES-003 https://github.com/ASCS-eV/EVES",
+    "@type": "xsd:string"
+  },
+  "tzip21:rights": {
+    "@value": "EPL-2.0",
+    "@type": "xsd:string"
+  },
+  "tzip21:rightsUri": {
+    "@value": "https://opensource.org/license/EPL-2.0",
+    "@type": "xsd:anyURI"
+  },
+  "tzip21:language": {
+    "@value": "en",
+    "@type": "xsd:language"
+  },
+  "tzip21:artifactUri": {
+    "@value": "https://assets.envited-x.net/bafybeifo6ve5i6542vi6ruuflxdqtcmcisdtwlqefq2e5a33tljsaqxhpm",
+    "@type": "xsd:anyURI"
+  },
+  "tzip21:identifier": {
+    "@id": "did:web:registry.envited-x.net:HdMap:DjHgK5ErTBow1Ya3J05tW9l12skGWgZn6kA9"
+  },
+  "tzip21:externalUri": {
+    "@value": "ipfs://bafkreicuwg3s4uvei2iu2p5eobozghdodtwhwoi6qiawhwqj3nflrk6dxi",
+    "@type": "xsd:anyURI"
+  },
+  "tzip21:displayUri": {
+    "@value": "ipfs://bafybeief5r2xgciehzhx6c4kbooifsnbjpiifjei36lpi3kzcdmpr2wvue",
+    "@type": "xsd:anyURI"
+  },
+  "tzip21:tags": [
+    {
+      "@value": "GaiaX",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "ASCS",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "ENVITED-X",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "EVES",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "nft",
+      "@type": "xsd:string"
+    },
+    {
+      "@value": "ASAM OpenDRIVE 1.6",
+      "@type": "xsd:string"
+    }
+  ],
+  "tzip21:formats": [
+    {
+      "@type": "tzip21:Format",
+      "tzip21:uri": {
+        "@value": "https://assets.envited-x.net/bafybeifo6ve5i6542vi6ruuflxdqtcmcisdtwlqefq2e5a33tljsaqxhpm",
+        "@type": "xsd:anyURI"
+      },
+      "tzip21:hash": {
+        "@value": "bafybeifo6ve5i6542vi6ruuflxdqtcmcisdtwlqefq2e5a33tljsaqxhpm",
+        "@type": "xsd:string"
+      },
+      "tzip21:mimeType": {
+        "@value": "application/zip",
+        "@type": "xsd:string"
+      },
+      "tzip21:fileSize": {
+        "@value": "7711664",
+        "@type": "xsd:integer"
+      },
+      "tzip21:fileName": {
+        "@value": "Testfeld_Niedersachsen_ALKS_xodr_sample.zip",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:Format",
+      "tzip21:uri": {
+        "@value": "ipfs://bafkreicuwg3s4uvei2iu2p5eobozghdodtwhwoi6qiawhwqj3nflrk6dxi",
+        "@type": "xsd:anyURI"
+      },
+      "tzip21:hash": {
+        "@value": "bafkreicuwg3s4uvei2iu2p5eobozghdodtwhwoi6qiawhwqj3nflrk6dxi",
+        "@type": "xsd:string"
+      },
+      "tzip21:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      },
+      "tzip21:fileSize": {
+        "@value": "6574",
+        "@type": "xsd:integer"
+      },
+      "tzip21:fileName": {
+        "@value": "hdmap_instance.json",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:Format",
+      "tzip21:uri": {
+        "@value": "ipfs://bafkreie2yjoudxlayordup63se7wbj6vroaoyqzcuixqcchpmd23ufno6u",
+        "@type": "xsd:anyURI"
+      },
+      "tzip21:hash": {
+        "@value": "bafkreie2yjoudxlayordup63se7wbj6vroaoyqzcuixqcchpmd23ufno6u",
+        "@type": "xsd:string"
+      },
+      "tzip21:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      },
+      "tzip21:fileSize": {
+        "@value": "5572",
+        "@type": "xsd:integer"
+      },
+      "tzip21:fileName": {
+        "@value": "tzip21_manifest.json",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:Format",
+      "tzip21:uri": {
+        "@value": "ipfs://bafybeief5r2xgciehzhx6c4kbooifsnbjpiifjei36lpi3kzcdmpr2wvue",
+        "@type": "xsd:anyURI"
+      },
+      "tzip21:hash": {
+        "@value": "bafybeief5r2xgciehzhx6c4kbooifsnbjpiifjei36lpi3kzcdmpr2wvue",
+        "@type": "xsd:string"
+      },
+      "tzip21:mimeType": {
+        "@value": "image/png",
+        "@type": "xsd:string"
+      },
+      "tzip21:fileSize": {
+        "@value": "2397906",
+        "@type": "xsd:integer"
+      },
+      "tzip21:fileName": {
+        "@value": "Testfeld_Niedersachsen_ALKS_..._impression-01.png",
+        "@type": "xsd:string"
+      },
+      "tzip21:dimensions": {
+        "@type": "tzip21:Dimensions",
+        "tzip21:value": {
+          "@value": "1095x850",
+          "@type": "xsd:string"
+        },
+        "tzip21:unit": {
+          "@value": "px",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  ],
+  "tzip21:attributes": [
+    {
+      "@type": "tzip21:OntologyConformanceAttribute",
+      "tzip21:name": {
+        "@value": "com.github.ascs-ev.ontology-management-base.hdmap.ontology",
+        "@type": "xsd:string"
+      },
+      "tzip21:value": {
+        "@value": "https://w3id.org/ascs-ev/envited-x/hdmap/v5/",
+        "@type": "xsd:string"
+      },
+      "tzip21:type": {
+        "@value": "uri",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:OntologyConformanceAttribute",
+      "tzip21:name": {
+        "@value": "com.github.ascs-ev.ontology-management-base.envited-x.ontology",
+        "@type": "xsd:string"
+      },
+      "tzip21:value": {
+        "@value": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+        "@type": "xsd:string"
+      },
+      "tzip21:type": {
+        "@value": "uri",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:OntologyConformanceAttribute",
+      "tzip21:name": {
+        "@value": "com.github.ascs-ev.ontology-management-base.manifest.ontology",
+        "@type": "xsd:string"
+      },
+      "tzip21:value": {
+        "@value": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
+        "@type": "xsd:string"
+      },
+      "tzip21:type": {
+        "@value": "uri",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "@type": "tzip21:OntologyConformanceAttribute",
+      "tzip21:name": {
+        "@value": "com.github.ascs-ev.ontology-management-base.georeference.ontology",
+        "@type": "xsd:string"
+      },
+      "tzip21:value": {
+        "@value": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
+        "@type": "xsd:string"
+      },
+      "tzip21:type": {
+        "@value": "uri",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "gx:providedBy": {
+    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+  },
+  "gx:serviceOfferingTermsAndConditions": [
+    {
+      "@type": "gx:TermsAndConditions",
+      "gx:url": {
+        "@value": "https://docs.github.com/api/article/body?pathname=/en/site-policy/github-terms/github-terms-of-service",
+        "@type": "xsd:anyURI"
+      },
+      "gx:hash": {
+        "@value": "bc5659f155f74d7ed712a07e10df872c07bfc931d2a35dffe6af13c3fdf0e3d7",
+        "@type": "xsd:string"
+      }
+    }
+  ],
+  "gx:policy": [
+    {
+      "@value": "default-policy",
+      "@type": "xsd:string"
+    }
+  ],
+  "gx:dataAccountExport": [
+    {
+      "@type": "gx:DataAccountExport",
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/ld+json"
+    }
+  ]
+}

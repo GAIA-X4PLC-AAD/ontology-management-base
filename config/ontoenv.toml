@@ -1,0 +1,78 @@
+# ontoenv.toml - Ontology Environment Configuration
+# Declares external ontology dependencies for the project
+
+[tool.ontoenv]
+name = "ontology-management-base"
+version = "0.0.5"
+
+# Base ontology imports
+# These are standard W3C and common ontologies used as foundations
+
+[dependencies.rdf]
+uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+local = "imports/rdf/rdf.owl.ttl"
+description = "RDF Concepts Vocabulary"
+
+[dependencies.rdfs]
+uri = "http://www.w3.org/2000/01/rdf-schema#"
+local = "imports/rdfs/rdfs.owl.ttl"
+description = "RDF Schema"
+
+[dependencies.owl]
+uri = "http://www.w3.org/2002/07/owl#"
+local = "imports/owl/owl.owl.ttl"
+description = "Web Ontology Language"
+
+[dependencies.xsd]
+uri = "http://www.w3.org/2001/XMLSchema#"
+local = "imports/xsd/xsd.owl.ttl"
+description = "XML Schema Datatypes"
+
+[dependencies.shacl]
+uri = "http://www.w3.org/ns/shacl#"
+local = "imports/sh/sh.owl.ttl"
+description = "Shapes Constraint Language"
+
+[dependencies.dcterms]
+uri = "http://purl.org/dc/terms/"
+local = "imports/dcterms/dcterms.owl.ttl"
+description = "Dublin Core Terms"
+
+[dependencies.foaf]
+uri = "http://xmlns.com/foaf/0.1/"
+local = "imports/foaf/foaf.owl.ttl"
+description = "Friend of a Friend"
+
+[dependencies.skos]
+uri = "http://www.w3.org/2004/02/skos/core#"
+local = "imports/skos/skos.owl.ttl"
+description = "Simple Knowledge Organization System"
+
+[dependencies.prov]
+uri = "http://www.w3.org/ns/prov#"
+local = "imports/prov/prov.owl.ttl"
+description = "PROV Ontology"
+
+[dependencies.org]
+uri = "http://www.w3.org/ns/org#"
+local = "imports/org/org.owl.ttl"
+description = "Organization Ontology"
+
+[dependencies.schema]
+uri = "http://schema.org/"
+local = "imports/schema/schema.owl.ttl"
+description = "Schema.org"
+
+[dependencies.cred]
+uri = "https://www.w3.org/2018/credentials#"
+local = "imports/cred/cred.owl.ttl"
+description = "Verifiable Credentials"
+
+[dependencies.cs]
+uri = "https://w3id.org/security/credentials/v2#"
+local = "imports/cs/cs.owl.ttl"
+description = "Credential Schemas"
+
+# Project-specific namespace configuration
+[namespaces]
+envited-x = "https://w3id.org/ascs-ev/envited-x/"

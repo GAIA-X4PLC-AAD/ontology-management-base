@@ -1,0 +1,190 @@
+{
+  "@context": {
+    "surface-model": "https://w3id.org/ascs-ev/envited-x/surface-model/v6/",
+    "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+    "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
+    "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@id": "did:web:registry.envited-x.net:SurfaceModel:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@type": "surface-model:SurfaceModel",
+  "surface-model:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+    "@type": "envited-x:DataResource",
+    "gx:name": "Sample Surface Model Data",
+    "gx:description": "A detailed surface model for simulation applications.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:producedBy": {
+      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@type": "gx:DataExchangeComponent"
+    }
+  },
+  "surface-model:hasDataResourceExtension": {
+    "@type": "surface-model:DataResourceExtension",
+    "surface-model:hasFormat": {
+      "@type": "surface-model:Format",
+      "surface-model:formatType": "ASAM OpenCRG",
+      "surface-model:version": {
+        "@value": "1.1",
+        "@type": "xsd:string"
+      }
+    },
+    "surface-model:hasContent": {
+      "@type": "surface-model:Content",
+      "surface-model:contentType": "Height"
+    },
+    "surface-model:hasQuality": {
+      "@type": "surface-model:Quality",
+      "surface-model:resolutionLongitudinal": {
+        "@value": "0.01",
+        "@type": "xsd:float"
+      },
+      "surface-model:resolutionLateral": {
+        "@value": "0.01",
+        "@type": "xsd:float"
+      },
+      "surface-model:orientation": {
+        "@value": "-3.14159",
+        "@type": "xsd:float"
+      },
+      "surface-model:platformExists": true,
+      "surface-model:rampExists": true
+    },
+    "surface-model:hasQuantity": {
+      "@type": "surface-model:Quantity",
+      "surface-model:length": {
+        "@value": "1.46",
+        "@type": "xsd:float"
+      },
+      "surface-model:elevationRange": {
+        "@value": "25.00",
+        "@type": "xsd:float"
+      },
+      "surface-model:mapDataField": true
+    },
+    "surface-model:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
+        },
+        "georeference:state": {
+          "@value": "DE-BY",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Upper Bavaria",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Munich",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Autobahn A8, in the greater Ingolstadt area",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "11.608111",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "48.331035",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "11.610954",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "48.341742",
+            "@type": "xsd:float"
+          }
+        }
+      },
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "451989",
+          "@type": "xsd:integer"
+        },
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "48.045414",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "11.966206",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsoidal height"
+      }
+    }
+  },
+  "surface-model:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:registry.envited-x.net:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
+    },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/"
+      },
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/manifest/v5/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./base-references/surface-model_manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
+}
