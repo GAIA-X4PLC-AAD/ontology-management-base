@@ -42,7 +42,7 @@ repos:
 
       - id: update-registry
         name: Update Ontology Registry and Catalog
-        entry: bash .git/hooks/update-registry-hook.sh
+        entry: python3 src/tools/update_registry.py
         language: system
         pass_filenames: false
         files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$

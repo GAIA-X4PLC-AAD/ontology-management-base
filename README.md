@@ -45,6 +45,7 @@
 | `https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes` | [survey/survey-service-offering.shacl.ttl](artifacts/survey/survey-service-offering.shacl.ttl) |
 | `https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2` | [vv-report/vv-report.owl.ttl](artifacts/vv-report/vv-report.owl.ttl) |
 | `https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/shapes` | [vv-report/vv-report.shacl.ttl](artifacts/vv-report/vv-report.shacl.ttl) |
+<<<<<<< HEAD
 
 | Ontology / Resource IRI | Local Artifact File |
 | :--- | :--- |
@@ -101,6 +102,17 @@ Central repository for managing, validating, and documenting ontologies within t
 
 ## Getting Started
 
+=======
+# Ontology Management Base
+
+[![CI Pipeline](https://github.com/gaia-x4plc-aad/ontology-management-base/actions/workflows/ci.yml/badge.svg)](https://github.com/gaia-x4plc-aad/ontology-management-base/actions/workflows/ci.yml)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://gaia-x4plc-aad.github.io/ontology-management-base/)
+
+Central repository for managing, validating, and documenting ontologies within the **ENVITED-X** ecosystem.
+
+## Getting Started
+
+>>>>>>> e6d79f5 (feat: refactor SHACL validation with registry-based discovery)
 **New to this project?** Start with the [getting started guide](docs/4-getting-started/).
 
 **Looking for ontologies?** Browse the [ontology catalog](docs/3-ontology-domains/).
