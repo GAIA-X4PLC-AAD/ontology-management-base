@@ -8,8 +8,7 @@ from pathlib import Path
 from rdflib import Graph
 from rdflib.exceptions import ParserError
 
-from src.tools.utils.file_collector import collect_turtle_files
-from src.tools.utils.print_formatter import normalize_path_for_display
+from src.tools.utils import collect_turtle_files, normalize_path_for_display
 
 
 def check_turtle_wellformedness(filename, root_dir: Path = None):
