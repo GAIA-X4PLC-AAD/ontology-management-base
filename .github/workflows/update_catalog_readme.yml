@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
           
       - name: Run Update Script
-        run: python src/tools/utils/update_readme.py
+        run: python src/tools/utils/readme_updater.py
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
