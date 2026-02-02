@@ -36,7 +36,8 @@ from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
 # Constants
-ROOT_DIR = Path(__file__).parent.parent.parent.resolve()
+# Navigate from src/tools/utils/registry_updater.py up 4 levels to repo root
+ROOT_DIR = Path(__file__).parent.parent.parent.parent.resolve()
 ARTIFACTS_DIR = ROOT_DIR / "artifacts"
 TESTS_DATA_DIR = ROOT_DIR / "tests" / "data"
 FIXTURES_DIR = ROOT_DIR / "tests" / "fixtures"

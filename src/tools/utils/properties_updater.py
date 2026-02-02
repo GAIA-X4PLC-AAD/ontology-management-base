@@ -4,7 +4,10 @@ import rdflib
 
 # ENVIRONMENT PROPERTIES
 # Define the directories for the new repository structure
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Navigate from src/tools/utils/properties_updater.py up 4 levels to repo root
+ROOT_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
 ARTIFACTS_DIRECTORY = os.path.join(ROOT_DIR, "artifacts")
 
 
