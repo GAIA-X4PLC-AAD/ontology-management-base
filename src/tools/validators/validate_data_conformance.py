@@ -1,53 +1,48 @@
 #!/usr/bin/env python3
 """
-Registry-Based JSON-LD to SHACL Validation Tool.
+DEPRECATED: This module has been refactored to src.tools.validators.conformance_validator
 
-Validates JSON-LD instance files against SHACL shapes using registry-based
-ontology discovery for faster, more reliable resolution.
+This file is maintained for backwards compatibility only.
+New code should import from src.tools.validators.conformance_validator instead.
 
-Key Features:
-  - Registry-based discovery using docs/registry.json
-  - Automatic type-based ontology detection
-  - Oxigraph performance optimization
-  - RDFS inference support
-  - Detailed console output for transparency
+Migration:
+    # Old import (deprecated)
+    from src.tools.validators.validate_data_conformance import collect_jsonld_files
 
-Usage:
-    python3 validate_data_conformance.py [files/dirs...] [options]
-
-Options:
-    --root DIR          Repository root (default: current directory)
-    --inference MODE    Inference mode: rdfs|owlrl|none|both (default: rdfs)
-    --debug             Enable debug logging
-    --logfile FILE      Write detailed logs to file
+    # New import (preferred)
+    from src.tools.validators.conformance_validator import collect_jsonld_files
 """
 
 import sys
+import warnings
 from argparse import ArgumentParser
 from pathlib import Path
-from typing import List
 
-from src.tools.utils.file_collector import collect_jsonld_files as _collect_jsonld_files
+# Re-export everything from the new location for backwards compatibility
+from src.tools.validators.conformance_validator import (
+    collect_jsonld_files,
+    validate_data_conformance,
+    validate_files,
+)
 
-# Import from the new modular structure
-from src.tools.validators.shacl.validator import validate_data_conformance
+# Also re-export from shacl.validator for full backwards compatibility
+from src.tools.validators.shacl.validator import (  # noqa: F401
+    validate_data_conformance as _validate,
+)
 
+warnings.warn(
+    "src.tools.validators.validate_data_conformance is deprecated, "
+    "use src.tools.validators.conformance_validator instead",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
-def collect_jsonld_files(paths: List[str]) -> List[Path]:
-    """
-    Collect all JSON-LD files from the provided paths.
-
-    Args:
-        paths: List of file or directory paths
-
-    Returns:
-        List of JSON-LD file paths (sorted and deduplicated)
-
-    Note: This function now delegates to the central file_collector utility.
-    """
-    return _collect_jsonld_files(
-        paths, warn_on_invalid=False, return_pathlib=True, sort_and_deduplicate=True
-    )
+__all__ = [
+    "collect_jsonld_files",
+    "validate_data_conformance",
+    "validate_files",
+    "main",
+]
 
 
 def main():

@@ -28,16 +28,46 @@ See also:
 
 from .file_collector import (
     collect_files_by_extension,
+    collect_files_by_pattern,
     collect_jsonld_files,
+    collect_ontology_bundles,
+    collect_ontology_files,
+    collect_test_files,
     collect_turtle_files,
+)
+from .graph_loader import (
+    FAST_STORE,
+    extract_external_iris,
+    load_fixtures_for_iris,
+    load_graph,
+    load_graphs,
+    load_jsonld_files,
+    load_jsonld_with_context,
+    load_turtle_files,
 )
 from .print_formatter import normalize_path_for_display
 from .registry_resolver import RegistryResolver
 
 __all__ = [
+    # Registry
     "RegistryResolver",
+    # File collection
     "collect_files_by_extension",
+    "collect_files_by_pattern",
     "collect_jsonld_files",
+    "collect_ontology_bundles",
+    "collect_ontology_files",
+    "collect_test_files",
     "collect_turtle_files",
+    # Graph loading
+    "FAST_STORE",
+    "extract_external_iris",
+    "load_fixtures_for_iris",
+    "load_graph",
+    "load_graphs",
+    "load_jsonld_files",
+    "load_jsonld_with_context",
+    "load_turtle_files",
+    # Print formatting
     "normalize_path_for_display",
 ]

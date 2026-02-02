@@ -395,7 +395,7 @@ class RegistryResolver:
         """
         import hashlib
 
-        from src.tools.validators.validate_data_conformance import collect_jsonld_files
+        from src.tools.utils.file_collector import collect_jsonld_files
 
         # Generate unique domain name from paths
         path_hash = hashlib.md5("|".join(sorted(paths)).encode()).hexdigest()[:8]

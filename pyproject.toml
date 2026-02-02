@@ -40,6 +40,8 @@ dev = [
     "pre-commit==4.5.1",
     "mkdocs-material>=9.5.0",
     "mkdocstrings[python]>=0.24.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
 ]
 docs = [
     "mkdocs-material>=9.5.0",
@@ -79,3 +81,24 @@ exclude = '''
 profile = "black"
 line_length = 88
 skip = [".git", ".venv", "build", "dist", "node_modules"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning:src.tools.validators.*",
+]
+
+[tool.coverage.run]
+source = ["src/tools"]
+omit = ["*/tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

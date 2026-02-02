@@ -81,20 +81,23 @@ import sys
 from pathlib import Path
 from typing import List
 
+# Import from new module locations (with backward compatibility)
 from src.tools.utils.print_formatter import normalize_text
 from src.tools.utils.registry_resolver import RegistryResolver
-from src.tools.validators.shacl.validator import (
-    validate_data_conformance as validate_data_conformance,
+
+# New imports from refactored modules
+from src.tools.validators.coherence_validator import validate_artifact_coherence
+from src.tools.validators.conformance_validator import (
+    collect_jsonld_files,
+    validate_data_conformance,
 )
-from src.tools.validators.validate_artifact_coherence import (
-    validate_artifact_coherence,
+from src.tools.validators.syntax_validator import (
+    check_json_syntax as check_json_wellformedness,
 )
-from src.tools.validators.validate_data_conformance import collect_jsonld_files
-from src.tools.validators.verify_json_syntax import (
-    check_json_wellformedness,
+from src.tools.validators.syntax_validator import (
     verify_json_syntax,
+    verify_turtle_syntax,
 )
-from src.tools.validators.verify_turtle_syntax import verify_turtle_syntax
 
 # Define the root directory of the repository
 # Navigate up from src/tools/validators to the repo root

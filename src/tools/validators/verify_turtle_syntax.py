@@ -1,102 +1,53 @@
 #!/usr/bin/env python3
-import argparse
+"""
+DEPRECATED: This module has been merged into src.tools.validators.syntax_validator
+
+This file is maintained for backwards compatibility only.
+New code should import from src.tools.validators.syntax_validator instead.
+
+Migration:
+    # Old import (deprecated)
+    from src.tools.validators.verify_turtle_syntax import check_turtle_wellformedness
+
+    # New import (preferred)
+    from src.tools.validators.syntax_validator import check_turtle_syntax
+"""
+
 import io
-import os
 import sys
-from pathlib import Path
+import warnings
 
-from rdflib import Graph
-from rdflib.exceptions import ParserError
+# Re-export everything from the new location for backwards compatibility
+from src.tools.validators.syntax_validator import check_turtle_syntax
+from src.tools.validators.syntax_validator import (
+    check_turtle_syntax as check_turtle_wellformedness,
+)
+from src.tools.validators.syntax_validator import (
+    gather_turtle_files,
+    verify_turtle_syntax,
+)
 
-from src.tools.utils import collect_turtle_files, normalize_path_for_display
+warnings.warn(
+    "src.tools.validators.verify_turtle_syntax is deprecated, "
+    "use src.tools.validators.syntax_validator instead",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
-
-def check_turtle_wellformedness(filename, root_dir: Path = None):
-    """
-    Check if a single file contains syntactically correct (well-formed) Turtle.
-
-    This does NOT validate logical consistency or SHACL compliance.
-    It merely ensures the file can be parsed by an RDF parser.
-
-    Returns
-    -------
-    (return_code, message) : (int, str)
-        return_code == 0 if OK, 1 otherwise
-        message is a human-readable status/error message.
-    """
-    # Normalize path for display
-    if root_dir:
-        display_path = normalize_path_for_display(filename, root_dir)
-    else:
-        display_path = str(filename)
-
-    if not os.path.isfile(filename):
-        msg = f"❌ File not found: {display_path}"
-        return 1, msg
-
-    try:
-        g = Graph()
-        # strictly parse as turtle
-        g.parse(filename, format="turtle")
-        msg = f"✅ Syntax OK: {display_path}"
-        return 0, msg
-    except ParserError as e:
-        msg = f"❌ Syntax Error in {display_path}:\n{e}"
-        return 1, msg
-    except Exception as e:
-        msg = f"❌ Unexpected error parsing {display_path}:\n{e}"
-        return 1, msg
-
-
-def gather_turtle_files(paths):
-    """
-    Gather all .ttl files from the given paths.
-
-    For CLI use. Other scripts can call this as well if needed.
-
-    Note: This function now delegates to the central file_collector utility.
-    """
-    return collect_turtle_files(paths, warn_on_invalid=True, return_pathlib=False)
-
-
-def verify_turtle_syntax(paths, root_dir: Path = None):
-    """
-    Verify syntax correctness for all Turtle files found in the given paths.
-
-    Parameters
-    ----------
-    paths : list[str]
-        List of files or directories.
-    root_dir : Path, optional
-        Root directory for normalizing paths in output
-
-    Returns
-    -------
-    (return_code, results) : (int, list[tuple[int, str]])
-        return_code is the aggregated return code (0 if all OK).
-        results is a list of (code, message) for each checked file
-        and global errors like "no files".
-    """
-    results = []
-    files = gather_turtle_files(paths)
-
-    if not files:
-        msg = "⚠️ No Turtle files found to check."
-        results.append((1, msg))
-        return 1, results
-
-    ret = 0
-    for filename in files:
-        filename = os.path.normpath(filename)
-        # Call the renamed function that checks for well-formedness
-        code, msg = check_turtle_wellformedness(filename, root_dir)
-        results.append((code, msg))
-        ret |= code
-
-    return ret, results
+__all__ = [
+    "check_turtle_wellformedness",
+    "check_turtle_syntax",
+    "gather_turtle_files",
+    "verify_turtle_syntax",
+]
 
 
 def main(args=None):
+    """CLI entry point - delegates to syntax_validator."""
+    import argparse
+
+    from src.tools.validators.syntax_validator import verify_turtle_syntax
+
     parser = argparse.ArgumentParser(
         description="Verify syntax correctness (well-formedness) of Turtle files."
     )
