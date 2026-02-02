@@ -9,7 +9,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.envited-x.net:SurfaceModel:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
+  "@id": "did:web:test.surface-model.net:SurfaceModel:test_valid_surface-model_instance",
   "@type": "surface-model:SurfaceModel",
   "surface-model:hasDataResource": {
     "@id": "did:web:registry.envited-x.net::DataResource:q5OkfCSDuJB32KslTNZp1vZ0yL9tM7ayzIe4",
@@ -21,13 +21,13 @@
     "gx:resourcePolicy": "allow",
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": {
-      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
     "gx:producedBy": {
-      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
     "gx:exposedThrough": {
-      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
       "@type": "gx:DataExchangeComponent"
     }
   },
@@ -153,7 +153,7 @@
   "surface-model:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3"
+      "@id": "did:web:test.fixture.net:Manifest:test_surface-model_manifest_reference"
     },
     "skos:note": {
       "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",

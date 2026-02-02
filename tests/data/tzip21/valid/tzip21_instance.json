@@ -4,7 +4,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "did:web:registry.envited-x.net:Asset:TestfeldNiedersachsen_ALKS_ODR_sample",
+  "@id": "did:web:test.tzip21.net:Asset:test_valid_tzip21_instance",
   "@type": "tzip21:Asset",
   "tzip21:name": {
     "@value": "TestfeldNiedersachsen_ALKS_ODR_sample",
@@ -271,7 +271,7 @@
     }
   ],
   "gx:providedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:serviceOfferingTermsAndConditions": [
     {

@@ -5,11 +5,10 @@ Registry Update Script for Ontology Management Base.
 This script generates/updates:
   1. docs/registry.json - Maps ontology domains to their artifact locations
   2. artifacts/catalog-v001.xml - OASIS XML Catalog for ontology resolution
-  3. tests/fixtures/catalog-v001.xml - OASIS XML Catalog for test fixture resolution
+  3. tests/catalog-v001.xml - Unified test catalog (test data + fixtures)
 
 Usage:
-    python -m src.tools.utils/registry_updater [--release-tag TAG]
-    python src/tools/utils/registry_updater.py [--release-tag TAG]
+    python -m src.tools.utils.registry_updater [--release-tag TAG]
 
 The script scans artifacts/ to discover ontologies and their files,
 and tests/fixtures/ to discover test fixture references, then updates
@@ -41,9 +40,11 @@ ROOT_DIR = Path(__file__).parent.parent.parent.parent.resolve()
 ARTIFACTS_DIR = ROOT_DIR / "artifacts"
 TESTS_DATA_DIR = ROOT_DIR / "tests" / "data"
 FIXTURES_DIR = ROOT_DIR / "tests" / "fixtures"
+IMPORTS_DIR = ROOT_DIR / "imports"
 REGISTRY_PATH = ROOT_DIR / "docs" / "registry.json"
 CATALOG_PATH = ROOT_DIR / "artifacts" / "catalog-v001.xml"
-FIXTURES_CATALOG_PATH = ROOT_DIR / "tests" / "fixtures" / "catalog-v001.xml"
+TEST_CATALOG_PATH = ROOT_DIR / "tests" / "catalog-v001.xml"
+IMPORTS_CATALOG_PATH = ROOT_DIR / "imports" / "catalog-v001.xml"
 
 REGISTRY_VERSION = "2.0.0"  # Bumped for new structure
 
@@ -237,10 +238,17 @@ def load_existing_registry() -> dict:
     }
 
 
-def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
+def update_registry(
+    release_tag: str, ontologies: Dict[str, dict], base_ontologies: list[str] = None
+) -> dict:
     """
     Update registry with new release information.
     Preserves historical versions while adding new mappings.
+
+    Args:
+        release_tag: Git release tag
+        ontologies: Dict of discovered ontologies
+        base_ontologies: List of base ontology paths from imports/
     """
     registry = load_existing_registry()
 
@@ -251,6 +259,10 @@ def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
     registry["version"] = REGISTRY_VERSION
     # Note: generated timestamp will be updated later only if there are changes
     registry["latestRelease"] = release_tag
+
+    # Add base ontologies if provided
+    if base_ontologies is not None:
+        registry["base_ontologies"] = base_ontologies
 
     # Update each ontology
     for domain, files in ontologies.items():
@@ -508,15 +520,149 @@ def discover_fixtures() -> Dict[str, str]:
     return fixtures
 
 
-def generate_fixtures_catalog(fixtures: Dict[str, str]) -> str:
+def discover_base_ontologies() -> list[str]:
     """
-    Generate OASIS XML Catalog for test fixture resolution.
+    Discover base ontologies from imports/catalog-v001.xml.
 
-    Maps did:web IRIs to local fixture JSON-LD files.
-    Enables validators to resolve external references during testing.
+    Reads the imports catalog to find all registered base ontologies
+    (RDF, RDFS, OWL, SKOS, etc.) and returns their file paths.
+
+    Returns:
+        List of repository-relative paths to base ontology files
+    """
+    base_ontologies = []
+
+    if not IMPORTS_CATALOG_PATH.exists():
+        print(f"⚠️  Warning: imports catalog not found: {IMPORTS_CATALOG_PATH}")
+        return base_ontologies
+
+    try:
+        tree = ET.parse(IMPORTS_CATALOG_PATH)
+        root = tree.getroot()
+        ns = {"cat": "urn:oasis:names:tc:entity:xmlns:xml:catalog"}
+
+        # Extract all URI mappings from the catalog
+        for uri_elem in root.findall("cat:uri", ns):
+            relative_path = uri_elem.get("uri")
+            if relative_path:
+                # Convert to repository-relative path
+                repo_relative = f"imports/{relative_path}"
+                # Verify file exists
+                if (ROOT_DIR / repo_relative).exists():
+                    base_ontologies.append(repo_relative)
+
+        # Also try without namespace prefix (for backward compatibility)
+        if not base_ontologies:
+            for uri_elem in root.findall("uri"):
+                relative_path = uri_elem.get("uri")
+                if relative_path:
+                    repo_relative = f"imports/{relative_path}"
+                    if (ROOT_DIR / repo_relative).exists():
+                        base_ontologies.append(repo_relative)
+
+    except Exception as e:
+        print(f"⚠️  Warning: Could not parse imports catalog: {e}")
+
+    return sorted(base_ontologies)
+
+
+def discover_test_data() -> Dict[str, dict]:
+    """
+    Discover test data files and extract their metadata.
+
+    Scans tests/data/ for JSON-LD files organized as:
+      tests/data/{domain}/{valid|invalid}/*.json
+
+    Supports both flat structure and @graph structure:
+      - Flat: Single entity with @id at root level
+      - @graph: Multiple entities in @graph array, plus optional document @id
+
+    For @graph files, creates catalog entries for:
+      - Each entity within the @graph array (by their @id)
+      - The document itself (by root @id, if present)
+
+    Returns:
+        Dict mapping test @id to metadata (path, domain, test_type)
+    """
+    test_data = {}
+
+    if not TESTS_DATA_DIR.exists():
+        print(f"⚠️  Warning: tests/data directory not found: {TESTS_DATA_DIR}")
+        return test_data
+
+    # Find all JSON files in test data directory
+    for test_file in sorted(TESTS_DATA_DIR.rglob("*.json")):
+        try:
+            with test_file.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            # Extract metadata from path
+            parts = test_file.parts
+            data_idx = parts.index("data")
+            domain = parts[data_idx + 1]
+            test_type = parts[data_idx + 2]  # "valid" or "invalid"
+
+            # Store relative to repo root
+            rel_path = test_file.relative_to(ROOT_DIR)
+
+            # Check if file uses @graph structure (named graph with multiple entities)
+            if "@graph" in data and isinstance(data["@graph"], list):
+                entity_count = 0
+
+                # Index each entity in the graph by its @id
+                for entity in data["@graph"]:
+                    entity_id = entity.get("@id")
+                    if entity_id:
+                        test_data[entity_id] = {
+                            "path": str(rel_path),
+                            "domain": domain,
+                            "test_type": test_type,
+                            "category": "test-data",
+                        }
+                        entity_count += 1
+
+                # Also index the document/graph itself if it has a root @id
+                doc_id = data.get("@id")
+                if doc_id:
+                    test_data[doc_id] = {
+                        "path": str(rel_path),
+                        "domain": domain,
+                        "test_type": test_type,
+                        "category": "test-data",
+                    }
+                    entity_count += 1
+
+                if entity_count == 0:
+                    print(
+                        f"⚠️  Warning: @graph present but no @id found in {test_file.name}"
+                    )
+            else:
+                # Flat structure - single entity with @id at root
+                test_id = data.get("@id")
+                if not test_id:
+                    print(f"⚠️  Warning: No @id found in {test_file.name}")
+                    continue
+
+                test_data[test_id] = {
+                    "path": str(rel_path),
+                    "domain": domain,
+                    "test_type": test_type,
+                    "category": "test-data",
+                }
+
+        except Exception as e:
+            print(f"⚠️  Warning: Could not parse {test_file.name}: {e}")
+
+    return test_data
+
+
+def generate_test_catalog(test_data: Dict[str, dict], fixtures: Dict[str, str]) -> str:
+    """
+    Generate unified test catalog including both test data and fixtures.
 
     Args:
-        fixtures: Dict mapping IRI to relative filename
+        test_data: Dict mapping test @id to metadata
+        fixtures: Dict mapping fixture @id to relative filename
 
     Returns:
         The formatted XML string
@@ -526,61 +672,89 @@ def generate_fixtures_catalog(fixtures: Dict[str, str]) -> str:
 
     # Add header comment
     comment = ET.Comment(
-        "OASIS XML Catalog for Test Fixture Resolution\n"
-        "    Maps test fixture did:web IRIs to local JSON-LD files\n"
-        "    Used by validators to resolve external references in test data\n"
-        "    Auto-generated by utils/registry_updater.py - do not edit manually"
+        "\n"
+        "    Unified Test Catalog for Ontology Management Base\n"
+        "    \n"
+        "    This catalog maps test instance did:web IRIs to local files.\n"
+        "    Includes both test data (valid/invalid) and test fixtures.\n"
+        "    \n"
+        "    Structure:\n"
+        "    - Test Data: tests/data/{domain}/{valid|invalid}/*.json\n"
+        "    - Test Fixtures: tests/fixtures/*.json\n"
+        "    \n"
+        "    Auto-generated by registry_updater.py - do not edit manually\n"
+        "  "
     )
     catalog.append(comment)
 
-    # Sort fixtures by IRI for consistency
-    sorted_fixtures = sorted(fixtures.items(), key=lambda x: x[0])
+    # Collect all entries
+    entries = []
 
-    # Add URI mappings
-    for iri, filename in sorted_fixtures:
+    # Add fixtures
+    for iri, filename in fixtures.items():
+        entries.append(
+            {
+                "id": iri,
+                "uri": f"tests/fixtures/{filename}",
+                "domain": "fixture",
+                "test-type": "fixture",
+                "category": "fixture",
+            }
+        )
+
+    # Add test data
+    for test_id, metadata in test_data.items():
+        entries.append(
+            {
+                "id": test_id,
+                "uri": metadata["path"],
+                "domain": metadata["domain"],
+                "test-type": metadata["test_type"],
+                "category": metadata["category"],
+            }
+        )
+
+    # Sort entries by ID for consistency
+    entries.sort(key=lambda x: x["id"])
+
+    # Add URI elements with metadata
+    for entry in entries:
         uri_elem = ET.SubElement(catalog, "uri")
-        uri_elem.set("name", iri)
-        uri_elem.set("uri", filename)
+        uri_elem.set("name", entry["id"])
+        uri_elem.set("uri", entry["uri"])
+        uri_elem.set("domain", entry["domain"])
+        uri_elem.set("test-type", entry["test-type"])
+        uri_elem.set("category", entry["category"])
 
-    # Format XML with proper indentation and declaration
+    # Format XML with proper indentation
     xml_str = ET.tostring(catalog, encoding="unicode")
-
-    # Parse and pretty-print
     dom = minidom.parseString(xml_str)
-    pretty_xml = dom.toprettyxml(indent="  ", encoding="UTF-8")
+    pretty_xml = dom.toprettyxml(indent="  ")
 
-    # Decode and remove extra blank lines
-    pretty_str = (
-        pretty_xml.decode("utf-8") if isinstance(pretty_xml, bytes) else pretty_xml
-    )
+    # Clean up extra whitespace and build final output
+    lines = [line for line in pretty_xml.split("\n") if line.strip()]
 
-    # Add XML declaration and DOCTYPE
-    xml_lines = pretty_str.split("\n")
     result_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"',
         '  "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">',
     ]
 
-    # Add the catalog element (skip the duplicate XML declaration from minidom)
-    for line in xml_lines:
-        if line.startswith("<?xml") or line.startswith("<!DOCTYPE"):
-            continue
-        if line.strip():
+    for line in lines:
+        if not line.startswith("<?xml"):
             result_lines.append(line)
 
     return "\n".join(result_lines) + "\n"
 
 
-def write_fixtures_catalog(catalog_xml: str) -> None:
-    """Write fixtures XML catalog to file."""
-    # Ensure fixtures directory exists
-    FIXTURES_CATALOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+def write_test_catalog(catalog_xml: str) -> None:
+    """Write unified test catalog to file."""
+    TEST_CATALOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    with FIXTURES_CATALOG_PATH.open("w", encoding="utf-8") as f:
+    with TEST_CATALOG_PATH.open("w", encoding="utf-8") as f:
         f.write(catalog_xml)
 
-    print(f"✅ Fixtures catalog generated: {FIXTURES_CATALOG_PATH}")
+    print(f"✅ Test catalog generated: {TEST_CATALOG_PATH}")
 
 
 def main():
@@ -614,13 +788,23 @@ def main():
         f"✅ Found {len(ontologies)} ontologies: {', '.join(sorted(ontologies.keys()))}"
     )
 
+    # Discover base ontologies from imports catalog
+    print("🔍 Discovering base ontologies from imports/catalog-v001.xml...")
+    base_ontologies = discover_base_ontologies()
+    print(f"✅ Found {len(base_ontologies)} base ontologies")
+
     # Update registry
     print(f"📝 Updating registry with release tag: {args.release_tag}")
-    registry = update_registry(args.release_tag, ontologies)
+    registry = update_registry(args.release_tag, ontologies, base_ontologies)
 
     # Generate catalog
     print("📋 Generating XML catalog for ontology resolution...")
     catalog_xml = generate_catalog(ontologies, registry)
+
+    # Discover test data
+    print("🔍 Discovering test data from tests/data/...")
+    test_data = discover_test_data()
+    print(f"✅ Found {len(test_data)} test data files")
 
     # Discover fixtures
     print("🔍 Discovering test fixtures from tests/fixtures/...")
@@ -629,21 +813,21 @@ def main():
         f"✅ Found {len(fixtures)} fixtures: {', '.join(sorted(Path(f).stem for f in fixtures.values()))}"
     )
 
-    # Generate fixtures catalog
-    print("📋 Generating XML catalog for fixture resolution...")
-    fixtures_catalog_xml = generate_fixtures_catalog(fixtures)
+    # Generate unified test catalog
+    print("📋 Generating unified test catalog (data + fixtures)...")
+    test_catalog_xml = generate_test_catalog(test_data, fixtures)
 
     if args.dry_run:
         print("\n--- Registry (dry run) ---")
         print(json.dumps(registry, indent=2))
         print("\n--- Catalog (dry run) ---")
         print(catalog_xml)
-        print("\n--- Fixtures Catalog (dry run) ---")
-        print(fixtures_catalog_xml)
+        print("\n--- Test Catalog (dry run) ---")
+        print(test_catalog_xml[:1000] + "...")
     else:
         write_registry(registry)
         write_catalog(catalog_xml)
-        write_fixtures_catalog(fixtures_catalog_xml)
+        write_test_catalog(test_catalog_xml)
         print("\n✅ Update complete!")
 
 

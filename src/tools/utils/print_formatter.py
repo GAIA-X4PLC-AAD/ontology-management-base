@@ -110,7 +110,7 @@ def _extract_and_sort_errors(report_graph: Graph):
     return error_rows
 
 
-def format_validate_artifact_coherence_result(
+def format_artifact_coherence_result(
     ontology_file, num_onto, num_shacl, matches, missing, recovered, extra
 ):
     """Formats validation summary using consistent boxed alignment."""
@@ -139,7 +139,7 @@ def format_validate_artifact_coherence_result(
     return buf.getvalue().strip()
 
 
-def print_validation_result(
+def format_data_conformance_result(
     success, onto_files=None, v_text="", report_graph=None, exit_code=None, file=None
 ):
     width, file = 150, file or sys.stdout
@@ -207,7 +207,10 @@ def print_validation_result(
         sys.exit(exit_code)
 
 
-def print_validate_jsonld_against_shacl_result(
+def format_shacl_validation_result(
     success, onto_files=None, v_text="", report_graph=None, exit_code=None, file=None
 ):
-    print_validation_result(success, onto_files, v_text, report_graph, exit_code, file)
+    """Alias for format_data_conformance_result() for backwards compatibility."""
+    format_data_conformance_result(
+        success, onto_files, v_text, report_graph, exit_code, file
+    )

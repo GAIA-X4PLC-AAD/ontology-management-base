@@ -5,7 +5,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "did:web:registry.gaia-x.eu:SimulatedSensor:B6gYmAU2PiHe8c3aqSbazCkrE7sUfCkRPFv2",
+  "@id": "did:web:test.simulated-sensor.net:SimulatedSensor:test_valid_simulated-sensor_instance",
   "@type": "simulated-sensor:SimulatedSensor",
   "simulated-sensor:sensorType": {
     "@type": "simulated-sensor:Radar",
@@ -32,14 +32,14 @@
   "simulated-sensor:sensorIdentifier": "sensor.other.radar",
   "simulated-sensor:mountingPosition": "Front-mid",
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:exposedThrough": {
-    "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+    "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
     "@type": "gx:DataExchangeComponent"
   },
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:license": "EPL-2.0",
   "gx:containsPII": false,

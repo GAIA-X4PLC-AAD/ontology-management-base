@@ -45,6 +45,7 @@ from typing import Dict, List, Optional, Set, Tuple
 class RegistryResolver:
     """
     Resolves ontology files using docs/registry.json.
+    Loads fixture mappings from unified test catalog (tests/catalog-v001.xml).
 
     Usage:
         resolver = RegistryResolver(root_dir="/path/to/repo")
@@ -62,11 +63,12 @@ class RegistryResolver:
         """
         self.root_dir = Path(root_dir or Path.cwd()).resolve()
         self._registry: Dict = {}
-        self._fixtures_catalog: Dict[str, str] = {}
+        self._catalog: Dict[str, Dict] = {}  # Full catalog (test-data + fixtures)
+        self._fixtures_catalog: Dict[str, str] = {}  # Legacy: fixture IRIs only
         self._iri_to_domain: Dict[str, str] = {}
 
         self._load_registry()
-        self._load_fixtures_catalog()
+        self._load_catalog()  # Replaces _load_fixtures_catalog
         self._build_iri_index()
 
     def _load_registry(self) -> None:
@@ -82,9 +84,19 @@ class RegistryResolver:
         except Exception as e:
             warnings.warn(f"Could not load registry: {e}")
 
-    def _load_fixtures_catalog(self) -> None:
-        """Load tests/fixtures/catalog-v001.xml for fixture IRI resolution."""
-        catalog_path = self.root_dir / "tests" / "fixtures" / "catalog-v001.xml"
+    def _load_catalog(self) -> None:
+        """
+        Load unified test catalog for test data discovery and fixture resolution.
+
+        Loads all catalog entries including test-data, fixtures, and other categories.
+        Maintains backward compatibility with _fixtures_catalog for fixture IRI resolution.
+        """
+        catalog_path = self.root_dir / "tests" / "catalog-v001.xml"
+
+        # Fallback to legacy fixtures catalog if unified doesn't exist
+        if not catalog_path.exists():
+            catalog_path = self.root_dir / "tests" / "fixtures" / "catalog-v001.xml"
+
         if not catalog_path.exists():
             return
 
@@ -93,22 +105,51 @@ class RegistryResolver:
             root = tree.getroot()
             ns = {"cat": "urn:oasis:names:tc:entity:xmlns:xml:catalog"}
 
+            # Parse with namespace first
             for uri_elem in root.findall("cat:uri", ns):
-                iri = uri_elem.get("name")
-                relative_path = uri_elem.get("uri")
-                if iri and relative_path:
-                    # Store as relative to tests/fixtures/
-                    self._fixtures_catalog[iri] = f"tests/fixtures/{relative_path}"
+                test_id = uri_elem.get("name")
+                path = uri_elem.get("uri")
+                domain = uri_elem.get("domain")
+                test_type = uri_elem.get("test-type")
+                category = uri_elem.get("category")
 
-            # Also try without namespace
-            for uri_elem in root.findall("uri"):
-                iri = uri_elem.get("name")
-                relative_path = uri_elem.get("uri")
-                if iri and relative_path:
-                    self._fixtures_catalog[iri] = f"tests/fixtures/{relative_path}"
+                if test_id and path:
+                    self._catalog[test_id] = {
+                        "path": path,
+                        "domain": domain,
+                        "test_type": test_type,
+                        "category": category,
+                    }
+
+                    # Maintain legacy fixtures catalog for IRI resolution
+                    if category == "fixture":
+                        self._fixtures_catalog[test_id] = path
+
+            # Try without namespace if nothing found
+            if not self._catalog:
+                for uri_elem in root.findall("uri"):
+                    test_id = uri_elem.get("name")
+                    path = uri_elem.get("uri")
+                    domain = uri_elem.get("domain")
+                    test_type = uri_elem.get("test-type")
+                    category = uri_elem.get("category")
+
+                    if test_id and path:
+                        self._catalog[test_id] = {
+                            "path": path,
+                            "domain": domain,
+                            "test_type": test_type,
+                            "category": category,
+                        }
+
+                        # Legacy fixture handling
+                        if not category or category == "fixture":
+                            if not path.startswith("tests/"):
+                                path = f"tests/fixtures/{path}"
+                            self._fixtures_catalog[test_id] = path
 
         except Exception as e:
-            warnings.warn(f"Could not parse fixtures catalog: {e}")
+            warnings.warn(f"Could not parse test catalog: {e}")
 
     def _build_iri_index(self) -> None:
         """Build IRI -> domain mapping from registry."""
@@ -233,6 +274,151 @@ class RegistryResolver:
         if domain not in ontologies:
             return None
         return ontologies[domain].get("iri")
+
+    def get_base_ontology_paths(self) -> List[str]:
+        """
+        Get paths to base ontologies required for RDFS inference.
+
+        Base ontologies (RDF, RDFS, OWL, SKOS, etc.) are registered in
+        the imports/ directory and listed in the registry's base_ontologies section.
+
+        Returns:
+            List of repository-relative paths to base ontology files
+        """
+        base_ontologies = self._registry.get("base_ontologies", [])
+        # Return sorted and deduplicated list
+        return sorted(set(base_ontologies))
+
+    # =========================================================================
+    # Test Catalog Methods
+    # =========================================================================
+
+    def get_test_files(
+        self, domain: str, test_type: str = None, category: str = "test-data"
+    ) -> List[Path]:
+        """
+        Get test files for a specific domain from the catalog.
+
+        Args:
+            domain: Domain name (e.g., "scenario", "manifest")
+            test_type: Optional filter: "valid", "invalid", "custom", or None for all
+            category: Category filter: "test-data" (default), "fixture", etc.
+
+        Returns:
+            List of absolute paths to test files
+        """
+        test_files = []
+
+        for test_id, metadata in self._catalog.items():
+            if (
+                metadata.get("category") == category
+                and metadata.get("domain") == domain
+            ):
+                if test_type is None or metadata.get("test_type") == test_type:
+                    file_path = self.root_dir / metadata["path"]
+                    if file_path.exists():
+                        test_files.append(file_path)
+
+        return sorted(test_files)
+
+    def get_test_domains(self, category: str = "test-data") -> List[str]:
+        """
+        Get list of all test domains in the catalog.
+
+        Args:
+            category: Category filter (default: "test-data")
+
+        Returns:
+            Sorted list of domain names
+        """
+        domains = set()
+        for metadata in self._catalog.values():
+            if metadata.get("category") == category:
+                domain = metadata.get("domain")
+                if domain:
+                    domains.add(domain)
+        return sorted(domains)
+
+    def is_catalog_loaded(self) -> bool:
+        """
+        Check if catalog is loaded and has entries.
+
+        Returns:
+            True if catalog has entries, False otherwise
+        """
+        return len(self._catalog) > 0
+
+    def add_temporary_test_entries(
+        self, domain: str, file_paths: List[Path], test_type: str = "valid"
+    ) -> None:
+        """
+        Add temporary catalog entries for custom file paths.
+
+        Useful for validating arbitrary files using catalog infrastructure.
+
+        Args:
+            domain: Temporary domain name to use
+            file_paths: List of file paths to add to catalog
+            test_type: Test type identifier (default: "valid")
+        """
+        for i, file_path in enumerate(file_paths):
+            file_path = Path(file_path)
+            if not file_path.is_absolute():
+                file_path = (self.root_dir / file_path).resolve()
+
+            # Create relative path from root
+            try:
+                rel_path = file_path.relative_to(self.root_dir)
+            except ValueError:
+                # File is outside repo, use absolute path
+                rel_path = file_path
+
+            test_id = f"temporary:{domain}:file{i:03d}"
+            self._catalog[test_id] = {
+                "path": str(rel_path),
+                "domain": domain,
+                "test_type": test_type,
+                "category": "test-data",
+            }
+
+    def create_temporary_domain(self, paths: List[str]) -> Optional[str]:
+        """
+        Create a temporary domain from file paths for validation.
+
+        Collects JSON-LD files from paths and adds them as temporary catalog entries.
+
+        Args:
+            paths: List of file or directory paths
+
+        Returns:
+            Temporary domain name, or None if no files found
+        """
+        import hashlib
+
+        from src.tools.validators.validate_data_conformance import collect_jsonld_files
+
+        # Generate unique domain name from paths
+        path_hash = hashlib.md5("|".join(sorted(paths)).encode()).hexdigest()[:8]
+        temp_domain = f"custom-path-{path_hash}"
+
+        # Collect all JSON-LD files from provided paths
+        jsonld_files = collect_jsonld_files(paths)
+
+        if not jsonld_files:
+            return None
+
+        # Convert to Path objects
+        file_paths = [Path(f) for f in jsonld_files]
+
+        # Add temporary entries to catalog
+        self.add_temporary_test_entries(temp_domain, file_paths, test_type="valid")
+
+        print(
+            f"📋 Created temporary domain '{temp_domain}' with {len(file_paths)} file(s)",
+            flush=True,
+        )
+
+        return temp_domain
 
     # =========================================================================
     # Bulk Accessors
@@ -366,23 +552,6 @@ class RegistryResolver:
                 shacl_paths.extend(self.get_shacl_paths(domain))
 
         return sorted(set(ontology_paths)), sorted(set(shacl_paths))
-
-    def get_base_ontology_paths(self) -> List[str]:
-        """
-        Get paths to base ontologies (RDF, RDFS, OWL, SKOS).
-
-        These are required for RDFS inference and SHACL validation.
-
-        Returns:
-            List of repository-relative paths to base ontology files
-        """
-        base_files = [
-            "imports/rdf/rdf.owl.ttl",
-            "imports/rdfs/rdfs.owl.ttl",
-            "imports/owl/owl.owl.ttl",
-            "imports/skos/skos.owl.ttl",
-        ]
-        return [f for f in base_files if (self.root_dir / f).exists()]
 
     # =========================================================================
     # Info Methods

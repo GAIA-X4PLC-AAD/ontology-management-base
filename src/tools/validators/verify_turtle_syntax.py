@@ -3,14 +3,16 @@ import argparse
 import io
 import os
 import sys
+from pathlib import Path
 
 from rdflib import Graph
 from rdflib.exceptions import ParserError
 
 from src.tools.utils.file_collector import collect_turtle_files
+from src.tools.utils.print_formatter import normalize_path_for_display
 
 
-def check_turtle_wellformedness(filename):
+def check_turtle_wellformedness(filename, root_dir: Path = None):
     """
     Check if a single file contains syntactically correct (well-formed) Turtle.
 
@@ -23,21 +25,27 @@ def check_turtle_wellformedness(filename):
         return_code == 0 if OK, 1 otherwise
         message is a human-readable status/error message.
     """
+    # Normalize path for display
+    if root_dir:
+        display_path = normalize_path_for_display(filename, root_dir)
+    else:
+        display_path = str(filename)
+
     if not os.path.isfile(filename):
-        msg = f"❌ File not found: {filename}"
+        msg = f"❌ File not found: {display_path}"
         return 1, msg
 
     try:
         g = Graph()
         # strictly parse as turtle
         g.parse(filename, format="turtle")
-        msg = f"✅ Syntax OK: {filename}"
+        msg = f"✅ Syntax OK: {display_path}"
         return 0, msg
     except ParserError as e:
-        msg = f"❌ Syntax Error in {filename}:\n{e}"
+        msg = f"❌ Syntax Error in {display_path}:\n{e}"
         return 1, msg
     except Exception as e:
-        msg = f"❌ Unexpected error parsing {filename}:\n{e}"
+        msg = f"❌ Unexpected error parsing {display_path}:\n{e}"
         return 1, msg
 
 
@@ -52,7 +60,7 @@ def gather_turtle_files(paths):
     return collect_turtle_files(paths, warn_on_invalid=True, return_pathlib=False)
 
 
-def verify_turtle_syntax(paths):
+def verify_turtle_syntax(paths, root_dir: Path = None):
     """
     Verify syntax correctness for all Turtle files found in the given paths.
 
@@ -60,6 +68,8 @@ def verify_turtle_syntax(paths):
     ----------
     paths : list[str]
         List of files or directories.
+    root_dir : Path, optional
+        Root directory for normalizing paths in output
 
     Returns
     -------
@@ -80,7 +90,7 @@ def verify_turtle_syntax(paths):
     for filename in files:
         filename = os.path.normpath(filename)
         # Call the renamed function that checks for well-formedness
-        code, msg = check_turtle_wellformedness(filename)
+        code, msg = check_turtle_wellformedness(filename, root_dir)
         results.append((code, msg))
         ret |= code
 

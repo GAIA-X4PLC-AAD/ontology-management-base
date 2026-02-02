@@ -8,12 +8,12 @@
   },
   "@graph": [
     {
-      "@id": "https://www.gaia-x4plcaad.info/claims/data-resource/46a1daa4-d7f6-4844-bf70-55675bdb23b3",
+      "@id": "did:web:test.gx.net:DataResource:test_valid_gx_data_resource",
       "@type": "gx:DataResource",
       "schema:name": "Generated Data Resource",
       "schema:description": "Generated description.",
       "gx:copyrightOwnedBy": {
-        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+        "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
       },
       "gx:license": "EPL-2.0",
       "gx:obsoleteDateTime": {
@@ -27,20 +27,20 @@
       "gx:containsPII": false,
       "gx:resourcePolicy": "package access_control; default allow = false;",
       "gx:producedBy": {
-        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+        "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
       },
       "gx:exposedThrough": {
-        "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3"
+        "@id": "did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering"
       }
     },
     {
-      "@id": "https://www.gaia-x4plcaad.info/claims/service-offering/46a1daa4-d7f6-4844-bf70-55675bdb23b3",
+      "@id": "did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering",
       "@type": [
         "gx:ServiceOffering",
         "gx:DataExchangeComponent"
       ],
       "gx:providedBy": {
-        "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+        "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
       },
       "gx:servicePolicy": {
         "@type": "gx:AccessUsagePolicy",

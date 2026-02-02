@@ -5,7 +5,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "did:web:registry.gaia-x.eu:Service:ocneDSjk294DNJe7dh893Djndj93DN89jhDj",
+  "@id": "did:web:test.service.net:Service:test_valid_service_instance",
   "@type": "service:Service",
   "service:general": {
     "@type": "general:General",
@@ -37,10 +37,10 @@
   "gx:resourcePolicy": "allow",
   "gx:containsPII": false,
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "service:requiredFile": [
     {

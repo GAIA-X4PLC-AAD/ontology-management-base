@@ -69,8 +69,9 @@ def get_base_ontology_paths(root_dir: Path) -> List[str]:
     """
     Return paths to base ontologies required for RDFS inference.
 
-    These ontologies (RDF, RDFS, OWL, SKOS) provide the vocabulary
-    definitions needed for inference and SHACL validation.
+    Base ontologies are discovered from the registry, which reads them
+    from imports/catalog-v001.xml. This provides the vocabulary definitions
+    (RDF, RDFS, OWL, SKOS, etc.) needed for inference and SHACL validation.
 
     Args:
         root_dir: Repository root directory
@@ -78,15 +79,9 @@ def get_base_ontology_paths(root_dir: Path) -> List[str]:
     Returns:
         List of repository-relative paths to base ontology files
     """
-    base_files = [
-        "imports/rdf/rdf.owl.ttl",
-        "imports/rdfs/rdfs.owl.ttl",
-        "imports/owl/owl.owl.ttl",
-        "imports/skos/skos.owl.ttl",
-    ]
-
-    # Filter to only existing files
-    return [f for f in base_files if (root_dir / f).exists()]
+    # Use RegistryResolver to get base ontologies from catalog
+    resolver = RegistryResolver(root_dir)
+    return resolver.get_base_ontology_paths()
 
 
 def get_domains_for_types(rdf_types: Set[str], resolver: RegistryResolver) -> Set[str]:

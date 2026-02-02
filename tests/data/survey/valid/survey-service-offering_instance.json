@@ -6,7 +6,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw",
+  "@id": "did:web:test.survey.net:Survey:test_valid_survey-service-offering_instance",
   "@type": "survey:SurveyServiceOffering",
   "survey:surveyUrl": {
     "@value": "https://web-mpc.gxfs.gx4fm.org/?session=qrsg5sp6n1cs1172kd8q80q0e8&participationCode=7ab1ch5r8gc7e299zb0psa0t0c",
@@ -43,10 +43,10 @@
     }
   },
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:license": "EPL-2.0",
   "gx:resourcePolicy": "allow intent",

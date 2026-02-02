@@ -11,7 +11,7 @@
     "sh": "http://www.w3.org/ns/shacl#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.envited-x.net:Scenario:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
+  "@id": "did:web:test.scenario.net:Scenario:test_valid_scenario_instance",
   "@type": "scenario:Scenario",
   "scenario:hasDataResource": {
     "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
@@ -23,13 +23,13 @@
     "gx:resourcePolicy": "allow",
     "gx:containsPII": false,
     "gx:copyrightOwnedBy": {
-      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
     "gx:producedBy": {
-      "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
     "gx:exposedThrough": {
-      "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+      "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
       "@type": "gx:DataExchangeComponent"
     }
   },
@@ -208,7 +208,7 @@
   "scenario:hasManifest": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net:Manifest:Rp5Ny9lS8DcK3hB2uQ0fTm7jW4vXz1YgRkE6"
+      "@id": "did:web:test.fixture.net:Manifest:test_scenario_manifest_reference"
     },
     "skos:note": {
       "@value": "Reference to the scenario manifest.",

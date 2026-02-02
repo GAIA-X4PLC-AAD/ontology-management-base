@@ -16,9 +16,9 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from rdflib import Graph
 
-from src.tools.utils.print_formatting import (
+from src.tools.utils.print_formatter import (
+    format_shacl_validation_result,
     normalize_path_for_display,
-    print_validate_jsonld_against_shacl_result,
 )
 from src.tools.utils.registry_resolver import RegistryResolver
 
@@ -289,7 +289,7 @@ class ShaclValidator:
             Formatted string output
         """
         output_buffer = StringIO()
-        print_validate_jsonld_against_shacl_result(
+        format_shacl_validation_result(
             result.conforms,
             result.files_validated,
             "" if not result.conforms else result.report_text,

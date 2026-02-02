@@ -3,7 +3,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/"
   },
-  "@id": "did:web:registry.gaia-x.eu:General:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw",
+  "@id": "did:web:test.general.net:General:test_valid_general_instance",
   "@type": "general:General",
   "general:description": {
     "@type": "general:Description",

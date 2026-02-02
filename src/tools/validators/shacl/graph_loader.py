@@ -14,7 +14,7 @@ from typing import Dict, List, Set, Tuple
 import rdflib
 from rdflib import Graph
 
-from src.tools.utils.print_formatting import normalize_path_for_display
+from src.tools.utils.print_formatter import normalize_path_for_display
 from src.tools.utils.registry_resolver import RegistryResolver
 
 # Try to import performance optimization

@@ -31,6 +31,7 @@ from .file_collector import (
     collect_jsonld_files,
     collect_turtle_files,
 )
+from .print_formatter import normalize_path_for_display
 from .registry_resolver import RegistryResolver
 
 __all__ = [
@@ -38,4 +39,5 @@ __all__ = [
     "collect_files_by_extension",
     "collect_jsonld_files",
     "collect_turtle_files",
+    "normalize_path_for_display",
 ]

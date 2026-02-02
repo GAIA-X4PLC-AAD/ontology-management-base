@@ -7,7 +7,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:registry.envited-x.net:Manifest:J8RmXyZ6pQvL2NfKsT5DwV9mC0bY7AeGzOq3",
+  "@id": "did:web:test.fixture.net:Manifest:test_surface-model_manifest_reference",
   "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",

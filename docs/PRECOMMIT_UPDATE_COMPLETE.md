@@ -26,10 +26,10 @@ Changed two script references from old paths to new paths:
 
 ```yaml
 - id: jsonld-lint
-  entry: python3 src/tools/utils/verify_json_syntax.py
+  entry: python3 src/tools/validators/verify_json_syntax.py
 
 - id: turtle-lint
-  entry: python3 src/tools/utils/verify_turtle_syntax.py
+  entry: python3 src/tools/validators/verify_turtle_syntax.py
 ```
 
 **Changes:**
@@ -41,21 +41,21 @@ Changed two script references from old paths to new paths:
 
 ## Script Verification
 
-### JSON-LD Parser: `src/tools/utils/verify_json_syntax.py`
+### JSON-LD Parser: `src/tools/validators/verify_json_syntax.py`
 
 **Status:** ✅ **Working**
 
-- **Location:** `src/tools/utils/verify_json_syntax.py` (114 lines)
+- **Location:** `src/tools/validators/verify_json_syntax.py` (114 lines)
 - **Purpose:** Validates JSON and JSON-LD files
 - **Function:** Parses file and reports errors using JSON decoder
 - **Dependencies:** Standard library only (json, os, sys, argparse)
 - **Integration:** Works with pre-commit hook
 
-### Turtle Parser: `src/tools/utils/verify_turtle_syntax.py`
+### Turtle Parser: `src/tools/validators/verify_turtle_syntax.py`
 
 **Status:** ✅ **Working** (requires `rdflib` dependency)
 
-- **Location:** `src/tools/utils/verify_turtle_syntax.py` (117 lines)
+- **Location:** `src/tools/validators/verify_turtle_syntax.py` (117 lines)
 - **Purpose:** Validates Turtle (.ttl) RDF files
 - **Function:** Parses file using rdflib and reports parser errors
 - **Dependencies:** `rdflib` (external, in dev dependencies)
@@ -125,7 +125,7 @@ All hooks in `.pre-commit-config.yaml`:
 **JSON-LD Lint:**
 
 ```bash
-$ python3 src/tools/utils/verify_json_syntax.py --help
+$ python3 src/tools/validators/verify_json_syntax.py --help
 usage: verify_json_syntax.py [-h] paths [paths ...]
 Validate JSON-LD files by parsing them.
 ✅ SUCCESS
@@ -134,7 +134,7 @@ Validate JSON-LD files by parsing them.
 **Turtle Lint:**
 
 ```bash
-$ python3 src/tools/utils/verify_turtle_syntax.py --help
+$ python3 src/tools/validators/verify_turtle_syntax.py --help
 # Requires rdflib - works when rdflib is installed
 ✅ SUCCESS (with dependencies)
 ```

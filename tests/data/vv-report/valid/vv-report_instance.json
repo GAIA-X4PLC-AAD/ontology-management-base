@@ -6,7 +6,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "did:web:registry.gaia-x.eu:VVReport:h4kG79Sk3MvP6WzL5bS8yH3cW1dGf6A8",
+  "@id": "did:web:test.vv-report.net:VVReport:test_valid_vv-report_instance",
   "@type": "vv-report:VvReport",
   "vv-report:general": {
     "@type": "general:General",
@@ -175,14 +175,14 @@
     }
   ],
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:exposedThrough": {
-    "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+    "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
     "@type": "gx:DataExchangeComponent"
   },
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:license": "EPL-2.0",
   "gx:containsPII": false,

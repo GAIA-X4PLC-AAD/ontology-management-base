@@ -5,7 +5,7 @@
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2",
+  "@id": "did:web:test.manifest.net:Manifest:test_valid_manifest_instance",
   "@type": "manifest:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",

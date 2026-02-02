@@ -2,11 +2,13 @@ import glob
 import io
 import os
 import sys
+from pathlib import Path
 
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
-from src.tools.utils.print_formatting import (
-    format_validate_artifact_coherence_result,
+from src.tools.utils.print_formatter import (
+    format_artifact_coherence_result,
+    normalize_path_for_display,
 )
 
 # Define SHACL namespace
@@ -116,6 +118,7 @@ def validate_artifact_coherence(
     owl_dir: str = None,
     shacl_dir: str = None,
     imports_dir: str = None,
+    root_dir: Path = None,
 ) -> tuple[int, str]:
     """
     Validate if all target classes in the SHACL shapes are present in the ontology files.
@@ -125,6 +128,7 @@ def validate_artifact_coherence(
         owl_dir: directory containing ontology directories (default: artifacts)
         shacl_dir: not used (kept for backward compatibility)
         imports_dir: directory containing base ontologies (default: imports)
+        root_dir: repository root directory for normalizing paths in output
 
     Returns:
         Tuple of (return_code, message) where return_code is 0 for success
@@ -138,14 +142,20 @@ def validate_artifact_coherence(
     ontology_file = os.path.join(owl_dir, domain, f"{domain}.owl.ttl")
     shacl_file = os.path.join(owl_dir, domain, f"{domain}.shacl.ttl")
 
+    # Normalize paths for display
+    if root_dir:
+        ont_display = normalize_path_for_display(ontology_file, root_dir)
+        shacl_display = normalize_path_for_display(shacl_file, root_dir)
+    else:
+        ont_display = str(ontology_file)
+        shacl_display = str(shacl_file)
+
     if not os.path.exists(ontology_file):
-        message = f"⚠️  No ontology file found: {ontology_file}. Skipping target class validation."
+        message = f"⚠️  No ontology file found: {ont_display}. Skipping target class validation."
         return 100, message
 
     if not os.path.exists(shacl_file):
-        message = (
-            f"⚠️  No SHACL file found: {shacl_file}. Skipping target class validation."
-        )
+        message = f"⚠️  No SHACL file found: {shacl_display}. Skipping target class validation."
         return 100, message
 
     # Load base classes from imports
@@ -178,8 +188,8 @@ def validate_artifact_coherence(
             recovered_classes.add(missing)
     missing_classes -= recovered_classes
 
-    summary = format_validate_artifact_coherence_result(
-        ontology_file,
+    summary = format_artifact_coherence_result(
+        ont_display,
         len(valid_classes),
         len(shacl_classes),
         matches,
@@ -206,8 +216,11 @@ def main():
     owl_dir = sys.argv[2] if len(sys.argv) > 2 else "artifacts"
     imports_dir = sys.argv[3] if len(sys.argv) > 3 else "imports"
 
+    # Use current working directory as root for path normalization
+    root_dir = Path.cwd()
+
     return_code, message = validate_artifact_coherence(
-        domain, owl_dir, None, imports_dir
+        domain, owl_dir, None, imports_dir, root_dir
     )
 
     if return_code != 0:

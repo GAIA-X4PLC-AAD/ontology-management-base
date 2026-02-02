@@ -6,7 +6,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "https://www.gaia-x4plcaad.info/claims/data-resource/0xy5vhw3heyjqb4d347hc9zrkw",
+  "@id": "did:web:test.survey.net:Survey:test_valid_survey-result-data-offering_instance",
   "@type": "survey:SurveyResultDataOffering",
   "survey:surveyStartTime": {
     "@value": "2023-08-01T15:14:13",
@@ -42,14 +42,14 @@
     }
   },
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:exposedThrough": {
-    "@id": "did:web:github.com:GAIA-X4PLC-AAD:ontology-management-base",
+    "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
     "@type": "gx:DataExchangeComponent"
   },
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:license": "EPL-2.0",
   "gx:containsPII": false,

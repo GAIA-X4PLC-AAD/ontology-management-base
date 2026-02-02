@@ -4,7 +4,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/"
   },
-  "@id": "did:web:registry.gaia-x.eu:ExampleServiceOffering:tbkmzxk9LQZ-6mfDovXUPycG7hpE639RFRFs",
+  "@id": "did:web:test.example.net:ExampleServiceOffering:test_valid_description_instance",
   "@type": "description_ontology:ExampleServiceOffering",
   "description_ontology:property1": [
     {

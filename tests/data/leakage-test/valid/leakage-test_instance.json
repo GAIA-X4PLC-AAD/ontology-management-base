@@ -6,7 +6,7 @@
     "gx": "https://w3id.org/gaia-x/development/",
     "dcterms": "http://purl.org/dc/terms/"
   },
-  "@id": "did:web:registry.gaia-x.eu:LeakageTest:ToPMmddr1jaiN7BOeLS-NdyioTxnZVcjwZnJ",
+  "@id": "did:web:test.leakage-test.net:LeakageTest:test_valid_leakage-test_instance",
   "@type": "leakage-test:LeakageTest",
   "leakage-test:processParameter": {
     "@type": "leakage-test:ProcessParameter",
@@ -84,10 +84,10 @@
     }
   },
   "gx:producedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:copyrightOwnedBy": {
-    "@id": "did:web:registry.gaia-x.eu:participant:GaiaX4PlcAadProjectTeam"
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
   "gx:license": "EPL-2.0",
   "gx:resourcePolicy": "allow intent",

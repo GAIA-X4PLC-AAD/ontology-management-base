@@ -3,7 +3,7 @@
     "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
-  "@id": "did:web:registry.envited-x.net:Georeference:B67seBpGKVpJGdhXrMGJVG0K2m4AxhzKTBoq",
+  "@id": "did:web:test.georeference.net:Georeference:test_valid_georeference_instance",
   "@type": "georeference:Georeference",
   "georeference:hasProjectLocation": {
     "@type": "georeference:ProjectLocation",

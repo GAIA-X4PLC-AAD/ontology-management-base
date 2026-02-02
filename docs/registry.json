@@ -1,7 +1,23 @@
 {
   "version": "2.0.0",
-  "generated": "2026-02-01T22:22:29.061718+00:00",
+  "generated": "2026-02-02T12:57:27.222667+00:00",
   "latestRelease": "main",
+  "base_ontologies": [
+    "imports/cred/cred.owl.ttl",
+    "imports/cs/cs.owl.ttl",
+    "imports/dcterms/dcterms.owl.ttl",
+    "imports/foaf/foaf.owl.ttl",
+    "imports/org/org.owl.ttl",
+    "imports/owl/owl.owl.ttl",
+    "imports/prov/prov.owl.ttl",
+    "imports/rdf/rdf.owl.ttl",
+    "imports/rdfs/rdfs.owl.ttl",
+    "imports/schema/schema.owl.ttl",
+    "imports/schema/schema.owl.ttl",
+    "imports/sh/sh.owl.ttl",
+    "imports/skos/skos.owl.ttl",
+    "imports/xsd/xsd.owl.ttl"
+  ],
   "ontologies": {
     "automotive-simulator": {
       "namespace": "gaia-x4plcaad",
