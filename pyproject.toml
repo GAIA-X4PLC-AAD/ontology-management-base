@@ -53,10 +53,10 @@ Repository = "https://github.com/gaia-x4plc-aad/ontology-management-base.git"
 Issues = "https://github.com/gaia-x4plc-aad/ontology-management-base/issues"
 
 [project.scripts]
-onto-validate = "src.tools.validators.run_all_checks_locally:main"
-onto-check-shacl = "src.tools.validators.check_jsonld_against_shacl_schema:main"
-onto-check-classes = "src.tools.validators.check_target_classes_against_owl_classes:main"
-onto-generate-docs = "src.tools.readme_generator:main"
+onto-validate = "src.tools.validators.validation_suite:main"
+onto-check-conformance = "src.tools.validators.validate_data_conformance:main"
+onto-check-coherence = "src.tools.validators.validate_artifact_coherence:main"
+onto-generate-docs = "src.tools.utils/properties_updater:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

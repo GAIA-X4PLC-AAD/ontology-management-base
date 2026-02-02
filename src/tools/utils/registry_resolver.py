@@ -1,16 +1,38 @@
 #!/usr/bin/env python3
 """
-Registry-based file resolution using docs/registry.json.
+Registry-based resolution for ontology and SHACL file paths.
 
-This module provides utilities to discover and resolve ontology files using
-the registry.json file as the single source of truth. This replaces the
-catalog-based approach with a simpler, faster, and more maintainable solution.
+The RegistryResolver loads the registry.json configuration file and provides
+methods to resolve:
+- Ontology domains to their OWL file paths
+- RDF types to the domains they belong to
+- SHACL shapes for a given domain
+- Fixture IRIs to concrete URIs
+
+This is a domain-agnostic utility used primarily by the SHACL validation
+pipeline (see src.tools.validators.shacl) but designed to be reusable by
+any component that needs registry-based path resolution.
 
 Key Features:
   - Uses docs/registry.json as single source of truth
   - Returns repository-relative paths (strings) by default
   - Supports fixture IRI resolution for test data
   - No filesystem scanning required
+
+Usage:
+    from src.tools.utils import RegistryResolver
+
+    resolver = RegistryResolver()
+    owl_path = resolver.get_ontology_path("general")
+    shacl_paths = resolver.get_shacl_paths("general")
+
+    # Discover required schemas based on RDF types
+    rdf_types = {"https://w3id.org/ascs-ev/envited-x/scenario/v5/Scenario"}
+    ontology_paths, shacl_paths = resolver.discover_required_schemas(rdf_types)
+
+See also:
+    - docs/registry.json: Registry configuration file
+    - src.tools.validators.shacl: Main consumer of this utility
 """
 
 import json

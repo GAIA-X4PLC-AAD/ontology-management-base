@@ -5,10 +5,15 @@ import json
 import os
 import sys
 
+from src.tools.utils.file_collector import collect_jsonld_files
 
-def check_parse_jsonld(filename):
+
+def check_json_wellformedness(filename):
     """
-    Check a single JSON/JSON-LD file.
+    Check if a single file contains syntactically correct (well-formed) JSON.
+
+    This does NOT validate the JSON-LD structure or SHACL compliance.
+    It merely ensures the file can be parsed by the JSON loader.
 
     Returns
     -------
@@ -23,10 +28,10 @@ def check_parse_jsonld(filename):
     try:
         with open(filename, "r", encoding="utf-8") as f:
             json.load(f)
-        msg = f"✅ Successfully parsed: {filename}"
+        msg = f"✅ Syntax OK: {filename}"
         return 0, msg
     except json.JSONDecodeError as e:
-        msg = f"❌ {filename} is not valid JSON:\n{e}"
+        msg = f"❌ Syntax Error in {filename}:\n   Line {e.lineno}, Col {e.colno}: {e.msg}"
         return 1, msg
     except Exception as e:
         msg = f"❌ Unexpected error parsing {filename}:\n{e}"
@@ -38,25 +43,15 @@ def gather_jsonld_files(paths):
     Gather all .json / .jsonld files from the given paths.
 
     For use from main(). Other scripts can call this as well if they like.
+
+    Note: This function now delegates to the central file_collector utility.
     """
-    files = []
-    for path in paths:
-        if os.path.isdir(path):
-            for root, _, filenames in os.walk(path):
-                for name in filenames:
-                    if name.endswith((".json", ".jsonld")):
-                        files.append(os.path.join(root, name))
-        elif os.path.isfile(path) and path.endswith((".json", ".jsonld")):
-            files.append(path)
-        else:
-            # This is still written directly to stderr because it's about CLI usage
-            sys.stderr.write(f"⚠️ Ignoring invalid path or unsupported file: {path}\n")
-    return files
+    return collect_jsonld_files(paths, warn_on_invalid=True, return_pathlib=False)
 
 
-def validate_jsonld_files(paths):
+def verify_json_syntax(paths):
     """
-    Validate all JSON/JSON-LD files found in the given paths.
+    Verify syntax correctness for all JSON/JSON-LD files found in the given paths.
 
     Parameters
     ----------
@@ -73,14 +68,15 @@ def validate_jsonld_files(paths):
     files = gather_jsonld_files(paths)
 
     if not files:
-        msg = "❌ No valid JSON-LD files found."
+        msg = "⚠️ No JSON-LD files found to check."
         results.append((1, msg))
         return 1, results
 
     ret = 0
     for filename in files:
         filename = os.path.normpath(filename)
-        code, msg = check_parse_jsonld(filename)
+        # Call the renamed function that checks for well-formedness
+        code, msg = check_json_wellformedness(filename)
         results.append((code, msg))
         ret |= code
 
@@ -89,12 +85,12 @@ def validate_jsonld_files(paths):
 
 def main(args=None):
     parser = argparse.ArgumentParser(
-        description="Validate JSON-LD files by parsing them."
+        description="Verify syntax correctness (well-formedness) of JSON-LD files."
     )
-    parser.add_argument("paths", nargs="+", help="Files or directories to validate")
+    parser.add_argument("paths", nargs="+", help="Files or directories to check")
     parsed_args = parser.parse_args(args)
 
-    ret, results = validate_jsonld_files(parsed_args.paths)
+    ret, results = verify_json_syntax(parsed_args.paths)
 
     # results is now a list of tuples: (code, message)
     for code, msg in results:

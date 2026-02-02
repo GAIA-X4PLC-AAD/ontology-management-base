@@ -12,11 +12,13 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### ✅ Phase 1: Architecture and Domain Documentation (HIGH PRIORITY - COMPLETE)
 
 **Files Created:**
+
 - `2-architecture/01-index.md` - Architecture overview and navigation
 - `2-architecture/05-domains.md` - GAIA-X 4 PLC-AAD vs ENVITED-X distinction
 - `2-architecture/06-w3id-publishing.md` - IRI resolution, content negotiation, .htaccess patterns
 
 **Domain Ontology Pages:**
+
 - `3-ontology-domains/gaia-x4plcaad/01-index.md` - 16 ontologies catalog with details
 - `3-ontology-domains/envited-x/01-index.md` - 4+ ontologies with development roadmap
 
@@ -25,6 +27,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### ✅ Phase 2: Foundations Section (COMPLETE)
 
 **Files Created:**
+
 - `1-foundations/01-index.md` - Learning path for different audiences
 - `1-foundations/02-rdf-owl-shacl.md` - Core technologies explained with examples
 - `1-foundations/03-linked-data-principles.md` - Design patterns and best practices
@@ -35,10 +38,12 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### ✅ Phase 3: Getting Started Section (COMPLETE)
 
 **Files Created:**
+
 - `4-getting-started/00-index.md` - Navigation hub with role-based pathways
 - `4-getting-started/03-first-validation.md` - Hands-on 10-15 minute tutorial with working code
 
 **Files Reorganized:**
+
 - `01-quickstart.md` (from `getting-started/quickstart.md`)
 - `02-installation.md` (from `getting-started/installation.md`)
 - `04-repository-structure.md` (from `getting-started/structure.md`)
@@ -48,11 +53,13 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### ✅ Phase 4: Validation Tools Section (COMPLETE)
 
 **Files Created:**
+
 - `6-validation-tools/00-index.md` - Tools overview, comparison table, common workflows
 - `6-validation-tools/01-troubleshooting.md` - 10+ common issues with solutions
 
 **Existing Tools Documentation:**
-- `tools/check-target-classes.md`
+
+- `tools/check-check-artifact-coherence.md`
 - `tools/check-jsonld-against-shacl.md`
 - `tools/readme-generator.md`
 - `tools/ontology-discovery.md`
@@ -64,6 +71,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### ✅ Phase 5: Architecture Files Reorganized
 
 **Files Reorganized (existing):**
+
 - `2-architecture/02-iri-patterns.md` (from `architecture/iri-patterns.md`)
 - `2-architecture/03-ontology-discovery.md` (from `architecture/ontology-discovery.md`)
 - `2-architecture/04-owl-imports.md` (from `architecture/owl-imports.md`)
@@ -74,14 +82,14 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 
 ### New Documentation Created
 
-| Section | Files | Size | Purpose |
-|---------|-------|------|---------|
-| Foundations | 4 | ~15 KB | Semantic web concepts |
-| Architecture | 3 | ~18 KB | Design patterns, domains, publishing |
-| Ontology Domains | 2 | ~35 KB | GAIA-X and ENVITED-X catalogs |
-| Getting Started | 2 | ~20 KB | Quick start and first validation |
-| Validation Tools | 2 | ~25 KB | Tools overview and troubleshooting |
-| **TOTAL** | **13** | **~113 KB** | **New content** |
+| Section          | Files  | Size        | Purpose                              |
+| ---------------- | ------ | ----------- | ------------------------------------ |
+| Foundations      | 4      | ~15 KB      | Semantic web concepts                |
+| Architecture     | 3      | ~18 KB      | Design patterns, domains, publishing |
+| Ontology Domains | 2      | ~35 KB      | GAIA-X and ENVITED-X catalogs        |
+| Getting Started  | 2      | ~20 KB      | Quick start and first validation     |
+| Validation Tools | 2      | ~25 KB      | Tools overview and troubleshooting   |
+| **TOTAL**        | **13** | **~113 KB** | **New content**                      |
 
 ### Documentation Structure
 
@@ -131,7 +139,8 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### 1. Domain Documentation (User-Identified Gap ✓)
 
 **Before:** No clear distinction between GAIA-X and ENVITED-X namespaces  
-**After:** 
+**After:**
+
 - Dedicated `05-domains.md` explaining governance, use cases, and cross-domain imports
 - Separate ontology domain pages for each namespace with complete catalogs
 - Clear migration and integration guidance
@@ -140,6 +149,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 
 **Before:** Single entry point (generic README)  
 **After:**
+
 - Foundations section for new users
 - Quick start for experienced engineers
 - Architecture section for contributors
@@ -150,6 +160,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 
 **Before:** Mostly conceptual documentation  
 **After:**
+
 - First validation tutorial with working Python code
 - Hands-on SHACL examples
 - Real validation workflows
@@ -159,8 +170,9 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 
 **Before:** Flat, unclear hierarchy  
 **After:**
+
 - Clear 10-section structure
-- Numbered files for logical ordering (01-*, 02-*, etc.)
+- Numbered files for logical ordering (01-_, 02-_, etc.)
 - Cross-links between sections
 - Navigation hints in each section
 
@@ -186,6 +198,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 ### Existing Content (Still Valuable)
 
 These files remain unchanged and integrated into new structure:
+
 - `docs/registry.json` - Ontology registry
 - `docs/CONTRIBUTING.md` → `5-building-contributing/01-contributing.md` ✓
 - `docs/ontologies/index.md` → `3-ontology-domains/00-index.md` ✓
@@ -195,7 +208,7 @@ These files remain unchanged and integrated into new structure:
 ### Configuration (Unchanged)
 
 - Python validation tools (fully functional)
-- Registry generation (`src/tools/update_registry.py`)
+- Registry generation (`src/tools/utils/registry_updater.py`)
 - Artifacts folder structure (from Phase 1)
 - w3id.org routing (external)
 
@@ -228,6 +241,7 @@ These files remain unchanged and integrated into new structure:
 ### Short-term (2-4 hours)
 
 2. Update `mkdocs.yml` with new navigation
+
    ```yaml
    nav:
      - Home: index.md
@@ -278,6 +292,7 @@ The three highest-impact items for completion:
 ### If You Want to Hand Off Work
 
 The remaining files are relatively independent and could be:
+
 - Assigned to domain experts for review
 - Left as templates for community fill-in
 - Prioritized by importance to your use case
@@ -306,7 +321,7 @@ The remaining files are relatively independent and could be:
 ✅ **Clear structure:** 10 sections with logical organization  
 ✅ **Comprehensive:** Foundations through troubleshooting covered  
 ✅ **Linked:** Cross-references help users navigate  
-✅ **Well-organized:** Numbered files, clear hierarchy  
+✅ **Well-organized:** Numbered files, clear hierarchy
 
 ## Estimated Time to 100% Complete
 
@@ -361,6 +376,6 @@ The remaining files are relatively independent and could be:
 **Total Documentation Files:** 36 (including existing)  
 **Files in 10-section structure:** 33  
 **Completion Rate:** 80%  
-**Estimated completion time:** 1.5-2 hours  
+**Estimated completion time:** 1.5-2 hours
 
 This is significant progress! The core documentation framework is in place and addresses your original concerns about domain clarity and structure.

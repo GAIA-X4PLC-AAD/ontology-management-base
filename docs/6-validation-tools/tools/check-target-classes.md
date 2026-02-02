@@ -26,11 +26,11 @@ python3 -m src.tools.validators.check_target_classes_against_owl_classes \
 
 ```python
 from src.tools.validators.check_target_classes_against_owl_classes import (
-    validate_target_classes_against_owl_classes,
+    validate_artifact_coherence,
 )
 
 # New structure (by domain name)
-return_code, message = validate_target_classes_against_owl_classes(
+return_code, message = validate_artifact_coherence(
     "hdmap",
     owl_dir="artifacts",
     shacl_dir=None,
@@ -38,7 +38,7 @@ return_code, message = validate_target_classes_against_owl_classes(
 )
 
 # Legacy structure (directory path)
-return_code, message = validate_target_classes_against_owl_classes(
+return_code, message = validate_artifact_coherence(
     "path/to/domain/"
 )
 
@@ -53,6 +53,7 @@ else:
 ### 1. Extract OWL Classes
 
 The tool parses the ontology file and extracts all class definitions:
+
 - `owl:Class` declarations
 - `rdfs:Class` declarations
 
@@ -67,6 +68,7 @@ From the SHACL file, the tool extracts all `sh:targetClass` values from node sha
 ### 4. Compare
 
 The tool performs case-insensitive comparison of class local names:
+
 - **Matches** - Target classes found in ontology
 - **Missing** - Target classes not defined anywhere
 - **Recovered** - Classes matched via `rdfs:label`
@@ -93,17 +95,18 @@ The tool performs case-insensitive comparison of class local names:
 
 ## Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| 0 | All target classes are defined |
-| 100 | No ontology or SHACL file found |
-| 200 | Missing target classes detected |
+| Code | Meaning                         |
+| ---- | ------------------------------- |
+| 0    | All target classes are defined  |
+| 100  | No ontology or SHACL file found |
+| 200  | Missing target classes detected |
 
 ## Troubleshooting
 
 ### "No ontology file found"
 
 Ensure the file exists at the expected path:
+
 - New structure: `artifacts/{domain}/{domain}.owl.ttl`
 - Legacy: `{domain}/{domain}_ontology.ttl`
 

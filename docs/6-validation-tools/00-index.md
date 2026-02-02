@@ -25,14 +25,14 @@ All tools are located in `src/tools/` and can be run from the command line or im
 
 ## Tools Comparison
 
-| Tool                           | Purpose                                    | Input              | Output                       |
-| ------------------------------ | ------------------------------------------ | ------------------ | ---------------------------- |
-| **check-target-classes**       | Verify SHACL target classes exist in OWL   | OWL, SHACL         | CSV report                   |
-| **check-jsonld-against-shacl** | Validate JSON-LD data against SHACL shapes | JSON-LD, SHACL     | Pass/Fail + violations       |
-| **readme-generator**           | Auto-generate documentation from SHACL     | SHACL shapes       | Markdown (PROPERTIES.md)     |
-| **ontology-discovery**         | Find and catalog all ontologies            | Artifact directory | JSON registry                |
-| **run-all-checks**             | Execute all validation tools               | All                | Combined report              |
-| **optimize-shacl**             | Improve SHACL validation performance       | SHACL shapes       | Optimization recommendations |
+| Tool                               | Purpose                                    | Input              | Output                       |
+| ---------------------------------- | ------------------------------------------ | ------------------ | ---------------------------- |
+| **check-check-artifact-coherence** | Verify SHACL target classes exist in OWL   | OWL, SHACL         | CSV report                   |
+| **check-jsonld-against-shacl**     | Validate JSON-LD data against SHACL shapes | JSON-LD, SHACL     | Pass/Fail + violations       |
+| **readme-generator**               | Auto-generate documentation from SHACL     | SHACL shapes       | Markdown (PROPERTIES.md)     |
+| **ontology-discovery**             | Find and catalog all ontologies            | Artifact directory | JSON registry                |
+| **run-all-checks**                 | Execute all validation tools               | All                | Combined report              |
+| **optimize-shacl**                 | Improve SHACL validation performance       | SHACL shapes       | Optimization recommendations |
 
 ## Tools Reference
 
@@ -46,12 +46,12 @@ All tools are located in `src/tools/` and can be run from the command line or im
 - When validating shape consistency
 - Before deploying shapes to production
 
-**Learn more:** [check-target-classes.md](tools/check-target-classes.md)
+**Learn more:** [check-check-artifact-coherence.md](tools/check-check-artifact-coherence.md)
 
 **Quick usage:**
 
 ```bash
-python src/tools/validators/check_target_classes_against_owl_classes.py \
+python src/tools/validators/validate_artifact_coherence.py \
   --ontology-file artifacts/scenario/scenario.owl.ttl \
   --shapes-file artifacts/scenario/scenario.shacl.ttl
 ```
@@ -73,7 +73,7 @@ python src/tools/validators/check_target_classes_against_owl_classes.py \
 **Quick usage:**
 
 ```bash
-python src/tools/validators/check_jsonld_against_shacl_schema.py \
+python src/tools/validators/validate_data_conformance.py \
   --ontology-file artifacts/scenario/scenario.owl.ttl \
   --shacl-file artifacts/scenario/scenario.shacl.ttl \
   --data-file my-data.jsonld
@@ -96,7 +96,7 @@ python src/tools/validators/check_jsonld_against_shacl_schema.py \
 **Quick usage:**
 
 ```bash
-python src/tools/properties_md_generator.py \
+python src/tools/utils/properties_updater.py \
   --ontology artifacts/scenario/scenario.owl.ttl \
   --shacl artifacts/scenario/scenario.shacl.ttl \
   --output artifacts/scenario/PROPERTIES.md
@@ -188,7 +188,7 @@ curl -L -H "Accept: text/turtle" \
   -o scenario.shacl.ttl
 
 # Step 3: Validate your data
-python src/tools/validators/check_jsonld_against_shacl_schema.py \
+python src/tools/validators/validate_data_conformance.py \
   --ontology-file scenario.owl.ttl \
   --shacl-file scenario.shacl.ttl \
   --data-file my-scenarios.jsonld
@@ -200,13 +200,13 @@ When you've updated an ontology and want fresh documentation:
 
 ```bash
 # Generate PROPERTIES.md from SHACL shapes
-python src/tools/properties_md_generator.py \
+python src/tools/utils/properties_updater.py \
   --ontology artifacts/scenario/scenario.owl.ttl \
   --shacl artifacts/scenario/scenario.shacl.ttl \
   --output artifacts/scenario/PROPERTIES.md
 
 # Update the registry
-python -m src.tools.update_registry
+python -m src.tools.utils/registry_updater
 ```
 
 ### Workflow 3: Pre-release Checklist
@@ -215,18 +215,18 @@ Before publishing a new ontology version:
 
 ```bash
 # 1. Check shape consistency
-python src/tools/validators/check_target_classes_against_owl_classes.py \
+python src/tools/validators/validate_artifact_coherence.py \
   --ontology-file artifacts/my-ontology/my-ontology.owl.ttl \
   --shapes-file artifacts/my-ontology/my-ontology.shacl.ttl
 
 # 2. Validate against sample data
-python src/tools/validators/check_jsonld_against_shacl_schema.py \
+python src/tools/validators/validate_data_conformance.py \
   --ontology-file artifacts/my-ontology/my-ontology.owl.ttl \
   --shacl-file artifacts/my-ontology/my-ontology.shacl.ttl \
   --data-file tests/fixtures/my-ontology-sample.jsonld
 
 # 3. Generate documentation
-python src/tools/properties_md_generator.py \
+python src/tools/utils/properties_updater.py \
   --ontology artifacts/my-ontology/my-ontology.owl.ttl \
   --shacl artifacts/my-ontology/my-ontology.shacl.ttl \
   --output artifacts/my-ontology/PROPERTIES.md

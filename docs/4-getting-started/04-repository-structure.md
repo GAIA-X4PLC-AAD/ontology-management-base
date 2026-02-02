@@ -37,7 +37,7 @@ ontology-management-base/
 │       └── modules/        # Reusable LinkML fragments
 │
 ├── scripts/                 # [AUTOMATION] CI/CD glue scripts
-│   └── update_registry.py  # Registry update script
+│   └── utils/registry_updater.py  # Registry update script
 │
 ├── tests/
 │   ├── fixtures/           # [SHARED DATA] Reference files
@@ -65,11 +65,11 @@ ontology-management-base/
 
 Contains the ontology output files:
 
-| Subdirectory | Contents | Naming Convention |
-|--------------|----------|-------------------|
-| `owl/` | OWL ontology definitions | `{domain}_ontology.ttl` |
-| `shacl/` | SHACL validation shapes | `{domain}_shacl.ttl` |
-| `docs/` | Generated documentation | `{domain}/PROPERTIES.md` |
+| Subdirectory | Contents                 | Naming Convention        |
+| ------------ | ------------------------ | ------------------------ |
+| `owl/`       | OWL ontology definitions | `{domain}_ontology.ttl`  |
+| `shacl/`     | SHACL validation shapes  | `{domain}_shacl.ttl`     |
+| `docs/`      | Generated documentation  | `{domain}/PROPERTIES.md` |
 
 ### `imports/`
 
@@ -94,18 +94,18 @@ tests/data/{domain}/
 
 Python validation and utility scripts:
 
-| Directory | Purpose |
-|-----------|---------|
-| `validators/` | SHACL and OWL validation |
-| `uploaders/` | Federated Catalog upload |
-| `utils/` | Shared utilities (parsing, formatting) |
+| Directory     | Purpose                                |
+| ------------- | -------------------------------------- |
+| `validators/` | SHACL and OWL validation               |
+| `uploaders/`  | Federated Catalog upload               |
+| `utils/`      | Shared utilities (parsing, formatting) |
 
 ## File Naming Conventions
 
-| Pattern | Description | Example |
-|---------|-------------|---------|
-| `{domain}_ontology.ttl` | OWL ontology file | `hdmap_ontology.ttl` |
-| `{domain}_shacl.ttl` | SHACL shapes file | `hdmap_shacl.ttl` |
-| `{domain}_instance.json` | Valid instance example | `hdmap_instance.json` |
-| `fail_{nn}_{desc}.json` | Failing test case | `fail_01_missing_name.json` |
-| `fail_{nn}_{desc}.expected` | Expected error output | `fail_01_missing_name.expected` |
+| Pattern                     | Description            | Example                         |
+| --------------------------- | ---------------------- | ------------------------------- |
+| `{domain}_ontology.ttl`     | OWL ontology file      | `hdmap_ontology.ttl`            |
+| `{domain}_shacl.ttl`        | SHACL shapes file      | `hdmap_shacl.ttl`               |
+| `{domain}_instance.json`    | Valid instance example | `hdmap_instance.json`           |
+| `fail_{nn}_{desc}.json`     | Failing test case      | `fail_01_missing_name.json`     |
+| `fail_{nn}_{desc}.expected` | Expected error output  | `fail_01_missing_name.expected` |

@@ -29,8 +29,8 @@ python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
 ### Option B: Validate All Instances for a Domain
 
 ```bash
-python3 -m src.tools.validators.run_all_checks_locally \
-  --check shacl \
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
   --domain hdmap
 ```
 
@@ -58,10 +58,11 @@ Validation Report:
 To run the complete validation suite:
 
 ```bash
-python3 -m src.tools.validators.run_all_checks_locally --check all
+python3 -m src.tools.validators.validation_suite --run all
 ```
 
 This runs:
+
 1. **Syntax checks** - JSON-LD and Turtle parsing
 2. **Target class checks** - OWL consistency
 3. **SHACL validation** - Constraint conformance

@@ -64,8 +64,8 @@ nav:
       - Repository Structure: getting-started/structure.md
   - Validation Tools:
       - Overview: validation/index.md
-      - SHACL Validation: validation/check-jsonld-against-shacl.md
-      - Target Class Validation: validation/check-target-classes.md
+      - SHACL Validation: validation/check-jsonld-against-check-data-conformance.md
+      - Target Class Validation: validation/check-check-artifact-coherence.md
       - Run All Checks: validation/run-all-checks.md
       - Documentation Generator: validation/readme-generator.md
   - Architecture:

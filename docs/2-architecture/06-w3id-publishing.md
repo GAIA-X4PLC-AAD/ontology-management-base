@@ -191,7 +191,7 @@ RewriteRule ^([a-z-]+)/v([0-9]+)(?:\.([0-9]+))?/?$ \
 
 4. **Update registry**:
    ```bash
-   python3 -m src.tools.update_registry
+   python3 -m src.tools.utils/registry_updater
    ```
 
 ### Updating an Ontology

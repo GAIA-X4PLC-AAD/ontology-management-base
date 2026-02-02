@@ -23,19 +23,19 @@ format:
 	isort src/
 
 # Testing targets
-test: test-syntax test-target-classes test-shacl test-failing
+test: test-syntax test-check-artifact-coherence test-check-data-conformance test-failing
 
 test-syntax:
-	python3 -m src.tools.validators.run_all_checks_locally --check syntax
+	python3 -m src.tools.validators.validation_suite --run syntax
 
-test-target-classes:
-	python3 -m src.tools.validators.run_all_checks_locally --check target-classes
+test-check-artifact-coherence:
+	python3 -m src.tools.validators.validation_suite --run check-artifact-coherence
 
-test-shacl:
-	python3 -m src.tools.validators.run_all_checks_locally --check shacl
+test-check-data-conformance:
+	python3 -m src.tools.validators.validation_suite --run check-data-conformance
 
 test-failing:
-	python3 -m src.tools.validators.run_all_checks_locally --check failing-tests
+	python3 -m src.tools.validators.validation_suite --run failing-tests
 
 # Test specific domain
 test-domain:
@@ -43,11 +43,11 @@ test-domain:
 		echo "Usage: make test-domain DOMAIN=hdmap"; \
 		exit 1; \
 	fi
-	python3 -m src.tools.validators.run_all_checks_locally --check all --domain $(DOMAIN)
+	python3 -m src.tools.validators.validation_suite --run all --domain $(DOMAIN)
 
 # Documentation targets
 docs-generate:
-	python3 -m src.tools.readme_generator
+	python3 -m src.tools.utils/properties_updater
 
 docs-serve:
 	mkdocs serve
@@ -58,9 +58,9 @@ docs-build:
 # Registry management
 registry-update:
 	@if [ -z "$(TAG)" ]; then \
-		python3 -m src.tools.update_registry --release-tag main; \
+		python3 -m src.tools.utils/registry_updater --release-tag main; \
 	else \
-		python3 -m src.tools.update_registry --release-tag $(TAG); \
+		python3 -m src.tools.utils/registry_updater --release-tag $(TAG); \
 	fi
 
 # Cleaning
@@ -89,7 +89,7 @@ help:
 	@echo "Testing:"
 	@echo "  make test           Run all tests"
 	@echo "  make test-syntax    Run syntax checks only"
-	@echo "  make test-shacl     Run SHACL validation only"
+	@echo "  make test-check-data-conformance     Run check-data-conformance validation only"
 	@echo "  make test-domain DOMAIN=hdmap  Test specific domain"
 	@echo ""
 	@echo "Documentation:"

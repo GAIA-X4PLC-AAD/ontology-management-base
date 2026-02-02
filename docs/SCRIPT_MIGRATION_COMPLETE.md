@@ -8,7 +8,7 @@ Successfully completed the consolidation of scripts into `src/tools/` with all r
 
 #### 1. Script Reorganization
 
-- ✅ Created `src/tools/update_registry.py` with updates for new artifact structure
+- ✅ Created `src/tools/utils/registry_updater.py` with updates for new artifact structure
 - ✅ Added `src/tools/__init__.py` to make it a proper Python package
 - ✅ Deleted old `scripts/` folder
 - ✅ Registry version bumped to 2.0.0
@@ -45,7 +45,7 @@ The updated script now:
 ✅ Registry script tested and working:
 
 ```bash
-$ python3 -m src.tools.update_registry --release-tag main
+$ python3 -m src.tools.utils/registry_updater --release-tag main
 🔍 Discovering ontologies from artifacts/...
 ✅ Found 21 ontologies: automotive-simulator, description, ...
 📝 Updating registry with release tag: main
@@ -58,10 +58,10 @@ All equivalent - choose one:
 
 ```bash
 # As module (recommended)
-python3 -m src.tools.update_registry --release-tag main
+python3 -m src.tools.utils/registry_updater --release-tag main
 
 # Direct script
-python3 src/tools/update_registry.py --release-tag main
+python3 src/tools/utils/registry_updater.py --release-tag main
 
 # Via Make target
 make registry-update TAG=main
@@ -73,7 +73,7 @@ make registry-update TAG=main
 
 ```
 scripts/
-└── update_registry.py
+└── utils/registry_updater.py
 ```
 
 **After:**
@@ -81,8 +81,8 @@ scripts/
 ```
 src/tools/
 ├── __init__.py (new)
-├── update_registry.py (updated)
-├── properties_md_generator.py
+├── utils/registry_updater.py (updated)
+├── utils/properties_updater.py
 ├── validators/
 ├── uploaders/
 ├── authhelper/

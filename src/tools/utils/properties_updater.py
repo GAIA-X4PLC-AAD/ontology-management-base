@@ -28,37 +28,51 @@ def main():
 
     for domain in sorted(ontology_dirs):
         domain_dir = os.path.join(ARTIFACTS_DIRECTORY, domain)
-        shacl_file_name = f"{domain}.shacl.ttl"
-        shacl_file_path = os.path.join(domain_dir, shacl_file_name)
 
-        # Skip if SHACL file doesn't exist
-        if not os.path.exists(shacl_file_path):
+        # Find all SHACL files in the domain directory (supports multiple SHACL files)
+        shacl_files = sorted(
+            [
+                f
+                for f in os.listdir(domain_dir)
+                if f.endswith(".shacl.ttl")
+                and os.path.isfile(os.path.join(domain_dir, f))
+            ]
+        )
+
+        # Skip if no SHACL files exist
+        if not shacl_files:
             continue
 
         properties_file = os.path.join(domain_dir, "PROPERTIES.md")
 
-        # Extract SHACL properties
-        file_path = shacl_file_path
-        rdf_graph = extract_rdf_graph_from_ttl(file_path)
-        shacl_properties = extract_shacl_properties(rdf_graph, shacl_file_name)
+        # Process all SHACL files for this domain
+        all_shacl_properties = []
+        all_relevant_prefixes = set()
 
-        # Extract relevant prefixes
-        relevant_prefixes = set()
-        for prop in shacl_properties:
-            for prefix, namespace in rdf_graph.namespaces():
-                if prop["path"].startswith(namespace):
-                    relevant_prefixes.add((namespace, prefix))
-                if prop["shape"].startswith(namespace):
-                    relevant_prefixes.add((namespace, prefix))
+        for shacl_file_name in shacl_files:
+            shacl_file_path = os.path.join(domain_dir, shacl_file_name)
+
+            # Extract SHACL properties
+            rdf_graph = extract_rdf_graph_from_ttl(shacl_file_path)
+            shacl_properties = extract_shacl_properties(rdf_graph, shacl_file_name)
+            all_shacl_properties.extend(shacl_properties)
+
+            # Extract relevant prefixes
+            for prop in shacl_properties:
+                for prefix, namespace in rdf_graph.namespaces():
+                    if prop["path"].startswith(namespace):
+                        all_relevant_prefixes.add((namespace, prefix))
+                    if prop["shape"].startswith(namespace):
+                        all_relevant_prefixes.add((namespace, prefix))
 
         # Convert set of relevant prefixes to a dictionary
         extracted_prefixes = {
-            namespace: prefix for namespace, prefix in relevant_prefixes
+            namespace: prefix for namespace, prefix in all_relevant_prefixes
         }
 
         # Write extracted property details to PROPERTIES.md file
-        if shacl_properties:
-            with open(properties_file, "w") as file:
+        if all_shacl_properties:
+            with open(properties_file, "w", encoding="utf-8") as file:
                 # Write headline
                 file.write(f"# Properties of SHACL Files for {domain}\n\n")
 
@@ -78,7 +92,7 @@ def main():
                 )
                 file.write("| --- | --- | --- | --- | --- | --- | --- | --- |\n")
 
-                for prop in shacl_properties:
+                for prop in all_shacl_properties:
                     # Replace IRIs with prefixes
                     for namespace, prefix in extracted_prefixes.items():
                         if prop["path"].startswith(namespace):

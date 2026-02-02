@@ -110,7 +110,7 @@ def _extract_and_sort_errors(report_graph: Graph):
     return error_rows
 
 
-def format_validate_target_classes_against_owl_classes_result(
+def format_validate_artifact_coherence_result(
     ontology_file, num_onto, num_shacl, matches, missing, recovered, extra
 ):
     """Formats validation summary using consistent boxed alignment."""

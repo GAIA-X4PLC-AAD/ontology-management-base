@@ -127,7 +127,7 @@ This pattern serves multiple critical functions:
    - Import resolution through catalog files
    - Consistency checking across the shapes-ontology boundary
 
-4. **Alignment with Repository Registry**: The validation script (`check_jsonld_against_shacl_schema.py`) uses a Repository Registry that indexes files by their IRI. By declaring the shapes graph as an ontology with a formal IRI, it becomes discoverable and resolvable through the registry's semantic dependency resolution mechanism.
+4. **Alignment with Repository Registry**: The validation script (`validate_data_conformance.py`) uses a Repository Registry that indexes files by their IRI. By declaring the shapes graph as an ontology with a formal IRI, it becomes discoverable and resolvable through the registry's semantic dependency resolution mechanism.
 
 ### 2.3 Integration with Validation Strategy
 
@@ -412,7 +412,7 @@ All ontology files have been verified to include:
 Test the updated validation script with the new IRI structure:
 
 ```bash
-python3 src/check_jsonld_against_shacl_schema.py scenario/scenario_instance.json --root .
+python3 src/tools/validation/validate_data_conformance.py scenario/scenario_instance.json --root .
 ```
 
 Expected output should show:

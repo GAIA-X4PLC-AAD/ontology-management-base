@@ -4,7 +4,7 @@ This directory acts as a centralized storage for JSON-LD reference data files th
 
 ## Automatic Resolution Logic
 
-The validation script (`check_jsonld_against_shacl_schema.py`) has been updated to automatically look in this directory when validating an instance file.
+The validation script (`validate_data_conformance.py`) has been updated to automatically look in this directory when validating an instance file.
 
 1. **Prefix Detection**: When an instance file is loaded (e.g., `envited-x_instance.json`), the script extracts the prefix (everything before the first `_`).
    - Example: `envited-x_instance.json` -> Prefix: `envited-x`

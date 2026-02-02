@@ -1,6 +1,6 @@
 # Run All Checks Tool
 
-**Module:** `src.tools.validators.run_all_checks_locally`
+**Module:** `src.tools.validators.validation_suite`
 
 This is the main orchestrator that runs all validation checks across ontology domains.
 
@@ -10,22 +10,22 @@ This is the main orchestrator that runs all validation checks across ontology do
 
 ```bash
 # Run all checks on all domains
-python3 -m src.tools.validators.run_all_checks_locally --check all
+python3 -m src.tools.validators.validation_suite --run all
 
 # Run specific check
-python3 -m src.tools.validators.run_all_checks_locally --check shacl
+python3 -m src.tools.validators.validation_suite --run check-data-conformance
 
 # Run on specific domains
-python3 -m src.tools.validators.run_all_checks_locally --check all --domain hdmap scenario
+python3 -m src.tools.validators.validation_suite --run all --domain hdmap scenario
 ```
 
 ### Options
 
-| Option             | Description                                                             |
-| ------------------ | ----------------------------------------------------------------------- |
-| `--check TYPE`     | Check type: `all`, `syntax`, `target-classes`, `shacl`, `failing-tests` |
-| `--domain DOMAINS` | Space-separated list of domains to check (default: all)                 |
-| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                          |
+| Option             | Description                                                                       |
+| ------------------ | --------------------------------------------------------------------------------- |
+| `--run TYPE`       | Check type: `all`, `syntax`, `check-artifact-coherence`, `shacl`, `failing-tests` |
+| `--domain DOMAINS` | Space-separated list of domains to check (default: all)                           |
+| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                                    |
 
 ## Check Types
 
@@ -36,7 +36,7 @@ Validates file syntax without semantic checks:
 - JSON-LD parsing for `*.json` files
 - Turtle parsing for `*.ttl` files
 
-### `target-classes`
+### `check-artifact-coherence`
 
 Verifies SHACL target classes exist in OWL ontologies.
 
@@ -121,8 +121,8 @@ This tool is called by the CI workflow with domain-specific arguments:
 
 ```yaml
 - name: Run SHACL Checks
-  run: python3 -m src.tools.validators.run_all_checks_locally \
-    --check shacl \
+  run: python3 -m src.tools.validators.validation_suite \
+    --run check-data-conformance \
     ${{ needs.changes.outputs.folders_arg }}
 ```
 

@@ -7,10 +7,15 @@ import sys
 from rdflib import Graph
 from rdflib.exceptions import ParserError
 
+from src.tools.utils.file_collector import collect_turtle_files
 
-def check_parse_turtle(filename):
+
+def check_turtle_wellformedness(filename):
     """
-    Check a single Turtle (.ttl) file.
+    Check if a single file contains syntactically correct (well-formed) Turtle.
+
+    This does NOT validate logical consistency or SHACL compliance.
+    It merely ensures the file can be parsed by an RDF parser.
 
     Returns
     -------
@@ -24,11 +29,12 @@ def check_parse_turtle(filename):
 
     try:
         g = Graph()
+        # strictly parse as turtle
         g.parse(filename, format="turtle")
-        msg = f"✅ Successfully parsed: {filename}"
+        msg = f"✅ Syntax OK: {filename}"
         return 0, msg
     except ParserError as e:
-        msg = f"❌ {filename} is not valid Turtle:\n{e}"
+        msg = f"❌ Syntax Error in {filename}:\n{e}"
         return 1, msg
     except Exception as e:
         msg = f"❌ Unexpected error parsing {filename}:\n{e}"
@@ -40,25 +46,15 @@ def gather_turtle_files(paths):
     Gather all .ttl files from the given paths.
 
     For CLI use. Other scripts can call this as well if needed.
+
+    Note: This function now delegates to the central file_collector utility.
     """
-    files = []
-    for path in paths:
-        if os.path.isdir(path):
-            for root, _, filenames in os.walk(path):
-                for name in filenames:
-                    if name.endswith(".ttl"):
-                        files.append(os.path.join(root, name))
-        elif os.path.isfile(path) and path.endswith(".ttl"):
-            files.append(path)
-        else:
-            # Still write directly to stderr for invalid/unsupported paths
-            sys.stderr.write(f"⚠️ Ignoring invalid path or unsupported file: {path}\n")
-    return files
+    return collect_turtle_files(paths, warn_on_invalid=True, return_pathlib=False)
 
 
-def validate_turtle_files(paths):
+def verify_turtle_syntax(paths):
     """
-    Validate all Turtle files found in the given paths.
+    Verify syntax correctness for all Turtle files found in the given paths.
 
     Parameters
     ----------
@@ -70,20 +66,21 @@ def validate_turtle_files(paths):
     (return_code, results) : (int, list[tuple[int, str]])
         return_code is the aggregated return code (0 if all OK).
         results is a list of (code, message) for each checked file
-        and global errors like “no files”.
+        and global errors like "no files".
     """
     results = []
     files = gather_turtle_files(paths)
 
     if not files:
-        msg = "❌ No valid Turtle files found."
+        msg = "⚠️ No Turtle files found to check."
         results.append((1, msg))
         return 1, results
 
     ret = 0
     for filename in files:
         filename = os.path.normpath(filename)
-        code, msg = check_parse_turtle(filename)
+        # Call the renamed function that checks for well-formedness
+        code, msg = check_turtle_wellformedness(filename)
         results.append((code, msg))
         ret |= code
 
@@ -92,12 +89,12 @@ def validate_turtle_files(paths):
 
 def main(args=None):
     parser = argparse.ArgumentParser(
-        description="Validate Turtle files by parsing them."
+        description="Verify syntax correctness (well-formedness) of Turtle files."
     )
-    parser.add_argument("paths", nargs="+", help="Files or directories to validate")
+    parser.add_argument("paths", nargs="+", help="Files or directories to check")
     parsed_args = parser.parse_args(args)
 
-    ret, results = validate_turtle_files(parsed_args.paths)
+    ret, results = verify_turtle_syntax(parsed_args.paths)
 
     # Print messages based on return code
     for code, msg in results:

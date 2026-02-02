@@ -127,7 +127,7 @@ jobs:
         run: python3 -m pip install -e .
 
       - name: Run SHACL Checks
-        run: python3 -m src.tools.validators.run_all_checks_locally --check shacl ${{ needs.changes.outputs.folders_arg }}
+        run: python3 -m src.tools.validators.validation_suite --run check-data-conformance ${{ needs.changes.outputs.folders_arg }}
 
   # --- JOB 3: OWL Consistency (Logic) ---
   validate-owl:
@@ -146,7 +146,7 @@ jobs:
         run: python3 -m pip install -e .
 
       - name: Run Target Class Checks
-        run: python3 -m src.tools.validators.run_all_checks_locally --check target-classes ${{ needs.changes.outputs.folders_arg }}
+        run: python3 -m src.tools.validators.validation_suite --run check-artifact-coherence ${{ needs.changes.outputs.folders_arg }}
 
   # --- JOB 4: Regression Tests ---
   regression-tests:
@@ -165,7 +165,7 @@ jobs:
         run: python3 -m pip install -e .
 
       - name: Run Failing Tests
-        run: python3 -m src.tools.validators.run_all_checks_locally --check failing-tests ${{ needs.changes.outputs.folders_arg }}
+        run: python3 -m src.tools.validators.validation_suite --run failing-tests ${{ needs.changes.outputs.folders_arg }}
 
   # --- JOB 5: Documentation ---
   generate-docs:
@@ -188,7 +188,7 @@ jobs:
         run: python3 -m pip install -e .
 
       - name: Run Generator
-        run: python3 -m src.tools.readme_generator
+        run: python3 -m src.tools.utils/properties_updater
 
       - name: Commit changes
         run: |

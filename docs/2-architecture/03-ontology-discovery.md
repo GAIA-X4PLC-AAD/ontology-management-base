@@ -70,6 +70,7 @@ This triggers recursive loading of imported ontologies.
 ### 5. Base Ontologies
 
 Standard W3C ontologies from `imports/` are always available:
+
 - RDF/RDFS/OWL
 - SHACL
 - Schema.org
@@ -95,16 +96,16 @@ The cache is invalidated when file modification times change.
 
 Remote `@context` URLs are mapped to local files:
 
-| Remote URL | Local File |
-|------------|------------|
+| Remote URL                               | Local File                                     |
+| ---------------------------------------- | ---------------------------------------------- |
 | `https://w3id.org/.../envited-x/context` | `artifacts/envited-x/envited-x.context.jsonld` |
-| `https://schema.org/context` | `imports/schema/schema_context.jsonld` |
+| `https://schema.org/context`             | `imports/schema/schema_context.jsonld`         |
 
 This enables offline validation and faster processing.
 
 ## Configuration
 
-Discovery directories are configured in `check_jsonld_against_shacl_schema.py`:
+Discovery directories are configured in `validate_data_conformance.py`:
 
 ```python
 DIR_NAME_IMPORTS = "imports"

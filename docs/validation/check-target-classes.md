@@ -26,11 +26,11 @@ python3 -m src.tools.validators.check_target_classes_against_owl_classes \
 
 ```python
 from src.tools.validators.check_target_classes_against_owl_classes import (
-    validate_target_classes_against_owl_classes,
+    validate_artifact_coherence,
 )
 
 # New structure (by domain name)
-return_code, message = validate_target_classes_against_owl_classes(
+return_code, message = validate_artifact_coherence(
     "hdmap",
     owl_dir="artifacts",
     shacl_dir=None,
@@ -38,7 +38,7 @@ return_code, message = validate_target_classes_against_owl_classes(
 )
 
 # Legacy structure (directory path)
-return_code, message = validate_target_classes_against_owl_classes(
+return_code, message = validate_artifact_coherence(
     "path/to/domain/"
 )
 

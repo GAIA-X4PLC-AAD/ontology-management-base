@@ -6,7 +6,7 @@ import sys
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
 from src.tools.utils.print_formatting import (
-    format_validate_target_classes_against_owl_classes_result,
+    format_validate_artifact_coherence_result,
 )
 
 # Define SHACL namespace
@@ -111,7 +111,7 @@ def get_base_ontology_classes(base_dir: str) -> set:
     return base_classes
 
 
-def validate_target_classes_against_owl_classes(
+def validate_artifact_coherence(
     domain: str,
     owl_dir: str = None,
     shacl_dir: str = None,
@@ -178,7 +178,7 @@ def validate_target_classes_against_owl_classes(
             recovered_classes.add(missing)
     missing_classes -= recovered_classes
 
-    summary = format_validate_target_classes_against_owl_classes_result(
+    summary = format_validate_artifact_coherence_result(
         ontology_file,
         len(valid_classes),
         len(shacl_classes),
@@ -197,7 +197,7 @@ def validate_target_classes_against_owl_classes(
 def main():
     if len(sys.argv) < 2:
         print(
-            "Usage: python check_target_classes_against_owl_classes.py <domain> [owl_dir] [imports_dir]",
+            "Usage: python validate_artifact_coherence.py <domain> [owl_dir] [imports_dir]",
             file=sys.stderr,
         )
         sys.exit(100)
@@ -206,7 +206,7 @@ def main():
     owl_dir = sys.argv[2] if len(sys.argv) > 2 else "artifacts"
     imports_dir = sys.argv[3] if len(sys.argv) > 3 else "imports"
 
-    return_code, message = validate_target_classes_against_owl_classes(
+    return_code, message = validate_artifact_coherence(
         domain, owl_dir, None, imports_dir
     )
 

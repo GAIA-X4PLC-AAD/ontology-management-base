@@ -5,16 +5,16 @@ import sys
 from pathlib import Path
 from typing import List
 
-from src.tools.utils.check_parse_jsonld import validate_jsonld_files
-from src.tools.utils.check_parse_turtle import validate_turtle_files
 from src.tools.utils.print_formatting import normalize_text
-from src.tools.validators.check_jsonld_against_shacl_schema import collect_jsonld_files
-from src.tools.validators.check_target_classes_against_owl_classes import (
-    validate_target_classes_against_owl_classes,
-)
+from src.tools.utils.verify_json_syntax import verify_json_syntax
+from src.tools.utils.verify_turtle_syntax import verify_turtle_syntax
 from src.tools.validators.shacl.validator import (
-    validate_jsonld_files as validate_jsonld_with_shacl,
+    validate_data_conformance as validate_data_conformance,
 )
+from src.tools.validators.validate_artifact_coherence import (
+    validate_artifact_coherence,
+)
+from src.tools.validators.validate_data_conformance import collect_jsonld_files
 
 # Define the root directory of the repository
 # Navigate up from src/tools/validators to the repo root
@@ -113,7 +113,7 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
             dirs_to_check.append(valid_dir)
 
     print("\n=== Checking JSON-LD syntax ===", flush=True)
-    json_ret, json_results = validate_jsonld_files(dirs_to_check)
+    json_ret, json_results = verify_json_syntax(dirs_to_check)
     for code, msg in json_results:
         if code == 0:
             print(msg)
@@ -128,7 +128,7 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
         for domain in ontology_domains
         if os.path.isdir(os.path.join(ARTIFACTS_DIR, domain))
     ]
-    ttl_ret, ttl_results = validate_turtle_files(ttl_dirs)
+    ttl_ret, ttl_results = verify_turtle_syntax(ttl_dirs)
     for code, msg in ttl_results:
         if code == 0:
             print(msg)
@@ -140,7 +140,7 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
     return 0
 
 
-def check_jsonld_against_shacl_all(ontology_domains: List[str]) -> int:
+def validate_data_conformance_all(ontology_domains: List[str]) -> int:
     """Validate JSON-LD files against SHACL schemas using catalog-based discovery."""
     if not ontology_domains:
         return 0
@@ -169,7 +169,7 @@ def check_jsonld_against_shacl_all(ontology_domains: List[str]) -> int:
             continue
 
         # Use new catalog-based validator
-        returncode, output = validate_jsonld_with_shacl(
+        returncode, output = validate_data_conformance(
             jsonld_files,
             Path(ROOT_DIR),
             inference_mode="rdfs",
@@ -233,7 +233,7 @@ def check_failing_tests_all(ontology_domains: List[str]) -> int:
             jsonld_files = collect_jsonld_files([test_abs_path])
 
             # Use new catalog-based validator
-            returncode, output = validate_jsonld_with_shacl(
+            returncode, output = validate_data_conformance(
                 jsonld_files,
                 Path(ROOT_DIR),
                 inference_mode="rdfs",
@@ -268,7 +268,7 @@ def check_failing_tests_all(ontology_domains: List[str]) -> int:
     return 0
 
 
-def check_target_classes_all(ontology_domains: List[str]) -> int:
+def validate_artifact_coherence_all(ontology_domains: List[str]) -> int:
     """Validate target classes against OWL for each domain."""
     if not ontology_domains:
         return 0
@@ -291,7 +291,7 @@ def check_target_classes_all(ontology_domains: List[str]) -> int:
 
         # Call the updated validator with the new structure
         # Pass domain name and artifacts directory
-        returncode, output = validate_target_classes_against_owl_classes(
+        returncode, output = validate_artifact_coherence(
             domain, ARTIFACTS_DIR, None, IMPORTS_DIR
         )
 
@@ -347,9 +347,15 @@ def main():
     # 3. Argument Parsing
     parser = argparse.ArgumentParser(description="Run ontology validation checks.")
     parser.add_argument(
-        "--check",
+        "--run",
         type=str,
-        choices=["all", "syntax", "target-classes", "shacl", "failing-tests"],
+        choices=[
+            "all",
+            "syntax",
+            "check-artifact-coherence",
+            "check-data-conformance",
+            "failing-tests",
+        ],
         default="all",
         help="Specific check to run (default: all)",
     )
@@ -389,28 +395,31 @@ def main():
     # 5. Define the Mapping
     check_map = {
         "syntax": [("Syntax", lambda: check_syntax_all(ontology_domains))],
-        "target-classes": [
-            ("Target Classes", lambda: check_target_classes_all(ontology_domains))
+        "check-artifact-coherence": [
+            (
+                "Target Classes",
+                lambda: validate_artifact_coherence_all(ontology_domains),
+            )
         ],
-        "shacl": [
-            ("JSON-LD SHACL", lambda: check_jsonld_against_shacl_all(ontology_domains))
+        "check-data-conformance": [
+            ("JSON-LD SHACL", lambda: validate_data_conformance_all(ontology_domains))
         ],
         "failing-tests": [
             ("Failing Tests", lambda: check_failing_tests_all(ontology_domains))
         ],
     }
 
-    if args.check == "all":
+    if args.run == "all":
         checks_to_run = (
             check_map["syntax"]
-            + check_map["target-classes"]
-            + check_map["shacl"]
+            + check_map["check-artifact-coherence"]
+            + check_map["check-data-conformance"]
             + check_map["failing-tests"]
         )
     else:
-        checks_to_run = check_map[args.check]
+        checks_to_run = check_map[args.run]
 
-    print(f"\n🚀 Running check mode: {args.check.upper()} ...", flush=True)
+    print(f"\n🚀 Running check mode: {args.run.upper()} ...", flush=True)
 
     for name, phase_func in checks_to_run:
         rc = phase_func()
@@ -422,7 +431,7 @@ def main():
             )
             sys.exit(rc)
 
-    print(f"\n✅ {args.check.upper()} checks completed successfully!", flush=True)
+    print(f"\n✅ {args.run.upper()} checks completed successfully!", flush=True)
 
 
 if __name__ == "__main__":

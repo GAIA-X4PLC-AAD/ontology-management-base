@@ -18,46 +18,46 @@ graph LR
 
 ### Core Validators
 
-| Tool                                          | Purpose                                          | Documentation                            |
-| --------------------------------------------- | ------------------------------------------------ | ---------------------------------------- |
-| `check_jsonld_against_shacl_schema.py`        | Validates JSON-LD instances against SHACL shapes | [Details](check-jsonld-against-shacl.md) |
-| `check_target_classes_against_owl_classes.py` | Verifies SHACL target classes exist in OWL       | [Details](check-target-classes.md)       |
-| `run_all_checks_locally.py`                   | Orchestrates all validation checks               | [Details](run-all-checks.md)             |
+| Tool                             | Purpose                                          | Documentation                                |
+| -------------------------------- | ------------------------------------------------ | -------------------------------------------- |
+| `validate_data_conformance.py`   | Validates JSON-LD instances against SHACL shapes | [Details](check-jsonld-against-shacl.md)     |
+| `validate_artifact_coherence.py` | Verifies SHACL target classes exist in OWL       | [Details](check-check-artifact-coherence.md) |
+| `validation_suite.py`            | Orchestrates all validation checks               | [Details](run-all-checks.md)                 |
 
 ### Documentation Tools
 
-| Tool                         | Purpose                            | Documentation                  |
-| ---------------------------- | ---------------------------------- | ------------------------------ |
-| `properties_md_generator.py` | Generates PROPERTIES.md from SHACL | [Details](readme-generator.md) |
+| Tool                          | Purpose                            | Documentation                  |
+| ----------------------------- | ---------------------------------- | ------------------------------ |
+| `utils/properties_updater.py` | Generates PROPERTIES.md from SHACL | [Details](readme-generator.md) |
 
 ## Quick Reference
 
 ### Run All Checks
 
 ```bash
-python3 -m src.tools.validators.run_all_checks_locally --check all
+python3 -m src.tools.validators.validation_suite --run all
 ```
 
 ### Run Specific Check
 
 ```bash
 # Syntax only
-python3 -m src.tools.validators.run_all_checks_locally --check syntax
+python3 -m src.tools.validators.validation_suite --run syntax
 
 # SHACL only
-python3 -m src.tools.validators.run_all_checks_locally --check shacl
+python3 -m src.tools.validators.validation_suite --run check-data-conformance
 
 # Target classes only
-python3 -m src.tools.validators.run_all_checks_locally --check target-classes
+python3 -m src.tools.validators.validation_suite --run check-artifact-coherence
 
 # Failing tests only
-python3 -m src.tools.validators.run_all_checks_locally --check failing-tests
+python3 -m src.tools.validators.validation_suite --run failing-tests
 ```
 
 ### Run for Specific Domain
 
 ```bash
-python3 -m src.tools.validators.run_all_checks_locally --check all --domain hdmap scenario
+python3 -m src.tools.validators.validation_suite --run all --domain hdmap scenario
 ```
 
 ## Exit Codes

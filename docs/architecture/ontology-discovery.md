@@ -105,7 +105,7 @@ This enables offline validation and faster processing.
 
 ## Configuration
 
-Discovery directories are configured in `check_jsonld_against_shacl_schema.py`:
+Discovery directories are configured in `validate_data_conformance.py`:
 
 ```python
 DIR_NAME_IMPORTS = "imports"

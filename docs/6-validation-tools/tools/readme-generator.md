@@ -1,6 +1,6 @@
 # Documentation Generator
 
-**Module:** `src.tools.readme_generator`
+**Module:** `src.tools.utils/properties_updater`
 
 This tool automatically generates `PROPERTIES.md` documentation files from SHACL shape definitions.
 
@@ -19,7 +19,7 @@ For each SHACL file in `artifacts/{ontology}/`, the generator extracts property 
 ### Command Line
 
 ```bash
-python3 -m src.tools.readme_generator
+python3 -m src.tools.utils/properties_updater
 ```
 
 ### Output Location
@@ -99,7 +99,7 @@ The generator runs as part of the CI pipeline:
 
 ```yaml
 - name: Run Generator
-  run: python3 -m src.tools.readme_generator
+  run: python3 -m src.tools.utils/properties_updater
 
 - name: Commit changes
   run: |
@@ -112,7 +112,7 @@ The generator runs as part of the CI pipeline:
 
 ## Customization
 
-To modify the output format, edit the `main()` function in `src/tools/properties_md_generator.py`.
+To modify the output format, edit the `main()` function in `src/tools/utils/properties_updater.py`.
 
 Key customization points:
 

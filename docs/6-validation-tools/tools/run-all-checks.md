@@ -1,6 +1,6 @@
 # Run All Checks Tool
 
-**Module:** `src.tools.validators.run_all_checks_locally`
+**Module:** `src.tools.validators.validation_suite`
 
 This is the main orchestrator that runs all validation checks across ontology domains.
 
@@ -10,32 +10,33 @@ This is the main orchestrator that runs all validation checks across ontology do
 
 ```bash
 # Run all checks on all domains
-python3 -m src.tools.validators.run_all_checks_locally --check all
+python3 -m src.tools.validators.validation_suite --run all
 
 # Run specific check
-python3 -m src.tools.validators.run_all_checks_locally --check shacl
+python3 -m src.tools.validators.validation_suite --run check-data-conformance
 
 # Run on specific domains
-python3 -m src.tools.validators.run_all_checks_locally --check all --domain hdmap scenario
+python3 -m src.tools.validators.validation_suite --run all --domain hdmap scenario
 ```
 
 ### Options
 
-| Option | Description |
-|--------|-------------|
-| `--check TYPE` | Check type: `all`, `syntax`, `target-classes`, `shacl`, `failing-tests` |
-| `--domain DOMAINS` | Space-separated list of domains to check (default: all) |
-| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility) |
+| Option             | Description                                                                       |
+| ------------------ | --------------------------------------------------------------------------------- |
+| `--run TYPE`       | Check type: `all`, `syntax`, `check-artifact-coherence`, `shacl`, `failing-tests` |
+| `--domain DOMAINS` | Space-separated list of domains to check (default: all)                           |
+| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                                    |
 
 ## Check Types
 
 ### `syntax`
 
 Validates file syntax without semantic checks:
+
 - JSON-LD parsing for `*.json` files
 - Turtle parsing for `*.ttl` files
 
-### `target-classes`
+### `check-artifact-coherence`
 
 Verifies SHACL target classes exist in OWL ontologies.
 
@@ -50,6 +51,7 @@ Runs regression test suite - instances in `tests/data/{domain}/invalid/` that sh
 ### `all`
 
 Runs all checks in order:
+
 1. Syntax
 2. Target Classes
 3. SHACL
@@ -71,12 +73,12 @@ tests/data/
 
 For each domain, the tool looks for:
 
-| Artifact | Path |
-|----------|------|
-| Ontology | `artifacts/{domain}/{domain}.owl.ttl` |
-| SHACL | `artifacts/{domain}/{domain}.shacl.ttl` |
+| Artifact        | Path                                        |
+| --------------- | ------------------------------------------- |
+| Ontology        | `artifacts/{domain}/{domain}.owl.ttl`       |
+| SHACL           | `artifacts/{domain}/{domain}.shacl.ttl`     |
 | Valid instances | `tests/data/{domain}/valid/*_instance.json` |
-| Invalid tests | `tests/data/{domain}/invalid/fail_*.json` |
+| Invalid tests   | `tests/data/{domain}/invalid/fail_*.json`   |
 
 ## Output Format
 
@@ -107,11 +109,11 @@ Detected ontology domains: ['hdmap', 'scenario', 'envited-x']
 
 ## Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| 0 | All checks passed |
-| 1 | Python version < 3.12 or not in venv |
-| Other | First failing check's exit code |
+| Code  | Meaning                              |
+| ----- | ------------------------------------ |
+| 0     | All checks passed                    |
+| 1     | Python version < 3.12 or not in venv |
+| Other | First failing check's exit code      |
 
 ## CI Integration
 
@@ -119,8 +121,8 @@ This tool is called by the CI workflow with domain-specific arguments:
 
 ```yaml
 - name: Run SHACL Checks
-  run: python3 -m src.tools.validators.run_all_checks_locally \
-    --check shacl \
+  run: python3 -m src.tools.validators.validation_suite \
+    --run check-data-conformance \
     ${{ needs.changes.outputs.folders_arg }}
 ```
 

@@ -29,7 +29,7 @@ This document summarizes the complete IRI migration and `owl:imports` restructur
     owl:imports <https://w3id.org/{namespace}/{ontology}/v{version}> .
 ```
 
-**Files modified:** All 18 *_shacl.ttl files
+**Files modified:** All 18 \*\_shacl.ttl files
 
 ---
 
@@ -67,13 +67,13 @@ This document summarizes the complete IRI migration and `owl:imports` restructur
 
 **6 unused prefix declarations removed:**
 
-| File | Removed Prefix | Reason |
-|------|---------------|---------|
-| service_ontology.ttl | `@prefix xsd:` | Never used in definitions |
-| leakage-test_ontology.ttl | `@prefix rdf:` | Only metadata use |
-| automotive-simulator_ontology.ttl | `@prefix xsd:`, `@prefix openlabel:` | Never used |
-| envited-x_ontology.ttl | `@prefix xsd:` | Redundant |
-| simulated-sensor_ontology.ttl | `@prefix openlabel:` | Never used |
+| File                              | Removed Prefix                       | Reason                    |
+| --------------------------------- | ------------------------------------ | ------------------------- |
+| service_ontology.ttl              | `@prefix xsd:`                       | Never used in definitions |
+| leakage-test_ontology.ttl         | `@prefix rdf:`                       | Only metadata use         |
+| automotive-simulator_ontology.ttl | `@prefix xsd:`, `@prefix openlabel:` | Never used                |
+| envited-x_ontology.ttl            | `@prefix xsd:`                       | Redundant                 |
+| simulated-sensor_ontology.ttl     | `@prefix openlabel:`                 | Never used                |
 
 ### 3.2 owl:imports Statements Added
 
@@ -198,12 +198,14 @@ This is why environment-model, hdmap, and other ontologies that use `envited-x:S
 The tzip21 ontology was originally placed under the `gaia-x4plcaad/ontologies` namespace, but it belongs to the ENVITED-X ecosystem as it represents simulation assets as GAIA-X service offerings.
 
 **From:**
+
 ```turtle
 @prefix tzip21: <https://w3id.org/gaia-x4plcaad/ontologies/tzip21/v1/> .
 <https://w3id.org/gaia-x4plcaad/ontologies/tzip21/v1> a owl:Ontology ;
 ```
 
 **To:**
+
 ```turtle
 @prefix tzip21: <https://w3id.org/ascs-ev/envited-x/tzip21/v1/> .
 @prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
@@ -215,12 +217,14 @@ The tzip21 ontology was originally placed under the `gaia-x4plcaad/ontologies` n
 **Problem identified:** The `tzip21:identifier` property was incorrectly modeled as a `DatatypeProperty` with range `xsd:string`, but it actually references specific `envited-x:SimulationAsset` instances.
 
 **Before (incorrect):**
+
 ```turtle
 tzip21:identifier a owl:DatatypeProperty ;
     rdfs:range xsd:string .
 ```
 
 **After (correct):**
+
 ```turtle
 tzip21:identifier a owl:ObjectProperty ;
     rdfs:label "identifier"@en ;
@@ -230,6 +234,7 @@ tzip21:identifier a owl:ObjectProperty ;
 ```
 
 **Impact:**
+
 - The ontology now correctly models the semantic relationship between `tzip21:Asset` (a `gx:ServiceOffering`) and the underlying `envited-x:SimulationAsset` it represents
 - Instance data changed from `@value` with `@type: xsd:string` to `@id` for proper RDF resource linking
 - SHACL constraint updated from `sh:datatype xsd:string` to `sh:class envited-x:SimulationAsset`
@@ -244,12 +249,14 @@ owl:imports <https://w3id.org/gaia-x/development/> ,
 ```
 
 **Rationale:**
+
 1. **gx import**: Required because `tzip21:Asset` subclasses `gx:ServiceOffering`
 2. **envited-x import**: Required because `tzip21:identifier` has range `envited-x:SimulationAsset`
 
 ### 4.4 Files Modified
 
 **3 files updated:**
+
 - `tzip21/tzip21_ontology.ttl` - Namespace migration, owl:imports added, identifier property fixed
 - `tzip21/tzip21_shacl.ttl` - Namespace migration, identifier constraint updated to sh:class
 - `tzip21/tzip21_instance.json` - @context updated, identifier changed from @value to @id, ontology URI attributes updated
@@ -267,6 +274,7 @@ tzip21:Asset (gx:ServiceOffering)
 ```
 
 TZIP21 assets serve as **tokenized service offerings** that wrap simulation assets for:
+
 - Blockchain-based provenance tracking
 - Decentralized marketplace listing
 - GAIA-X compliant service discovery
@@ -278,15 +286,15 @@ TZIP21 assets serve as **tokenized service offerings** that wrap simulation asse
 
 ### Total Changes Across All Phases
 
-| Category | Count |
-|----------|-------|
-| **SHACL files updated** | 19 |
-| **JSON instance files updated** | 38 |
-| **Ontology TTL files modified** | 13 |
-| **Prefix declarations removed** | 6 |
-| **owl:imports statements added** | 22 |
-| **Property type fixes** | 1 |
-| **Total files modified** | 92 |
+| Category                         | Count |
+| -------------------------------- | ----- |
+| **SHACL files updated**          | 19    |
+| **JSON instance files updated**  | 38    |
+| **Ontology TTL files modified**  | 13    |
+| **Prefix declarations removed**  | 6     |
+| **owl:imports statements added** | 22    |
+| **Property type fixes**          | 1     |
+| **Total files modified**         | 92    |
 
 ### IRI Pattern Consistency
 
@@ -372,7 +380,7 @@ TZIP21 assets serve as **tokenized service offerings** that wrap simulation asse
 1. **Test validation script:**
 
    ```bash
-   python3 src/check_jsonld_against_shacl_schema.py <instance>.json --root .
+   python3 src/tools/validation/validate_data_conformance.py <instance>.json --root .
    ```
 
    Expected: Registry resolves all dependencies including transitive imports

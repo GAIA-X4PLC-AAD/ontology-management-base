@@ -23,7 +23,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/scenario/scen
 2. **Use absolute path:**
 
    ```bash
-   python src/tools/validators/check_target_classes_against_owl_classes.py \
+   python src/tools/validators/validate_artifact_coherence.py \
      --ontology-file /full/path/to/artifacts/scenario/scenario.owl.ttl \
      --shapes-file /full/path/to/artifacts/scenario/scenario.shacl.ttl
    ```
@@ -32,7 +32,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/scenario/scen
 
    ```bash
    cd /home/carlo/workspace/ontology-management-base
-   python src/tools/validators/check_target_classes_against_owl_classes.py ...
+   python src/tools/validators/validate_artifact_coherence.py ...
    ```
 
 4. **Check capitalization** (Linux is case-sensitive):
@@ -42,7 +42,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/scenario/scen
    python check_target_CLASSES.py
 
    # ✅ Correct
-   python check_target_classes_against_owl_classes.py
+   python validate_artifact_coherence.py
    ```
 
 ---
@@ -176,7 +176,7 @@ Parsing error on line 42: Unexpected token
 3. **Enable debug output:**
 
    ```bash
-   python -u src/tools/validators/check_jsonld_against_shacl_schema.py \
+   python -u src/tools/validators/validate_data_conformance.py \
      --ontology-file scenario.owl.ttl \
      --shacl-file scenario.shacl.ttl \
      --data-file my-data.ttl \
@@ -215,7 +215,7 @@ Parsing error on line 42: Unexpected token
 
    ```bash
    # Linux/Mac: timeout after 60 seconds
-   timeout 60 python src/tools/validators/check_jsonld_against_shacl_schema.py ...
+   timeout 60 python src/tools/validators/validate_data_conformance.py ...
    ```
 
 3. **Optimize SHACL shapes:**
@@ -233,7 +233,7 @@ Parsing error on line 42: Unexpected token
    head -1000 my-data.ttl > my-data-subset.ttl
 
    # Validate subset
-   python src/tools/validators/check_jsonld_against_shacl_schema.py \
+   python src/tools/validators/validate_data_conformance.py \
      --data-file my-data-subset.ttl ...
    ```
 
@@ -297,7 +297,7 @@ Run both validations:
 
 ```bash
 # 1. Check structure with SHACL
-python src/tools/validators/check_jsonld_against_shacl_schema.py ...
+python src/tools/validators/validate_data_conformance.py ...
 
 # 2. Check semantics with OWL reasoner
 python -c "
@@ -411,7 +411,7 @@ Most tools support verbose/debug output:
 ```bash
 # Enable debug logging
 export DEBUG=1
-python src/tools/validators/check_jsonld_against_shacl_schema.py \
+python src/tools/validators/validate_data_conformance.py \
   --ontology scenario.owl.ttl \
   --shacl scenario.shacl.ttl \
   --data my-data.ttl \

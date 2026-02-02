@@ -455,7 +455,7 @@ After adding owl:imports:
 3. **Test Validation Script:**
 
    ```bash
-   python3 src/check_jsonld_against_shacl_schema.py scenario/scenario_instance.json --root .
+   python3 src/tools/validation/validate_data_conformance.py scenario/scenario_instance.json --root .
    ```
 
    Should show registry correctly resolves ALL dependencies including transitive imports

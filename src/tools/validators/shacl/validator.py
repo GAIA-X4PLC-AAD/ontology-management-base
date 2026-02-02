@@ -300,7 +300,7 @@ class ShaclValidator:
         return output_buffer.getvalue()
 
 
-def validate_jsonld_files(
+def validate_data_conformance(
     jsonld_files: List[Path],
     root_dir: Path,
     inference_mode: str = "rdfs",
