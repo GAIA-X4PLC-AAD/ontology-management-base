@@ -40,7 +40,6 @@ NOTES:
 
 import argparse
 import io
-import os
 import sys
 from pathlib import Path
 from typing import Dict, Set, Tuple
@@ -53,6 +52,7 @@ from src.tools.utils.print_formatter import (
     format_artifact_coherence_result,
     normalize_path_for_display,
 )
+from src.tools.utils.registry_resolver import RegistryResolver
 
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -164,33 +164,29 @@ def extract_ontology_classes(ontology_file: str) -> Tuple[Set[str], Dict[str, st
     return ontology_classes, label_to_class
 
 
-def get_base_ontology_classes(base_dir: str) -> Set[str]:
+def get_base_ontology_classes(resolver: RegistryResolver, root_dir: Path) -> Set[str]:
     """
-    Recursively load classes from all .ttl files in the imports directory.
-
-    This provides context for external classes (e.g. schema.org) that
-    are locally mirrored.
+    Load classes from base ontologies listed in imports/catalog-v001.xml.
 
     Args:
-        base_dir: Path to imports directory
+        resolver: RegistryResolver instance
+        root_dir: Repository root directory
 
     Returns:
         Set of lowercase class local names from base ontologies
     """
     base_classes = set()
-    if not os.path.isdir(base_dir):
-        return base_classes
-
-    for root, _, files in os.walk(base_dir):
-        for file in files:
-            if file.endswith(".ttl"):
-                try:
-                    g = Graph()
-                    g.parse(os.path.join(root, file), format="turtle")
-                    base_classes.update(extract_classes_from_graph(g))
-                except Exception:
-                    # Silently ignore parsing errors in base ontologies
-                    pass
+    for rel_path in resolver.get_base_ontology_paths():
+        abs_path = resolver.to_absolute(rel_path)
+        if not abs_path.exists():
+            continue
+        try:
+            g = Graph()
+            g.parse(str(abs_path), format="turtle")
+            base_classes.update(extract_classes_from_graph(g))
+        except Exception:
+            # Silently ignore parsing errors in base ontologies
+            pass
     return base_classes
 
 
@@ -206,53 +202,74 @@ def validate_artifact_coherence(
 
     Args:
         domain: Ontology domain name (e.g., "hdmap", "manifest")
-        owl_dir: Directory containing ontology directories (default: artifacts)
-        shacl_dir: Not used (kept for backward compatibility)
-        imports_dir: Directory containing base ontologies (default: imports)
+        owl_dir: Deprecated (catalogs are used for resolution)
+        shacl_dir: Deprecated (catalogs are used for resolution)
+        imports_dir: Deprecated (catalogs are used for resolution)
         root_dir: Repository root directory for path normalization
 
     Returns:
         Tuple of (return_code, message) where return_code is 0 for success
     """
-    if owl_dir is None:
-        owl_dir = "artifacts"
-    if imports_dir is None:
-        imports_dir = "imports"
+    root_dir = root_dir or Path.cwd()
+    resolver = RegistryResolver(root_dir)
 
-    ontology_file = os.path.join(owl_dir, domain, f"{domain}.owl.ttl")
-    shacl_file = os.path.join(owl_dir, domain, f"{domain}.shacl.ttl")
+    ontology_rel = resolver.get_ontology_path(domain)
+    shacl_rels = resolver.get_shacl_paths(domain)
 
-    # Normalize paths for display
-    if root_dir:
+    if not ontology_rel:
+        message = (
+            f"No ontology file found for '{domain}'. "
+            "Target class validation cannot proceed."
+        )
+        return ReturnCodes.COHERENCE_ERROR, message
+
+    if not shacl_rels:
+        message = (
+            f"No SHACL file found for '{domain}'. "
+            "Target class validation cannot proceed."
+        )
+        return ReturnCodes.COHERENCE_ERROR, message
+
+    ontology_file = resolver.to_absolute(ontology_rel)
+    shacl_files = [resolver.to_absolute(p) for p in shacl_rels]
+
+    if not ontology_file.exists():
+        # Normalize paths for display
         ont_display = normalize_path_for_display(ontology_file, root_dir)
-        shacl_display = normalize_path_for_display(shacl_file, root_dir)
-    else:
-        ont_display = str(ontology_file)
-        shacl_display = str(shacl_file)
-
-    if not os.path.exists(ontology_file):
         message = (
-            f"No ontology file found: {ont_display}. Skipping target class validation."
+            f"No ontology file found: {ont_display}. "
+            "Target class validation cannot proceed."
         )
-        return ReturnCodes.SKIPPED, message
+        return ReturnCodes.COHERENCE_ERROR, message
 
-    if not os.path.exists(shacl_file):
+    missing_shacl = [p for p in shacl_files if not p.exists()]
+    if missing_shacl:
+        # Normalize paths for display
+        missing_display = ", ".join(
+            normalize_path_for_display(p, root_dir) for p in missing_shacl
+        )
         message = (
-            f"No SHACL file found: {shacl_display}. Skipping target class validation."
+            f"No SHACL file found: {missing_display}. "
+            "Target class validation cannot proceed."
         )
-        return ReturnCodes.SKIPPED, message
+        return ReturnCodes.COHERENCE_ERROR, message
 
-    # Load base classes from imports
-    base_classes = get_base_ontology_classes(imports_dir)
+    # Normalize paths for display (used in summary output)
+    ont_display = normalize_path_for_display(ontology_file, root_dir)
+
+    # Load base classes from imports catalog
+    base_classes = get_base_ontology_classes(resolver, root_dir)
 
     # Extract classes from ontology
-    ontology_classes, label_to_class = extract_ontology_classes(ontology_file)
+    ontology_classes, label_to_class = extract_ontology_classes(str(ontology_file))
 
     # Combine local classes with base classes
     valid_classes = ontology_classes.union(base_classes)
 
     # Extract SHACL target classes
-    shacl_classes = extract_shacl_classes_from_file(shacl_file)
+    shacl_classes = set()
+    for shacl_file in shacl_files:
+        shacl_classes.update(extract_shacl_classes_from_file(str(shacl_file)))
 
     # Convert all to lowercase for case-insensitive matching
     valid_classes_lower = {cls.lower() for cls in valid_classes}

@@ -1,6 +1,6 @@
 # Target Class Validation Tool
 
-**Module:** `src.tools.validators.check_target_classes_against_owl_classes`
+**Module:** `src.tools.validators.coherence_validator`
 
 This tool verifies that all SHACL target classes (`sh:targetClass`) are defined as OWL classes in the ontology.
 
@@ -13,33 +13,24 @@ SHACL shapes declare target classes that instances should be validated against. 
 ### Command Line
 
 ```bash
-# Validate by domain name (new structure)
-python3 -m src.tools.validators.check_target_classes_against_owl_classes \
-  hdmap artifacts imports
+# Validate by domain name (catalog-based)
+python3 -m src.tools.validators.validation_suite \
+  --run check-artifact-coherence \
+  --domain hdmap
 
-# Validate a directory (legacy structure)
-python3 -m src.tools.validators.check_target_classes_against_owl_classes \
-  path/to/domain/
+# Direct module invocation
+python3 -m src.tools.validators.coherence_validator hdmap
 ```
 
 ### Programmatic Use
 
 ```python
-from src.tools.validators.check_target_classes_against_owl_classes import (
-    validate_artifact_coherence,
-)
+from pathlib import Path
+from src.tools.validators.coherence_validator import validate_artifact_coherence
 
-# New structure (by domain name)
 return_code, message = validate_artifact_coherence(
     "hdmap",
-    owl_dir="artifacts",
-    shacl_dir=None,
-    imports_dir="imports"
-)
-
-# Legacy structure (directory path)
-return_code, message = validate_artifact_coherence(
-    "path/to/domain/"
+    root_dir=Path("."),
 )
 
 if return_code == 0:
@@ -97,9 +88,8 @@ The tool performs case-insensitive comparison of class local names:
 
 | Code | Meaning                         |
 | ---- | ------------------------------- |
-| 0    | All target classes are defined  |
-| 100  | No ontology or SHACL file found |
-| 200  | Missing target classes detected |
+| 0    | All target classes are defined |
+| 200  | Coherence error (missing files or classes) |
 
 ## Troubleshooting
 
@@ -107,8 +97,8 @@ The tool performs case-insensitive comparison of class local names:
 
 Ensure the file exists at the expected path:
 
-- New structure: `artifacts/{domain}/{domain}.owl.ttl`
-- Legacy: `{domain}/{domain}_ontology.ttl`
+- Check that the domain exists in `artifacts/catalog-v001.xml`
+- Ensure the ontology and SHACL files referenced in the catalog exist
 
 ### Missing Class Errors
 

@@ -48,13 +48,12 @@ def main():
 def process_files(auth_header, existing_schemas, full_directory_path):
     """
     Process ontology Turtle files, determining if they should be created or updated.
-    Updated for new structure: looks for {domain}.owl.ttl instead of {domain}_ontology.ttl
+    Looks for {domain}.owl.ttl files.
     """
     execution = False
     for filename in os.listdir(full_directory_path):
-        # New structure: {domain}.owl.ttl
-        # Legacy support: {domain}_ontology.ttl
-        if filename.endswith(".owl.ttl") or filename.endswith("_ontology.ttl"):
+        # Structure: {domain}.owl.ttl
+        if filename.endswith(".owl.ttl"):
             full_filepath = os.path.join(full_directory_path, filename)
             with open(full_filepath, "r") as ontology_file:
                 ontology_file_content = ontology_file.read()

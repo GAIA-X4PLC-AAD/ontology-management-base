@@ -1,32 +1,35 @@
 # SHACL Validation Tool
 
-**Module:** `src.tools.validators.check_jsonld_against_shacl_schema`
+**Module:** `src.tools.validators.conformance_validator`
 
 This tool validates JSON-LD instance files against SHACL shapes by dynamically resolving and loading required ontology dependencies.
 
 ## Features
 
-- **Dynamic Dependency Resolution** - Analyzes JSON-LD `@context` and `rdf:type` to identify required namespaces
-- **Offline Context Resolution** - Maps remote context IRIs to local files
+- **Dynamic Schema Discovery** - Uses RDF types, predicates, and datatypes to select required schemas
+- **Catalog-Based Resolution** - Resolves ontologies and shapes via XML catalogs
+- **Base Ontology Filtering** - Loads only base vocabularies actually used in the data
+- **Fixture Resolution** - Loads `did:web:` fixtures from the tests catalog
 - **Optimized Performance** - Uses Oxigraph for fast parsing when available
-- **Hybrid Inference** - Custom SPARQL-based RDFS inference
 
 ## Usage
 
 ### Command Line
 
 ```bash
-# Validate a single file
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  tests/data/hdmap/valid/hdmap_instance.json
+# Validate a single file (catalog-based)
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --path tests/data/hdmap/valid/hdmap_instance.json
 
-# Validate a directory
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
+# Validate a domain from the catalog
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain hdmap
+
+# Direct module invocation (paths only)
+python3 -m src.tools.validators.conformance_validator \
   tests/data/hdmap/valid/
-
-# With debug output
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  tests/data/hdmap/valid/ --debug --logfile validation.log
 ```
 
 ### Options
@@ -38,27 +41,24 @@ python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
 | `--debug` | Enable debug logging |
 | `--logfile FILE` | Write validation report to file |
 | `--inference MODE` | Inference mode: `none`, `rdfs`, `owlrl`, `both` (default: `rdfs`) |
-| `--force-load` | Force load all ontologies, bypassing discovery |
 
 ### Programmatic Use
 
 ```python
-from src.tools.validators.check_jsonld_against_shacl_schema import (
-    build_dict_for_ontologies,
-    validate_jsonld_against_shacl,
-)
 from pathlib import Path
+from src.tools.validators.conformance_validator import (
+    collect_jsonld_files,
+    validate_data_conformance,
+)
 
-# Build ontology dictionary
 root = Path(".")
-ontology_dict = build_dict_for_ontologies(root, ["tests/data/hdmap/valid/"])
+jsonld_files = collect_jsonld_files(["tests/data/hdmap/valid/"])
 
 # Run validation
-return_code, message = validate_jsonld_against_shacl(
+return_code, message = validate_data_conformance(
+    jsonld_files,
     root,
-    ontology_dict,
-    debug=False,
-    inference_mode="rdfs"
+    inference_mode="rdfs",
 )
 
 if return_code == 0:
@@ -69,29 +69,25 @@ else:
 
 ## How It Works
 
-### 1. Context Resolution
+### 1. Data Loading
 
-The validator scans JSON-LD files for `@context` declarations and resolves remote contexts to local files in `imports/` or domain directories.
+JSON-LD files are parsed into a data graph. Any `did:web:` references are resolved via the tests catalog and loaded as fixtures.
 
-### 2. Dependency Discovery
+### 2. Schema Discovery
 
-From the resolved contexts and `rdf:type` declarations, the validator identifies:
-- Required ontology files (`*_ontology.ttl`)
-- Required SHACL shapes (`*_shacl.ttl`)
-- Transitive dependencies via `owl:imports`
+The validator extracts RDF types, predicates, and datatypes, then resolves the required OWL and SHACL files via `artifacts/catalog-v001.xml`.
+Base vocabularies from `imports/catalog-v001.xml` are filtered to only the namespaces actually used by the data.
 
 ### 3. Graph Construction
 
 The validator builds three RDF graphs:
-- **Data Graph** - Parsed from JSON-LD instances
-- **Ontology Graph** - Loaded from OWL files
-- **SHACL Graph** - Loaded from SHACL files
+- **Data Graph** - Parsed from JSON-LD instances (plus fixtures)
+- **Ontology Graph** - Loaded from OWL files discovered via the catalog
+- **SHACL Graph** - Loaded from SHACL files discovered via the catalog
 
 ### 4. Inference
 
-If inference is enabled (default: `rdfs`), the validator materializes inferred triples:
-- Class hierarchy (`rdfs:subClassOf`)
-- Property hierarchy (`rdfs:subPropertyOf`)
+If inference is enabled (default: `rdfs`), inferred triples are materialized before validation.
 
 ### 5. Validation
 
@@ -112,7 +108,7 @@ PySHACL validates the data graph against the SHACL graph, with the ontology grap
 
 ### "No valid files found"
 
-Ensure the path contains `*_instance.json` or `*_reference.json` files.
+Ensure the path contains `.json` or `.jsonld` files.
 
 ### "SHACL validation failed"
 

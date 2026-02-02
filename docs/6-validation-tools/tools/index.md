@@ -20,8 +20,8 @@ graph LR
 
 | Tool                             | Purpose                                          | Documentation                                |
 | -------------------------------- | ------------------------------------------------ | -------------------------------------------- |
-| `validate_data_conformance.py`   | Validates JSON-LD instances against SHACL shapes | [Details](check-jsonld-against-shacl.md)     |
-| `validate_artifact_coherence.py` | Verifies SHACL target classes exist in OWL       | [Details](check-check-artifact-coherence.md) |
+| `conformance_validator.py` | Validates JSON-LD instances against SHACL shapes | [Details](check-jsonld-against-shacl.md) |
+| `coherence_validator.py`   | Verifies SHACL target classes exist in OWL       | [Details](check-target-classes.md)       |
 | `validation_suite.py`            | Orchestrates all validation checks               | [Details](run-all-checks.md)                 |
 
 ### Documentation Tools
@@ -42,7 +42,7 @@ python3 -m src.tools.validators.validation_suite --run all
 
 ```bash
 # Syntax only
-python3 -m src.tools.validators.validation_suite --run syntax
+python3 -m src.tools.validators.validation_suite --run check-syntax
 
 # SHACL only
 python3 -m src.tools.validators.validation_suite --run check-data-conformance

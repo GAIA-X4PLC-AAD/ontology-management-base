@@ -16,22 +16,24 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from rdflib import Graph
 
-from src.tools.utils.print_formatter import (
-    format_shacl_validation_result,
-    normalize_path_for_display,
-)
-from src.tools.utils.registry_resolver import RegistryResolver
-
-from .graph_loader import (
+from src.tools.utils.graph_loader import (
     FAST_STORE,
     extract_external_iris,
     load_fixtures_for_iris,
     load_jsonld_files,
     load_turtle_files,
 )
+from src.tools.utils.print_formatter import (
+    format_shacl_validation_result,
+    normalize_path_for_display,
+)
+from src.tools.utils.registry_resolver import RegistryResolver
+
 from .inference import apply_rdfs_inference
 from .schema_discovery import (
     discover_required_schemas,
+    extract_datatype_iris,
+    extract_predicates,
     extract_rdf_types,
     get_base_ontology_paths,
 )
@@ -128,7 +130,11 @@ class ShaclValidator:
         # Step 2: Extract types and discover schemas
         self._log("\nStep 2: Discovering Required Schemas...")
         rdf_types = extract_rdf_types(data_graph)
-        ontology_graph, shacl_graph = self._load_schemas(rdf_types)
+        predicates = extract_predicates(data_graph)
+        datatypes = extract_datatype_iris(data_graph)
+        ontology_graph, shacl_graph = self._load_schemas(
+            rdf_types, predicates, datatypes
+        )
 
         # Step 3: Apply inference if requested
         self._log(f"\nStep 3: Applying Inference ({self.inference_mode})...")
@@ -178,8 +184,13 @@ class ShaclValidator:
 
         return data_graph, prefixes
 
-    def _load_schemas(self, rdf_types: Set[str]) -> Tuple[Graph, Graph]:
-        """Load ontology and SHACL schemas based on discovered types."""
+    def _load_schemas(
+        self,
+        rdf_types: Set[str],
+        predicates: Set[str],
+        datatypes: Set[str],
+    ) -> Tuple[Graph, Graph]:
+        """Load ontology and SHACL schemas based on discovered IRIs."""
         self._log(f"  Types found: {len(rdf_types)}")
         for rdf_type in sorted(rdf_types):
             self._log(f"    {rdf_type}")
@@ -189,8 +200,9 @@ class ShaclValidator:
             rdf_types, self.resolver
         )
 
-        # Add base ontologies
-        base_paths = get_base_ontology_paths(self.root_dir)
+        # Add base ontologies filtered by actual usage
+        used_iris = set(rdf_types) | set(predicates) | set(datatypes)
+        base_paths = get_base_ontology_paths(self.root_dir, used_iris=used_iris)
         all_ontology_paths = sorted(set(ontology_paths + base_paths))
 
         # Load ontologies

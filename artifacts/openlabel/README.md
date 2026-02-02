@@ -55,10 +55,9 @@ See the root guide for the canonical commands and explanations:
 Example command for this folder:
 
 ```bash
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  --ontology artifacts/openlabel/openlabel.owl.ttl \
-  --shacl artifacts/openlabel/openlabel.shacl.ttl \
-  --instance tests/data/openlabel/valid/openlabel_instance.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain openlabel
 ```
 
 ---

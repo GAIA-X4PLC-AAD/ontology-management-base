@@ -29,7 +29,7 @@ repos:
       - id: jsonld-lint
         name: JSON-LD Parser
         # Updated: Sets PYTHONPATH and runs as module to resolve imports
-        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.verify_json_syntax "$@"' --
+        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.syntax_validator --json "$@"' --
         language: system
         types: [json]
         files: \.(json|jsonld)$
@@ -37,7 +37,7 @@ repos:
       - id: turtle-lint
         name: Turtle Parser
         # Updated: Sets PYTHONPATH and runs as module to resolve imports
-        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.verify_turtle_syntax "$@"' --
+        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.syntax_validator --turtle "$@"' --
         language: system
         types: [text]
         files: \.(ttl)$

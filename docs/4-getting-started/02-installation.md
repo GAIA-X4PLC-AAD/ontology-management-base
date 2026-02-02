@@ -37,7 +37,7 @@ pre-commit install
 ## Verify Installation
 
 ```bash
-python3 -m src.tools.validators.validation_suite --run syntax --domain hdmap
+python3 -m src.tools.validators.validation_suite --run check-syntax --domain hdmap
 ```
 
 You should see output indicating successful validation.

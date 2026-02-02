@@ -89,7 +89,7 @@ docs/
 │   ├── tools/
 │   │   ├── run-all-checks.md
 │   │   ├── check-jsonld-shacl.md
-│   │   ├── check-check-artifact-coherence.md
+│   │   ├── check-target-classes.md
 │   │   └── readme-generator.md
 │   └── troubleshooting.md     # [NEW] Common issues & fixes
 │
@@ -401,8 +401,9 @@ python3 -m src.tools.validators.validation_suite --run check-data-conformance
 }
 
 # Validate
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  hdmap test-hdmap.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --path test-hdmap.json
 ```
 
 ## What Just Happened?
@@ -534,8 +535,9 @@ EOF
 ### 6. Test Locally
 
 ```bash
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  {domain} tests/data/{domain}/valid/{domain}_instance.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain {domain}
 
 # Should show ✅ Valid
 ```
@@ -624,7 +626,7 @@ CI will automatically:
 |------|---------|-------|--------|
 | **run-all-checks** | Orchestrate all validations | Domain | Report |
 | **check-jsonld-shacl** | SHACL shape validation | JSON-LD file | ✅/❌ |
-| **check-check-artifact-coherence** | Class existence check | Domain | ✅/❌ |
+| **check-target-classes** | Class existence check | Domain | ✅/❌ |
 | **readme-generator** | Generate PROPERTIES.md | SHACL files | Markdown |
 
 ## Which Tool Do I Need?
@@ -636,7 +638,7 @@ CI will automatically:
 → Use [`run-all-checks`](tools/run-all-checks.md)
 
 ### I want to ensure all SHACL target classes exist in OWL
-→ Use [`check-check-artifact-coherence`](tools/check-check-artifact-coherence.md)
+→ Use [`check-target-classes`](tools/check-target-classes.md)
 
 ### I want to auto-generate documentation
 → Use [`readme-generator`](tools/readme-generator.md)
@@ -999,7 +1001,7 @@ nav:
     - Tool Architecture: validation-tools/architecture.md
     - Run All Checks: validation-tools/tools/run-all-checks.md
     - Check SHACL: validation-tools/tools/check-jsonld-shacl.md
-    - Check Classes: validation-tools/tools/check-check-artifact-coherence.md
+    - Check Classes: validation-tools/tools/check-target-classes.md
     - Generate Docs: validation-tools/tools/readme-generator.md
     - Troubleshooting: validation-tools/troubleshooting.md
 

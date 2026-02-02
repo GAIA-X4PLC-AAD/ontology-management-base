@@ -2,7 +2,7 @@
 
 ## Summary
 
-Updated `.pre-commit-config.yaml` to reference scripts in their new location (`src/tools/utils/` instead of `src/utils/`) and verified that all referenced scripts work with the new folder structure.
+Updated `.pre-commit-config.yaml` to use the unified syntax validator module and verified that all referenced scripts work with the new folder structure.
 
 ---
 
@@ -10,7 +10,7 @@ Updated `.pre-commit-config.yaml` to reference scripts in their new location (`s
 
 ### .pre-commit-config.yaml Updated
 
-Changed two script references from old paths to new paths:
+Changed two script references to use the unified syntax validator:
 
 **Before:**
 
@@ -26,38 +26,38 @@ Changed two script references from old paths to new paths:
 
 ```yaml
 - id: jsonld-lint
-  entry: python3 src/tools/validators/verify_json_syntax.py
+  entry: python3 -m src.tools.validators.syntax_validator --json
 
 - id: turtle-lint
-  entry: python3 src/tools/validators/verify_turtle_syntax.py
+  entry: python3 -m src.tools.validators.syntax_validator --turtle
 ```
 
 **Changes:**
 
-- ✅ Updated paths: `src/utils/` → `src/tools/utils/`
+- ✅ Unified JSON-LD and Turtle checks under `syntax_validator.py`
 - ✅ Updated Python binary: `python` → `python3` (for consistency with scripts)
 
 ---
 
 ## Script Verification
 
-### JSON-LD Parser: `src/tools/validators/verify_json_syntax.py`
+### JSON-LD Parser: `src/tools/validators/syntax_validator.py` (`--json`)
 
 **Status:** ✅ **Working**
 
-- **Location:** `src/tools/validators/verify_json_syntax.py` (114 lines)
+- **Location:** `src/tools/validators/syntax_validator.py`
 - **Purpose:** Validates JSON and JSON-LD files
-- **Function:** Parses file and reports errors using JSON decoder
+- **Function:** Parses files and reports errors using JSON decoder
 - **Dependencies:** Standard library only (json, os, sys, argparse)
 - **Integration:** Works with pre-commit hook
 
-### Turtle Parser: `src/tools/validators/verify_turtle_syntax.py`
+### Turtle Parser: `src/tools/validators/syntax_validator.py` (`--turtle`)
 
 **Status:** ✅ **Working** (requires `rdflib` dependency)
 
-- **Location:** `src/tools/validators/verify_turtle_syntax.py` (117 lines)
+- **Location:** `src/tools/validators/syntax_validator.py`
 - **Purpose:** Validates Turtle (.ttl) RDF files
-- **Function:** Parses file using rdflib and reports parser errors
+- **Function:** Parses files using rdflib and reports parser errors
 - **Dependencies:** `rdflib` (external, in dev dependencies)
 - **Integration:** Works with pre-commit hook
 
@@ -125,8 +125,8 @@ All hooks in `.pre-commit-config.yaml`:
 **JSON-LD Lint:**
 
 ```bash
-$ python3 src/tools/validators/verify_json_syntax.py --help
-usage: verify_json_syntax.py [-h] paths [paths ...]
+$ python3 -m src.tools.validators.syntax_validator --json --help
+usage: syntax_validator.py [-h] [--test] [--json] [--turtle] [--quiet] [paths ...]
 Validate JSON-LD files by parsing them.
 ✅ SUCCESS
 ```
@@ -134,7 +134,7 @@ Validate JSON-LD files by parsing them.
 **Turtle Lint:**
 
 ```bash
-$ python3 src/tools/validators/verify_turtle_syntax.py --help
+$ python3 -m src.tools.validators.syntax_validator --turtle --help
 # Requires rdflib - works when rdflib is installed
 ✅ SUCCESS (with dependencies)
 ```
@@ -145,7 +145,7 @@ $ python3 src/tools/validators/verify_turtle_syntax.py --help
 
 ✅ All scripts compatible with new folder structure:
 
-- Script paths updated to `src/tools/utils/`
+- Script paths updated to `src/tools/validators/`
 - Python3 binary explicitly specified
 - No hardcoded paths in scripts that would break
 - Dependencies properly declared

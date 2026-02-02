@@ -70,10 +70,9 @@ See the root guide for the canonical commands and explanations:
 Example command for this folder:
 
 ```bash
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  --ontology artifacts/gx/gx.owl.ttl \
-  --shacl artifacts/gx/gx.shacl.ttl \
-  --instance tests/data/gx/valid/gx_instance.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain gx
 ```
 
 ---

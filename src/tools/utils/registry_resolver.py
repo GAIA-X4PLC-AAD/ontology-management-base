@@ -1,23 +1,15 @@
 #!/usr/bin/env python3
 """
-Registry-based resolution for ontology and SHACL file paths.
+Catalog-driven resolution for ontology and SHACL file paths.
 
-The RegistryResolver loads the registry.json configuration file and provides
-methods to resolve:
-- Ontology domains to their OWL file paths
-- RDF types to the domains they belong to
-- SHACL shapes for a given domain
-- Fixture IRIs to concrete URIs
+The RegistryResolver loads XML catalogs to resolve:
+- Ontology domains to their OWL file paths (artifacts/catalog-v001.xml)
+- SHACL shapes for a given domain (artifacts/catalog-v001.xml)
+- Base ontologies for inference (imports/catalog-v001.xml)
+- Test data and fixtures (tests/catalog-v001.xml)
 
-This is a domain-agnostic utility used primarily by the SHACL validation
-pipeline (see src.tools.validators.shacl) but designed to be reusable by
-any component that needs registry-based path resolution.
-
-Key Features:
-  - Uses docs/registry.json as single source of truth
-  - Returns repository-relative paths (strings) by default
-  - Supports fixture IRI resolution for test data
-  - No filesystem scanning required
+docs/registry.json is still loaded for metadata, but runtime path resolution
+is driven by the catalogs for consistency.
 
 Usage:
     from src.tools.utils import RegistryResolver
@@ -31,7 +23,9 @@ Usage:
     ontology_paths, shacl_paths = resolver.discover_required_schemas(rdf_types)
 
 See also:
-    - docs/registry.json: Registry configuration file
+    - artifacts/catalog-v001.xml
+    - imports/catalog-v001.xml
+    - tests/catalog-v001.xml
     - src.tools.validators.shacl: Main consumer of this utility
 """
 
@@ -44,8 +38,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 class RegistryResolver:
     """
-    Resolves ontology files using docs/registry.json.
-    Loads fixture mappings from unified test catalog (tests/catalog-v001.xml).
+    Resolves ontology files using XML catalogs.
 
     Usage:
         resolver = RegistryResolver(root_dir="/path/to/repo")
@@ -64,11 +57,15 @@ class RegistryResolver:
         self.root_dir = Path(root_dir or Path.cwd()).resolve()
         self._registry: Dict = {}
         self._catalog: Dict[str, Dict] = {}  # Full catalog (test-data + fixtures)
-        self._fixtures_catalog: Dict[str, str] = {}  # Legacy: fixture IRIs only
+        self._fixtures_catalog: Dict[str, str] = {}  # Fixture IRIs only
+        self._artifact_domains: Dict[str, Dict[str, object]] = {}
+        self._domain_iris: Dict[str, str] = {}
         self._iri_to_domain: Dict[str, str] = {}
+        self._imports_catalog_entries: Optional[Dict[str, str]] = None
 
         self._load_registry()
         self._load_catalog()  # Replaces _load_fixtures_catalog
+        self._load_artifacts_catalog()
         self._build_iri_index()
 
     def _load_registry(self) -> None:
@@ -89,13 +86,8 @@ class RegistryResolver:
         Load unified test catalog for test data discovery and fixture resolution.
 
         Loads all catalog entries including test-data, fixtures, and other categories.
-        Maintains backward compatibility with _fixtures_catalog for fixture IRI resolution.
         """
         catalog_path = self.root_dir / "tests" / "catalog-v001.xml"
-
-        # Fallback to legacy fixtures catalog if unified doesn't exist
-        if not catalog_path.exists():
-            catalog_path = self.root_dir / "tests" / "fixtures" / "catalog-v001.xml"
 
         if not catalog_path.exists():
             return
@@ -121,7 +113,6 @@ class RegistryResolver:
                         "category": category,
                     }
 
-                    # Maintain legacy fixtures catalog for IRI resolution
                     if category == "fixture":
                         self._fixtures_catalog[test_id] = path
 
@@ -142,43 +133,186 @@ class RegistryResolver:
                             "category": category,
                         }
 
-                        # Legacy fixture handling
-                        if not category or category == "fixture":
-                            if not path.startswith("tests/"):
-                                path = f"tests/fixtures/{path}"
+                        if category == "fixture":
                             self._fixtures_catalog[test_id] = path
 
         except Exception as e:
             warnings.warn(f"Could not parse test catalog: {e}")
 
+    def _normalize_catalog_path(self, base_dir: str, uri: str) -> Path:
+        """
+        Normalize a catalog URI to a repository-relative path.
+
+        Args:
+            base_dir: Base directory for relative paths (e.g., "artifacts", "imports")
+            uri: URI attribute from catalog entry
+
+        Returns:
+            Repository-relative Path
+        """
+        uri_path = Path(uri)
+        if uri_path.is_absolute():
+            return Path(self.to_relative(uri_path))
+        if uri_path.parts and uri_path.parts[0] == base_dir:
+            return uri_path
+        return Path(base_dir) / uri_path
+
+    def _extract_domain_from_artifact_path(self, rel_path: Path) -> Optional[str]:
+        """
+        Extract domain name from an artifacts catalog path.
+
+        Args:
+            rel_path: Repository-relative path to an artifact file
+
+        Returns:
+            Domain name or None if not determinable
+        """
+        parts = rel_path.parts
+        if not parts:
+            return None
+        if parts[0] == "artifacts" and len(parts) > 1:
+            return parts[1]
+        return parts[0]
+
+    def _load_artifacts_catalog(self) -> None:
+        """
+        Load artifacts/catalog-v001.xml for ontology and SHACL resolution.
+
+        Populates:
+            - _artifact_domains: domain -> files (ontology, shacl, jsonld)
+            - _domain_iris: domain -> ontology IRI
+        """
+        catalog_path = self.root_dir / "artifacts" / "catalog-v001.xml"
+        if not catalog_path.exists():
+            warnings.warn(f"Artifacts catalog not found: {catalog_path}")
+            return
+
+        try:
+            tree = ET.parse(catalog_path)
+            root = tree.getroot()
+        except Exception as e:
+            warnings.warn(f"Could not parse artifacts catalog: {e}")
+            return
+
+        ns = {"cat": "urn:oasis:names:tc:entity:xmlns:xml:catalog"}
+        uri_elems = root.findall("cat:uri", ns)
+        if not uri_elems:
+            uri_elems = root.findall("uri")
+
+        for uri_elem in uri_elems:
+            iri = uri_elem.get("name")
+            uri = uri_elem.get("uri")
+            if not iri or not uri:
+                continue
+
+            rel_path = self._normalize_catalog_path("artifacts", uri)
+            domain = self._extract_domain_from_artifact_path(rel_path)
+            if not domain:
+                continue
+
+            if domain not in self._artifact_domains:
+                self._artifact_domains[domain] = {
+                    "ontology": None,
+                    "shacl": [],
+                    "jsonld": None,
+                }
+
+            if self._is_context_path(rel_path):
+                if self._artifact_domains[domain]["jsonld"] is None:
+                    self._artifact_domains[domain]["jsonld"] = rel_path.as_posix()
+                continue
+
+            if self._is_shacl_path(rel_path):
+                shacl_list = self._artifact_domains[domain]["shacl"]
+                shacl_path = rel_path.as_posix()
+                if shacl_path not in shacl_list:
+                    shacl_list.append(shacl_path)
+                continue
+
+            if self._is_ontology_file(rel_path):
+                if self._artifact_domains[domain]["ontology"] is None:
+                    self._artifact_domains[domain]["ontology"] = rel_path.as_posix()
+                if domain not in self._domain_iris:
+                    self._domain_iris[domain] = iri
+
+        # Normalize SHACL lists for consistent output
+        for info in self._artifact_domains.values():
+            info["shacl"] = sorted(set(info["shacl"]))
+
+    def _load_imports_catalog_entries(self) -> Dict[str, str]:
+        """
+        Load base ontology entries from imports/catalog-v001.xml.
+
+        Returns:
+            Mapping of base ontology IRI to repository-relative path
+        """
+        catalog_path = self.root_dir / "imports" / "catalog-v001.xml"
+        if not catalog_path.exists():
+            return {}
+
+        try:
+            tree = ET.parse(catalog_path)
+            root = tree.getroot()
+        except Exception as e:
+            warnings.warn(f"Could not parse imports catalog: {e}")
+            return {}
+
+        ns = {"cat": "urn:oasis:names:tc:entity:xmlns:xml:catalog"}
+        uri_elems = root.findall("cat:uri", ns)
+        if not uri_elems:
+            uri_elems = root.findall("uri")
+
+        entries: Dict[str, str] = {}
+        for uri_elem in uri_elems:
+            iri = uri_elem.get("name")
+            uri = uri_elem.get("uri")
+            if not iri or not uri:
+                continue
+
+            rel_path = self._normalize_catalog_path("imports", uri)
+            if not self._is_ontology_file(rel_path):
+                continue
+
+            entries[iri] = rel_path.as_posix()
+
+        return entries
+
+    @staticmethod
+    def _is_context_path(path: Path) -> bool:
+        path_str = path.as_posix().lower()
+        return path_str.endswith((".context.jsonld", ".context.json"))
+
+    @staticmethod
+    def _is_shacl_path(path: Path) -> bool:
+        path_str = path.as_posix().lower()
+        return ".shacl." in path_str or path_str.endswith(".shacl.ttl")
+
+    @classmethod
+    def _is_ontology_file(cls, path: Path) -> bool:
+        """
+        Check if a catalog entry looks like an ontology file (not context/shapes).
+
+        Args:
+            path: Path to check (relative)
+
+        Returns:
+            True if path is a likely ontology file
+        """
+        if cls._is_context_path(path):
+            return False
+        if cls._is_shacl_path(path):
+            return False
+        return path.suffix.lower() in {".ttl", ".rdf", ".owl", ".xml", ".nt", ".n3"}
+
     def _build_iri_index(self) -> None:
-        """Build IRI -> domain mapping from registry."""
-        ontologies = self._registry.get("ontologies", {})
-        for domain, info in ontologies.items():
-            iri = info.get("iri")
+        """Build IRI -> domain mapping from artifacts catalog."""
+        self._iri_to_domain = {}
+        for domain, iri in self._domain_iris.items():
             if iri:
                 self._iri_to_domain[iri] = domain
-                # Also index without trailing version
                 base_iri = iri.rstrip("/")
                 if base_iri != iri:
                     self._iri_to_domain[base_iri] = domain
-
-    def _get_latest_version_files(self, domain: str) -> Optional[Dict]:
-        """Get files dict for the latest version of a domain."""
-        ontologies = self._registry.get("ontologies", {})
-        if domain not in ontologies:
-            return None
-
-        info = ontologies[domain]
-        latest = info.get("latest")
-        if not latest:
-            return None
-
-        versions = info.get("versions", {})
-        if latest not in versions:
-            return None
-
-        return versions[latest].get("files")
 
     # =========================================================================
     # Core Methods (return repo-relative paths as strings)
@@ -186,12 +320,12 @@ class RegistryResolver:
 
     def list_domains(self) -> List[str]:
         """
-        List all ontology domains available in the registry.
+        List all ontology domains available in the artifacts catalog.
 
         Returns:
             List of domain names sorted alphabetically
         """
-        return sorted(self._registry.get("ontologies", {}).keys())
+        return sorted(self._artifact_domains.keys())
 
     def get_ontology_path(self, domain: str) -> Optional[str]:
         """
@@ -203,10 +337,10 @@ class RegistryResolver:
         Returns:
             Repository-relative path to the ontology file, or None if not found
         """
-        files = self._get_latest_version_files(domain)
-        if not files:
+        info = self._artifact_domains.get(domain)
+        if not info:
             return None
-        return files.get("ontology")
+        return info.get("ontology")
 
     def get_shacl_paths(self, domain: str) -> List[str]:
         """
@@ -218,17 +352,10 @@ class RegistryResolver:
         Returns:
             List of repository-relative paths to SHACL files
         """
-        files = self._get_latest_version_files(domain)
-        if not files:
+        info = self._artifact_domains.get(domain)
+        if not info:
             return []
-
-        shacl = files.get("shacl")
-        if not shacl:
-            return []
-
-        if isinstance(shacl, list):
-            return shacl
-        return [shacl]
+        return list(info.get("shacl") or [])
 
     def get_context_path(self, domain: str) -> Optional[str]:
         """
@@ -240,10 +367,10 @@ class RegistryResolver:
         Returns:
             Repository-relative path to the context file, or None if not found
         """
-        files = self._get_latest_version_files(domain)
-        if not files:
+        info = self._artifact_domains.get(domain)
+        if not info:
             return None
-        return files.get("jsonld")
+        return info.get("jsonld")
 
     def get_instance_path(self, domain: str) -> Optional[str]:
         """
@@ -255,10 +382,7 @@ class RegistryResolver:
         Returns:
             Repository-relative path to the instance file, or None if not found
         """
-        files = self._get_latest_version_files(domain)
-        if not files:
-            return None
-        return files.get("instance")
+        return None
 
     def get_iri(self, domain: str) -> Optional[str]:
         """
@@ -270,24 +394,62 @@ class RegistryResolver:
         Returns:
             IRI string, or None if not found
         """
-        ontologies = self._registry.get("ontologies", {})
-        if domain not in ontologies:
-            return None
-        return ontologies[domain].get("iri")
+        return self._domain_iris.get(domain)
 
     def get_base_ontology_paths(self) -> List[str]:
         """
         Get paths to base ontologies required for RDFS inference.
 
         Base ontologies (RDF, RDFS, OWL, SKOS, etc.) are registered in
-        the imports/ directory and listed in the registry's base_ontologies section.
+        the imports/ directory and listed in imports/catalog-v001.xml.
 
         Returns:
             List of repository-relative paths to base ontology files
         """
-        base_ontologies = self._registry.get("base_ontologies", [])
-        # Return sorted and deduplicated list
-        return sorted(set(base_ontologies))
+        if self._imports_catalog_entries is None:
+            self._imports_catalog_entries = self._load_imports_catalog_entries()
+        if self._imports_catalog_entries:
+            return sorted(set(self._imports_catalog_entries.values()))
+        return []
+
+    def get_base_ontology_paths_for_iris(self, iris: Set[str]) -> List[str]:
+        """
+        Get base ontologies filtered by actual IRI usage.
+
+        Args:
+            iris: Set of IRIs referenced in the data graph
+
+        Returns:
+            List of repository-relative paths to base ontology files
+        """
+        if self._imports_catalog_entries is None:
+            self._imports_catalog_entries = self._load_imports_catalog_entries()
+        if not self._imports_catalog_entries:
+            return []
+
+        matches: List[str] = []
+        for base_iri, path in self._imports_catalog_entries.items():
+            if self._iri_matches_base(iris, base_iri):
+                matches.append(path)
+
+        return sorted(set(matches))
+
+    @staticmethod
+    def _iri_matches_base(iris: Set[str], base_iri: str) -> bool:
+        candidates = {base_iri}
+        if base_iri.startswith("http://"):
+            candidates.add("https://" + base_iri[len("http://") :])
+        elif base_iri.startswith("https://"):
+            candidates.add("http://" + base_iri[len("https://") :])
+
+        for candidate in candidates:
+            base = candidate.rstrip("#/")
+            for iri in iris:
+                if iri == candidate or iri.startswith(candidate):
+                    return True
+                if iri.startswith(base + "/") or iri.startswith(base + "#"):
+                    return True
+        return False
 
     # =========================================================================
     # Test Catalog Methods
@@ -426,7 +588,7 @@ class RegistryResolver:
 
     def get_all_ontology_paths(self) -> List[str]:
         """
-        Get all ontology file paths from the registry.
+        Get all ontology file paths from the artifacts catalog.
 
         Returns:
             List of repository-relative paths to all ontology files
@@ -440,7 +602,7 @@ class RegistryResolver:
 
     def get_all_shacl_paths(self) -> List[str]:
         """
-        Get all SHACL shape file paths from the registry.
+        Get all SHACL shape file paths from the artifacts catalog.
 
         Returns:
             List of repository-relative paths to all SHACL files

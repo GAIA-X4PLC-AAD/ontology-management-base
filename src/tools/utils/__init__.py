@@ -5,10 +5,10 @@ This package provides reusable utilities that are not specific to any
 particular validation or processing task.
 
 Key utilities:
-- RegistryResolver: Resolves ontology and SHACL paths from registry.json
-- verify_json_syntax: Validates JSON-LD syntax
-- verify_turtle_syntax: Validates Turtle/RDF syntax
-- print_formatting: Output formatting utilities
+- RegistryResolver: Resolves ontology and SHACL paths from XML catalogs
+- file_collector: File discovery utilities
+- graph_loader: RDF graph loading utilities
+- print_formatter: Output formatting utilities
 
 The registry resolver is used by the SHACL validation pipeline (see
 src.tools.validators.shacl) to discover required ontologies and SHACL
@@ -23,7 +23,9 @@ Usage:
 
 See also:
     - src.tools.validators.shacl: Main consumer of RegistryResolver
-    - docs/registry.json: Registry configuration file
+    - artifacts/catalog-v001.xml
+    - imports/catalog-v001.xml
+    - tests/catalog-v001.xml
 """
 
 from .file_collector import (

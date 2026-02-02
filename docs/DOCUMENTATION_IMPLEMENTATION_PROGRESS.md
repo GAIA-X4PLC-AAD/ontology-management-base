@@ -59,7 +59,7 @@ Major documentation restructuring is 80% complete. The repository now has a comp
 
 **Existing Tools Documentation:**
 
-- `tools/check-check-artifact-coherence.md`
+- `tools/check-target-classes.md`
 - `tools/check-jsonld-against-shacl.md`
 - `tools/readme-generator.md`
 - `tools/ontology-discovery.md`

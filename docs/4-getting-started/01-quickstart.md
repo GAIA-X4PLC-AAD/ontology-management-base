@@ -22,8 +22,9 @@ Create a JSON-LD file following the ontology structure. Here's an example for th
 ### Option A: Validate a Specific File
 
 ```bash
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  path/to/your/instance.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --path path/to/your/instance.json
 ```
 
 ### Option B: Validate All Instances for a Domain

@@ -20,29 +20,27 @@ FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/scenario/scen
    ls -la artifacts/scenario/scenario.owl.ttl
    ```
 
-2. **Use absolute path:**
+2. **Verify catalog entries:**
 
    ```bash
-   python src/tools/validators/validate_artifact_coherence.py \
-     --ontology-file /full/path/to/artifacts/scenario/scenario.owl.ttl \
-     --shapes-file /full/path/to/artifacts/scenario/scenario.shacl.ttl
+   rg "scenario" artifacts/catalog-v001.xml
    ```
 
 3. **Run from correct directory:**
 
    ```bash
    cd /home/carlo/workspace/ontology-management-base
-   python src/tools/validators/validate_artifact_coherence.py ...
+   python3 -m src.tools.validators.validation_suite --run check-artifact-coherence --domain scenario
    ```
 
 4. **Check capitalization** (Linux is case-sensitive):
 
    ```bash
    # ❌ Wrong
-   python check_target_CLASSES.py
+   python coherence_Validator.py
 
    # ✅ Correct
-   python validate_artifact_coherence.py
+   python3 -m src.tools.validators.coherence_validator scenario
    ```
 
 ---
@@ -176,11 +174,9 @@ Parsing error on line 42: Unexpected token
 3. **Enable debug output:**
 
    ```bash
-   python -u src/tools/validators/validate_data_conformance.py \
-     --ontology-file scenario.owl.ttl \
-     --shacl-file scenario.shacl.ttl \
-     --data-file my-data.ttl \
-     --debug
+   python3 -u -m src.tools.validators.conformance_validator \
+     path/to/my-data.jsonld \
+     --debug --logfile validation.log
    ```
 
 4. **Check SHACL shape severity:**
@@ -215,26 +211,22 @@ Parsing error on line 42: Unexpected token
 
    ```bash
    # Linux/Mac: timeout after 60 seconds
-   timeout 60 python src/tools/validators/validate_data_conformance.py ...
+   timeout 60 python3 -m src.tools.validators.conformance_validator path/to/my-data.jsonld ...
    ```
 
 3. **Optimize SHACL shapes:**
 
-   ```bash
-   python src/tools/optimize_shacl_validation.py \
-     --shacl-file scenario.shacl.ttl \
-     --analysis detailed
-   ```
+   See [optimizing_shacl_validation_import_strategy.md](tools/optimizing_shacl_validation_import_strategy.md)
 
 4. **Validate subset of data:**
 
    ```bash
    # Extract first 1000 lines
-   head -1000 my-data.ttl > my-data-subset.ttl
+   head -1000 my-data.jsonld > my-data-subset.jsonld
 
    # Validate subset
-   python src/tools/validators/validate_data_conformance.py \
-     --data-file my-data-subset.ttl ...
+   python3 -m src.tools.validators.conformance_validator \
+     my-data-subset.jsonld ...
    ```
 
 5. **Use streaming approach:**
@@ -297,7 +289,7 @@ Run both validations:
 
 ```bash
 # 1. Check structure with SHACL
-python src/tools/validators/validate_data_conformance.py ...
+python3 -m src.tools.validators.conformance_validator path/to/my-data.jsonld ...
 
 # 2. Check semantics with OWL reasoner
 python -c "
@@ -410,13 +402,9 @@ Most tools support verbose/debug output:
 
 ```bash
 # Enable debug logging
-export DEBUG=1
-python src/tools/validators/validate_data_conformance.py \
-  --ontology scenario.owl.ttl \
-  --shacl scenario.shacl.ttl \
-  --data my-data.ttl \
-  --verbose \
-  --debug
+python3 -m src.tools.validators.conformance_validator \
+  path/to/my-data.jsonld \
+  --debug --logfile validation.log
 ```
 
 Output will show:
@@ -452,7 +440,7 @@ If tools are slow:
 - [ ] Check data size (is it >100K triples?)
 - [ ] Check system resources (CPU, memory, disk I/O)
 - [ ] Simplify SHACL shapes (remove unnecessary constraints)
-- [ ] Use shape optimization: `optimize_shacl_validation.py`
+- [ ] Use shape optimization guide: [optimizing_shacl_validation_import_strategy.md](tools/optimizing_shacl_validation_import_strategy.md)
 - [ ] Profile tool: `python -m cProfile -s cumtime ...`
 - [ ] Consider streaming validation for huge datasets
 - [ ] Ensure you're not validating unnecessarily large subset

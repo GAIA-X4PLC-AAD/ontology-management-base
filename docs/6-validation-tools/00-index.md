@@ -27,7 +27,7 @@ All tools are located in `src/tools/` and can be run from the command line or im
 
 | Tool                               | Purpose                                    | Input              | Output                       |
 | ---------------------------------- | ------------------------------------------ | ------------------ | ---------------------------- |
-| **check-check-artifact-coherence** | Verify SHACL target classes exist in OWL   | OWL, SHACL         | CSV report                   |
+| **check-artifact-coherence** | Verify SHACL target classes exist in OWL   | OWL, SHACL         | CSV report                   |
 | **check-jsonld-against-shacl**     | Validate JSON-LD data against SHACL shapes | JSON-LD, SHACL     | Pass/Fail + violations       |
 | **readme-generator**               | Auto-generate documentation from SHACL     | SHACL shapes       | Markdown (PROPERTIES.md)     |
 | **ontology-discovery**             | Find and catalog all ontologies            | Artifact directory | JSON registry                |
@@ -46,14 +46,14 @@ All tools are located in `src/tools/` and can be run from the command line or im
 - When validating shape consistency
 - Before deploying shapes to production
 
-**Learn more:** [check-check-artifact-coherence.md](tools/check-check-artifact-coherence.md)
+**Learn more:** [check-target-classes.md](tools/check-target-classes.md)
 
 **Quick usage:**
 
 ```bash
-python src/tools/validators/validate_artifact_coherence.py \
-  --ontology-file artifacts/scenario/scenario.owl.ttl \
-  --shapes-file artifacts/scenario/scenario.shacl.ttl
+python3 -m src.tools.validators.validation_suite \
+  --run check-artifact-coherence \
+  --domain scenario
 ```
 
 ---
@@ -73,10 +73,9 @@ python src/tools/validators/validate_artifact_coherence.py \
 **Quick usage:**
 
 ```bash
-python src/tools/validators/validate_data_conformance.py \
-  --ontology-file artifacts/scenario/scenario.owl.ttl \
-  --shacl-file artifacts/scenario/scenario.shacl.ttl \
-  --data-file my-data.jsonld
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain scenario
 ```
 
 ---
@@ -119,9 +118,7 @@ python src/tools/utils/properties_updater.py \
 **Quick usage:**
 
 ```bash
-python src/tools/ontology_and_shape_discovery.py \
-  --artifacts-dir artifacts/ \
-  --registry-output docs/registry.json
+python -m src.tools.utils.registry_updater
 ```
 
 ---
@@ -141,9 +138,7 @@ python src/tools/ontology_and_shape_discovery.py \
 **Quick usage:**
 
 ```bash
-python src/tools/run_all_checks.py \
-  --ontology artifacts/scenario/ \
-  --report validation-report.txt
+python3 -m src.tools.validators.validation_suite --run all
 ```
 
 ---
@@ -162,11 +157,8 @@ python src/tools/run_all_checks.py \
 
 **Quick usage:**
 
-```bash
-python src/tools/optimize_shacl_validation.py \
-  --shacl-file artifacts/scenario/scenario.shacl.ttl \
-  --analysis detailed
-```
+See the optimization guide:
+[optimizing_shacl_validation_import_strategy.md](tools/optimizing_shacl_validation_import_strategy.md)
 
 ---
 
@@ -177,21 +169,15 @@ python src/tools/optimize_shacl_validation.py \
 When you have JSON-LD data and want to check it against ontology rules:
 
 ```bash
-# Step 1: Get the ontology
-curl -L -H "Accept: text/turtle" \
-  https://w3id.org/gaia-x4plcaad/ontologies/scenario/v2/ \
-  -o scenario.owl.ttl
+# Validate against cataloged shapes for a domain
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain scenario
 
-# Step 2: Get the shapes
-curl -L -H "Accept: text/turtle" \
-  https://w3id.org/gaia-x4plcaad/ontologies/scenario/v2/SHACL \
-  -o scenario.shacl.ttl
-
-# Step 3: Validate your data
-python src/tools/validators/validate_data_conformance.py \
-  --ontology-file scenario.owl.ttl \
-  --shacl-file scenario.shacl.ttl \
-  --data-file my-scenarios.jsonld
+# Or validate specific files (temporary catalog domain)
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --path path/to/my-scenarios.jsonld
 ```
 
 ### Workflow 2: Generate Documentation
@@ -215,15 +201,14 @@ Before publishing a new ontology version:
 
 ```bash
 # 1. Check shape consistency
-python src/tools/validators/validate_artifact_coherence.py \
-  --ontology-file artifacts/my-ontology/my-ontology.owl.ttl \
-  --shapes-file artifacts/my-ontology/my-ontology.shacl.ttl
+python3 -m src.tools.validators.validation_suite \
+  --run check-artifact-coherence \
+  --domain my-ontology
 
 # 2. Validate against sample data
-python src/tools/validators/validate_data_conformance.py \
-  --ontology-file artifacts/my-ontology/my-ontology.owl.ttl \
-  --shacl-file artifacts/my-ontology/my-ontology.shacl.ttl \
-  --data-file tests/fixtures/my-ontology-sample.jsonld
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain my-ontology
 
 # 3. Generate documentation
 python src/tools/utils/properties_updater.py \
@@ -232,9 +217,9 @@ python src/tools/utils/properties_updater.py \
   --output artifacts/my-ontology/PROPERTIES.md
 
 # 4. Run full validation suite
-python src/tools/run_all_checks.py \
-  --ontology artifacts/my-ontology/ \
-  --report pre-release-validation.txt
+python3 -m src.tools.validators.validation_suite \
+  --run all \
+  --domain my-ontology
 ```
 
 ### Workflow 4: CI/CD Integration
@@ -246,10 +231,7 @@ In your CI/CD pipeline (GitHub Actions, GitLab CI, etc.):
 pip install -r requirements-validation.txt
 
 # Run all checks
-python src/tools/run_all_checks.py \
-  --ontology artifacts/ \
-  --report validation-report.txt \
-  --exit-code  # Exit with code 1 if validation fails
+python3 -m src.tools.validators.validation_suite --run all
 
 # Publish report as artifact
 ```
@@ -263,26 +245,20 @@ For common validation issues and solutions, see [Troubleshooting](01-troubleshoo
 All tools can be imported and used programmatically:
 
 ```python
-from src.tools.validators.check_jsonld_against_shacl_schema import validate_data
-from rdflib import Graph
+from pathlib import Path
+from src.tools.validators.conformance_validator import (
+    collect_jsonld_files,
+    validate_data_conformance,
+)
 
-# Load graphs
-ontology = Graph()
-ontology.parse("ontology.ttl", format="turtle")
+root = Path(".")
+jsonld_files = collect_jsonld_files(["tests/data/hdmap/valid/"])
+return_code, message = validate_data_conformance(jsonld_files, root)
 
-shapes = Graph()
-shapes.parse("shapes.ttl", format="turtle")
-
-data = Graph()
-data.parse("data.ttl", format="turtle")
-
-# Validate
-conforms, report = validate_data(data, ontology, shapes)
-
-if conforms:
+if return_code == 0:
     print("Data is valid!")
 else:
-    print(f"Validation failed:\n{report}")
+    print(f"Validation failed:\n{message}")
 ```
 
 ## Performance Considerations
@@ -303,7 +279,7 @@ To add a new validation tool:
 1. Create Python module in `src/tools/`
 2. Implement validation logic
 3. Add documentation in this section
-4. Update `run_all_checks.py` to include new tool
+4. Update `validation_suite.py` to include new tool
 5. Submit pull request with examples
 
 See [Building & Contributing](../5-building-contributing/01-contributing.md) for detailed guidelines.

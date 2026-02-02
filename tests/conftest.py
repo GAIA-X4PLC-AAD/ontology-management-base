@@ -351,7 +351,6 @@ def mock_registry(temp_dir) -> Dict:
                 },
             }
         },
-        "base_ontologies": [],
     }
 
     registry_file = temp_dir / "docs" / "registry.json"

@@ -67,10 +67,9 @@ See the root guide for the canonical commands and explanations:
 Example command for this folder:
 
 ```bash
-python3 -m src.tools.validators.check_jsonld_against_shacl_schema \
-  --ontology artifacts/envited-x/envited-x.owl.ttl \
-  --shacl artifacts/envited-x/envited-x.shacl.ttl \
-  --instance tests/data/envited-x/valid/envited-x_instance.json
+python3 -m src.tools.validators.validation_suite \
+  --run check-data-conformance \
+  --domain envited-x
 ```
 
 ---

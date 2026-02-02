@@ -25,11 +25,11 @@ python3 -m src.tools.validators.validation_suite --run all --domain hdmap scenar
 | ------------------ | -------------------------------------------------------------------------------------------------------------- |
 | `--run TYPE`       | Check type: `all`, `check-syntax`, `check-artifact-coherence`, `check-data-conformance`, `check-failing-tests` |
 | `--domain DOMAINS` | Space-separated list of domains to check (default: all)                                                        |
-| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                                                                 |
+| `--path PATHS`     | File(s) or directory path(s) to validate; builds a temporary catalog domain                                    |
 
 ## Check Types
 
-### `syntax`
+### `check-syntax`
 
 Validates file syntax without semantic checks:
 
@@ -40,7 +40,7 @@ Validates file syntax without semantic checks:
 
 Verifies SHACL target classes exist in OWL ontologies.
 
-### `shacl`
+### `check-data-conformance`
 
 Full SHACL validation of JSON-LD instances against shapes.
 
@@ -59,26 +59,19 @@ Runs all checks in order:
 
 ## Domain Discovery
 
-Domains are discovered by scanning `tests/data/`:
-
-```python
-# Discovered from:
-tests/data/
-├── hdmap/          # -> domain: hdmap
-├── scenario/       # -> domain: scenario
-└── envited-x/      # -> domain: envited-x
-```
+Domains are discovered from `tests/catalog-v001.xml` (test-data entries).
+When `--path` is used, a temporary domain is created from the provided files.
 
 ## Artifacts Resolution
 
-For each domain, the tool looks for:
+For each domain, the tool resolves files via catalogs:
 
 | Artifact        | Path                                        |
 | --------------- | ------------------------------------------- |
-| Ontology        | `artifacts/{domain}/{domain}.owl.ttl`       |
-| SHACL           | `artifacts/{domain}/{domain}.shacl.ttl`     |
-| Valid instances | `tests/data/{domain}/valid/*_instance.json` |
-| Invalid tests   | `tests/data/{domain}/invalid/fail_*.json`   |
+| Ontology        | `artifacts/catalog-v001.xml` entries        |
+| SHACL           | `artifacts/catalog-v001.xml` entries        |
+| Valid instances | `tests/catalog-v001.xml` entries            |
+| Invalid tests   | `tests/catalog-v001.xml` entries            |
 
 ## Output Format
 

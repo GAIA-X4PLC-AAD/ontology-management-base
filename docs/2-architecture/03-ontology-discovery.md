@@ -77,40 +77,24 @@ Standard W3C ontologies from `imports/` are always available:
 - Dublin Core
 - FOAF, SKOS, PROV
 
-## Caching
+## Catalog-Driven Resolution
 
-For performance, ontology IRI mappings are cached in `.ontology_iri_cache.json`:
+Ontology and SHACL discovery is driven by XML catalogs:
 
-```json
-{
-  "artifacts/hdmap/hdmap.owl.ttl": {
-    "mtime": 1706789012.5,
-    "iri": "https://w3id.org/.../hdmap/"
-  }
-}
-```
+- `artifacts/catalog-v001.xml` for domain ontologies, shapes, and contexts
+- `imports/catalog-v001.xml` for base vocabularies used during inference
+- `tests/catalog-v001.xml` for test data and fixture resolution
 
-The cache is invalidated when file modification times change.
+Update these catalogs when adding or moving files.
 
-## Local Context Resolution
+## Context Files
 
-Remote `@context` URLs are mapped to local files:
-
-| Remote URL                               | Local File                                     |
-| ---------------------------------------- | ---------------------------------------------- |
-| `https://w3id.org/.../envited-x/context` | `artifacts/envited-x/envited-x.context.jsonld` |
-| `https://schema.org/context`             | `imports/schema/schema_context.jsonld`         |
-
-This enables offline validation and faster processing.
+Context files are treated as artifacts and resolved via the artifacts catalog.
+Validators rely on the JSON-LD parser to interpret `@context` declarations.
 
 ## Configuration
 
-Discovery directories are configured in `validate_data_conformance.py`:
-
-```python
-DIR_NAME_IMPORTS = "imports"
-DIR_NAME_ARTIFACTS = "artifacts"
-```
+Discovery is configured through the catalogs rather than hardcoded directories.
 
 ## Troubleshooting
 
@@ -118,14 +102,13 @@ DIR_NAME_ARTIFACTS = "artifacts"
 
 If validation fails with "ontology not found":
 
-1. Check the prefix in your `@context`
-2. Verify the file exists in `artifacts/<ontology>/`
-3. Clear the cache: `rm .ontology_iri_cache.json`
+1. Check the domain entry in `artifacts/catalog-v001.xml`
+2. Verify the file exists at the catalog path
+3. Confirm you are running from the repository root
 
 ### Slow Discovery
 
 For large repositories:
 
 1. Install `oxrdflib` for faster parsing
-2. Use `--force-load` to skip discovery and load all ontologies
-3. Check cache validity
+2. Reduce data size or scope the domain with `--domain`

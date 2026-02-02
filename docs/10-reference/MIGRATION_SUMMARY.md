@@ -380,7 +380,7 @@ TZIP21 assets serve as **tokenized service offerings** that wrap simulation asse
 1. **Test validation script:**
 
    ```bash
-   python3 src/tools/validation/validate_data_conformance.py <instance>.json --root .
+   python3 -m src.tools.validators.validation_suite --run check-data-conformance --path <instance>.json
    ```
 
    Expected: Registry resolves all dependencies including transitive imports

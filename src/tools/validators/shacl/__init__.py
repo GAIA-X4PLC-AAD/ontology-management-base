@@ -2,9 +2,9 @@
 SHACL-based data conformance validation.
 
 This module validates JSON-LD instance data against SHACL shapes using
-a registry-based discovery mechanism. The validation pipeline:
+catalog-based discovery. The validation pipeline:
 
-1. Loads JSON-LD instance data (graph_loader.py)
+1. Loads JSON-LD instance data (utils.graph_loader)
 2. Discovers required ontologies/SHACL shapes based on RDF types (schema_discovery.py)
 3. Applies RDFS inference to complete the data graph (inference.py)
 4. Validates against SHACL shapes using pyshacl (validator.py)
@@ -15,7 +15,7 @@ allows the validator to automatically discover which ontologies and
 shapes are needed based on the types present in the instance data.
 
 Components:
-    - graph_loader: JSON-LD and Turtle graph loading
+    - utils.graph_loader: JSON-LD and Turtle graph loading
     - inference: RDFS inference engine
     - schema_discovery: Type-to-schema mapping using RegistryResolver
     - validator: Main validation orchestrator
@@ -30,12 +30,18 @@ Entry point:
         print(result.report_text)
 
 See also:
-    - src.tools.utils.registry_resolver: Registry-based path resolution
-    - docs/registry.json: Registry configuration file
-    - src.tools.validators.validate_data_conformance: CLI entry point
+    - src.tools.utils.registry_resolver: Catalog-based path resolution
+    - artifacts/catalog-v001.xml
+    - imports/catalog-v001.xml
+    - tests/catalog-v001.xml
 """
 
-from .graph_loader import load_fixtures_for_iris, load_jsonld_files, load_turtle_files
+from src.tools.utils.graph_loader import (
+    load_fixtures_for_iris,
+    load_jsonld_files,
+    load_turtle_files,
+)
+
 from .inference import apply_rdfs_inference
 from .schema_discovery import discover_required_schemas, get_base_ontology_paths
 from .validator import ShaclValidator, ValidationResult
