@@ -98,13 +98,13 @@ def _extract_and_sort_errors(report_graph: Graph):
         seen.add(sig)
         error_rows.append(data)
 
-    # Sort by normalized path, then message, then node ID for stability
+    # Sort by normalized path, then message, then node ID (normalized)
+    # REMOVED: str(x["focus_node"]) to prevent sorting by random BNode IDs
     error_rows.sort(
         key=lambda x: (
             _clean(x["result_path"]),
             _clean(x["result_message"]),
             _clean(x["focus_node"]),
-            str(x["focus_node"]),
         )
     )
     return error_rows

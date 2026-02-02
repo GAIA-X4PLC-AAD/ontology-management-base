@@ -1,7 +1,7 @@
 {
   "@context": {
     "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
-    "simulated-sensor": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2",
+    "simulated-sensor": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/",
     "automotive-simulator": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "gx": "https://w3id.org/gaia-x/development/",

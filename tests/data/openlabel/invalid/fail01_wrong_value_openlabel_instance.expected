@@ -10,7 +10,7 @@
 = 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Error:            If 'MotionAccelerate' is not true, 'motionAccelerateValue' must not be present.                                               =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.gaia-x.eu:Tag:uHXBMNZ7qkGLxmuL194ejO7bMRU5HcwpxS15                                                           =
+= 🔹 [Violation] Node: did:web:test.openlabel.net:Tag:test_invalid_fail01_wrong_value_openlabel_instance                                             =
 =    Property:         https://openlabel.asam.net/V1-0-0/ontologies/Behaviour                                                                        =
 =    Error:            Value does not conform to Shape openlabel:BehaviourShape. See details for more information.                                   =
 ======================================================================================================================================================
