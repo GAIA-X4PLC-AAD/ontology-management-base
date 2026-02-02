@@ -36,11 +36,15 @@ jobs:
 
       - name: Determine release tag
         id: tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
           else
-            TAG="${{ github.ref_name }}"
+            TAG="$REF_NAME"
           fi
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
@@ -52,12 +56,18 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git stash
+          git checkout main
+          git pull origin main
+          git stash pop
+          
           git add docs/registry.json
-          git commit -m "chore: update registry for ${{ steps.tag.outputs.tag }} [skip ci]" || echo "No changes to commit"
-          git push origin HEAD:main || echo "Push failed - may need manual intervention"
+          git commit -s -m "chore: update registry for ${{ steps.tag.outputs.tag }} [skip ci]" || echo "No changes to commit"
+          git push origin main || echo "Push failed - may need manual intervention"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           name: Release ${{ steps.tag.outputs.tag }}
@@ -72,7 +82,7 @@ jobs:
             ### Resolution
             After this release is published, ontologies can be resolved via:
             ```
-            https://w3id.org/ascs-ev/envited-x/{ontology}/{version}
+            [https://w3id.org/ascs-ev/envited-x/](https://w3id.org/ascs-ev/envited-x/){ontology}/{version}
             ```
 
             See [registry.json](./docs/registry.json) for version mappings.
@@ -85,6 +95,8 @@ jobs:
     name: 📚 Deploy Documentation
     needs: release
     uses: ./.github/workflows/docs.yml
+    with:
+      ref: main
     permissions:
       contents: read
       pages: write

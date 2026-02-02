@@ -11,7 +11,7 @@
 =    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasCategory                                                                    =
 =    Error:            A link used in hasLicense must have a category belonging to manifest:LicenseCategory.                                         =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.envited-x.net:Manifest:oZVLOL-U0-HEQukff3Oj5V6xmuozZMykqVH2                                                  =
+= 🔹 [Violation] Node: did:web:test.manifest.net:Manifest:test_invalid_fail_03_wrong_category_instance                                               =
 =    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasLicense                                                                     =
 =    Error:            Value does not conform to Shape manifest:LicenseLinkReferenceShape. See details for more information.                         =
 ======================================================================================================================================================

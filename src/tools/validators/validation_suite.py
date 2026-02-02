@@ -74,6 +74,7 @@ NOTES:
 """
 
 import argparse
+import difflib
 import io
 import os
 import sys
@@ -439,6 +440,7 @@ def check_failing_tests_all(
                 debug=False,
                 logfile=None,
             )
+            print("\n", flush=True)
 
             if returncode == 210:
                 output_norm = normalize_text(output)
@@ -455,6 +457,25 @@ def check_failing_tests_all(
                         file=sys.stderr,
                         flush=True,
                     )
+
+                    # --- DEBUGGING BLOCK START ---
+                    print("\n--- DIFF (Expected vs Actual) ---", file=sys.stderr)
+                    diff = difflib.unified_diff(
+                        expected_norm.splitlines(),
+                        output_norm.splitlines(),
+                        fromfile="Expected",
+                        tofile="Actual",
+                        lineterm="",
+                    )
+                    for line in diff:
+                        print(line, file=sys.stderr)
+
+                    print("\n--- RAW REPR CHECK ---", file=sys.stderr)
+                    # This reveals hidden chars like \r or distinct unicode spaces
+                    print(f"Expected len: {len(expected_norm)}", file=sys.stderr)
+                    print(f"Actual len:   {len(output_norm)}", file=sys.stderr)
+                    # --- DEBUGGING BLOCK END ---
+
                     return 1
             else:
                 print(

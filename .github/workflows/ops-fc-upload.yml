@@ -37,7 +37,6 @@ jobs:
 
       - name: Install dependencies
         # Installs packages like keycloak_client, requests, etc. from pyproject.toml
-        run: pip install .
-
+        run: pip install -e .
       - name: Run Python upload into FC
-        run: python3 src/fc_upload_with_update.py
+        run: python3 -m src.tools.uploaders.fc_upload_with_update

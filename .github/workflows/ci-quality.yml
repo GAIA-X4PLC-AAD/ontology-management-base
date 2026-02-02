@@ -1,25 +1,18 @@
-name: CI Pipeline
+name: CI - Quality Checks
 
 on:
-  # Run on pushes ONLY to the main branch (after merge)
   push:
     branches: [ main ]
-
-  # Run on any Pull Request targeting the main branch
   pull_request:
     branches: [ main ]
-
-  # Allow manual runs
   workflow_dispatch:
 
-# Cancel any running jobs if a new commit is pushed to the same branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   # --- JOB 0: Determine Changes ---
-  # Identifies which domains have changed to optimize subsequent jobs.
   changes:
     name: Determine Changes
     runs-on: ubuntu-latest
@@ -29,18 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Required to diff against previous commits
+          fetch-depth: 0
 
       - name: Determine changed folders
         id: filter
         shell: bash
         run: |
-          # 1. Determine Base Commit for Diff
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             BASE_SHA="origin/${{ github.base_ref }}"
           else
             BASE_SHA="${{ github.event.before }}"
-            # Handle first commit or force push scenarios
             if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" == "0000000000000000000000000000000000000000" ]; then
                BASE_SHA="HEAD^"
             fi
@@ -48,28 +39,19 @@ jobs:
 
           echo "Diffing against: $BASE_SHA"
           CHANGED_FILES=$(git diff --name-only "$BASE_SHA" HEAD)
-          echo "Changed files:"
-          echo "$CHANGED_FILES"
-
-          # 2. Check for "Core" changes
-          # If src, imports, config, or root config files change, run ALL tests (empty domain arg).
+          
           if echo "$CHANGED_FILES" | grep -qE "^(src/|imports/|config/|submodules/|.github/|pyproject.toml|requirements.txt)"; then
             echo "Core configuration or code changed. Running full suite."
             echo "folders_arg=" >> $GITHUB_OUTPUT
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
-            # 3. Extract affected domains from changed paths
             TARGETS=""
-
-            # Check artifacts/{domain}/ changes -> extract domain from directory name
             for file in $(echo "$CHANGED_FILES" | grep "^artifacts/"); do
               domain=$(echo "$file" | cut -d/ -f2)
-              if [ -d "tests/data/$domain" ] && [ "$domain" != "docs" ] && [ "$domain" != "jsonld" ] && [ "$domain" != "owl" ] && [ "$domain" != "shacl" ]; then
+              if [ -d "tests/data/$domain" ] && [[ ! "$domain" =~ ^(docs|jsonld|owl|shacl)$ ]]; then
                 TARGETS="$TARGETS $domain"
               fi
             done
-
-            # Check tests/data/ changes -> extract domain from path
             for file in $(echo "$CHANGED_FILES" | grep "^tests/data/"); do
               domain=$(echo "$file" | cut -d/ -f3)
               if [ -d "tests/data/$domain" ]; then
@@ -77,11 +59,10 @@ jobs:
               fi
             done
 
-            # Deduplicate targets
             TARGETS=$(echo "$TARGETS" | tr ' ' '\n' | sort -u | tr '\n' ' ' | xargs)
 
             if [ -z "$TARGETS" ]; then
-              echo "No relevant ontology domains changed. Skipping validation logic."
+              echo "No relevant ontology domains changed."
               echo "should_run=false" >> $GITHUB_OUTPUT
             else
               echo "Targeting domains: $TARGETS"
@@ -90,27 +71,22 @@ jobs:
             fi
           fi
 
-  # --- JOB 1: Standards & Syntax (Fastest) ---
-  # This runs Black, Isort, Flake8 AND the JSON/TTL syntax checks.
+  # --- JOB 1: Standards & Syntax ---
   standards-and-syntax:
     name: Standards & Syntax
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: 'pip'
-
       - name: Install dependencies
         run: python3 -m pip install -e ".[dev]"
-
-      - name: Run pre-commit (Lint + Syntax)
+      - name: Run pre-commit
         run: pre-commit run --all-files
 
-  # --- JOB 2: SHACL Validation (Logic) ---
+  # --- JOB 2: SHACL Validation ---
   validate-shacl:
     name: SHACL Validation
     needs: changes
@@ -122,14 +98,12 @@ jobs:
         with:
           python-version: "3.12"
           cache: 'pip'
-
       - name: Install dependencies
         run: python3 -m pip install -e .
-
       - name: Run SHACL Checks
         run: python3 -m src.tools.validators.validation_suite --run check-data-conformance ${{ needs.changes.outputs.folders_arg }}
 
-  # --- JOB 3: OWL Consistency (Logic) ---
+  # --- JOB 3: OWL Consistency ---
   validate-owl:
     name: OWL Classes
     needs: changes
@@ -141,10 +115,8 @@ jobs:
         with:
           python-version: "3.12"
           cache: 'pip'
-
       - name: Install dependencies
         run: python3 -m pip install -e .
-
       - name: Run Target Class Checks
         run: python3 -m src.tools.validators.validation_suite --run check-artifact-coherence ${{ needs.changes.outputs.folders_arg }}
 
@@ -160,44 +132,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: 'pip'
-
       - name: Install dependencies
         run: python3 -m pip install -e .
-
       - name: Run Failing Tests
         run: python3 -m src.tools.validators.validation_suite --run check-failing-tests ${{ needs.changes.outputs.folders_arg }}
-
-  # --- JOB 5: Documentation ---
-  generate-docs:
-    name: Generate Documentation
-    needs: [standards-and-syntax]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: 'pip'
-
-      - name: Install dependencies
-        run: python3 -m pip install -e .
-
-      - name: Run Generator
-        run: python3 -m src.tools.utils.properties_updater
-
-      - name: Commit changes
-        run: |
-          if [[ -n $(git status --porcelain "artifacts/*/PROPERTIES.md") ]]; then
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git add artifacts/*/PROPERTIES.md
-            git commit -m "docs: auto-generate PROPERTIES.md [skip ci]"
-            git push
-          else
-            echo "No documentation changes detected."
-          fi

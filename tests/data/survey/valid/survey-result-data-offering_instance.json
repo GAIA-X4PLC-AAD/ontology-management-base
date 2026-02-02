@@ -17,7 +17,7 @@
     "@type": "xsd:dateTime"
   },
   "survey:belongsTo": {
-    "@id": "https://www.gaia-x4plcaad.info/claims/software-resource/0xy5vhw3heyjqb4d347hc9zrkw"
+    "@id": "did:web:test.survey.net:Survey:test_valid_survey-service-offering_instance"
   },
   "survey:general": {
     "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p2",

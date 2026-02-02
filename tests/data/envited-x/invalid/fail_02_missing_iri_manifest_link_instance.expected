@@ -15,15 +15,14 @@
 =                      datatype=xsd:anyURI) ; <https://w3id.org/ascs-ev/envited-x/manifest/v5/mimeType> Literal("application/ld+json",               =
 =                      datatype=xsd:string) ; rdf:type <https://w3id.org/ascs-ev/envited-x/manifest/v5/FileMetadata>, [ owl:minCardinality           =
 =                      Literal("0", datatype=xsd:integer) ; owl:onProperty <https://w3id.org/ascs-ev/envited-x/manifest/v5/hasDimensions> ; rdf:type =
-=                      owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ], rdfs:Resource ] ; rdf:type <https://w3id.org/ascs-                   =
-=                      ev/envited-x/manifest/v5/Link>, [ owl:cardinality Literal("1", datatype=xsd:integer) ; owl:onProperty <https://w3id.org/ascs- =
-=                      ev/envited-x/manifest/v5/hasFileMetadata> ; rdf:type owl:Class, owl:Restriction, rdfs:Class, rdfs:Resource ], rdfs:Resource ; =
-=                      sh:conformsTo <https://w3id.org/ascs-ev/envited-x/envited-x/v3/>, <https://w3id.org/ascs-ev/envited-x/manifest/v5/> ;         =
-=                      skos:note Literal("Reference to the simulation asset manifest.", datatype=xsd:string) ] must conform to one or more shapes in =
-=                      [ sh:property [ sh:not [ sh:pattern Literal("^application/ld\+json$", datatype=xsd:string) ] ; sh:path (                      =
-=                      manifest:hasFileMetadata manifest:mimeType ) ] ] , [ sh:property [ sh:message Literal("This link is a manifest reference so   =
-=                      the extra properties are not required.", datatype=xsd:string) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path [    =
-=                      sh:inversePath manifest:hasManifestReference ] ], [ sh:minCount Literal("1", datatype=xsd:integer) ; sh:path (                =
+=                      owl:Restriction ] ] ; rdf:type <https://w3id.org/ascs-ev/envited-x/manifest/v5/Link>, [ owl:cardinality Literal("1",          =
+=                      datatype=xsd:integer) ; owl:onProperty <https://w3id.org/ascs-ev/envited-x/manifest/v5/hasFileMetadata> ; rdf:type            =
+=                      owl:Restriction ] ; sh:conformsTo <https://w3id.org/ascs-ev/envited-x/envited-x/v3/>, <https://w3id.org/ascs-                 =
+=                      ev/envited-x/manifest/v5/> ; skos:note Literal("Reference to the simulation asset manifest.", datatype=xsd:string) ] must     =
+=                      conform to one or more shapes in [ sh:property [ sh:not [ sh:pattern Literal("^application/ld\+json$", datatype=xsd:string) ] =
+=                      ; sh:path ( manifest:hasFileMetadata manifest:mimeType ) ] ] , [ sh:property [ sh:message Literal("This link is a manifest    =
+=                      reference so the extra properties are not required.", datatype=xsd:string) ; sh:minCount Literal("1", datatype=xsd:integer) ; =
+=                      sh:path [ sh:inversePath manifest:hasManifestReference ] ], [ sh:minCount Literal("1", datatype=xsd:integer) ; sh:path (      =
 =                      manifest:hasFileMetadata manifest:mimeType ) ; sh:pattern Literal("^application/ld\+json$", datatype=xsd:string) ] ] , [      =
 =                      sh:property [ sh:message Literal("If the MIME type is 'application/ld+json' and not a manifest reference, a skos:note is      =
 =                      required.", datatype=xsd:string) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path skos:note ], [ sh:message         =
@@ -33,7 +32,7 @@
 =                      Literal("1", datatype=xsd:integer) ; sh:path sh:conformsTo ], [ sh:minCount Literal("1", datatype=xsd:integer) ; sh:path (    =
 =                      manifest:hasFileMetadata manifest:mimeType ) ; sh:pattern Literal("^application/ld\+json$", datatype=xsd:string) ] ]          =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
-= 🔹 [Violation] Node: did:web:registry.envited-x.net::SimulationAsset:arlyvq4D1mfxwJ4Dm9JXJK3dGhlGfCs6GAWw                                          =
+= 🔹 [Violation] Node: did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_02_missing_iri_manifest_link_instance                            =
 =    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasManifest                                                                   =
 =    Error:            Each SimulationAsset must have exactly one manifest. If linked, it MUST be of category envited-x:isManifest and include a     =
 =                      manifest:iri.                                                                                                                 =

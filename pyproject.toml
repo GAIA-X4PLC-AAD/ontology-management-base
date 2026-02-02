@@ -16,7 +16,7 @@ keywords = ["ontology", "shacl", "owl", "validation", "semantic-web", "json-ld"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: Eclipse Public License 2.0 (EPL-2.0)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries",
@@ -79,8 +79,3 @@ exclude = '''
 profile = "black"
 line_length = 88
 skip = [".git", ".venv", "build", "dist", "node_modules"]
-
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
-exclude = [".git", ".venv", "build", "dist", "node_modules"]

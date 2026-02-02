@@ -9,11 +9,17 @@ on:
       - 'mkdocs.yml'
       - '.github/workflows/docs.yml'
 
-  # Allow manual runs
+  # 1. Allows manual runs
   workflow_dispatch:
 
-  # Allow being called from release workflow
+  # 2. Allows being called from release workflow
   workflow_call:
+    inputs:
+      ref:
+        description: "The branch, tag or SHA to checkout (optional)"
+        required: false
+        type: string
+        default: ''
 
 # Sets permissions of the GITHUB_TOKEN
 permissions:
@@ -34,6 +40,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Updated: Use the input ref if provided (e.g., 'main'), 
+          # otherwise default to the current context (tag or branch)
+          ref: ${{ inputs.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,9 +51,8 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          python3 -m pip install -e .
-          python3 -m pip install mkdocs-material mkdocstrings[python]
+        # Updated to use the [docs] extra from pyproject.toml
+        run: python3 -m pip install -e ".[docs]"
 
       - name: Generate ontology documentation
         run: |

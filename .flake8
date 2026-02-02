@@ -1,3 +1,13 @@
 [flake8]
 max-line-length = 88
-extend-ignore = E501
+# E203: Whitespace before ':' (Black adds this in slices)
+# E501: Line too long (Black handles line wrapping, so we disable the strict check)
+# W503: Line break before binary operator (Black puts operators at start of line)
+extend-ignore = E203, E501, W503
+exclude =
+    .git,
+    .venv,
+    build,
+    dist,
+    node_modules,
+    __pycache__

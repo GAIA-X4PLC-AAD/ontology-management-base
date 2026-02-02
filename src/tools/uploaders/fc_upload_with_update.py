@@ -3,9 +3,10 @@ import sys
 from typing import List, Optional
 from urllib.parse import quote_plus
 
-import authhelper.keycloakhandling
 import rdflib
 import requests
+
+from src.tools.authhelper import keycloakhandling
 
 # ENVIRONMENT PROPERTIES
 ROOT_DIRECTORY = os.getcwd()
@@ -24,7 +25,7 @@ def main():
     """
     try:
         # Step 1: Get the auth header
-        auth_header = authhelper.keycloakhandling.get_auth_header()
+        auth_header = keycloakhandling.get_auth_header()
 
         # Step 2: Get all schemas (both ontologies and SHACL shapes)
         existing_schemas = get_all_schemas(auth_header)

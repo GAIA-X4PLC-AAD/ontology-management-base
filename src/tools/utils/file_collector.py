@@ -9,7 +9,7 @@ previously scattered across multiple modules.
 
 import sys
 from pathlib import Path
-from typing import List, Set, Union
+from typing import Dict, List, Optional, Set, Union
 
 
 def collect_files_by_extension(
@@ -29,7 +29,7 @@ def collect_files_by_extension(
     Args:
         paths: List of file or directory paths to search
         extensions: File extension(s) to collect (e.g., ".ttl" or {".json", ".jsonld"})
-                   Extensions should include the dot prefix
+                    Extensions should include the dot prefix
         warn_on_invalid: If True, write warnings to stderr for invalid paths
         return_pathlib: If True, return Path objects; if False, return strings
         sort_and_deduplicate: If True, sort and remove duplicates from results
@@ -130,3 +130,83 @@ def collect_jsonld_files(
         return_pathlib=return_pathlib,
         sort_and_deduplicate=sort_and_deduplicate,
     )
+
+
+def collect_ontology_bundles(
+    base_dir: Path, tests_dir: Optional[Path] = None
+) -> Dict[str, Dict[str, Union[Path, List[Path], None]]]:
+    """
+    Discover ontology bundles (Ontology, SHACL, Context, Tests) in a directory.
+
+    Assumes the standard project structure:
+      {base_dir}/{domain}/{domain}.owl.ttl
+      {base_dir}/{domain}/*.shacl.ttl
+      {base_dir}/{domain}/{domain}.context.jsonld
+      {tests_dir}/{domain}/valid/*_instance.json (optional)
+
+    Args:
+        base_dir: Directory containing domain subdirectories (e.g., artifacts/ or imports/)
+        tests_dir: Optional directory containing test data (e.g., tests/data/)
+
+    Returns:
+        Dictionary mapping domain names to a bundle of absolute Path objects:
+        {
+            "domain": {
+                "ontology": Path(...),
+                "shacl": [Path(...), ...],
+                "jsonld": Path(...) or None,
+                "properties": Path(...) or None,
+                "instance": Path(...) or None
+            }
+        }
+    """
+    bundles = {}
+
+    if not base_dir.exists():
+        sys.stderr.write(f"Warning: Directory not found: {base_dir}\n")
+        return bundles
+
+    # Iterate over domain directories
+    for ont_dir in sorted(base_dir.iterdir()):
+        if not ont_dir.is_dir():
+            continue
+
+        domain = ont_dir.name
+
+        # 1. Ontology File: {domain}.owl.ttl
+        owl_file = ont_dir / f"{domain}.owl.ttl"
+        if not owl_file.exists():
+            continue
+
+        # 2. SHACL Files: *.shacl.ttl
+        shacl_files = sorted(ont_dir.glob("*.shacl.ttl"))
+
+        # 3. JSON-LD Context
+        jsonld_file = ont_dir / f"{domain}.context.jsonld"
+
+        # 4. Properties Documentation
+        properties_file = ont_dir / "PROPERTIES.md"
+
+        # 5. Instance File (from tests directory if provided)
+        instance_file = None
+        if tests_dir and tests_dir.exists():
+            valid_dir = tests_dir / domain / "valid"
+            if valid_dir.exists():
+                # Look for standard instance patterns
+                for pattern in [f"{domain}_instance.json", "*_instance.json"]:
+                    matches = list(valid_dir.glob(pattern))
+                    if matches:
+                        instance_file = matches[0]
+                        break
+
+        bundles[domain] = {
+            "ontology": owl_file.resolve(),
+            "shacl": [f.resolve() for f in shacl_files] if shacl_files else None,
+            "jsonld": jsonld_file.resolve() if jsonld_file.exists() else None,
+            "properties": (
+                properties_file.resolve() if properties_file.exists() else None
+            ),
+            "instance": instance_file.resolve() if instance_file else None,
+        }
+
+    return bundles
