@@ -351,10 +351,10 @@ def main():
         type=str,
         choices=[
             "all",
-            "syntax",
+            "check-syntax",
             "check-artifact-coherence",
             "check-data-conformance",
-            "failing-tests",
+            "check-failing-tests",
         ],
         default="all",
         help="Specific check to run (default: all)",
@@ -394,27 +394,30 @@ def main():
 
     # 5. Define the Mapping
     check_map = {
-        "syntax": [("Syntax", lambda: check_syntax_all(ontology_domains))],
+        "check-syntax": [("Check Syntax", lambda: check_syntax_all(ontology_domains))],
         "check-artifact-coherence": [
             (
-                "Target Classes",
+                "Check Artifact Coherence",
                 lambda: validate_artifact_coherence_all(ontology_domains),
             )
         ],
         "check-data-conformance": [
-            ("JSON-LD SHACL", lambda: validate_data_conformance_all(ontology_domains))
+            (
+                "Check Data Conformance",
+                lambda: validate_data_conformance_all(ontology_domains),
+            )
         ],
-        "failing-tests": [
-            ("Failing Tests", lambda: check_failing_tests_all(ontology_domains))
+        "check-failing-tests": [
+            ("Check Failing Tests", lambda: check_failing_tests_all(ontology_domains))
         ],
     }
 
     if args.run == "all":
         checks_to_run = (
-            check_map["syntax"]
+            check_map["check-syntax"]
             + check_map["check-artifact-coherence"]
             + check_map["check-data-conformance"]
-            + check_map["failing-tests"]
+            + check_map["check-failing-tests"]
         )
     else:
         checks_to_run = check_map[args.run]

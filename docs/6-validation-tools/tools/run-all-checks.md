@@ -21,11 +21,11 @@ python3 -m src.tools.validators.validation_suite --run all --domain hdmap scenar
 
 ### Options
 
-| Option             | Description                                                                       |
-| ------------------ | --------------------------------------------------------------------------------- |
-| `--run TYPE`       | Check type: `all`, `syntax`, `check-artifact-coherence`, `shacl`, `failing-tests` |
-| `--domain DOMAINS` | Space-separated list of domains to check (default: all)                           |
-| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                                    |
+| Option             | Description                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `--run TYPE`       | Check type: `all`, `check-syntax`, `check-artifact-coherence`, `check-data-conformance`, `check-failing-tests` |
+| `--domain DOMAINS` | Space-separated list of domains to check (default: all)                                                        |
+| `--folder FOLDERS` | Alias for `--domain` (backwards compatibility)                                                                 |
 
 ## Check Types
 
@@ -44,7 +44,7 @@ Verifies SHACL target classes exist in OWL ontologies.
 
 Full SHACL validation of JSON-LD instances against shapes.
 
-### `failing-tests`
+### `check-failing-tests`
 
 Runs regression test suite - instances in `tests/data/{domain}/invalid/` that should fail validation with expected error messages.
 

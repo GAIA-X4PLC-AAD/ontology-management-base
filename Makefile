@@ -23,10 +23,10 @@ format:
 	isort src/
 
 # Testing targets
-test: test-syntax test-check-artifact-coherence test-check-data-conformance test-failing
+test: test-check-syntax test-check-artifact-coherence test-check-data-conformance test-failing
 
-test-syntax:
-	python3 -m src.tools.validators.validation_suite --run syntax
+test-check-syntax:
+	python3 -m src.tools.validators.validation_suite --run check-syntax
 
 test-check-artifact-coherence:
 	python3 -m src.tools.validators.validation_suite --run check-artifact-coherence
@@ -35,7 +35,7 @@ test-check-data-conformance:
 	python3 -m src.tools.validators.validation_suite --run check-data-conformance
 
 test-failing:
-	python3 -m src.tools.validators.validation_suite --run failing-tests
+	python3 -m src.tools.validators.validation_suite --run check-failing-tests
 
 # Test specific domain
 test-domain:
@@ -88,7 +88,7 @@ help:
 	@echo ""
 	@echo "Testing:"
 	@echo "  make test           Run all tests"
-	@echo "  make test-syntax    Run syntax checks only"
+	@echo "  make test-check-syntax    Run check-syntax checks only"
 	@echo "  make test-check-data-conformance     Run check-data-conformance validation only"
 	@echo "  make test-domain DOMAIN=hdmap  Test specific domain"
 	@echo ""

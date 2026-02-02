@@ -51,7 +51,7 @@ python3 -m src.tools.validators.validation_suite --run check-data-conformance
 python3 -m src.tools.validators.validation_suite --run check-artifact-coherence
 
 # Failing tests only
-python3 -m src.tools.validators.validation_suite --run failing-tests
+python3 -m src.tools.validators.validation_suite --run check-failing-tests
 ```
 
 ### Run for Specific Domain
