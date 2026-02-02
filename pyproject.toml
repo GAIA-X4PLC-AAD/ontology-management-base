@@ -56,7 +56,7 @@ Issues = "https://github.com/gaia-x4plc-aad/ontology-management-base/issues"
 onto-validate = "src.tools.validators.validation_suite:main"
 onto-check-conformance = "src.tools.validators.validate_data_conformance:main"
 onto-check-coherence = "src.tools.validators.validate_artifact_coherence:main"
-onto-generate-docs = "src.tools.utils/properties_updater:main"
+onto-generate-docs = "src.tools.utils.properties_updater:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

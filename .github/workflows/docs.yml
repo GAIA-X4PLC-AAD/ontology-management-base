@@ -49,7 +49,7 @@ jobs:
       - name: Generate ontology documentation
         run: |
           # Generate PROPERTIES.md files
-          python3 -m src.tools.utils/properties_updater
+          python3 -m src.tools.utils.properties_updater
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

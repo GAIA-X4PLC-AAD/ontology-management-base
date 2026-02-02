@@ -46,7 +46,7 @@ jobs:
 
       - name: Update registry
         run: |
-          python3 -m src.tools.utils/registry_updater --release-tag "${{ steps.tag.outputs.tag }}"
+          python3 -m src.tools.utils.registry_updater --release-tag "${{ steps.tag.outputs.tag }}"
 
       - name: Commit registry update
         run: |

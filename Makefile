@@ -47,7 +47,7 @@ test-domain:
 
 # Documentation targets
 docs-generate:
-	python3 -m src.tools.utils/properties_updater
+	python3 -m src.tools.utils.properties_updater
 
 docs-serve:
 	mkdocs serve
@@ -58,9 +58,9 @@ docs-build:
 # Registry management
 registry-update:
 	@if [ -z "$(TAG)" ]; then \
-		python3 -m src.tools.utils/registry_updater --release-tag main; \
+		python3 -m src.tools.utils.registry_updater --release-tag main; \
 	else \
-		python3 -m src.tools.utils/registry_updater --release-tag $(TAG); \
+		python3 -m src.tools.utils.registry_updater --release-tag $(TAG); \
 	fi
 
 # Cleaning
