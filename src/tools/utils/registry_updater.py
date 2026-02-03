@@ -343,10 +343,19 @@ def load_existing_registry() -> dict:
 
 
 def write_registry(registry: dict) -> None:
+    """Write registry to file only if content has changed."""
     REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    new_content = json.dumps(registry, indent=2, sort_keys=False) + "\n"
+
+    # Check if content has changed
+    if REGISTRY_PATH.exists():
+        existing_content = REGISTRY_PATH.read_text(encoding="utf-8")
+        if existing_content == new_content:
+            print(f"✅ Registry unchanged: {REGISTRY_PATH.as_posix()}")
+            return
+
     with REGISTRY_PATH.open("w", encoding="utf-8") as f:
-        json.dump(registry, f, indent=2, sort_keys=False)
-        f.write("\n")
+        f.write(new_content)
     print(f"✅ Registry updated: {REGISTRY_PATH.as_posix()}")
 
 
@@ -493,7 +502,16 @@ def pretty_print_xml(element: ET.Element) -> str:
 
 
 def write_file(content: str, path: Path) -> None:
+    """Write content to file only if it has changed."""
     path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Check if content has changed
+    if path.exists():
+        existing_content = path.read_text(encoding="utf-8")
+        if existing_content == content:
+            print(f"✅ Unchanged: {path.as_posix()}")
+            return
+
     with path.open("w", encoding="utf-8") as f:
         f.write(content)
     print(f"✅ Generated: {path.as_posix()}")
