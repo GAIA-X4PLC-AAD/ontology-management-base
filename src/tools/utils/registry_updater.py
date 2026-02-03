@@ -15,7 +15,6 @@ Usage:
 
 import argparse
 import json
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -249,6 +248,23 @@ def to_relative_str(
     return str(path.relative_to(start))
 
 
+def to_posix_relative(file_path: Path, base_path: Path) -> str:
+    """
+    Convert a file path to a POSIX-style relative path string.
+
+    Uses pathlib for cross-platform compatibility. The result uses forward
+    slashes regardless of the OS, which is required for XML catalogs.
+
+    Args:
+        file_path: Absolute path to the file
+        base_path: Base directory to compute relative path from
+
+    Returns:
+        POSIX-style relative path string (e.g., "domain/file.ttl")
+    """
+    return file_path.relative_to(base_path).as_posix()
+
+
 def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
     existing = load_existing_registry()
     old_registry_content = {k: v for k, v in existing.items() if k != "generated"}
@@ -331,7 +347,7 @@ def write_registry(registry: dict) -> None:
     with REGISTRY_PATH.open("w", encoding="utf-8") as f:
         json.dump(registry, f, indent=2, sort_keys=False)
         f.write("\n")
-    print(f"✅ Registry updated: {REGISTRY_PATH}")
+    print(f"✅ Registry updated: {REGISTRY_PATH.as_posix()}")
 
 
 def extract_shacl_iri(shacl_file: Path) -> Optional[str]:
@@ -351,6 +367,7 @@ def generate_xml_catalog(
     )
 
     uri_mappings = []
+    catalog_base = target_catalog_path.parent
 
     for domain in sorted(ontologies.keys()):
         if domain not in registry["ontologies"]:
@@ -362,32 +379,90 @@ def generate_xml_catalog(
 
         files = ontologies[domain]
 
-        try:
-            rel_path = os.path.relpath(files["ontology"], target_catalog_path.parent)
+        # Ontology file
+        owl_path = files.get("ontology")
+        if owl_path:
+            rel_path = to_posix_relative(Path(owl_path), catalog_base)
             uri_mappings.append((iri, rel_path))
-        except ValueError:
-            pass
 
+        # SHACL files
         shacl_paths = files.get("shacl")
         if shacl_paths:
             for shacl_path in shacl_paths:
                 shacl_iri = extract_shacl_iri(shacl_path)
                 if shacl_iri:
-                    try:
-                        rel = os.path.relpath(shacl_path, target_catalog_path.parent)
-                        uri_mappings.append((shacl_iri, rel))
-                    except ValueError:
-                        pass
+                    rel = to_posix_relative(Path(shacl_path), catalog_base)
+                    uri_mappings.append((shacl_iri, rel))
 
+        # JSON-LD context file
         jsonld_path = files.get("jsonld")
         if jsonld_path:
-            # FIX: Ensure we don't create double slashes by rstrip('/')
             context_iri = f"{iri.rstrip('/')}/context"
-            try:
-                rel = os.path.relpath(jsonld_path, target_catalog_path.parent)
-                uri_mappings.append((context_iri, rel))
-            except ValueError:
-                pass
+            rel = to_posix_relative(Path(jsonld_path), catalog_base)
+            uri_mappings.append((context_iri, rel))
+
+    uri_mappings.sort(key=lambda x: x[0])
+    for iri, path in uri_mappings:
+        uri_elem = ET.SubElement(catalog, "uri")
+        uri_elem.set("name", iri)
+        uri_elem.set("uri", path)
+
+    return pretty_print_xml(catalog)
+
+
+def generate_imports_catalog(
+    base_ontologies: Dict[str, dict], target_catalog_path: Path
+) -> str:
+    """
+    Generate XML catalog for base/imported ontologies (rdf, rdfs, owl, etc.).
+
+    Unlike generate_xml_catalog, this function extracts IRIs directly from
+    the ontology files rather than looking them up in the registry.
+    It also includes .context.jsonld files if present.
+
+    Args:
+        base_ontologies: Dictionary of domain -> file paths from collect_ontology_bundles
+        target_catalog_path: Path to the target catalog file
+
+    Returns:
+        Pretty-printed XML catalog string
+    """
+    catalog = ET.Element("catalog", xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog")
+    catalog.append(
+        ET.Comment(f" Auto-generated catalog for {target_catalog_path.parent.name} ")
+    )
+
+    uri_mappings = []
+    catalog_base = target_catalog_path.parent
+
+    for domain in sorted(base_ontologies.keys()):
+        files = base_ontologies[domain]
+        owl_path = files.get("ontology")
+
+        if not owl_path:
+            continue
+
+        # Extract IRI directly from the ontology file
+        info = extract_dependency_info(owl_path)
+        iri = info.get("iri")
+
+        if not iri:
+            print(
+                f"⚠️  Warning: No IRI found in {Path(owl_path).name}, skipping",
+                file=sys.stderr,
+            )
+            continue
+
+        # Add ontology file
+        rel_path = to_posix_relative(Path(owl_path), catalog_base)
+        uri_mappings.append((iri, rel_path))
+
+        # Add JSON-LD context file if present
+        jsonld_path = files.get("jsonld")
+        if jsonld_path:
+            context_iri = f"{iri.rstrip('/')}/context"
+            rel = to_posix_relative(Path(jsonld_path), catalog_base)
+            uri_mappings.append((context_iri, rel))
 
     uri_mappings.sort(key=lambda x: x[0])
     for iri, path in uri_mappings:
@@ -399,15 +474,18 @@ def generate_xml_catalog(
 
 
 def pretty_print_xml(element: ET.Element) -> str:
+    """
+    Pretty-print an XML element with proper indentation.
+
+    Note: We intentionally omit the DOCTYPE declaration because our catalogs
+    use custom attributes (domain, test-type, category) that are not defined
+    in the OASIS XML Catalog 1.0 DTD, which would cause validation errors.
+    """
     xml_str = ET.tostring(element, encoding="unicode")
     dom = minidom.parseString(xml_str)
     pretty_xml = dom.toprettyxml(indent="  ")
     lines = [line for line in pretty_xml.split("\n") if line.strip()]
-    result_lines = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"',
-        '  "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">',
-    ]
+    result_lines = ['<?xml version="1.0" encoding="UTF-8"?>']
     for line in lines:
         if not line.startswith("<?xml"):
             result_lines.append(line)
@@ -418,7 +496,7 @@ def write_file(content: str, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         f.write(content)
-    print(f"✅ Generated: {path}")
+    print(f"✅ Generated: {path.as_posix()}")
 
 
 def discover_test_data() -> Dict[str, dict]:
@@ -441,10 +519,12 @@ def discover_test_data() -> Dict[str, dict]:
             except (ValueError, IndexError):
                 continue
             rel_path = test_file.relative_to(ROOT_DIR)
+            # Normalize to forward slashes for cross-platform catalog compatibility
+            rel_path_str = str(rel_path).replace("\\", "/")
 
             def add_entry(tid, cat="test-data"):
                 test_data[tid] = {
-                    "path": str(rel_path),
+                    "path": rel_path_str,
                     "domain": domain,
                     "test_type": test_type,
                     "category": cat,
@@ -604,7 +684,7 @@ def main():
     artifacts_xml = generate_xml_catalog(
         domain_ontologies, registry, ARTIFACTS_CATALOG_PATH
     )
-    imports_xml = generate_xml_catalog(base_ontologies, registry, IMPORTS_CATALOG_PATH)
+    imports_xml = generate_imports_catalog(base_ontologies, IMPORTS_CATALOG_PATH)
 
     print("🧩 Generating ontoenv.toml...")
     ontoenv_toml = generate_ontoenv(base_ontologies, project_name, project_version)

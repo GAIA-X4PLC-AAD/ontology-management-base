@@ -11,10 +11,14 @@ Key optimizations:
   - Stops early when no new triples are inferred
 """
 
-import logging
 from typing import Tuple
 
 from rdflib import Graph
+
+from src.tools.core.logging import get_logger
+
+# Module logger
+logger = get_logger(__name__)
 
 # Try to import performance optimization
 try:
@@ -128,30 +132,30 @@ def apply_rdfs_inference(
                 try:
                     combined.update(rule)
                 except Exception as e:
-                    logging.debug(f"RDFS rule skipped: {e}")
+                    logger.debug("RDFS rule skipped: %s", e)
 
             count_after = len(combined)
             new_triples = count_after - count_before
 
             if new_triples == 0:
-                logging.debug(f"RDFS fixpoint reached after {iteration + 1} iterations")
+                logger.debug("RDFS fixpoint reached after %d iterations", iteration + 1)
                 break
 
-            logging.debug(f"RDFS iteration {iteration + 1}: +{new_triples} triples")
+            logger.debug("RDFS iteration %d: +%d triples", iteration + 1, new_triples)
 
         # Apply domain/range rules once (they don't need iteration)
         for rule in RDFS_RULES_SINGLE_PASS:
             try:
                 combined.update(rule)
             except Exception as e:
-                logging.debug(f"RDFS rule skipped: {e}")
+                logger.debug("RDFS rule skipped: %s", e)
     else:
         # Single-pass rules only (faster but incomplete for deep hierarchies)
         for rule in RDFS_RULES_ITERATIVE:
             try:
                 combined.update(rule)
             except Exception as e:
-                logging.debug(f"RDFS rule skipped: {e}")
+                logger.debug("RDFS rule skipped: %s", e)
 
     total_inferred = len(combined) - initial_count
 
@@ -221,7 +225,7 @@ def apply_rdfs_inference_transitive(
         try:
             combined.update(rule)
         except Exception as e:
-            logging.debug(f"RDFS transitive rule skipped: {e}")
+            logger.debug("RDFS transitive rule skipped: %s", e)
 
     total_inferred = len(combined) - initial_count
 

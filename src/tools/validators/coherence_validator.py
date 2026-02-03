@@ -2,13 +2,15 @@
 """
 Coherence Validator - SHACL Target Class vs OWL Class Validation
 
+Validates that SHACL shape target classes are defined in the corresponding
+OWL ontology. This ensures alignment between shapes and ontology definitions.
+
 FEATURE SET:
 ============
 1. validate_artifact_coherence - Validate SHACL targets match OWL definitions
 2. extract_ontology_classes - Extract class definitions from OWL files
 3. extract_shacl_classes - Extract target classes from SHACL files
 4. get_base_ontology_classes - Load classes from base/imported ontologies
-5. get_local_name - Extract local name from URI (case-insensitive)
 
 USAGE:
 ======
@@ -46,6 +48,8 @@ from typing import Dict, Set, Tuple
 
 from rdflib import OWL, RDF, RDFS, Graph, Namespace
 
+from src.tools.core.iri_utils import get_local_name
+from src.tools.core.logging import get_logger
 from src.tools.core.result import ReturnCodes
 from src.tools.utils.file_collector import collect_files_by_pattern
 from src.tools.utils.print_formatter import (
@@ -54,30 +58,14 @@ from src.tools.utils.print_formatter import (
 )
 from src.tools.utils.registry_resolver import RegistryResolver
 
+# Module logger
+logger = get_logger(__name__)
+
 # Define SHACL namespace
 SH = Namespace("http://www.w3.org/ns/shacl#")
 
 # List of folder names allowed to fail validation (configurable)
 EXPECTED_TARGETCLASS_FAILURES: Set[str] = set()
-
-
-def get_local_name(uri: str) -> str:
-    """
-    Extract the local name from a given URI.
-
-    Takes the part after `#` or the last `/` and converts to lowercase
-    for case-insensitive comparison.
-
-    Args:
-        uri: Full URI string
-
-    Returns:
-        Local name in lowercase
-    """
-    if "#" in uri:
-        return uri.rsplit("#", 1)[1].lower()
-    else:
-        return uri.rsplit("/", 1)[-1].lower()
 
 
 def extract_classes_from_graph(graph: Graph) -> Set[str]:
@@ -90,9 +78,15 @@ def extract_classes_from_graph(graph: Graph) -> Set[str]:
     Returns:
         Set of lowercase class local names
     """
-    classes = {get_local_name(str(cls)) for cls in graph.subjects(RDF.type, OWL.Class)}
+    classes = {
+        get_local_name(str(cls), lowercase=True)
+        for cls in graph.subjects(RDF.type, OWL.Class)
+    }
     classes.update(
-        {get_local_name(str(cls)) for cls in graph.subjects(RDF.type, RDFS.Class)}
+        {
+            get_local_name(str(cls), lowercase=True)
+            for cls in graph.subjects(RDF.type, RDFS.Class)
+        }
     )
     return classes
 
@@ -112,7 +106,7 @@ def extract_shacl_classes_from_file(shacl_file: str) -> Set[str]:
     shacl_graph.parse(shacl_file, format="turtle")
 
     for cls in shacl_graph.objects(None, SH.targetClass):
-        local_name = get_local_name(str(cls))
+        local_name = get_local_name(str(cls), lowercase=True)
         shacl_classes.add(local_name)
 
     return shacl_classes
@@ -156,7 +150,7 @@ def extract_ontology_classes(ontology_file: str) -> Tuple[Set[str], Dict[str, st
 
     label_to_class = {}
     for cls, label in ontology_graph.subject_objects(RDFS.label):
-        class_local_name = get_local_name(str(cls))
+        class_local_name = get_local_name(str(cls), lowercase=True)
         label_str = str(label).strip().lower()
         if label_str and class_local_name:
             label_to_class[label_str] = class_local_name
@@ -312,16 +306,16 @@ def _run_tests() -> bool:
     print("Running coherence_validator self-tests...")
     all_passed = True
 
-    # Test 1: get_local_name with hash
-    result = get_local_name("http://example.org/ontology#MyClass")
+    # Test 1: get_local_name with hash (uses centralized iri_utils)
+    result = get_local_name("http://example.org/ontology#MyClass", lowercase=True)
     if result != "myclass":
         print(f"FAIL: get_local_name hash - expected 'myclass', got '{result}'")
         all_passed = False
     else:
         print("PASS: get_local_name with hash")
 
-    # Test 2: get_local_name with slash
-    result = get_local_name("http://example.org/ontology/MyClass")
+    # Test 2: get_local_name with slash (uses centralized iri_utils)
+    result = get_local_name("http://example.org/ontology/MyClass", lowercase=True)
     if result != "myclass":
         print(f"FAIL: get_local_name slash - expected 'myclass', got '{result}'")
         all_passed = False

@@ -27,13 +27,15 @@ def normalize_path_for_display(path: Union[str, Path], root_dir: Path) -> str:
 
     This prevents leaking user folder information (e.g., /home/user/...) in
     console output by converting absolute paths to repository-relative format.
+    Always uses forward slashes for cross-platform consistency.
 
     Args:
         path: Path to normalize (string or Path object)
         root_dir: Repository root directory
 
     Returns:
-        Repository-relative path string (e.g., "artifacts/scenario/scenario.owl.ttl")
+        Repository-relative path string with forward slashes
+        (e.g., "artifacts/scenario/scenario.owl.ttl")
     """
     if isinstance(path, str):
         path = Path(path)
@@ -42,14 +44,15 @@ def normalize_path_for_display(path: Union[str, Path], root_dir: Path) -> str:
     try:
         path = path.resolve()
     except (OSError, ValueError):
-        return str(path)
+        return str(path).replace("\\", "/")
 
     # Try to make relative to root_dir
     try:
-        return str(path.relative_to(root_dir.resolve()))
+        rel = path.relative_to(root_dir.resolve())
+        return rel.as_posix()
     except ValueError:
-        # Path is not under root_dir, return as-is
-        return str(path)
+        # Path is not under root_dir, return as-is with forward slashes
+        return str(path).replace("\\", "/")
 
 
 def _clean(val) -> str:

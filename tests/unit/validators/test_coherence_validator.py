@@ -5,11 +5,11 @@ Unit tests for coherence_validator behavior.
 
 from pathlib import Path
 
+from src.tools.core.iri_utils import get_local_name
 from src.tools.core.result import ReturnCodes
 from src.tools.validators.coherence_validator import (
     extract_ontology_classes,
     extract_shacl_classes_from_file,
-    get_local_name,
     validate_artifact_coherence,
 )
 
@@ -46,8 +46,13 @@ def test_coherence_fails_when_shacl_missing(temp_dir: Path) -> None:
 
 
 def test_get_local_name_variants():
-    assert get_local_name("http://example.org/a#B") == "b"
-    assert get_local_name("http://example.org/a/B") == "b"
+    # coherence_validator uses get_local_name with lowercase=True
+    # but the imported function preserves case by default
+    assert get_local_name("http://example.org/a#B", lowercase=True) == "b"
+    assert get_local_name("http://example.org/a/B", lowercase=True) == "b"
+    # Without lowercase, case is preserved
+    assert get_local_name("http://example.org/a#B") == "B"
+    assert get_local_name("http://example.org/a/B") == "B"
 
 
 def test_extract_shacl_classes_from_file(temp_dir: Path):

@@ -36,8 +36,8 @@ git clone https://github.com/gaia-x4plc-aad/ontology-management-base.git
 cd ontology-management-base
 
 # Create and activate virtual environment
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+python3 -m venv .venv # Windows: python -m venv .venv
+source .venv/bin/activate # Windows: source .venv/Scripts/activate
 
 # Install dependencies
 pip install -e .

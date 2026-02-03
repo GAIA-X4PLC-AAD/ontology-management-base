@@ -28,24 +28,24 @@ repos:
 
       - id: jsonld-lint
         name: JSON-LD Parser
-        # Updated: Sets PYTHONPATH and runs as module to resolve imports
-        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.syntax_validator --json "$@"' --
+        # Cross-platform: uses 'python' which works on Windows and most Unix systems
+        entry: python -m src.tools.validators.syntax_validator --json
         language: system
         types: [json]
         files: \.(json|jsonld)$
 
       - id: turtle-lint
         name: Turtle Parser
-        # Updated: Sets PYTHONPATH and runs as module to resolve imports
-        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.validators.syntax_validator --turtle "$@"' --
+        # Cross-platform: uses 'python' which works on Windows and most Unix systems
+        entry: python -m src.tools.validators.syntax_validator --turtle
         language: system
         types: [text]
         files: \.(ttl)$
 
       - id: update-registry
         name: Update Ontology Registry and Catalog
-        # Updated: Sets PYTHONPATH and runs as module to resolve imports
-        entry: bash -c 'PYTHONPATH=. python3 -m src.tools.utils.registry_updater'
+        # Cross-platform: uses 'python' which works on Windows and most Unix systems
+        entry: python -m src.tools.utils.registry_updater
         language: system
         pass_filenames: false
         files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$

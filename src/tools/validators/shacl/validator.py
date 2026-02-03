@@ -6,7 +6,6 @@ This module provides the ShaclValidator class which orchestrates the complete
 SHACL validation pipeline using the modular components.
 """
 
-import logging
 import sys
 import time
 from dataclasses import dataclass, field
@@ -16,6 +15,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from rdflib import Graph
 
+from src.tools.core.logging import get_logger
 from src.tools.utils.graph_loader import (
     FAST_STORE,
     extract_external_iris,
@@ -37,6 +37,9 @@ from .schema_discovery import (
     extract_rdf_types,
     get_base_ontology_paths,
 )
+
+# Module logger
+logger = get_logger(__name__)
 
 # Try to import pyshacl
 try:
@@ -124,11 +127,11 @@ class ShaclValidator:
             )
 
         # Step 1: Load data
-        self._log("\nStep 1: Loading JSON-LD Data Files...")
+        self._log("\n📂 Step 1: Loading JSON-LD Data Files...")
         data_graph, prefixes = self._load_data(jsonld_files)
 
         # Step 2: Extract types and discover schemas
-        self._log("\nStep 2: Discovering Required Schemas...")
+        self._log("\n🔎 Step 2: Discovering Required Schemas...")
         rdf_types = extract_rdf_types(data_graph)
         predicates = extract_predicates(data_graph)
         datatypes = extract_datatype_iris(data_graph)
@@ -137,13 +140,13 @@ class ShaclValidator:
         )
 
         # Step 3: Apply inference if requested
-        self._log(f"\nStep 3: Applying Inference ({self.inference_mode})...")
+        self._log(f"\n🧠 Step 3: Applying Inference ({self.inference_mode})...")
         combined_graph, inferred_count = self._apply_inference(
             data_graph, ontology_graph
         )
 
         # Step 4: Run SHACL validation
-        self._log("\nStep 4: Running SHACL Validation...")
+        self._log("\n🛡️ Step 4: Running SHACL Validation...")
         conforms, report_text, report_graph = self._run_validation(
             combined_graph, ontology_graph, shacl_graph
         )
@@ -335,20 +338,11 @@ def validate_data_conformance(
     Returns:
         Tuple of (return_code, output_message)
     """
-    # Set up logging
-    if debug or logfile:
-        level = logging.DEBUG if debug else logging.INFO
-        handlers = []
-        if logfile:
-            handlers.append(logging.FileHandler(logfile))
-        if debug:
-            handlers.append(logging.StreamHandler(sys.stdout))
-        if handlers:
-            logging.basicConfig(
-                level=level,
-                format="%(asctime)s [%(levelname)s] %(message)s",
-                handlers=handlers,
-            )
+    # Set up logging level if debug requested
+    if debug:
+        import logging
+
+        logging.getLogger("src.tools").setLevel(logging.DEBUG)
 
     # Print header
     print("=" * 80)
@@ -366,7 +360,7 @@ def validate_data_conformance(
         return 99, error_msg
 
     # Initialize validator
-    print(f"\nRepository Root: {root_dir}")
+    print(f"\nRepository Root: {root_dir.as_posix()}")
     validator = ShaclValidator(root_dir, inference_mode=inference_mode, verbose=True)
 
     info = validator.resolver.get_registry_info()

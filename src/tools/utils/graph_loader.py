@@ -47,7 +47,6 @@ NOTES:
 
 import argparse
 import json
-import logging
 import sys
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
@@ -56,7 +55,12 @@ import rdflib
 from rdflib import Graph
 
 from src.tools.core.constants import FAST_STORE
+from src.tools.core.iri_utils import is_did_web
+from src.tools.core.logging import get_logger
 from src.tools.utils.print_formatter import normalize_path_for_display
+
+# Module logger
+logger = get_logger(__name__)
 
 # Re-export FAST_STORE for backwards compatibility
 __all__ = [
@@ -137,7 +141,7 @@ def load_graphs(
             temp_graph = load_graph(path, format=format, store="default")
             combined += temp_graph
         except Exception as e:
-            logging.warning(f"Could not load {path}: {e}")
+            logger.warning("Could not load %s: %s", path, e)
 
     return combined
 
@@ -172,13 +176,13 @@ def load_jsonld_files(
             file_prefixes = _extract_prefixes_from_jsonld(json_file)
             prefixes.update(file_prefixes)
         except Exception as e:
-            logging.debug(f"Could not extract prefixes from {rel_path}: {e}")
+            logger.debug("Could not extract prefixes from %s: %s", rel_path, e)
 
         # Parse into graph
         try:
             graph.parse(str(json_file), format="json-ld")
         except Exception as e:
-            logging.error(f"Failed to load {rel_path}: {e}")
+            logger.error("Failed to load %s: %s", rel_path, e)
             raise
 
     return graph, prefixes
@@ -211,7 +215,7 @@ def load_turtle_files(
         try:
             graph.parse(str(ttl_file), format="turtle")
         except Exception as e:
-            logging.warning(f"Could not load {rel_path}: {e}")
+            logger.warning("Could not load %s: %s", rel_path, e)
 
     return graph
 
@@ -275,10 +279,10 @@ def load_fixtures_for_iris(
         try:
             graph.parse(str(abs_path), format="json-ld")
             rel_path = normalize_path_for_display(abs_path, root_dir)
-            logging.debug(f"Loaded fixture: {rel_path} for {iri}")
+            logger.debug("Loaded fixture: %s for %s", rel_path, iri)
             fixtures_loaded += 1
         except Exception as e:
-            logging.warning(f"Could not load fixture for {iri}: {e}")
+            logger.warning("Could not load fixture for %s: %s", iri, e)
 
     return fixtures_loaded
 
@@ -328,9 +332,9 @@ def extract_external_iris(graph: Graph) -> Set[str]:
     external_iris = set()
 
     for s, p, o in graph:
-        if isinstance(s, rdflib.URIRef) and str(s).startswith("did:web:"):
+        if isinstance(s, rdflib.URIRef) and is_did_web(str(s)):
             external_iris.add(str(s))
-        if isinstance(o, rdflib.URIRef) and str(o).startswith("did:web:"):
+        if isinstance(o, rdflib.URIRef) and is_did_web(str(o)):
             external_iris.add(str(o))
 
     return external_iris
@@ -487,7 +491,8 @@ def main():
                     print(f"  ... and {len(graph) - 5} more")
 
         except Exception as e:
-            print(f"Error loading {file_path}: {e}", file=sys.stderr)
+            display_path = str(file_path).replace("\\", "/")
+            print(f"Error loading {display_path}: {e}", file=sys.stderr)
 
     print(f"\nTotal: {total_triples} triples from {len(args.files)} file(s)")
 

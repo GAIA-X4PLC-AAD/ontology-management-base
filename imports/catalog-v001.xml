@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
-  "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
   <!-- Auto-generated catalog for imports -->
+  <uri name="http://purl.org/dc/terms/" uri="dcterms/dcterms.owl.ttl"/>
+  <uri name="http://schema.org/" uri="schema/schema.owl.ttl"/>
+  <uri name="http://www.w3.org/1999/02/22-rdf-syntax-ns#" uri="rdf/rdf.owl.ttl"/>
+  <uri name="http://www.w3.org/2000/01/rdf-schema#" uri="rdfs/rdfs.owl.ttl"/>
+  <uri name="http://www.w3.org/2001/XMLSchema#" uri="xsd/xsd.owl.ttl"/>
+  <uri name="http://www.w3.org/2002/07/owl" uri="owl/owl.owl.ttl"/>
+  <uri name="http://www.w3.org/2004/02/skos/core" uri="skos/skos.owl.ttl"/>
+  <uri name="http://www.w3.org/ns/org#" uri="org/org.owl.ttl"/>
+  <uri name="http://www.w3.org/ns/prov#" uri="prov/prov.owl.ttl"/>
+  <uri name="http://www.w3.org/ns/shacl#" uri="sh/sh.owl.ttl"/>
+  <uri name="http://xmlns.com/foaf/0.1/" uri="foaf/foaf.owl.ttl"/>
+  <uri name="https://www.w3.org/2018/credentials#" uri="cred/cred.owl.ttl"/>
+  <uri name="https://www.w3.org/2018/credentials#/context" uri="cred/cred.context.jsonld"/>
+  <uri name="https://www.w3.org/ns/credentials/status#" uri="cs/cs.owl.ttl"/>
+  <uri name="https://www.w3.org/ns/credentials/status#/context" uri="cs/cs.context.jsonld"/>
 </catalog>

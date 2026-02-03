@@ -13,16 +13,20 @@ This page covers the full setup flow for users and contributors.
 git clone https://github.com/gaia-x4plc-aad/ontology-management-base.git
 cd ontology-management-base
 
+git submodule update --init --recursive
+
 python3 -m venv .venv
 source .venv/bin/activate
 
-pip install -e .
+python3 -m pip install --upgrade pip
+
+python3 -m pip install -e .
 ```
 
 For development:
 
 ```bash
-pip install -e ".[dev]"
+python3 -m pip install -e ".[dev]"
 pre-commit install
 ```
 
@@ -60,4 +64,3 @@ mkdocs serve
 ```bash
 python3 -m src.tools.utils.registry_updater
 ```
-

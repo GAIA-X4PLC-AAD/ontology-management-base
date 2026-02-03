@@ -79,7 +79,7 @@ from pathlib import Path
 from typing import List
 
 # Import from new module locations (with backward compatibility)
-from src.tools.utils.print_formatter import normalize_text
+from src.tools.utils.print_formatter import normalize_path_for_display, normalize_text
 from src.tools.utils.registry_resolver import RegistryResolver
 
 # New imports from refactored modules
@@ -311,15 +311,17 @@ def check_failing_tests_all(ontology_domains: List[str]) -> int:
 
         for test_abs_path in invalid_test_files:
             test_abs_path = Path(test_abs_path)
-            rel_path = os.path.relpath(test_abs_path, ROOT_DIR)
-            test_path = f".{os.sep}{rel_path}"
+            test_path = normalize_path_for_display(test_abs_path, Path(ROOT_DIR))
             expected_output_path = test_abs_path.with_suffix("").with_suffix(
                 ".expected"
             )
 
             if not expected_output_path.exists():
+                expected_path_display = normalize_path_for_display(
+                    expected_output_path, Path(ROOT_DIR)
+                )
                 print(
-                    f"⚠️ No expected output file found: {expected_output_path}",
+                    f"⚠️ No expected output file found: {expected_path_display}",
                     file=sys.stderr,
                     flush=True,
                 )
@@ -524,7 +526,11 @@ def main():
             if os.path.exists(p):
                 valid_paths.append(p)
             else:
-                print(f"⚠️  Warning: Path does not exist: {p}", file=sys.stderr)
+                display_path = str(p).replace("\\", "/")
+                print(
+                    f"⚠️  Warning: Path does not exist: {display_path}",
+                    file=sys.stderr,
+                )
 
         if not valid_paths:
             print("❌ Error: No valid paths provided.", file=sys.stderr)

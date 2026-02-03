@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
-  "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
   <!--Unified Test Catalog-->
   <uri name="did:web:test.automotive-simulator.net:AutomotiveSimulator:test_valid_automotive-simulator_instance" uri="tests/data/automotive-simulator/valid/automotive-simulator_instance.json" domain="automotive-simulator" test-type="valid" category="test-data"/>
