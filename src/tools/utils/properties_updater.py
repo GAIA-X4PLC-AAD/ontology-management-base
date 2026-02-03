@@ -10,7 +10,7 @@ FEATURE SET:
 ============
 1. generate_properties_docs - Create/refresh artifacts/{domain}/PROPERTIES.md
 2. update_catalog_table - Refresh docs/ontologies/catalog.md with links
-3. update_properties_page - Build docs/ontologies/properties.md via snippets
+3. update_properties_pages - Build docs/ontologies/properties/*.md via snippets
 
 USAGE:
 ======
@@ -54,7 +54,8 @@ ROOT_DIR = Path(__file__).parent.parent.parent.parent.resolve()
 ARTIFACTS_DIR = ROOT_DIR / "artifacts"
 DOCS_DIR = ROOT_DIR / "docs"
 CATALOG_PATH = DOCS_DIR / "ontologies" / "catalog.md"
-PROPERTIES_PAGE = DOCS_DIR / "ontologies" / "properties.md"
+PROPERTIES_DIR = DOCS_DIR / "ontologies" / "properties"
+PROPERTIES_INDEX = PROPERTIES_DIR / "index.md"
 REGISTRY_PATH = DOCS_DIR / "registry.json"
 
 REPO_BLOB_BASE = "https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main"
@@ -522,7 +523,7 @@ def generate_properties_docs() -> None:
 
 
 def generate_registry_table(registry: dict) -> str:
-    """Generate catalog table with links to raw files and properties anchors."""
+    """Generate catalog table with links to raw files and properties pages."""
     header = (
         "|Domain|Latest|IRI|Ontology|SHACL|Context|Properties|Example Instance|\n"
         "|---|---|---|---|---|---|---|---|"
@@ -551,9 +552,8 @@ def generate_registry_table(registry: dict) -> str:
             ]
             return "<br>".join(links)
 
-        properties_anchor = f"properties.md#{domain}-properties"
         properties_link = (
-            f"[{domain} Properties]({properties_anchor})"
+            f"[{domain} Properties](properties/{domain}.md)"
             if files.get("properties")
             else ""
         )
@@ -592,24 +592,36 @@ def update_catalog_table(catalog_path: Path, table_markdown: str) -> None:
     logger.info("Updated catalog table in %s", catalog_path)
 
 
-def update_properties_page(registry: dict) -> None:
-    """Generate docs/ontologies/properties.md referencing artifacts PROPERTIES."""
-    lines = [
+def update_properties_pages(registry: dict) -> None:
+    """Generate docs/ontologies/properties/{domain}.md and index page."""
+    PROPERTIES_DIR.mkdir(parents=True, exist_ok=True)
+
+    index_lines = [
         "# Ontology Properties",
         "",
-        "This page includes per-domain properties extracted from SHACL shapes.",
+        "Browse per-domain properties extracted from SHACL shapes.",
         "",
+        "|Domain|Properties|",
+        "|---|---|",
     ]
 
     for domain in sorted(registry.get("ontologies", {}).keys()):
         properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
         if not properties_path.exists():
             continue
-        lines.append(f'--8<-- "artifacts/{domain}/PROPERTIES.md"')
-        lines.append("")
 
-    PROPERTIES_PAGE.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    logger.info("Updated properties page: %s", PROPERTIES_PAGE)
+        page_path = PROPERTIES_DIR / f"{domain}.md"
+        page_content = [
+            f"# {domain} Properties",
+            "",
+            f'--8<-- "artifacts/{domain}/PROPERTIES.md"',
+            "",
+        ]
+        page_path.write_text("\n".join(page_content), encoding="utf-8")
+        index_lines.append(f"|{domain}|[{domain} Properties]({domain}.md)|")
+
+    PROPERTIES_INDEX.write_text("\n".join(index_lines) + "\n", encoding="utf-8")
+    logger.info("Updated properties index: %s", PROPERTIES_INDEX)
 
 
 def load_registry() -> dict:
@@ -621,7 +633,7 @@ def generate_all() -> None:
     """Run all generation steps."""
     generate_properties_docs()
     registry = load_registry()
-    update_properties_page(registry)
+    update_properties_pages(registry)
     table_markdown = generate_registry_table(registry)
     update_catalog_table(CATALOG_PATH, table_markdown)
 
