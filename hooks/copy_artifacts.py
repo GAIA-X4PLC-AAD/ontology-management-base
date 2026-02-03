@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-MkDocs Hook: Copy Artifacts
+MkDocs Hook: Link Artifacts
 
-Copies ontology artifact files (.ttl) to docs/artifacts/ during build,
+Creates symlinks to ontology artifact files for MkDocs build,
 making them accessible for client-side parsing and visualization.
 
 NOTES:
+- Uses symlinks instead of copying files
 - Excludes gx/ domain (redirects to official Gaia-X documentation)
-- Only copies .owl.ttl and .shacl.ttl files
-- Creates directory structure matching artifacts/
 """
 
+import os
 import shutil
 from pathlib import Path
 
@@ -18,59 +18,186 @@ from pathlib import Path
 EXTERNAL_DOMAINS = {"gx"}
 
 
+def _build_class_page_nav(docs_dir: Path) -> dict:
+    """
+    Build navigation entries for generated class pages.
+
+    Returns:
+        Mapping of domain -> list of nav items (Overview + class pages)
+    """
+    classes_root = docs_dir / "ontologies" / "classes"
+    if not classes_root.exists():
+        return {}
+
+    domain_nav: dict = {}
+    for domain_dir in sorted(classes_root.iterdir()):
+        if not domain_dir.is_dir():
+            continue
+
+        class_files = sorted(
+            [p for p in domain_dir.glob("*.md") if p.name != "index.md"]
+        )
+        if not class_files:
+            continue
+
+        domain_name = domain_dir.name
+        overview_path = f"ontologies/classes/{domain_name}/index.md"
+
+        entries = [{"Overview": overview_path}]
+        for class_file in class_files:
+            class_name = class_file.stem
+            class_path = f"ontologies/classes/{domain_name}/{class_file.name}"
+            entries.append({class_name: class_path})
+
+        domain_nav[domain_name] = entries
+
+    return domain_nav
+
+
+def _rewrite_class_artifact_links(docs_dir: Path) -> int:
+    """
+    Rewrite class page artifact links to point at docs/ontologies/artifacts.
+
+    Class pages are at: docs/ontologies/classes/{domain}/{Class}.md
+    Symlink is at:      docs/ontologies/artifacts -> ../../artifacts
+    Built HTML is at:   site/ontologies/classes/{domain}/{Class}/index.html
+
+    MkDocs transforms markdown links (adds ../ for directory conversion),
+    but data attributes are copied verbatim to HTML.
+
+    From built HTML at classes/{domain}/{Class}/:
+    - ../../../artifacts/ reaches ontologies/artifacts/ ✓
+
+    For markdown links: ../../artifacts/ → MkDocs adds ../ → ../../../artifacts/
+    For data attributes: need ../../../artifacts/ directly (no transformation)
+
+    Returns:
+        Number of files updated
+    """
+    classes_root = docs_dir / "ontologies" / "classes"
+    if not classes_root.exists():
+        return 0
+
+    import re
+
+    updated_count = 0
+    for md_file in classes_root.rglob("*.md"):
+        content = md_file.read_text(encoding="utf-8")
+        updated_content = content
+
+        # Fix markdown links: use ../../artifacts/ (MkDocs adds ../)
+        # Pattern: ](../../../../artifacts/ or ](../../../artifacts/
+        old_link_patterns = [
+            r"\]\(../../../../artifacts/",
+            r"\]\(../../../artifacts/",
+        ]
+        for pattern in old_link_patterns:
+            updated_content = re.sub(pattern, "](../../artifacts/", updated_content)
+
+        # Fix data attributes: use ../../../artifacts/ (no transformation)
+        # Pattern: data-ontology-viz="../../../../artifacts/ or "../../artifacts/ or "../../../artifacts/
+        # The source files might have various depths, normalize to ../../../artifacts/
+        old_data_patterns = [
+            r'data-ontology-viz="../../../../artifacts/',
+            r'data-ontology-viz="../../artifacts/',
+            r'data-ontology-viz="../../../artifacts/',  # Already correct, but re-apply to be safe
+        ]
+        for pattern in old_data_patterns:
+            updated_content = re.sub(
+                pattern, 'data-ontology-viz="../../../artifacts/', updated_content
+            )
+
+        if updated_content != content:
+            md_file.write_text(updated_content, encoding="utf-8")
+            updated_count += 1
+
+    return updated_count
+
+
+def on_config(config):
+    """
+    MkDocs hook called after configuration is loaded.
+
+    Ensures class pages are included in nav so the sidebar appears on them.
+    """
+    docs_dir = Path(config.get("docs_dir", "docs"))
+    domain_nav = _build_class_page_nav(docs_dir)
+    if not domain_nav:
+        return config
+
+    nav = config.get("nav", [])
+    for entry in nav:
+        if not isinstance(entry, dict) or "Ontologies" not in entry:
+            continue
+
+        ontologies_section = entry["Ontologies"]
+        for item in ontologies_section:
+            if not isinstance(item, dict) or "Class Explorer" not in item:
+                continue
+
+            class_explorer_section = item["Class Explorer"]
+            updated_section = []
+            for class_entry in class_explorer_section:
+                if not isinstance(class_entry, dict):
+                    updated_section.append(class_entry)
+                    continue
+
+                name, path_or_children = next(iter(class_entry.items()))
+                if (
+                    name in domain_nav
+                    and isinstance(path_or_children, str)
+                    and path_or_children.endswith("/index.md")
+                ):
+                    updated_section.append({name: domain_nav[name]})
+                else:
+                    updated_section.append(class_entry)
+
+            item["Class Explorer"] = updated_section
+            break
+
+        break
+
+    config["nav"] = nav
+    return config
+
+
 def on_pre_build(config, **kwargs):
     """
     MkDocs hook called before build starts.
 
-    Copies artifact TTL files to docs/artifacts/ for client-side access.
+    Creates symlinks to artifact TTL files for client-side access.
+    Uses symlinks to avoid duplicating files.
     """
     docs_dir = Path(config["docs_dir"])
     artifacts_src = docs_dir.parent / "artifacts"
-    artifacts_dst = docs_dir / "artifacts"
+
+    # Symlink target for docs/ontologies/artifacts -> ../../artifacts
+    artifacts_link = docs_dir / "ontologies" / "artifacts"
 
     if not artifacts_src.exists():
         print(f"[copy_artifacts] Warning: {artifacts_src} not found")
         return
 
-    # Clean existing artifacts in docs
-    if artifacts_dst.exists():
-        shutil.rmtree(artifacts_dst)
+    # Remove existing artifacts link/directory
+    if artifacts_link.is_symlink():
+        artifacts_link.unlink()
+    elif artifacts_link.exists():
+        shutil.rmtree(artifacts_link)
 
-    # Copy TTL files for each domain (excluding external domains)
-    copied_count = 0
-    for domain_dir in artifacts_src.iterdir():
-        if not domain_dir.is_dir():
-            continue
+    # Create symlink: docs/ontologies/artifacts -> ../../artifacts
+    # The relative path from docs/ontologies/ to artifacts/ is ../../artifacts
+    rel_target = os.path.relpath(artifacts_src, artifacts_link.parent)
+    artifacts_link.symlink_to(rel_target, target_is_directory=True)
+    print(f"[copy_artifacts] Created symlink: {artifacts_link} -> {rel_target}")
 
-        domain_name = domain_dir.name
-        if domain_name in EXTERNAL_DOMAINS:
-            print(f"[copy_artifacts] Skipping external domain: {domain_name}")
-            continue
-
-        # Find TTL files in domain
-        ttl_files = list(domain_dir.glob("*.ttl"))
-        if not ttl_files:
-            continue
-
-        # Create destination directory
-        dst_domain_dir = artifacts_dst / domain_name
-        dst_domain_dir.mkdir(parents=True, exist_ok=True)
-
-        # Copy TTL files
-        for ttl_file in ttl_files:
-            dst_file = dst_domain_dir / ttl_file.name
-            shutil.copy2(ttl_file, dst_file)
-            copied_count += 1
-
-    print(f"[copy_artifacts] Copied {copied_count} TTL files to docs/artifacts/")
+    # Rewrite class page links
+    updated_count = _rewrite_class_artifact_links(docs_dir)
+    if updated_count:
+        print(f"[copy_artifacts] Updated artifact links in {updated_count} class pages")
 
 
 def on_post_build(config, **kwargs):
     """
     MkDocs hook called after build completes.
-
-    Cleans up artifacts from docs/ to keep source clean.
     """
-    # Don't clean up - the files are needed in the built site
-    # The docs/artifacts/ folder is in .gitignore anyway
     pass

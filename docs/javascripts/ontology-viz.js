@@ -105,6 +105,7 @@
     setupObserver() {
       // Find all visualization containers
       const containers = document.querySelectorAll("[data-ontology-viz]");
+      console.log("[ontology-viz] Found containers:", containers.length);
       if (containers.length === 0) return;
 
       // Setup Intersection Observer for lazy loading
@@ -114,6 +115,7 @@
       );
 
       containers.forEach((container) => {
+        console.log("[ontology-viz] Setting up container:", container.dataset.ontologyViz);
         this.showLoadingState(container);
         this.observer.observe(container);
       });
@@ -121,6 +123,7 @@
 
     onIntersection(entries) {
       entries.forEach((entry) => {
+        console.log("[ontology-viz] Intersection:", entry.target.dataset.ontologyViz, "isIntersecting:", entry.isIntersecting);
         if (entry.isIntersecting) {
           this.observer.unobserve(entry.target);
           this.loadVisualization(entry.target);
@@ -160,32 +163,40 @@
       const domain = container.dataset.domain;
       const focusClass = container.dataset.focusClass;
 
+      console.log("[ontology-viz] Loading visualization:", { ttlPath, domain, focusClass });
+
       // Check if this is an external domain
       if (domain && CONFIG.externalDomains[domain]) {
+        console.log("[ontology-viz] External domain detected:", domain);
         this.renderExternalDomainCard(container, domain);
         return;
       }
 
       try {
         // Fetch and parse TTL
+        console.log("[ontology-viz] Fetching:", ttlPath);
         const response = await fetch(ttlPath);
         if (!response.ok) {
           throw new Error(`Failed to load ${ttlPath}: ${response.status}`);
         }
 
         const ttlText = await response.text();
+        console.log("[ontology-viz] Fetched TTL, length:", ttlText.length);
         const graphData = await this.parseTTL(ttlText, ttlPath);
+        console.log("[ontology-viz] Parsed TTL, store size:", graphData.store.size);
 
         // Cache the graph
         this.loadedGraphs.set(ttlPath, graphData);
 
         // Build visualization data
         const vizData = this.buildVisualizationData(graphData, focusClass);
+        console.log("[ontology-viz] Built viz data, nodes:", vizData.nodes.length, "edges:", vizData.edges.length);
 
         // Render the network
         this.renderNetwork(container, vizData, graphData);
+        console.log("[ontology-viz] Network rendered");
       } catch (error) {
-        console.error("Ontology visualization error:", error);
+        console.error("[ontology-viz] Error:", error);
         this.showErrorState(container, error.message);
       }
     }

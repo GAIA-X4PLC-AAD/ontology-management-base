@@ -26,7 +26,6 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
@@ -35,6 +34,11 @@ theme:
 
 plugins:
   - search
+  - exclude:
+      glob:
+        # Exclude markdown files from symlinked artifacts (meant for GitHub, not docs)
+        - ontologies/artifacts/**/README.md
+        - ontologies/artifacts/**/PROPERTIES.md
   - mkdocstrings:
       handlers:
         python:

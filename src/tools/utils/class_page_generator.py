@@ -369,7 +369,7 @@ def render_class_page(
         [
             "## Class Diagram",
             "",
-            f'<div class="ontology-viz" data-ontology-viz="../../artifacts/{domain}/{domain}.owl.ttl" data-domain="{domain}" data-focus-class="{class_info.iri}"></div>',
+            f'<div class="ontology-viz" data-ontology-viz="../../../../artifacts/{domain}/{domain}.owl.ttl" data-domain="{domain}" data-focus-class="{class_info.iri}"></div>',
             "",
         ]
     )
@@ -460,15 +460,13 @@ def render_class_page(
         lines.append("")
 
     # Source files
-    lines.extend(
-        [
-            "## Source",
-            "",
-            f"- OWL: [`{domain}.owl.ttl`](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/artifacts/{domain}/{domain}.owl.ttl)",
-            f"- SHACL: [`{domain}.shacl.ttl`](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/artifacts/{domain}/{domain}.shacl.ttl)",
-            "",
-        ]
-    )
+    source_lines = _build_source_lines(domain)
+    lines.extend(["## Source", ""])
+    if source_lines:
+        lines.extend(source_lines)
+    else:
+        lines.append("- (No source artifacts found)")
+    lines.append("")
 
     return "\n".join(lines)
 
@@ -579,6 +577,42 @@ The following Gaia-X classes are commonly referenced by ENVITED-X ontologies:
 - [DataResource]({ext['class_url'].format(**{'class': 'DataResource'})}){{ target=_blank }}
 - [Participant]({ext['class_url'].format(**{'class': 'Participant'})}){{ target=_blank }}
 """
+
+
+def _build_source_lines(domain: str) -> List[str]:
+    """
+    Build Source section links based on actual artifact files.
+
+    Args:
+        domain: Ontology domain name
+
+    Returns:
+        List of markdown list items for source files
+    """
+    domain_dir = ARTIFACTS_DIR / domain
+    lines: List[str] = []
+
+    if not domain_dir.exists():
+        return lines
+
+    standard_owl = domain_dir / f"{domain}.owl.ttl"
+    owl_files = (
+        [standard_owl]
+        if standard_owl.exists()
+        else sorted(domain_dir.glob("*.owl.ttl"))
+    )
+
+    shacl_files = sorted(domain_dir.glob("*.shacl.ttl"))
+
+    for owl_file in owl_files:
+        rel_path = f"../../../../artifacts/{domain}/{owl_file.name}"
+        lines.append(f"- OWL: [`{owl_file.name}`]({rel_path})")
+
+    for shacl_file in shacl_files:
+        rel_path = f"../../../../artifacts/{domain}/{shacl_file.name}"
+        lines.append(f"- SHACL: [`{shacl_file.name}`]({rel_path})")
+
+    return lines
 
 
 def generate_classes_index(all_domains: List[str]) -> str:
