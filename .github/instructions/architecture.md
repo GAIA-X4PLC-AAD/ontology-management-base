@@ -47,18 +47,18 @@ User Request
               ▼                 │
     ┌─────────────────────┐     │
     │  registry_updater   │     │
-    │  (build temp catalog)│     │
+    │ (build temp catalog)│     │
     └─────────────────────┘     │
               │                 │
               ▼                 ▼
     ┌─────────────────────────────┐
-    │        XML Catalogs          │
-    │  (single source of truth)    │
-    │                              │
-    │  • artifacts/catalog-v001.xml│
-    │  • imports/catalog-v001.xml  │
-    │  • tests/catalog-v001.xml    │
-    │  • (temp in-memory catalog)  │
+    │       XML Catalogs          │
+    │ (single source of truth)    │
+    │                             │
+    │ • artifacts/catalog-v001.xml│
+    │ • imports/catalog-v001.xml  │
+    │ • tests/catalog-v001.xml    │
+    │ • (temp in-memory catalog)  │
     └─────────────────────────────┘
               │
               ▼

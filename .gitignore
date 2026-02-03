@@ -9,6 +9,8 @@
 /dist/
 
 # files
+.site/
+site/
 *.log
 .ontology_iri_cache.json
 *.egg-info/
