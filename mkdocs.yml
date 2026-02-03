@@ -68,6 +68,29 @@ nav:
   - Ontologies:
       - Using the Ontologies: ontologies/using-ontologies.md
       - Concepts (OWL, SHACL, Context): ontologies/concepts.md
+      - Class Explorer:
+        - Overview: ontologies/classes/index.md
+        - automotive-simulator: ontologies/classes/automotive-simulator/index.md
+        - description: ontologies/classes/description/index.md
+        - environment-model: ontologies/classes/environment-model/index.md
+        - envited-x: ontologies/classes/envited-x/index.md
+        - example: ontologies/classes/example/index.md
+        - general: ontologies/classes/general/index.md
+        - georeference: ontologies/classes/georeference/index.md
+        - gx (Gaia-X): ontologies/classes/gx/index.md
+        - hdmap: ontologies/classes/hdmap/index.md
+        - leakage-test: ontologies/classes/leakage-test/index.md
+        - manifest: ontologies/classes/manifest/index.md
+        - openlabel: ontologies/classes/openlabel/index.md
+        - ositrace: ontologies/classes/ositrace/index.md
+        - scenario: ontologies/classes/scenario/index.md
+        - service: ontologies/classes/service/index.md
+        - simulated-sensor: ontologies/classes/simulated-sensor/index.md
+        - simulation-model: ontologies/classes/simulation-model/index.md
+        - surface-model: ontologies/classes/surface-model/index.md
+        - survey: ontologies/classes/survey/index.md
+        - tzip21: ontologies/classes/tzip21/index.md
+        - vv-report: ontologies/classes/vv-report/index.md
       - Ontology Properties:
         - Overview: ontologies/properties/index.md
         - automotive-simulator: ontologies/properties/automotive-simulator.md
@@ -112,11 +135,20 @@ nav:
   - Future:
       - LinkML Migration: future/linkml.md
 
+hooks:
+  - hooks/copy_artifacts.py
+
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/gaia-x4plc-aad/ontology-management-base
 
+extra_css:
+  - stylesheets/ontology-viz.css
+
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - https://unpkg.com/n3@1.17.2/browser/n3.min.js
+  - https://unpkg.com/vis-network@9.1.6/standalone/umd/vis-network.min.js
   - javascripts/mermaid.js
+  - javascripts/ontology-viz.js
