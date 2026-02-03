@@ -241,11 +241,12 @@ def extract_dependency_info(owl_file: Path) -> Dict[str, Optional[str]]:
 def to_relative_str(
     path: Union[Path, List[Path]], start: Path = ROOT_DIR
 ) -> Union[str, List[str], None]:
+    """Convert path(s) to POSIX-style relative path strings."""
     if path is None:
         return None
     if isinstance(path, list):
-        return [str(p.relative_to(start)) for p in path]
-    return str(path.relative_to(start))
+        return [p.relative_to(start).as_posix() for p in path]
+    return path.relative_to(start).as_posix()
 
 
 def to_posix_relative(file_path: Path, base_path: Path) -> str:

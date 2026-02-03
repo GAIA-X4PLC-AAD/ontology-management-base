@@ -7,55 +7,55 @@ version = "0.0.5"
 
 [dependencies.cred]
 uri = "https://www.w3.org/2018/credentials#"
-local = "imports\\cred\\cred.owl.ttl"
+local = "imports/cred/cred.owl.ttl"
 
 [dependencies.cs]
 uri = "https://www.w3.org/ns/credentials/status#"
-local = "imports\\cs\\cs.owl.ttl"
+local = "imports/cs/cs.owl.ttl"
 
 [dependencies.dcterms]
 uri = "http://purl.org/dc/terms/"
-local = "imports\\dcterms\\dcterms.owl.ttl"
+local = "imports/dcterms/dcterms.owl.ttl"
 
 [dependencies.foaf]
 uri = "http://xmlns.com/foaf/0.1/"
-local = "imports\\foaf\\foaf.owl.ttl"
+local = "imports/foaf/foaf.owl.ttl"
 
 [dependencies.org]
 uri = "http://www.w3.org/ns/org#"
-local = "imports\\org\\org.owl.ttl"
+local = "imports/org/org.owl.ttl"
 description = "Core organization ontology"
 
 [dependencies.owl]
 uri = "http://www.w3.org/2002/07/owl"
-local = "imports\\owl\\owl.owl.ttl"
+local = "imports/owl/owl.owl.ttl"
 
 [dependencies.prov]
 uri = "http://www.w3.org/ns/prov#"
-local = "imports\\prov\\prov.owl.ttl"
+local = "imports/prov/prov.owl.ttl"
 description = "W3C PROVenance Interchange"
 
 [dependencies.rdf]
 uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-local = "imports\\rdf\\rdf.owl.ttl"
+local = "imports/rdf/rdf.owl.ttl"
 
 [dependencies.rdfs]
 uri = "http://www.w3.org/2000/01/rdf-schema#"
-local = "imports\\rdfs\\rdfs.owl.ttl"
+local = "imports/rdfs/rdfs.owl.ttl"
 
 [dependencies.schema]
 uri = "http://schema.org/"
-local = "imports\\schema\\schema.owl.ttl"
+local = "imports/schema/schema.owl.ttl"
 
 [dependencies.sh]
 uri = "http://www.w3.org/ns/shacl#"
-local = "imports\\sh\\sh.owl.ttl"
+local = "imports/sh/sh.owl.ttl"
 description = "W3C Shapes Constraint Language (SHACL) Vocabulary"
 
 [dependencies.skos]
 uri = "http://www.w3.org/2004/02/skos/core"
-local = "imports\\skos\\skos.owl.ttl"
+local = "imports/skos/skos.owl.ttl"
 
 [dependencies.xsd]
 uri = "http://www.w3.org/2001/XMLSchema#"
-local = "imports\\xsd\\xsd.owl.ttl"
+local = "imports/xsd/xsd.owl.ttl"

@@ -12,12 +12,12 @@
           "versionInfo": "v1",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
           "files": {
-            "ontology": "artifacts\\automotive-simulator\\automotive-simulator.owl.ttl",
+            "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
             "shacl": [
-              "artifacts\\automotive-simulator\\automotive-simulator.shacl.ttl"
+              "artifacts/automotive-simulator/automotive-simulator.shacl.ttl"
             ],
-            "properties": "artifacts\\automotive-simulator\\PROPERTIES.md",
-            "instance": "tests\\data\\automotive-simulator\\valid\\automotive-simulator_instance.json"
+            "properties": "artifacts/automotive-simulator/PROPERTIES.md",
+            "instance": "tests/data/automotive-simulator/valid/automotive-simulator_instance.json"
           }
         }
       }
@@ -32,11 +32,11 @@
           "versionInfo": "v0.5",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/description/v1",
           "files": {
-            "ontology": "artifacts\\description\\description.owl.ttl",
+            "ontology": "artifacts/description/description.owl.ttl",
             "shacl": [
-              "artifacts\\description\\description.shacl.ttl"
+              "artifacts/description/description.shacl.ttl"
             ],
-            "properties": "artifacts\\description\\PROPERTIES.md"
+            "properties": "artifacts/description/PROPERTIES.md"
           }
         }
       }
@@ -51,12 +51,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/environment-model/v5",
           "files": {
-            "ontology": "artifacts\\environment-model\\environment-model.owl.ttl",
+            "ontology": "artifacts/environment-model/environment-model.owl.ttl",
             "shacl": [
-              "artifacts\\environment-model\\environment-model.shacl.ttl"
+              "artifacts/environment-model/environment-model.shacl.ttl"
             ],
-            "properties": "artifacts\\environment-model\\PROPERTIES.md",
-            "instance": "tests\\data\\environment-model\\valid\\environment-model_instance.json"
+            "properties": "artifacts/environment-model/PROPERTIES.md",
+            "instance": "tests/data/environment-model/valid/environment-model_instance.json"
           }
         }
       }
@@ -71,12 +71,12 @@
           "versionInfo": "v3",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/envited-x/v3",
           "files": {
-            "ontology": "artifacts\\envited-x\\envited-x.owl.ttl",
+            "ontology": "artifacts/envited-x/envited-x.owl.ttl",
             "shacl": [
-              "artifacts\\envited-x\\envited-x.shacl.ttl"
+              "artifacts/envited-x/envited-x.shacl.ttl"
             ],
-            "properties": "artifacts\\envited-x\\PROPERTIES.md",
-            "instance": "tests\\data\\envited-x\\valid\\envited-x_instance.json"
+            "properties": "artifacts/envited-x/PROPERTIES.md",
+            "instance": "tests/data/envited-x/valid/envited-x_instance.json"
           }
         }
       }
@@ -91,12 +91,12 @@
           "versionInfo": "v0.5",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/example/v1",
           "files": {
-            "ontology": "artifacts\\example\\example.owl.ttl",
+            "ontology": "artifacts/example/example.owl.ttl",
             "shacl": [
-              "artifacts\\example\\example.shacl.ttl"
+              "artifacts/example/example.shacl.ttl"
             ],
-            "properties": "artifacts\\example\\PROPERTIES.md",
-            "instance": "tests\\data\\example\\valid\\example_instance.json"
+            "properties": "artifacts/example/PROPERTIES.md",
+            "instance": "tests/data/example/valid/example_instance.json"
           }
         }
       }
@@ -111,12 +111,12 @@
           "versionInfo": "v3",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3",
           "files": {
-            "ontology": "artifacts\\general\\general.owl.ttl",
+            "ontology": "artifacts/general/general.owl.ttl",
             "shacl": [
-              "artifacts\\general\\general.shacl.ttl"
+              "artifacts/general/general.shacl.ttl"
             ],
-            "properties": "artifacts\\general\\PROPERTIES.md",
-            "instance": "tests\\data\\general\\valid\\general_instance.json"
+            "properties": "artifacts/general/PROPERTIES.md",
+            "instance": "tests/data/general/valid/general_instance.json"
           }
         }
       }
@@ -131,12 +131,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/georeference/v5",
           "files": {
-            "ontology": "artifacts\\georeference\\georeference.owl.ttl",
+            "ontology": "artifacts/georeference/georeference.owl.ttl",
             "shacl": [
-              "artifacts\\georeference\\georeference.shacl.ttl"
+              "artifacts/georeference/georeference.shacl.ttl"
             ],
-            "properties": "artifacts\\georeference\\PROPERTIES.md",
-            "instance": "tests\\data\\georeference\\valid\\georeference_instance.json"
+            "properties": "artifacts/georeference/PROPERTIES.md",
+            "instance": "tests/data/georeference/valid/georeference_instance.json"
           }
         }
       }
@@ -151,13 +151,13 @@
           "versionInfo": "v25.11",
           "versionIri": "https://w3id.org/gaia-x/development/",
           "files": {
-            "ontology": "artifacts\\gx\\gx.owl.ttl",
+            "ontology": "artifacts/gx/gx.owl.ttl",
             "shacl": [
-              "artifacts\\gx\\gx.shacl.ttl"
+              "artifacts/gx/gx.shacl.ttl"
             ],
-            "jsonld": "artifacts\\gx\\gx.context.jsonld",
-            "properties": "artifacts\\gx\\PROPERTIES.md",
-            "instance": "tests\\data\\gx\\valid\\gx_data_resource_instance.json"
+            "jsonld": "artifacts/gx/gx.context.jsonld",
+            "properties": "artifacts/gx/PROPERTIES.md",
+            "instance": "tests/data/gx/valid/gx_data_resource_instance.json"
           }
         }
       }
@@ -172,12 +172,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5",
           "files": {
-            "ontology": "artifacts\\hdmap\\hdmap.owl.ttl",
+            "ontology": "artifacts/hdmap/hdmap.owl.ttl",
             "shacl": [
-              "artifacts\\hdmap\\hdmap.shacl.ttl"
+              "artifacts/hdmap/hdmap.shacl.ttl"
             ],
-            "properties": "artifacts\\hdmap\\PROPERTIES.md",
-            "instance": "tests\\data\\hdmap\\valid\\hdmap_instance.json"
+            "properties": "artifacts/hdmap/PROPERTIES.md",
+            "instance": "tests/data/hdmap/valid/hdmap_instance.json"
           }
         }
       }
@@ -192,12 +192,12 @@
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/",
           "files": {
-            "ontology": "artifacts\\leakage-test\\leakage-test.owl.ttl",
+            "ontology": "artifacts/leakage-test/leakage-test.owl.ttl",
             "shacl": [
-              "artifacts\\leakage-test\\leakage-test.shacl.ttl"
+              "artifacts/leakage-test/leakage-test.shacl.ttl"
             ],
-            "properties": "artifacts\\leakage-test\\PROPERTIES.md",
-            "instance": "tests\\data\\leakage-test\\valid\\leakage-test_instance.json"
+            "properties": "artifacts/leakage-test/PROPERTIES.md",
+            "instance": "tests/data/leakage-test/valid/leakage-test_instance.json"
           }
         }
       }
@@ -212,12 +212,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/manifest/v5",
           "files": {
-            "ontology": "artifacts\\manifest\\manifest.owl.ttl",
+            "ontology": "artifacts/manifest/manifest.owl.ttl",
             "shacl": [
-              "artifacts\\manifest\\manifest.shacl.ttl"
+              "artifacts/manifest/manifest.shacl.ttl"
             ],
-            "properties": "artifacts\\manifest\\PROPERTIES.md",
-            "instance": "tests\\data\\manifest\\valid\\manifest_instance.json"
+            "properties": "artifacts/manifest/PROPERTIES.md",
+            "instance": "tests/data/manifest/valid/manifest_instance.json"
           }
         }
       }
@@ -232,12 +232,12 @@
           "versionInfo": "v1.0.0",
           "versionIri": "https://openlabel.asam.net/V1-0-0/ontologies/",
           "files": {
-            "ontology": "artifacts\\openlabel\\openlabel.owl.ttl",
+            "ontology": "artifacts/openlabel/openlabel.owl.ttl",
             "shacl": [
-              "artifacts\\openlabel\\openlabel.shacl.ttl"
+              "artifacts/openlabel/openlabel.shacl.ttl"
             ],
-            "properties": "artifacts\\openlabel\\PROPERTIES.md",
-            "instance": "tests\\data\\openlabel\\valid\\openlabel_instance.json"
+            "properties": "artifacts/openlabel/PROPERTIES.md",
+            "instance": "tests/data/openlabel/valid/openlabel_instance.json"
           }
         }
       }
@@ -252,12 +252,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/ositrace/v5",
           "files": {
-            "ontology": "artifacts\\ositrace\\ositrace.owl.ttl",
+            "ontology": "artifacts/ositrace/ositrace.owl.ttl",
             "shacl": [
-              "artifacts\\ositrace\\ositrace.shacl.ttl"
+              "artifacts/ositrace/ositrace.shacl.ttl"
             ],
-            "properties": "artifacts\\ositrace\\PROPERTIES.md",
-            "instance": "tests\\data\\ositrace\\valid\\ositrace_instance.json"
+            "properties": "artifacts/ositrace/PROPERTIES.md",
+            "instance": "tests/data/ositrace/valid/ositrace_instance.json"
           }
         }
       }
@@ -272,12 +272,12 @@
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/scenario/v5",
           "files": {
-            "ontology": "artifacts\\scenario\\scenario.owl.ttl",
+            "ontology": "artifacts/scenario/scenario.owl.ttl",
             "shacl": [
-              "artifacts\\scenario\\scenario.shacl.ttl"
+              "artifacts/scenario/scenario.shacl.ttl"
             ],
-            "properties": "artifacts\\scenario\\PROPERTIES.md",
-            "instance": "tests\\data\\scenario\\valid\\scenario_instance.json"
+            "properties": "artifacts/scenario/PROPERTIES.md",
+            "instance": "tests/data/scenario/valid/scenario_instance.json"
           }
         }
       }
@@ -292,12 +292,12 @@
           "versionInfo": "v1",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1/",
           "files": {
-            "ontology": "artifacts\\service\\service.owl.ttl",
+            "ontology": "artifacts/service/service.owl.ttl",
             "shacl": [
-              "artifacts\\service\\service.shacl.ttl"
+              "artifacts/service/service.shacl.ttl"
             ],
-            "properties": "artifacts\\service\\PROPERTIES.md",
-            "instance": "tests\\data\\service\\valid\\service_instance.json"
+            "properties": "artifacts/service/PROPERTIES.md",
+            "instance": "tests/data/service/valid/service_instance.json"
           }
         }
       }
@@ -312,12 +312,12 @@
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2",
           "files": {
-            "ontology": "artifacts\\simulated-sensor\\simulated-sensor.owl.ttl",
+            "ontology": "artifacts/simulated-sensor/simulated-sensor.owl.ttl",
             "shacl": [
-              "artifacts\\simulated-sensor\\simulated-sensor.shacl.ttl"
+              "artifacts/simulated-sensor/simulated-sensor.shacl.ttl"
             ],
-            "properties": "artifacts\\simulated-sensor\\PROPERTIES.md",
-            "instance": "tests\\data\\simulated-sensor\\valid\\simulated-sensor_instance.json"
+            "properties": "artifacts/simulated-sensor/PROPERTIES.md",
+            "instance": "tests/data/simulated-sensor/valid/simulated-sensor_instance.json"
           }
         }
       }
@@ -332,12 +332,12 @@
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2",
           "files": {
-            "ontology": "artifacts\\simulation-model\\simulation-model.owl.ttl",
+            "ontology": "artifacts/simulation-model/simulation-model.owl.ttl",
             "shacl": [
-              "artifacts\\simulation-model\\simulation-model.shacl.ttl"
+              "artifacts/simulation-model/simulation-model.shacl.ttl"
             ],
-            "properties": "artifacts\\simulation-model\\PROPERTIES.md",
-            "instance": "tests\\data\\simulation-model\\valid\\simulation-model_instance.json"
+            "properties": "artifacts/simulation-model/PROPERTIES.md",
+            "instance": "tests/data/simulation-model/valid/simulation-model_instance.json"
           }
         }
       }
@@ -352,12 +352,12 @@
           "versionInfo": "v6",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/surface-model/v6",
           "files": {
-            "ontology": "artifacts\\surface-model\\surface-model.owl.ttl",
+            "ontology": "artifacts/surface-model/surface-model.owl.ttl",
             "shacl": [
-              "artifacts\\surface-model\\surface-model.shacl.ttl"
+              "artifacts/surface-model/surface-model.shacl.ttl"
             ],
-            "properties": "artifacts\\surface-model\\PROPERTIES.md",
-            "instance": "tests\\data\\surface-model\\valid\\surface-model_instance.json"
+            "properties": "artifacts/surface-model/PROPERTIES.md",
+            "instance": "tests/data/surface-model/valid/surface-model_instance.json"
           }
         }
       }
@@ -372,13 +372,13 @@
           "versionInfo": "v6",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6",
           "files": {
-            "ontology": "artifacts\\survey\\survey.owl.ttl",
+            "ontology": "artifacts/survey/survey.owl.ttl",
             "shacl": [
-              "artifacts\\survey\\survey-result-data-offering.shacl.ttl",
-              "artifacts\\survey\\survey-service-offering.shacl.ttl"
+              "artifacts/survey/survey-result-data-offering.shacl.ttl",
+              "artifacts/survey/survey-service-offering.shacl.ttl"
             ],
-            "properties": "artifacts\\survey\\PROPERTIES.md",
-            "instance": "tests\\data\\survey\\valid\\survey-result-data-offering_instance.json"
+            "properties": "artifacts/survey/PROPERTIES.md",
+            "instance": "tests/data/survey/valid/survey-result-data-offering_instance.json"
           }
         }
       }
@@ -393,12 +393,12 @@
           "versionInfo": "v1",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/tzip21/v1",
           "files": {
-            "ontology": "artifacts\\tzip21\\tzip21.owl.ttl",
+            "ontology": "artifacts/tzip21/tzip21.owl.ttl",
             "shacl": [
-              "artifacts\\tzip21\\tzip21.shacl.ttl"
+              "artifacts/tzip21/tzip21.shacl.ttl"
             ],
-            "properties": "artifacts\\tzip21\\PROPERTIES.md",
-            "instance": "tests\\data\\tzip21\\valid\\tzip21_instance.json"
+            "properties": "artifacts/tzip21/PROPERTIES.md",
+            "instance": "tests/data/tzip21/valid/tzip21_instance.json"
           }
         }
       }
@@ -413,12 +413,12 @@
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2",
           "files": {
-            "ontology": "artifacts\\vv-report\\vv-report.owl.ttl",
+            "ontology": "artifacts/vv-report/vv-report.owl.ttl",
             "shacl": [
-              "artifacts\\vv-report\\vv-report.shacl.ttl"
+              "artifacts/vv-report/vv-report.shacl.ttl"
             ],
-            "properties": "artifacts\\vv-report\\PROPERTIES.md",
-            "instance": "tests\\data\\vv-report\\valid\\vv-report_instance.json"
+            "properties": "artifacts/vv-report/PROPERTIES.md",
+            "instance": "tests/data/vv-report/valid/vv-report_instance.json"
           }
         }
       }
