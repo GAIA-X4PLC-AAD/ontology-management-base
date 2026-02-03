@@ -342,19 +342,26 @@ def load_existing_registry() -> dict:
     return {"version": REGISTRY_VERSION, "ontologies": {}}
 
 
+def _normalize_line_endings(content: str) -> str:
+    """Normalize line endings to LF for consistent comparison."""
+    return content.replace("\r\n", "\n").replace("\r", "\n")
+
+
 def write_registry(registry: dict) -> None:
     """Write registry to file only if content has changed."""
     REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
     new_content = json.dumps(registry, indent=2, sort_keys=False) + "\n"
 
-    # Check if content has changed
+    # Check if content has changed (normalize line endings for cross-platform)
     if REGISTRY_PATH.exists():
         existing_content = REGISTRY_PATH.read_text(encoding="utf-8")
-        if existing_content == new_content:
+        if _normalize_line_endings(existing_content) == _normalize_line_endings(
+            new_content
+        ):
             print(f"✅ Registry unchanged: {REGISTRY_PATH.as_posix()}")
             return
 
-    with REGISTRY_PATH.open("w", encoding="utf-8") as f:
+    with REGISTRY_PATH.open("w", encoding="utf-8", newline="\n") as f:
         f.write(new_content)
     print(f"✅ Registry updated: {REGISTRY_PATH.as_posix()}")
 
@@ -505,14 +512,16 @@ def write_file(content: str, path: Path) -> None:
     """Write content to file only if it has changed."""
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Check if content has changed
+    # Check if content has changed (normalize line endings for cross-platform)
     if path.exists():
         existing_content = path.read_text(encoding="utf-8")
-        if existing_content == content:
+        if _normalize_line_endings(existing_content) == _normalize_line_endings(
+            content
+        ):
             print(f"✅ Unchanged: {path.as_posix()}")
             return
 
-    with path.open("w", encoding="utf-8") as f:
+    with path.open("w", encoding="utf-8", newline="\n") as f:
         f.write(content)
     print(f"✅ Generated: {path.as_posix()}")
 
