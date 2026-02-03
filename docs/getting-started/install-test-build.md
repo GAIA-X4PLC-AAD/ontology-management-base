@@ -30,6 +30,20 @@ python3 -m pip install -e ".[dev]"
 pre-commit install
 ```
 
+## VS Code: Auto-activate virtual environment
+
+Install the Python extension, then select the interpreter for this workspace so terminals auto-activate it.
+
+1. Command Palette → "Python: Select Interpreter" → choose `.venv`.
+2. Ensure these settings are enabled:
+
+```json
+{
+  "python.terminal.activateEnvironment": true,
+  "python.venvFolders": [".venv", "venv", "env"]
+}
+```
+
 ## Test
 
 Run the full validation suite:

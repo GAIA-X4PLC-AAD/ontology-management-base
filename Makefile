@@ -1,6 +1,14 @@
 # Makefile for Ontology Management Base
 # Build command center for common development tasks
 
+# Python command (override with: make PYTHON=python3)
+ifeq ($(OS),Windows_NT)
+PYTHON ?= python
+else
+PYTHON ?= python3
+endif
+PIP := $(PYTHON) -m pip
+
 .PHONY: all install install-dev lint test docs clean help
 
 # Default target
@@ -8,10 +16,10 @@ all: lint test
 
 # Installation targets
 install:
-	python3 -m pip install -e .
+	$(PIP) install -e .
 
 install-dev:
-	python3 -m pip install -e ".[dev]"
+	$(PIP) install -e ".[dev]"
 	pre-commit install
 
 # Linting and formatting
@@ -26,16 +34,16 @@ format:
 test: test-check-syntax test-check-artifact-coherence test-check-data-conformance test-failing
 
 test-check-syntax:
-	python3 -m src.tools.validators.validation_suite --run check-syntax
+	$(PYTHON) -m src.tools.validators.validation_suite --run check-syntax
 
 test-check-artifact-coherence:
-	python3 -m src.tools.validators.validation_suite --run check-artifact-coherence
+	$(PYTHON) -m src.tools.validators.validation_suite --run check-artifact-coherence
 
 test-check-data-conformance:
-	python3 -m src.tools.validators.validation_suite --run check-data-conformance
+	$(PYTHON) -m src.tools.validators.validation_suite --run check-data-conformance
 
 test-failing:
-	python3 -m src.tools.validators.validation_suite --run check-failing-tests
+	$(PYTHON) -m src.tools.validators.validation_suite --run check-failing-tests
 
 # Test specific domain
 test-domain:
@@ -43,11 +51,11 @@ test-domain:
 		echo "Usage: make test-domain DOMAIN=hdmap"; \
 		exit 1; \
 	fi
-	python3 -m src.tools.validators.validation_suite --run all --domain $(DOMAIN)
+	$(PYTHON) -m src.tools.validators.validation_suite --run all --domain $(DOMAIN)
 
 # Documentation targets
 docs-generate:
-	python3 -m src.tools.utils.properties_updater
+	$(PYTHON) -m src.tools.utils.properties_updater
 
 docs-serve:
 	mkdocs serve
@@ -58,9 +66,9 @@ docs-build:
 # Registry management
 registry-update:
 	@if [ -z "$(TAG)" ]; then \
-		python3 -m src.tools.utils.registry_updater --release-tag main; \
+		$(PYTHON) -m src.tools.utils.registry_updater --release-tag main; \
 	else \
-		python3 -m src.tools.utils.registry_updater --release-tag $(TAG); \
+		$(PYTHON) -m src.tools.utils.registry_updater --release-tag $(TAG); \
 	fi
 
 # Cleaning
