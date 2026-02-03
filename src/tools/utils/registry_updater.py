@@ -3,10 +3,11 @@
 Registry Update Script for Ontology Management Base.
 
 This script generates/updates:
-  1. docs/registry.json - Maps ALL ontology domains (artifacts + imports) to files
+  1. docs/registry.json - Maps maintained ontology domains (artifacts only)
   2. artifacts/catalog-v001.xml - OASIS XML Catalog for domain ontologies
   3. imports/catalog-v001.xml - OASIS XML Catalog for base ontologies
   4. tests/catalog-v001.xml - Unified test catalog (test data + fixtures)
+  5. config/ontoenv.toml - Ontology environment config (derived from catalogs)
 
 Usage:
     python -m src.tools.utils.registry_updater [--release-tag TAG] [--dry-run]
@@ -23,10 +24,16 @@ from urllib.parse import urlparse
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
+# TOML reader (stdlib in Python 3.11+)
+try:
+    import tomllib
+except ImportError:  # pragma: no cover - fallback for older Pythons
+    import tomli as tomllib
+
 # Import RDFLib
 import rdflib
 from rdflib import OWL, RDF, URIRef
-from rdflib.namespace import SKOS
+from rdflib.namespace import RDFS, SKOS
 
 # Try to use Oxigraph for speed
 try:
@@ -53,8 +60,9 @@ REGISTRY_PATH = ROOT_DIR / "docs" / "registry.json"
 ARTIFACTS_CATALOG_PATH = ARTIFACTS_DIR / "catalog-v001.xml"
 IMPORTS_CATALOG_PATH = IMPORTS_DIR / "catalog-v001.xml"
 TEST_CATALOG_PATH = ROOT_DIR / "tests" / "catalog-v001.xml"
+ONTOENV_PATH = ROOT_DIR / "config" / "ontoenv.toml"
 
-REGISTRY_VERSION = "2.0.0"
+REGISTRY_VERSION = "2.1.0"
 
 # Known IRIs for standard ontologies that might fail auto-detection
 KNOWN_IRIS = {
@@ -120,8 +128,8 @@ def extract_iri_from_graph(g: rdflib.Graph) -> Optional[str]:
         if isinstance(s, URIRef):
             return str(s)
 
-    # 3. Statistical Heuristic (last resort for schema.org, etc.)
-    # ... (rest of the heuristic logic) ...
+    # 3. No IRI found
+    return None
 
 
 def clean_iri(iri: str) -> str:
@@ -163,54 +171,71 @@ def determine_namespace_from_iri(iri: str) -> str:
         return "unknown"
 
 
+def _normalize_version_info(value: str) -> str:
+    cleaned = value.replace("Version ", "").strip()
+    return cleaned if cleaned.startswith("v") else f"v{cleaned}"
+
+
+def _extract_label_from_graph(g: rdflib.Graph, subject_iri: str) -> Optional[str]:
+    labels = list(g.objects(URIRef(subject_iri), RDFS.label))
+    if not labels:
+        return None
+    for label in labels:
+        if getattr(label, "language", None) == "en":
+            return str(label)
+    return str(labels[0])
+
+
 def extract_ontology_info(owl_file: Path) -> Dict[str, Optional[str]]:
-    """Extract semantic version, namespace, and IRI from ontology file."""
+    """Extract version info, namespace, and IRIs from an ontology file."""
+    g = parse_graph(owl_file)
+    raw_iri = extract_iri_from_graph(g) if g else None
 
-    # 0. Check KNOWN_IRIS fallback first
-    if owl_file.name in KNOWN_IRIS:
-        iri = KNOWN_IRIS[owl_file.name]
-        g = None
-    else:
-        g = parse_graph(owl_file)
-        iri = extract_iri_from_graph(g) if g else None
+    if not raw_iri and owl_file.name in KNOWN_IRIS:
+        raw_iri = KNOWN_IRIS[owl_file.name]
 
-    # 1. Clean the IRI
-    if iri:
-        iri = clean_iri(iri)
+    cleaned_iri = clean_iri(raw_iri) if raw_iri else None
+    namespace = determine_namespace_from_iri(cleaned_iri) if cleaned_iri else "unknown"
 
-    version = None
-    namespace = "unknown"
+    version_info = None
+    version_iri = None
+    label = None
 
-    if iri:
-        namespace = determine_namespace_from_iri(iri)
+    if g and raw_iri:
+        for obj in g.objects(URIRef(raw_iri), OWL.versionIRI):
+            version_iri = clean_iri(str(obj))
+            break
 
-        if g:
-            # Try owl:versionIRI
-            for obj in g.objects(URIRef(iri), OWL.versionIRI):
-                version = str(obj).split("/")[-1]
-                break
+        for obj in g.objects(URIRef(raw_iri), OWL.versionInfo):
+            version_info = _normalize_version_info(str(obj))
+            break
 
-            # Try owl:versionInfo
-            if not version:
-                for obj in g.objects(URIRef(iri), OWL.versionInfo):
-                    v_str = str(obj).replace("Version ", "").strip()
-                    version = v_str if v_str.startswith("v") else f"v{v_str}"
-                    break
-
-        if not version:
-            import re
-
-            match = re.search(r"/v([\d.]+)(?:/|$|#)", iri)
-            if match:
-                version = f"v{match.group(1)}"
-
-        if not version:
-            version = "v1"
+        label = _extract_label_from_graph(g, raw_iri)
 
     return {
-        "version": version,
+        "version": version_info,
+        "versionInfo": version_info,
+        "versionIri": version_iri,
         "namespace": namespace,
-        "iri": iri,
+        "iri": cleaned_iri,
+        "label": label,
+    }
+
+
+def extract_dependency_info(owl_file: Path) -> Dict[str, Optional[str]]:
+    """Extract base ontology dependency info (IRI + label)."""
+    g = parse_graph(owl_file)
+    raw_iri = extract_iri_from_graph(g) if g else None
+
+    if not raw_iri and owl_file.name in KNOWN_IRIS:
+        raw_iri = KNOWN_IRIS[owl_file.name]
+
+    cleaned_iri = clean_iri(raw_iri) if raw_iri else None
+    label = _extract_label_from_graph(g, raw_iri) if g and raw_iri else None
+
+    return {
+        "iri": cleaned_iri,
+        "label": label,
     }
 
 
@@ -225,16 +250,16 @@ def to_relative_str(
 
 
 def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
-    registry = load_existing_registry()
-    old_registry_content = {k: v for k, v in registry.items() if k != "generated"}
+    existing = load_existing_registry()
+    old_registry_content = {k: v for k, v in existing.items() if k != "generated"}
 
-    registry["version"] = REGISTRY_VERSION
-    registry["latestRelease"] = release_tag
+    registry = {
+        "version": REGISTRY_VERSION,
+        "latestRelease": release_tag,
+        "ontologies": {},
+    }
 
-    if "base_ontologies" in registry:
-        del registry["base_ontologies"]
-
-    for domain, files in ontologies.items():
+    for domain, files in sorted(ontologies.items()):
         owl_path = files["ontology"]
         info = extract_ontology_info(owl_path)
 
@@ -245,20 +270,27 @@ def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
             )
             continue
 
-        if domain not in registry["ontologies"]:
-            registry["ontologies"][domain] = {
-                "namespace": info["namespace"],
-                "iri": info["iri"],
-                "latest": None,
-                "versions": {},
-            }
+        if not info["versionInfo"]:
+            print(
+                f"⚠️  Skipping {domain}: owl:versionInfo missing in {owl_path.name}",
+                file=sys.stderr,
+            )
+            continue
 
-        onto_entry = registry["ontologies"][domain]
-        onto_entry["namespace"] = info["namespace"]
-        onto_entry["iri"] = info["iri"]
+        if not info["versionIri"]:
+            print(
+                f"⚠️  Warning: owl:versionIRI missing in {owl_path.name}; "
+                "using ontology IRI as version IRI",
+                file=sys.stderr,
+            )
+            info["versionIri"] = info["iri"]
 
-        version = info["version"]
-        onto_entry["latest"] = version
+        onto_entry = {
+            "namespace": info["namespace"],
+            "iri": info["iri"],
+            "latest": info["versionInfo"],
+            "versions": {},
+        }
 
         json_files = {
             "ontology": to_relative_str(files["ontology"]),
@@ -268,10 +300,14 @@ def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
             "instance": to_relative_str(files["instance"]),
         }
 
-        onto_entry["versions"][version] = {
+        onto_entry["versions"][info["versionInfo"]] = {
             "releaseTag": release_tag,
+            "versionInfo": info["versionInfo"],
+            "versionIri": info["versionIri"],
             "files": {k: v for k, v in json_files.items() if v is not None},
         }
+
+        registry["ontologies"][domain] = onto_entry
 
     new_registry_content = {k: v for k, v in registry.items() if k != "generated"}
     if new_registry_content != old_registry_content:
@@ -481,13 +517,79 @@ def generate_test_catalog(test_data: Dict[str, dict], fixtures: Dict[str, str]) 
     return pretty_print_xml(catalog)
 
 
+def _read_pyproject_metadata() -> Dict[str, Optional[str]]:
+    pyproject_path = ROOT_DIR / "pyproject.toml"
+    if not pyproject_path.exists():
+        return {"name": None, "version": None}
+    try:
+        with pyproject_path.open("rb") as f:
+            data = tomllib.load(f)
+        project = data.get("project", {})
+        return {"name": project.get("name"), "version": project.get("version")}
+    except Exception:
+        return {"name": None, "version": None}
+
+
+def _default_release_tag() -> str:
+    meta = _read_pyproject_metadata()
+    version = meta.get("version")
+    if version:
+        return f"v{version}"
+    return "v0.0.5"
+
+
+def _toml_escape(value: str) -> str:
+    return value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").strip()
+
+
+def generate_ontoenv(
+    base_ontologies: Dict[str, dict], project_name: str, project_version: str
+) -> str:
+    lines = []
+    lines.append("# Auto-generated by registry_updater.py. Do not edit by hand.")
+    lines.append("# Source of truth: imports/catalog-v001.xml and ontology metadata.")
+    lines.append("")
+    lines.append("[tool.ontoenv]")
+    lines.append(f'name = "{_toml_escape(project_name)}"')
+    lines.append(f'version = "{_toml_escape(project_version)}"')
+    lines.append("")
+
+    for domain in sorted(base_ontologies.keys()):
+        files = base_ontologies[domain]
+        owl_path = files.get("ontology")
+        if not owl_path:
+            continue
+        info = extract_dependency_info(owl_path)
+        if not info["iri"]:
+            print(
+                f"⚠️  Warning: No valid IRI found for dependency {domain}",
+                file=sys.stderr,
+            )
+            continue
+
+        lines.append(f"[dependencies.{domain}]")
+        lines.append(f'uri = "{_toml_escape(info["iri"])}"')
+        lines.append(f'local = "{_toml_escape(to_relative_str(owl_path))}"')
+        if info["label"]:
+            lines.append(f'description = "{_toml_escape(info["label"])}"')
+        lines.append("")
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--release-tag", "-r", default="main")
+    parser.add_argument("--release-tag", "-r", default=None)
     parser.add_argument("--dry-run", "-n", action="store_true")
     args = parser.parse_args()
 
+    release_tag = args.release_tag or _default_release_tag()
+    meta = _read_pyproject_metadata()
+    project_name = meta.get("name") or "ontology-management-base"
+    project_version = meta.get("version") or release_tag.lstrip("v")
+
     print(f"🔧 Using RDF store: {FAST_STORE}")
+    print(f"🏷️  Release tag: {release_tag}")
 
     print("🔍 Scanning artifacts/...")
     domain_ontologies = collect_ontology_bundles(ARTIFACTS_DIR, TESTS_DATA_DIR)
@@ -495,16 +597,17 @@ def main():
     print("🔍 Scanning imports/...")
     base_ontologies = collect_ontology_bundles(IMPORTS_DIR)
 
-    all_ontologies = {**domain_ontologies, **base_ontologies}
-
-    print(f"📝 Updating registry.json (processing {len(all_ontologies)} domains)...")
-    registry = update_registry(args.release_tag, all_ontologies)
+    print(f"📝 Updating registry.json (processing {len(domain_ontologies)} domains)...")
+    registry = update_registry(release_tag, domain_ontologies)
 
     print("📋 Generating XML catalogs...")
     artifacts_xml = generate_xml_catalog(
         domain_ontologies, registry, ARTIFACTS_CATALOG_PATH
     )
     imports_xml = generate_xml_catalog(base_ontologies, registry, IMPORTS_CATALOG_PATH)
+
+    print("🧩 Generating ontoenv.toml...")
+    ontoenv_toml = generate_ontoenv(base_ontologies, project_name, project_version)
 
     print("🔍 Discovering test data & fixtures...")
     test_data = discover_test_data()
@@ -520,6 +623,7 @@ def main():
         write_registry(registry)
         write_file(artifacts_xml, ARTIFACTS_CATALOG_PATH)
         write_file(imports_xml, IMPORTS_CATALOG_PATH)
+        write_file(ontoenv_toml, ONTOENV_PATH)
         write_file(test_catalog_xml, TEST_CATALOG_PATH)
         print("\n✅ Update complete!")
 

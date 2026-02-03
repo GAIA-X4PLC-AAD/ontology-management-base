@@ -58,22 +58,33 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Installation: getting-started/installation.md
-      - Quick Start: getting-started/quickstart.md
-      - Repository Structure: getting-started/structure.md
-  - Validation Tools:
-      - Overview: validation/index.md
-      - SHACL Validation: validation/check-jsonld-against-check-data-conformance.md
-      - Target Class Validation: validation/check-check-artifact-coherence.md
-      - Run All Checks: validation/run-all-checks.md
-      - Documentation Generator: validation/readme-generator.md
-  - Architecture:
-      - Ontology Discovery: architecture/ontology-discovery.md
-      - IRI Patterns: architecture/iri-patterns.md
-      - OWL Imports: architecture/owl-imports.md
+  - Start Here:
+      - Install, Test, Build: getting-started/install-test-build.md
+      - Contribute: getting-started/contribute.md
+      - Repository Layout: getting-started/repo-layout.md
   - Ontologies:
-      - Catalog: ontologies/index.md
+      - Using the Ontologies: ontologies/using-ontologies.md
+      - Concepts (OWL, SHACL, Context): ontologies/concepts.md
+      - Catalog and Search: ontologies/catalog.md
+  - Discovery and Registry:
+      - Search and Discovery: discovery/index.md
+      - registry.json Index: discovery/registry-json.md
+      - Catalogs and Resolution: discovery/catalogs.md
+  - Validation:
+      - Strategy: validation/strategy.md
+      - Validation Suite: validation/suite.md
+      - SHACL Conformance: validation/conformance.md
+      - Target Class Coherence: validation/coherence.md
+      - Syntax Checks: validation/syntax.md
+      - Tooling Index: validation/tools.md
+  - Gaia-X:
+      - Gaia-X Connection: gaiax/gaiax.md
+      - Gaia-X 4 PLC-AAD and Federated Catalog: gaiax/gaiax4plc-aad.md
+  - ENVITED Ecosystem:
+      - ENVITED-X Data Space: ecosystem/envited-x.md
+      - Long-Term Maintenance: ecosystem/maintenance.md
+  - Future:
+      - LinkML Migration: future/linkml.md
 
 extra:
   social:

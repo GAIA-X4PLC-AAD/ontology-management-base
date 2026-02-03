@@ -1,90 +1,26 @@
-# ENVITED-X Ontology Management Base
+# Ontology Management Base
 
-Welcome to the **Ontology Management Base** repository - the central hub for managing, validating, and documenting ontologies within the ENVITED-X ecosystem.
+This repository is the working home for the ENVITED-X and Gaia-X4PLC-AAD ontology stack. It contains the OWL ontologies, SHACL shapes, JSON-LD contexts, validation tools, and publishing utilities used across the ecosystem.
 
-## Overview
+## Important Notice
 
-This repository provides:
+After release `v0.0.5`, this repository will be archived as read-only. Ongoing maintenance will continue at `ASCS-eV/ontology-management-base`. Plan new contributions against that repository after the release cut.
 
-- **Ontology Definitions** - OWL ontology files defining the semantic models
-- **SHACL Shapes** - Validation constraints for data instances
-- **Validation Tools** - Python scripts for automated validation
-- **Test Fixtures** - Example instances and regression tests
-- **Documentation** - Auto-generated and manually curated docs
+## What You Can Do Here
 
-## Quick Links
+- Install, test, build, and contribute to the ontology toolchain
+- Use the ontologies with stable W3ID IRIs and local artifacts
+- Search and discover domains via `docs/registry.json`
+- Validate data and schemas with the catalog-based tooling
+- Understand the Gaia-X connection and Gaia-X4PLC-AAD publishing workflow
+- Follow the long-term ENVITED ecosystem strategy and future LinkML migration
 
-<div class="grid cards" markdown>
+## Start Here
 
--   :material-check-circle:{ .lg .middle } **Validation Tools**
+- Install, test, build: `getting-started/install-test-build.md`
+- Contribute: `getting-started/contribute.md`
+- Use the ontologies: `ontologies/using-ontologies.md`
+- Catalog and search: `ontologies/catalog.md`
+- Validation strategy: `validation/strategy.md`
+- Gaia-X4PLC-AAD and federated catalog: `gaiax/gaiax4plc-aad.md`
 
-    ---
-
-    Validate your JSON-LD data against SHACL schemas
-
-    [:octicons-arrow-right-24: Validation Catalog](validation/index.md)
-
--   :material-book-open-variant:{ .lg .middle } **Getting Started**
-
-    ---
-
-    Set up your environment and run your first validation
-
-    [:octicons-arrow-right-24: Quick Start](getting-started/quickstart.md)
-
--   :material-graph:{ .lg .middle } **Ontologies**
-
-    ---
-
-    Browse available ontology domains and their properties
-
-    [:octicons-arrow-right-24: Ontology Catalog](ontologies/index.md)
-
--   :material-architecture:{ .lg .middle } **Architecture**
-
-    ---
-
-    Understand IRI patterns and ontology discovery
-
-    [:octicons-arrow-right-24: Architecture Guide](architecture/ontology-discovery.md)
-
-</div>
-
-## Repository Structure
-
-```
-ontology-management-base/
-├── artifacts/              # Output: Ontology files
-│   ├── owl/               # *_ontology.ttl files
-│   ├── shacl/             # *_shacl.ttl files
-│   └── docs/              # Generated documentation
-├── imports/               # External ontology dependencies
-├── tests/
-│   ├── data/              # Test instances by domain
-│   └── fixtures/          # Reference data
-├── src/
-│   ├── tools/             # Python validation tools
-│   └── linkml/            # Future LinkML schemas
-├── docs/                  # MkDocs documentation
-└── scripts/               # Automation scripts
-```
-
-## Ontology Resolution
-
-Ontologies are published via [w3id.org](https://w3id.org) and can be resolved using:
-
-```
-https://w3id.org/ascs-ev/envited-x/{ontology}/{version}
-```
-
-For example:
-- `https://w3id.org/ascs-ev/envited-x/envited-x/v3` - ENVITED-X core ontology v3
-- `https://w3id.org/ascs-ev/envited-x/hdmap/v5` - HD Map ontology v5
-
-## Contributing
-
-See the [Contributing Guide](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/CONTRIBUTING.md) for details on how to contribute.
-
-## License
-
-This project is licensed under the terms specified in the [LICENSE](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/LICENSE) file.

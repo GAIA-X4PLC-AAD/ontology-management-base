@@ -104,7 +104,7 @@ When a new version of Gaia-X is released:
 
 ## See Also
 
-- [Ontology Domains](../../3-ontology-domains/) – Browse all available ontologies
-- [Validation Tools](../../6-validation-tools/) – Complete validation tool reference
-- [Architecture](../../2-architecture/) – Technical details about the ontology structure
+- [Ontology Domains](../../docs/ontologies/catalog.md) – Browse all available ontologies
+- [Validation Tools](../../docs/validation/tools.md) – Complete validation tool reference
+- [Architecture](../../docs/discovery/catalogs.md) – Technical details about the ontology structure
 - [Gaia-X Trust Framework](https://gaia-x.eu/) – Official Gaia-X website

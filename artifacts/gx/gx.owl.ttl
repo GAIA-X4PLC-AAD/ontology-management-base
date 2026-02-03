@@ -1200,7 +1200,9 @@ gx:VirtualMachineServiceOffering a owl:Class ;
     skos:inScheme gx:service-offering .
 
 gx:gaia-x.owl.ttl a owl:Ontology ;
-    rdfs:label "gaia-x" .
+    rdfs:label "gaia-x" ;
+    owl:versionIRI <https://w3id.org/gaia-x/development/> ;
+    owl:versionInfo "v25.11" .
 
 gx:AvailabilityZone a owl:Class ;
     rdfs:label "AvailabilityZone" ;
@@ -52302,4 +52304,3 @@ gx:RegionCode a owl:Class ;
     owl:intersectionOf ( [ a owl:Restriction ;
                 owl:onProperty gx:value ;
                 owl:someValuesFrom xsd:string ] <http://qudt.org/vocab/quantitykind/DataRate> ) .
-

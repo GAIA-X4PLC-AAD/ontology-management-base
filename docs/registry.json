@@ -1,14 +1,16 @@
 {
-  "version": "2.0.0",
-  "generated": "2026-02-02T16:49:51.382224+00:00",
-  "latestRelease": "main",
+  "version": "2.1.0",
+  "latestRelease": "v0.0.5",
   "ontologies": {
     "automotive-simulator": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
       "latest": "v1",
       "versions": {
         "v1": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v1",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
           "files": {
             "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
             "shacl": [
@@ -18,25 +20,17 @@
             "instance": "tests/data/automotive-simulator/valid/automotive-simulator_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1"
+      }
     },
     "description": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/description/v1",
       "latest": "v0.5",
       "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "artifacts/description/description.owl.ttl",
-            "shacl": [
-              "artifacts/description/description.shacl.ttl"
-            ],
-            "properties": "artifacts/description/PROPERTIES.md"
-          }
-        },
         "v0.5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v0.5",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/description/v1",
           "files": {
             "ontology": "artifacts/description/description.owl.ttl",
             "shacl": [
@@ -45,15 +39,17 @@
             "properties": "artifacts/description/PROPERTIES.md"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/description/v1"
+      }
     },
     "environment-model": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/environment-model/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/environment-model/v5",
           "files": {
             "ontology": "artifacts/environment-model/environment-model.owl.ttl",
             "shacl": [
@@ -63,15 +59,17 @@
             "instance": "tests/data/environment-model/valid/environment-model_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/environment-model/v5"
+      }
     },
     "envited-x": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/envited-x/v3",
       "latest": "v3",
       "versions": {
         "v3": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v3",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/envited-x/v3",
           "files": {
             "ontology": "artifacts/envited-x/envited-x.owl.ttl",
             "shacl": [
@@ -81,26 +79,17 @@
             "instance": "tests/data/envited-x/valid/envited-x_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/envited-x/v3"
+      }
     },
     "example": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/example/v1",
       "latest": "v0.5",
       "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "artifacts/example/example.owl.ttl",
-            "shacl": [
-              "artifacts/example/example.shacl.ttl"
-            ],
-            "properties": "artifacts/example/PROPERTIES.md",
-            "instance": "tests/data/example/valid/example_instance.json"
-          }
-        },
         "v0.5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v0.5",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/example/v1",
           "files": {
             "ontology": "artifacts/example/example.owl.ttl",
             "shacl": [
@@ -110,15 +99,17 @@
             "instance": "tests/data/example/valid/example_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/example/v1"
+      }
     },
     "general": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3",
       "latest": "v3",
       "versions": {
         "v3": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v3",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3",
           "files": {
             "ontology": "artifacts/general/general.owl.ttl",
             "shacl": [
@@ -128,15 +119,17 @@
             "instance": "tests/data/general/valid/general_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3"
+      }
     },
     "georeference": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/georeference/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/georeference/v5",
           "files": {
             "ontology": "artifacts/georeference/georeference.owl.ttl",
             "shacl": [
@@ -146,15 +139,17 @@
             "instance": "tests/data/georeference/valid/georeference_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/georeference/v5"
+      }
     },
     "gx": {
       "namespace": "gaia-x",
-      "latest": "v1",
+      "iri": "https://w3id.org/gaia-x/development/",
+      "latest": "v25.11",
       "versions": {
-        "v1": {
-          "releaseTag": "main",
+        "v25.11": {
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v25.11",
+          "versionIri": "https://w3id.org/gaia-x/development/",
           "files": {
             "ontology": "artifacts/gx/gx.owl.ttl",
             "shacl": [
@@ -165,15 +160,17 @@
             "instance": "tests/data/gx/valid/gx_data_resource_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x/development/"
+      }
     },
     "hdmap": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5",
           "files": {
             "ontology": "artifacts/hdmap/hdmap.owl.ttl",
             "shacl": [
@@ -183,15 +180,17 @@
             "instance": "tests/data/hdmap/valid/hdmap_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5"
+      }
     },
     "leakage-test": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2",
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/",
           "files": {
             "ontology": "artifacts/leakage-test/leakage-test.owl.ttl",
             "shacl": [
@@ -201,15 +200,17 @@
             "instance": "tests/data/leakage-test/valid/leakage-test_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2"
+      }
     },
     "manifest": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/manifest/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/manifest/v5",
           "files": {
             "ontology": "artifacts/manifest/manifest.owl.ttl",
             "shacl": [
@@ -219,15 +220,17 @@
             "instance": "tests/data/manifest/valid/manifest_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/manifest/v5"
+      }
     },
     "openlabel": {
       "namespace": "asam",
-      "latest": "v1",
+      "iri": "https://openlabel.asam.net/V1-0-0/ontologies/",
+      "latest": "v1.0.0",
       "versions": {
-        "v1": {
-          "releaseTag": "main",
+        "v1.0.0": {
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v1.0.0",
+          "versionIri": "https://openlabel.asam.net/V1-0-0/ontologies/",
           "files": {
             "ontology": "artifacts/openlabel/openlabel.owl.ttl",
             "shacl": [
@@ -237,15 +240,17 @@
             "instance": "tests/data/openlabel/valid/openlabel_instance.json"
           }
         }
-      },
-      "iri": "https://openlabel.asam.net/V1-0-0/ontologies/"
+      }
     },
     "ositrace": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/ositrace/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/ositrace/v5",
           "files": {
             "ontology": "artifacts/ositrace/ositrace.owl.ttl",
             "shacl": [
@@ -255,15 +260,17 @@
             "instance": "tests/data/ositrace/valid/ositrace_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/ositrace/v5"
+      }
     },
     "scenario": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/scenario/v5",
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v5",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/scenario/v5",
           "files": {
             "ontology": "artifacts/scenario/scenario.owl.ttl",
             "shacl": [
@@ -273,15 +280,17 @@
             "instance": "tests/data/scenario/valid/scenario_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/scenario/v5"
+      }
     },
     "service": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1",
       "latest": "v1",
       "versions": {
         "v1": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v1",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1/",
           "files": {
             "ontology": "artifacts/service/service.owl.ttl",
             "shacl": [
@@ -291,15 +300,17 @@
             "instance": "tests/data/service/valid/service_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1"
+      }
     },
     "simulated-sensor": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2",
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2",
           "files": {
             "ontology": "artifacts/simulated-sensor/simulated-sensor.owl.ttl",
             "shacl": [
@@ -309,15 +320,17 @@
             "instance": "tests/data/simulated-sensor/valid/simulated-sensor_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2"
+      }
     },
     "simulation-model": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2",
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2",
           "files": {
             "ontology": "artifacts/simulation-model/simulation-model.owl.ttl",
             "shacl": [
@@ -327,15 +340,17 @@
             "instance": "tests/data/simulation-model/valid/simulation-model_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2"
+      }
     },
     "surface-model": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/surface-model/v6",
       "latest": "v6",
       "versions": {
         "v6": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v6",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/surface-model/v6",
           "files": {
             "ontology": "artifacts/surface-model/surface-model.owl.ttl",
             "shacl": [
@@ -345,15 +360,17 @@
             "instance": "tests/data/surface-model/valid/surface-model_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/surface-model/v6"
+      }
     },
     "survey": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6",
       "latest": "v6",
       "versions": {
         "v6": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v6",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6",
           "files": {
             "ontology": "artifacts/survey/survey.owl.ttl",
             "shacl": [
@@ -364,15 +381,17 @@
             "instance": "tests/data/survey/valid/survey-result-data-offering_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6"
+      }
     },
     "tzip21": {
       "namespace": "ascs-ev",
+      "iri": "https://w3id.org/ascs-ev/envited-x/tzip21/v1",
       "latest": "v1",
       "versions": {
         "v1": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v1",
+          "versionIri": "https://w3id.org/ascs-ev/envited-x/tzip21/v1",
           "files": {
             "ontology": "artifacts/tzip21/tzip21.owl.ttl",
             "shacl": [
@@ -382,15 +401,17 @@
             "instance": "tests/data/tzip21/valid/tzip21_instance.json"
           }
         }
-      },
-      "iri": "https://w3id.org/ascs-ev/envited-x/tzip21/v1"
+      }
     },
     "vv-report": {
       "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2",
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "main",
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2",
           "files": {
             "ontology": "artifacts/vv-report/vv-report.owl.ttl",
             "shacl": [
@@ -398,202 +419,6 @@
             ],
             "properties": "artifacts/vv-report/PROPERTIES.md",
             "instance": "tests/data/vv-report/valid/vv-report_instance.json"
-          }
-        }
-      },
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2"
-    },
-    "cred": {
-      "namespace": "w3",
-      "iri": "https://www.w3.org/2018/credentials#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/cred/cred.owl.ttl",
-            "jsonld": "imports/cred/cred.context.jsonld"
-          }
-        }
-      }
-    },
-    "cs": {
-      "namespace": "w3",
-      "iri": "https://www.w3.org/ns/credentials/status#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/cs/cs.owl.ttl",
-            "jsonld": "imports/cs/cs.context.jsonld"
-          }
-        }
-      }
-    },
-    "dcterms": {
-      "namespace": "dc",
-      "iri": "http://purl.org/dc/terms/",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/dcterms/dcterms.owl.ttl"
-          }
-        }
-      }
-    },
-    "foaf": {
-      "namespace": "xmlns",
-      "iri": "http://xmlns.com/foaf/0.1/",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/foaf/foaf.owl.ttl"
-          }
-        }
-      }
-    },
-    "org": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/ns/org#",
-      "latest": "v0.8",
-      "versions": {
-        "v0": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/org/org.owl.ttl"
-          }
-        },
-        "v0.8": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/org/org.owl.ttl"
-          }
-        }
-      }
-    },
-    "owl": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/2002/07/owl#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/owl/owl.owl.ttl"
-          }
-        },
-        "owl": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/owl/owl.owl.ttl"
-          }
-        }
-      }
-    },
-    "prov": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/ns/prov#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/prov/prov.owl.ttl"
-          }
-        },
-        "prov-20130430": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/prov/prov.owl.ttl"
-          }
-        },
-        "prov-links-20130430": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/prov/prov.owl.ttl"
-          }
-        }
-      }
-    },
-    "rdf": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/rdf/rdf.owl.ttl"
-          }
-        }
-      }
-    },
-    "rdfs": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/2000/01/rdf-schema#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/rdfs/rdfs.owl.ttl"
-          }
-        }
-      }
-    },
-    "schema": {
-      "namespace": "schema",
-      "iri": "http://schema.org/",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/schema/schema.owl.ttl"
-          }
-        }
-      }
-    },
-    "sh": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/ns/shacl#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/sh/sh.owl.ttl"
-          }
-        }
-      }
-    },
-    "skos": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/2004/02/skos/core#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/skos/skos.owl.ttl"
-          }
-        }
-      }
-    },
-    "xsd": {
-      "namespace": "w3",
-      "iri": "http://www.w3.org/2001/XMLSchema#",
-      "latest": "v1",
-      "versions": {
-        "v1": {
-          "releaseTag": "main",
-          "files": {
-            "ontology": "imports/xsd/xsd.owl.ttl"
           }
         }
       }

@@ -5,22 +5,22 @@
 
 Central repository for the [ENVITED-X Ecosystem](https://envited-x.net/) of the Automotive Solution Center for Simulation e.V. It serves as the single source of truth for [Gaia-X 25.11](https://gitlab.com/gaia-x/technical-committee/service-characteristics-working-group/service-characteristics) compliant ontologies, including those developed within the [Gaia-X 4 PLC-AAD](https://www.gaia-x4plcaad.info/) project.
 
-> **Note:** This repository was initiated within the Gaia-X 4 PLC-AAD project and is further maintained by the ENVITED-X community. The main hub for ontology management can be found at [ASCS-eV/ontology-management-base](https://github.com/ASCS-eV/ontology-management-base).
+> **Note:** After release `v0.0.5`, this repository will be archived (read-only). Ongoing maintenance continues at [ASCS-eV/ontology-management-base](https://github.com/ASCS-eV/ontology-management-base).
 
 ## Getting Started
 
-**New to this project?** Start with the [getting started guide](docs/4-getting-started/).
+**New to this project?** Start with the [install, test, build guide](docs/getting-started/install-test-build.md).
 
-**Looking for ontologies?** Browse the [ontology catalog](docs/3-ontology-domains/).
+**Looking for ontologies?** Browse the [ontology catalog](docs/ontologies/catalog.md).
 
-**Need technical details?** See the [architecture documentation](docs/2-architecture/).
+**Need technical details?** See [concepts](docs/ontologies/concepts.md) and [validation strategy](docs/validation/strategy.md).
 
 ## Quick Links
 
 - **[Full Documentation](docs/)** - Complete guides and references
-- **[Validation Tools](docs/6-validation-tools/)** - Run checks on your data
-- **[Contributing](docs/5-building-contributing/01-contributing.md)** - How to add/modify ontologies
-- **[Troubleshooting](docs/7-troubleshooting/)** - Common issues and solutions
+- **[Validation](docs/validation/strategy.md)** - Run checks on your data
+- **[Contributing](docs/getting-started/contribute.md)** - How to add or modify ontologies
+- **[Gaia-X 4 PLC-AAD](docs/gaiax/gaiax4plc-aad.md)** - Federated catalog upload flow
 
 ## What's in This Repository
 
