@@ -74,6 +74,21 @@ jobs:
             cp -r docs/* site/
           fi
 
+      - name: Fetch existing W3ID artifacts (gh-pages)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 1
+        continue-on-error: true
+
+      - name: Preserve W3ID artifacts
+        run: |
+          if [ -d gh-pages/w3id ]; then
+            mkdir -p site/w3id
+            cp -a gh-pages/w3id/. site/w3id/
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -27,6 +27,7 @@ Read these BEFORE making changes:
 
 | Topic                           | File                                                                       |
 | ------------------------------- | -------------------------------------------------------------------------- |
+| Agent instructions              | [../AGENTS.md](../AGENTS.md)                                                |
 | Module structure & dependencies | [instructions/architecture.md](instructions/architecture.md)               |
 | Code style & patterns           | [instructions/coding-standards.md](instructions/coding-standards.md)       |
 | Validation pipeline             | [instructions/validation-workflow.md](instructions/validation-workflow.md) |
