@@ -37,11 +37,15 @@ jobs:
       - name: Update Main README
         run: python3 -m src.tools.utils.readme_updater
 
+      - name: Ensure docs output dirs exist
+        run: |
+          mkdir -p docs/ontologies/classes docs/ontologies/properties
+
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: auto-update PROPERTIES.md and class pages [skip ci]"
           # Only commit files that were actually modified by the scripts above
-          file_pattern: 'artifacts/*/PROPERTIES.md docs/ontologies/classes/** docs/ontologies/properties/** README.md'
+          file_pattern: 'artifacts/*/PROPERTIES.md docs/ontologies/classes docs/ontologies/properties README.md'
           # CRITICAL: Ensures DCO compliance
           commit_options: '--signoff'
