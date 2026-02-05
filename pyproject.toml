@@ -5,7 +5,23 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ontology-management-base"
 version = "0.0.5"
+description = "Ontology validation tools and management for the ENVITED-X ecosystem"
+readme = "README.md"
 requires-python = ">=3.12"
+license = { text = "EPL-2.0" }
+authors = [
+    { name = "ASCS-EV", email = "info@asc-s.de" }
+]
+keywords = ["ontology", "shacl", "owl", "validation", "semantic-web", "json-ld"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Eclipse Public License 2.0 (EPL-2.0)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
+
 dependencies = [
     "rdflib>=7.5.0",
     "rdflib-jsonld>=0.6.2",
@@ -22,10 +38,71 @@ dev = [
     "flake8==7.1.2",
     "isort==7.0.0",
     "pre-commit==4.5.1",
+    "mkdocs-material>=9.5.0",
+    "mkdocs-awesome-pages-plugin>=2.9.3",
+    "mkdocs-exclude>=1.0.0",
+    "mkdocstrings[python]>=0.24.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
 ]
+docs = [
+    "mkdocs-material>=9.5.0",
+    "mkdocs-awesome-pages-plugin>=2.9.3",
+    "mkdocs-exclude>=1.0.0",
+    "mkdocstrings[python]>=0.24.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/gaia-x4plc-aad/ontology-management-base"
+Documentation = "https://gaia-x4plc-aad.github.io/ontology-management-base/"
+Repository = "https://github.com/gaia-x4plc-aad/ontology-management-base.git"
+Issues = "https://github.com/gaia-x4plc-aad/ontology-management-base/issues"
+
+[project.scripts]
+onto-validate = "src.tools.validators.validation_suite:main"
+onto-check-conformance = "src.tools.validators.validate_data_conformance:main"
+onto-check-coherence = "src.tools.validators.validate_artifact_coherence:main"
+onto-generate-docs = "src.tools.utils.properties_updater:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
 
 [tool.black]
 line-length = 88
+target-version = ["py312"]
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+  | node_modules
+)/
+'''
 
 [tool.isort]
 profile = "black"
+line_length = 88
+skip = [".git", ".venv", "build", "dist", "node_modules"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning:src.tools.validators.*",
+]
+
+[tool.coverage.run]
+source = ["src/tools"]
+omit = ["*/tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

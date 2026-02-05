@@ -1,0 +1,138 @@
+name: CI - Quality Checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # --- JOB 0: Determine Changes ---
+  changes:
+    name: Determine Changes
+    runs-on: ubuntu-latest
+    outputs:
+      folders_arg: ${{ steps.filter.outputs.folders_arg }}
+      should_run: ${{ steps.filter.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine changed folders
+        id: filter
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BASE_SHA="origin/${{ github.base_ref }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+            if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" == "0000000000000000000000000000000000000000" ]; then
+               BASE_SHA="HEAD^"
+            fi
+          fi
+
+          echo "Diffing against: $BASE_SHA"
+          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" HEAD)
+          
+          if echo "$CHANGED_FILES" | grep -qE "^(src/|imports/|config/|submodules/|.github/|pyproject.toml|requirements.txt)"; then
+            echo "Core configuration or code changed. Running full suite."
+            echo "folders_arg=" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            TARGETS=""
+            for file in $(echo "$CHANGED_FILES" | grep "^artifacts/"); do
+              domain=$(echo "$file" | cut -d/ -f2)
+              if [ -d "tests/data/$domain" ] && [[ ! "$domain" =~ ^(docs|jsonld|owl|shacl)$ ]]; then
+                TARGETS="$TARGETS $domain"
+              fi
+            done
+            for file in $(echo "$CHANGED_FILES" | grep "^tests/data/"); do
+              domain=$(echo "$file" | cut -d/ -f3)
+              if [ -d "tests/data/$domain" ]; then
+                TARGETS="$TARGETS $domain"
+              fi
+            done
+
+            TARGETS=$(echo "$TARGETS" | tr ' ' '\n' | sort -u | tr '\n' ' ' | xargs)
+
+            if [ -z "$TARGETS" ]; then
+              echo "No relevant ontology domains changed."
+              echo "should_run=false" >> $GITHUB_OUTPUT
+            else
+              echo "Targeting domains: $TARGETS"
+              echo "folders_arg=--domain $TARGETS" >> $GITHUB_OUTPUT
+              echo "should_run=true" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+  # --- JOB 1: Standards & Syntax ---
+  standards-and-syntax:
+    name: Standards & Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+      - name: Install dependencies
+        run: python3 -m pip install -e ".[dev]"
+      - name: Run pre-commit
+        run: pre-commit run --all-files
+
+  # --- JOB 2: SHACL Validation ---
+  validate-shacl:
+    name: SHACL Validation
+    needs: changes
+    if: needs.changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+      - name: Install dependencies
+        run: python3 -m pip install -e .
+      - name: Run SHACL Checks
+        run: python3 -m src.tools.validators.validation_suite --run check-data-conformance ${{ needs.changes.outputs.folders_arg }}
+
+  # --- JOB 3: OWL Consistency ---
+  validate-owl:
+    name: OWL Classes
+    needs: changes
+    if: needs.changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+      - name: Install dependencies
+        run: python3 -m pip install -e .
+      - name: Run Target Class Checks
+        run: python3 -m src.tools.validators.validation_suite --run check-artifact-coherence ${{ needs.changes.outputs.folders_arg }}
+
+  # --- JOB 4: Regression Tests ---
+  regression-tests:
+    name: Regression Tests
+    needs: changes
+    if: needs.changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+      - name: Install dependencies
+        run: python3 -m pip install -e .
+      - name: Run Failing Tests
+        run: python3 -m src.tools.validators.validation_suite --run check-failing-tests ${{ needs.changes.outputs.folders_arg }}

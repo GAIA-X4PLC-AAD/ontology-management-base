@@ -1,0 +1,148 @@
+name: Publish W3ID Ontologies
+
+on:
+  push:
+    tags:
+      - 'v0.0.5'
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 🔨 Build Docs + W3ID Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: python3 -m pip install -e ".[docs]"
+
+      - name: Generate ontology documentation
+        run: |
+          python3 -m src.tools.utils.properties_updater
+          python3 -m src.tools.utils.class_page_generator
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build MkDocs site
+        run: |
+          if [ -f mkdocs.yml ]; then
+            mkdocs build --strict --site-dir site
+          else
+            echo "No mkdocs.yml found, using docs/ directory directly"
+            mkdir -p site
+            cp -r docs/* site/
+          fi
+
+      - name: Build W3ID publish files
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import shutil
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          import rdflib
+          from rdflib.namespace import RDF, OWL
+
+          ROOT = Path(".").resolve()
+          ARTIFACTS_DIR = ROOT / "artifacts"
+          SITE_DIR = ROOT / "site"
+          W3ID_DIR = SITE_DIR / "w3id"
+
+          W3ID_DIR.mkdir(parents=True, exist_ok=True)
+          (SITE_DIR / ".nojekyll").write_text("")
+
+          def w3id_path(version_iri: str) -> str | None:
+            parsed = urlparse(version_iri)
+            if parsed.netloc != "w3id.org":
+              return None
+            path = parsed.path.lstrip("/").rstrip("/")
+            if path.startswith("gaia-x4plcaad/ontologies/"):
+              return path
+            if path.startswith("ascs-ev/envited-x/"):
+              return path
+            return None
+
+          def parse_version_iri(owl_path: Path) -> str | None:
+            g = rdflib.Graph()
+            g.parse(owl_path)
+            ontology = next(g.subjects(RDF.type, OWL.Ontology), None)
+            if ontology is None:
+              return None
+            version_iri = g.value(ontology, OWL.versionIRI) or ontology
+            return str(version_iri)
+
+          def merge_shacl(shacl_files: list[Path], output_path: Path) -> None:
+            g = rdflib.Graph()
+            for file_path in shacl_files:
+              g.parse(file_path)
+            g.serialize(destination=output_path, format="turtle")
+
+          for owl_path in sorted(ARTIFACTS_DIR.glob("*/*.owl.ttl")):
+            version_iri = parse_version_iri(owl_path)
+            if not version_iri:
+              continue
+
+            path = w3id_path(version_iri)
+            if not path:
+              continue
+
+            version_dir = W3ID_DIR / path
+            version_dir.mkdir(parents=True, exist_ok=True)
+
+            shutil.copy2(owl_path, version_dir / "ontology.ttl")
+
+            shacl_files = sorted(owl_path.parent.glob("*.shacl.ttl"))
+            if shacl_files:
+              merge_shacl(shacl_files, version_dir / "shapes.ttl")
+
+            context_files = sorted(owl_path.parent.glob("*.context.jsonld"))
+            if context_files:
+              shutil.copy2(context_files[0], version_dir / "context.jsonld")
+
+            latest_dir = version_dir.parent / "latest"
+            latest_dir.mkdir(parents=True, exist_ok=True)
+
+            shutil.copy2(version_dir / "ontology.ttl", latest_dir / "ontology.ttl")
+            if (version_dir / "shapes.ttl").exists():
+              shutil.copy2(version_dir / "shapes.ttl", latest_dir / "shapes.ttl")
+            if (version_dir / "context.jsonld").exists():
+              shutil.copy2(version_dir / "context.jsonld", latest_dir / "context.jsonld")
+          PY
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

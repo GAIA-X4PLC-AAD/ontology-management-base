@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "example_ontology": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/example/example_ontology#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/"
+  },
+  "@id": "did:web:test.example.net:ExampleServiceOffering:test_valid_example_instance",
+  "@type": "example_ontology:ExampleServiceOffering",
+  "example_ontology:property1": "Property 1 Value",
+  "example_ontology:property2": "Property 2 Value",
+  "example_ontology:belongsTo": {
+    "@id": "did:web:registry.gaia-x.eu:RelatedSelfDescription:123456789"
+  },
+  "example_ontology:hasJunctionIntersection": {
+    "@id": "https://openlabel.asam.net/V1-0-0/ontologies/IntersectionStaggered"
+  }
+}

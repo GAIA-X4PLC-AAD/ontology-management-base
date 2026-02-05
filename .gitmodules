@@ -1,3 +1,6 @@
 [submodule "service-characteristics"]
-	path = service-characteristics
+	path = submodules/service-characteristics
 	url = git@gitlab.com:gaia-x/technical-committee/service-characteristics-working-group/service-characteristics.git
+[submodule "w3id.org"]
+	path = submodules/w3id.org
+	url = git@github.com:GAIA-X4PLC-AAD/w3id.org.git

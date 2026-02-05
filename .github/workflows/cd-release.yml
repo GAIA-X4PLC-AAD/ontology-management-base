@@ -1,0 +1,103 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+  # Allow manual runs
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g., v0.0.5)'
+        required: true
+        type: string
+
+jobs:
+  release:
+    name: 📦 Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: python3 -m pip install -e .
+
+      - name: Determine release tag
+        id: tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
+          else
+            TAG="$REF_NAME"
+          fi
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Update registry
+        run: |
+          python3 -m src.tools.utils.registry_updater --release-tag "${{ steps.tag.outputs.tag }}"
+
+      - name: Commit registry update
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git stash
+          git checkout main
+          git pull origin main
+          git stash pop
+          
+          git add docs/registry.json
+          git commit -s -m "chore: update registry for ${{ steps.tag.outputs.tag }} [skip ci]" || echo "No changes to commit"
+          git push origin main || echo "Push failed - may need manual intervention"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: Release ${{ steps.tag.outputs.tag }}
+          body: |
+            ## Ontology Management Base ${{ steps.tag.outputs.tag }}
+
+            This release includes:
+            - Updated ontology definitions in `artifacts/{domain}/`
+            - Updated SHACL shapes in `artifacts/{domain}/`
+            - Test instances in `tests/data/`
+
+            ### Resolution
+            After this release is published, ontologies can be resolved via:
+            ```
+            [https://w3id.org/ascs-ev/envited-x/](https://w3id.org/ascs-ev/envited-x/){ontology}/{version}
+            ```
+
+            See [registry.json](./docs/registry.json) for version mappings.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-docs:
+    name: 📚 Deploy Documentation
+    needs: release
+    uses: ./.github/workflows/docs.yml
+    with:
+      ref: main
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

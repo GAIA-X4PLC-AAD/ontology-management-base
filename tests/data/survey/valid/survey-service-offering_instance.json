@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "survey": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/",
+    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@id": "did:web:test.survey.net:Survey:test_valid_survey-service-offering_instance",
+  "@type": "survey:SurveyServiceOffering",
+  "survey:surveyUrl": {
+    "@value": "https://web-mpc.gxfs.gx4fm.org/?session=qrsg5sp6n1cs1172kd8q80q0e8&participationCode=7ab1ch5r8gc7e299zb0psa0t0c",
+    "@type": "xsd:string"
+  },
+  "survey:surveyCreationTime": {
+    "@value": "2023-08-01T15:14:04",
+    "@type": "xsd:dateTime"
+  },
+  "survey:surveyEndTime": {
+    "@value": "2023-08-02T17:14:00",
+    "@type": "xsd:dateTime"
+  },
+  "survey:general": {
+    "@id": "did:web:registry.gaia-x.eu:General:PlFjHxuQoH0v7iaVC0QqdxmtQyqY-LQX6D-p",
+    "@type": "general:General",
+    "general:description": {
+      "@type": "general:Description",
+      "general:name": {
+        "@value": "Semiconductor True Demand Survey",
+        "@type": "xsd:string"
+      },
+      "general:description": {
+        "@value": "End to end supply chain survey on important leading and lagging indicators for semiconductor supply chains such as demand & sales development and inventory metrics to forecast market development",
+        "@type": "xsd:string"
+      }
+    },
+    "general:data": {
+      "@type": "general:Data",
+      "general:size": {
+        "@value": "5.8",
+        "@type": "xsd:float"
+      }
+    }
+  },
+  "gx:producedBy": {
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow intent",
+  "dcterms:identifier": "survey-service-001",
+  "dcterms:title": "Semiconductor Survey Service"
+}

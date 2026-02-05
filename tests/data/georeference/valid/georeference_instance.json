@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "did:web:test.georeference.net:Georeference:test_valid_georeference_instance",
+  "@type": "georeference:Georeference",
+  "georeference:hasProjectLocation": {
+    "@type": "georeference:ProjectLocation",
+    "georeference:country": {
+      "@value": "DE",
+      "@type": "xsd:string"
+    },
+    "georeference:state": {
+      "@value": "DE-BY",
+      "@type": "xsd:string"
+    },
+    "georeference:region": {
+      "@value": "Upper Bavaria",
+      "@type": "xsd:string"
+    },
+    "georeference:city": {
+      "@value": "Munich",
+      "@type": "xsd:string"
+    },
+    "georeference:relationOrArea": {
+      "@value": "motorway A8, Greater Area of Ingolstadt",
+      "@type": "xsd:string"
+    },
+    "georeference:hasBoundingBox": {
+      "@type": "georeference:BoundingBox",
+      "georeference:xMin": {
+        "@value": "10.720740862799195",
+        "@type": "xsd:float"
+      },
+      "georeference:yMin": {
+        "@value": "52.29672229543727",
+        "@type": "xsd:float"
+      },
+      "georeference:xMax": {
+        "@value": "10.730432209669724",
+        "@type": "xsd:float"
+      },
+      "georeference:yMax": {
+        "@value": "52.31580272353997",
+        "@type": "xsd:float"
+      }
+    }
+  },
+  "georeference:hasGeodeticReferenceSystem": {
+    "@type": "georeference:GeodeticReferenceSystem",
+    "georeference:codeEPSG": {
+      "@value": "32632",
+      "@type": "xsd:integer"
+    },
+    "georeference:hasOrigin": {
+      "@type": "georeference:LatLonCoordinate",
+      "georeference:lat": {
+        "@value": "52.275329463992996",
+        "@type": "xsd:float"
+      },
+      "georeference:lon": {
+        "@value": "10.685571633942278",
+        "@type": "xsd:float"
+      }
+    },
+    "georeference:hasViewPoint": {
+      "@type": "georeference:LatLonCoordinate",
+      "georeference:lat": {
+        "@value": "52.30626250948862",
+        "@type": "xsd:float"
+      },
+      "georeference:lon": {
+        "@value": "10.72558653623446",
+        "@type": "xsd:float"
+      }
+    },
+    "georeference:heightSystem": "Ellipsoidal height"
+  }
+}

@@ -1,0 +1,156 @@
+site_name: ENVITED-X Ontology Management
+site_description: Ontology validation tools and documentation for the ENVITED-X ecosystem
+site_url: https://gaia-x4plc-aad.github.io/ontology-management-base/
+repo_url: https://github.com/gaia-x4plc-aad/ontology-management-base
+repo_name: gaia-x4plc-aad/ontology-management-base
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - exclude:
+      glob:
+        # Exclude markdown files from symlinked artifacts (meant for GitHub, not docs)
+        - ontologies/artifacts/**/README.md
+        - ontologies/artifacts/**/PROPERTIES.md
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: false
+            show_root_heading: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Start Here:
+      - Install, Test, Build: getting-started/install-test-build.md
+      - Contribute: getting-started/contribute.md
+      - Repository Layout: getting-started/repo-layout.md
+  - Ontologies:
+      - Using the Ontologies: ontologies/using-ontologies.md
+      - Concepts (OWL, SHACL, Context): ontologies/concepts.md
+      - Properties Landing: ontologies/properties.md
+      - Class Explorer:
+        - Overview: ontologies/classes/index.md
+        - automotive-simulator: ontologies/classes/automotive-simulator/index.md
+        - description: ontologies/classes/description/index.md
+        - environment-model: ontologies/classes/environment-model/index.md
+        - envited-x: ontologies/classes/envited-x/index.md
+        - example: ontologies/classes/example/index.md
+        - general: ontologies/classes/general/index.md
+        - georeference: ontologies/classes/georeference/index.md
+        - gx (Gaia-X): ontologies/classes/gx/index.md
+        - hdmap: ontologies/classes/hdmap/index.md
+        - leakage-test: ontologies/classes/leakage-test/index.md
+        - manifest: ontologies/classes/manifest/index.md
+        - openlabel: ontologies/classes/openlabel/index.md
+        - ositrace: ontologies/classes/ositrace/index.md
+        - scenario: ontologies/classes/scenario/index.md
+        - service: ontologies/classes/service/index.md
+        - simulated-sensor: ontologies/classes/simulated-sensor/index.md
+        - simulation-model: ontologies/classes/simulation-model/index.md
+        - surface-model: ontologies/classes/surface-model/index.md
+        - survey: ontologies/classes/survey/index.md
+        - tzip21: ontologies/classes/tzip21/index.md
+        - vv-report: ontologies/classes/vv-report/index.md
+      - Ontology Properties:
+        - Overview: ontologies/properties/index.md
+        - automotive-simulator: ontologies/properties/automotive-simulator.md
+        - description: ontologies/properties/description.md
+        - environment-model: ontologies/properties/environment-model.md
+        - envited-x: ontologies/properties/envited-x.md
+        - example: ontologies/properties/example.md
+        - general: ontologies/properties/general.md
+        - georeference: ontologies/properties/georeference.md
+        - gx: ontologies/properties/gx.md
+        - hdmap: ontologies/properties/hdmap.md
+        - leakage-test: ontologies/properties/leakage-test.md
+        - manifest: ontologies/properties/manifest.md
+        - openlabel: ontologies/properties/openlabel.md
+        - ositrace: ontologies/properties/ositrace.md
+        - scenario: ontologies/properties/scenario.md
+        - service: ontologies/properties/service.md
+        - simulated-sensor: ontologies/properties/simulated-sensor.md
+        - simulation-model: ontologies/properties/simulation-model.md
+        - surface-model: ontologies/properties/surface-model.md
+        - survey: ontologies/properties/survey.md
+        - tzip21: ontologies/properties/tzip21.md
+        - vv-report: ontologies/properties/vv-report.md
+      - Catalog and Search: ontologies/catalog.md
+  - Discovery and Registry:
+      - Search and Discovery: discovery/index.md
+      - registry.json Index: discovery/registry-json.md
+      - Catalogs and Resolution: discovery/catalogs.md
+  - Validation:
+      - Strategy: validation/strategy.md
+      - Validation Suite: validation/suite.md
+      - SHACL Conformance: validation/conformance.md
+      - Target Class Coherence: validation/coherence.md
+      - Syntax Checks: validation/syntax.md
+      - Tooling Index: validation/tools.md
+  - Gaia-X:
+      - Gaia-X Connection: gaiax/gaiax.md
+      - Gaia-X 4 PLC-AAD and Federated Catalog: gaiax/gaiax4plc-aad.md
+  - ENVITED Ecosystem:
+      - ENVITED-X Data Space: ecosystem/envited-x.md
+      - Long-Term Maintenance: ecosystem/maintenance.md
+  - Future:
+      - LinkML Migration: future/linkml.md
+
+hooks:
+  - hooks/copy_artifacts.py
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gaia-x4plc-aad/ontology-management-base
+
+extra_css:
+  - stylesheets/ontology-viz.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid.js

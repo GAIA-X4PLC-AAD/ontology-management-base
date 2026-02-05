@@ -1,0 +1,230 @@
+{
+  "@context": {
+    "ositrace": "https://w3id.org/ascs-ev/envited-x/ositrace/v5/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
+    "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+    "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
+    "gx": "https://w3id.org/gaia-x/development/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@id": "did:web:test.ositrace.net:OSITrace:test_valid_ositrace_instance",
+  "@type": "ositrace:OSITrace",
+  "ositrace:hasDataResource": {
+    "@id": "did:web:registry.envited-x.net::DataResource:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+    "@type": "envited-x:DataResource",
+    "gx:name": "Cut-out scenario on testing ground",
+    "gx:description": "OSI SensorData trace of cut-out scenario on testing ground.",
+    "gx:version": "1.0.0",
+    "gx:license": "EPL-2.0",
+    "gx:resourcePolicy": "allow",
+    "gx:containsPII": false,
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+    },
+    "gx:producedBy": {
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+    },
+    "gx:exposedThrough": {
+      "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
+      "@type": "gx:DataExchangeComponent"
+    }
+  },
+  "ositrace:hasDataResourceExtension": {
+    "@type": "ositrace:DataResourceExtension",
+    "ositrace:hasFormat": {
+      "@type": "ositrace:Format",
+      "ositrace:formatType": "ASAM OSI SensorData",
+      "ositrace:version": {
+        "@value": "3.6.0/3.20.0",
+        "@type": "xsd:string"
+      }
+    },
+    "ositrace:hasContent": {
+      "@type": "ositrace:Content",
+      "ositrace:roadTypes": "rural",
+      "ositrace:laneTypes": [
+        "driving"
+      ],
+      "ositrace:levelOfDetail": "car",
+      "ositrace:trafficDirection": "right-hand",
+      "ositrace:granularity": [
+        "object list",
+        "detection list"
+      ],
+      "ositrace:startTime": {
+        "@value": "2024-06-03T16:37:10.835792+02:00",
+        "@type": "xsd:dateTimeStamp"
+      },
+      "ositrace:stopTime": {
+        "@value": "2024-06-03T16:38:28.636671+02:00",
+        "@type": "xsd:dateTimeStamp"
+      },
+      "ositrace:hasHostMovingObject": {
+        "@type": "ositrace:MovingObject",
+        "ositrace:identifier": {
+          "@value": "1",
+          "@type": "xsd:unsignedLong"
+        },
+        "ositrace:description": {
+          "@value": "PMSF MB CLS 500 Host Vehicle",
+          "@type": "xsd:string"
+        }
+      },
+      "ositrace:hasTargetMovingObject": {
+        "@type": "ositrace:MovingObject",
+        "ositrace:identifier": {
+          "@value": "2",
+          "@type": "xsd:unsignedLong"
+        },
+        "ositrace:description": {
+          "@value": "ADC Target Vehicle",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "ositrace:hasQuality": {
+      "@type": "ositrace:Quality",
+      "ositrace:validationReport": {
+        "@value": "https://github.com/mygroup/myproject/osi_trace_validation_report.xqar",
+        "@type": "xsd:anyURI"
+      },
+      "ositrace:validationReportType": {
+        "@value": "application/xqar",
+        "@type": "xsd:string"
+      }
+    },
+    "ositrace:hasQuantity": {
+      "@type": "ositrace:Quantity",
+      "ositrace:numberFrames": {
+        "@value": "1448",
+        "@type": "xsd:unsignedInt"
+      }
+    },
+    "ositrace:hasDataSource": {
+      "@type": "ositrace:DataSource",
+      "ositrace:usedDataSources": {
+        "@value": "Direct Sensor Capture ARS 548 FW05.38.14 on PMSF MB CLS 500",
+        "@type": "xsd:string"
+      },
+      "ositrace:measurementSystem": {
+        "@value": "pcapng2osi converter v1.1",
+        "@type": "xsd:string"
+      }
+    },
+    "ositrace:hasGeoreference": {
+      "@type": "georeference:Georeference",
+      "@id": "did:web:registry.envited-x.net:Georeference:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+      "georeference:hasProjectLocation": {
+        "@type": "georeference:ProjectLocation",
+        "georeference:country": {
+          "@value": "DE",
+          "@type": "xsd:string"
+        },
+        "georeference:state": {
+          "@value": "DE-NI",
+          "@type": "xsd:string"
+        },
+        "georeference:region": {
+          "@value": "Brunswick",
+          "@type": "xsd:string"
+        },
+        "georeference:city": {
+          "@value": "Edemissen",
+          "@type": "xsd:string"
+        },
+        "georeference:relationOrArea": {
+          "@value": "Airport Peine-Eddesse",
+          "@type": "xsd:string"
+        },
+        "georeference:hasBoundingBox": {
+          "@type": "georeference:BoundingBox",
+          "georeference:xMin": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          },
+          "georeference:yMin": {
+            "@value": "52.4017796466667",
+            "@type": "xsd:float"
+          },
+          "georeference:xMax": {
+            "@value": "10.23265636",
+            "@type": "xsd:float"
+          },
+          "georeference:yMax": {
+            "@value": "52.403132605",
+            "@type": "xsd:float"
+          }
+        }
+      },
+      "georeference:hasGeodeticReferenceSystem": {
+        "@type": "georeference:GeodeticReferenceSystem",
+        "georeference:codeEPSG": {
+          "@value": "4326",
+          "@type": "xsd:integer"
+        },
+        "georeference:hasOrigin": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.4017796466667",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:hasViewPoint": {
+          "@type": "georeference:LatLonCoordinate",
+          "georeference:lat": {
+            "@value": "52.4017796466667",
+            "@type": "xsd:float"
+          },
+          "georeference:lon": {
+            "@value": "10.22518251",
+            "@type": "xsd:float"
+          }
+        },
+        "georeference:heightSystem": "Ellipsoidal height"
+      }
+    }
+  },
+  "ositrace:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:test.fixture.net:Manifest:test_ositrace_manifest_reference"
+    },
+    "skos:note": {
+      "@value": "Ensure that 'manifest_reference.json' contains all required categories: simulationData, documentation, metadata, media.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/"
+      },
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/manifest/v5/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./base-references/ositrace_manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
+}

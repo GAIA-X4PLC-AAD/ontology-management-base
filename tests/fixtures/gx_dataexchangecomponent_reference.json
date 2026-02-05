@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "gx": "https://w3id.org/gaia-x/development/",
+    "schema": "https://schema.org/"
+  },
+  "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
+  "@type": "gx:DataExchangeComponent",
+  "schema:name": "Ontology Management Base Data Exchange Component",
+  "schema:description": "A Data Exchange Component exposed through the ontology-management-base repository."
+}

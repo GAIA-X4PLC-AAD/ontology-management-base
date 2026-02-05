@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <!--Unified Test Catalog-->
+  <uri name="did:web:test.automotive-simulator.net:AutomotiveSimulator:test_valid_automotive-simulator_instance" uri="tests/data/automotive-simulator/valid/automotive-simulator_instance.json" domain="automotive-simulator" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.environment-model.net:EnvironmentModel:test_valid_environment-model_instance" uri="tests/data/environment-model/valid/environment-model_instance.json" domain="environment-model" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_01_missing_has_content_instance" uri="tests/data/envited-x/invalid/fail_01_missing_has_content_instance.json" domain="envited-x" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_02_missing_iri_manifest_link_instance" uri="tests/data/envited-x/invalid/fail_02_missing_iri_manifest_link_instance.json" domain="envited-x" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.envited-x.net:SimulationAsset:test_valid_envited-x_inline_instance" uri="tests/data/envited-x/valid/envited-x_inline_instance.json" domain="envited-x" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.envited-x.net:SimulationAsset:test_valid_envited-x_instance" uri="tests/data/envited-x/valid/envited-x_instance.json" domain="envited-x" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.example.net:ExampleServiceOffering:test_valid_description_instance" uri="tests/data/example/valid/description_instance.json" domain="example" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.example.net:ExampleServiceOffering:test_valid_example_instance" uri="tests/data/example/valid/example_instance.json" domain="example" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference" uri="tests/fixtures/gx_dataexchangecomponent_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference" uri="tests/fixtures/gx_legalperson_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_environment-model_manifest_reference" uri="tests/fixtures/environment-model_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_envited-x_manifest_reference" uri="tests/fixtures/envited-x_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_hdmap_manifest_reference" uri="tests/fixtures/hdmap_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_ositrace_manifest_reference" uri="tests/fixtures/ositrace_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_scenario_manifest_reference" uri="tests/fixtures/scenario_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.fixture.net:Manifest:test_surface-model_manifest_reference" uri="tests/fixtures/surface-model_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
+  <uri name="did:web:test.general.net:General:test_valid_general_instance" uri="tests/data/general/valid/general_instance.json" domain="general" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.georeference.net:Georeference:test_valid_georeference_instance" uri="tests/data/georeference/valid/georeference_instance.json" domain="georeference" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.gx.net:DataResource:test_valid_gx_data_resource" uri="tests/data/gx/valid/gx_data_resource_instance.json" domain="gx" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering" uri="tests/data/gx/valid/gx_data_resource_instance.json" domain="gx" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.hdmap.net:HdMap:test_invalid_fail01_false_value_hdmap_instance" uri="tests/data/hdmap/invalid/fail01_false_value_hdmap_instance.json" domain="hdmap" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.hdmap.net:HdMap:test_valid_hdmap_instance" uri="tests/data/hdmap/valid/hdmap_instance.json" domain="hdmap" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.leakage-test.net:LeakageTest:test_valid_leakage-test_instance" uri="tests/data/leakage-test/valid/leakage-test_instance.json" domain="leakage-test" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_01_missing_license_instance" uri="tests/data/manifest/invalid/fail_01_missing_license_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_02_missing_manifest_instance" uri="tests/data/manifest/invalid/fail_02_missing_manifest_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_03_wrong_category_instance" uri="tests/data/manifest/invalid/fail_03_wrong_category_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_04_missing_id_mimeType_ldjson_instance" uri="tests/data/manifest/invalid/fail_04_missing_id_mimeType_ldjson_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_05_wrong_mimeType_instance" uri="tests/data/manifest/invalid/fail_05_wrong_mimeType_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_invalid_fail_06_wrong_cid_instance" uri="tests/data/manifest/invalid/fail_06_wrong_cid_instance.json" domain="manifest" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.manifest.net:Manifest:test_valid_manifest_instance" uri="tests/data/manifest/valid/manifest_instance.json" domain="manifest" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.openlabel.net:Tag:test_invalid_fail01_wrong_value_openlabel_instance" uri="tests/data/openlabel/invalid/fail01_wrong_value_openlabel_instance.json" domain="openlabel" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.openlabel.net:Tag:test_valid_openlabel_instance" uri="tests/data/openlabel/valid/openlabel_instance.json" domain="openlabel" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.ositrace.net:OSITrace:test_valid_ositrace_instance" uri="tests/data/ositrace/valid/ositrace_instance.json" domain="ositrace" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.scenario.net:Scenario:test_invalid_fail01_false_value_scenario_instance" uri="tests/data/scenario/invalid/fail01_false_value_scenario_instance.json" domain="scenario" test-type="invalid" category="test-data"/>
+  <uri name="did:web:test.scenario.net:Scenario:test_valid_scenario_instance" uri="tests/data/scenario/valid/scenario_instance.json" domain="scenario" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.service.net:Service:test_valid_service_instance" uri="tests/data/service/valid/service_instance.json" domain="service" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.simulated-sensor.net:SimulatedSensor:test_valid_simulated-sensor_instance" uri="tests/data/simulated-sensor/valid/simulated-sensor_instance.json" domain="simulated-sensor" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.simulation-model.net:SimulationModel:test_valid_simulation-model_instance" uri="tests/data/simulation-model/valid/simulation-model_instance.json" domain="simulation-model" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.surface-model.net:SurfaceModel:test_valid_surface-model_instance" uri="tests/data/surface-model/valid/surface-model_instance.json" domain="surface-model" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.survey.net:Survey:test_valid_survey-result-data-offering_instance" uri="tests/data/survey/valid/survey-result-data-offering_instance.json" domain="survey" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.survey.net:Survey:test_valid_survey-service-offering_instance" uri="tests/data/survey/valid/survey-service-offering_instance.json" domain="survey" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.tzip21.net:Asset:test_valid_tzip21_instance" uri="tests/data/tzip21/valid/tzip21_instance.json" domain="tzip21" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.vv-report.net:VVReport:test_valid_vv-report_instance" uri="tests/data/vv-report/valid/vv-report_instance.json" domain="vv-report" test-type="valid" category="test-data"/>
+</catalog>

@@ -1,0 +1,54 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix survey: <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# The Shapes Graph URI appends "/shapes" to the Ontology URI
+<https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes>
+    a owl:Ontology ;
+    # The Shapes Graph must import the Domain Ontology
+    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6> .
+
+survey:SurveyResultDataOfferingShape
+	a sh:NodeShape ; 
+	sh:targetClass survey:SurveyResultDataOffering ; 
+	sh:property [
+		sh:path survey:surveyStartTime ; 
+		sh:datatype xsd:dateTime ;  
+		skos:example "'Date 1'" ; 
+		sh:minCount 1 ; 
+		sh:maxCount 1 ;
+		sh:message "Validation of survey start time failed." ;
+		sh:name "Survey start time" ;
+		sh:description "When the survey was started." ;
+	] ;
+	sh:property [
+		sh:path survey:surveyCloseTime ; 
+		sh:datatype xsd:dateTime ;  
+		skos:example "'Date 1'" ; 
+		sh:minCount 1 ; 
+		sh:maxCount 1 ;
+		sh:message "Validation of survey close time failed." ;
+		sh:name "Survey close time" ;
+		sh:description "When the survey was closed." ;
+	] ;
+	sh:property [
+		sh:path survey:belongsTo ; 
+		sh:nodeKind sh:IRI ;
+        # Added class constraint to enforce the relationship defined in the ontology
+        sh:class survey:SurveyServiceOffering ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:message "Validation of assigned survey service offering failed." ; 
+		sh:name "Survey service offering" ;
+		sh:description "Accompanied survey service offering." ;
+	] ;
+	sh:property [
+		sh:maxCount 1 ;	
+		sh:minCount 1 ;	
+		sh:node general:GeneralShape ;	
+		sh:path survey:general ;
+	] .

@@ -1,0 +1,107 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'artifacts/**/*.ttl'
+      - 'mkdocs.yml'
+      - '.github/workflows/docs.yml'
+
+  # 1. Allows manual runs
+  workflow_dispatch:
+
+  # 2. Allows being called from release workflow
+  workflow_call:
+    inputs:
+      ref:
+        description: "The branch, tag or SHA to checkout (optional)"
+        required: false
+        type: string
+        default: ''
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 🔨 Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Updated: Use the input ref if provided (e.g., 'main'), 
+          # otherwise default to the current context (tag or branch)
+          ref: ${{ inputs.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - name: Install dependencies
+        # Updated to use the [docs] extra from pyproject.toml
+        run: python3 -m pip install -e ".[docs]"
+
+      - name: Generate ontology documentation
+        run: |
+          # Generate PROPERTIES.md files
+          python3 -m src.tools.utils.properties_updater
+          # Generate class pages with WebVOWL embeds
+          python3 -m src.tools.utils.class_page_generator
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Build MkDocs site
+        run: |
+          if [ -f mkdocs.yml ]; then
+            mkdocs build --strict --site-dir site
+          else
+            echo "No mkdocs.yml found, using docs/ directory directly"
+            mkdir -p site
+            cp -r docs/* site/
+          fi
+
+      - name: Fetch existing W3ID artifacts (gh-pages)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 1
+        continue-on-error: true
+
+      - name: Preserve W3ID artifacts
+        run: |
+          if [ -d gh-pages/w3id ]; then
+            mkdir -p site/w3id
+            cp -a gh-pages/w3id/. site/w3id/
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/"
+  },
+  "@id": "did:web:test.general.net:General:test_valid_general_instance",
+  "@type": "general:General",
+  "general:description": {
+    "@type": "general:Description",
+    "general:name": {
+      "@value": "3D Model in Grafing",
+      "@type": "xsd:string"
+    },
+    "general:description": {
+      "@value": "town district, with traffic signs",
+      "@type": "xsd:string"
+    }
+  },
+  "general:data": {
+    "@type": "general:Data",
+    "general:size": {
+      "@value": "5.8",
+      "@type": "xsd:float"
+    },
+    "general:recordingTime": {
+      "@value": "2024-04-01T00:00:00",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

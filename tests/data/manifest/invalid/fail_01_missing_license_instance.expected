@@ -1,0 +1,13 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                       ['tests/data/manifest/invalid/fail_01_missing_license_instance.json']                                        =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:test.manifest.net:Manifest:test_invalid_fail_01_missing_license_instance                                              =
+=    Property:         https://w3id.org/ascs-ev/envited-x/manifest/v5/hasLicense                                                                     =
+=    Error:            Less than 1 values on <did:web:test.manifest.net:Manifest:test_invalid_fail_01_missing_license_instance>->manifest:hasLicense =
+======================================================================================================================================================

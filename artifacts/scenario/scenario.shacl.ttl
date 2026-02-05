@@ -1,0 +1,370 @@
+@prefix scenario: <https://w3id.org/ascs-ev/envited-x/scenario/v5/> .
+@prefix environment-model: <https://w3id.org/ascs-ev/envited-x/environment-model/v5/> .
+@prefix hdmap: <https://w3id.org/ascs-ev/envited-x/hdmap/v5/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
+@prefix georeference: <https://w3id.org/ascs-ev/envited-x/georeference/v5/> .
+@prefix openlabel: <https://openlabel.asam.net/V1-0-0/ontologies/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# The Shapes Graph URI appends "/shapes" to the Ontology URI
+<https://w3id.org/ascs-ev/envited-x/scenario/v5/shapes>
+    a owl:Ontology ;
+    # The Shapes Graph must import the Domain Ontology
+    owl:imports <https://w3id.org/ascs-ev/envited-x/scenario/v5> .
+
+### Scenario SHACL Shape
+scenario:ScenarioShape a sh:NodeShape ;
+    sh:closed false ;
+
+    # 1) hasDataResource
+    sh:property [
+        sh:path scenario:hasDataResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:DataResourceShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each Scenario must have exactly one DataResource (Inline or Linked)."@en ;
+    ] ;
+
+    # 2) hasDataResourceExtension
+    sh:property [
+        sh:path scenario:hasDataResourceExtension ;
+        sh:node scenario:DataResourceExtensionShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each Scenario must have one associated DataResourceExtension."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path scenario:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            # Case 1: Linked manifest reference
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+
+            # Case 2: Inline manifest node
+            [ sh:and (
+                [ sh:node manifest:ManifestShape ]
+                [ sh:node envited-x:ManifestShape ]
+                [ sh:node scenario:ScenarioManifestConstraints ] 
+            )]
+        ) ;
+        sh:message "Each Scenario must have exactly one manifest (Inline or Linked)."@en ;
+    ] ;
+    sh:targetClass scenario:Scenario .
+
+
+### Scenario Specific Manifest Constraints
+scenario:ScenarioManifestConstraints a sh:NodeShape ;
+    
+    # "A scenario MAY have an hdmap and environment model"
+    sh:property [
+        sh:path manifest:hasReferencedArtifacts ;
+        
+        # Validates EVERY item in the list against these options
+        sh:node [
+            a sh:NodeShape ;
+            sh:or (
+                # Option A: Full inline HD Map (Points to the SHAPE, not the Class)
+                [ sh:node hdmap:HdMapShape ] 
+                
+                # Option B: Full inline Environment Model (Points to the SHAPE)
+                [ sh:node environment-model:EnvironmentModelShape ]
+
+                # Option C: Valid Link with category 'Simulation Data'
+                [ sh:and (
+                    [ sh:node manifest:LinkShape ]
+                    [ sh:node envited-x:ExtendedLinkShape ]
+                    [ sh:property [ 
+                        sh:path manifest:hasCategory ; 
+                        sh:hasValue envited-x:isSimulationData ;
+                        sh:message "Referenced Artifacts in a Scenario MUST be of category 'Simulation Data' (since they are already distinguished by being in the 'referencedArtifacts' list)." 
+                      ] 
+                    ]
+                )]
+            )
+        ] ;
+        sh:message "Any referenced artifact provided must be either an HD Map, an Environment Model, or a valid link with category 'Simulation Data'."@en ;
+    ] .
+
+
+### DataResourceExtension SHACL Shape
+scenario:DataResourceExtensionShape a sh:NodeShape ;
+    sh:property 
+        [ 
+          sh:minCount 1 ;
+          sh:node scenario:ContentOrTagShape ;
+          sh:name "content"@en ;
+          sh:description "Attributes describing the content of the scenario."@en ;
+          sh:order 1 ;
+          sh:path scenario:hasContent
+        ],
+        [ 
+          sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:FormatShape ;
+          sh:name "format"@en ;
+          sh:description "File format details of the scenario."@en ;
+          sh:order 2 ;
+          sh:path scenario:hasFormat 
+        ],
+        [ 
+          sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:QualityShape ;
+          sh:name "quality"@en ;
+          sh:description "Quality metrics of the scenario."@en ;
+          sh:order 3 ;
+          sh:path scenario:hasQuality
+        ],
+        [ 
+          sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:QuantityShape ;
+          sh:name "quantity"@en ;
+          sh:description "Quantitative metrics describing the scenario."@en ;
+          sh:order 4 ;
+          sh:path scenario:hasQuantity
+        ],
+        [
+          sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node scenario:DataSourceShape ;
+          sh:name "data source"@en ;
+          sh:description "Data sources used to create the scenario."@en ;
+          sh:order 5 ;
+          sh:path scenario:hasDataSource
+        ],
+        [
+          sh:maxCount 1 ;
+          sh:minCount 1 ;
+          sh:node georeference:GeoreferenceShape ;
+          sh:name "georeference"@en ;
+          sh:description "Georeferencing information for the scenario."@en ;
+          sh:order 6 ;
+          sh:path scenario:hasGeoreference 
+        ] ;
+    sh:targetClass scenario:DataResourceExtension .
+
+### New Union Shape for Content
+scenario:ContentOrTagShape a sh:NodeShape ;
+    sh:description "Scenario Content or OpenLABEL Tag Union Shape"@en ;
+    sh:or (
+        [ sh:node scenario:ContentShape ]
+        [ sh:node openlabel:TagShape ]
+        [ sh:node xsd:boolean ]
+    ) ;
+    sh:message "Each item of hasContent must conform to either Scenario Content, an OpenLABEL Tag, or a boolean."@en .
+
+### Detailed Shapes (Expanded based on Instance Data)
+scenario:FormatShape a sh:NodeShape ;
+    sh:closed false;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "ASAM OpenSCENARIO" ;
+            sh:description "Defines the type of data format used for the scenario asset."@en ;
+            sh:in ("ASAM OpenSCENARIO") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "type"@en ;
+            sh:order 1 ;
+            sh:path scenario:formatType ],
+        [ skos:example "1.5" ;
+            sh:datatype xsd:string ;
+            sh:description "Defines the version of the data format used for the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of version failed!"@en ;
+            sh:name "version"@en ;
+            sh:order 2 ;
+            sh:path scenario:version ] ;
+    sh:targetClass scenario:Format .
+
+scenario:ContentShape a sh:NodeShape ;
+    sh:closed false;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "Functional, Logical, Concrete" ;
+            sh:description "Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset."@en ;
+            sh:in ("Functional" "Logical" "Concrete") ;
+            sh:maxCount 1 ;
+            sh:message "Validation of type failed!"@en ;
+            sh:name "abstraction level"@en ;
+            sh:order 1 ;
+            sh:path scenario:abstractionLevel ],
+        [ skos:example "2009-06-30T18:30:00+02:00" ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario)."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of timeDate failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "time date"@en ;
+            sh:order 2 ;
+            sh:path scenario:timeDate ],
+        [ skos:example "criticality analysis, testing, specific component test (e.g. lateral movement control)"@en ;
+            sh:datatype xsd:string ;
+            sh:description "Defines the purpose of the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of aim failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "aim"@en ;
+            sh:order 3 ;
+            sh:path scenario:aim ],
+        [ skos:example "GlobalPosition" ;
+            skos:example "ParameterDeclaration" ;
+            sh:datatype xsd:string ;
+            sh:description "Specifies which functions (e.g., actions) from the standard are utilized."@en ;
+            sh:message "Validation of usedStandardFunctions failed!"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 0 ;
+            sh:name "used functions in the standard"@en ;
+            sh:order 4 ;
+            sh:path scenario:usedStandardFunctions ],
+        [ skos:example "via trajectory, via support points"@en ;
+            sh:datatype xsd:string ;
+            sh:description "Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of movementDescription failed!"@en ;
+            sh:name "movement description"@en ;
+            sh:order 5 ;
+            sh:path scenario:movementDescription ],
+        [ skos:example "stopIfTTCLowerThan" ;
+            sh:datatype xsd:string ;
+            sh:description "Defines scenario- or domain-specific commands or actions used in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of customCommands failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "custom commands"@en ;
+            sh:order 6 ;
+            sh:path scenario:customCommands ],
+        [ skos:example "194.01" ;
+            sh:datatype xsd:float ;
+            sh:description "Defines the azimuth of the sun in degrees."@en ;
+            sh:message "Validation of sunAzimuth failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "sun azimuth"@en ;
+            sh:order 10 ;
+            sh:minInclusive -360 ;
+            sh:maxInclusive 360 ;
+            sh:path scenario:sunAzimuth ],
+        [ skos:example "kangaroo crossing" ;
+            sh:datatype xsd:string ;
+            sh:description "Indicates which country-specific traffic signs are used in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificSign failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country specific sign"@en ;
+            sh:order 11 ;
+            sh:path scenario:countrySpecificSign ],
+        [ skos:example "tuk tuk" ;
+            sh:datatype xsd:string ;
+            sh:description "Indicates which country-specific participants are used in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of countrySpecificTrafficParticipants failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country specific traffic participants"@en ;
+            sh:order 12 ;
+            sh:path scenario:countrySpecificTrafficParticipants ],
+        [ skos:example "germany, not applicable" ;
+            sh:datatype xsd:string ;
+            sh:description "Indicates the country of origin for the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of country failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "country"@en ;
+            sh:order 13 ;
+            sh:path scenario:country ] ;
+    sh:targetClass scenario:Content .
+
+scenario:QuantityShape a sh:NodeShape ;
+    sh:closed false;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "2" ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
+            sh:description "Specifies the total number of temporary traffic objects defined in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of temporaryTrafficObjects failed!"@en ;
+            sh:name "temporary traffic objects"@en ;
+            sh:order 1 ;
+            sh:path scenario:temporaryTrafficObjects ],
+        [ skos:example "10" ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
+            sh:description "Specifies the total number of traffic objects defined in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of numberTrafficObjects failed!"@en ;
+            sh:name "number traffic objects"@en ;
+            sh:order 2 ;
+            sh:path scenario:numberTrafficObjects ],
+        [ skos:example "myDriver, BestPedestrianController2000" ;
+            sh:datatype xsd:string ;
+            sh:description "Specifies the simulation core controllers (internal or external) used in the scenario."@en ;
+            sh:message "Validation of controllers failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "controllers"@en ;
+            sh:order 3 ;
+            sh:path scenario:controllers ],
+        [ skos:example "8" ;
+            sh:datatype xsd:integer ;
+            sh:minInclusive 0 ;
+            sh:description "Specifies the total number of permanent traffic objects defined in the scenario asset."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of permanentTrafficObjects failed!"@en ;
+            sh:name "permanent traffic objects"@en ;
+            sh:order 4 ;
+            sh:path scenario:permanentTrafficObjects ] ;
+    sh:targetClass scenario:Quantity .
+
+scenario:QualityShape a sh:NodeShape ;
+    sh:closed false;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "0.1" ;
+            sh:datatype xsd:float ;
+            sh:description "Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements)."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of accuracyObjects failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "accuracy objects"@en ;
+            sh:order 1 ;
+            sh:path scenario:accuracyObjects ],
+        [ skos:example "Static sensor calibration performed at <origin> using system XYZ"@en ;
+            sh:datatype xsd:string ;
+            sh:description "Describes the calibration steps performed prior to the measurements."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of calibration failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "calibration"@en ;
+            sh:order 2 ;
+            sh:path scenario:calibration ] ;
+    sh:targetClass scenario:Quality .
+
+scenario:DataSourceShape a sh:NodeShape ;
+    sh:closed false;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ skos:example "Real World Data" ;
+            sh:description "Specifies the category of source data used to create the scenario."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of source type failed!"@en ;
+            sh:in ("Accident Database" "Real World Data" "Analytical Hazard Based Approach" "Formal Verification" "Operational Design Domain" "Ontology" "Standards, Regulations, Guidelines" "Real-world Deployment and Trials") ;
+            sh:minCount 0 ;
+            sh:name "source type"@en ;
+            sh:order 1 ;
+            sh:path scenario:sourceType ],
+        [ skos:example "Test drives on proving ground XYZ and system ABC"@en ;
+            sh:datatype xsd:string ;
+            sh:description "Provides a detailed description of the source data used."@en ;
+            sh:maxCount 1 ;
+            sh:message "Validation of source description failed!"@en ;
+            sh:minCount 0 ;
+            sh:name "source description"@en ;
+            sh:order 2 ;
+            sh:path scenario:sourceDescription ] ;
+    sh:targetClass scenario:DataSource .

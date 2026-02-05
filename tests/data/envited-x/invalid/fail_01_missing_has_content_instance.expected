@@ -1,0 +1,19 @@
+======================================================================================================================================================
+=                                                           ❌ SHACL validation failed for:                                                          =
+=                                                                                                                                                    =
+=                                     ['tests/data/envited-x/invalid/fail_01_missing_has_content_instance.json']                                     =
+=                                                                                                                                                    =
+======================================================================================================================================================
+=                                                                                                                                                    =
+=                                                           Structured Validation Errors:                                                            =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: [BNODE]                                                                                                                       =
+=    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasContent                                                                    =
+=    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
+= -------------------------------------------------------------------------------------------------------------------------------------------------- =
+= 🔹 [Violation] Node: did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_01_missing_has_content_instance                                  =
+=    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasDataResourceExtension                                                      =
+=    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
+=                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =
+=                      envited-x:hasContent and one envited-x:hasFormat).                                                                            =
+======================================================================================================================================================
