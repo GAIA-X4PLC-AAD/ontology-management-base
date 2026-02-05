@@ -1,3 +1,5 @@
 # tzip21 Properties
 
---8<-- "artifacts/tzip21/PROPERTIES.md"
+<div class="properties-embed"><iframe src="https://raw.githubusercontent.com/gaia-x4plc-aad/ontology-management-base/main/artifacts/tzip21/PROPERTIES.md" title="Properties"></iframe></div>
+
+[Open raw PROPERTIES.md](https://raw.githubusercontent.com/gaia-x4plc-aad/ontology-management-base/main/artifacts/tzip21/PROPERTIES.md)

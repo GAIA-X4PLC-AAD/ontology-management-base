@@ -2,16 +2,14 @@
 """
 MkDocs Hook: Link Artifacts
 
-Creates symlinks to ontology artifact files for MkDocs build,
-making them accessible for client-side parsing and visualization.
+Updates class page navigation and link paths before build.
+Artifacts are referenced via raw GitHub URLs in generated docs.
 
 NOTES:
-- Uses symlinks instead of copying files
+- No file copying or symlinks (use raw URLs instead)
 - Excludes gx/ domain (redirects to official Gaia-X documentation)
 """
 
-import os
-import shutil
 from pathlib import Path
 
 # Domains that redirect to external documentation
@@ -52,66 +50,6 @@ def _build_class_page_nav(docs_dir: Path) -> dict:
         domain_nav[domain_name] = entries
 
     return domain_nav
-
-
-def _rewrite_class_artifact_links(docs_dir: Path) -> int:
-    """
-    Rewrite class page artifact links to point at docs/ontologies/artifacts.
-
-    Class pages are at: docs/ontologies/classes/{domain}/{Class}.md
-    Symlink is at:      docs/ontologies/artifacts -> ../../artifacts
-    Built HTML is at:   site/ontologies/classes/{domain}/{Class}/index.html
-
-    MkDocs transforms markdown links (adds ../ for directory conversion),
-    but data attributes are copied verbatim to HTML.
-
-    From built HTML at classes/{domain}/{Class}/:
-    - ../../../artifacts/ reaches ontologies/artifacts/ ✓
-
-    For markdown links: ../../artifacts/ → MkDocs adds ../ → ../../../artifacts/
-    For data attributes: need ../../../artifacts/ directly (no transformation)
-
-    Returns:
-        Number of files updated
-    """
-    classes_root = docs_dir / "ontologies" / "classes"
-    if not classes_root.exists():
-        return 0
-
-    import re
-
-    updated_count = 0
-    for md_file in classes_root.rglob("*.md"):
-        content = md_file.read_text(encoding="utf-8")
-        updated_content = content
-
-        # Fix markdown links: use ../../artifacts/ (MkDocs adds ../)
-        # Pattern: ](../../../../artifacts/ or ](../../../artifacts/
-        old_link_patterns = [
-            r"\]\(../../../../artifacts/",
-            r"\]\(../../../artifacts/",
-        ]
-        for pattern in old_link_patterns:
-            updated_content = re.sub(pattern, "](../../artifacts/", updated_content)
-
-        # Fix data attributes: use ../../../artifacts/ (no transformation)
-        # Pattern: data-ontology-viz="../../../../artifacts/ or "../../artifacts/ or "../../../artifacts/
-        # The source files might have various depths, normalize to ../../../artifacts/
-        old_data_patterns = [
-            r'data-ontology-viz="../../../../artifacts/',
-            r'data-ontology-viz="../../artifacts/',
-            r'data-ontology-viz="../../../artifacts/',  # Already correct, but re-apply to be safe
-        ]
-        for pattern in old_data_patterns:
-            updated_content = re.sub(
-                pattern, 'data-ontology-viz="../../../artifacts/', updated_content
-            )
-
-        if updated_content != content:
-            md_file.write_text(updated_content, encoding="utf-8")
-            updated_count += 1
-
-    return updated_count
 
 
 def on_config(config):
@@ -159,41 +97,6 @@ def on_config(config):
 
     config["nav"] = nav
     return config
-
-
-def on_pre_build(config, **kwargs):
-    """
-    MkDocs hook called before build starts.
-
-    Creates symlinks to artifact TTL files for client-side access.
-    Uses symlinks to avoid duplicating files.
-    """
-    docs_dir = Path(config["docs_dir"])
-    artifacts_src = docs_dir.parent / "artifacts"
-
-    # Symlink target for docs/ontologies/artifacts -> ../../artifacts
-    artifacts_link = docs_dir / "ontologies" / "artifacts"
-
-    if not artifacts_src.exists():
-        print(f"[copy_artifacts] Warning: {artifacts_src} not found")
-        return
-
-    # Remove existing artifacts link/directory
-    if artifacts_link.is_symlink():
-        artifacts_link.unlink()
-    elif artifacts_link.exists():
-        shutil.rmtree(artifacts_link)
-
-    # Create symlink: docs/ontologies/artifacts -> ../../artifacts
-    # The relative path from docs/ontologies/ to artifacts/ is ../../artifacts
-    rel_target = os.path.relpath(artifacts_src, artifacts_link.parent)
-    artifacts_link.symlink_to(rel_target, target_is_directory=True)
-    print(f"[copy_artifacts] Created symlink: {artifacts_link} -> {rel_target}")
-
-    # Rewrite class page links
-    updated_count = _rewrite_class_artifact_links(docs_dir)
-    if updated_count:
-        print(f"[copy_artifacts] Updated artifact links in {updated_count} class pages")
 
 
 def on_post_build(config, **kwargs):

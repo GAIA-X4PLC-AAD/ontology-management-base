@@ -20,3 +20,8 @@ Contexts map compact JSON keys to full IRIs. They are used for authoring and par
 - The validator discovers the relevant OWL and SHACL files via catalogs.
 - Inference expands the data graph before SHACL validation.
 
+## Interactive Class Diagrams
+
+Class pages embed **WebVOWL** for interactive ontology visualization. The viewer
+loads the OWL file via the published raw GitHub URL and renders an interactive
+graph directly in the docs.

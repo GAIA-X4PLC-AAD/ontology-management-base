@@ -611,10 +611,16 @@ def update_properties_pages(registry: dict) -> None:
             continue
 
         page_path = PROPERTIES_DIR / f"{domain}.md"
+        raw_url = (
+            "https://raw.githubusercontent.com/gaia-x4plc-aad/"
+            f"ontology-management-base/main/artifacts/{domain}/PROPERTIES.md"
+        )
         page_content = [
             f"# {domain} Properties",
             "",
-            f'--8<-- "artifacts/{domain}/PROPERTIES.md"',
+            f'<div class="properties-embed"><iframe src="{raw_url}" title="Properties"></iframe></div>',
+            "",
+            f"[Open raw PROPERTIES.md]({raw_url})",
             "",
         ]
         page_path.write_text("\n".join(page_content), encoding="utf-8")

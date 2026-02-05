@@ -40,6 +40,7 @@ dev = [
     "pre-commit==4.5.1",
     "mkdocs-material>=9.5.0",
     "mkdocs-awesome-pages-plugin>=2.9.3",
+    "mkdocs-exclude>=1.0.0",
     "mkdocstrings[python]>=0.24.0",
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
@@ -47,6 +48,7 @@ dev = [
 docs = [
     "mkdocs-material>=9.5.0",
     "mkdocs-awesome-pages-plugin>=2.9.3",
+    "mkdocs-exclude>=1.0.0",
     "mkdocstrings[python]>=0.24.0",
 ]
 

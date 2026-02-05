@@ -3,7 +3,7 @@
 Class Page Generator - Generate per-class documentation pages with visualizations.
 
 Creates individual documentation pages for each OWL class, featuring:
-- Interactive Vis.js visualization focused on the class
+    - Interactive WebVOWL visualization
 - Inheritance tree (parents and children)
 - Properties table with provenance (direct vs inherited)
 - Usages table (where this class is referenced)
@@ -43,6 +43,7 @@ import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Set
+from urllib.parse import quote
 
 import rdflib
 from rdflib import OWL, RDF, RDFS, URIRef
@@ -71,6 +72,9 @@ STANDARD_PREFIXES = {
     "http://xmlns.com/foaf/",
     "http://purl.org/dc/",
 }
+
+WEBVOWL_BASE_URL = "https://service.tib.eu/webvowl/#iri="
+ARTIFACTS_RAW_BASE_URL = "https://raw.githubusercontent.com/gaia-x4plc-aad/ontology-management-base/main/artifacts"
 
 
 @dataclass
@@ -119,6 +123,17 @@ def local_name(iri: str) -> str:
     if "/" in iri:
         return iri.rstrip("/").rsplit("/", 1)[-1]
     return iri
+
+
+def build_raw_owl_url(domain: str, filename: Optional[str] = None) -> str:
+    """Build a raw GitHub URL for an OWL file."""
+    owl_name = filename or f"{domain}.owl.ttl"
+    return f"{ARTIFACTS_RAW_BASE_URL}/{domain}/{owl_name}"
+
+
+def build_webvowl_url(owl_url: str) -> str:
+    """Build a WebVOWL viewer URL for an OWL file."""
+    return f"{WEBVOWL_BASE_URL}{quote(owl_url, safe='')}"
 
 
 def safe_filename(name: str) -> str:
@@ -364,12 +379,18 @@ def render_class_page(
     if class_info.comment:
         lines.extend([class_info.comment, ""])
 
-    # Interactive visualization
+    # Interactive visualization (WebVOWL)
+    owl_url = build_raw_owl_url(domain)
+    webvowl_url = build_webvowl_url(owl_url)
     lines.extend(
         [
             "## Class Diagram",
             "",
-            f'<div class="ontology-viz" data-ontology-viz="../../../../artifacts/{domain}/{domain}.owl.ttl" data-domain="{domain}" data-focus-class="{class_info.iri}"></div>',
+            'div class="ontology-webvowl">',
+            f'  <iframe src="{webvowl_url}" title="WebVOWL: {domain}" loading="lazy"></iframe>',
+            "</div>",
+            "",
+            f"[Open in WebVOWL]({webvowl_url}){{ target=_blank }}",
             "",
         ]
     )
@@ -556,8 +577,6 @@ def generate_gx_redirect_page() -> str:
     ext = EXTERNAL_DOMAINS["gx"]
     return f"""# Gaia-X Ontology
 
-<div class="ontology-viz" data-domain="gx"></div>
-
 The Gaia-X ontology is maintained by the Gaia-X community. This project extends
 and references the official Gaia-X types.
 
@@ -605,12 +624,12 @@ def _build_source_lines(domain: str) -> List[str]:
     shacl_files = sorted(domain_dir.glob("*.shacl.ttl"))
 
     for owl_file in owl_files:
-        rel_path = f"../../../../artifacts/{domain}/{owl_file.name}"
-        lines.append(f"- OWL: [`{owl_file.name}`]({rel_path})")
+        raw_url = build_raw_owl_url(domain, owl_file.name)
+        lines.append(f"- OWL: [`{owl_file.name}`]({raw_url})")
 
     for shacl_file in shacl_files:
-        rel_path = f"../../../../artifacts/{domain}/{shacl_file.name}"
-        lines.append(f"- SHACL: [`{shacl_file.name}`]({rel_path})")
+        raw_url = build_raw_owl_url(domain, shacl_file.name)
+        lines.append(f"- SHACL: [`{shacl_file.name}`]({raw_url})")
 
     return lines
 

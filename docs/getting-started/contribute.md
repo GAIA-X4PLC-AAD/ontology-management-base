@@ -46,4 +46,3 @@ python3 -m src.tools.utils.properties_updater
 - Context points to the correct W3ID namespace
 - Tests cover both valid and invalid cases
 - Catalogs and registry are up to date
-
