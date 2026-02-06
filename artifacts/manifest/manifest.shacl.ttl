@@ -1,5 +1,5 @@
 @prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

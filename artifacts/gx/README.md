@@ -1,8 +1,8 @@
 # Gaia-X Ontology & SHACL Shapes
 
-> ⚠️ **Important Note:** All SHACL shapes in this folder are defined as **open** (not closed). Additionally, IRIs end with `/` (forward slash) rather than `#` (hash) due to a discovered bug in the upstream ontology. Users should be aware of these characteristics when validating instances.
+> ⚠️ **Important Note:** All SHACL shapes in this folder are defined as **open** (not closed).
 
-> 📝 **Catalog Registration:** The SHACL shapes are now registered in the ontology catalog with IRI `https://w3id.org/gaia-x/development/shapes/`. This enables automatic discovery and resolution of shapes during validation workflows.
+> 📝 **Catalog Registration:** The SHACL shapes are now registered in the ontology catalog with IRI `https://w3id.org/gaia-x/development#shapes`. This enables automatic discovery and resolution of shapes during validation workflows.
 
 ## Overview
 
@@ -11,6 +11,20 @@ This folder contains the **Gaia-X Trust Framework ontology and SHACL shapes** (v
 - The **Gaia-X model** (ontology) defines concepts for the Gaia-X Trust Framework including Participants, Services, Credentials, and Compliance.
 - The **SHACL shapes** automatically verify that Gaia-X instances conform to the Trust Framework specifications.
 - The core Gaia-X ontologies are integrated as a **Git submodule** to ensure version consistency with upstream.
+
+## IRI Notes (Enum Values)
+
+The OWL generator now uses a non-hash enum separator (`/`) to avoid double-hash
+fragments in enum IRIs. As a result, enum IRIs are emitted like:
+
+```
+https://w3id.org/gaia-x/development#GaiaXTermsAndConditions/<hash>
+```
+
+This change causes a large diff in the generated OWL because all enum IRIs are
+rewritten. It also introduces percent-encoding for reserved characters in enum
+values (for example `%20` for spaces and `%2F` for `/`). This is expected and
+keeps IRIs valid.
 
 ---
 

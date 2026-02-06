@@ -213,7 +213,7 @@ def iri_to_domain_hint(iri: str) -> Optional[str]:
     Examples:
         >>> iri_to_domain_hint("https://w3id.org/ascs-ev/envited-x/scenario/v5/")
         'scenario'
-        >>> iri_to_domain_hint("https://w3id.org/gaia-x/development/")
+        >>> iri_to_domain_hint("https://w3id.org/gaia-x/development#")
         'gx'
     """
     # Remove trailing slash/hash for parsing

@@ -1,6 +1,6 @@
 @prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
 @prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -44,13 +44,13 @@
 
     # Imports strict dependencies
     owl:imports <https://w3id.org/ascs-ev/envited-x/manifest/v5> ,
-                <https://w3id.org/gaia-x/development/> ;
+                <https://w3id.org/gaia-x/development#> ;
 
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://w3id.org/ascs-ev/envited-x/envited-x/v3/shapes> ;
 
     # Additional references to the ENVITED Ecosystem Specification (EVES) or related ontologies
-    dcterms:references <https://w3id.org/gaia-x/development/> ;
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 

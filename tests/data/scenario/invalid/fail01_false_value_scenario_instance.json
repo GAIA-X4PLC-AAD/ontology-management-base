@@ -6,7 +6,7 @@
     "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
     "@vocab": "https://openlabel.asam.net/V1-0-0/ontologies/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",

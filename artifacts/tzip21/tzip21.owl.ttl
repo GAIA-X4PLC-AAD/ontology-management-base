@@ -7,7 +7,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 <https://w3id.org/ascs-ev/envited-x/tzip21/v1> a owl:Ontology ;
     rdfs:label "Ontology definition for tzip21"@en ;
@@ -31,7 +31,7 @@
     owl:versionInfo "v1" ;
 
     # Imports strict dependencies
-    owl:imports <https://w3id.org/gaia-x/development/> ,
+    owl:imports <https://w3id.org/gaia-x/development#> ,
                 <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     dcterms:conformsTo <https://w3id.org/ascs-ev/envited-x/tzip21/v1/shapes> ;

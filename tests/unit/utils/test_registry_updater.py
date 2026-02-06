@@ -16,6 +16,12 @@ def test_clean_iri_strips_extension():
     assert cleaned.endswith("/")
 
 
+def test_clean_iri_strips_hash_extension():
+    iri = "https://w3id.org/gaia-x/development#gaia-x.owl.ttl"
+    cleaned = registry_updater.clean_iri(iri)
+    assert cleaned == "https://w3id.org/gaia-x/development#"
+
+
 def test_determine_namespace_from_iri():
     iri = "https://w3id.org/ascs-ev/envited-x/hdmap/v5"
     assert registry_updater.determine_namespace_from_iri(iri) == "ascs-ev"

@@ -2,7 +2,7 @@
   "@context": {
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "simulated-sensor": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:test.simulated-sensor.net:SimulatedSensor:test_valid_simulated-sensor_instance",

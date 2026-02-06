@@ -61,7 +61,7 @@ Category <|-- MiscellaneousCategory
 - doap: <http://usefulinc.com/ns/doap#>
 - foaf: <http://xmlns.com/foaf/0.1/>
 - geo: <http://www.opengis.net/ont/geosparql#>
-- gx: <https://w3id.org/gaia-x/development/>
+- gx: <https://w3id.org/gaia-x/development#>
 - manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/>
 - odrl: <http://www.w3.org/ns/odrl/2/>
 - org: <http://www.w3.org/ns/org#>

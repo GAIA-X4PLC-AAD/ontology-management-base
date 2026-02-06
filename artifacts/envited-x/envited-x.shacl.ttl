@@ -1,6 +1,6 @@
 @prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
 @prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .

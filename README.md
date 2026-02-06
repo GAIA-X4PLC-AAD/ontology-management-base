@@ -100,8 +100,8 @@ Hook flow (via `hooks/copy_artifacts.py`):
 | `https://w3id.org/ascs-ev/envited-x/tzip21/v1`                             | [tzip21/tzip21.owl.ttl](artifacts/tzip21/tzip21.owl.ttl)                                                             |
 | `https://w3id.org/ascs-ev/envited-x/tzip21/v1/shapes`                      | [tzip21/tzip21.shacl.ttl](artifacts/tzip21/tzip21.shacl.ttl)                                                         |
 | `https://w3id.org/gaia-x/development`                                      | [gx/gx.owl.ttl](artifacts/gx/gx.owl.ttl)                                                                             |
-| `https://w3id.org/gaia-x/development/context`                              | [gx/gx.context.jsonld](artifacts/gx/gx.context.jsonld)                                                               |
-| `https://w3id.org/gaia-x/development/shapes/`                              | [gx/gx.shacl.ttl](artifacts/gx/gx.shacl.ttl)                                                                         |
+| `https://w3id.org/gaia-x/development#context`                              | [gx/gx.context.jsonld](artifacts/gx/gx.context.jsonld)                                                               |
+| `https://w3id.org/gaia-x/development#shapes`                               | [gx/gx.shacl.ttl](artifacts/gx/gx.shacl.ttl)                                                                         |
 | `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1`        | [automotive-simulator/automotive-simulator.owl.ttl](artifacts/automotive-simulator/automotive-simulator.owl.ttl)     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes` | [automotive-simulator/automotive-simulator.shacl.ttl](artifacts/automotive-simulator/automotive-simulator.shacl.ttl) |
 | `https://w3id.org/gaia-x4plcaad/ontologies/description/v1`                 | [description/description.owl.ttl](artifacts/description/description.owl.ttl)                                         |

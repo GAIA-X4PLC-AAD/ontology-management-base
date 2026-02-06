@@ -6,7 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2> a owl:Ontology ;

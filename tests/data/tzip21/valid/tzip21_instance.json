@@ -1,7 +1,7 @@
 {
   "@context": {
     "tzip21": "https://w3id.org/ascs-ev/envited-x/tzip21/v1/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@id": "did:web:test.tzip21.net:Asset:test_valid_tzip21_instance",

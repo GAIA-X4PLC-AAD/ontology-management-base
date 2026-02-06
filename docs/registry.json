@@ -141,27 +141,6 @@
         }
       }
     },
-    "gx": {
-      "namespace": "gaia-x",
-      "iri": "https://w3id.org/gaia-x/development/",
-      "latest": "v25.11",
-      "versions": {
-        "v25.11": {
-          "releaseTag": "v0.0.5",
-          "versionInfo": "v25.11",
-          "versionIri": "https://w3id.org/gaia-x/development/",
-          "files": {
-            "ontology": "artifacts/gx/gx.owl.ttl",
-            "shacl": [
-              "artifacts/gx/gx.shacl.ttl"
-            ],
-            "jsonld": "artifacts/gx/gx.context.jsonld",
-            "properties": "artifacts/gx/PROPERTIES.md",
-            "instance": "tests/data/gx/valid/gx_data_resource_instance.json"
-          }
-        }
-      }
-    },
     "hdmap": {
       "namespace": "ascs-ev",
       "iri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5",

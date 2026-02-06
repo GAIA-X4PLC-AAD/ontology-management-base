@@ -134,12 +134,20 @@ def extract_iri_from_graph(g: rdflib.Graph) -> Optional[str]:
 def clean_iri(iri: str) -> str:
     """
     Cleans an IRI by removing file extensions if they are part of the URL.
-    Fixes: https://w3id.org/gaia-x/development/gaia-x.owl.ttl -> .../development/
+    Fixes: https://w3id.org/gaia-x/development#gaia-x.owl.ttl -> .../development#
     """
     if not iri:
         return iri
 
     lower_iri = iri.lower()
+    if "#" in iri:
+        base, fragment = iri.split("#", 1)
+        fragment_lower = fragment.lower()
+        for ext in [".ttl", ".owl", ".rdf", ".jsonld", ".json"]:
+            if fragment_lower.endswith(ext):
+                return f"{base}#"
+        return iri
+
     for ext in [".ttl", ".owl", ".rdf", ".jsonld", ".json"]:
         if lower_iri.endswith(ext):
             return iri.rsplit("/", 1)[0] + "/"

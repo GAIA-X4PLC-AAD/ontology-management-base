@@ -4,7 +4,7 @@
     "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
     "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
     "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "sh": "http://www.w3.org/ns/shacl#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"

@@ -1,6 +1,6 @@
 {
   "@context": {
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/"
   },

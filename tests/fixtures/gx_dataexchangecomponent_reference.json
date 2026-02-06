@@ -1,6 +1,6 @@
 {
   "@context": {
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "schema": "https://schema.org/"
   },
   "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",

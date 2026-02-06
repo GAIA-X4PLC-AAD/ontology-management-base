@@ -3,7 +3,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "survey": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/",
     "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:test.survey.net:Survey:test_valid_survey-service-offering_instance",

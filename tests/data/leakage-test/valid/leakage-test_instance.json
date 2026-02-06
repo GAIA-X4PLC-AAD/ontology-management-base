@@ -3,7 +3,7 @@
     "leakage-test": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:test.leakage-test.net:LeakageTest:test_valid_leakage-test_instance",
