@@ -11,6 +11,9 @@ tests/                     Test instances and fixtures
   catalog-v001.xml         Unified test catalog
 src/tools/                 Validation and publishing tools
 docs/                      Documentation and registry.json
+docs/artifacts/            Generated artifact copies for documentation
+docs/ontologies/classes/   Generated class pages
+docs/ontologies/properties/ Generated per-domain properties pages
 ```
 
 ## Key Files
@@ -19,4 +22,4 @@ docs/                      Documentation and registry.json
 - `imports/catalog-v001.xml` maps base vocabularies for inference.
 - `tests/catalog-v001.xml` lists test data and fixtures.
 - `docs/registry.json` indexes ontologies and versions for discovery.
-
+- `docs/artifacts/`, `docs/ontologies/classes/`, and `docs/ontologies/properties/` are generated during docs builds.

@@ -5,7 +5,7 @@ Class Page Generator - Generate per-class documentation pages with visualization
 Creates individual documentation pages for each OWL class, featuring:
     - Interactive WebVOWL visualization
 - Inheritance tree (parents and children)
-- Properties table with provenance (direct vs inherited)
+- Slots table with cardinality, range, and inheritance provenance
 - Usages table (where this class is referenced)
 - Cross-domain navigation links
 
@@ -38,6 +38,7 @@ NOTES:
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import shutil
 from dataclasses import dataclass, field
@@ -56,6 +57,7 @@ ROOT_DIR = Path(__file__).parent.parent.parent.parent.resolve()
 ARTIFACTS_DIR = ROOT_DIR / "artifacts"
 DOCS_DIR = ROOT_DIR / "docs"
 CLASSES_DIR = DOCS_DIR / "ontologies" / "classes"
+MKDOCS_YML = ROOT_DIR / "mkdocs.yml"
 
 # External domains with their documentation URLs
 EXTERNAL_DOMAINS = {
@@ -74,7 +76,27 @@ STANDARD_PREFIXES = {
 }
 
 WEBVOWL_BASE_URL = "https://service.tib.eu/webvowl/#iri="
-ARTIFACTS_RAW_BASE_URL = "https://raw.githubusercontent.com/gaia-x4plc-aad/ontology-management-base/main/artifacts"
+
+
+def _load_site_url() -> Optional[str]:
+    if not MKDOCS_YML.exists():
+        return None
+    for line in MKDOCS_YML.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("site_url:"):
+            return stripped.split("site_url:", 1)[1].strip()
+    return None
+
+
+SITE_URL = os.environ.get("DOCS_SITE_URL") or _load_site_url()
+ARTIFACTS_SITE_BASE_URL = f"{SITE_URL.rstrip('/')}/artifacts" if SITE_URL else None
+
+
+def _is_local_site() -> bool:
+    if not SITE_URL:
+        return False
+    lowered = SITE_URL.lower()
+    return "127.0.0.1" in lowered or "localhost" in lowered
 
 
 @dataclass
@@ -103,7 +125,7 @@ class PropertyInfo:
     datatype: Optional[str]
     class_ref: Optional[str]  # sh:class - object property target
     node_ref: Optional[str]  # sh:node - nested shape
-    provenance: str  # "direct" or parent class name
+    provenance: str  # "direct" or parent class IRI
 
 
 @dataclass
@@ -125,10 +147,17 @@ def local_name(iri: str) -> str:
     return iri
 
 
-def build_raw_owl_url(domain: str, filename: Optional[str] = None) -> str:
-    """Build a raw GitHub URL for an OWL file."""
+def build_raw_owl_url(
+    domain: str, version_info: str, filename: Optional[str] = None
+) -> str:
+    """Build an absolute URL for an OWL file (used by WebVOWL)."""
     owl_name = filename or f"{domain}.owl.ttl"
-    return f"{ARTIFACTS_RAW_BASE_URL}/{domain}/{owl_name}"
+    if ARTIFACTS_SITE_BASE_URL:
+        return f"{ARTIFACTS_SITE_BASE_URL}/{domain}/{version_info}/{owl_name}"
+    return (
+        "https://raw.githubusercontent.com/gaia-x4plc-aad/"
+        f"ontology-management-base/main/artifacts/{domain}/{owl_name}"
+    )
 
 
 def build_webvowl_url(owl_url: str) -> str:
@@ -139,6 +168,51 @@ def build_webvowl_url(owl_url: str) -> str:
 def safe_filename(name: str) -> str:
     """Convert name to safe filename."""
     return re.sub(r"[^a-zA-Z0-9_-]", "_", name)
+
+
+def _anchor_id(value: str) -> str:
+    cleaned = "".join(ch if ch.isalnum() or ch in "-_" else "-" for ch in value)
+    cleaned = cleaned.strip("-_").lower()
+    return cleaned or "property"
+
+
+def _build_class_url(domain: str, class_name: str) -> Optional[str]:
+    if not SITE_URL:
+        return None
+    base = SITE_URL.rstrip("/")
+    filename = safe_filename(class_name)
+    return f"{base}/ontologies/classes/{domain}/{filename}/"
+
+
+def _normalize_version_info(value: str) -> str:
+    cleaned = value.replace("Version ", "").strip()
+    if not cleaned:
+        return "unknown"
+    return cleaned if cleaned.startswith("v") else f"v{cleaned}"
+
+
+def _extract_version_info(owl_graph: rdflib.Graph) -> str:
+    ontology = next(owl_graph.subjects(RDF.type, OWL.Ontology), None)
+    if ontology is None:
+        return "unknown"
+
+    version_info = owl_graph.value(ontology, OWL.versionInfo)
+    if version_info is not None:
+        return _normalize_version_info(str(version_info))
+
+    version_iri = owl_graph.value(ontology, OWL.versionIRI)
+    version_iri_str = None
+    if isinstance(version_iri, URIRef):
+        version_iri_str = str(version_iri)
+    elif isinstance(ontology, URIRef):
+        version_iri_str = str(ontology)
+
+    if version_iri_str:
+        matches = re.findall(r"/(v\\d+(?:\\.\\d+)*)/?", version_iri_str)
+        if matches:
+            return _normalize_version_info(matches[-1])
+
+    return "unknown"
 
 
 def extract_domain_from_iri(iri: str) -> Optional[str]:
@@ -351,10 +425,220 @@ def build_usages_index(
     return usages
 
 
+def apply_inherited_properties(classes: Dict[str, ClassInfo]) -> None:
+    """
+    Expand class properties with inherited slots from ancestor classes.
+
+    Adds inherited properties with provenance set to the ancestor class IRI.
+    """
+    direct_props = {iri: list(info.properties) for iri, info in classes.items()}
+
+    def add_props_from(
+        ancestor_iri: str,
+        seen_paths: Set[str],
+        target: List[PropertyInfo],
+    ) -> None:
+        for prop in direct_props.get(ancestor_iri, []):
+            if prop.path in seen_paths:
+                continue
+            seen_paths.add(prop.path)
+            target.append(
+                PropertyInfo(
+                    path=prop.path,
+                    name=prop.name,
+                    min_count=prop.min_count,
+                    max_count=prop.max_count,
+                    description=prop.description,
+                    datatype=prop.datatype,
+                    class_ref=prop.class_ref,
+                    node_ref=prop.node_ref,
+                    provenance=ancestor_iri,
+                )
+            )
+
+    def walk_ancestors(
+        class_iri: str,
+        seen_paths: Set[str],
+        target: List[PropertyInfo],
+        visited: Set[str],
+    ) -> None:
+        for parent in classes[class_iri].parents:
+            if parent not in classes or parent in visited:
+                continue
+            visited.add(parent)
+            add_props_from(parent, seen_paths, target)
+            walk_ancestors(parent, seen_paths, target, visited)
+
+    for class_iri, class_info in classes.items():
+        inherited: List[PropertyInfo] = []
+        seen_paths = {prop.path for prop in direct_props.get(class_iri, [])}
+        walk_ancestors(class_iri, seen_paths, inherited, set())
+        class_info.properties = direct_props.get(class_iri, []) + inherited
+
+
+def collect_property_paths(classes: Dict[str, ClassInfo]) -> Set[str]:
+    """Collect SHACL property paths defined for a domain."""
+    paths: Set[str] = set()
+    for class_info in classes.values():
+        for prop in class_info.properties:
+            paths.add(prop.path)
+    return paths
+
+
+def _get_class_info(
+    class_iri: str, all_classes: Dict[str, Dict[str, ClassInfo]]
+) -> Optional[ClassInfo]:
+    domain = extract_domain_from_iri(class_iri)
+    if domain and domain in all_classes and class_iri in all_classes[domain]:
+        return all_classes[domain][class_iri]
+    return None
+
+
+def _format_inheritance_link(
+    class_iri: str,
+    current_domain: str,
+    all_classes: Dict[str, Dict[str, ClassInfo]],
+) -> str:
+    class_name = local_name(class_iri)
+    domain = extract_domain_from_iri(class_iri)
+
+    if domain in EXTERNAL_DOMAINS:
+        ext = EXTERNAL_DOMAINS[domain]
+        url = ext["class_url"].format(**{"class": class_name})
+        return f"[{class_name}]({url}){{ target=_blank }}"
+
+    if domain == current_domain:
+        return f"[{class_name}]({safe_filename(class_name)}.md)"
+
+    if domain and domain in all_classes and class_iri in all_classes[domain]:
+        return f"[{class_name}](../{domain}/{safe_filename(class_name)}.md)"
+
+    return class_name
+
+
+def _build_ancestry_paths(
+    class_iri: str, all_classes: Dict[str, Dict[str, ClassInfo]]
+) -> List[List[str]]:
+    info = _get_class_info(class_iri, all_classes)
+    if not info or not info.parents:
+        return [[class_iri]]
+
+    paths: List[List[str]] = []
+    for parent in info.parents:
+        parent_info = _get_class_info(parent, all_classes)
+        if parent_info is None:
+            paths.append([parent, class_iri])
+            continue
+        for path in _build_ancestry_paths(parent, all_classes):
+            paths.append(path + [class_iri])
+
+    return paths
+
+
+def _render_descendants(
+    class_iri: str,
+    depth: int,
+    current_domain: str,
+    all_classes: Dict[str, Dict[str, ClassInfo]],
+) -> List[str]:
+    indent = "  " * depth
+    lines = [
+        f"{indent}- {_format_inheritance_link(class_iri, current_domain, all_classes)}"
+    ]
+    info = _get_class_info(class_iri, all_classes)
+    if info:
+        for child in info.children:
+            lines.extend(
+                _render_descendants(child, depth + 1, current_domain, all_classes)
+            )
+    return lines
+
+
+def _render_inheritance_tree(
+    class_info: ClassInfo, all_classes: Dict[str, Dict[str, ClassInfo]]
+) -> List[str]:
+    paths = _build_ancestry_paths(class_info.iri, all_classes)
+    if not paths:
+        return ["_No inheritance available._"]
+
+    lines: List[str] = []
+    for path in paths:
+        for depth, iri in enumerate(path):
+            indent = "  " * depth
+            lines.append(
+                f"{indent}- {_format_inheritance_link(iri, class_info.domain, all_classes)}"
+            )
+            if iri == class_info.iri:
+                for child in class_info.children:
+                    lines.extend(
+                        _render_descendants(
+                            child, depth + 1, class_info.domain, all_classes
+                        )
+                    )
+    return lines
+
+
+def _render_inheritance_mermaid(
+    class_info: ClassInfo, all_classes: Dict[str, Dict[str, ClassInfo]]
+) -> List[str]:
+    paths = _build_ancestry_paths(class_info.iri, all_classes)
+    if not paths:
+        return ["_No inheritance diagram available._"]
+
+    edges = set()
+    nodes = set()
+
+    for path in paths:
+        nodes.update(path)
+        for idx in range(len(path) - 1):
+            parent = path[idx]
+            child = path[idx + 1]
+            edges.add((parent, child))
+
+    nodes.add(class_info.iri)
+    for child in class_info.children:
+        edges.add((class_info.iri, child))
+        nodes.add(class_info.iri)
+        nodes.add(child)
+
+    id_map: Dict[str, str] = {}
+    seen: Dict[str, int] = {}
+    for iri in sorted(nodes):
+        label = local_name(iri)
+        base = re.sub(r"[^a-zA-Z0-9_]", "_", label) or "Class"
+        count = seen.get(base, 0)
+        seen[base] = count + 1
+        id_map[iri] = f"{base}_{count}" if count else base
+
+    lines = ["```mermaid", "graph TD"]
+    for iri in sorted(nodes):
+        label = local_name(iri)
+        lines.append(f'{id_map[iri]}["{label}"]')
+
+    for parent, child in sorted(edges):
+        lines.append(f"{id_map[parent]} --> {id_map[child]}")
+
+    for iri in sorted(nodes):
+        domain = extract_domain_from_iri(iri)
+        class_name = local_name(iri)
+        url = None
+        if domain in EXTERNAL_DOMAINS:
+            url = EXTERNAL_DOMAINS[domain]["class_url"].format(**{"class": class_name})
+        elif domain:
+            url = _build_class_url(domain, class_name)
+        if url:
+            lines.append(f'click {id_map[iri]} "{url}"')
+
+    lines.append("```")
+    return lines
+
+
 def render_class_page(
     class_info: ClassInfo,
     all_classes: Dict[str, Dict[str, ClassInfo]],
     usages_index: Dict[str, List[UsageInfo]],
+    version_info: str,
+    property_paths_by_domain: Dict[str, Set[str]],
 ) -> str:
     """
     Render a complete class documentation page.
@@ -363,6 +647,7 @@ def render_class_page(
         class_info: Class to document
         all_classes: All classes across domains for cross-linking
         usages_index: Reverse reference index
+        property_paths_by_domain: Domain -> set of SHACL property paths
 
     Returns:
         Markdown content
@@ -379,60 +664,44 @@ def render_class_page(
     if class_info.comment:
         lines.extend([class_info.comment, ""])
 
-    # Interactive visualization (WebVOWL)
-    owl_url = build_raw_owl_url(domain)
-    webvowl_url = build_webvowl_url(owl_url)
+    # Interactive visualization (WebVOWL) or local static diagram
+    lines.append("## Class Diagram")
+    lines.append("")
+    if _is_local_site():
+        lines.extend(_render_inheritance_mermaid(class_info, all_classes))
+        lines.append("")
+    else:
+        owl_url = build_raw_owl_url(domain, version_info)
+        webvowl_url = build_webvowl_url(owl_url)
+        lines.extend(
+            [
+                '<div class="ontology-webvowl">',
+                f'  <iframe src="{webvowl_url}" title="WebVOWL: {domain}" loading="lazy"></iframe>',
+                "</div>",
+                "",
+                f"[Open in WebVOWL]({webvowl_url}){{ target=_blank }}",
+                "",
+            ]
+        )
+
+    # Inheritance
     lines.extend(
         [
-            "## Class Diagram",
+            "## Inheritance",
             "",
-            'div class="ontology-webvowl">',
-            f'  <iframe src="{webvowl_url}" title="WebVOWL: {domain}" loading="lazy"></iframe>',
-            "</div>",
-            "",
-            f"[Open in WebVOWL]({webvowl_url}){{ target=_blank }}",
+            *_render_inheritance_tree(class_info, all_classes),
             "",
         ]
     )
 
-    # Inheritance
-    lines.append("## Inheritance")
-    lines.append("")
-
-    if class_info.parents:
-        lines.append("### Parent Classes")
-        lines.append("")
-        for parent in class_info.parents:
-            parent_domain = extract_domain_from_iri(parent)
-            parent_name = local_name(parent)
-            if parent_domain in EXTERNAL_DOMAINS:
-                ext = EXTERNAL_DOMAINS[parent_domain]
-                url = ext["class_url"].format(**{"class": parent_name})
-                lines.append(f"- [{parent_name}]({url}){{ target=_blank }} (external)")
-            elif parent_domain and parent_domain in all_classes:
-                lines.append(
-                    f"- [{parent_name}](../{parent_domain}/{safe_filename(parent_name)}.md)"
-                )
-            else:
-                lines.append(f"- {parent_name}")
-        lines.append("")
-
-    if class_info.children:
-        lines.append("### Child Classes")
-        lines.append("")
-        for child in class_info.children:
-            child_name = local_name(child)
-            lines.append(f"- [{child_name}]({safe_filename(child_name)}.md)")
-        lines.append("")
-
-    # Properties
+    # Slots (properties)
     if class_info.properties:
         lines.extend(
             [
-                "## Properties",
+                "## Slots",
                 "",
-                "| Property | Cardinality | Type | Description |",
-                "|----------|-------------|------|-------------|",
+                "| Name | Cardinality and Range | Description | Inheritance |",
+                "|------|-----------------------|-------------|-------------|",
             ]
         )
 
@@ -440,10 +709,31 @@ def render_class_page(
             cardinality = _format_cardinality(prop.min_count, prop.max_count)
             prop_type = _format_property_type(prop, all_classes)
             desc = (prop.description or "").replace("\n", " ").replace("|", "\\|")
-            if len(desc) > 100:
-                desc = desc[:97] + "..."
+            has_type = prop_type and prop_type != "-"
+            card_range = f"{cardinality}<br>{prop_type}" if has_type else cardinality
 
-            lines.append(f"| {prop.name} | {cardinality} | {prop_type} | {desc} |")
+            provenance = (
+                "direct"
+                if prop.provenance == "direct"
+                else _format_class_link(prop.provenance, all_classes)
+            )
+
+            prop_label = prop.name
+            if prop.path.startswith("http"):
+                prop_domain = extract_domain_from_iri(prop.path)
+                if (
+                    prop_domain
+                    and prop_domain in property_paths_by_domain
+                    and prop.path in property_paths_by_domain[prop_domain]
+                ):
+                    anchor = f"prop-{_anchor_id(prop.path)}"
+                    prop_label = (
+                        f"[{prop.name}](../../properties/{prop_domain}.md#{anchor})"
+                    )
+                else:
+                    prop_label = f"[{prop.name}]({prop.path}){{ target=_blank }}"
+
+            lines.append(f"| {prop_label} | {card_range} | {desc} | {provenance} |")
 
         lines.append("")
 
@@ -481,7 +771,8 @@ def render_class_page(
         lines.append("")
 
     # Source files
-    source_lines = _build_source_lines(domain)
+    link_prefix = f"../../../artifacts/{domain}/{version_info}"
+    source_lines = _build_source_lines(domain, link_prefix)
     lines.extend(["## Source", ""])
     if source_lines:
         lines.extend(source_lines)
@@ -536,7 +827,9 @@ def _format_class_link(
     return class_name
 
 
-def generate_domain_index(domain: str, classes: Dict[str, ClassInfo]) -> str:
+def generate_domain_index(
+    domain: str, classes: Dict[str, ClassInfo], version_info: str
+) -> str:
     """Generate index page for a domain's classes."""
     lines = [
         f"# {domain} Classes",
@@ -558,16 +851,29 @@ def generate_domain_index(domain: str, classes: Dict[str, ClassInfo]) -> str:
             f"| [{class_info.label}]({safe_filename(class_name)}.md) | {desc} |"
         )
 
-    lines.extend(
-        [
-            "",
-            "## Artifacts",
-            "",
-            f"- [OWL Ontology](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/artifacts/{domain}/{domain}.owl.ttl)",
-            f"- [SHACL Shapes](https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main/artifacts/{domain}/{domain}.shacl.ttl)",
-            "",
-        ]
-    )
+    artifacts_prefix = f"../../../artifacts/{domain}/{version_info}"
+    domain_dir = ARTIFACTS_DIR / domain
+    lines.extend(["", "## Artifacts", ""])
+    if domain_dir.exists():
+        owl_files = sorted(domain_dir.glob("*.owl.ttl"))
+        shacl_files = sorted(domain_dir.glob("*.shacl.ttl"))
+        context_files = sorted(domain_dir.glob("*.context.jsonld"))
+
+        for owl_file in owl_files:
+            lines.append(
+                f"- OWL: [{owl_file.name}]({artifacts_prefix}/{owl_file.name})"
+            )
+        for shacl_file in shacl_files:
+            lines.append(
+                f"- SHACL: [{shacl_file.name}]({artifacts_prefix}/{shacl_file.name})"
+            )
+        for context_file in context_files:
+            lines.append(
+                f"- Context: [{context_file.name}]({artifacts_prefix}/{context_file.name})"
+            )
+    else:
+        lines.append("- (No artifacts found)")
+    lines.append("")
 
     return "\n".join(lines)
 
@@ -598,12 +904,13 @@ The following Gaia-X classes are commonly referenced by ENVITED-X ontologies:
 """
 
 
-def _build_source_lines(domain: str) -> List[str]:
+def _build_source_lines(domain: str, link_prefix: str) -> List[str]:
     """
     Build Source section links based on actual artifact files.
 
     Args:
         domain: Ontology domain name
+        link_prefix: Relative link prefix to artifacts directory
 
     Returns:
         List of markdown list items for source files
@@ -622,14 +929,18 @@ def _build_source_lines(domain: str) -> List[str]:
     )
 
     shacl_files = sorted(domain_dir.glob("*.shacl.ttl"))
+    context_files = sorted(domain_dir.glob("*.context.jsonld"))
 
     for owl_file in owl_files:
-        raw_url = build_raw_owl_url(domain, owl_file.name)
-        lines.append(f"- OWL: [`{owl_file.name}`]({raw_url})")
+        lines.append(f"- OWL: [`{owl_file.name}`]({link_prefix}/{owl_file.name})")
 
     for shacl_file in shacl_files:
-        raw_url = build_raw_owl_url(domain, shacl_file.name)
-        lines.append(f"- SHACL: [`{shacl_file.name}`]({raw_url})")
+        lines.append(f"- SHACL: [`{shacl_file.name}`]({link_prefix}/{shacl_file.name})")
+
+    for context_file in context_files:
+        lines.append(
+            f"- Context: [`{context_file.name}`]({link_prefix}/{context_file.name})"
+        )
 
     return lines
 
@@ -698,6 +1009,7 @@ def generate_all_class_pages(domains: Optional[List[str]] = None) -> None:
 
     # First pass: extract all classes
     all_classes: Dict[str, Dict[str, ClassInfo]] = {}
+    domain_versions: Dict[str, str] = {}
 
     for domain in available_domains:
         if domain in EXTERNAL_DOMAINS:
@@ -713,6 +1025,8 @@ def generate_all_class_pages(domains: Optional[List[str]] = None) -> None:
 
         # Parse and extract
         owl_graph = parse_owl_file(owl_file)
+        version_info = _extract_version_info(owl_graph)
+        domain_versions[domain] = version_info
         classes = extract_classes(owl_graph, domain)
 
         if shacl_file.exists():
@@ -721,8 +1035,16 @@ def generate_all_class_pages(domains: Optional[List[str]] = None) -> None:
 
         all_classes[domain] = classes
 
-    # Build usages index
+    # Build usages index from direct properties only
     usages_index = build_usages_index(all_classes)
+    property_paths_by_domain = {
+        domain: collect_property_paths(classes)
+        for domain, classes in all_classes.items()
+    }
+
+    # Expand properties with inheritance for rendering
+    for classes in all_classes.values():
+        apply_inherited_properties(classes)
 
     # Create output directory
     if CLASSES_DIR.exists():
@@ -737,14 +1059,22 @@ def generate_all_class_pages(domains: Optional[List[str]] = None) -> None:
         domain_dir.mkdir(exist_ok=True)
 
         # Generate index
-        index_content = generate_domain_index(domain, classes)
+        index_content = generate_domain_index(
+            domain, classes, domain_versions.get(domain, "unknown")
+        )
         (domain_dir / "index.md").write_text(index_content)
 
         # Generate class pages
         for class_iri, class_info in classes.items():
             class_name = local_name(class_iri)
             filename = f"{safe_filename(class_name)}.md"
-            content = render_class_page(class_info, all_classes, usages_index)
+            content = render_class_page(
+                class_info,
+                all_classes,
+                usages_index,
+                domain_versions.get(domain, "unknown"),
+                property_paths_by_domain,
+            )
             (domain_dir / filename).write_text(content)
 
         logger.info("Generated %d class pages for %s", len(classes), domain)

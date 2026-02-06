@@ -75,20 +75,33 @@ class Class_definition_for_ProcessParameter
 
 ### SHACL Properties
 
+#### leakage-test:codingDownholder {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingdownholder .property-anchor }
+#### leakage-test:codingRFID {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingrfid .property-anchor }
+#### leakage-test:codingTestAdapter {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingtestadapter .property-anchor }
+#### leakage-test:general {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-general .property-anchor }
+#### leakage-test:lowerTolerance {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-lowertolerance .property-anchor }
+#### leakage-test:machineParameter {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-machineparameter .property-anchor }
+#### leakage-test:maximumPressure {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-maximumpressure .property-anchor }
+#### leakage-test:minimumPressure {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-minimumpressure .property-anchor }
+#### leakage-test:processParameter {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-processparameter .property-anchor }
+#### leakage-test:setpoint {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-setpoint .property-anchor }
+#### leakage-test:unit {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-unit .property-anchor }
+#### leakage-test:upperTolerance {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-uppertolerance .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|LeakageTestShape|leakage-test|general|1|1|||leakage-test.shacl.ttl|
-|LeakageTestShape|leakage-test|machineParameter|1|1|||leakage-test.shacl.ttl|
-|LeakageTestShape|leakage-test|processParameter|1|1|||leakage-test.shacl.ttl|
-|MachineParameterShape|leakage-test|maximumPressure|1|1|||leakage-test.shacl.ttl|
-|MachineParameterShape|leakage-test|minimumPressure|1|1|||leakage-test.shacl.ttl|
-|ProcessParameterShape|leakage-test|codingDownholder|1|1|||leakage-test.shacl.ttl|
-|ProcessParameterShape|leakage-test|codingTestAdapter|1|1|||leakage-test.shacl.ttl|
-|ProcessParameterShape|leakage-test|codingRFID|1|1|||leakage-test.shacl.ttl|
-|MaximumPressureShape|leakage-test|unit|1|1||<http://www.w3.org/2001/XMLSchema#string>|leakage-test.shacl.ttl|
-|MaximumPressureShape|leakage-test|upperTolerance|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
-|MaximumPressureShape|leakage-test|setpoint|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
-|MaximumPressureShape|leakage-test|lowerTolerance|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
+|LeakageTestShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-general"></a>general|1|1|||leakage-test.shacl.ttl|
+|LeakageTestShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-machineparameter"></a>machineParameter|1|1|||leakage-test.shacl.ttl|
+|LeakageTestShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-processparameter"></a>processParameter|1|1|||leakage-test.shacl.ttl|
+|MachineParameterShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-maximumpressure"></a>maximumPressure|1|1|||leakage-test.shacl.ttl|
+|MachineParameterShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-minimumpressure"></a>minimumPressure|1|1|||leakage-test.shacl.ttl|
+|ProcessParameterShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingdownholder"></a>codingDownholder|1|1|||leakage-test.shacl.ttl|
+|ProcessParameterShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingtestadapter"></a>codingTestAdapter|1|1|||leakage-test.shacl.ttl|
+|ProcessParameterShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-codingrfid"></a>codingRFID|1|1|||leakage-test.shacl.ttl|
+|MaximumPressureShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-unit"></a>unit|1|1||<http://www.w3.org/2001/XMLSchema#string>|leakage-test.shacl.ttl|
+|MaximumPressureShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-uppertolerance"></a>upperTolerance|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
+|MaximumPressureShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-setpoint"></a>setpoint|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
+|MaximumPressureShape|leakage-test|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-leakage-test-v2-lowertolerance"></a>lowerTolerance|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
 |MinimumPressureShape|leakage-test|unit|1|1||<http://www.w3.org/2001/XMLSchema#string>|leakage-test.shacl.ttl|
 |MinimumPressureShape|leakage-test|upperTolerance|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|
 |MinimumPressureShape|leakage-test|setpoint|1|1||<http://www.w3.org/2001/XMLSchema#float>|leakage-test.shacl.ttl|

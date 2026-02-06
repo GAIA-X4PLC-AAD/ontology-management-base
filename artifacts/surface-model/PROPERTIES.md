@@ -70,24 +70,44 @@ class Class_definition_for_SurfaceModel
 
 ### SHACL Properties
 
+#### surface-model:contentType {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-contenttype .property-anchor }
+#### surface-model:elevationRange {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-elevationrange .property-anchor }
+#### surface-model:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-formattype .property-anchor }
+#### surface-model:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hascontent .property-anchor }
+#### surface-model:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresource .property-anchor }
+#### surface-model:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresourceextension .property-anchor }
+#### surface-model:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasformat .property-anchor }
+#### surface-model:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasgeoreference .property-anchor }
+#### surface-model:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasmanifest .property-anchor }
+#### surface-model:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquality .property-anchor }
+#### surface-model:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquantity .property-anchor }
+#### surface-model:length {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-length .property-anchor }
+#### surface-model:mapDataField {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-mapdatafield .property-anchor }
+#### surface-model:orientation {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-orientation .property-anchor }
+#### surface-model:platformExists {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-platformexists .property-anchor }
+#### surface-model:rampExists {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-rampexists .property-anchor }
+#### surface-model:resolutionLateral {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-resolutionlateral .property-anchor }
+#### surface-model:resolutionLongitudinal {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-resolutionlongitudinal .property-anchor }
+#### surface-model:version {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-version .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|SurfaceModelShape|surface-model|hasDataResource|1|1|||surface-model.shacl.ttl|
-|SurfaceModelShape|surface-model|hasDataResourceExtension|1|1|||surface-model.shacl.ttl|
-|SurfaceModelShape|surface-model|hasManifest|1|1|||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|hasContent|1|1|Attributes describing the content type of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|hasFormat|1|1|File format details of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|hasQuality|1|1|Quality metrics of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|hasQuantity|1|1|Quantitative metrics describing the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|hasGeoreference|1|1|Georeferencing information for the surface model.||surface-model.shacl.ttl|
-|ContentShape|surface-model|contentType||1|Specifies the content type (e.g., height, friction) used in the surface-model asset.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|
-|FormatShape|surface-model|formatType||1|Defines the format type of the surface model asset.||surface-model.shacl.ttl|
-|FormatShape|surface-model|version||1|Defines the version of the surface model's format.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|
-|QualityShape|surface-model|resolutionLongitudinal||1|Specifies the longitudinal resolution (s) in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
-|QualityShape|surface-model|orientation||1|Specifies the alignment at the starting position in radians.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
-|QualityShape|surface-model|platformExists||1|Indicates whether a horizontal start platform exists.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
-|QualityShape|surface-model|rampExists||1|Indicates whether there is a smooth ramp from the platform to the road.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
-|QualityShape|surface-model|resolutionLateral||1|Specifies the lateral resolution (t) in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
-|QuantityShape|surface-model|mapDataField||1|Indicates whether the projection system is included in the dataset.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
-|QuantityShape|surface-model|elevationRange||1|Indicates the difference between the maximum and minimum elevation values in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
-|QuantityShape|surface-model|length||1|Defines the total length of all elements in kilometers.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
+|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresource"></a>hasDataResource|1|1|||surface-model.shacl.ttl|
+|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||surface-model.shacl.ttl|
+|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasmanifest"></a>hasManifest|1|1|||surface-model.shacl.ttl|
+|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hascontent"></a>hasContent|1|1|Attributes describing the content type of the surface model.||surface-model.shacl.ttl|
+|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasformat"></a>hasFormat|1|1|File format details of the surface model.||surface-model.shacl.ttl|
+|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquality"></a>hasQuality|1|1|Quality metrics of the surface model.||surface-model.shacl.ttl|
+|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the surface model.||surface-model.shacl.ttl|
+|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the surface model.||surface-model.shacl.ttl|
+|ContentShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-contenttype"></a>contentType||1|Specifies the content type (e.g., height, friction) used in the surface-model asset.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|
+|FormatShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-formattype"></a>formatType||1|Defines the format type of the surface model asset.||surface-model.shacl.ttl|
+|FormatShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-version"></a>version||1|Defines the version of the surface model's format.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|
+|QualityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-resolutionlongitudinal"></a>resolutionLongitudinal||1|Specifies the longitudinal resolution (s) in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
+|QualityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-orientation"></a>orientation||1|Specifies the alignment at the starting position in radians.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
+|QualityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-platformexists"></a>platformExists||1|Indicates whether a horizontal start platform exists.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
+|QualityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-rampexists"></a>rampExists||1|Indicates whether there is a smooth ramp from the platform to the road.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
+|QualityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-resolutionlateral"></a>resolutionLateral||1|Specifies the lateral resolution (t) in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
+|QuantityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-mapdatafield"></a>mapDataField||1|Indicates whether the projection system is included in the dataset.|<http://www.w3.org/2001/XMLSchema#boolean>|surface-model.shacl.ttl|
+|QuantityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-elevationrange"></a>elevationRange||1|Indicates the difference between the maximum and minimum elevation values in meters.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|
+|QuantityShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-length"></a>length||1|Defines the total length of all elements in kilometers.|<http://www.w3.org/2001/XMLSchema#float>|surface-model.shacl.ttl|

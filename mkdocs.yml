@@ -39,6 +39,8 @@ plugins:
         # Exclude markdown files from symlinked artifacts (meant for GitHub, not docs)
         - ontologies/artifacts/**/README.md
         - ontologies/artifacts/**/PROPERTIES.md
+        # Exclude copied artifact READMEs (contain repo-relative links)
+        - artifacts/**/README.md
   - mkdocstrings:
       handlers:
         python:
@@ -48,6 +50,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - attr_list
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
@@ -56,7 +59,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: docs
   - pymdownx.tabbed:
       alternate_style: true
   - tables
@@ -72,7 +76,7 @@ nav:
   - Ontologies:
       - Using the Ontologies: ontologies/using-ontologies.md
       - Concepts (OWL, SHACL, Context): ontologies/concepts.md
-      - Properties Landing: ontologies/properties.md
+      - Domains: ontologies/properties.md
       - Class Explorer:
         - Overview: ontologies/classes/index.md
         - automotive-simulator: ontologies/classes/automotive-simulator/index.md
@@ -96,29 +100,6 @@ nav:
         - survey: ontologies/classes/survey/index.md
         - tzip21: ontologies/classes/tzip21/index.md
         - vv-report: ontologies/classes/vv-report/index.md
-      - Ontology Properties:
-        - Overview: ontologies/properties/index.md
-        - automotive-simulator: ontologies/properties/automotive-simulator.md
-        - description: ontologies/properties/description.md
-        - environment-model: ontologies/properties/environment-model.md
-        - envited-x: ontologies/properties/envited-x.md
-        - example: ontologies/properties/example.md
-        - general: ontologies/properties/general.md
-        - georeference: ontologies/properties/georeference.md
-        - gx: ontologies/properties/gx.md
-        - hdmap: ontologies/properties/hdmap.md
-        - leakage-test: ontologies/properties/leakage-test.md
-        - manifest: ontologies/properties/manifest.md
-        - openlabel: ontologies/properties/openlabel.md
-        - ositrace: ontologies/properties/ositrace.md
-        - scenario: ontologies/properties/scenario.md
-        - service: ontologies/properties/service.md
-        - simulated-sensor: ontologies/properties/simulated-sensor.md
-        - simulation-model: ontologies/properties/simulation-model.md
-        - surface-model: ontologies/properties/surface-model.md
-        - survey: ontologies/properties/survey.md
-        - tzip21: ontologies/properties/tzip21.md
-        - vv-report: ontologies/properties/vv-report.md
       - Catalog and Search: ontologies/catalog.md
   - Discovery and Registry:
       - Search and Discovery: discovery/index.md

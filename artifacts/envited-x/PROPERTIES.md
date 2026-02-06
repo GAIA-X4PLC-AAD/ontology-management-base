@@ -85,31 +85,51 @@ class Class_definition_for_SimulationAsset
 
 ### SHACL Properties
 
+#### envited-x:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hascontent .property-anchor }
+#### envited-x:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdataresource .property-anchor }
+#### envited-x:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdataresourceextension .property-anchor }
+#### envited-x:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdatasource .property-anchor }
+#### envited-x:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasformat .property-anchor }
+#### envited-x:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasmanifest .property-anchor }
+#### envited-x:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasquality .property-anchor }
+#### envited-x:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasquantity .property-anchor }
+#### gx:description {: #prop-https---w3id-org-gaia-x-development-description .property-anchor }
+#### gx:license {: #prop-https---w3id-org-gaia-x-development-license .property-anchor }
+#### gx:name {: #prop-https---w3id-org-gaia-x-development-name .property-anchor }
+#### manifest:hasAccessRole {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasaccessrole .property-anchor }
+#### manifest:hasArtifacts {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasartifacts .property-anchor }
+#### manifest:hasCategory {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hascategory .property-anchor }
+#### manifest:hasLicense {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-haslicense .property-anchor }
+#### manifest:hasManifestReference {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasmanifestreference .property-anchor }
+#### manifest:hasReferencedArtifacts {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasreferencedartifacts .property-anchor }
+#### manifest:iri {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-iri .property-anchor }
+#### rdf:type {: #prop-http---www-w3-org-1999-02-22-rdf-syntax-ns-type .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|SimulationAssetShape|envited-x|hasDataResource|1|1|||envited-x.shacl.ttl|
-|SimulationAssetShape|envited-x|hasDataResourceExtension|0||||envited-x.shacl.ttl|
-|SimulationAssetShape|envited-x|hasManifest|1|1|||envited-x.shacl.ttl|
-|ExtendedLinkShape|manifest|hasAccessRole|||||envited-x.shacl.ttl|
-|ExtendedLinkShape|manifest|hasCategory|||||envited-x.shacl.ttl|
+|SimulationAssetShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdataresource"></a>hasDataResource|1|1|||envited-x.shacl.ttl|
+|SimulationAssetShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdataresourceextension"></a>hasDataResourceExtension|0||||envited-x.shacl.ttl|
+|SimulationAssetShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasmanifest"></a>hasManifest|1|1|||envited-x.shacl.ttl|
+|ExtendedLinkShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasaccessrole"></a>hasAccessRole|||||envited-x.shacl.ttl|
+|ExtendedLinkShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hascategory"></a>hasCategory|||||envited-x.shacl.ttl|
 |ManifestLinkReferenceShape|manifest|hasCategory|||||envited-x.shacl.ttl|
-|ManifestLinkReferenceShape|manifest|iri|1||||envited-x.shacl.ttl|
+|ManifestLinkReferenceShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-iri"></a>iri|1||||envited-x.shacl.ttl|
 |LicenseLinkReferenceShape|manifest|hasCategory|||||envited-x.shacl.ttl|
 |LicenseLinkReferenceShape|manifest|iri|1||||envited-x.shacl.ttl|
-|ManifestShape|rdf|type|||||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasManifestReference|||||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasLicense|1|1|||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasReferencedArtifacts|||||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
-|ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
+|ManifestShape|rdf|<a id="prop-http---www-w3-org-1999-02-22-rdf-syntax-ns-type"></a>type|||||envited-x.shacl.ttl|
+|ManifestShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasmanifestreference"></a>hasManifestReference|||||envited-x.shacl.ttl|
+|ManifestShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-haslicense"></a>hasLicense|1|1|||envited-x.shacl.ttl|
+|ManifestShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasartifacts"></a>hasArtifacts|||||envited-x.shacl.ttl|
+|ManifestShape|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasreferencedartifacts"></a>hasReferencedArtifacts|||||envited-x.shacl.ttl|
 |ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
 |ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
-|DataResourceShape|gx|name|1|1||<http://www.w3.org/2001/XMLSchema#string>|envited-x.shacl.ttl|
-|DataResourceShape|gx|description|1|1||<http://www.w3.org/2001/XMLSchema#string>|envited-x.shacl.ttl|
-|DataResourceShape|gx|license||1|Allows custom commercial identifiers in addition to Gaia-X standard SPDX checks.||envited-x.shacl.ttl|
-|DataResourceExtensionShape|envited-x|hasContent|1||||envited-x.shacl.ttl|
-|DataResourceExtensionShape|envited-x|hasFormat|1||||envited-x.shacl.ttl|
-|DataResourceExtensionShape|envited-x|hasDataSource|0||||envited-x.shacl.ttl|
-|DataResourceExtensionShape|envited-x|hasQuality|0||||envited-x.shacl.ttl|
-|DataResourceExtensionShape|envited-x|hasQuantity|0||||envited-x.shacl.ttl|
+|ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
+|ManifestShape|manifest|hasArtifacts|||||envited-x.shacl.ttl|
+|DataResourceShape|gx|<a id="prop-https---w3id-org-gaia-x-development-name"></a>name|1|1||<http://www.w3.org/2001/XMLSchema#string>|envited-x.shacl.ttl|
+|DataResourceShape|gx|<a id="prop-https---w3id-org-gaia-x-development-description"></a>description|1|1||<http://www.w3.org/2001/XMLSchema#string>|envited-x.shacl.ttl|
+|DataResourceShape|gx|<a id="prop-https---w3id-org-gaia-x-development-license"></a>license||1|Allows custom commercial identifiers in addition to Gaia-X standard SPDX checks.||envited-x.shacl.ttl|
+|DataResourceExtensionShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hascontent"></a>hasContent|1||||envited-x.shacl.ttl|
+|DataResourceExtensionShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasformat"></a>hasFormat|1||||envited-x.shacl.ttl|
+|DataResourceExtensionShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasdatasource"></a>hasDataSource|0||||envited-x.shacl.ttl|
+|DataResourceExtensionShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasquality"></a>hasQuality|0||||envited-x.shacl.ttl|
+|DataResourceExtensionShape|envited-x|<a id="prop-https---w3id-org-ascs-ev-envited-x-envited-x-v3-hasquantity"></a>hasQuantity|0||||envited-x.shacl.ttl|

@@ -65,24 +65,44 @@ class Class_definition_for_ProjectLocation
 
 ### SHACL Properties
 
+#### georeference:city {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-city .property-anchor }
+#### georeference:codeEPSG {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-codeepsg .property-anchor }
+#### georeference:coordinateSystemName {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-coordinatesystemname .property-anchor }
+#### georeference:country {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-country .property-anchor }
+#### georeference:hasBoundingBox {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasboundingbox .property-anchor }
+#### georeference:hasGeodeticReferenceSystem {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasgeodeticreferencesystem .property-anchor }
+#### georeference:hasOrigin {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasorigin .property-anchor }
+#### georeference:hasProjectLocation {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasprojectlocation .property-anchor }
+#### georeference:hasViewPoint {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasviewpoint .property-anchor }
+#### georeference:heightSystem {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-heightsystem .property-anchor }
+#### georeference:lat {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-lat .property-anchor }
+#### georeference:lon {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-lon .property-anchor }
+#### georeference:region {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-region .property-anchor }
+#### georeference:relationOrArea {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-relationorarea .property-anchor }
+#### georeference:state {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-state .property-anchor }
+#### georeference:xMax {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-xmax .property-anchor }
+#### georeference:xMin {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-xmin .property-anchor }
+#### georeference:yMax {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-ymax .property-anchor }
+#### georeference:yMin {: #prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-ymin .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|GeoreferenceShape|georeference|hasProjectLocation|1|1|Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset.||georeference.shacl.ttl|
-|GeoreferenceShape|georeference|hasGeodeticReferenceSystem|1|1|This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system.||georeference.shacl.ttl|
-|GeodeticReferenceSystemShape|georeference|hasOrigin|1|1|Defines the center position of the asset in world coordinates.||georeference.shacl.ttl|
-|GeodeticReferenceSystemShape|georeference|hasViewPoint||1|Defines the imported viewpoint position of the asset in world coordinates.||georeference.shacl.ttl|
-|GeodeticReferenceSystemShape|georeference|codeEPSG||1|Defines the projection EPSG code for the asset.|<http://www.w3.org/2001/XMLSchema#integer>|georeference.shacl.ttl|
-|GeodeticReferenceSystemShape|georeference|coordinateSystemName||1|Describes the coordinate system name of the asset as an alternative to the EPSG code.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
-|GeodeticReferenceSystemShape|georeference|heightSystem||1|Defines the height system type of the asset.||georeference.shacl.ttl|
-|BoundingBoxShape|georeference|xMin|1|1|Defines the minimum bounding box value along the x-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|BoundingBoxShape|georeference|yMin|1|1|Defines the minimum bounding box value along the y-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|BoundingBoxShape|georeference|xMax|1|1|Defines the maximum bounding box value along the x-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|BoundingBoxShape|georeference|yMax|1|1|Defines the maximum bounding box value along the y-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|LatLonCoordinateShape|georeference|lat|1|1|Defines a world latitude value (on the y-axis) in degrees.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|LatLonCoordinateShape|georeference|lon|1|1|Defines a world longitude value (on the x-axis) in degrees.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
-|ProjectLocationShape|georeference|state||1|Defines an ISO 3166-2 code for the state or province in which the asset centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
-|ProjectLocationShape|georeference|city||1|Specifies the name of the city in which the asset's centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
-|ProjectLocationShape|georeference|region||1|Specifies the name of the region in which the asset's centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
-|ProjectLocationShape|georeference|country||1|Defines an ISO 3166-1, alpha-2 code for the country in which the asset centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
-|ProjectLocationShape|georeference|hasBoundingBox|1|1|Defines the bounding box in world coordinates of the asset.||georeference.shacl.ttl|
-|ProjectLocationShape|georeference|relationOrArea||1|Describes the area in which the asset is located, such as the name of the main street or the landscape region.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|GeoreferenceShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasprojectlocation"></a>hasProjectLocation|1|1|Contains properties (state, city, region, country, bounding) to describe the location of the simulation asset.||georeference.shacl.ttl|
+|GeoreferenceShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasgeodeticreferencesystem"></a>hasGeodeticReferenceSystem|1|1|This ontology includes properties for positions (e.g., origin and viewpoint), projection type, and an ellipsoidal height system, which together define a geodetic reference system.||georeference.shacl.ttl|
+|GeodeticReferenceSystemShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasorigin"></a>hasOrigin|1|1|Defines the center position of the asset in world coordinates.||georeference.shacl.ttl|
+|GeodeticReferenceSystemShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasviewpoint"></a>hasViewPoint||1|Defines the imported viewpoint position of the asset in world coordinates.||georeference.shacl.ttl|
+|GeodeticReferenceSystemShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-codeepsg"></a>codeEPSG||1|Defines the projection EPSG code for the asset.|<http://www.w3.org/2001/XMLSchema#integer>|georeference.shacl.ttl|
+|GeodeticReferenceSystemShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-coordinatesystemname"></a>coordinateSystemName||1|Describes the coordinate system name of the asset as an alternative to the EPSG code.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|GeodeticReferenceSystemShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-heightsystem"></a>heightSystem||1|Defines the height system type of the asset.||georeference.shacl.ttl|
+|BoundingBoxShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-xmin"></a>xMin|1|1|Defines the minimum bounding box value along the x-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|BoundingBoxShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-ymin"></a>yMin|1|1|Defines the minimum bounding box value along the y-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|BoundingBoxShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-xmax"></a>xMax|1|1|Defines the maximum bounding box value along the x-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|BoundingBoxShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-ymax"></a>yMax|1|1|Defines the maximum bounding box value along the y-axis.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|LatLonCoordinateShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-lat"></a>lat|1|1|Defines a world latitude value (on the y-axis) in degrees.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|LatLonCoordinateShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-lon"></a>lon|1|1|Defines a world longitude value (on the x-axis) in degrees.|<http://www.w3.org/2001/XMLSchema#float>|georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-state"></a>state||1|Defines an ISO 3166-2 code for the state or province in which the asset centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-city"></a>city||1|Specifies the name of the city in which the asset's centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-region"></a>region||1|Specifies the name of the region in which the asset's centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-country"></a>country||1|Defines an ISO 3166-1, alpha-2 code for the country in which the asset centre is located.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-hasboundingbox"></a>hasBoundingBox|1|1|Defines the bounding box in world coordinates of the asset.||georeference.shacl.ttl|
+|ProjectLocationShape|georeference|<a id="prop-https---w3id-org-ascs-ev-envited-x-georeference-v5-relationorarea"></a>relationOrArea||1|Describes the area in which the asset is located, such as the name of the main street or the landscape region.|<http://www.w3.org/2001/XMLSchema#string>|georeference.shacl.ttl|

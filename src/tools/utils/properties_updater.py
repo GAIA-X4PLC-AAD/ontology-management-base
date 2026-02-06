@@ -9,8 +9,9 @@ pages that reference these artifacts.
 FEATURE SET:
 ============
 1. generate_properties_docs - Create/refresh artifacts/{domain}/PROPERTIES.md
-2. update_catalog_table - Refresh docs/ontologies/catalog.md with links
-3. update_properties_pages - Build docs/ontologies/properties/*.md via snippets
+2. update_catalog_table - Refresh docs/ontologies/catalog.md with local artifact links
+3. update_properties_pages - Build docs/ontologies/properties/{domain}.md via snippets
+4. update_properties_overview - Build docs/ontologies/properties.md overview
 
 USAGE:
 ======
@@ -33,6 +34,7 @@ NOTES:
 ======
 - PROPERTIES.md files live with artifacts for each ontology domain.
 - Docs consume artifacts PROPERTIES via pymdownx.snippets.
+- Artifact links resolve to docs/artifacts/<domain>/<versionInfo>.
 """
 
 from __future__ import annotations
@@ -55,10 +57,12 @@ ARTIFACTS_DIR = ROOT_DIR / "artifacts"
 DOCS_DIR = ROOT_DIR / "docs"
 CATALOG_PATH = DOCS_DIR / "ontologies" / "catalog.md"
 PROPERTIES_DIR = DOCS_DIR / "ontologies" / "properties"
-PROPERTIES_INDEX = PROPERTIES_DIR / "index.md"
+PROPERTIES_OVERVIEW = DOCS_DIR / "ontologies" / "properties.md"
 REGISTRY_PATH = DOCS_DIR / "registry.json"
 
-REPO_BLOB_BASE = "https://github.com/gaia-x4plc-aad/ontology-management-base/blob/main"
+CATALOG_ARTIFACTS_PREFIX = "../artifacts"
+PROPERTIES_DOMAIN_ARTIFACTS_PREFIX = "../../artifacts"
+PROPERTIES_OVERVIEW_ARTIFACTS_PREFIX = "../artifacts"
 
 START_MARKER = "<!-- START_REGISTRY_TABLE -->"
 END_MARKER = "<!-- END_REGISTRY_TABLE -->"
@@ -125,6 +129,18 @@ def _display_name(iri: str, label: Optional[str]) -> str:
     if "/" in iri:
         return iri.rstrip("/").rsplit("/", 1)[-1]
     return iri
+
+
+def _normalize_version_info(value: str) -> str:
+    cleaned = value.replace("Version ", "").strip()
+    if not cleaned:
+        return "unknown"
+    return cleaned if cleaned.startswith("v") else f"v{cleaned}"
+
+
+def _resolve_version_dir(version_entry: dict, fallback: Optional[str]) -> str:
+    version_info = version_entry.get("versionInfo") if version_entry else None
+    return _normalize_version_info(version_info or fallback or "unknown")
 
 
 def extract_class_definitions(owl_file: Path) -> Dict[str, ClassInfo]:
@@ -383,6 +399,12 @@ def _replace_with_prefix(uri: str, prefixes: Dict[str, str]) -> Tuple[str, str]:
     return "", uri
 
 
+def _anchor_id(value: str) -> str:
+    cleaned = "".join(ch if ch.isalnum() or ch in "-_" else "-" for ch in value)
+    cleaned = cleaned.strip("-_").lower()
+    return cleaned or "property"
+
+
 def render_properties_table(
     properties: List[ShaclProperty], prefixes: Dict[str, str]
 ) -> str:
@@ -395,6 +417,7 @@ def render_properties_table(
     )
     rows: List[str] = []
 
+    seen_props = set()
     for prop in properties:
         shape_prefix, shape_name = _replace_with_prefix(prop.shape, prefixes)
         prop_prefix, prop_name = _replace_with_prefix(prop.path, prefixes)
@@ -404,13 +427,18 @@ def render_properties_table(
         elif prop.node_kind:
             datatype_or_nodekind = f"<{prop.node_kind}>"
 
+        prop_cell = prop_name
+        if prop.path not in seen_props:
+            seen_props.add(prop.path)
+            prop_cell = f'<a id="prop-{_anchor_id(prop.path)}"></a>{prop_name}'
+
         rows.append(
             "|"
             + "|".join(
                 [
                     f"{shape_name}",
                     f"{prop_prefix}",
-                    f"{prop_name}",
+                    f"{prop_cell}",
                     prop.min_count or "",
                     prop.max_count or "",
                     _escape_pipes(prop.description or ""),
@@ -422,6 +450,32 @@ def render_properties_table(
         )
 
     return "\n".join([header, *rows])
+
+
+def render_property_anchor_headings(
+    properties: List[ShaclProperty], prefixes: Dict[str, str]
+) -> List[str]:
+    """Render hidden headings to provide stable anchors for property links."""
+    if not properties:
+        return []
+
+    unique: Dict[str, str] = {}
+    for prop in properties:
+        if prop.path in unique:
+            continue
+        prop_prefix, prop_name = _replace_with_prefix(prop.path, prefixes)
+        if prop_prefix:
+            display = f"{prop_prefix}:{prop_name}"
+        else:
+            display = _display_name(prop.path, None)
+        unique[prop.path] = display
+
+    lines: List[str] = []
+    for path, display in sorted(unique.items(), key=lambda item: item[1].lower()):
+        anchor = _anchor_id(path)
+        lines.append(f"#### {display} {{: #prop-{anchor} .property-anchor }}")
+
+    return lines
 
 
 def render_properties_markdown(
@@ -447,6 +501,7 @@ def render_properties_markdown(
     class_table = render_class_table(classes)
     class_diagram = render_mermaid_class_diagram(classes)
     properties_table = render_properties_table(shacl_properties, prefixes)
+    property_anchors = render_property_anchor_headings(shacl_properties, prefixes)
 
     prefix_lines = []
     if prefixes:
@@ -473,6 +528,8 @@ def render_properties_markdown(
         *prefix_lines,
         "",
         "### SHACL Properties",
+        "",
+        *property_anchors,
         "",
         properties_table,
         "",
@@ -534,6 +591,8 @@ def generate_registry_table(registry: dict) -> str:
         latest = entry.get("latest")
         latest_entry = entry.get("versions", {}).get(latest, {})
         files = latest_entry.get("files", {})
+        version_dir = _resolve_version_dir(latest_entry, latest)
+        artifacts_base = f"{CATALOG_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
 
         iri_link = f"[IRI]({entry.get('iri', '')})" if entry.get("iri") else ""
 
@@ -541,13 +600,13 @@ def generate_registry_table(registry: dict) -> str:
             if not path_str:
                 return ""
             name = Path(path_str).name
-            return f"[{name}]({REPO_BLOB_BASE}/artifacts/{domain}/{name})"
+            return f"[{name}]({artifacts_base}/{name})"
 
         def list_links(paths: List[str]) -> str:
             if not paths:
                 return ""
             links = [
-                f"[{Path(path_str).name}]({REPO_BLOB_BASE}/artifacts/{domain}/{Path(path_str).name})"
+                f"[{Path(path_str).name}]({artifacts_base}/{Path(path_str).name})"
                 for path_str in paths
             ]
             return "<br>".join(links)
@@ -593,41 +652,138 @@ def update_catalog_table(catalog_path: Path, table_markdown: str) -> None:
 
 
 def update_properties_pages(registry: dict) -> None:
-    """Generate docs/ontologies/properties/{domain}.md and index page."""
+    """Generate docs/ontologies/properties/{domain}.md pages."""
     PROPERTIES_DIR.mkdir(parents=True, exist_ok=True)
 
-    index_lines = [
-        "# Ontology Properties",
-        "",
-        "Browse per-domain properties extracted from SHACL shapes.",
-        "",
-        "|Domain|Properties|",
-        "|---|---|",
-    ]
-
     for domain in sorted(registry.get("ontologies", {}).keys()):
+        domain_entry = registry.get("ontologies", {}).get(domain, {})
+        latest = domain_entry.get("latest")
+        latest_entry = domain_entry.get("versions", {}).get(latest, {})
+        version_dir = _resolve_version_dir(latest_entry, latest)
+        artifacts_base = f"{PROPERTIES_DOMAIN_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
+
         properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
         if not properties_path.exists():
             continue
 
         page_path = PROPERTIES_DIR / f"{domain}.md"
-        raw_url = (
-            "https://raw.githubusercontent.com/gaia-x4plc-aad/"
-            f"ontology-management-base/main/artifacts/{domain}/PROPERTIES.md"
-        )
+        files = latest_entry.get("files", {})
+
+        source_lines = ["## Sources", ""]
+
+        def add_source(label: str, path_str: Optional[str]) -> None:
+            if not path_str:
+                return
+            name = Path(path_str).name
+            source_lines.append(f"- {label}: [{name}]({artifacts_base}/{name})")
+
+        add_source("OWL", files.get("ontology"))
+        for shacl_path in files.get("shacl", []) or []:
+            add_source("SHACL", shacl_path)
+        add_source("Context", files.get("jsonld"))
+        add_source("PROPERTIES.md", files.get("properties"))
+        add_source("Example Instance", files.get("instance"))
+
+        snippet_path = f"artifacts/{domain}/{version_dir}/PROPERTIES.md"
+
         page_content = [
+            "---",
+            "hide:",
+            "  - toc",
+            "---",
+            "",
             f"# {domain} Properties",
             "",
-            f'<div class="properties-embed"><iframe src="{raw_url}" title="Properties"></iframe></div>',
+            f"Version: `{version_dir}`",
             "",
-            f"[Open raw PROPERTIES.md]({raw_url})",
+            *source_lines,
+            "",
+            "## Properties",
+            "",
+            f'--8<-- "{snippet_path}"',
             "",
         ]
         page_path.write_text("\n".join(page_content), encoding="utf-8")
-        index_lines.append(f"|{domain}|[{domain} Properties]({domain}.md)|")
 
-    PROPERTIES_INDEX.write_text("\n".join(index_lines) + "\n", encoding="utf-8")
-    logger.info("Updated properties index: %s", PROPERTIES_INDEX)
+    logger.info("Updated properties pages in %s", PROPERTIES_DIR)
+
+
+def update_properties_overview(registry: dict) -> None:
+    """Generate docs/ontologies/properties.md overview page."""
+    ontologies = registry.get("ontologies", {})
+
+    overview_lines = [
+        "---",
+        "hide:",
+        "  - toc",
+        "---",
+        "",
+        "# Domains",
+        "",
+        "Browse ontology domains and open their generated property pages.",
+        "",
+        "## Domains",
+        "",
+        "|Domain|Version|Properties|Artifacts|",
+        "|---|---|---|---|",
+    ]
+
+    for domain in sorted(ontologies.keys()):
+        domain_entry = ontologies.get(domain, {})
+        latest = domain_entry.get("latest")
+        latest_entry = domain_entry.get("versions", {}).get(latest, {})
+        version_dir = _resolve_version_dir(latest_entry, latest)
+        artifacts_base = (
+            f"{PROPERTIES_OVERVIEW_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
+        )
+
+        properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
+        has_properties = properties_path.exists()
+        properties_link = (
+            f"[{domain} Properties](properties/{domain}.md)" if has_properties else ""
+        )
+
+        files = latest_entry.get("files", {})
+
+        def link_or_empty(path_str: Optional[str]) -> str:
+            if not path_str:
+                return ""
+            name = Path(path_str).name
+            return f"[{name}]({artifacts_base}/{name})"
+
+        def list_links(paths: List[str]) -> str:
+            if not paths:
+                return ""
+            links = [
+                f"[{Path(path_str).name}]({artifacts_base}/{Path(path_str).name})"
+                for path_str in paths
+            ]
+            return "<br>".join(links)
+
+        artifact_parts = [
+            link_or_empty(files.get("ontology")),
+            list_links(files.get("shacl", [])),
+            link_or_empty(files.get("jsonld")),
+            link_or_empty(files.get("instance")),
+        ]
+        artifact_links = "<br>".join([part for part in artifact_parts if part])
+
+        overview_lines.append(
+            "|"
+            + "|".join(
+                [
+                    domain,
+                    version_dir,
+                    properties_link,
+                    artifact_links,
+                ]
+            )
+            + "|"
+        )
+
+    content = "\n".join(overview_lines + [""])
+    PROPERTIES_OVERVIEW.write_text(content, encoding="utf-8")
+    logger.info("Updated domains overview: %s", PROPERTIES_OVERVIEW)
 
 
 def load_registry() -> dict:
@@ -640,6 +796,7 @@ def generate_all() -> None:
     generate_properties_docs()
     registry = load_registry()
     update_properties_pages(registry)
+    update_properties_overview(registry)
     table_markdown = generate_registry_table(registry)
     update_catalog_table(CATALOG_PATH, table_markdown)
 
