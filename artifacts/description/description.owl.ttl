@@ -37,7 +37,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 ## Content of an Ontology
 # Every Ontology needs to be declared as an OWL-Ontology by including a triple
@@ -58,9 +58,9 @@
 # The next line defines the class we want to create constraints for in the SHACL shape. The class is defined as being from type owl:Class
 <ExampleServiceOffering> rdf:type owl:Class ;
     # The next lines also refer to the class <ExampleServiceOffering> (due to the semi-colons again)
-    # We define <ExampleServiceOffering> as a subClassOf a gx:ServiceOffering (https://w3id.org/gaia-x/core#ServiceOffering)
-    # Instead of ServiceOffering, Resource (https://w3id.org/gaia-x/core#Resource) and Participant (https://w3id.org/gaia-x/core#Participant) could also be used. (To upload a regarding Self Description into the Federated Catalogue it provides different endpoints for each.)
-    rdfs:subClassOf gx:ServiceOffering ;
+    # We define <ExampleServiceOffering> as a subClassOf a gx:VirtualResource (https://w3id.org/gaia-x/development#VirtualResource)
+    # VirtualResource has sh:closed false, allowing domain-specific properties to be added.
+    rdfs:subClassOf gx:VirtualResource ;
     # In the next line we define a label again
     rdfs:label "Example Service Offering"@en ;
     # In the next line we add a comment to our class <ExampleServiceOffering>

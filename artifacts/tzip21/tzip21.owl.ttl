@@ -7,7 +7,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 <https://w3id.org/ascs-ev/envited-x/tzip21/v1> a owl:Ontology ;
     rdfs:label "Ontology definition for tzip21"@en ;
@@ -31,7 +31,7 @@
     owl:versionInfo "v1" ;
 
     # Imports strict dependencies
-    owl:imports <https://w3id.org/gaia-x/development/> ,
+    owl:imports <https://w3id.org/gaia-x/development#> ,
                 <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     dcterms:conformsTo <https://w3id.org/ascs-ev/envited-x/tzip21/v1/shapes> ;
@@ -44,8 +44,8 @@
 
 tzip21:Asset a owl:Class ;
     rdfs:label "Class definition for Asset"@en ;
-    rdfs:comment "A class representing a rich metadata asset, acting as a Service Offering in Gaia-X."@en ;
-    rdfs:subClassOf gx:ServiceOffering ;
+    rdfs:comment "A class representing a rich metadata asset, acting as a Virtual Resource in Gaia-X."@en ;
+    rdfs:subClassOf gx:VirtualResource ;
     dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,

@@ -73,30 +73,56 @@ class Class_definition_for_Quantity
 
 ### SHACL Properties
 
+#### environment-model:creationToolName {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolname .property-anchor }
+#### environment-model:creationToolVendor {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolvendor .property-anchor }
+#### environment-model:creationToolVersion {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolversion .property-anchor }
+#### environment-model:detailLevel {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-detaillevel .property-anchor }
+#### environment-model:elements {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-elements .property-anchor }
+#### environment-model:features {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-features .property-anchor }
+#### environment-model:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-formattype .property-anchor }
+#### environment-model:geometryCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-geometrycount .property-anchor }
+#### environment-model:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hascontent .property-anchor }
+#### environment-model:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresource .property-anchor }
+#### environment-model:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresourceextension .property-anchor }
+#### environment-model:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasformat .property-anchor }
+#### environment-model:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasgeoreference .property-anchor }
+#### environment-model:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasmanifest .property-anchor }
+#### environment-model:hasProject {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasproject .property-anchor }
+#### environment-model:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquality .property-anchor }
+#### environment-model:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquantity .property-anchor }
+#### environment-model:textureMaterialCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-texturematerialcount .property-anchor }
+#### environment-model:textureResolution {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-textureresolution .property-anchor }
+#### environment-model:triangleCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-trianglecount .property-anchor }
+#### environment-model:useCase {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-usecase .property-anchor }
+#### environment-model:version {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-version .property-anchor }
+#### environment-model:visualisationToolName {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolname .property-anchor }
+#### environment-model:visualisationToolVendor {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolvendor .property-anchor }
+#### environment-model:visualisationToolVersion {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolversion .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|EnvironmentModelShape|environment-model|hasDataResource|1|1|||environment-model.shacl.ttl|
-|EnvironmentModelShape|environment-model|hasDataResourceExtension|1|1|||environment-model.shacl.ttl|
-|EnvironmentModelShape|environment-model|hasManifest|1|1|||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasProject|1|1|Contains properties to describe the project of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasFormat|1|1|Contains properties to describe the format of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasContent|1|1|Contains properties to describe the content (elements, use cases) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasQuantity|1|1|Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasQuality|1|1|Contains properties to describe the quality (detail level, features) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|hasGeoreference|1|1|||environment-model.shacl.ttl|
-|FormatShape|environment-model|formatType||1|Defines the data type of the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|FormatShape|environment-model|version||1|Defines the version of the environment-model asset's data type.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ContentShape|environment-model|elements||1|Provides a description of the visual elements contained in the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ContentShape|environment-model|useCase||1|Defines the potential use case of the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|visualisationToolName||1|Defines the name of the visualisation tool for which the environment-model was created.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|visualisationToolVendor||1|Defines the vendor name of the visualisation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|visualisationToolVersion||1|Defines the version of the visualisation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|creationToolName||1|Defines the name of the creation tool used to create the environment-model.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|creationToolVendor||1|Defines the vendor name of the creation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|ProjectShape|environment-model|creationToolVersion||1|Defines the version of the creation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|QualityShape|environment-model|features|0|1|Describes the features that influence the quality of the environment-model.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|QualityShape|environment-model|detailLevel||1|Defines the category of the level of detail. High: the highest level with additional object enrichment; Medium: derived directly from data sources with environmental context; Low: a simple topological representation.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
-|QualityShape|environment-model|textureResolution|0|1|Specifies the maximum real texture resolution in metres.|<http://www.w3.org/2001/XMLSchema#float>|environment-model.shacl.ttl|
-|QuantityShape|environment-model|geometryCount||1|Defines the total number of geometries (all triangles with a material assignment), counting each instance only once.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|
-|QuantityShape|environment-model|triangleCount||1|Defines the total number of triangles, counting each instance only once.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|
-|QuantityShape|environment-model|textureMaterialCount||1|Specifies the total number of textures used.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|
+|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresource"></a>hasDataResource|1|1|||environment-model.shacl.ttl|
+|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||environment-model.shacl.ttl|
+|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasmanifest"></a>hasManifest|1|1|||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasproject"></a>hasProject|1|1|Contains properties to describe the project of the environment-model asset.||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasformat"></a>hasFormat|1|1|Contains properties to describe the format of the environment-model asset.||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hascontent"></a>hasContent|1|1|Contains properties to describe the content (elements, use cases) of the environment-model asset.||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquantity"></a>hasQuantity|1|1|Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset.||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquality"></a>hasQuality|1|1|Contains properties to describe the quality (detail level, features) of the environment-model asset.||environment-model.shacl.ttl|
+|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasgeoreference"></a>hasGeoreference|1|1|||environment-model.shacl.ttl|
+|FormatShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-formattype"></a>formatType||1|Defines the data type of the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|FormatShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-version"></a>version||1|Defines the version of the environment-model asset's data type.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ContentShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-elements"></a>elements||1|Provides a description of the visual elements contained in the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ContentShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-usecase"></a>useCase||1|Defines the potential use case of the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolname"></a>visualisationToolName||1|Defines the name of the visualisation tool for which the environment-model was created.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolvendor"></a>visualisationToolVendor||1|Defines the vendor name of the visualisation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-visualisationtoolversion"></a>visualisationToolVersion||1|Defines the version of the visualisation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolname"></a>creationToolName||1|Defines the name of the creation tool used to create the environment-model.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolvendor"></a>creationToolVendor||1|Defines the vendor name of the creation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|ProjectShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-creationtoolversion"></a>creationToolVersion||1|Defines the version of the creation tool.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|QualityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-features"></a>features|0|1|Describes the features that influence the quality of the environment-model.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|QualityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-detaillevel"></a>detailLevel||1|Defines the category of the level of detail. High: the highest level with additional object enrichment; Medium: derived directly from data sources with environmental context; Low: a simple topological representation.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
+|QualityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-textureresolution"></a>textureResolution|0|1|Specifies the maximum real texture resolution in metres.|<http://www.w3.org/2001/XMLSchema#float>|environment-model.shacl.ttl|
+|QuantityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-geometrycount"></a>geometryCount||1|Defines the total number of geometries (all triangles with a material assignment), counting each instance only once.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|
+|QuantityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-trianglecount"></a>triangleCount||1|Defines the total number of triangles, counting each instance only once.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|
+|QuantityShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-texturematerialcount"></a>textureMaterialCount||1|Specifies the total number of textures used.|<http://www.w3.org/2001/XMLSchema#integer>|environment-model.shacl.ttl|

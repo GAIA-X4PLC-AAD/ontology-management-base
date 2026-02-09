@@ -15,7 +15,7 @@ class Example_Service_Offering
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
-|Example Service Offering|https://w3id.org/gaia-x4plcaad/ontologies/example/v1/ExampleServiceOffering|Describes an example Service Offering.|ServiceOffering|
+|Example Service Offering|https://w3id.org/gaia-x4plcaad/ontologies/example/v1/ExampleServiceOffering|Describes an example Service Offering.|VirtualResource|
 
 ## Prefixes
 
@@ -53,9 +53,14 @@ class Example_Service_Offering
 
 ### SHACL Properties
 
+#### example_ontology:belongsTo {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-belongsto .property-anchor }
+#### example_ontology:hasJunctionIntersection {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-hasjunctionintersection .property-anchor }
+#### example_ontology:property1 {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-property1 .property-anchor }
+#### example_ontology:property2 {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-property2 .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|ExampleServiceOfferingShape|example_ontology|property1|1||A description that describes property 1.|<http://www.w3.org/2001/XMLSchema#string>|example.shacl.ttl|
-|ExampleServiceOfferingShape|example_ontology|property2|1||A description that describes property 2.|<http://www.w3.org/2001/XMLSchema#string>|example.shacl.ttl|
-|ExampleServiceOfferingShape|example_ontology|belongsTo|1||Identifier of related Self Description.|<http://www.w3.org/ns/shacl#IRI>|example.shacl.ttl|
-|ExampleServiceOfferingShape|example_ontology|hasJunctionIntersection|1|1|Further description of the content of the scenario|<http://www.w3.org/ns/shacl#IRI>|example.shacl.ttl|
+|ExampleServiceOfferingShape|example_ontology|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-property1"></a>property1|1||A description that describes property 1.|<http://www.w3.org/2001/XMLSchema#string>|example.shacl.ttl|
+|ExampleServiceOfferingShape|example_ontology|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-property2"></a>property2|1||A description that describes property 2.|<http://www.w3.org/2001/XMLSchema#string>|example.shacl.ttl|
+|ExampleServiceOfferingShape|example_ontology|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-belongsto"></a>belongsTo|1||Identifier of related Self Description.|<http://www.w3.org/ns/shacl#IRI>|example.shacl.ttl|
+|ExampleServiceOfferingShape|example_ontology|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-example-v1-hasjunctionintersection"></a>hasJunctionIntersection|1|1|Further description of the content of the scenario|<http://www.w3.org/ns/shacl#IRI>|example.shacl.ttl|

@@ -53,7 +53,7 @@ class Content_or_OpenLabel_Tag
 - foaf: <http://xmlns.com/foaf/0.1/>
 - geo: <http://www.opengis.net/ont/geosparql#>
 - georeference: <https://w3id.org/ascs-ev/envited-x/georeference/v5/>
-- gx: <https://w3id.org/gaia-x/development/>
+- gx: <https://w3id.org/gaia-x/development#>
 - hdmap: <https://w3id.org/ascs-ev/envited-x/hdmap/v5/>
 - manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/>
 - odrl: <http://www.w3.org/ns/odrl/2/>
@@ -80,35 +80,66 @@ class Content_or_OpenLabel_Tag
 
 ### SHACL Properties
 
+#### manifest:hasReferencedArtifacts {: #prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasreferencedartifacts .property-anchor }
+#### scenario:abstractionLevel {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-abstractionlevel .property-anchor }
+#### scenario:accuracyObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-accuracyobjects .property-anchor }
+#### scenario:aim {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-aim .property-anchor }
+#### scenario:calibration {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-calibration .property-anchor }
+#### scenario:controllers {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-controllers .property-anchor }
+#### scenario:country {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-country .property-anchor }
+#### scenario:countrySpecificSign {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-countryspecificsign .property-anchor }
+#### scenario:countrySpecificTrafficParticipants {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-countryspecifictrafficparticipants .property-anchor }
+#### scenario:customCommands {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-customcommands .property-anchor }
+#### scenario:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-formattype .property-anchor }
+#### scenario:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hascontent .property-anchor }
+#### scenario:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresource .property-anchor }
+#### scenario:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresourceextension .property-anchor }
+#### scenario:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdatasource .property-anchor }
+#### scenario:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasformat .property-anchor }
+#### scenario:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasgeoreference .property-anchor }
+#### scenario:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasmanifest .property-anchor }
+#### scenario:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquality .property-anchor }
+#### scenario:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquantity .property-anchor }
+#### scenario:movementDescription {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-movementdescription .property-anchor }
+#### scenario:numberTrafficObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-numbertrafficobjects .property-anchor }
+#### scenario:permanentTrafficObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-permanenttrafficobjects .property-anchor }
+#### scenario:sourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sourcedescription .property-anchor }
+#### scenario:sourceType {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sourcetype .property-anchor }
+#### scenario:sunAzimuth {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sunazimuth .property-anchor }
+#### scenario:temporaryTrafficObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-temporarytrafficobjects .property-anchor }
+#### scenario:timeDate {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-timedate .property-anchor }
+#### scenario:usedStandardFunctions {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-usedstandardfunctions .property-anchor }
+#### scenario:version {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-version .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|ScenarioShape|scenario|hasDataResource|1|1|||scenario.shacl.ttl|
-|ScenarioShape|scenario|hasDataResourceExtension|1|1|||scenario.shacl.ttl|
-|ScenarioShape|scenario|hasManifest|1|1|||scenario.shacl.ttl|
-|ScenarioManifestConstraints|manifest|hasReferencedArtifacts|||||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasContent|1||Attributes describing the content of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasFormat|1|1|File format details of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasQuality|1|1|Quality metrics of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasQuantity|1|1|Quantitative metrics describing the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasDataSource|1|1|Data sources used to create the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|hasGeoreference|1|1|Georeferencing information for the scenario.||scenario.shacl.ttl|
-|FormatShape|scenario|formatType||1|Defines the type of data format used for the scenario asset.||scenario.shacl.ttl|
-|FormatShape|scenario|version||1|Defines the version of the data format used for the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|abstractionLevel||1|Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset.||scenario.shacl.ttl|
-|ContentShape|scenario|timeDate|0|1|Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario).|<http://www.w3.org/2001/XMLSchema#dateTime>|scenario.shacl.ttl|
-|ContentShape|scenario|aim|0|1|Defines the purpose of the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|usedStandardFunctions|0|1|Specifies which functions (e.g., actions) from the standard are utilized.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|movementDescription||1|Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|customCommands|0|1|Defines scenario- or domain-specific commands or actions used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|sunAzimuth|0||Defines the azimuth of the sun in degrees.|<http://www.w3.org/2001/XMLSchema#float>|scenario.shacl.ttl|
-|ContentShape|scenario|countrySpecificSign|0|1|Indicates which country-specific traffic signs are used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|countrySpecificTrafficParticipants|0|1|Indicates which country-specific participants are used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|ContentShape|scenario|country|0|1|Indicates the country of origin for the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|QuantityShape|scenario|temporaryTrafficObjects||1|Specifies the total number of temporary traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
-|QuantityShape|scenario|numberTrafficObjects||1|Specifies the total number of traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
-|QuantityShape|scenario|controllers|0||Specifies the simulation core controllers (internal or external) used in the scenario.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|QuantityShape|scenario|permanentTrafficObjects||1|Specifies the total number of permanent traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
-|QualityShape|scenario|accuracyObjects|0|1|Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements).|<http://www.w3.org/2001/XMLSchema#float>|scenario.shacl.ttl|
-|QualityShape|scenario|calibration|0|1|Describes the calibration steps performed prior to the measurements.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
-|DataSourceShape|scenario|sourceType|0|1|Specifies the category of source data used to create the scenario.||scenario.shacl.ttl|
-|DataSourceShape|scenario|sourceDescription|0|1|Provides a detailed description of the source data used.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresource"></a>hasDataResource|1|1|||scenario.shacl.ttl|
+|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||scenario.shacl.ttl|
+|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasmanifest"></a>hasManifest|1|1|||scenario.shacl.ttl|
+|ScenarioManifestConstraints|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasreferencedartifacts"></a>hasReferencedArtifacts|||||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hascontent"></a>hasContent|1||Attributes describing the content of the scenario.||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasformat"></a>hasFormat|1|1|File format details of the scenario.||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the scenario.||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the scenario.||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the scenario.||scenario.shacl.ttl|
+|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the scenario.||scenario.shacl.ttl|
+|FormatShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-formattype"></a>formatType||1|Defines the type of data format used for the scenario asset.||scenario.shacl.ttl|
+|FormatShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-version"></a>version||1|Defines the version of the data format used for the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-abstractionlevel"></a>abstractionLevel||1|Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset.||scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-timedate"></a>timeDate|0|1|Optionally specifies the time associated with the scenario asset (e.g., time of recording or time of event for a synthetic scenario).|<http://www.w3.org/2001/XMLSchema#dateTime>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-aim"></a>aim|0|1|Defines the purpose of the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-usedstandardfunctions"></a>usedStandardFunctions|0|1|Specifies which functions (e.g., actions) from the standard are utilized.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-movementdescription"></a>movementDescription||1|Indicates the type of movement employed by traffic participants according to the ASAM OpenSCENARIO standard.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-customcommands"></a>customCommands|0|1|Defines scenario- or domain-specific commands or actions used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sunazimuth"></a>sunAzimuth|0||Defines the azimuth of the sun in degrees.|<http://www.w3.org/2001/XMLSchema#float>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-countryspecificsign"></a>countrySpecificSign|0|1|Indicates which country-specific traffic signs are used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-countryspecifictrafficparticipants"></a>countrySpecificTrafficParticipants|0|1|Indicates which country-specific participants are used in the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-country"></a>country|0|1|Indicates the country of origin for the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|QuantityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-temporarytrafficobjects"></a>temporaryTrafficObjects||1|Specifies the total number of temporary traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
+|QuantityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-numbertrafficobjects"></a>numberTrafficObjects||1|Specifies the total number of traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
+|QuantityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-controllers"></a>controllers|0||Specifies the simulation core controllers (internal or external) used in the scenario.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|QuantityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-permanenttrafficobjects"></a>permanentTrafficObjects||1|Specifies the total number of permanent traffic objects defined in the scenario asset.|<http://www.w3.org/2001/XMLSchema#integer>|scenario.shacl.ttl|
+|QualityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-accuracyobjects"></a>accuracyObjects|0|1|Defines the accuracy of moving objects in the scenario asset (only applicable for scenarios based on real measurements).|<http://www.w3.org/2001/XMLSchema#float>|scenario.shacl.ttl|
+|QualityShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-calibration"></a>calibration|0|1|Describes the calibration steps performed prior to the measurements.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
+|DataSourceShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sourcetype"></a>sourceType|0|1|Specifies the category of source data used to create the scenario.||scenario.shacl.ttl|
+|DataSourceShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-sourcedescription"></a>sourceDescription|0|1|Provides a detailed description of the source data used.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|

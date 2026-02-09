@@ -1,16 +1,37 @@
 # Gaia-X Ontology & SHACL Shapes
 
-> ⚠️ **Important Note:** All SHACL shapes in this folder are defined as **open** (not closed). Additionally, IRIs end with `/` (forward slash) rather than `#` (hash) due to a discovered bug in the upstream ontology. Users should be aware of these characteristics when validating instances.
-
-> 📝 **Catalog Registration:** The SHACL shapes are now registered in the ontology catalog with IRI `https://w3id.org/gaia-x/development/shapes/`. This enables automatic discovery and resolution of shapes during validation workflows.
+> 📝 **Catalog Registration:** The SHACL shapes are now registered in the ontology catalog with IRI `https://w3id.org/gaia-x/development#shapes`. This enables automatic discovery and resolution of shapes during validation workflows.
 
 ## Overview
 
-This folder contains the **Gaia-X Trust Framework ontology and SHACL shapes** (version 25.11).
+This folder contains the **Gaia-X Trust Framework ontology and SHACL shapes** (version 25.11+fix.1).
 
 - The **Gaia-X model** (ontology) defines concepts for the Gaia-X Trust Framework including Participants, Services, Credentials, and Compliance.
 - The **SHACL shapes** automatically verify that Gaia-X instances conform to the Trust Framework specifications.
 - The core Gaia-X ontologies are integrated as a **Git submodule** to ensure version consistency with upstream.
+- The **VERSION file** in this directory tracks the Gaia-X release version for tooling and documentation.
+
+### Current Version: 25.11+fix.1
+
+This version is based on the official **25.11 release** with the following additional fixes:
+
+- **Commit c41d423**: Fix double hash fragments in IRIs (fixes enum IRI generation)
+
+The `+fix.1` suffix indicates this is a post-release patch on top of 25.11. When the upstream releases a later version that includes this fix, we will update to the official release tag.
+
+## IRI Notes (Enum Values)
+
+The OWL generator now uses a non-hash enum separator (`/`) to avoid double-hash
+fragments in enum IRIs. As a result, enum IRIs are emitted like:
+
+```
+https://w3id.org/gaia-x/development#GaiaXTermsAndConditions/<hash>
+```
+
+This change causes a large diff in the generated OWL because all enum IRIs are
+rewritten. It also introduces percent-encoding for reserved characters in enum
+values (for example `%20` for spaces and `%2F` for `/`). This is expected and
+keeps IRIs valid.
 
 ---
 
@@ -26,9 +47,13 @@ This folder contains the **Gaia-X Trust Framework ontology and SHACL shapes** (v
 
 - **`gx.owl.ttl`** – The Gaia-X ontology defining core trust framework concepts.
 - **`gx.shacl.ttl`** – SHACL validation shapes for Gaia-X instances.
-- **`gx_instance.json`** – A sample JSON-LD instance of a Gaia-X Participant.
+- **`gx.context.jsonld`** – JSON-LD context for GX terms.
 - **`PROPERTIES.md`** – An auto-generated summary of SHACL properties.
+- **`VERSION`** – Current Gaia-X version (e.g., `25.11+fix.1`).
+- **`VERSIONING.md`** – Detailed versioning scheme and post-release patch documentation.
 - **`README.md`** – This readme file.
+- **`update-from-submodule.sh`** – Helper script to sync artifacts from submodule.
+- **`verify-version.sh`** – Verify VERSION file matches submodule tag.
 
 ---
 
@@ -79,6 +104,25 @@ python3 -m src.tools.validators.validation_suite \
 
 ## Updating to a New Gaia-X Version
 
+### Automated update (recommended)
+
+Use the provided helper script:
+
+```bash
+cd artifacts/gx
+./update-from-submodule.sh 25.12  # Update to specific version
+# OR
+./update-from-submodule.sh        # Use current submodule version
+```
+
+The script will:
+1. Check out the specified tag in the submodule (if provided)
+2. Copy artifacts (OWL, SHACL, context) from submodule to artifacts/gx/
+3. Update the VERSION file automatically
+4. Show next steps for documentation regeneration
+
+### Manual update
+
 When a new version of Gaia-X is released:
 
 1. Navigate to the submodule:
@@ -93,12 +137,41 @@ When a new version of Gaia-X is released:
    git checkout <new-tag>  # e.g., git checkout 25.12
    ```
 
-3. Return to the root and commit:
+3. Copy the updated artifacts to `artifacts/gx/`:
+
    ```bash
    cd ../..
-   git add submodules/service-characteristics
-   git commit -m "Upgrade Gaia-X to <new-version>"
+   cp submodules/service-characteristics/ontology.owl.ttl artifacts/gx/gx.owl.ttl
+   cp submodules/service-characteristics/shapes.shacl.ttl artifacts/gx/gx.shacl.ttl
+   cp submodules/service-characteristics/context.jsonld artifacts/gx/gx.context.jsonld
    ```
+
+4. **Update the VERSION file** to match the new tag:
+
+   ```bash
+   echo "25.12" > artifacts/gx/VERSION
+   ```
+
+5. Regenerate documentation and commit:
+
+   ```bash
+   python3 -m src.tools.utils.registry_updater
+   python3 -m src.tools.utils.properties_updater
+   git add artifacts/gx/ submodules/service-characteristics
+   git commit -m "chore(gx): upgrade Gaia-X to 25.12"
+   ```
+
+### Verify version sync
+
+To check if the VERSION file matches the submodule tag:
+
+```bash
+cd artifacts/gx
+./verify-version.sh
+```
+
+!!! warning "VERSION file is critical"
+    The `VERSION` file is used by the documentation build system to determine where to copy GX artifacts. Always keep it synchronized with the submodule tag.
 
 ---
 

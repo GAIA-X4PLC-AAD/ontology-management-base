@@ -5,7 +5,7 @@
     "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
     "georeference": "https://w3id.org/ascs-ev/envited-x/georeference/v5/",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "https://schema.org/",
     "sh": "http://www.w3.org/ns/shacl#",
@@ -27,10 +27,6 @@
     },
     "gx:producedBy": {
       "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-    },
-    "gx:exposedThrough": {
-      "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
-      "@type": "gx:DataExchangeComponent"
     }
   },
   "scenario:hasDataResourceExtension": {

@@ -6,7 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2> a owl:Ontology ;
@@ -48,7 +48,7 @@
 vv-report:VvReport a owl:Class ;
     rdfs:label "Class definition for VvReport"@en ;
     rdfs:comment "Attributes for a verification & validation report."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:subClassOf gx:VirtualResource .
 
 vv-report:Evaluation a owl:Class ;
     rdfs:label "Class definition for Evaluation"@en ;

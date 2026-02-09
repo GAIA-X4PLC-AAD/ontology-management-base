@@ -134,12 +134,20 @@ def extract_iri_from_graph(g: rdflib.Graph) -> Optional[str]:
 def clean_iri(iri: str) -> str:
     """
     Cleans an IRI by removing file extensions if they are part of the URL.
-    Fixes: https://w3id.org/gaia-x/development/gaia-x.owl.ttl -> .../development/
+    Fixes: https://w3id.org/gaia-x/development#gaia-x.owl.ttl -> .../development#
     """
     if not iri:
         return iri
 
     lower_iri = iri.lower()
+    if "#" in iri:
+        base, fragment = iri.split("#", 1)
+        fragment_lower = fragment.lower()
+        for ext in [".ttl", ".owl", ".rdf", ".jsonld", ".json"]:
+            if fragment_lower.endswith(ext):
+                return f"{base}#"
+        return iri
+
     for ext in [".ttl", ".owl", ".rdf", ".jsonld", ".json"]:
         if lower_iri.endswith(ext):
             return iri.rsplit("/", 1)[0] + "/"
@@ -375,6 +383,20 @@ def extract_shacl_iri(shacl_file: Path) -> Optional[str]:
     return None
 
 
+def build_shapes_iri(ontology_iri: str) -> str:
+    """Build a SHACL namespace IRI from an ontology namespace IRI."""
+    if ontology_iri.endswith("#"):
+        return f"{ontology_iri}shapes"
+    return f"{ontology_iri.rstrip('/')}/shapes"
+
+
+def build_context_iri(ontology_iri: str) -> str:
+    """Build a JSON-LD context IRI from an ontology namespace IRI."""
+    if ontology_iri.endswith("#"):
+        return f"{ontology_iri}context"
+    return f"{ontology_iri.rstrip('/')}/context"
+
+
 def generate_xml_catalog(
     ontologies: Dict[str, dict], registry: dict, target_catalog_path: Path
 ) -> str:
@@ -387,34 +409,51 @@ def generate_xml_catalog(
     catalog_base = target_catalog_path.parent
 
     for domain in sorted(ontologies.keys()):
-        if domain not in registry["ontologies"]:
-            continue
-
-        iri = registry["ontologies"][domain].get("iri")
-        if not iri:
-            continue
-
         files = ontologies[domain]
 
         # Ontology file
         owl_path = files.get("ontology")
-        if owl_path:
-            rel_path = to_posix_relative(Path(owl_path), catalog_base)
-            uri_mappings.append((iri, rel_path))
+        if not owl_path:
+            continue
+
+        # Prefer extracting directly from the ontology file so we still emit
+        # catalog entries when docs/registry metadata is incomplete.
+        info = extract_ontology_info(Path(owl_path))
+        iri = info.get("iri")
+        if not iri and domain in registry.get("ontologies", {}):
+            iri = registry["ontologies"][domain].get("iri")
+
+        if not iri:
+            print(
+                f"⚠️  Warning: No ontology IRI found for domain '{domain}', skipping",
+                file=sys.stderr,
+            )
+            continue
+
+        rel_path = to_posix_relative(Path(owl_path), catalog_base)
+        uri_mappings.append((iri, rel_path))
 
         # SHACL files
         shacl_paths = files.get("shacl")
         if shacl_paths:
+            is_single_shacl = len(shacl_paths) == 1
             for shacl_path in shacl_paths:
                 shacl_iri = extract_shacl_iri(shacl_path)
-                if shacl_iri:
-                    rel = to_posix_relative(Path(shacl_path), catalog_base)
-                    uri_mappings.append((shacl_iri, rel))
+                if not shacl_iri and is_single_shacl:
+                    shacl_iri = build_shapes_iri(iri)
+                if not shacl_iri:
+                    print(
+                        f"⚠️  Warning: No SHACL IRI found in {Path(shacl_path).name}, skipping",
+                        file=sys.stderr,
+                    )
+                    continue
+                rel = to_posix_relative(Path(shacl_path), catalog_base)
+                uri_mappings.append((shacl_iri, rel))
 
         # JSON-LD context file
         jsonld_path = files.get("jsonld")
         if jsonld_path:
-            context_iri = f"{iri.rstrip('/')}/context"
+            context_iri = build_context_iri(iri)
             rel = to_posix_relative(Path(jsonld_path), catalog_base)
             uri_mappings.append((context_iri, rel))
 
@@ -477,7 +516,7 @@ def generate_imports_catalog(
         # Add JSON-LD context file if present
         jsonld_path = files.get("jsonld")
         if jsonld_path:
-            context_iri = f"{iri.rstrip('/')}/context"
+            context_iri = build_context_iri(iri)
             rel = to_posix_relative(Path(jsonld_path), catalog_base)
             uri_mappings.append((context_iri, rel))
 

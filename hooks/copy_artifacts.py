@@ -1,19 +1,136 @@
 #!/usr/bin/env python3
 """
-MkDocs Hook: Link Artifacts
+MkDocs Hook: Prepare Documentation Artifacts
 
-Updates class page navigation and link paths before build.
-Artifacts are referenced via raw GitHub URLs in generated docs.
+Updates class page navigation and copies ontology artifacts into docs
+so they can be referenced locally during MkDocs builds.
 
 NOTES:
-- No file copying or symlinks (use raw URLs instead)
-- Excludes gx/ domain (redirects to official Gaia-X documentation)
+- Artifacts are copied into docs/artifacts/<domain>/<versionInfo>/
 """
 
+from __future__ import annotations
+
+import os
+import re
+import shutil
+import subprocess
+import sys
 from pathlib import Path
 
-# Domains that redirect to external documentation
-EXTERNAL_DOMAINS = {"gx"}
+import rdflib
+from rdflib import OWL, RDF, URIRef
+
+ROOT_DIR = Path(__file__).parent.parent.resolve()
+ARTIFACTS_DIR = ROOT_DIR / "artifacts"
+TESTS_DATA_DIR = ROOT_DIR / "tests" / "data"
+DOCS_DIR = ROOT_DIR / "docs"
+DOCS_ARTIFACTS_DIR = DOCS_DIR / "artifacts"
+DOCS_SITE_URL = os.environ.get("DOCS_SITE_URL")
+
+
+def _normalize_version_info(value: str) -> str:
+    cleaned = value.replace("Version ", "").strip()
+    if not cleaned:
+        return "unknown"
+    return cleaned if cleaned.startswith("v") else f"v{cleaned}"
+
+
+def _safe_path_segment(value: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9._-]", "_", value.strip()) or "unknown"
+
+
+def _extract_version_info(owl_file: Path) -> str:
+    graph = rdflib.Graph()
+    graph.parse(str(owl_file), format="turtle")
+
+    ontology = next(graph.subjects(RDF.type, OWL.Ontology), None)
+    if ontology is None:
+        return "unknown"
+
+    version_info = graph.value(ontology, OWL.versionInfo)
+    if version_info is not None:
+        return _safe_path_segment(_normalize_version_info(str(version_info)))
+
+    version_iri = graph.value(ontology, OWL.versionIRI)
+    version_iri_str = None
+    if isinstance(version_iri, URIRef):
+        version_iri_str = str(version_iri)
+    elif isinstance(ontology, URIRef):
+        version_iri_str = str(ontology)
+
+    if version_iri_str:
+        matches = re.findall(r"/(v\\d+(?:\\.\\d+)*)/?", version_iri_str)
+        if matches:
+            return _safe_path_segment(_normalize_version_info(matches[-1]))
+
+    return "unknown"
+
+
+def _find_instance_file(domain: str) -> Path | None:
+    valid_dir = TESTS_DATA_DIR / domain / "valid"
+    if not valid_dir.exists():
+        return None
+
+    for pattern in [f"{domain}_instance.json", "*_instance.json"]:
+        matches = sorted(valid_dir.glob(pattern))
+        if matches:
+            return matches[0]
+
+    return None
+
+
+def _copy_domain_artifacts(domain_dir: Path) -> None:
+    domain = domain_dir.name
+    owl_file = domain_dir / f"{domain}.owl.ttl"
+    if not owl_file.exists():
+        return
+
+    # Special case: GX ontology has no owl:Ontology declaration
+    # Read version from VERSION file if present, otherwise extract from OWL
+    version_file = domain_dir / "VERSION"
+    if version_file.exists():
+        version_raw = version_file.read_text().strip()
+        version_info = _normalize_version_info(version_raw)
+    else:
+        version_info = _extract_version_info(owl_file)
+
+    target_dir = DOCS_ARTIFACTS_DIR / domain / version_info
+    target_dir.mkdir(parents=True, exist_ok=True)
+
+    # Files to exclude from docs (repository maintenance only)
+    exclude_patterns = {
+        "*.sh",  # Shell scripts (update-from-submodule.sh, verify-version.sh)
+        "VERSION",  # Version tracking (internal use)
+        "VERSIONING.md",  # Versioning documentation (repository-level)
+    }
+
+    for file_path in sorted(domain_dir.iterdir()):
+        if file_path.is_file():
+            # Check if file should be excluded
+            should_exclude = any(
+                file_path.match(pattern) for pattern in exclude_patterns
+            )
+            if not should_exclude:
+                shutil.copy2(file_path, target_dir / file_path.name)
+
+    instance_file = _find_instance_file(domain)
+    if instance_file:
+        shutil.copy2(instance_file, target_dir / instance_file.name)
+
+
+def _run_docs_generators() -> None:
+    """
+    Run documentation generators before building docs.
+
+    DOCS_SITE_URL is optional and overrides the base URL used for local diagrams.
+    """
+    subprocess.run(
+        [sys.executable, "-m", "src.tools.utils.properties_updater"], check=True
+    )
+    subprocess.run(
+        [sys.executable, "-m", "src.tools.utils.class_page_generator"], check=True
+    )
 
 
 def _build_class_page_nav(docs_dir: Path) -> dict:
@@ -97,6 +214,27 @@ def on_config(config):
 
     config["nav"] = nav
     return config
+
+
+def on_pre_build(config, **kwargs):
+    """
+    MkDocs hook called before build.
+
+    Copies artifacts into docs/ so they can be linked locally.
+    """
+    _run_docs_generators()
+
+    if not ARTIFACTS_DIR.exists():
+        return
+
+    if DOCS_ARTIFACTS_DIR.exists():
+        shutil.rmtree(DOCS_ARTIFACTS_DIR)
+    DOCS_ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    for domain_dir in sorted(ARTIFACTS_DIR.iterdir()):
+        if not domain_dir.is_dir():
+            continue
+        _copy_domain_artifacts(domain_dir)
 
 
 def on_post_build(config, **kwargs):

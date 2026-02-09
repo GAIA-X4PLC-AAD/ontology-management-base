@@ -9,7 +9,6 @@
   <uri name="did:web:test.envited-x.net:SimulationAsset:test_valid_envited-x_instance" uri="tests/data/envited-x/valid/envited-x_instance.json" domain="envited-x" test-type="valid" category="test-data"/>
   <uri name="did:web:test.example.net:ExampleServiceOffering:test_valid_description_instance" uri="tests/data/example/valid/description_instance.json" domain="example" test-type="valid" category="test-data"/>
   <uri name="did:web:test.example.net:ExampleServiceOffering:test_valid_example_instance" uri="tests/data/example/valid/example_instance.json" domain="example" test-type="valid" category="test-data"/>
-  <uri name="did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference" uri="tests/fixtures/gx_dataexchangecomponent_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
   <uri name="did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference" uri="tests/fixtures/gx_legalperson_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
   <uri name="did:web:test.fixture.net:Manifest:test_environment-model_manifest_reference" uri="tests/fixtures/environment-model_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
   <uri name="did:web:test.fixture.net:Manifest:test_envited-x_manifest_reference" uri="tests/fixtures/envited-x_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
@@ -19,7 +18,7 @@
   <uri name="did:web:test.fixture.net:Manifest:test_surface-model_manifest_reference" uri="tests/fixtures/surface-model_manifest_reference.json" domain="fixture" test-type="fixture" category="fixture"/>
   <uri name="did:web:test.general.net:General:test_valid_general_instance" uri="tests/data/general/valid/general_instance.json" domain="general" test-type="valid" category="test-data"/>
   <uri name="did:web:test.georeference.net:Georeference:test_valid_georeference_instance" uri="tests/data/georeference/valid/georeference_instance.json" domain="georeference" test-type="valid" category="test-data"/>
-  <uri name="did:web:test.gx.net:DataResource:test_valid_gx_data_resource" uri="tests/data/gx/valid/gx_data_resource_instance.json" domain="gx" test-type="valid" category="test-data"/>
+  <uri name="did:web:test.gx.net:DataProduct:test_valid_gx_data_product" uri="tests/data/gx/valid/gx_data_resource_instance.json" domain="gx" test-type="valid" category="test-data"/>
   <uri name="did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering" uri="tests/data/gx/valid/gx_data_resource_instance.json" domain="gx" test-type="valid" category="test-data"/>
   <uri name="did:web:test.hdmap.net:HdMap:test_invalid_fail01_false_value_hdmap_instance" uri="tests/data/hdmap/invalid/fail01_false_value_hdmap_instance.json" domain="hdmap" test-type="invalid" category="test-data"/>
   <uri name="did:web:test.hdmap.net:HdMap:test_valid_hdmap_instance" uri="tests/data/hdmap/valid/hdmap_instance.json" domain="hdmap" test-type="valid" category="test-data"/>

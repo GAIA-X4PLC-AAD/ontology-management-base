@@ -1,6 +1,6 @@
 @prefix leakage-test: <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/> .
 @prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .

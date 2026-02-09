@@ -13,7 +13,7 @@
   <uri name="http://www.w3.org/ns/shacl#" uri="sh/sh.owl.ttl"/>
   <uri name="http://xmlns.com/foaf/0.1/" uri="foaf/foaf.owl.ttl"/>
   <uri name="https://www.w3.org/2018/credentials#" uri="cred/cred.owl.ttl"/>
-  <uri name="https://www.w3.org/2018/credentials#/context" uri="cred/cred.context.jsonld"/>
+  <uri name="https://www.w3.org/2018/credentials#context" uri="cred/cred.context.jsonld"/>
   <uri name="https://www.w3.org/ns/credentials/status#" uri="cs/cs.owl.ttl"/>
-  <uri name="https://www.w3.org/ns/credentials/status#/context" uri="cs/cs.context.jsonld"/>
+  <uri name="https://www.w3.org/ns/credentials/status#context" uri="cs/cs.context.jsonld"/>
 </catalog>

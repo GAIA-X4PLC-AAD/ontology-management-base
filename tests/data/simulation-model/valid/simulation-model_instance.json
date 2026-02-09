@@ -3,7 +3,7 @@
     "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
     "simulation-model": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "dcterms": "http://purl.org/dc/terms/"
   },
   "@id": "did:web:test.simulation-model.net:SimulationModel:test_valid_simulation-model_instance",
@@ -177,10 +177,6 @@
   },
   "gx:producedBy": {
     "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-  },
-  "gx:exposedThrough": {
-    "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
-    "@type": "gx:DataExchangeComponent"
   },
   "gx:copyrightOwnedBy": {
     "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"

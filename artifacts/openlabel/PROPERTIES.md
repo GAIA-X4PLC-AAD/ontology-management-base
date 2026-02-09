@@ -533,110 +533,215 @@ _Class diagram omitted for size (243 classes). See class hierarchy and definitio
 
 ### SHACL Properties
 
+#### openlabel:AdminTag {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-admintag .property-anchor }
+#### openlabel:Behaviour {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-behaviour .property-anchor }
+#### openlabel:BehaviourCommunication {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-behaviourcommunication .property-anchor }
+#### openlabel:ConnectivityCommunication {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-connectivitycommunication .property-anchor }
+#### openlabel:ConnectivityPositioning {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-connectivitypositioning .property-anchor }
+#### openlabel:DaySunElevation {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunelevation .property-anchor }
+#### openlabel:daySunElevationValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunelevationvalue .property-anchor }
+#### openlabel:DaySunPosition {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunposition .property-anchor }
+#### openlabel:DrivableAreaEdge {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareaedge .property-anchor }
+#### openlabel:DrivableAreaSurfaceCondition {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacecondition .property-anchor }
+#### openlabel:DrivableAreaSurfaceFeature {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacefeature .property-anchor }
+#### openlabel:DrivableAreaSurfaceType {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacetype .property-anchor }
+#### openlabel:DrivableAreaType {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareatype .property-anchor }
+#### openlabel:EnvironmentParticulates {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-environmentparticulates .property-anchor }
+#### openlabel:GeometryTransverse {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-geometrytransverse .property-anchor }
+#### openlabel:HorizontalCurves {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalcurves .property-anchor }
+#### openlabel:horizontalCurvesValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalcurvesvalue .property-anchor }
+#### openlabel:HorizontalStraights {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalstraights .property-anchor }
+#### openlabel:IlluminationArtificial {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationartificial .property-anchor }
+#### openlabel:IlluminationCloudiness {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationcloudiness .property-anchor }
+#### openlabel:illuminationCloudinessValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationcloudinessvalue .property-anchor }
+#### openlabel:IlluminationLowLight {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationlowlight .property-anchor }
+#### openlabel:JunctionIntersection {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-junctionintersection .property-anchor }
+#### openlabel:JunctionRoundabout {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-junctionroundabout .property-anchor }
+#### openlabel:LaneSpecificationDimensions {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationdimensions .property-anchor }
+#### openlabel:laneSpecificationDimensionsValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationdimensionsvalue .property-anchor }
+#### openlabel:LaneSpecificationLaneCount {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationlanecount .property-anchor }
+#### openlabel:laneSpecificationLaneCountValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationlanecountvalue .property-anchor }
+#### openlabel:LaneSpecificationMarking {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationmarking .property-anchor }
+#### openlabel:LaneSpecificationTravelDirection {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationtraveldirection .property-anchor }
+#### openlabel:LaneSpecificationType {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationtype .property-anchor }
+#### openlabel:licenseURI {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-licenseuri .property-anchor }
+#### openlabel:LongitudinalDownSlope {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinaldownslope .property-anchor }
+#### openlabel:longitudinalDownSlopeValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinaldownslopevalue .property-anchor }
+#### openlabel:LongitudinalLevelPlane {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinallevelplane .property-anchor }
+#### openlabel:MotionAccelerate {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionaccelerate .property-anchor }
+#### openlabel:motionAccelerateValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionacceleratevalue .property-anchor }
+#### openlabel:MotionAway {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionaway .property-anchor }
+#### openlabel:MotionCross {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncross .property-anchor }
+#### openlabel:MotionCutIn {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncutin .property-anchor }
+#### openlabel:MotionCutOut {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncutout .property-anchor }
+#### openlabel:MotionDecelerate {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondecelerate .property-anchor }
+#### openlabel:motionDecelerateValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondeceleratevalue .property-anchor }
+#### openlabel:MotionDrive {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondrive .property-anchor }
+#### openlabel:motionDriveValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondrivevalue .property-anchor }
+#### openlabel:MotionLaneChangeLeft {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionlanechangeleft .property-anchor }
+#### openlabel:MotionLaneChangeRight {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionlanechangeright .property-anchor }
+#### openlabel:MotionOvertake {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionovertake .property-anchor }
+#### openlabel:MotionReverse {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionreverse .property-anchor }
+#### openlabel:MotionRun {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionrun .property-anchor }
+#### openlabel:MotionSlide {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionslide .property-anchor }
+#### openlabel:MotionStop {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionstop .property-anchor }
+#### openlabel:MotionTowards {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motiontowards .property-anchor }
+#### openlabel:MotionTurn {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturn .property-anchor }
+#### openlabel:MotionTurnLeft {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturnleft .property-anchor }
+#### openlabel:MotionTurnRight {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturnright .property-anchor }
+#### openlabel:MotionUTurn {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionuturn .property-anchor }
+#### openlabel:MotionWalk {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-motionwalk .property-anchor }
+#### openlabel:Odd {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-odd .property-anchor }
+#### openlabel:ownerEmail {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-owneremail .property-anchor }
+#### openlabel:ownerName {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-ownername .property-anchor }
+#### openlabel:ownerURL {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-ownerurl .property-anchor }
+#### openlabel:ParticulatesDust {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesdust .property-anchor }
+#### openlabel:ParticulatesMarine {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesmarine .property-anchor }
+#### openlabel:ParticulatesPollution {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatespollution .property-anchor }
+#### openlabel:ParticulatesVolcanic {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesvolcanic .property-anchor }
+#### openlabel:RainType {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-raintype .property-anchor }
+#### openlabel:RoadUser {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduser .property-anchor }
+#### openlabel:RoadUserAnimal {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduseranimal .property-anchor }
+#### openlabel:RoadUserHuman {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduserhuman .property-anchor }
+#### openlabel:RoadUserVehicle {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduservehicle .property-anchor }
+#### openlabel:scenarioCreatedDate {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariocreateddate .property-anchor }
+#### openlabel:scenarioDefinition {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodefinition .property-anchor }
+#### openlabel:scenarioDefinitionLanguageURI {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodefinitionlanguageuri .property-anchor }
+#### openlabel:scenarioDescription {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodescription .property-anchor }
+#### openlabel:scenarioName {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioname .property-anchor }
+#### openlabel:scenarioParentReference {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioparentreference .property-anchor }
+#### openlabel:scenarioUniqueReference {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariouniquereference .property-anchor }
+#### openlabel:scenarioVersion {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioversion .property-anchor }
+#### openlabel:scenarioVisualisationURL {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariovisualisationurl .property-anchor }
+#### openlabel:SceneryFixedStructure {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryfixedstructure .property-anchor }
+#### openlabel:ScenerySpecialStructure {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryspecialstructure .property-anchor }
+#### openlabel:SceneryTemporaryStructure {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-scenerytemporarystructure .property-anchor }
+#### openlabel:SceneryZone {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryzone .property-anchor }
+#### openlabel:SignsInformation {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-signsinformation .property-anchor }
+#### openlabel:SignsRegulatory {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-signsregulatory .property-anchor }
+#### openlabel:SignsWarning {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-signswarning .property-anchor }
+#### openlabel:SubjectVehicleSpeed {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-subjectvehiclespeed .property-anchor }
+#### openlabel:subjectVehicleSpeedValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-subjectvehiclespeedvalue .property-anchor }
+#### openlabel:TrafficAgentDensity {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficagentdensity .property-anchor }
+#### openlabel:trafficAgentDensityValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficagentdensityvalue .property-anchor }
+#### openlabel:TrafficFlowRate {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficflowrate .property-anchor }
+#### openlabel:trafficFlowRateValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficflowratevalue .property-anchor }
+#### openlabel:TrafficSpecialVehicle {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficspecialvehicle .property-anchor }
+#### openlabel:TrafficVolume {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficvolume .property-anchor }
+#### openlabel:trafficVolumeValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficvolumevalue .property-anchor }
+#### openlabel:WeatherRain {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherrain .property-anchor }
+#### openlabel:weatherRainValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherrainvalue .property-anchor }
+#### openlabel:WeatherSnow {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weathersnow .property-anchor }
+#### openlabel:weatherSnowValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weathersnowvalue .property-anchor }
+#### openlabel:WeatherWind {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherwind .property-anchor }
+#### openlabel:weatherWindValue {: #prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherwindvalue .property-anchor }
+#### schema:maxValue {: #prop-https---schema-org-maxvalue .property-anchor }
+#### schema:minValue {: #prop-https---schema-org-minvalue .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|TagShape|openlabel|AdminTag|0||||openlabel.shacl.ttl|
-|TagShape|openlabel|Behaviour|0||||openlabel.shacl.ttl|
-|TagShape|openlabel|Odd|0||||openlabel.shacl.ttl|
-|TagShape|openlabel|RoadUser|0||||openlabel.shacl.ttl|
-|AdminTagShape|openlabel|licenseURI|||The type of license which governs usage of the scenario|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|ownerEmail|||Scenario owner email|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|ownerName|||Scenario owner name|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|ownerURL|||Scenario owner URL|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioCreatedDate|||Scenario created date|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioDefinition|||Scenario definition SDL|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioDefinitionLanguageURI|||Scenario definition type|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioDescription|||Scenario description|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioName|||Scenario name|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioParentReference|||Scenario parent reference|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioUniqueReference|||Scenario unique reference|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioVersion|||Scenario version|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|AdminTagShape|openlabel|scenarioVisualisationURL|||Scenario visualization|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
-|RoadUserShape|openlabel|motionDriveValue|||Speed (km/h).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|RoadUserShape|openlabel|RoadUserVehicle|||Validation class for RoadUserVehicle||openlabel.shacl.ttl|
-|RoadUserShape|openlabel|RoadUserHuman|||Validation class for RoadUserHuman|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|RoadUserShape|openlabel|RoadUserAnimal|||Validation class for RoadUserAnimal|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|BehaviourCommunication|||Validation class for BehaviourCommunication||openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionAway|||Validation class for MotionAway|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionCross|||Validation class for MotionCross|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionCutIn|||Validation class for MotionCutIn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionCutOut|||Validation class for MotionCutOut|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionLaneChangeLeft|||Validation class for MotionLaneChangeLeft|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionLaneChangeRight|||Validation class for MotionLaneChangeRight|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionOvertake|||Validation class for MotionOvertake|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionReverse|||Validation class for MotionReverse|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionRun|||Validation class for MotionRun|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionSlide|||Validation class for MotionSlide|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionStop|||Validation class for MotionStop|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionTowards|||Validation class for MotionTowards|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionTurn|||Validation class for MotionTurn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionTurnLeft|||Validation class for MotionTurnLeft|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionTurnRight|||Validation class for MotionTurnRight|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionUTurn|||Validation class for MotionUTurn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionWalk|||Validation class for MotionWalk|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionAccelerate|||Validation class for motionAccelerate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionDecelerate|||Validation class for motionDecelerate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|MotionDrive|||Validation class for motionDrive|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|BehaviourShape|openlabel|motionAccelerateValue|||Rate of acceleration (ms-2).||openlabel.shacl.ttl|
-|BehaviourShape|openlabel|motionDecelerateValue|||MotionDecelerateValue can be a single decimal or a range (ms-2).||openlabel.shacl.ttl|
+|TagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-admintag"></a>AdminTag|0||||openlabel.shacl.ttl|
+|TagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-behaviour"></a>Behaviour|0||||openlabel.shacl.ttl|
+|TagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-odd"></a>Odd|0||||openlabel.shacl.ttl|
+|TagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduser"></a>RoadUser|0||||openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-licenseuri"></a>licenseURI|||The type of license which governs usage of the scenario|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-owneremail"></a>ownerEmail|||Scenario owner email|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-ownername"></a>ownerName|||Scenario owner name|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-ownerurl"></a>ownerURL|||Scenario owner URL|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariocreateddate"></a>scenarioCreatedDate|||Scenario created date|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodefinition"></a>scenarioDefinition|||Scenario definition SDL|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodefinitionlanguageuri"></a>scenarioDefinitionLanguageURI|||Scenario definition type|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariodescription"></a>scenarioDescription|||Scenario description|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioname"></a>scenarioName|||Scenario name|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioparentreference"></a>scenarioParentReference|||Scenario parent reference|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariouniquereference"></a>scenarioUniqueReference|||Scenario unique reference|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenarioversion"></a>scenarioVersion|||Scenario version|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|AdminTagShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenariovisualisationurl"></a>scenarioVisualisationURL|||Scenario visualization|<http://www.w3.org/2000/01/rdf-schema#Literal>|openlabel.shacl.ttl|
+|RoadUserShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondrivevalue"></a>motionDriveValue|||Speed (km/h).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|RoadUserShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduservehicle"></a>RoadUserVehicle|||Validation class for RoadUserVehicle||openlabel.shacl.ttl|
+|RoadUserShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduserhuman"></a>RoadUserHuman|||Validation class for RoadUserHuman|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|RoadUserShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-roaduseranimal"></a>RoadUserAnimal|||Validation class for RoadUserAnimal|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-behaviourcommunication"></a>BehaviourCommunication|||Validation class for BehaviourCommunication||openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionaway"></a>MotionAway|||Validation class for MotionAway|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncross"></a>MotionCross|||Validation class for MotionCross|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncutin"></a>MotionCutIn|||Validation class for MotionCutIn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motioncutout"></a>MotionCutOut|||Validation class for MotionCutOut|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionlanechangeleft"></a>MotionLaneChangeLeft|||Validation class for MotionLaneChangeLeft|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionlanechangeright"></a>MotionLaneChangeRight|||Validation class for MotionLaneChangeRight|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionovertake"></a>MotionOvertake|||Validation class for MotionOvertake|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionreverse"></a>MotionReverse|||Validation class for MotionReverse|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionrun"></a>MotionRun|||Validation class for MotionRun|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionslide"></a>MotionSlide|||Validation class for MotionSlide|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionstop"></a>MotionStop|||Validation class for MotionStop|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motiontowards"></a>MotionTowards|||Validation class for MotionTowards|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturn"></a>MotionTurn|||Validation class for MotionTurn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturnleft"></a>MotionTurnLeft|||Validation class for MotionTurnLeft|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionturnright"></a>MotionTurnRight|||Validation class for MotionTurnRight|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionuturn"></a>MotionUTurn|||Validation class for MotionUTurn|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionwalk"></a>MotionWalk|||Validation class for MotionWalk|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionaccelerate"></a>MotionAccelerate|||Validation class for motionAccelerate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondecelerate"></a>MotionDecelerate|||Validation class for motionDecelerate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondrive"></a>MotionDrive|||Validation class for motionDrive|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motionacceleratevalue"></a>motionAccelerateValue|||Rate of acceleration (ms-2).||openlabel.shacl.ttl|
+|BehaviourShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-motiondeceleratevalue"></a>motionDecelerateValue|||MotionDecelerateValue can be a single decimal or a range (ms-2).||openlabel.shacl.ttl|
 |BehaviourShape|openlabel|motionDriveValue|||Motion drive value can be a single decimal or a range Speed (km/h).||openlabel.shacl.ttl|
-|OddShape|openlabel|DrivableAreaEdge|||Validation class for DrivableAreaEdge||openlabel.shacl.ttl|
-|OddShape|openlabel|GeometryTransverse|||Validation class for GeometryTransverse||openlabel.shacl.ttl|
-|OddShape|openlabel|LaneSpecificationTravelDirection|||Validation class for LaneSpecificationTravelDirection||openlabel.shacl.ttl|
-|OddShape|openlabel|LaneSpecificationType|||Validation class for LaneSpecificationType||openlabel.shacl.ttl|
-|OddShape|openlabel|SignsInformation|||Validation class for SignsInformation||openlabel.shacl.ttl|
-|OddShape|openlabel|SignsRegulatory|||Validation class for SignsRegulatory||openlabel.shacl.ttl|
-|OddShape|openlabel|SignsWarning|||Validation class for SignsWarning||openlabel.shacl.ttl|
-|OddShape|openlabel|DrivableAreaSurfaceCondition|||Validation class for DrivableAreaSurfaceCondition||openlabel.shacl.ttl|
-|OddShape|openlabel|DrivableAreaSurfaceFeature|||Validation class for DrivableAreaSurfaceFeature||openlabel.shacl.ttl|
-|OddShape|openlabel|DrivableAreaSurfaceType|||Validation class for DrivableAreaSurfaceType||openlabel.shacl.ttl|
-|OddShape|openlabel|DrivableAreaType|||Validation class for DrivableAreaType||openlabel.shacl.ttl|
-|OddShape|openlabel|SceneryFixedStructure|||Validation class for SceneryFixedStructure||openlabel.shacl.ttl|
-|OddShape|openlabel|JunctionIntersection|||Validation class for JunctionIntersection||openlabel.shacl.ttl|
-|OddShape|openlabel|JunctionRoundabout|||Validation class for JunctionRoundabout||openlabel.shacl.ttl|
-|OddShape|openlabel|ScenerySpecialStructure|||Validation class for ScenerySpecialStructure||openlabel.shacl.ttl|
-|OddShape|openlabel|SceneryTemporaryStructure|||Validation class for SceneryTemporaryStructure||openlabel.shacl.ttl|
-|OddShape|openlabel|SceneryZone|||Validation class for SceneryZone||openlabel.shacl.ttl|
-|OddShape|openlabel|ConnectivityCommunication|||Validation class for ConnectivityCommunication||openlabel.shacl.ttl|
-|OddShape|openlabel|ConnectivityPositioning|||Validation class for ConnectivityPositioning||openlabel.shacl.ttl|
-|OddShape|openlabel|IlluminationArtificial|||Validation class for IlluminationArtificial||openlabel.shacl.ttl|
-|OddShape|openlabel|IlluminationLowLight|||Validation class for IlluminationLowLight||openlabel.shacl.ttl|
-|OddShape|openlabel|RainType|||Validation class for RainType||openlabel.shacl.ttl|
-|OddShape|openlabel|EnvironmentParticulates|||Validation class for EnvironmentParticulates||openlabel.shacl.ttl|
-|OddShape|openlabel|LaneSpecificationMarking|||Validation class for LaneSpecificationMarking|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|HorizontalStraights|||Validation class for HorizontalStraights|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|LongitudinalLevelPlane|||Validation class for LongitudinalLevelPlane|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|DaySunPosition|||Validation class for DaySunPosition|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|ParticulatesDust|||Validation class for ParticulatesDust|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|ParticulatesMarine|||Validation class for ParticulatesMarine|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|ParticulatesPollution|||Validation class for ParticulatesPollution|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|ParticulatesVolcanic|||Validation class for ParticulatesVolcanic|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|TrafficSpecialVehicle|||Validation class for TrafficSpecialVehicle|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|SubjectVehicleSpeed|||Validation class for subjectVehicleSpeed|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|subjectVehicleSpeedValue|||Speed (km/h) (Refer to BSI PAS-1883 Section 5.4.b).||openlabel.shacl.ttl|
-|OddShape|openlabel|WeatherRain|||Validation class for weatherRain|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|weatherRainValue|||Rainfall Intensity (mm/h) (Refer to BSI PAS-1883 Section 5.3.1.2).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|WeatherSnow|||Validation class for weatherSnow|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|weatherSnowValue|||Visibility (km) (Refer to BSI PAS-1883 Section 5.3.1.3).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|WeatherWind|||Validation class for weatherWind|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|weatherWindValue|||Wind Speed (m/s) (Refer to BSI PAS-1883 Section 5.3.1.1).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|IlluminationCloudiness|||Validation class for illuminationCloudiness|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|illuminationCloudinessValue|||Cloud cover (okta) (Refer to BSI PAS-1883 Section 5.3.3.c).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|DaySunElevation|||Validation class for daySunElevation|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|daySunElevationValue|||Sun Elevation (degrees) (Refer to BSI PAS-1883 Section 5.3.3.a.1).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|TrafficAgentDensity|||Validation class for trafficAgentDensity|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|trafficAgentDensityValue|||Density (vehicles/km) (Refer to BSI PAS-1883 Section 5.4.a.1).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
-|OddShape|openlabel|TrafficFlowRate|||Validation class for trafficFlowRate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|trafficFlowRateValue|||Rate (vehicles/h) (Refer to BSI PAS-1883 Section 5.4.a.3).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
-|OddShape|openlabel|TrafficVolume|||Validation class for trafficVolume|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|trafficVolumeValue|||Volume (vehicle km) (Refer to BSI PAS-1883 Section 5.4.a.2).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
-|OddShape|openlabel|LaneSpecificationDimensions|||Validation class for laneSpecificationDimensions|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|laneSpecificationDimensionsValue|||Lane width (m) (Refer to BSI PAS-1883 Section 5.2.3.4.a).||openlabel.shacl.ttl|
-|OddShape|openlabel|LaneSpecificationLaneCount|||Validation class for laneSpecificationLaneCount|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|laneSpecificationLaneCountValue|||Number of lanes (Unit) (Refer to BSI PAS-1883 Section 5.2.3.4.d).||openlabel.shacl.ttl|
-|OddShape|openlabel|HorizontalCurves|||Validation class for horizontalCurves|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|horizontalCurvesValue|||Curve Radius (m) (Refer to BSI PAS-1883 Section 5.2.3.3).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|OddShape|openlabel|LongitudinalDownSlope|||Validation class for longitudinalDownSlope|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
-|OddShape|openlabel|longitudinalDownSlopeValue|||Gradient (%) (Refer to BSI PAS-1883 Section 5.2.3.3.ii).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
-|QuantitativeValueShape|schema|minValue|1||||openlabel.shacl.ttl|
-|QuantitativeValueShape|schema|maxValue|1||||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareaedge"></a>DrivableAreaEdge|||Validation class for DrivableAreaEdge||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-geometrytransverse"></a>GeometryTransverse|||Validation class for GeometryTransverse||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationtraveldirection"></a>LaneSpecificationTravelDirection|||Validation class for LaneSpecificationTravelDirection||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationtype"></a>LaneSpecificationType|||Validation class for LaneSpecificationType||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-signsinformation"></a>SignsInformation|||Validation class for SignsInformation||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-signsregulatory"></a>SignsRegulatory|||Validation class for SignsRegulatory||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-signswarning"></a>SignsWarning|||Validation class for SignsWarning||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacecondition"></a>DrivableAreaSurfaceCondition|||Validation class for DrivableAreaSurfaceCondition||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacefeature"></a>DrivableAreaSurfaceFeature|||Validation class for DrivableAreaSurfaceFeature||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareasurfacetype"></a>DrivableAreaSurfaceType|||Validation class for DrivableAreaSurfaceType||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-drivableareatype"></a>DrivableAreaType|||Validation class for DrivableAreaType||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryfixedstructure"></a>SceneryFixedStructure|||Validation class for SceneryFixedStructure||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-junctionintersection"></a>JunctionIntersection|||Validation class for JunctionIntersection||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-junctionroundabout"></a>JunctionRoundabout|||Validation class for JunctionRoundabout||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryspecialstructure"></a>ScenerySpecialStructure|||Validation class for ScenerySpecialStructure||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-scenerytemporarystructure"></a>SceneryTemporaryStructure|||Validation class for SceneryTemporaryStructure||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-sceneryzone"></a>SceneryZone|||Validation class for SceneryZone||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-connectivitycommunication"></a>ConnectivityCommunication|||Validation class for ConnectivityCommunication||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-connectivitypositioning"></a>ConnectivityPositioning|||Validation class for ConnectivityPositioning||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationartificial"></a>IlluminationArtificial|||Validation class for IlluminationArtificial||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationlowlight"></a>IlluminationLowLight|||Validation class for IlluminationLowLight||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-raintype"></a>RainType|||Validation class for RainType||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-environmentparticulates"></a>EnvironmentParticulates|||Validation class for EnvironmentParticulates||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationmarking"></a>LaneSpecificationMarking|||Validation class for LaneSpecificationMarking|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalstraights"></a>HorizontalStraights|||Validation class for HorizontalStraights|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinallevelplane"></a>LongitudinalLevelPlane|||Validation class for LongitudinalLevelPlane|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunposition"></a>DaySunPosition|||Validation class for DaySunPosition|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesdust"></a>ParticulatesDust|||Validation class for ParticulatesDust|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesmarine"></a>ParticulatesMarine|||Validation class for ParticulatesMarine|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatespollution"></a>ParticulatesPollution|||Validation class for ParticulatesPollution|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-particulatesvolcanic"></a>ParticulatesVolcanic|||Validation class for ParticulatesVolcanic|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficspecialvehicle"></a>TrafficSpecialVehicle|||Validation class for TrafficSpecialVehicle|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-subjectvehiclespeed"></a>SubjectVehicleSpeed|||Validation class for subjectVehicleSpeed|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-subjectvehiclespeedvalue"></a>subjectVehicleSpeedValue|||Speed (km/h) (Refer to BSI PAS-1883 Section 5.4.b).||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherrain"></a>WeatherRain|||Validation class for weatherRain|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherrainvalue"></a>weatherRainValue|||Rainfall Intensity (mm/h) (Refer to BSI PAS-1883 Section 5.3.1.2).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weathersnow"></a>WeatherSnow|||Validation class for weatherSnow|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weathersnowvalue"></a>weatherSnowValue|||Visibility (km) (Refer to BSI PAS-1883 Section 5.3.1.3).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherwind"></a>WeatherWind|||Validation class for weatherWind|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-weatherwindvalue"></a>weatherWindValue|||Wind Speed (m/s) (Refer to BSI PAS-1883 Section 5.3.1.1).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationcloudiness"></a>IlluminationCloudiness|||Validation class for illuminationCloudiness|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-illuminationcloudinessvalue"></a>illuminationCloudinessValue|||Cloud cover (okta) (Refer to BSI PAS-1883 Section 5.3.3.c).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunelevation"></a>DaySunElevation|||Validation class for daySunElevation|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-daysunelevationvalue"></a>daySunElevationValue|||Sun Elevation (degrees) (Refer to BSI PAS-1883 Section 5.3.3.a.1).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficagentdensity"></a>TrafficAgentDensity|||Validation class for trafficAgentDensity|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficagentdensityvalue"></a>trafficAgentDensityValue|||Density (vehicles/km) (Refer to BSI PAS-1883 Section 5.4.a.1).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficflowrate"></a>TrafficFlowRate|||Validation class for trafficFlowRate|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficflowratevalue"></a>trafficFlowRateValue|||Rate (vehicles/h) (Refer to BSI PAS-1883 Section 5.4.a.3).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficvolume"></a>TrafficVolume|||Validation class for trafficVolume|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-trafficvolumevalue"></a>trafficVolumeValue|||Volume (vehicle km) (Refer to BSI PAS-1883 Section 5.4.a.2).|<http://www.w3.org/2001/XMLSchema#integer>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationdimensions"></a>LaneSpecificationDimensions|||Validation class for laneSpecificationDimensions|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationdimensionsvalue"></a>laneSpecificationDimensionsValue|||Lane width (m) (Refer to BSI PAS-1883 Section 5.2.3.4.a).||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationlanecount"></a>LaneSpecificationLaneCount|||Validation class for laneSpecificationLaneCount|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-lanespecificationlanecountvalue"></a>laneSpecificationLaneCountValue|||Number of lanes (Unit) (Refer to BSI PAS-1883 Section 5.2.3.4.d).||openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalcurves"></a>HorizontalCurves|||Validation class for horizontalCurves|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-horizontalcurvesvalue"></a>horizontalCurvesValue|||Curve Radius (m) (Refer to BSI PAS-1883 Section 5.2.3.3).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinaldownslope"></a>LongitudinalDownSlope|||Validation class for longitudinalDownSlope|<http://www.w3.org/2001/XMLSchema#boolean>|openlabel.shacl.ttl|
+|OddShape|openlabel|<a id="prop-https---openlabel-asam-net-v1-0-0-ontologies-longitudinaldownslopevalue"></a>longitudinalDownSlopeValue|||Gradient (%) (Refer to BSI PAS-1883 Section 5.2.3.3.ii).|<http://www.w3.org/2001/XMLSchema#decimal>|openlabel.shacl.ttl|
+|QuantitativeValueShape|schema|<a id="prop-https---schema-org-minvalue"></a>minValue|1||||openlabel.shacl.ttl|
+|QuantitativeValueShape|schema|<a id="prop-https---schema-org-maxvalue"></a>maxValue|1||||openlabel.shacl.ttl|

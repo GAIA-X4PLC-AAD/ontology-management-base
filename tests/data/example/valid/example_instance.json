@@ -1,6 +1,7 @@
 {
   "@context": {
     "example_ontology": "https://github.com/GAIA-X4PLC-AAD/ontology-management-base/tree/main/example/example_ontology#",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "openlabel": "https://openlabel.asam.net/V1-0-0/ontologies/"
   },
@@ -13,5 +14,10 @@
   },
   "example_ontology:hasJunctionIntersection": {
     "@id": "https://openlabel.asam.net/V1-0-0/ontologies/IntersectionStaggered"
-  }
+  },
+  "gx:copyrightOwnedBy": {
+    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+  },
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow intent"
 }

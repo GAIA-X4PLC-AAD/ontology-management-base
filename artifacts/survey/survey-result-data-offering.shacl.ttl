@@ -3,7 +3,7 @@
 @prefix survey: <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # The Shapes Graph URI appends "/shapes" to the Ontology URI

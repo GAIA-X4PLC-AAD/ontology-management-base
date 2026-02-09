@@ -5,7 +5,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://w3id.org/gaia-x/development/> .
+@prefix gx: <https://w3id.org/gaia-x/development#> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/service/v1> a owl:Ontology ;
     rdfs:label "Ontology definition for a simulation service"@en ;
@@ -24,7 +24,7 @@
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
     # Specific GitHub release used for publishing this version
-    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.1> ;
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
     owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> ;
@@ -34,13 +34,13 @@
     dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes> ;
 
     # Additional references to documentation or related ontologies
-    dcterms:references <https://w3id.org/gaia-x/development/> ;
+    dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
 service:Service a owl:Class ;
     rdfs:label "Class definition for Service"@en ;
     rdfs:comment "Attributes for simulation services."@en ;
-    rdfs:subClassOf gx:SoftwareResource .
+    rdfs:subClassOf gx:VirtualResource .
 
 service:RequiredFile a owl:Class ;
     rdfs:label "Class definition for RequiredFile"@en ;

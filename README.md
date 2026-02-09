@@ -56,6 +56,23 @@ python3 -m src.tools.validators.validation_suite --help
 python3 -m src.tools.validators.validation_suite --run check-data-conformance --domain hdmap
 ```
 
+## Local Docs Build
+
+```bash
+python3 -m pip install -e ".[docs]"
+
+DOCS_SITE_URL=http://127.0.0.1:8000/ontology-management-base mkdocs serve
+```
+
+Notes:
+
+Hook flow (via `hooks/copy_artifacts.py`):
+
+1. The hook runs `properties_updater` and `class_page_generator` (DOCS_SITE_URL is optional and only affects local diagram links).
+2. `properties_updater` writes tracked `artifacts/<domain>/PROPERTIES.md`, generates `docs/ontologies/properties/<domain>.md` (ignored by git), builds the `docs/ontologies/properties.md` domains overview, and refreshes `docs/ontologies/catalog.md`.
+3. `class_page_generator` writes `docs/ontologies/classes/<domain>/*.md` and uses `DOCS_SITE_URL` to build local diagram links.
+4. The hook copies `artifacts/<domain>/` into `docs/artifacts/<domain>/<versionInfo>/` and adds example instances from `tests/data/`.
+
 ## Maintained Ontologies
 
 <!-- START_CATALOG_TABLE -->
@@ -83,8 +100,8 @@ python3 -m src.tools.validators.validation_suite --run check-data-conformance --
 | `https://w3id.org/ascs-ev/envited-x/tzip21/v1`                             | [tzip21/tzip21.owl.ttl](artifacts/tzip21/tzip21.owl.ttl)                                                             |
 | `https://w3id.org/ascs-ev/envited-x/tzip21/v1/shapes`                      | [tzip21/tzip21.shacl.ttl](artifacts/tzip21/tzip21.shacl.ttl)                                                         |
 | `https://w3id.org/gaia-x/development`                                      | [gx/gx.owl.ttl](artifacts/gx/gx.owl.ttl)                                                                             |
-| `https://w3id.org/gaia-x/development/context`                              | [gx/gx.context.jsonld](artifacts/gx/gx.context.jsonld)                                                               |
-| `https://w3id.org/gaia-x/development/shapes/`                              | [gx/gx.shacl.ttl](artifacts/gx/gx.shacl.ttl)                                                                         |
+| `https://w3id.org/gaia-x/development#context`                              | [gx/gx.context.jsonld](artifacts/gx/gx.context.jsonld)                                                               |
+| `https://w3id.org/gaia-x/development#shapes`                               | [gx/gx.shacl.ttl](artifacts/gx/gx.shacl.ttl)                                                                         |
 | `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1`        | [automotive-simulator/automotive-simulator.owl.ttl](artifacts/automotive-simulator/automotive-simulator.owl.ttl)     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes` | [automotive-simulator/automotive-simulator.shacl.ttl](artifacts/automotive-simulator/automotive-simulator.shacl.ttl) |
 | `https://w3id.org/gaia-x4plcaad/ontologies/description/v1`                 | [description/description.owl.ttl](artifacts/description/description.owl.ttl)                                         |

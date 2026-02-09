@@ -31,3 +31,12 @@
   height: 100%;
   border: 0;
 }
+
+/* Hidden headings that provide stable anchor targets for property links */
+.property-anchor {
+  color: transparent;
+  font-size: 0.01rem;
+  line-height: 0.01rem;
+  margin: 0;
+  padding: 0;
+}

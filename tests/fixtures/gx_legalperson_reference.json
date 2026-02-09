@@ -1,31 +1,30 @@
 {
   "@context": {
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "schema": "https://schema.org/"
+    "schema": "https://schema.org/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#"
   },
   "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference",
   "@type": "gx:LegalPerson",
-  "gx:name": "The GAIA-X 4 PLC AAD Project Team",
   "gx:registrationNumber": {
-    "@type": "gx:TaxID",
-    "schema:taxID": "1234567890",
-    "gx:countryCode": "DE"
+    "@type": "gx:RegistrationNumber",
+    "schema:taxID": "1234567890"
   },
   "gx:headquartersAddress": {
     "@type": "gx:Address",
     "gx:countryCode": "DE",
-    "gx:region": "DE30",
-    "gx:locality": "Berlin",
-    "gx:street-address": "Sample Street 1",
-    "gx:postal-code": "10115"
+    "vcard:region": "DE30",
+    "vcard:locality": "Berlin",
+    "vcard:street-address": "Sample Street 1",
+    "vcard:postal-code": "10115"
   },
   "gx:legalAddress": {
     "@type": "gx:Address",
     "gx:countryCode": "DE",
-    "gx:region": "DE30",
-    "gx:locality": "Berlin",
-    "gx:street-address": "Sample Street 1",
-    "gx:postal-code": "10115"
+    "vcard:region": "DE30",
+    "vcard:locality": "Berlin",
+    "vcard:street-address": "Sample Street 1",
+    "vcard:postal-code": "10115"
   }
 }

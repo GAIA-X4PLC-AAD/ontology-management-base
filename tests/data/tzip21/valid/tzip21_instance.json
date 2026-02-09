@@ -1,7 +1,7 @@
 {
   "@context": {
     "tzip21": "https://w3id.org/ascs-ev/envited-x/tzip21/v1/",
-    "gx": "https://w3id.org/gaia-x/development/",
+    "gx": "https://w3id.org/gaia-x/development#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@id": "did:web:test.tzip21.net:Asset:test_valid_tzip21_instance",
@@ -270,34 +270,9 @@
       }
     }
   ],
-  "gx:providedBy": {
+  "gx:copyrightOwnedBy": {
     "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
-  "gx:serviceOfferingTermsAndConditions": [
-    {
-      "@type": "gx:TermsAndConditions",
-      "gx:url": {
-        "@value": "https://docs.github.com/api/article/body?pathname=/en/site-policy/github-terms/github-terms-of-service",
-        "@type": "xsd:anyURI"
-      },
-      "gx:hash": {
-        "@value": "bc5659f155f74d7ed712a07e10df872c07bfc931d2a35dffe6af13c3fdf0e3d7",
-        "@type": "xsd:string"
-      }
-    }
-  ],
-  "gx:policy": [
-    {
-      "@value": "default-policy",
-      "@type": "xsd:string"
-    }
-  ],
-  "gx:dataAccountExport": [
-    {
-      "@type": "gx:DataAccountExport",
-      "gx:requestType": "API",
-      "gx:accessType": "digital",
-      "gx:formatType": "application/ld+json"
-    }
-  ]
+  "gx:license": "EPL-2.0",
+  "gx:resourcePolicy": "allow intent"
 }

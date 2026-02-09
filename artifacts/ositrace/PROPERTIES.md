@@ -79,43 +79,81 @@ class Class_definition_for_Quantity
 
 ### SHACL Properties
 
+#### ositrace:accuracyLaneModel2d {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracylanemodel2d .property-anchor }
+#### ositrace:accuracyLaneModelHeight {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracylanemodelheight .property-anchor }
+#### ositrace:accuracyObjects {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracyobjects .property-anchor }
+#### ositrace:accuracySignals {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracysignals .property-anchor }
+#### ositrace:calibration {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-calibration .property-anchor }
+#### ositrace:description {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-description .property-anchor }
+#### ositrace:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-formattype .property-anchor }
+#### ositrace:granularity {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-granularity .property-anchor }
+#### ositrace:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hascontent .property-anchor }
+#### ositrace:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresource .property-anchor }
+#### ositrace:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresourceextension .property-anchor }
+#### ositrace:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdatasource .property-anchor }
+#### ositrace:hasEvent {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasevent .property-anchor }
+#### ositrace:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasformat .property-anchor }
+#### ositrace:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasgeoreference .property-anchor }
+#### ositrace:hasHostMovingObject {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hashostmovingobject .property-anchor }
+#### ositrace:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasmanifest .property-anchor }
+#### ositrace:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquality .property-anchor }
+#### ositrace:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquantity .property-anchor }
+#### ositrace:hasTargetMovingObject {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hastargetmovingobject .property-anchor }
+#### ositrace:identifier {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-identifier .property-anchor }
+#### ositrace:laneTypes {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-lanetypes .property-anchor }
+#### ositrace:levelOfDetail {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-levelofdetail .property-anchor }
+#### ositrace:measurementSystem {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-measurementsystem .property-anchor }
+#### ositrace:numberFrames {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-numberframes .property-anchor }
+#### ositrace:precision {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-precision .property-anchor }
+#### ositrace:roadTypes {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-roadtypes .property-anchor }
+#### ositrace:scenarioIdentifier {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-scenarioidentifier .property-anchor }
+#### ositrace:startTime {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-starttime .property-anchor }
+#### ositrace:stopTime {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-stoptime .property-anchor }
+#### ositrace:tag {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-tag .property-anchor }
+#### ositrace:time {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-time .property-anchor }
+#### ositrace:trafficDirection {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-trafficdirection .property-anchor }
+#### ositrace:usedDataSources {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-useddatasources .property-anchor }
+#### ositrace:validationReport {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-validationreport .property-anchor }
+#### ositrace:validationReportType {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-validationreporttype .property-anchor }
+#### ositrace:version {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-version .property-anchor }
+
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|OSITraceShape|ositrace|hasDataResource|1|1|||ositrace.shacl.ttl|
-|OSITraceShape|ositrace|hasDataResourceExtension|1|1|||ositrace.shacl.ttl|
-|OSITraceShape|ositrace|hasManifest|1|1|||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasContent|1|1|Attributes describing the content of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasFormat|1|1|File format details of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasQuality|1|1|Quality metrics of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasQuantity|1|1|Quantitative metrics describing the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasDataSource|1|1|Data sources used to create the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|hasGeoreference||1|Georeferencing information for the OSI trace.||ositrace.shacl.ttl|
-|ContentShape|ositrace|roadTypes|||Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3||ositrace.shacl.ttl|
-|ContentShape|ositrace|laneTypes|||Covered lane types, see ODR spec section 9.5.3.||ositrace.shacl.ttl|
-|ContentShape|ositrace|levelOfDetail|||Covered object classes, see ODR spec section 11||ositrace.shacl.ttl|
-|ContentShape|ositrace|trafficDirection||1|Traffic direction, i.e. right-hand or left-hand traffic||ositrace.shacl.ttl|
-|ContentShape|ositrace|granularity|1||Level of granularity of sensor data||ositrace.shacl.ttl|
-|ContentShape|ositrace|scenarioIdentifier|||Identifier of scenario performed in the trace file|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|ContentShape|ositrace|startTime|1|1|Exact start timestamp of the recorded trace|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
-|ContentShape|ositrace|stopTime|1|1|Exact stop timestamp of the recorded trace|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
-|ContentShape|ositrace|hasHostMovingObject|1|1|Host moving object in trace file||ositrace.shacl.ttl|
-|ContentShape|ositrace|hasTargetMovingObject|||Target moving object(s) in trace file||ositrace.shacl.ttl|
-|ContentShape|ositrace|hasEvent|0||Description of events of interest in trace file||ositrace.shacl.ttl|
-|DataSourceShape|ositrace|measurementSystem||1|Main acquisition device|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|DataSourceShape|ositrace|usedDataSources|||Basic data for the creation of the trace.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|FormatShape|ositrace|version||1|Version of data format|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|FormatShape|ositrace|formatType||1|Format type definition.||ositrace.shacl.ttl|
-|QualityShape|ositrace|accuracySignals|0|1|Accuracy of traffic relevant objects, signs and signals.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
-|QualityShape|ositrace|accuracyObjects|0|1|Accuracy of objects in the traffic space, which do not directly affect the traffic.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
-|QualityShape|ositrace|accuracyLaneModelHeight|0|1|Accuracy lane modell height|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
-|QualityShape|ositrace|precision|0|1|Precision of measured road network (relative accuracy).|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
-|QualityShape|ositrace|accuracyLaneModel2d|0|1|Accuracy of lane modell 2d.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
-|QualityShape|ositrace|calibration|0|1|Description of any calibration steps performed prior to measurement.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|QualityShape|ositrace|validationReport|0|1|Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2.|<http://www.w3.org/2001/XMLSchema#anyURI>|ositrace.shacl.ttl|
-|QualityShape|ositrace|validationReportType|0|1|Type of OSI trace validation report, if any exists. As mime-type.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|QuantityShape|ositrace|numberFrames||1|Number of frames/messages in the trace file.|<http://www.w3.org/2001/XMLSchema#integer>|ositrace.shacl.ttl|
-|MovingObjectShape|ositrace|identifier|1||Moving object identifier in trace file.|<http://www.w3.org/2001/XMLSchema#integer>|ositrace.shacl.ttl|
-|MovingObjectShape|ositrace|description||1|Description of moving object in the trace file.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
-|EventShape|ositrace|time|1|1|Exact timestamp of the event in the recorded trace.|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
-|EventShape|ositrace|tag|1||Unique tag of the event in trace file.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresource"></a>hasDataResource|1|1|||ositrace.shacl.ttl|
+|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||ositrace.shacl.ttl|
+|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasmanifest"></a>hasManifest|1|1|||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hascontent"></a>hasContent|1|1|Attributes describing the content of the OSI trace.||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasformat"></a>hasFormat|1|1|File format details of the OSI trace.||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the OSI trace.||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the OSI trace.||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the OSI trace.||ositrace.shacl.ttl|
+|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasgeoreference"></a>hasGeoreference||1|Georeferencing information for the OSI trace.||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-roadtypes"></a>roadTypes|||Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-lanetypes"></a>laneTypes|||Covered lane types, see ODR spec section 9.5.3.||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-levelofdetail"></a>levelOfDetail|||Covered object classes, see ODR spec section 11||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-trafficdirection"></a>trafficDirection||1|Traffic direction, i.e. right-hand or left-hand traffic||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-granularity"></a>granularity|1||Level of granularity of sensor data||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-scenarioidentifier"></a>scenarioIdentifier|||Identifier of scenario performed in the trace file|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-starttime"></a>startTime|1|1|Exact start timestamp of the recorded trace|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-stoptime"></a>stopTime|1|1|Exact stop timestamp of the recorded trace|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hashostmovingobject"></a>hasHostMovingObject|1|1|Host moving object in trace file||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hastargetmovingobject"></a>hasTargetMovingObject|||Target moving object(s) in trace file||ositrace.shacl.ttl|
+|ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasevent"></a>hasEvent|0||Description of events of interest in trace file||ositrace.shacl.ttl|
+|DataSourceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-measurementsystem"></a>measurementSystem||1|Main acquisition device|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|DataSourceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-useddatasources"></a>usedDataSources|||Basic data for the creation of the trace.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|FormatShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-version"></a>version||1|Version of data format|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|FormatShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-formattype"></a>formatType||1|Format type definition.||ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracysignals"></a>accuracySignals|0|1|Accuracy of traffic relevant objects, signs and signals.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracyobjects"></a>accuracyObjects|0|1|Accuracy of objects in the traffic space, which do not directly affect the traffic.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracylanemodelheight"></a>accuracyLaneModelHeight|0|1|Accuracy lane modell height|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-precision"></a>precision|0|1|Precision of measured road network (relative accuracy).|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-accuracylanemodel2d"></a>accuracyLaneModel2d|0|1|Accuracy of lane modell 2d.|<http://www.w3.org/2001/XMLSchema#float>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-calibration"></a>calibration|0|1|Description of any calibration steps performed prior to measurement.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-validationreport"></a>validationReport|0|1|Link to OSI trace file validation report, if any exists. The report should be of type 'vv-report:VvReport' according to https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2.|<http://www.w3.org/2001/XMLSchema#anyURI>|ositrace.shacl.ttl|
+|QualityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-validationreporttype"></a>validationReportType|0|1|Type of OSI trace validation report, if any exists. As mime-type.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|QuantityShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-numberframes"></a>numberFrames||1|Number of frames/messages in the trace file.|<http://www.w3.org/2001/XMLSchema#integer>|ositrace.shacl.ttl|
+|MovingObjectShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-identifier"></a>identifier|1||Moving object identifier in trace file.|<http://www.w3.org/2001/XMLSchema#integer>|ositrace.shacl.ttl|
+|MovingObjectShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-description"></a>description||1|Description of moving object in the trace file.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
+|EventShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-time"></a>time|1|1|Exact timestamp of the event in the recorded trace.|<http://www.w3.org/2001/XMLSchema#dateTime>|ositrace.shacl.ttl|
+|EventShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-tag"></a>tag|1||Unique tag of the event in trace file.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
 |EventShape|ositrace|description||1|Description of event in the trace file.|<http://www.w3.org/2001/XMLSchema#string>|ositrace.shacl.ttl|
