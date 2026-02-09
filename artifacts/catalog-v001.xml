@@ -21,6 +21,9 @@
   <uri name="https://w3id.org/ascs-ev/envited-x/surface-model/v6/shapes" uri="surface-model/surface-model.shacl.ttl"/>
   <uri name="https://w3id.org/ascs-ev/envited-x/tzip21/v1" uri="tzip21/tzip21.owl.ttl"/>
   <uri name="https://w3id.org/ascs-ev/envited-x/tzip21/v1/shapes" uri="tzip21/tzip21.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x/development#" uri="gx/gx.owl.ttl"/>
+  <uri name="https://w3id.org/gaia-x/development#context" uri="gx/gx.context.jsonld"/>
+  <uri name="https://w3id.org/gaia-x/development#shapes" uri="gx/gx.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1" uri="automotive-simulator/automotive-simulator.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes" uri="automotive-simulator/automotive-simulator.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/description/v1" uri="description/description.owl.ttl"/>

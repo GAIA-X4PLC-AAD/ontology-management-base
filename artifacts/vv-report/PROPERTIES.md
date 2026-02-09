@@ -33,7 +33,7 @@ class Class_definition_for_VvReport
 |Class definition for Parameter|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Parameter|Attributes for the definition of parameter element of a verification & validation report.||
 |Class definition for Result|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Result|Attributes for evaluation results of a verification & validation report.||
 |Class definition for ResultVerification|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/ResultVerification|Attributes for the verification of the result by a third party of a verification & validation report.||
-|Class definition for VvReport|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/VvReport|Attributes for a verification & validation report.|DataResource|
+|Class definition for VvReport|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/VvReport|Attributes for a verification & validation report.|VirtualResource|
 
 ## Prefixes
 

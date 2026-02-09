@@ -15,7 +15,7 @@ class Example_Service_Offering
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
-|Example Service Offering|https://w3id.org/gaia-x4plcaad/ontologies/example/v1/ExampleServiceOffering|Describes an example Service Offering.|ServiceOffering|
+|Example Service Offering|https://w3id.org/gaia-x4plcaad/ontologies/example/v1/ExampleServiceOffering|Describes an example Service Offering.|VirtualResource|
 
 ## Prefixes
 

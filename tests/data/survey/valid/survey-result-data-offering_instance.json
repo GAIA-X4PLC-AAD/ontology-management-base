@@ -44,10 +44,6 @@
   "gx:producedBy": {
     "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },
-  "gx:exposedThrough": {
-    "@id": "did:web:test.fixture.net:DataExchangeComponent:test_gx_dataexchangecomponent_reference",
-    "@type": "gx:DataExchangeComponent"
-  },
   "gx:copyrightOwnedBy": {
     "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
   },

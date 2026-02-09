@@ -26,7 +26,7 @@ Class_definition_for_Attribute <|-- Class_definition_for_OntologyConformanceAttr
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
-|Class definition for Asset|https://w3id.org/ascs-ev/envited-x/tzip21/v1/Asset|A class representing a rich metadata asset, acting as a Service Offering in Gaia-X.|ServiceOffering|
+|Class definition for Asset|https://w3id.org/ascs-ev/envited-x/tzip21/v1/Asset|A class representing a rich metadata asset, acting as a Virtual Resource in Gaia-X.|VirtualResource|
 |Class definition for Attribute|https://w3id.org/ascs-ev/envited-x/tzip21/v1/Attribute|A class representing custom attributes of an asset.||
 |Class definition for DataRate|https://w3id.org/ascs-ev/envited-x/tzip21/v1/DataRate|A class representing the data rate of an asset.||
 |Class definition for Dimensions|https://w3id.org/ascs-ev/envited-x/tzip21/v1/Dimensions|A class representing the dimensions of an asset.||

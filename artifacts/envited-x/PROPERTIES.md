@@ -33,7 +33,7 @@ class Class_definition_for_SimulationAsset
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/envited-x/v3/Content|Defines the content that can be extended for specific asset types.||
 |Class definition for DataResource|https://w3id.org/ascs-ev/envited-x/envited-x/v3/DataResource|A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset.
-                    This class extends gx:DataResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data).|DataResource|
+                    This class extends gx:VirtualResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data).|VirtualResource|
 |Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/envited-x/v3/DataResourceExtension|A metadata extension that enriches a SimulationAsset with additional structured information.
                     Unlike envited-x:DataResource, extensions do not represent standalone retrievable data assets but
                     serve as auxiliary metadata linked to a SimulationAsset.||

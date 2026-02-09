@@ -40,7 +40,7 @@
 service:Service a owl:Class ;
     rdfs:label "Class definition for Service"@en ;
     rdfs:comment "Attributes for simulation services."@en ;
-    rdfs:subClassOf gx:SoftwareResource .
+    rdfs:subClassOf gx:VirtualResource .
 
 service:RequiredFile a owl:Class ;
     rdfs:label "Class definition for RequiredFile"@en ;

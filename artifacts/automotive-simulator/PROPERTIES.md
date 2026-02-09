@@ -15,7 +15,7 @@ class Class_definition_for_AutomotiveSimulator
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
-|Class definition for AutomotiveSimulator|https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/AutomotiveSimulator|An implementation of an automotive simulator.|DataResource|
+|Class definition for AutomotiveSimulator|https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/AutomotiveSimulator|An implementation of an automotive simulator.|VirtualResource|
 
 ## Prefixes
 

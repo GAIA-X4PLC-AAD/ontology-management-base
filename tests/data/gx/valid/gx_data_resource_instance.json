@@ -4,41 +4,70 @@
     "gx": "https://w3id.org/gaia-x/development#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "vcard": "http://www.w3.org/2006/vcard/ns#",
-    "schema": "https://schema.org/"
+    "schema": "https://schema.org/",
+    "dcat": "http://www.w3.org/ns/dcat#"
   },
   "@graph": [
     {
-      "@id": "did:web:test.gx.net:DataResource:test_valid_gx_data_resource",
-      "@type": "gx:DataResource",
-      "schema:name": "Generated Data Resource",
+      "@id": "did:web:test.gx.net:DataProduct:test_valid_gx_data_product",
+      "@type": "gx:DataProduct",
       "schema:description": "Generated description.",
-      "gx:copyrightOwnedBy": {
+      "gx:digitalServiceOfferingName": "Generated Data Product",
+      "gx:digitalServiceOfferingShortDescription": "Generated data product for Gaia-X validation examples.",
+      "gx:digitalServiceOfferingIdentifier": "gx-data-product-001",
+      "gx:digitalServiceOfferingLaunchDate": "2025-03-28T12:29:44Z",
+      "gx:digitalServiceOfferingProvider": {
         "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
       },
-      "gx:license": "EPL-2.0",
-      "gx:obsoleteDateTime": {
-        "@value": "2025-03-28T12:29:44Z",
-        "@type": "xsd:dateTime"
+      "gx:digitalServiceOfferingTermsAndConditions": {
+        "@type": "gx:ServiceTermsAndConditions",
+        "gx:url": {
+          "@value": "https://example.org/gx/provider-terms",
+          "@type": "xsd:anyURI"
+        },
+        "gx:hash": "8acc4f464f2fbf0b104410f5f9d203df707810a162d4f5d72fcb0aa94af6c8fb"
       },
-      "gx:expirationDateTime": {
-        "@value": "2025-03-28T12:29:44Z",
-        "@type": "xsd:dateTime"
+      "gx:digitalServiceUsageTermsAndConditions": {
+        "@type": "gx:UsageTermsAndConditions",
+        "gx:url": {
+          "@value": "https://example.org/gx/usage-terms",
+          "@type": "xsd:anyURI"
+        },
+        "gx:hash": "c286ea0f5f0dbf378d8a72f126407fdf2d772316147f5f6a8f6ae6ce3c73b36c"
       },
-      "gx:containsPII": false,
-      "gx:resourcePolicy": "package access_control; default allow = false;",
-      "gx:producedBy": {
-        "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
+      "gx:digitalServiceUsageDataPolicy": {
+        "@type": "gx:TermsAndConditions",
+        "gx:url": {
+          "@value": "https://example.org/gx/data-policy",
+          "@type": "xsd:anyURI"
+        },
+        "gx:hash": "2ca8e2abf27608d70590436c9da8bb8286a99d94f356dfefb2b8baadce2b009c"
       },
-      "gx:exposedThrough": {
-        "@id": "did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering"
+      "gx:digitalServiceLegalDocuments": [
+        {
+          "@type": "gx:LegalDocument",
+          "gx:url": {
+            "@value": "https://example.org/gx/legal-document",
+            "@type": "xsd:anyURI"
+          }
+        }
+      ],
+      "gx:dataProductDescription": {
+        "@type": "gx:DataProductDescription",
+        "dcat:Dataset": "urn:uuid:gx-data-product-dataset",
+        "gx:dataProductConfigurationParameters": [
+          {
+            "@type": "gx:DataProductConfigurationParameter",
+            "gx:parameterName": "serialization",
+            "gx:parameterDescription": "Delivery serialization format.",
+            "gx:parameterAdmissibleValues": "json"
+          }
+        ]
       }
     },
     {
       "@id": "did:web:test.gx.net:ServiceOffering:test_valid_gx_service_offering",
-      "@type": [
-        "gx:ServiceOffering",
-        "gx:DataExchangeComponent"
-      ],
+      "@type": "gx:ServiceOffering",
       "gx:providedBy": {
         "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
       },

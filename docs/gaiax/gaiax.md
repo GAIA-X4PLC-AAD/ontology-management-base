@@ -15,3 +15,7 @@ It provides the base vocabulary for data exchange components and legal person mo
 - ENVITED-X ontologies reuse Gaia-X classes for data exchange and governance metadata.
 - SHACL validation loads the Gaia-X ontology when these classes are referenced.
 - The Gaia-X Service Characteristics source is tracked as a submodule and informs the GX alignment.
+
+## Integration Pattern
+
+ENVITED-X uses a wrapper pattern to integrate with closed GX SHACL shapes (`gx:SoftwareResource`, `gx:ServiceOffering`, etc.) without losing semantic precision. See the [GX Integration Pattern](gx-integration-pattern.md) for the full concept and the [Domain Migration Guide](gx-domain-migration.md) for per-domain implementation details.

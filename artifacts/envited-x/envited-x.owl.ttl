@@ -77,7 +77,7 @@ envited-x:SimulationAsset a owl:Class ;
                     and a Manifest, which defines its internal structure and licensing information.
                     Subclasses of SimulationAsset can be introduced to represent specific asset types, such as HD Maps or Vehicle Models."""@en ;
     rdfs:subClassOf owl:Thing ;
-    # Coupling to Gaia-X through a subclass of gx:DataResource
+    # Coupling to Gaia-X through a subclass of gx:VirtualResource
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty envited-x:hasDataResource ;
@@ -110,8 +110,8 @@ envited-x:SimulationAsset a owl:Class ;
 envited-x:DataResource a owl:Class ;
     rdfs:label "Class definition for DataResource"@en ;
     rdfs:comment """A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset.
-                    This class extends gx:DataResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
-    rdfs:subClassOf gx:DataResource .
+                    This class extends gx:VirtualResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
+    rdfs:subClassOf gx:VirtualResource .
 
 
 envited-x:DataResourceExtension a owl:Class ;

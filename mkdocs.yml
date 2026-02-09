@@ -77,6 +77,29 @@ nav:
       - Using the Ontologies: ontologies/using-ontologies.md
       - Concepts (OWL, SHACL, Context): ontologies/concepts.md
       - Domains: ontologies/properties.md
+      - Property Explorer:
+        - Overview: ontologies/properties.md
+        - automotive-simulator: ontologies/properties/automotive-simulator.md
+        - description: ontologies/properties/description.md
+        - environment-model: ontologies/properties/environment-model.md
+        - envited-x: ontologies/properties/envited-x.md
+        - example: ontologies/properties/example.md
+        - general: ontologies/properties/general.md
+        - georeference: ontologies/properties/georeference.md
+        - gx (Gaia-X): ontologies/properties/gx.md
+        - hdmap: ontologies/properties/hdmap.md
+        - leakage-test: ontologies/properties/leakage-test.md
+        - manifest: ontologies/properties/manifest.md
+        - openlabel: ontologies/properties/openlabel.md
+        - ositrace: ontologies/properties/ositrace.md
+        - scenario: ontologies/properties/scenario.md
+        - service: ontologies/properties/service.md
+        - simulated-sensor: ontologies/properties/simulated-sensor.md
+        - simulation-model: ontologies/properties/simulation-model.md
+        - surface-model: ontologies/properties/surface-model.md
+        - survey: ontologies/properties/survey.md
+        - tzip21: ontologies/properties/tzip21.md
+        - vv-report: ontologies/properties/vv-report.md
       - Class Explorer:
         - Overview: ontologies/classes/index.md
         - automotive-simulator: ontologies/classes/automotive-simulator/index.md
@@ -115,6 +138,8 @@ nav:
   - Gaia-X:
       - Gaia-X Connection: gaiax/gaiax.md
       - Gaia-X 4 PLC-AAD and Federated Catalog: gaiax/gaiax4plc-aad.md
+      - GX Integration Pattern: gaiax/gx-integration-pattern.md
+      - Domain Migration Guide: gaiax/gx-domain-migration.md
   - ENVITED Ecosystem:
       - ENVITED-X Data Space: ecosystem/envited-x.md
       - Long-Term Maintenance: ecosystem/maintenance.md

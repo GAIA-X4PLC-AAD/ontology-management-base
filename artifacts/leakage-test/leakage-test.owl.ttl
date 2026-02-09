@@ -44,7 +44,7 @@
 leakage-test:LeakageTest a owl:Class ;
 	rdfs:label "Class definition for LeakageTest"@en ;
 	rdfs:comment "Describes a leakage test."@en ;
-	rdfs:subClassOf gx:SoftwareResource .
+	rdfs:subClassOf gx:VirtualResource .
 
 leakage-test:MachineParameter a owl:Class ;
 	rdfs:label "Class definition for MachineParameter"@en ;

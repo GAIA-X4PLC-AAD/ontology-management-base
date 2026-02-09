@@ -12,7 +12,7 @@
     owl:versionInfo 0.5 .
 
 <ExampleServiceOffering> rdf:type owl:Class ;
-    rdfs:subClassOf gx:ServiceOffering ;
+    rdfs:subClassOf gx:VirtualResource ;
     rdfs:label "Example Service Offering"@en ;
     rdfs:comment "Describes an example Service Offering."@en .
 

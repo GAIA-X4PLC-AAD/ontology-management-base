@@ -49,7 +49,7 @@
 simulated-sensor:SimulatedSensor a owl:Class ;
     rdfs:label "Class definition for SimulatedSensor"@en ;
     rdfs:comment "A sensor in an automotive driving simulator."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:subClassOf gx:VirtualResource .
 
 simulated-sensor:Radar a owl:Class ;
     rdfs:label "Class definition for Radar"@en ;

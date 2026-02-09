@@ -469,7 +469,7 @@ class RegistryResolver:
         Returns:
             List of absolute paths to test files
         """
-        test_files = []
+        test_files = set()
 
         for test_id, metadata in self._catalog.items():
             if (
@@ -479,7 +479,7 @@ class RegistryResolver:
                 if test_type is None or metadata.get("test_type") == test_type:
                     file_path = self.root_dir / metadata["path"]
                     if file_path.exists():
-                        test_files.append(file_path)
+                        test_files.add(file_path)
 
         return sorted(test_files)
 

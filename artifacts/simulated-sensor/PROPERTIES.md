@@ -27,7 +27,7 @@ class Class_definition_for_SimulatedSensor
 |Class definition for FieldOfView|https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/FieldOfView|A Field of View (FoV) of a perception sensor as float angles in an automotive driving simulator.||
 |Class definition for Lidar|https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/Lidar|A simulated LIDAR sensor in an automotive driving simulator.||
 |Class definition for Radar|https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/Radar|A simulated RADAR sensor in an automotive driving simulator.||
-|Class definition for SimulatedSensor|https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/SimulatedSensor|A sensor in an automotive driving simulator.|DataResource|
+|Class definition for SimulatedSensor|https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/SimulatedSensor|A sensor in an automotive driving simulator.|VirtualResource|
 
 ## Prefixes
 

@@ -56,4 +56,4 @@
 automotive-simulator:AutomotiveSimulator a owl:Class ;
     rdfs:label "Class definition for AutomotiveSimulator"@en ;
     rdfs:comment "An implementation of an automotive simulator."@en ;
-    rdfs:subClassOf gx:DataResource .
+    rdfs:subClassOf gx:VirtualResource .

@@ -44,8 +44,8 @@
 
 tzip21:Asset a owl:Class ;
     rdfs:label "Class definition for Asset"@en ;
-    rdfs:comment "A class representing a rich metadata asset, acting as a Service Offering in Gaia-X."@en ;
-    rdfs:subClassOf gx:ServiceOffering ;
+    rdfs:comment "A class representing a rich metadata asset, acting as a Virtual Resource in Gaia-X."@en ;
+    rdfs:subClassOf gx:VirtualResource ;
     dcterms:conformsTo <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-7/tzip-7.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-12/tzip-12.md>,
                        <https://gitlab.com/tezos/tzip/-/blob/master/proposals/tzip-16/tzip-16.md>,

@@ -86,13 +86,33 @@ def _copy_domain_artifacts(domain_dir: Path) -> None:
     if not owl_file.exists():
         return
 
-    version_info = _extract_version_info(owl_file)
+    # Special case: GX ontology has no owl:Ontology declaration
+    # Read version from VERSION file if present, otherwise extract from OWL
+    version_file = domain_dir / "VERSION"
+    if version_file.exists():
+        version_raw = version_file.read_text().strip()
+        version_info = _normalize_version_info(version_raw)
+    else:
+        version_info = _extract_version_info(owl_file)
+
     target_dir = DOCS_ARTIFACTS_DIR / domain / version_info
     target_dir.mkdir(parents=True, exist_ok=True)
 
+    # Files to exclude from docs (repository maintenance only)
+    exclude_patterns = {
+        "*.sh",  # Shell scripts (update-from-submodule.sh, verify-version.sh)
+        "VERSION",  # Version tracking (internal use)
+        "VERSIONING.md",  # Versioning documentation (repository-level)
+    }
+
     for file_path in sorted(domain_dir.iterdir()):
         if file_path.is_file():
-            shutil.copy2(file_path, target_dir / file_path.name)
+            # Check if file should be excluded
+            should_exclude = any(
+                file_path.match(pattern) for pattern in exclude_patterns
+            )
+            if not should_exclude:
+                shutil.copy2(file_path, target_dir / file_path.name)
 
     instance_file = _find_instance_file(domain)
     if instance_file:
