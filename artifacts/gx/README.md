@@ -1,7 +1,5 @@
 # Gaia-X Ontology & SHACL Shapes
 
-> ⚠️ **Important Note:** All SHACL shapes in this folder are defined as **open** (not closed).
-
 > 📝 **Catalog Registration:** The SHACL shapes are now registered in the ontology catalog with IRI `https://w3id.org/gaia-x/development#shapes`. This enables automatic discovery and resolution of shapes during validation workflows.
 
 ## Overview
