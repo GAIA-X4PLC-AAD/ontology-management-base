@@ -17,7 +17,7 @@ This version is based on the official **25.11 release** with the following addit
 
 - **Commit c41d423**: Fix double hash fragments in IRIs (fixes enum IRI generation)
 
-The `+fix.1` suffix indicates this is a post-release patch on top of 25.11. When the upstream releases 25.12 or a later version that includes this fix, we will update to the official release tag.
+The `+fix.1` suffix indicates this is a post-release patch on top of 25.11. When the upstream releases a later version that includes this fix, we will update to the official release tag.
 
 ## IRI Notes (Enum Values)
 
