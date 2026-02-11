@@ -38,7 +38,8 @@ Each domain previously declared its main class as `rdfs:subClassOf gx:VirtualRes
 The `general` ontology (`artifacts/general/general.owl.ttl`) is marked as `owl:deprecated true`. Its role (common metadata like name, description, size) is superseded by the envited-x wrapper architecture:
 
 - `general:name` / `general:description` → `gx:name` / `gx:description` (on ResourceDescription) or `schema:name` / `schema:description` (on SoftwareResourceBase, ServiceOfferingBase, CodeArtifactBase)
-- `general:size` / `general:recordingTime` → domain-specific `Content` properties
+- `general:size` → `manifest:fileSize` (xsd:integer, in manifest FileMetadata)
+- `general:recordingTime` → `manifest:timestamp` (xsd:dateTime, in manifest FileMetadata)
 - `general:General` / `general:Data` / `general:Description` → no longer needed; the wrapper pattern handles metadata structuring
 
 Domain ontologies that previously imported `general/v3` now import `envited-x/v3` instead.
@@ -84,13 +85,25 @@ For each migrated domain, the following files were changed:
 
 ### Property migration pattern
 
-For each domain, properties are reorganized into three categories:
+For each domain, properties are reorganized into three layers:
 
 | Property category | Before (flat) | After (nested) |
 |---|---|---|
-| GX compliance (`schema:name`, `gx:license`, `gx:producedBy`, etc.) | On domain node | On base resource node (Layer 1) |
+| GX compliance (name, description, etc.) | On domain node | On base resource node (Layer 1) |
 | Domain metadata (e.g., `simulatorMake`, `formatType`) | On domain node | On `DomainSpecification` → `Content` / `Format` nodes (Layer 3) |
 | Structural (`hasManifest`) | Not present | On domain node (Layer 2) |
+
+!!! warning "GX properties vary by wrapper type"
+    The allowed GX properties on the base resource node (Layer 1) differ by wrapper:
+
+    | Wrapper | Base Class | Name/Description | `gx:license` | `gx:producedBy` |
+    |---------|-----------|-----------------|--------------|-----------------|
+    | SimulationAsset | `ResourceDescription` (gx:VirtualResource) | `gx:name` / `gx:description` | Allowed | Allowed |
+    | SoftwareAsset | `SoftwareResourceBase` (gx:SoftwareResource) | `schema:name` / `schema:description` | Allowed | Not allowed (closed shape) |
+    | ServiceAsset | `ServiceOfferingBase` (gx:ServiceOffering) | `schema:name` / `schema:description` | Not allowed | Not allowed (closed shape) |
+    | CodeAsset | `CodeArtifactBase` (gx:CodeArtifact) | `schema:name` / `schema:description` | Allowed | Not allowed (effectively closed) |
+
+    Only `gx:VirtualResource` is open (`sh:closed false`). All other GX base types have closed SHACL shapes that restrict which properties are permitted.
 
 ### Ontology import changes
 
