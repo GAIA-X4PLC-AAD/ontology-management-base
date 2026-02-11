@@ -4,13 +4,13 @@
   "ontologies": {
     "automotive-simulator": {
       "namespace": "gaia-x4plcaad",
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
-      "latest": "v1",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
+      "latest": "v2",
       "versions": {
-        "v1": {
+        "v2": {
           "releaseTag": "v0.0.5",
-          "versionInfo": "v1",
-          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
           "files": {
             "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
             "shacl": [
@@ -263,13 +263,13 @@
     },
     "service": {
       "namespace": "gaia-x4plcaad",
-      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1",
-      "latest": "v1",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v2",
+      "latest": "v2",
       "versions": {
-        "v1": {
+        "v2": {
           "releaseTag": "v0.0.5",
-          "versionInfo": "v1",
-          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1/",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v2",
           "files": {
             "ontology": "artifacts/service/service.owl.ttl",
             "shacl": [

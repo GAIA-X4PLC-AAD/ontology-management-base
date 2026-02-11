@@ -1,9 +1,9 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix survey: <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # The Shapes Graph URI appends "/shapes" to the Ontology URI
@@ -12,41 +12,93 @@
     # The Shapes Graph must import the Domain Ontology
     owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6> .
 
-survey:SurveyServiceOfferingShape
-	a sh:NodeShape ; 
-	sh:targetClass survey:SurveyServiceOffering ; 
-	sh:property [
-		sh:path survey:surveyUrl ; 
-		sh:datatype xsd:string ; 
-		skos:example "'Example URL'" ; 
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "Validation of survey URL failed." ;
-		sh:name "Survey URL" ;
-	] ; 
-	sh:property [
-		sh:path survey:surveyCreationTime ; 
-		sh:datatype xsd:dateTime ;  
-		skos:example "'Date 1'" ; 
-		sh:minCount 1 ; 
-		sh:maxCount 1 ;
-		sh:message "Validation of survey creation time failed." ;
-		sh:name "Survey creation time" ;
-		sh:description "When the survey was created" ;
-	] ; 
-	sh:property [
-		sh:path survey:surveyEndTime ; 
-		sh:datatype xsd:dateTime ; 
-		skos:example "'Date 3'" ; 
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:message "Validation of survey end time failed." ;
-		sh:name "Survey end time" ;
-		sh:description "When the survey will end automatically" ;
-	] ;
-	sh:property [
-		sh:maxCount 1 ;	
-		sh:minCount 1 ;	
-		sh:node general:GeneralShape ;	
-		sh:path survey:general ;
-	] .
+survey:SurveyServiceOfferingShape a sh:NodeShape ;
+    sh:closed false ;
+    sh:targetClass survey:SurveyServiceOffering ;
+
+    # 1) hasServiceOffering
+    sh:property [
+        sh:path survey:hasServiceOffering ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:ServiceOfferingBaseShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each SurveyServiceOffering must have exactly one associated ServiceOfferingBase (either inline or a valid manifest:Link)."@en ;
+    ] ;
+
+    # 2) hasDomainSpecification
+    sh:property [
+        sh:path survey:hasDomainSpecification ;
+        sh:node survey:ServiceDomainSpecificationShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SurveyServiceOffering must have one associated DomainSpecification with content."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path survey:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each SurveyServiceOffering must have exactly one manifest."@en ;
+    ] .
+
+# DomainSpecification shape for service offering
+survey:ServiceDomainSpecificationShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path survey:hasContent ;
+        sh:node survey:ServiceContentShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each ServiceDomainSpecification must have one Content facet."@en ;
+    ] .
+
+# Content shape for service offering
+survey:ServiceContentShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path survey:surveyUrl ;
+        sh:datatype xsd:string ;
+        skos:example "'Example URL'" ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Validation of survey URL failed." ;
+        sh:name "Survey URL" ;
+    ] ;
+    sh:property [
+        sh:path survey:surveyCreationTime ;
+        sh:datatype xsd:dateTime ;
+        skos:example "'Date 1'" ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Validation of survey creation time failed." ;
+        sh:name "Survey creation time" ;
+        sh:description "When the survey was created" ;
+    ] ;
+    sh:property [
+        sh:path survey:surveyEndTime ;
+        sh:datatype xsd:dateTime ;
+        skos:example "'Date 3'" ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Validation of survey end time failed." ;
+        sh:name "Survey end time" ;
+        sh:description "When the survey will end automatically" ;
+    ] ;
+    sh:property [
+        sh:path survey:dataSize ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Validation of data size failed." ;
+        sh:name "Data size" ;
+    ] .

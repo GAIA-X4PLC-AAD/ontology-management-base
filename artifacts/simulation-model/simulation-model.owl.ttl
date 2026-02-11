@@ -1,4 +1,6 @@
 @prefix simulation-model: <https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -6,8 +8,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2> a owl:Ontology ;
     rdfs:label "Ontology definition for simulation-model"@en ;
@@ -34,7 +34,7 @@
     owl:versionInfo "v2" ;
 
     # Imports strict dependencies
-    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/general/v3> ;
+    owl:imports <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/shapes> ;
@@ -43,64 +43,122 @@
     dcterms:references <https://fmi-standard.org/> ;
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
-# Classes
+
+#### Classes
 
 simulation-model:SimulationModel a owl:Class ;
-    rdfs:label "SimulationModel"@en ;
+    rdfs:label "Class definition for SimulationModel"@en ;
     rdfs:comment "Class definition for a simulation model."@en ;
-    rdfs:subClassOf gx:VirtualResource .
+    rdfs:subClassOf envited-x:SoftwareAsset .
 
-simulation-model:Format a owl:Class ;
-    rdfs:label "Class definition for Format"@en ;
-    rdfs:comment "Class with attributes for the format of a simulation model."@en .
+simulation-model:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata extension for simulation model assets."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
 
 simulation-model:Content a owl:Class ;
     rdfs:label "Class definition for Content"@en ;
-    rdfs:comment "Class with attributes for the content of a simulation model."@en .
+    rdfs:comment "Class with attributes for the content of a simulation model."@en ;
+    rdfs:subClassOf envited-x:Content .
 
-simulation-model:Quantity a owl:Class ;
-    rdfs:label "Class definition for Quantity"@en ;
-    rdfs:comment "Class with attributes for the quantity of a simulation model."@en .
+simulation-model:Format a owl:Class ;
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Class with attributes for the format of a simulation model."@en ;
+    rdfs:subClassOf envited-x:Format .
 
 simulation-model:Quality a owl:Class ;
     rdfs:label "Class definition for Quality"@en ;
-    rdfs:comment "Class with attributes for the quality of a simulation model."@en .
+    rdfs:comment "Class with attributes for the quality of a simulation model."@en ;
+    rdfs:subClassOf envited-x:Quality .
+
+simulation-model:Quantity a owl:Class ;
+    rdfs:label "Class definition for Quantity"@en ;
+    rdfs:comment "Class with attributes for the quantity of a simulation model."@en ;
+    rdfs:subClassOf envited-x:Quantity .
 
 simulation-model:DataSource a owl:Class ;
     rdfs:label "Class definition for DataSource"@en ;
-    rdfs:comment "Class with attributes for the data source of a simulation model."@en .
+    rdfs:comment "Class with attributes for the data source of a simulation model."@en ;
+    rdfs:subClassOf envited-x:DataSource .
 
-# Properties
 
-simulation-model:general a owl:ObjectProperty ;
-    rdfs:label "general"@en ;
+#### Object Properties
+
+### hasSoftwareResource (SimulationModel -> envited-x:SoftwareResourceBase)
+simulation-model:hasSoftwareResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasSoftwareResource"@en ;
+    rdfs:comment "Links a simulation model to its GX-compliant SoftwareResourceBase."@en ;
+    rdfs:subPropertyOf envited-x:hasSoftwareResource ;
     rdfs:domain simulation-model:SimulationModel ;
-    rdfs:range general:General .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:SoftwareResourceBase manifest:Link )
+    ] .
 
-simulation-model:format a owl:ObjectProperty ;
-    rdfs:label "format"@en ;
+### hasDomainSpecification (SimulationModel -> DomainSpecification)
+simulation-model:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a simulation model to its domain-specific metadata."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain simulation-model:SimulationModel ;
-    rdfs:range simulation-model:Format .
+    rdfs:range simulation-model:DomainSpecification .
 
-simulation-model:content a owl:ObjectProperty ;
-    rdfs:label "content"@en ;
+### hasManifest (SimulationModel -> envited-x:Manifest or manifest:Link)
+simulation-model:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment """Links a simulation model to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node, or
+                - a manifest:Link node."""@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
     rdfs:domain simulation-model:SimulationModel ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
+
+### hasContent (DomainSpecification -> Content)
+simulation-model:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DomainSpecification to its Content facet."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain simulation-model:DomainSpecification ;
     rdfs:range simulation-model:Content .
 
-simulation-model:quantity a owl:ObjectProperty ;
-    rdfs:label "quantity"@en ;
-    rdfs:domain simulation-model:SimulationModel ;
-    rdfs:range simulation-model:Quantity .
+### hasFormat (DomainSpecification -> Format)
+simulation-model:hasFormat a owl:ObjectProperty ;
+    rdfs:label "Object property: hasFormat"@en ;
+    rdfs:comment "Links a DomainSpecification to its Format facet."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
+    rdfs:domain simulation-model:DomainSpecification ;
+    rdfs:range simulation-model:Format .
 
-simulation-model:quality a owl:ObjectProperty ;
-    rdfs:label "quality"@en ;
-    rdfs:domain simulation-model:SimulationModel ;
+### hasQuality (DomainSpecification -> Quality)
+simulation-model:hasQuality a owl:ObjectProperty ;
+    rdfs:label "Object property: hasQuality"@en ;
+    rdfs:comment "Links a DomainSpecification to its Quality facet."@en ;
+    rdfs:subPropertyOf envited-x:hasQuality ;
+    rdfs:domain simulation-model:DomainSpecification ;
     rdfs:range simulation-model:Quality .
 
-simulation-model:dataSource a owl:ObjectProperty ;
-    rdfs:label "dataSource"@en ;
-    rdfs:domain simulation-model:SimulationModel ;
+### hasQuantity (DomainSpecification -> Quantity)
+simulation-model:hasQuantity a owl:ObjectProperty ;
+    rdfs:label "Object property: hasQuantity"@en ;
+    rdfs:comment "Links a DomainSpecification to its Quantity facet."@en ;
+    rdfs:subPropertyOf envited-x:hasQuantity ;
+    rdfs:domain simulation-model:DomainSpecification ;
+    rdfs:range simulation-model:Quantity .
+
+### hasDataSource (DomainSpecification -> DataSource)
+simulation-model:hasDataSource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDataSource"@en ;
+    rdfs:comment "Links a DomainSpecification to its DataSource facet."@en ;
+    rdfs:subPropertyOf envited-x:hasDataSource ;
+    rdfs:domain simulation-model:DomainSpecification ;
     rdfs:range simulation-model:DataSource .
+
+
+#### Datatype Properties
 
 # Format properties
 simulation-model:modelImplementationFormat a owl:DatatypeProperty ;

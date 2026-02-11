@@ -9,11 +9,11 @@
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: [BNODE]                                                                                                                       =
 =    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasContent                                                                    =
-=    Error:            Each DataResourceExtension must link to at least one envited-x:Content via envited-x:hasContent.                              =
+=    Error:            Each DomainSpecification must link to at least one envited-x:Content via envited-x:hasContent.                                =
 = -------------------------------------------------------------------------------------------------------------------------------------------------- =
 = 🔹 [Violation] Node: did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_01_missing_has_content_instance                                  =
-=    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasDataResourceExtension                                                      =
-=    Error:            A SimulationAsset may have one or more DataResourceExtensions (e.g. georeference metadata, sensor calibration) to provide     =
-=                      additional structured metadata. Each extension MUST conform to envited-x:DataResourceExtensionShape (at least one             =
+=    Property:         https://w3id.org/ascs-ev/envited-x/envited-x/v3/hasDomainSpecification                                                        =
+=    Error:            A SimulationAsset may have one or more DomainSpecifications (e.g. georeference metadata, sensor calibration) to provide       =
+=                      additional structured metadata. Each extension MUST conform to envited-x:DomainSpecificationShape (at least one               =
 =                      envited-x:hasContent and one envited-x:hasFormat).                                                                            =
 ======================================================================================================================================================

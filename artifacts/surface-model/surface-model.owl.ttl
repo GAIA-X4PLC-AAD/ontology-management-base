@@ -61,15 +61,15 @@ surface-model:SurfaceModel a owl:Class ;
     rdfs:subClassOf envited-x:SimulationAsset ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty surface-model:hasDataResourceExtension ;
-        owl:someValuesFrom surface-model:DataResourceExtension
+        owl:onProperty surface-model:hasDomainSpecification ;
+        owl:someValuesFrom surface-model:DomainSpecification
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty surface-model:hasDataResource ;
+        owl:onProperty surface-model:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
     rdfs:subClassOf [
@@ -81,10 +81,10 @@ surface-model:SurfaceModel a owl:Class ;
         ]
     ] .
 
-surface-model:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
-    rdfs:comment "Surface model DataResourceExtension containing additional metadata information of the simulation asset."@en ;
-    rdfs:subClassOf envited-x:DataResourceExtension ;
+surface-model:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Surface model DomainSpecification containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty surface-model:hasContent ;
@@ -130,21 +130,21 @@ surface-model:Quantity a owl:Class ;
 
 ### Object Properties
 
-surface-model:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResourceExtension"@en ;
-    rdfs:comment "Links a surface model asset to its specific metadata (DataResourceExtension), which may contain additional surface model-specific attributes."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+surface-model:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a surface model asset to its specific metadata (DomainSpecification), which may contain additional surface model-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain surface-model:SurfaceModel ;
-    rdfs:range surface-model:DataResourceExtension .
+    rdfs:range surface-model:DomainSpecification .
 
-surface-model:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResource"@en ;
-    rdfs:comment "Links a surface model asset to a standard DataResource instance from envited-x."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResource ;
+surface-model:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links a surface model asset to a standard ResourceDescription instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
     rdfs:domain surface-model:SurfaceModel ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
 surface-model:hasManifest a owl:ObjectProperty ;
@@ -160,20 +160,20 @@ surface-model:hasManifest a owl:ObjectProperty ;
 
 surface-model:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;
-    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the surface model is georeferenced."@en ;
-    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to a georeference:Georeference describing how the surface model is georeferenced."@en ;
+    rdfs:domain surface-model:DomainSpecification ;
     rdfs:range georeference:Georeference .
 
 surface-model:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Content that describes the surface model's data content."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of surface-model:Content that describes the surface model's data content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
-    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:domain surface-model:DomainSpecification ;
     rdfs:range surface-model:Content .
 
 surface-model:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of surface-model:Format that describes the surface model's file format details."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of surface-model:Format that describes the surface model's file format details."@en ;
     rdfs:subPropertyOf envited-x:hasFormat ;
-    rdfs:domain surface-model:DataResourceExtension ;
+    rdfs:domain surface-model:DomainSpecification ;
     rdfs:range surface-model:Format .

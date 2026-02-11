@@ -20,12 +20,12 @@ Example snippet:
 {
   "automotive-simulator": {
     "namespace": "gaia-x4plcaad",
-    "latest": "v1",
-    "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
+    "latest": "v2",
+    "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
     "versions": {
-      "v1": {
-        "versionInfo": "v1",
-        "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1",
+      "v2": {
+        "versionInfo": "v2",
+        "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
         "files": {
           "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
           "shacl": ["artifacts/automotive-simulator/automotive-simulator.shacl.ttl"],

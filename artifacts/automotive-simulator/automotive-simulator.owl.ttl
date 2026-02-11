@@ -1,13 +1,15 @@
-@prefix automotive-simulator: <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/> .
+@prefix automotive-simulator: <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1> a owl:Ontology ;
+<https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2> a owl:Ontology ;
     rdfs:label "Ontology definition for automotive-simulator"@en ;
     rdfs:comment "An ontology with common classes to describe the attributes of an automotive simulator."@en ;
 
@@ -40,20 +42,90 @@
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1> ;
-    owl:versionInfo "v1" ;
+    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2> ;
+    owl:versionInfo "v2" ;
 
     # Imports strict dependencies
-    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/general/v3> ;
+    owl:imports <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes> ;
+    dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/shapes> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+
+#### Classes
+
 automotive-simulator:AutomotiveSimulator a owl:Class ;
     rdfs:label "Class definition for AutomotiveSimulator"@en ;
     rdfs:comment "An implementation of an automotive simulator."@en ;
-    rdfs:subClassOf gx:VirtualResource .
+    rdfs:subClassOf envited-x:SoftwareAsset .
+
+automotive-simulator:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata extension for automotive simulator assets."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
+
+automotive-simulator:Content a owl:Class ;
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Describes the content properties of an automotive simulator (make, version, capabilities)."@en ;
+    rdfs:subClassOf envited-x:Content .
+
+automotive-simulator:Format a owl:Class ;
+    rdfs:label "Class definition for Format"@en ;
+    rdfs:comment "Describes the format properties of an automotive simulator (scenario definitions, interfaces)."@en ;
+    rdfs:subClassOf envited-x:Format .
+
+
+#### Object Properties
+
+### hasSoftwareResource (AutomotiveSimulator -> envited-x:SoftwareResourceBase)
+automotive-simulator:hasSoftwareResource a owl:ObjectProperty ;
+    rdfs:label "Object property: hasSoftwareResource"@en ;
+    rdfs:comment "Links an automotive simulator to its GX-compliant SoftwareResourceBase."@en ;
+    rdfs:subPropertyOf envited-x:hasSoftwareResource ;
+    rdfs:domain automotive-simulator:AutomotiveSimulator ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:SoftwareResourceBase manifest:Link )
+    ] .
+
+### hasDomainSpecification (AutomotiveSimulator -> DomainSpecification)
+automotive-simulator:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links an automotive simulator to its domain-specific metadata."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
+    rdfs:domain automotive-simulator:AutomotiveSimulator ;
+    rdfs:range automotive-simulator:DomainSpecification .
+
+### hasManifest (AutomotiveSimulator -> envited-x:Manifest or manifest:Link)
+automotive-simulator:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment """Links an automotive simulator to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node, or
+                - a manifest:Link node."""@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain automotive-simulator:AutomotiveSimulator ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
+
+### hasContent (DomainSpecification -> Content)
+automotive-simulator:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DomainSpecification to its Content facet."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain automotive-simulator:DomainSpecification ;
+    rdfs:range automotive-simulator:Content .
+
+### hasFormat (DomainSpecification -> Format)
+automotive-simulator:hasFormat a owl:ObjectProperty ;
+    rdfs:label "Object property: hasFormat"@en ;
+    rdfs:comment "Links a DomainSpecification to its Format facet."@en ;
+    rdfs:subPropertyOf envited-x:hasFormat ;
+    rdfs:domain automotive-simulator:DomainSpecification ;
+    rdfs:range automotive-simulator:Format .

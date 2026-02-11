@@ -15462,7 +15462,7 @@ schema:naics a rdf:Property ;
 schema:name a rdf:Property ;
     rdfs:label "name" ;
     rdfs:comment "The name of the item." ;
-    rdfs:subPropertyOf rdfs:label ;
+    # rdfs:subPropertyOf rdfs:label ;  # MODIFIED — see README.md in this folder
     owl:equivalentProperty dct:title,
         cmns-txt:hasName ;
     schema:domainIncludes schema:Thing ;

@@ -5,8 +5,8 @@
 ```mermaid
 classDiagram
 class Class_definition_for_Content
-class Class_definition_for_DataResourceExtension
 class Class_definition_for_DataSource
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Format
 class Class_definition_for_Quality
 class Class_definition_for_Quantity
@@ -17,8 +17,8 @@ class Content_or_OpenLabel_Tag
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/ascs-ev/envited-x/scenario/v5/Content)
-- Class definition for DataResourceExtension (https://w3id.org/ascs-ev/envited-x/scenario/v5/DataResourceExtension)
 - Class definition for DataSource (https://w3id.org/ascs-ev/envited-x/scenario/v5/DataSource)
+- Class definition for DomainSpecification (https://w3id.org/ascs-ev/envited-x/scenario/v5/DomainSpecification)
 - Class definition for Format (https://w3id.org/ascs-ev/envited-x/scenario/v5/Format)
 - Class definition for Quality (https://w3id.org/ascs-ev/envited-x/scenario/v5/Quality)
 - Class definition for Quantity (https://w3id.org/ascs-ev/envited-x/scenario/v5/Quantity)
@@ -30,8 +30,8 @@ class Content_or_OpenLabel_Tag
 |Class|IRI|Description|Parents|
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/scenario/v5/Content|Defines the content of the scenario asset, such as time, abstraction level, and links.|Content|
-|Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/scenario/v5/DataResourceExtension|Scenario DataResourceExtension containing additional metadata information of the simulation asset.|DataResourceExtension|
 |Class definition for DataSource|https://w3id.org/ascs-ev/envited-x/scenario/v5/DataSource|Defines which data resources were used to create the scenario asset.|DataSource|
+|Class definition for DomainSpecification|https://w3id.org/ascs-ev/envited-x/scenario/v5/DomainSpecification|Scenario DomainSpecification containing additional metadata information of the simulation asset.|DomainSpecification|
 |Class definition for Format|https://w3id.org/ascs-ev/envited-x/scenario/v5/Format|Contains properties that describe the format of the scenario asset.|Format|
 |Class definition for Quality|https://w3id.org/ascs-ev/envited-x/scenario/v5/Quality|Contains properties that describe the accuracy of objects and the calibration of the scenario asset.|Quality|
 |Class definition for Quantity|https://w3id.org/ascs-ev/envited-x/scenario/v5/Quantity|Contains properties that describe the quantity of the scenario asset (e.g., number of traffic objects, controllers).|Quantity|
@@ -92,14 +92,14 @@ class Content_or_OpenLabel_Tag
 #### scenario:customCommands {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-customcommands .property-anchor }
 #### scenario:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-formattype .property-anchor }
 #### scenario:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hascontent .property-anchor }
-#### scenario:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresource .property-anchor }
-#### scenario:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresourceextension .property-anchor }
 #### scenario:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdatasource .property-anchor }
+#### scenario:hasDomainSpecification {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdomainspecification .property-anchor }
 #### scenario:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasformat .property-anchor }
 #### scenario:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasgeoreference .property-anchor }
 #### scenario:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasmanifest .property-anchor }
 #### scenario:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquality .property-anchor }
 #### scenario:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquantity .property-anchor }
+#### scenario:hasResourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasresourcedescription .property-anchor }
 #### scenario:movementDescription {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-movementdescription .property-anchor }
 #### scenario:numberTrafficObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-numbertrafficobjects .property-anchor }
 #### scenario:permanentTrafficObjects {: #prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-permanenttrafficobjects .property-anchor }
@@ -113,16 +113,16 @@ class Content_or_OpenLabel_Tag
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresource"></a>hasDataResource|1|1|||scenario.shacl.ttl|
-|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||scenario.shacl.ttl|
+|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasresourcedescription"></a>hasResourceDescription|1|1|||scenario.shacl.ttl|
+|ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdomainspecification"></a>hasDomainSpecification|1|1|||scenario.shacl.ttl|
 |ScenarioShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasmanifest"></a>hasManifest|1|1|||scenario.shacl.ttl|
 |ScenarioManifestConstraints|manifest|<a id="prop-https---w3id-org-ascs-ev-envited-x-manifest-v5-hasreferencedartifacts"></a>hasReferencedArtifacts|||||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hascontent"></a>hasContent|1||Attributes describing the content of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasformat"></a>hasFormat|1|1|File format details of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the scenario.||scenario.shacl.ttl|
-|DataResourceExtensionShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hascontent"></a>hasContent|1||Attributes describing the content of the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasformat"></a>hasFormat|1|1|File format details of the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the scenario.||scenario.shacl.ttl|
+|DomainSpecificationShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the scenario.||scenario.shacl.ttl|
 |FormatShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-formattype"></a>formatType||1|Defines the type of data format used for the scenario asset.||scenario.shacl.ttl|
 |FormatShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-version"></a>version||1|Defines the version of the data format used for the scenario asset.|<http://www.w3.org/2001/XMLSchema#string>|scenario.shacl.ttl|
 |ContentShape|scenario|<a id="prop-https---w3id-org-ascs-ev-envited-x-scenario-v5-abstractionlevel"></a>abstractionLevel||1|Specifies the abstraction level (as defined in the Pegasus project) of the scenario asset.||scenario.shacl.ttl|

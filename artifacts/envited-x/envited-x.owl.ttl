@@ -54,42 +54,30 @@
     rdfs:seeAlso <https://ascs-ev.github.io/EVES/> .
 
 
-# Example Query to Retrieve Simulation Assets and Their Metadata
-# This query selects all instances of envited-x:SimulationAsset
-# and retrieves the linked metadata stored in envited-x:DataResource.
-
-# SPARQL Query:
-# SELECT ?simulationAsset ?metadata
-# WHERE {
-#     ?simulationAsset a envited-x:SimulationAsset .
-#     ?simulationAsset envited-x:hasDataResource ?metadata .
-#     ?metadata a envited-x:DataResource .
-# }
 #
 # Core simulation asset class for the ENVITED-X Data Space
 #
-# Remark: Think about SimulationAsset being a subClassOf envited-X:DataResource
 envited-x:SimulationAsset a owl:Class ;
     rdfs:label "Class definition for SimulationAsset"@en ;
     rdfs:comment """A structured digital asset in the ENVITED-X Data Space that aggregates metadata and a structured manifest.
                     This class serves as a modular container for various simulation-related resources, ensuring interoperability and extensibility.
-                    Every SimulationAsset must be linked to at least one DataResource, which provides essential metadata,
+                    Every SimulationAsset must be linked to at least one ResourceDescription, which provides essential metadata,
                     and a Manifest, which defines its internal structure and licensing information.
                     Subclasses of SimulationAsset can be introduced to represent specific asset types, such as HD Maps or Vehicle Models."""@en ;
     rdfs:subClassOf owl:Thing ;
     # Coupling to Gaia-X through a subclass of gx:VirtualResource
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty envited-x:hasDataResource ;
+        owl:onProperty envited-x:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
-    # Optional coupling to DataResourceExtension
+    # Optional coupling to DomainSpecification
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty envited-x:hasDataResourceExtension ;
+        owl:onProperty envited-x:hasDomainSpecification ;
         owl:minCardinality 0
     ] ;
     # Coupling to a Manifest (exactly one value for envited-x:hasManifest)
@@ -99,25 +87,132 @@ envited-x:SimulationAsset a owl:Class ;
         owl:cardinality 1
     ] .
 
-# Ensures a SimulationAsset cannot also be classified as a DataResource.
-# This enforces the distinction between structured digital assets (SimulationAsset)
-# and their associated metadata resources (DataResource).
+#
+# SoftwareAsset — wrapper for software resources
+#
+envited-x:SoftwareAsset a owl:Class ;
+    rdfs:label "Class definition for SoftwareAsset"@en ;
+    rdfs:comment """A structured digital asset in the ENVITED-X Data Space representing a software resource.
+                    Carries domain-specific metadata while delegating GX compliance
+                    to the linked SoftwareResourceBase node."""@en ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasSoftwareResource ;
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:SoftwareResourceBase manifest:Link )
+        ]
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasDomainSpecification ;
+        owl:minCardinality 0
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasManifest ;
+        owl:cardinality 1
+    ] .
+
+#
+# ServiceAsset — wrapper for service offerings
+#
+envited-x:ServiceAsset a owl:Class ;
+    rdfs:label "Class definition for ServiceAsset"@en ;
+    rdfs:comment """A structured digital asset in the ENVITED-X Data Space representing a service offering.
+                    Carries domain-specific metadata while delegating GX compliance
+                    to the linked ServiceOfferingBase node."""@en ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasServiceOffering ;
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:ServiceOfferingBase manifest:Link )
+        ]
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasDomainSpecification ;
+        owl:minCardinality 0
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasManifest ;
+        owl:cardinality 1
+    ] .
+
+#
+# CodeAsset — wrapper for code artifacts
+#
+envited-x:CodeAsset a owl:Class ;
+    rdfs:label "Class definition for CodeAsset"@en ;
+    rdfs:comment """A structured digital asset in the ENVITED-X Data Space representing a code artifact.
+                    Carries domain-specific metadata while delegating GX compliance
+                    to the linked CodeArtifactBase node."""@en ;
+    rdfs:subClassOf owl:Thing ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasCodeArtifact ;
+        owl:someValuesFrom [
+            a owl:Class ;
+            owl:unionOf ( envited-x:CodeArtifactBase manifest:Link )
+        ]
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasDomainSpecification ;
+        owl:minCardinality 0
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty envited-x:hasManifest ;
+        owl:cardinality 1
+    ] .
+
+# Ensures wrapper types, base resources, and ResourceDescription are mutually disjoint.
 [ a owl:AllDisjointClasses ;
-  owl:members ( envited-x:SimulationAsset envited-x:DataResource )
+  owl:members (
+    envited-x:SimulationAsset
+    envited-x:SoftwareAsset
+    envited-x:ServiceAsset
+    envited-x:CodeAsset
+    envited-x:ResourceDescription
+    envited-x:SoftwareResourceBase
+    envited-x:ServiceOfferingBase
+    envited-x:CodeArtifactBase
+  )
 ] .
 
 # Couples the SimulationAsset to the GaiaX Data Ecosystem
-envited-x:DataResource a owl:Class ;
-    rdfs:label "Class definition for DataResource"@en ;
-    rdfs:comment """A base class for ENVITED-X DataResources, containing common metadata such as name and description of the simulation asset.
+envited-x:ResourceDescription a owl:Class ;
+    rdfs:label "Class definition for ResourceDescription"@en ;
+    rdfs:comment """A base class for ENVITED-X resource descriptions, containing common metadata such as name and description of the simulation asset.
                     This class extends gx:VirtualResource and can be further specialized by domain-specific ontologies (e.g., HD Maps, Vehicle Models, or Sensor Data)."""@en ;
     rdfs:subClassOf gx:VirtualResource .
 
+# GX-coupled base resource classes
+envited-x:SoftwareResourceBase a owl:Class ;
+    rdfs:label "Class definition for SoftwareResourceBase"@en ;
+    rdfs:comment "Base class coupling ENVITED-X software assets to gx:SoftwareResource."@en ;
+    rdfs:subClassOf gx:SoftwareResource .
 
-envited-x:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
+envited-x:ServiceOfferingBase a owl:Class ;
+    rdfs:label "Class definition for ServiceOfferingBase"@en ;
+    rdfs:comment "Base class coupling ENVITED-X service assets to gx:ServiceOffering."@en ;
+    rdfs:subClassOf gx:ServiceOffering .
+
+envited-x:CodeArtifactBase a owl:Class ;
+    rdfs:label "Class definition for CodeArtifactBase"@en ;
+    rdfs:comment "Base class coupling ENVITED-X code assets to gx:CodeArtifact."@en ;
+    rdfs:subClassOf gx:CodeArtifact .
+
+
+envited-x:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
     rdfs:comment """A metadata extension that enriches a SimulationAsset with additional structured information.
-                    Unlike envited-x:DataResource, extensions do not represent standalone retrievable data assets but
+                    Unlike envited-x:ResourceDescription, extensions do not represent standalone retrievable data assets but
                     serve as auxiliary metadata linked to a SimulationAsset."""@en ;
     rdfs:subClassOf [
         a owl:Restriction ;
@@ -167,29 +262,54 @@ envited-x:Quantity a owl:Class ;
     rdfs:comment "Contains properties to describe the quantity related criteria that can be extended for specific asset types."@en .
 
 # Object properties
-# This allows:
-#
-# All subclasses of SimulationAsset (e.g., envited-x:HdMap, vehicle:VehicleModel) to use hasDataResource even without redefinition.
-# Future assets to link to a DataResource without changing the ontology structure.
-#
-#### hasDataResource (SimulationAsset -> DataResource)
-envited-x:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "has data resource"@en ;
-    rdfs:comment "Links a simulation asset or its subclass to its associated DataResource, which provides essential metadata such as name and description."@en ;
-    rdfs:domain envited-x:SimulationAsset ;
+
+#### hasResourceDescription (SimulationAsset -> ResourceDescription)
+envited-x:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "has resource description"@en ;
+    rdfs:comment "Links an asset or its subclass to its associated ResourceDescription, which provides essential metadata such as name and description."@en ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
-### hasDataResourceExtension (SimulationAsset -> DataResourceExtension)
-envited-x:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "has data resource extension"@en ;
+# Type-specific linking properties (sub-properties of hasResourceDescription)
+envited-x:hasSoftwareResource a owl:ObjectProperty ;
+    rdfs:label "has software resource"@en ;
+    rdfs:comment "Links a SoftwareAsset to its GX-compliant SoftwareResourceBase."@en ;
+    rdfs:domain envited-x:SoftwareAsset ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:SoftwareResourceBase manifest:Link )
+    ] ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription .
+
+envited-x:hasServiceOffering a owl:ObjectProperty ;
+    rdfs:label "has service offering"@en ;
+    rdfs:comment "Links a ServiceAsset to its GX-compliant ServiceOfferingBase."@en ;
+    rdfs:domain envited-x:ServiceAsset ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:ServiceOfferingBase manifest:Link )
+    ] ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription .
+
+envited-x:hasCodeArtifact a owl:ObjectProperty ;
+    rdfs:label "has code artifact"@en ;
+    rdfs:comment "Links a CodeAsset to its GX-compliant CodeArtifactBase."@en ;
+    rdfs:domain envited-x:CodeAsset ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:CodeArtifactBase manifest:Link )
+    ] ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription .
+
+### hasDomainSpecification (SimulationAsset -> DomainSpecification)
+envited-x:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "has domain specification"@en ;
     rdfs:comment """Links a SimulationAsset to one or more metadata extensions (e.g., georeference metadata, sensor calibration)
                     that provide additional structured information. Extensions do not function as independent data resources
                     but rather as supplementary metadata specific to a given SimulationAsset."""@en ;
-    rdfs:domain envited-x:SimulationAsset ;
-    rdfs:range envited-x:DataResourceExtension .
+    rdfs:range envited-x:DomainSpecification .
 
 ### hasManifest (SimulationAsset -> inline Manifest OR Link)
 envited-x:hasManifest a owl:ObjectProperty ;
@@ -200,45 +320,44 @@ envited-x:hasManifest a owl:ObjectProperty ;
                     - a manifest:Link node (a link that points via manifest:iri
                     to an external manifest representation, typically identified by a DID).
                     """@en ;
-    rdfs:domain envited-x:SimulationAsset ;
     rdfs:range [
         a owl:Class ;
         owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
-### hasContent (DataResourceExtension -> Content)
+### hasContent (DomainSpecification -> Content)
 envited-x:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of envited-x:Content that describes the SimulationAsset`s content."@en ;
-    rdfs:domain envited-x:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of envited-x:Content that describes the SimulationAsset`s content."@en ;
+    rdfs:domain envited-x:DomainSpecification ;
     rdfs:range envited-x:Content .
 
-### hasDataSource (DataResourceExtension -> DataSource)
+### hasDataSource (DomainSpecification -> DataSource)
 envited-x:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of envited-x:DataSource that describes how the SimulationAsset was created."@en ;
-    rdfs:domain envited-x:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of envited-x:DataSource that describes how the SimulationAsset was created."@en ;
+    rdfs:domain envited-x:DomainSpecification ;
     rdfs:range envited-x:DataSource .
 
-### hasFormat (DataResourceExtension -> Format)
+### hasFormat (DomainSpecification -> Format)
 envited-x:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of envited-x:Format that describes the SimulationAsset`s format details."@en ;
-    rdfs:domain envited-x:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of envited-x:Format that describes the SimulationAsset`s format details."@en ;
+    rdfs:domain envited-x:DomainSpecification ;
     rdfs:range envited-x:Format .
 
-### hasQuality (DataResourceExtension -> Quality)
+### hasQuality (DomainSpecification -> Quality)
 envited-x:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of envited-x:Quality describing the SimulationAsset`s quality or accuracy aspects."@en ;
-    rdfs:domain envited-x:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of envited-x:Quality describing the SimulationAsset`s quality or accuracy aspects."@en ;
+    rdfs:domain envited-x:DomainSpecification ;
     rdfs:range envited-x:Quality .
 
-### hasQuantity (DataResourceExtension -> Quantity)
+### hasQuantity (DomainSpecification -> Quantity)
 envited-x:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of envited-x:Quantity describing the SimulationAsset`s quantity."@en ;
-    rdfs:domain envited-x:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of envited-x:Quantity describing the SimulationAsset`s quantity."@en ;
+    rdfs:domain envited-x:DomainSpecification ;
     rdfs:range envited-x:Quantity .
 
 ### Define specific category types as named individuals, extending manifest categories

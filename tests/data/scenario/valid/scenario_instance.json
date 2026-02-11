@@ -13,9 +13,9 @@
   },
   "@id": "did:web:test.scenario.net:Scenario:test_valid_scenario_instance",
   "@type": "scenario:Scenario",
-  "scenario:hasDataResource": {
-    "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
-    "@type": "envited-x:DataResource",
+  "scenario:hasResourceDescription": {
+    "@id": "did:web:registry.envited-x.net::ResourceDescription:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN",
+    "@type": "envited-x:ResourceDescription",
     "gx:name": "Scenario Example",
     "gx:description": "A sample description of a non-existing scenario.",
     "gx:version": "1.0.0",
@@ -29,8 +29,8 @@
       "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     }
   },
-  "scenario:hasDataResourceExtension": {
-    "@type": "scenario:DataResourceExtension",
+  "scenario:hasDomainSpecification": {
+    "@type": "scenario:DomainSpecification",
     "scenario:hasFormat": {
       "@type": "scenario:Format",
       "scenario:formatType": "ASAM OpenSCENARIO",

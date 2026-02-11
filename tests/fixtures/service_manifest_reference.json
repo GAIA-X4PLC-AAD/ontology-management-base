@@ -7,7 +7,7 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos": "http://www.w3.org/2004/02/skos/core#"
   },
-  "@id": "did:web:test.fixture.net:Manifest:test_envited-x_manifest_reference",
+  "@id": "did:web:test.fixture.net:Manifest:test_service_manifest_reference",
   "@type": "envited-x:Manifest",
   "manifest:hasManifestReference": {
     "@type": "manifest:Link",
@@ -22,7 +22,7 @@
     "manifest:hasFileMetadata": {
       "@type": "manifest:FileMetadata",
       "manifest:filePath": {
-        "@value": "./envited-x_manifest_reference.json",
+        "@value": "./service_manifest_reference.json",
         "@type": "xsd:anyURI"
       },
       "manifest:mimeType": {
@@ -34,7 +34,7 @@
   "manifest:hasLicense": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net::ResourceDescription:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8"
+      "@id": "did:web:registry.envited-x.net::ServiceOfferingBase:service-001"
     },
     "manifest:hasAccessRole": {
       "@type": "manifest:AccessRole",
@@ -70,24 +70,28 @@
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
-          "@value": "ipfs://bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
+          "@value": "ipfs://bafybeifc3wqg5bslmeukv4qsyzrluhmztizyp7hbevxcfxajdwkqxarwza",
           "@type": "xsd:anyURI"
         },
         "manifest:cid": {
-          "@value": "bafybeiavkhiuq44adcxpuve5eic3tu4ilivuuykzrsyudoivwh3zc2piqy",
+          "@value": "bafybeifc3wqg5bslmeukv4qsyzrluhmztizyp7hbevxcfxajdwkqxarwza",
           "@type": "xsd:string"
         },
         "manifest:mimeType": {
-          "@value": "application/x-xodr",
+          "@value": "application/zip",
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": "636673",
+          "@value": "534634",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
-          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample.xodr",
+          "@value": "service-data.zip",
           "@type": "xsd:string"
+        },
+        "manifest:timestamp": {
+          "@value": "2024-08-19T18:05:00",
+          "@type": "xsd:dateTime"
         }
       }
     },
@@ -116,7 +120,7 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": "5120",
+          "@value": "4096",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
@@ -150,45 +154,11 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": "5678",
+          "@value": "2048",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
           "@value": "domainMetadata.json",
-          "@type": "xsd:string"
-        }
-      }
-    },
-    {
-      "@type": "manifest:Link",
-      "manifest:hasAccessRole": {
-        "@type": "manifest:AccessRole",
-        "@id": "envited-x:isRegistered"
-      },
-      "manifest:hasCategory": {
-        "@type": "manifest:Category",
-        "@id": "envited-x:isMedia"
-      },
-      "manifest:hasFileMetadata": {
-        "@type": "manifest:FileMetadata",
-        "manifest:filePath": {
-          "@value": "./visualization/detailRoadNetwork.geojson",
-          "@type": "xsd:anyURI"
-        },
-        "manifest:cid": {
-          "@value": "bafkreiakpb3ajhljq6cgwizcyirsk6uz322szaxd6ynmovcwuu5jkx5isa",
-          "@type": "xsd:string"
-        },
-        "manifest:mimeType": {
-          "@value": "application/x-geojson",
-          "@type": "xsd:string"
-        },
-        "manifest:fileSize": {
-          "@value": "1500",
-          "@type": "xsd:integer"
-        },
-        "manifest:filename": {
-          "@value": "detailRoadNetwork.geojson",
           "@type": "xsd:string"
         }
       }
@@ -206,7 +176,7 @@
       "manifest:hasFileMetadata": {
         "@type": "manifest:FileMetadata",
         "manifest:filePath": {
-          "@value": "./visualization/TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+          "@value": "./visualization/service_overview.png",
           "@type": "xsd:anyURI"
         },
         "manifest:cid": {
@@ -218,22 +188,22 @@
           "@type": "xsd:string"
         },
         "manifest:fileSize": {
-          "@value": "2400256",
+          "@value": "1500000",
           "@type": "xsd:integer"
         },
         "manifest:filename": {
-          "@value": "TestfeldNiedersachsen_ALKS_ODR_sample_01.png",
+          "@value": "service_overview.png",
           "@type": "xsd:string"
         },
         "manifest:hasDimensions": {
           "@type": "manifest:Dimensions",
           "manifest:unit": "pixels",
           "manifest:width": {
-            "@value": "1095.0",
+            "@value": "1920.0",
             "@type": "xsd:float"
           },
           "manifest:height": {
-            "@value": "850.0",
+            "@value": "1080.0",
             "@type": "xsd:float"
           }
         }

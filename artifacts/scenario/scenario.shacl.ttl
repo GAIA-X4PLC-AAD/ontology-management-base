@@ -22,25 +22,25 @@
 scenario:ScenarioShape a sh:NodeShape ;
     sh:closed false ;
 
-    # 1) hasDataResource
+    # 1) hasResourceDescription
     sh:property [
-        sh:path scenario:hasDataResource ;
+        sh:path scenario:hasResourceDescription ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            [ sh:node envited-x:DataResourceShape ]
+            [ sh:node envited-x:ResourceDescriptionShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each Scenario must have exactly one DataResource (Inline or Linked)."@en ;
+        sh:message "Each Scenario must have exactly one ResourceDescription (Inline or Linked)."@en ;
     ] ;
 
-    # 2) hasDataResourceExtension
+    # 2) hasDomainSpecification
     sh:property [
-        sh:path scenario:hasDataResourceExtension ;
-        sh:node scenario:DataResourceExtensionShape ;
+        sh:path scenario:hasDomainSpecification ;
+        sh:node scenario:DomainSpecificationShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each Scenario must have one associated DataResourceExtension."@en ;
+        sh:message "Each Scenario must have one associated DomainSpecification."@en ;
     ] ;
 
     # 3) hasManifest
@@ -98,8 +98,8 @@ scenario:ScenarioManifestConstraints a sh:NodeShape ;
     ] .
 
 
-### DataResourceExtension SHACL Shape
-scenario:DataResourceExtensionShape a sh:NodeShape ;
+### DomainSpecification SHACL Shape
+scenario:DomainSpecificationShape a sh:NodeShape ;
     sh:property 
         [ 
           sh:minCount 1 ;
@@ -154,7 +154,7 @@ scenario:DataResourceExtensionShape a sh:NodeShape ;
           sh:order 6 ;
           sh:path scenario:hasGeoreference 
         ] ;
-    sh:targetClass scenario:DataResourceExtension .
+    sh:targetClass scenario:DomainSpecification .
 
 ### New Union Shape for Content
 scenario:ContentOrTagShape a sh:NodeShape ;

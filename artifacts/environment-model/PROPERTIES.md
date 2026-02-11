@@ -5,7 +5,7 @@
 ```mermaid
 classDiagram
 class Class_definition_for_Content
-class Class_definition_for_DataResourceExtension
+class Class_definition_for_DomainSpecification
 class Class_definition_for_EnvironmentModel
 class Class_definition_for_Format
 class Class_definition_for_Project
@@ -16,7 +16,7 @@ class Class_definition_for_Quantity
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/ascs-ev/envited-x/environment-model/v5/Content)
-- Class definition for DataResourceExtension (https://w3id.org/ascs-ev/envited-x/environment-model/v5/DataResourceExtension)
+- Class definition for DomainSpecification (https://w3id.org/ascs-ev/envited-x/environment-model/v5/DomainSpecification)
 - Class definition for EnvironmentModel (https://w3id.org/ascs-ev/envited-x/environment-model/v5/EnvironmentModel)
 - Class definition for Format (https://w3id.org/ascs-ev/envited-x/environment-model/v5/Format)
 - Class definition for Project (https://w3id.org/ascs-ev/envited-x/environment-model/v5/Project)
@@ -28,7 +28,7 @@ class Class_definition_for_Quantity
 |Class|IRI|Description|Parents|
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/environment-model/v5/Content|Describes the visual and functional elements included in an environment-model asset.|Content|
-|Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/environment-model/v5/DataResourceExtension|Environment-model specific metadata extensions.|DataResourceExtension|
+|Class definition for DomainSpecification|https://w3id.org/ascs-ev/envited-x/environment-model/v5/DomainSpecification|Environment-model specific domain specifications.|DomainSpecification|
 |Class definition for EnvironmentModel|https://w3id.org/ascs-ev/envited-x/environment-model/v5/EnvironmentModel|Represents an environment-model asset with metadata describing format, content, project, quantity, and quality properties.|SimulationAsset|
 |Class definition for Format|https://w3id.org/ascs-ev/envited-x/environment-model/v5/Format|Defines the format specifications of an environment-model asset.|Format|
 |Class definition for Project|https://w3id.org/ascs-ev/envited-x/environment-model/v5/Project|Contains information about the tools and software used to create the environment-model asset.||
@@ -82,14 +82,14 @@ class Class_definition_for_Quantity
 #### environment-model:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-formattype .property-anchor }
 #### environment-model:geometryCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-geometrycount .property-anchor }
 #### environment-model:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hascontent .property-anchor }
-#### environment-model:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresource .property-anchor }
-#### environment-model:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresourceextension .property-anchor }
+#### environment-model:hasDomainSpecification {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdomainspecification .property-anchor }
 #### environment-model:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasformat .property-anchor }
 #### environment-model:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasgeoreference .property-anchor }
 #### environment-model:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasmanifest .property-anchor }
 #### environment-model:hasProject {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasproject .property-anchor }
 #### environment-model:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquality .property-anchor }
 #### environment-model:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquantity .property-anchor }
+#### environment-model:hasResourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasresourcedescription .property-anchor }
 #### environment-model:textureMaterialCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-texturematerialcount .property-anchor }
 #### environment-model:textureResolution {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-textureresolution .property-anchor }
 #### environment-model:triangleCount {: #prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-trianglecount .property-anchor }
@@ -101,15 +101,15 @@ class Class_definition_for_Quantity
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresource"></a>hasDataResource|1|1|||environment-model.shacl.ttl|
-|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||environment-model.shacl.ttl|
+|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasresourcedescription"></a>hasResourceDescription|1|1|||environment-model.shacl.ttl|
+|EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasdomainspecification"></a>hasDomainSpecification|1|1|||environment-model.shacl.ttl|
 |EnvironmentModelShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasmanifest"></a>hasManifest|1|1|||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasproject"></a>hasProject|1|1|Contains properties to describe the project of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasformat"></a>hasFormat|1|1|Contains properties to describe the format of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hascontent"></a>hasContent|1|1|Contains properties to describe the content (elements, use cases) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquantity"></a>hasQuantity|1|1|Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquality"></a>hasQuality|1|1|Contains properties to describe the quality (detail level, features) of the environment-model asset.||environment-model.shacl.ttl|
-|DataResourceExtensionShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasgeoreference"></a>hasGeoreference|1|1|||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasproject"></a>hasProject|1|1|Contains properties to describe the project of the environment-model asset.||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasformat"></a>hasFormat|1|1|Contains properties to describe the format of the environment-model asset.||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hascontent"></a>hasContent|1|1|Contains properties to describe the content (elements, use cases) of the environment-model asset.||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquantity"></a>hasQuantity|1|1|Contains properties to describe the quantity (number of geometries, triangles, texture) of the environment-model asset.||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasquality"></a>hasQuality|1|1|Contains properties to describe the quality (detail level, features) of the environment-model asset.||environment-model.shacl.ttl|
+|DomainSpecificationShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-hasgeoreference"></a>hasGeoreference|1|1|||environment-model.shacl.ttl|
 |FormatShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-formattype"></a>formatType||1|Defines the data type of the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
 |FormatShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-version"></a>version||1|Defines the version of the environment-model asset's data type.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|
 |ContentShape|environment-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-environment-model-v5-elements"></a>elements||1|Provides a description of the visual elements contained in the environment-model asset.|<http://www.w3.org/2001/XMLSchema#string>|environment-model.shacl.ttl|

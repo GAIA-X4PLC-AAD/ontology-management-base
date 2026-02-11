@@ -5,7 +5,7 @@
 ```mermaid
 classDiagram
 class Class_definition_for_Content
-class Class_definition_for_DataResourceExtension
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Format
 class Class_definition_for_Quality
 class Class_definition_for_Quantity
@@ -15,7 +15,7 @@ class Class_definition_for_SurfaceModel
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/ascs-ev/envited-x/surface-model/v6/Content)
-- Class definition for DataResourceExtension (https://w3id.org/ascs-ev/envited-x/surface-model/v6/DataResourceExtension)
+- Class definition for DomainSpecification (https://w3id.org/ascs-ev/envited-x/surface-model/v6/DomainSpecification)
 - Class definition for Format (https://w3id.org/ascs-ev/envited-x/surface-model/v6/Format)
 - Class definition for Quality (https://w3id.org/ascs-ev/envited-x/surface-model/v6/Quality)
 - Class definition for Quantity (https://w3id.org/ascs-ev/envited-x/surface-model/v6/Quantity)
@@ -26,7 +26,7 @@ class Class_definition_for_SurfaceModel
 |Class|IRI|Description|Parents|
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/surface-model/v6/Content|Contains properties that describe the content type of the surface model asset.|Content|
-|Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/surface-model/v6/DataResourceExtension|Surface model DataResourceExtension containing additional metadata information of the simulation asset.|DataResourceExtension|
+|Class definition for DomainSpecification|https://w3id.org/ascs-ev/envited-x/surface-model/v6/DomainSpecification|Surface model DomainSpecification containing additional metadata information of the simulation asset.|DomainSpecification|
 |Class definition for Format|https://w3id.org/ascs-ev/envited-x/surface-model/v6/Format|Contains properties that describe the format of the surface model asset.|Format|
 |Class definition for Quality|https://w3id.org/ascs-ev/envited-x/surface-model/v6/Quality|Contains properties that describe the accuracy of the surface model asset.|Quality|
 |Class definition for Quantity|https://w3id.org/ascs-ev/envited-x/surface-model/v6/Quantity|Contains properties that describe the quantity of the surface model asset.|Quantity|
@@ -74,13 +74,13 @@ class Class_definition_for_SurfaceModel
 #### surface-model:elevationRange {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-elevationrange .property-anchor }
 #### surface-model:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-formattype .property-anchor }
 #### surface-model:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hascontent .property-anchor }
-#### surface-model:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresource .property-anchor }
-#### surface-model:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresourceextension .property-anchor }
+#### surface-model:hasDomainSpecification {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdomainspecification .property-anchor }
 #### surface-model:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasformat .property-anchor }
 #### surface-model:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasgeoreference .property-anchor }
 #### surface-model:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasmanifest .property-anchor }
 #### surface-model:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquality .property-anchor }
 #### surface-model:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquantity .property-anchor }
+#### surface-model:hasResourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasresourcedescription .property-anchor }
 #### surface-model:length {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-length .property-anchor }
 #### surface-model:mapDataField {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-mapdatafield .property-anchor }
 #### surface-model:orientation {: #prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-orientation .property-anchor }
@@ -92,14 +92,14 @@ class Class_definition_for_SurfaceModel
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresource"></a>hasDataResource|1|1|||surface-model.shacl.ttl|
-|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||surface-model.shacl.ttl|
+|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasresourcedescription"></a>hasResourceDescription|1|1|||surface-model.shacl.ttl|
+|SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasdomainspecification"></a>hasDomainSpecification|1|1|||surface-model.shacl.ttl|
 |SurfaceModelShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasmanifest"></a>hasManifest|1|1|||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hascontent"></a>hasContent|1|1|Attributes describing the content type of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasformat"></a>hasFormat|1|1|File format details of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquality"></a>hasQuality|1|1|Quality metrics of the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the surface model.||surface-model.shacl.ttl|
-|DataResourceExtensionShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the surface model.||surface-model.shacl.ttl|
+|DomainSpecificationShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hascontent"></a>hasContent|1|1|Attributes describing the content type of the surface model.||surface-model.shacl.ttl|
+|DomainSpecificationShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasformat"></a>hasFormat|1|1|File format details of the surface model.||surface-model.shacl.ttl|
+|DomainSpecificationShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquality"></a>hasQuality|1|1|Quality metrics of the surface model.||surface-model.shacl.ttl|
+|DomainSpecificationShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the surface model.||surface-model.shacl.ttl|
+|DomainSpecificationShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-hasgeoreference"></a>hasGeoreference|1|1|Georeferencing information for the surface model.||surface-model.shacl.ttl|
 |ContentShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-contenttype"></a>contentType||1|Specifies the content type (e.g., height, friction) used in the surface-model asset.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|
 |FormatShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-formattype"></a>formatType||1|Defines the format type of the surface model asset.||surface-model.shacl.ttl|
 |FormatShape|surface-model|<a id="prop-https---w3id-org-ascs-ev-envited-x-surface-model-v6-version"></a>version||1|Defines the version of the surface model's format.|<http://www.w3.org/2001/XMLSchema#string>|surface-model.shacl.ttl|

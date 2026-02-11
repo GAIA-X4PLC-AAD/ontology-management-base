@@ -1,37 +1,85 @@
-@prefix service: <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix service: <https://w3id.org/gaia-x4plcaad/ontologies/service/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # The Shapes Graph URI appends "/shapes" to the Ontology URI
-<https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes>
+<https://w3id.org/gaia-x4plcaad/ontologies/service/v2/shapes>
     a owl:Ontology ;
-    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/service/v1> .
+    # The Shapes Graph must import the Domain Ontology
+    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/service/v2> .
 
 service:ServiceShape a sh:NodeShape ;
-    sh:property 
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:order 1 ;
-			sh:name "general object"@en ;
-			sh:description "General object with properties for name and description."@en ;
-            sh:path service:general ],
-        [ sh:node service:RequiredFileShape ;
-            sh:order 2 ;
-			sh:name "required file object"@en ;
-			sh:description "Required file object with properties for urls and description."@en ;			
-            sh:path service:requiredFile ],
-        [ sh:minCount 1 ;
-            sh:node service:ResultingFileShape ;
-            sh:order 3 ;
-			sh:name "resulting file object"@en ;
-			sh:description "Resulting file object with properties for url and description."@en ;	
-            sh:path service:resultingFile ] ;
-    sh:targetClass service:Service .
+    sh:closed false ;
+    sh:targetClass service:Service ;
+
+    # 1) hasServiceOffering
+    sh:property [
+        sh:path service:hasServiceOffering ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:ServiceOfferingBaseShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each Service must have exactly one associated ServiceOfferingBase (either inline or a valid manifest:Link)."@en ;
+    ] ;
+
+    # 2) hasDomainSpecification
+    sh:property [
+        sh:path service:hasDomainSpecification ;
+        sh:node service:DomainSpecificationShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each Service must have one associated DomainSpecification with content."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path service:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each Service must have exactly one manifest."@en ;
+    ] .
+
+# DomainSpecification shape
+service:DomainSpecificationShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path service:hasContent ;
+        sh:node service:ContentShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Content facet."@en ;
+    ] .
+
+# Content shape — service-specific metadata
+service:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:node service:RequiredFileShape ;
+        sh:order 1 ;
+        sh:name "required file object"@en ;
+        sh:description "Required file object with properties for urls and description."@en ;
+        sh:path service:requiredFile ;
+    ] ;
+    sh:property [
+        sh:minCount 1 ;
+        sh:node service:ResultingFileShape ;
+        sh:order 2 ;
+        sh:name "resulting file object"@en ;
+        sh:description "Resulting file object with properties for url and description."@en ;
+        sh:path service:resultingFile ;
+    ] .
 
 service:RequiredFileShape a sh:NodeShape ;
     sh:property [ skos:example "A scenario following the ASAM OpenSCENARIO 2.0.0 standard as an .osc file."@en ;

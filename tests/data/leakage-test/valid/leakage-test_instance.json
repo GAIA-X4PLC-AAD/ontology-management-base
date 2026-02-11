@@ -1,96 +1,118 @@
 {
   "@context": {
     "leakage-test": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/",
+    "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+    "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
     "gx": "https://w3id.org/gaia-x/development#",
-    "dcterms": "http://purl.org/dc/terms/"
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:test.leakage-test.net:LeakageTest:test_valid_leakage-test_instance",
   "@type": "leakage-test:LeakageTest",
-  "leakage-test:processParameter": {
-    "@type": "leakage-test:ProcessParameter",
-    "leakage-test:codingRFID": {
-      "@type": "leakage-test:CodingRFID",
-      "leakage-test:setpoint": 16
+  "leakage-test:hasCodeArtifact": {
+    "@id": "did:web:registry.envited-x.net::CodeArtifactBase:leakage-test-001",
+    "@type": "envited-x:CodeArtifactBase",
+    "schema:name": "Leakage Test",
+    "schema:description": "parameters for a leakage test",
+    "gx:license": "EPL-2.0",
+    "gx:copyrightOwnedBy": {
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
-    "leakage-test:codingTestAdapter": {
-      "@type": "leakage-test:CodingTestAdapter",
-      "leakage-test:setpoint": 1
-    },
-    "leakage-test:codingDownholder": {
-      "@type": "leakage-test:CodingDownholder",
-      "leakage-test:setpoint": 1
-    }
+    "gx:resourcePolicy": "allow intent"
   },
-  "leakage-test:machineParameter": {
-    "@type": "leakage-test:MachineParameter",
-    "leakage-test:minimumPressure": {
-      "@type": "leakage-test:MinimumPressure",
-      "leakage-test:lowerTolerance": {
-        "@value": "0",
-        "@type": "xsd:float"
+  "leakage-test:hasDomainSpecification": {
+    "@type": "leakage-test:DomainSpecification",
+    "leakage-test:hasContent": {
+      "@type": "leakage-test:Content",
+      "leakage-test:machineParameter": {
+        "@type": "leakage-test:MachineParameter",
+        "leakage-test:minimumPressure": {
+          "@type": "leakage-test:MinimumPressure",
+          "leakage-test:lowerTolerance": {
+            "@value": "0",
+            "@type": "xsd:float"
+          },
+          "leakage-test:setpoint": {
+            "@value": "0.2",
+            "@type": "xsd:float"
+          },
+          "leakage-test:upperTolerance": {
+            "@value": "0",
+            "@type": "xsd:float"
+          },
+          "leakage-test:unit": "bar"
+        },
+        "leakage-test:maximumPressure": {
+          "@type": "leakage-test:MaximumPressure",
+          "leakage-test:lowerTolerance": {
+            "@value": "0",
+            "@type": "xsd:float"
+          },
+          "leakage-test:setpoint": {
+            "@value": "2.7",
+            "@type": "xsd:float"
+          },
+          "leakage-test:upperTolerance": {
+            "@value": "0",
+            "@type": "xsd:float"
+          },
+          "leakage-test:unit": "bar"
+        }
       },
-      "leakage-test:setpoint": {
-        "@value": "0.2",
-        "@type": "xsd:float"
-      },
-      "leakage-test:upperTolerance": {
-        "@value": "0",
-        "@type": "xsd:float"
-      },
-      "leakage-test:unit": "bar"
-    },
-    "leakage-test:maximumPressure": {
-      "@type": "leakage-test:MaximumPressure",
-      "leakage-test:lowerTolerance": {
-        "@value": "0",
-        "@type": "xsd:float"
-      },
-      "leakage-test:setpoint": {
-        "@value": "2.7",
-        "@type": "xsd:float"
-      },
-      "leakage-test:upperTolerance": {
-        "@value": "0",
-        "@type": "xsd:float"
-      },
-      "leakage-test:unit": "bar"
-    }
-  },
-  "leakage-test:general": {
-    "@type": "general:General",
-    "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "Leakage Test",
-        "@type": "xsd:string"
-      },
-      "general:description": {
-        "@value": "parameters for a leakage test",
-        "@type": "xsd:string"
-      }
-    },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": "1.0",
-        "@type": "xsd:float"
-      },
-      "general:recordingTime": {
-        "@value": "2024-08-04T09:00:00",
-        "@type": "xsd:dateTime"
+      "leakage-test:processParameter": {
+        "@type": "leakage-test:ProcessParameter",
+        "leakage-test:codingRFID": {
+          "@type": "leakage-test:CodingRFID",
+          "leakage-test:setpoint": 16
+        },
+        "leakage-test:codingTestAdapter": {
+          "@type": "leakage-test:CodingTestAdapter",
+          "leakage-test:setpoint": 1
+        },
+        "leakage-test:codingDownholder": {
+          "@type": "leakage-test:CodingDownholder",
+          "leakage-test:setpoint": 1
+        }
       }
     }
   },
-  "gx:producedBy": {
-    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-  },
-  "gx:copyrightOwnedBy": {
-    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-  },
-  "gx:license": "EPL-2.0",
-  "gx:resourcePolicy": "allow intent",
-  "dcterms:identifier": "leakage-test-001",
-  "dcterms:title": "Leakage Test Resource"
+  "leakage-test:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:test.fixture.net:Manifest:test_leakage-test_manifest_reference"
+    },
+    "skos:note": {
+      "@value": "Reference to the leakage test manifest.",
+      "@type": "xsd:string"
+    },
+    "sh:conformsTo": [
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/"
+      },
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/manifest/v5/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./base-references/leakage-test_manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
+    }
+  }
 }

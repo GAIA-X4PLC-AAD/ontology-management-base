@@ -18,26 +18,26 @@
 surface-model:SurfaceModelShape a sh:NodeShape ;
     sh:closed false ;
     
-    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    # 1) hasResourceDescription: Aligning with the flexible logic in envited-x:SimulationAssetShape
     sh:property [
-        sh:path surface-model:hasDataResource ;
+        sh:path surface-model:hasResourceDescription ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            [ sh:node envited-x:DataResourceShape ]
+            [ sh:node envited-x:ResourceDescriptionShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each surface model must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:message "Each surface model must have exactly one associated ResourceDescription (either inline conforming to envited-x:ResourceDescriptionShape or a valid manifest:Link)."@en ;
         sh:order 2 ;
     ],
 
-    # 2) hasDataResourceExtension: Mandatory domain-specific extension for surface models.
+    # 2) hasDomainSpecification: Mandatory domain-specific extension for surface models.
     [
-        sh:path surface-model:hasDataResourceExtension ;
-        sh:node surface-model:DataResourceExtensionShape ;
+        sh:path surface-model:hasDomainSpecification ;
+        sh:node surface-model:DomainSpecificationShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each surface model must have one associated DataResourceExtension object with content, format, quality, quantity, and georeference."@en ;
+        sh:message "Each surface model must have one associated DomainSpecification object with content, format, quality, quantity, and georeference."@en ;
         sh:order 1 ;
     ],
 
@@ -58,8 +58,8 @@ surface-model:SurfaceModelShape a sh:NodeShape ;
     ] ;
     sh:targetClass surface-model:SurfaceModel .
 
-### **DataResourceExtension SHACL Shape**
-surface-model:DataResourceExtensionShape a sh:NodeShape ;
+### **DomainSpecification SHACL Shape**
+surface-model:DomainSpecificationShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property 
@@ -98,7 +98,7 @@ surface-model:DataResourceExtensionShape a sh:NodeShape ;
           sh:description "Georeferencing information for the surface model."@en ;
           sh:order 5 ;
           sh:path surface-model:hasGeoreference ] ;
-    sh:targetClass surface-model:DataResourceExtension .
+    sh:targetClass surface-model:DomainSpecification .
 
 ### **Content SHACL Shape**
 surface-model:ContentShape a sh:NodeShape ;

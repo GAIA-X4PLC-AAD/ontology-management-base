@@ -102,8 +102,8 @@ Hook flow (via `hooks/copy_artifacts.py`):
 | `https://w3id.org/gaia-x/development`                                      | [gx/gx.owl.ttl](artifacts/gx/gx.owl.ttl)                                                                             |
 | `https://w3id.org/gaia-x/development#context`                              | [gx/gx.context.jsonld](artifacts/gx/gx.context.jsonld)                                                               |
 | `https://w3id.org/gaia-x/development#shapes`                               | [gx/gx.shacl.ttl](artifacts/gx/gx.shacl.ttl)                                                                         |
-| `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1`        | [automotive-simulator/automotive-simulator.owl.ttl](artifacts/automotive-simulator/automotive-simulator.owl.ttl)     |
-| `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes` | [automotive-simulator/automotive-simulator.shacl.ttl](artifacts/automotive-simulator/automotive-simulator.shacl.ttl) |
+| `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2`        | [automotive-simulator/automotive-simulator.owl.ttl](artifacts/automotive-simulator/automotive-simulator.owl.ttl)     |
+| `https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/shapes` | [automotive-simulator/automotive-simulator.shacl.ttl](artifacts/automotive-simulator/automotive-simulator.shacl.ttl) |
 | `https://w3id.org/gaia-x4plcaad/ontologies/description/v1`                 | [description/description.owl.ttl](artifacts/description/description.owl.ttl)                                         |
 | `https://w3id.org/gaia-x4plcaad/ontologies/description/v1/shapes`          | [description/description.shacl.ttl](artifacts/description/description.shacl.ttl)                                     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/example/v1`                     | [example/example.owl.ttl](artifacts/example/example.owl.ttl)                                                         |
@@ -112,8 +112,8 @@ Hook flow (via `hooks/copy_artifacts.py`):
 | `https://w3id.org/gaia-x4plcaad/ontologies/general/v3/shapes`              | [general/general.shacl.ttl](artifacts/general/general.shacl.ttl)                                                     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2`                | [leakage-test/leakage-test.owl.ttl](artifacts/leakage-test/leakage-test.owl.ttl)                                     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/shapes`         | [leakage-test/leakage-test.shacl.ttl](artifacts/leakage-test/leakage-test.shacl.ttl)                                 |
-| `https://w3id.org/gaia-x4plcaad/ontologies/service/v1`                     | [service/service.owl.ttl](artifacts/service/service.owl.ttl)                                                         |
-| `https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes`              | [service/service.shacl.ttl](artifacts/service/service.shacl.ttl)                                                     |
+| `https://w3id.org/gaia-x4plcaad/ontologies/service/v2`                     | [service/service.owl.ttl](artifacts/service/service.owl.ttl)                                                         |
+| `https://w3id.org/gaia-x4plcaad/ontologies/service/v2/shapes`              | [service/service.shacl.ttl](artifacts/service/service.shacl.ttl)                                                     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2`            | [simulated-sensor/simulated-sensor.owl.ttl](artifacts/simulated-sensor/simulated-sensor.owl.ttl)                     |
 | `https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/shapes`     | [simulated-sensor/simulated-sensor.shacl.ttl](artifacts/simulated-sensor/simulated-sensor.shacl.ttl)                 |
 | `https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2`            | [simulation-model/simulation-model.owl.ttl](artifacts/simulation-model/simulation-model.owl.ttl)                     |

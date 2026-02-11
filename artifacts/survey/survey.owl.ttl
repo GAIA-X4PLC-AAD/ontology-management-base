@@ -1,4 +1,6 @@
 @prefix survey: <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -7,8 +9,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6> a owl:Ontology ;
     rdfs:label "Ontology definition for survey"@en ;
@@ -51,7 +51,7 @@
     owl:versionInfo "v6" ;
 
     # Imports strict dependencies
-    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/general/v3> ;
+    owl:imports <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes> ;
@@ -60,57 +60,130 @@
     dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
-# Classes
 
-survey:SurveyResultDataOffering rdf:type owl:Class ;
-    rdfs:subClassOf gx:VirtualResource ;
-    rdfs:label "Class definition for SurveyResultDataOffering"@en ;
-    rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey."@en .
+#### Classes
 
 survey:SurveyServiceOffering rdf:type owl:Class ;
-    rdfs:subClassOf gx:VirtualResource ;
+    rdfs:subClassOf envited-x:ServiceAsset ;
     rdfs:label "Class definition for SurveyServiceOffering"@en ;
     rdfs:comment "The survey service offering refers to the invitation to a participate in a survey."@en .
 
-# Properties
+survey:SurveyResultDataOffering rdf:type owl:Class ;
+    rdfs:subClassOf envited-x:SimulationAsset ;
+    rdfs:label "Class definition for SurveyResultDataOffering"@en ;
+    rdfs:comment "The survey result refers to the data obtained from conducting the survey. It represents the collective responses gathered from all survey participants in relation to the specific topic of the survey."@en .
 
+survey:ServiceDomainSpecification rdf:type owl:Class ;
+    rdfs:label "Class definition for ServiceDomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata for a survey service offering."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
+
+survey:ServiceContent rdf:type owl:Class ;
+    rdfs:label "Class definition for ServiceContent"@en ;
+    rdfs:comment "Content properties for a survey service offering."@en ;
+    rdfs:subClassOf envited-x:Content .
+
+survey:ResultDomainSpecification rdf:type owl:Class ;
+    rdfs:label "Class definition for ResultDomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata for survey result data."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
+
+survey:ResultContent rdf:type owl:Class ;
+    rdfs:label "Class definition for ResultContent"@en ;
+    rdfs:comment "Content properties for survey result data."@en ;
+    rdfs:subClassOf envited-x:Content .
+
+
+#### Object Properties
+
+### hasServiceOffering (SurveyServiceOffering -> envited-x:ServiceOfferingBase)
+survey:hasServiceOffering rdf:type owl:ObjectProperty ;
+    rdfs:label "Object property: hasServiceOffering"@en ;
+    rdfs:comment "Links a survey service offering to its GX-compliant ServiceOfferingBase."@en ;
+    rdfs:subPropertyOf envited-x:hasServiceOffering ;
+    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:ServiceOfferingBase manifest:Link )
+    ] .
+
+### hasResourceDescription (SurveyResultDataOffering -> envited-x:ResourceDescription)
+survey:hasResourceDescription rdf:type owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links a survey result data offering to its resource description."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
+    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
+    ] .
+
+### hasDomainSpecification (generic, used by both types)
+survey:hasDomainSpecification rdf:type owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a survey offering to its domain-specific metadata."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification .
+
+### hasManifest (generic, used by both types)
+survey:hasManifest rdf:type owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment """Links a survey offering to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node, or
+                - a manifest:Link node."""@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
+
+### hasContent (DomainSpecification -> Content)
+survey:hasContent rdf:type owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DomainSpecification to its Content facet."@en ;
+    rdfs:subPropertyOf envited-x:hasContent .
+
+### belongsTo (SurveyResultDataOffering -> SurveyServiceOffering)
 survey:belongsTo rdf:type owl:ObjectProperty ;
     rdfs:label "belongs to"@en ;
     rdfs:comment "Reference to the survey service offering this result belongs to."@en ;
-    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:domain survey:ResultContent ;
     rdfs:range survey:SurveyServiceOffering .
 
-survey:general rdf:type owl:ObjectProperty ;
-    rdfs:label "general"@en ;
-    rdfs:comment "General information about the survey."@en ;
-    rdfs:range general:General .
+
+#### Datatype Properties
 
 survey:surveyStartTime rdf:type owl:DatatypeProperty ;
     rdfs:label "survey start time"@en ;
     rdfs:comment "When the survey was started."@en ;
-    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:domain survey:ResultContent ;
     rdfs:range xsd:dateTime .
 
 survey:surveyCloseTime rdf:type owl:DatatypeProperty ;
     rdfs:label "survey close time"@en ;
     rdfs:comment "When the survey was closed."@en ;
-    rdfs:domain survey:SurveyResultDataOffering ;
+    rdfs:domain survey:ResultContent ;
     rdfs:range xsd:dateTime .
 
 survey:surveyUrl rdf:type owl:DatatypeProperty ;
     rdfs:label "survey URL"@en ;
     rdfs:comment "URL to access the survey."@en ;
-    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:domain survey:ServiceContent ;
     rdfs:range xsd:string .
 
 survey:surveyCreationTime rdf:type owl:DatatypeProperty ;
     rdfs:label "survey creation time"@en ;
     rdfs:comment "When the survey was created."@en ;
-    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:domain survey:ServiceContent ;
     rdfs:range xsd:dateTime .
 
 survey:surveyEndTime rdf:type owl:DatatypeProperty ;
     rdfs:label "survey end time"@en ;
     rdfs:comment "When the survey will end automatically."@en ;
-    rdfs:domain survey:SurveyServiceOffering ;
+    rdfs:domain survey:ServiceContent ;
     rdfs:range xsd:dateTime .
+
+survey:dataSize rdf:type owl:DatatypeProperty ;
+    rdfs:label "data size"@en ;
+    rdfs:comment "Size of the survey data in kilobytes."@en ;
+    rdfs:range xsd:float .

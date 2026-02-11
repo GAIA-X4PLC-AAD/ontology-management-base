@@ -18,26 +18,26 @@
 ositrace:OSITraceShape a sh:NodeShape ;
     sh:closed false ;
     
-    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    # 1) hasResourceDescription: Aligning with the flexible logic in envited-x:SimulationAssetShape
     sh:property [
-        sh:path ositrace:hasDataResource ;
+        sh:path ositrace:hasResourceDescription ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            [ sh:node envited-x:DataResourceShape ]
+            [ sh:node envited-x:ResourceDescriptionShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each OSI trace must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:message "Each OSI trace must have exactly one associated ResourceDescription (either inline conforming to envited-x:ResourceDescriptionShape or a valid manifest:Link)."@en ;
         sh:order 2 ;
     ],
 
-    # 2) hasDataResourceExtension: Mandatory domain-specific extension for OSI traces.
+    # 2) hasDomainSpecification: Mandatory domain-specific extension for OSI traces.
     [
-        sh:path ositrace:hasDataResourceExtension ;
-        sh:node ositrace:DataResourceExtensionShape ;
+        sh:path ositrace:hasDomainSpecification ;
+        sh:node ositrace:DomainSpecificationShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each OSI trace must have one associated DataResourceExtension object with content, format, quality, quantity, and dataSource."@en ;
+        sh:message "Each OSI trace must have one associated DomainSpecification object with content, format, quality, quantity, and dataSource."@en ;
         sh:order 1 ;
     ],
 
@@ -58,8 +58,8 @@ ositrace:OSITraceShape a sh:NodeShape ;
     ] ;
     sh:targetClass ositrace:OSITrace .
 
-### DataResourceExtension SHACL Shape
-ositrace:DataResourceExtensionShape a sh:NodeShape ;
+### DomainSpecification SHACL Shape
+ositrace:DomainSpecificationShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property 
@@ -104,7 +104,7 @@ ositrace:DataResourceExtensionShape a sh:NodeShape ;
           sh:description "Georeferencing information for the OSI trace."@en ;
           sh:order 6 ;
           sh:path ositrace:hasGeoreference ] ;
-    sh:targetClass ositrace:DataResourceExtension .
+    sh:targetClass ositrace:DomainSpecification .
 
 ositrace:ContentShape a sh:NodeShape ;
     sh:closed false ;

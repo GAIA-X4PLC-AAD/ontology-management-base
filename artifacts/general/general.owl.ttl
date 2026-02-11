@@ -11,8 +11,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/general/v3> a owl:Ontology ;
-    rdfs:label "Ontology definition for general"@en ;
-    rdfs:comment "General ontology with common classes for the simulation domain."@en ;
+    rdfs:label "Ontology definition for general (DEPRECATED)"@en ;
+    rdfs:comment "DEPRECATED: This ontology is superseded by the envited-x wrapper architecture (envited-x/v3). Domain ontologies should import envited-x/v3 instead and use the ResourceDescription/DomainSpecification pattern. Kept for backward compatibility with older domain versions."@en ;
+    owl:deprecated true ;
 
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [

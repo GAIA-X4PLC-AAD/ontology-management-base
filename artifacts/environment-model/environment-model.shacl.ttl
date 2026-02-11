@@ -17,25 +17,25 @@
 environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:closed false ;
     
-    # 1) hasDataResource: Aligning with the flexible logic in envited-x:SimulationAssetShape
+    # 1) hasResourceDescription: Aligning with the flexible logic in envited-x:SimulationAssetShape
     sh:property [
-        sh:path environment-model:hasDataResource ;
+        sh:path environment-model:hasResourceDescription ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            [ sh:node envited-x:DataResourceShape ]
+            [ sh:node envited-x:ResourceDescriptionShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each environment model must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:message "Each environment model must have exactly one associated ResourceDescription (either inline conforming to envited-x:ResourceDescriptionShape or a valid manifest:Link)."@en ;
     ],
 
-    # 2) hasDataResourceExtension: Maintaining the mandatory domain-specific extension.
+    # 2) hasDomainSpecification: Maintaining the mandatory domain-specific extension.
     [
-        sh:path environment-model:hasDataResourceExtension ;
-        sh:node environment-model:DataResourceExtensionShape ;
+        sh:path environment-model:hasDomainSpecification ;
+        sh:node environment-model:DomainSpecificationShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each environment model must have one associated DataResourceExtension object with format, content, quantity, quality, and georeference."@en ;
+        sh:message "Each environment model must have one associated DomainSpecification object with format, content, quantity, quality, and georeference."@en ;
     ],
 
     # 3) hasManifest: Updated to reuse the ManifestLinkReferenceShape for linked manifests.
@@ -55,7 +55,7 @@ environment-model:EnvironmentModelShape a sh:NodeShape ;
     sh:targetClass environment-model:EnvironmentModel .
 
 
-environment-model:DataResourceExtensionShape a sh:NodeShape ;
+environment-model:DomainSpecificationShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property [
@@ -111,7 +111,7 @@ environment-model:DataResourceExtensionShape a sh:NodeShape ;
         sh:order 5 ;
         sh:path environment-model:hasGeoreference
     ] ;
-    sh:targetClass environment-model:DataResourceExtension .
+    sh:targetClass environment-model:DomainSpecification .
 
 environment-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
