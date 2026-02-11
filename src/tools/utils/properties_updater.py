@@ -651,61 +651,158 @@ def update_catalog_table(catalog_path: Path, table_markdown: str) -> None:
     logger.info("Updated catalog table in %s", catalog_path)
 
 
+def _read_version_file(domain_dir: Path) -> Optional[str]:
+    """Read version from a VERSION file if present."""
+    version_file = domain_dir / "VERSION"
+    if not version_file.exists():
+        return None
+    return _normalize_version_info(version_file.read_text(encoding="utf-8").strip())
+
+
+def _discover_artifact_files(domain_dir: Path, domain: str) -> Dict[str, Optional[str]]:
+    """Discover artifact files from a domain directory."""
+    files: Dict[str, Optional[str]] = {}
+    owl = domain_dir / f"{domain}.owl.ttl"
+    if owl.exists():
+        files["ontology"] = str(owl.relative_to(ARTIFACTS_DIR.parent))
+    shacl_paths = sorted(domain_dir.glob("*.shacl.ttl"))
+    if shacl_paths:
+        files["shacl"] = [str(p.relative_to(ARTIFACTS_DIR.parent)) for p in shacl_paths]
+    jsonld = domain_dir / f"{domain}.context.jsonld"
+    if jsonld.exists():
+        files["jsonld"] = str(jsonld.relative_to(ARTIFACTS_DIR.parent))
+    props = domain_dir / "PROPERTIES.md"
+    if props.exists():
+        files["properties"] = str(props.relative_to(ARTIFACTS_DIR.parent))
+    return files
+
+
+def _generate_properties_page(
+    domain: str, version_dir: str, files: dict, page_path: Path
+) -> None:
+    """Write a single properties page."""
+    artifacts_base = f"{PROPERTIES_DOMAIN_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
+
+    source_lines = ["## Sources", ""]
+
+    def add_source(label: str, path_str: Optional[str]) -> None:
+        if not path_str:
+            return
+        name = Path(path_str).name
+        source_lines.append(f"- {label}: [{name}]({artifacts_base}/{name})")
+
+    add_source("OWL", files.get("ontology"))
+    for shacl_path in files.get("shacl", []) or []:
+        add_source("SHACL", shacl_path)
+    add_source("Context", files.get("jsonld"))
+    add_source("PROPERTIES.md", files.get("properties"))
+    add_source("Example Instance", files.get("instance"))
+
+    snippet_path = f"artifacts/{domain}/{version_dir}/PROPERTIES.md"
+
+    page_content = [
+        "---",
+        "hide:",
+        "  - toc",
+        "---",
+        "",
+        f"# {domain} Properties",
+        "",
+        f"Version: `{version_dir}`",
+        "",
+        *source_lines,
+        "",
+        "## Properties",
+        "",
+        f'--8<-- "{snippet_path}"',
+        "",
+    ]
+    page_path.write_text("\n".join(page_content), encoding="utf-8")
+
+
 def update_properties_pages(registry: dict) -> None:
     """Generate docs/ontologies/properties/{domain}.md pages."""
     PROPERTIES_DIR.mkdir(parents=True, exist_ok=True)
 
-    for domain in sorted(registry.get("ontologies", {}).keys()):
-        domain_entry = registry.get("ontologies", {}).get(domain, {})
+    registry_domains = set(registry.get("ontologies", {}).keys())
+
+    # Process registry-tracked domains
+    for domain in sorted(registry_domains):
+        domain_entry = registry["ontologies"][domain]
         latest = domain_entry.get("latest")
         latest_entry = domain_entry.get("versions", {}).get(latest, {})
         version_dir = _resolve_version_dir(latest_entry, latest)
-        artifacts_base = f"{PROPERTIES_DOMAIN_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
 
         properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
         if not properties_path.exists():
             continue
 
-        page_path = PROPERTIES_DIR / f"{domain}.md"
         files = latest_entry.get("files", {})
+        _generate_properties_page(
+            domain, version_dir, files, PROPERTIES_DIR / f"{domain}.md"
+        )
 
-        source_lines = ["## Sources", ""]
+    # Process domains with PROPERTIES.md but not in registry (e.g. gx).
+    # Skip if a hand-maintained page already exists (committed to git).
+    for domain_dir in sorted(ARTIFACTS_DIR.iterdir()):
+        if not domain_dir.is_dir():
+            continue
+        domain = domain_dir.name
+        if domain in registry_domains:
+            continue
+        properties_path = domain_dir / "PROPERTIES.md"
+        if not properties_path.exists():
+            continue
 
-        def add_source(label: str, path_str: Optional[str]) -> None:
-            if not path_str:
-                return
-            name = Path(path_str).name
-            source_lines.append(f"- {label}: [{name}]({artifacts_base}/{name})")
+        page_path = PROPERTIES_DIR / f"{domain}.md"
+        if page_path.exists():
+            logger.info("Keeping existing properties page for %s", domain)
+            continue
 
-        add_source("OWL", files.get("ontology"))
-        for shacl_path in files.get("shacl", []) or []:
-            add_source("SHACL", shacl_path)
-        add_source("Context", files.get("jsonld"))
-        add_source("PROPERTIES.md", files.get("properties"))
-        add_source("Example Instance", files.get("instance"))
-
-        snippet_path = f"artifacts/{domain}/{version_dir}/PROPERTIES.md"
-
-        page_content = [
-            "---",
-            "hide:",
-            "  - toc",
-            "---",
-            "",
-            f"# {domain} Properties",
-            "",
-            f"Version: `{version_dir}`",
-            "",
-            *source_lines,
-            "",
-            "## Properties",
-            "",
-            f'--8<-- "{snippet_path}"',
-            "",
-        ]
-        page_path.write_text("\n".join(page_content), encoding="utf-8")
+        version_dir = _read_version_file(domain_dir) or "unknown"
+        files = _discover_artifact_files(domain_dir, domain)
+        _generate_properties_page(domain, version_dir, files, page_path)
+        logger.info("Generated properties page for unregistered domain: %s", domain)
 
     logger.info("Updated properties pages in %s", PROPERTIES_DIR)
+
+
+def _build_overview_row(
+    domain: str, version_dir: str, files: dict, artifacts_prefix: str
+) -> str:
+    """Build a single overview table row."""
+    artifacts_base = f"{artifacts_prefix}/{domain}/{version_dir}"
+
+    properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
+    has_properties = properties_path.exists()
+    properties_link = (
+        f"[{domain} Properties](properties/{domain}.md)" if has_properties else ""
+    )
+
+    def link_or_empty(path_str: Optional[str]) -> str:
+        if not path_str:
+            return ""
+        name = Path(path_str).name
+        return f"[{name}]({artifacts_base}/{name})"
+
+    def list_links(paths: List[str]) -> str:
+        if not paths:
+            return ""
+        links = [
+            f"[{Path(path_str).name}]({artifacts_base}/{Path(path_str).name})"
+            for path_str in paths
+        ]
+        return "<br>".join(links)
+
+    artifact_parts = [
+        link_or_empty(files.get("ontology")),
+        list_links(files.get("shacl", [])),
+        link_or_empty(files.get("jsonld")),
+        link_or_empty(files.get("instance")),
+    ]
+    artifact_links = "<br>".join([part for part in artifact_parts if part])
+
+    return "|" + "|".join([domain, version_dir, properties_link, artifact_links]) + "|"
 
 
 def update_properties_overview(registry: dict) -> None:
@@ -728,57 +825,34 @@ def update_properties_overview(registry: dict) -> None:
         "|---|---|---|---|",
     ]
 
-    for domain in sorted(ontologies.keys()):
-        domain_entry = ontologies.get(domain, {})
+    # Collect all domains: registry + unregistered with PROPERTIES.md
+    all_domains: Dict[str, Tuple[str, dict]] = {}
+
+    for domain, domain_entry in ontologies.items():
         latest = domain_entry.get("latest")
         latest_entry = domain_entry.get("versions", {}).get(latest, {})
         version_dir = _resolve_version_dir(latest_entry, latest)
-        artifacts_base = (
-            f"{PROPERTIES_OVERVIEW_ARTIFACTS_PREFIX}/{domain}/{version_dir}"
-        )
-
-        properties_path = ARTIFACTS_DIR / domain / "PROPERTIES.md"
-        has_properties = properties_path.exists()
-        properties_link = (
-            f"[{domain} Properties](properties/{domain}.md)" if has_properties else ""
-        )
-
         files = latest_entry.get("files", {})
+        all_domains[domain] = (version_dir, files)
 
-        def link_or_empty(path_str: Optional[str]) -> str:
-            if not path_str:
-                return ""
-            name = Path(path_str).name
-            return f"[{name}]({artifacts_base}/{name})"
+    for domain_dir in sorted(ARTIFACTS_DIR.iterdir()):
+        if not domain_dir.is_dir():
+            continue
+        domain = domain_dir.name
+        if domain in all_domains:
+            continue
+        if not (domain_dir / "PROPERTIES.md").exists():
+            continue
+        version_dir = _read_version_file(domain_dir) or "unknown"
+        files = _discover_artifact_files(domain_dir, domain)
+        all_domains[domain] = (version_dir, files)
 
-        def list_links(paths: List[str]) -> str:
-            if not paths:
-                return ""
-            links = [
-                f"[{Path(path_str).name}]({artifacts_base}/{Path(path_str).name})"
-                for path_str in paths
-            ]
-            return "<br>".join(links)
-
-        artifact_parts = [
-            link_or_empty(files.get("ontology")),
-            list_links(files.get("shacl", [])),
-            link_or_empty(files.get("jsonld")),
-            link_or_empty(files.get("instance")),
-        ]
-        artifact_links = "<br>".join([part for part in artifact_parts if part])
-
+    for domain in sorted(all_domains.keys()):
+        version_dir, files = all_domains[domain]
         overview_lines.append(
-            "|"
-            + "|".join(
-                [
-                    domain,
-                    version_dir,
-                    properties_link,
-                    artifact_links,
-                ]
+            _build_overview_row(
+                domain, version_dir, files, PROPERTIES_OVERVIEW_ARTIFACTS_PREFIX
             )
-            + "|"
         )
 
     content = "\n".join(overview_lines + [""])

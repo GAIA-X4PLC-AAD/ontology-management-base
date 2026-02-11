@@ -173,8 +173,11 @@ def on_config(config):
     """
     MkDocs hook called after configuration is loaded.
 
-    Ensures class pages are included in nav so the sidebar appears on them.
+    Runs doc generators first so class pages exist before nav is built.
+    Then ensures class pages are included in nav so the sidebar appears.
     """
+    _run_docs_generators()
+
     docs_dir = Path(config.get("docs_dir", "docs"))
     domain_nav = _build_class_page_nav(docs_dir)
     if not domain_nav:
@@ -221,9 +224,8 @@ def on_pre_build(config, **kwargs):
     MkDocs hook called before build.
 
     Copies artifacts into docs/ so they can be linked locally.
+    Note: Doc generators run in on_config (before nav is built).
     """
-    _run_docs_generators()
-
     if not ARTIFACTS_DIR.exists():
         return
 
