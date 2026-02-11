@@ -10,9 +10,9 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2> a owl:Ontology ;
-	rdfs:label "Ontology for leakage-test"@en ;
+    rdfs:label "Ontology for leakage-test"@en ;
 
-	dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
         a foaf:Person ;
         foaf:name "Selcan Karadag" ;
@@ -29,7 +29,7 @@
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/> ;
+    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2> ;
     owl:versionInfo "v2" ;
 
     # Imports strict dependencies
@@ -46,9 +46,9 @@
 #### Classes
 
 leakage-test:LeakageTest a owl:Class ;
-	rdfs:label "Class definition for LeakageTest"@en ;
-	rdfs:comment "Describes a leakage test."@en ;
-	rdfs:subClassOf envited-x:CodeAsset .
+    rdfs:label "Class definition for LeakageTest"@en ;
+    rdfs:comment "Describes a leakage test."@en ;
+    rdfs:subClassOf envited-x:CodeAsset .
 
 leakage-test:DomainSpecification a owl:Class ;
     rdfs:label "Class definition for DomainSpecification"@en ;
@@ -61,32 +61,32 @@ leakage-test:Content a owl:Class ;
     rdfs:subClassOf envited-x:Content .
 
 leakage-test:MachineParameter a owl:Class ;
-	rdfs:label "Class definition for MachineParameter"@en ;
-	rdfs:comment "Attributes for machine parameter of a leakage test."@en .
+    rdfs:label "Class definition for MachineParameter"@en ;
+    rdfs:comment "Attributes for machine parameter of a leakage test."@en .
 
 leakage-test:ProcessParameter a owl:Class ;
-	rdfs:label "Class definition for ProcessParameter"@en ;
-	rdfs:comment "Attributes for process parameter of a leakage test."@en .
+    rdfs:label "Class definition for ProcessParameter"@en ;
+    rdfs:comment "Attributes for process parameter of a leakage test."@en .
 
 leakage-test:CodingDownholder a owl:Class ;
-	rdfs:label "Class definition for CodingDownholder"@en ;
-	rdfs:comment "Attributes for coding downholder of a leakage test."@en .
+    rdfs:label "Class definition for CodingDownholder"@en ;
+    rdfs:comment "Attributes for coding downholder of a leakage test."@en .
 
 leakage-test:CodingTestAdapter a owl:Class ;
-	rdfs:label "Class definition for CodingTestAdapter"@en ;
-	rdfs:comment "Attributes for coding test adapter of a leakage test."@en .
+    rdfs:label "Class definition for CodingTestAdapter"@en ;
+    rdfs:comment "Attributes for coding test adapter of a leakage test."@en .
 
 leakage-test:CodingRFID a owl:Class ;
-	rdfs:label "Class definition for CodingRFID"@en ;
-	rdfs:comment "Attributes for coding RFID of a leakage test."@en .
+    rdfs:label "Class definition for CodingRFID"@en ;
+    rdfs:comment "Attributes for coding RFID of a leakage test."@en .
 
 leakage-test:MaximumPressure a owl:Class ;
-	rdfs:label "Class definition for MaximumPressure"@en ;
-	rdfs:comment "Attributes for maximum pressure of a leakage test."@en .
+    rdfs:label "Class definition for MaximumPressure"@en ;
+    rdfs:comment "Attributes for maximum pressure of a leakage test."@en .
 
 leakage-test:MinimumPressure a owl:Class ;
-	rdfs:label "Class definition for MinimumPressure"@en ;
-	rdfs:comment "Attributes for minimum pressure of a leakage test."@en .
+    rdfs:label "Class definition for MinimumPressure"@en ;
+    rdfs:comment "Attributes for minimum pressure of a leakage test."@en .
 
 
 #### Object Properties

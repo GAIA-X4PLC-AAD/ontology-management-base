@@ -41,8 +41,8 @@
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2" uri="simulation-model/simulation-model.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/shapes" uri="simulation-model/simulation-model.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6" uri="survey/survey.owl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes" uri="survey/survey-result-data-offering.shacl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes" uri="survey/survey-service-offering.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes/result-data-offering" uri="survey/survey-result-data-offering.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes/service-offering" uri="survey/survey-service-offering.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2" uri="vv-report/vv-report.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/shapes" uri="vv-report/vv-report.shacl.ttl"/>
 </catalog>

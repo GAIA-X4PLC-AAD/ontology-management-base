@@ -76,7 +76,6 @@ nav:
   - Ontologies:
       - Using the Ontologies: ontologies/using-ontologies.md
       - Concepts (OWL, SHACL, Context): ontologies/concepts.md
-      - Domains: ontologies/properties.md
       - Property Explorer:
         - Overview: ontologies/properties.md
         - automotive-simulator: ontologies/properties/automotive-simulator.md

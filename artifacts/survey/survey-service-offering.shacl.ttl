@@ -6,8 +6,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-# The Shapes Graph URI appends "/shapes" to the Ontology URI
-<https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes>
+# The Shapes Graph URI appends "/shapes/<offering-type>" to the Ontology URI
+<https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes/service-offering>
     a owl:Ontology ;
     # The Shapes Graph must import the Domain Ontology
     owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/survey/v6> .

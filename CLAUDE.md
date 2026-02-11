@@ -58,9 +58,9 @@ All file discovery goes through XML catalogs. Validators never scan the filesyst
 
 | Module | Responsibility |
 |--------|----------------|
-| `registry_updater.py` | WRITES catalogs (only user of `file_collector.py`) |
+| `registry_updater.py` | WRITES catalogs, uses `file_collector.py` for discovery |
 | `registry_resolver.py` | READS catalogs, resolves IRIs to paths |
-| `file_collector.py` | INTERNAL - used by registry_updater only |
+| `file_collector.py` | Shared file discovery utilities (used by updater + validators) |
 
 ### Catalog Locations
 
@@ -117,10 +117,20 @@ Read these before making changes:
 | Testing requirements | `.github/instructions/testing.md` |
 | Domain terminology | `.github/instructions/glossary.md` |
 
+## Change Documentation
+
+When making changes to the codebase, always update these two files in `.playground/` (gitignored):
+
+| File | Purpose |
+|------|---------|
+| `.playground/change-summary.md` | Detailed markdown summary of all changes grouped by severity/category, including file paths, problem descriptions, and fixes applied |
+| `.playground/commit-message.md` | Conventional commit message with bullet points, ready for copy-paste into `git commit` |
+
+Update both files **before** presenting the final result to the user. If a session involves multiple rounds of changes, keep these files in sync with the cumulative state.
+
 ## Common Mistakes to Avoid
 
 - Bypassing catalogs with direct filesystem scanning in validators
-- Using `file_collector.py` outside `registry_updater.py`
 - Using `os.path` instead of `pathlib.Path`
 - Silent `None` returns instead of raising exceptions
 - Using `print()` for internal progress (use `logger`)

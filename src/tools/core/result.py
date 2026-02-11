@@ -54,18 +54,18 @@ class ReturnCodes(IntEnum):
     Grouped by category:
     - 0: Success
     - 1: General error
-    - 10x: Syntax errors
+    - 10-10x: Syntax errors
     - 20x: Coherence/consistency errors
     - 21x: Conformance/SHACL errors
     - 99: System/dependency errors
-    - 100: Skip/missing file
+    - 100: Skipped
     """
 
     SUCCESS = 0
     GENERAL_ERROR = 1
 
     # Syntax validation (10x)
-    SYNTAX_ERROR = 100
+    SYNTAX_ERROR = 10
     JSON_SYNTAX_ERROR = 101
     TURTLE_SYNTAX_ERROR = 102
 
@@ -80,7 +80,7 @@ class ReturnCodes(IntEnum):
     # System errors (99)
     MISSING_DEPENDENCY = 99
 
-    # Skip conditions (100)
+    # Skip conditions
     SKIPPED = 100
 
 
@@ -181,7 +181,7 @@ if __name__ == "__main__":
 
         # Test ReturnCodes
         assert ReturnCodes.SUCCESS == 0
-        assert ReturnCodes.SYNTAX_ERROR == 100
+        assert ReturnCodes.SYNTAX_ERROR == 10
         assert ReturnCodes.CONFORMANCE_ERROR == 210
 
         # Test ValidationResult

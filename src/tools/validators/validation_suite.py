@@ -73,7 +73,7 @@ python3 -m src.tools.validators.validation_suite --run check-data-conformance --
 import argparse
 import difflib
 import io
-import os
+import os  # retained for os.environ usage
 import sys
 from pathlib import Path
 from typing import List
@@ -98,13 +98,11 @@ from src.tools.validators.syntax_validator import (
 
 # Define the root directory of the repository
 # Navigate up from src/tools/validators to the repo root
-ROOT_DIR = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
-SRC_DIR = os.path.join(ROOT_DIR, "src")
-ARTIFACTS_DIR = os.path.join(ROOT_DIR, "artifacts")
-TESTS_DATA_DIR = os.path.join(ROOT_DIR, "tests", "data")
-IMPORTS_DIR = os.path.join(ROOT_DIR, "imports")
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent.parent
+SRC_DIR = ROOT_DIR / "src"
+ARTIFACTS_DIR = ROOT_DIR / "artifacts"
+TESTS_DATA_DIR = ROOT_DIR / "tests" / "data"
+IMPORTS_DIR = ROOT_DIR / "imports"
 
 
 def parse_gitignore_patterns(root_dir):
@@ -112,19 +110,18 @@ def parse_gitignore_patterns(root_dir):
     Parses .gitignore to find folders that should be ignored.
     Returns a set of folder names.
     """
-    gitignore_path = os.path.join(root_dir, ".gitignore")
+    root_path = Path(root_dir)
+    gitignore_path = root_path / ".gitignore"
     ignored_folders = set()
 
-    if os.path.exists(gitignore_path):
+    if gitignore_path.exists():
         with open(gitignore_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line or line.startswith("#"):
                     continue
                 clean_name = line.strip("/")
-                if line.endswith("/") or os.path.isdir(
-                    os.path.join(root_dir, clean_name)
-                ):
+                if line.endswith("/") or (root_path / clean_name).is_dir():
                     ignored_folders.add(clean_name)
     return ignored_folders
 
@@ -140,9 +137,6 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
     if not ontology_domains:
         return 0
 
-    # Convert ROOT_DIR to Path for use with normalization
-    ROOT_DIR_PATH = Path(ROOT_DIR)
-
     # Use catalog-based discovery for comprehensive JSON-LD file collection
     catalog_resolver = RegistryResolver(ROOT_DIR)
 
@@ -154,24 +148,24 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
 
         # Get all entries from catalog (test-data, fixtures, etc.)
         for test_id, metadata in catalog_resolver._catalog.items():
-            file_path = ROOT_DIR_PATH / metadata["path"]
+            file_path = ROOT_DIR / metadata["path"]
             if file_path.suffix in [".json", ".jsonld"] and file_path.exists():
                 json_files_to_check.append(str(file_path))
 
         # Also check for any JSON-LD files in artifacts that might not be cataloged
         for domain in ontology_domains:
-            artifact_dir = os.path.join(ARTIFACTS_DIR, domain)
-            if os.path.isdir(artifact_dir):
-                for file in os.listdir(artifact_dir):
-                    if file.endswith((".json", ".jsonld")):
-                        file_path = os.path.join(artifact_dir, file)
-                        if file_path not in json_files_to_check:
-                            json_files_to_check.append(file_path)
+            artifact_dir = ARTIFACTS_DIR / domain
+            if artifact_dir.is_dir():
+                for file in artifact_dir.iterdir():
+                    if file.suffix in (".json", ".jsonld"):
+                        file_str = str(file)
+                        if file_str not in json_files_to_check:
+                            json_files_to_check.append(file_str)
 
         # Check each file individually
         json_results = []
         for json_file in sorted(json_files_to_check):
-            code, msg = check_json_wellformedness(json_file, ROOT_DIR_PATH)
+            code, msg = check_json_wellformedness(json_file, ROOT_DIR)
             json_results.append((code, msg))
             if code != 0:
                 print(msg, file=sys.stderr)
@@ -181,22 +175,22 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
         # Fallback: directory-based approach
         dirs_to_check = []
         for domain in ontology_domains:
-            artifact_dir = os.path.join(ARTIFACTS_DIR, domain)
-            if os.path.isdir(artifact_dir):
-                dirs_to_check.append(artifact_dir)
-            valid_dir = os.path.join(TESTS_DATA_DIR, domain, "valid")
-            if os.path.isdir(valid_dir):
-                dirs_to_check.append(valid_dir)
-            invalid_dir = os.path.join(TESTS_DATA_DIR, domain, "invalid")
-            if os.path.isdir(invalid_dir):
-                dirs_to_check.append(invalid_dir)
+            artifact_dir = ARTIFACTS_DIR / domain
+            if artifact_dir.is_dir():
+                dirs_to_check.append(str(artifact_dir))
+            valid_dir = TESTS_DATA_DIR / domain / "valid"
+            if valid_dir.is_dir():
+                dirs_to_check.append(str(valid_dir))
+            invalid_dir = TESTS_DATA_DIR / domain / "invalid"
+            if invalid_dir.is_dir():
+                dirs_to_check.append(str(invalid_dir))
 
         # Add fixtures directory
-        fixtures_dir = os.path.join(ROOT_DIR, "tests", "fixtures")
-        if os.path.isdir(fixtures_dir):
-            dirs_to_check.append(fixtures_dir)
+        fixtures_dir = ROOT_DIR / "tests" / "fixtures"
+        if fixtures_dir.is_dir():
+            dirs_to_check.append(str(fixtures_dir))
 
-        json_ret, json_results = verify_json_syntax(dirs_to_check, ROOT_DIR_PATH)
+        json_ret, json_results = verify_json_syntax(dirs_to_check, ROOT_DIR)
         for code, msg in json_results:
             if code == 0:
                 print(msg)
@@ -207,11 +201,11 @@ def check_syntax_all(ontology_domains: List[str]) -> int:
     print("\n=== Checking TTL syntax ===", flush=True)
     # Check TTL files in all domain directories
     ttl_dirs = [
-        os.path.join(ARTIFACTS_DIR, domain)
+        str(ARTIFACTS_DIR / domain)
         for domain in ontology_domains
-        if os.path.isdir(os.path.join(ARTIFACTS_DIR, domain))
+        if (ARTIFACTS_DIR / domain).is_dir()
     ]
-    ttl_ret, ttl_results = verify_turtle_syntax(ttl_dirs, ROOT_DIR_PATH)
+    ttl_ret, ttl_results = verify_turtle_syntax(ttl_dirs, ROOT_DIR)
     for code, msg in ttl_results:
         if code == 0:
             print(msg)
@@ -260,7 +254,7 @@ def validate_data_conformance_all(ontology_domains: List[str]) -> int:
         # Use new catalog-based validator
         returncode, output = validate_data_conformance(
             jsonld_files,
-            Path(ROOT_DIR),
+            ROOT_DIR,
             inference_mode="rdfs",
             debug=False,
             logfile=None,
@@ -311,14 +305,14 @@ def check_failing_tests_all(ontology_domains: List[str]) -> int:
 
         for test_abs_path in invalid_test_files:
             test_abs_path = Path(test_abs_path)
-            test_path = normalize_path_for_display(test_abs_path, Path(ROOT_DIR))
+            test_path = normalize_path_for_display(test_abs_path, ROOT_DIR)
             expected_output_path = test_abs_path.with_suffix("").with_suffix(
                 ".expected"
             )
 
             if not expected_output_path.exists():
                 expected_path_display = normalize_path_for_display(
-                    expected_output_path, Path(ROOT_DIR)
+                    expected_output_path, ROOT_DIR
                 )
                 print(
                     f"⚠️ No expected output file found: {expected_path_display}",
@@ -337,7 +331,7 @@ def check_failing_tests_all(ontology_domains: List[str]) -> int:
             # Use new catalog-based validator
             returncode, output = validate_data_conformance(
                 jsonld_files,
-                Path(ROOT_DIR),
+                ROOT_DIR,
                 inference_mode="rdfs",
                 debug=False,
                 logfile=None,
@@ -396,14 +390,11 @@ def validate_artifact_coherence_all(ontology_domains: List[str]) -> int:
         return 0
     print("\n=== Checking target classes against OWL classes ===", flush=True)
 
-    # Convert ROOT_DIR to Path for use with normalization
-    ROOT_DIR_PATH = Path(ROOT_DIR)
-
     for domain in ontology_domains:
         print(f"\n🔍 Checking target classes for domain: {domain}", flush=True)
 
         # Call the updated validator with the new structure
-        returncode, output = validate_artifact_coherence(domain, root_dir=ROOT_DIR_PATH)
+        returncode, output = validate_artifact_coherence(domain, root_dir=ROOT_DIR)
 
         if output:
             target = sys.stdout if returncode == 0 else sys.stderr
@@ -523,7 +514,7 @@ def main():
         # Validate that paths exist
         valid_paths = []
         for p in args.path:
-            if os.path.exists(p):
+            if Path(p).exists():
                 valid_paths.append(p)
             else:
                 display_path = str(p).replace("\\", "/")
@@ -603,7 +594,6 @@ def main():
         # Helper function for syntax checking in path mode
         def check_syntax_path_mode():
             """Check syntax using catalog for JSON-LD and direct check for TTL."""
-            ROOT_DIR_PATH = Path(ROOT_DIR)
 
             # Check JSON-LD files via catalog (already in temporary domain)
             print("\n=== Checking JSON-LD syntax ===", flush=True)
@@ -611,7 +601,7 @@ def main():
 
             if jsonld_files:
                 for json_file in sorted(jsonld_files):
-                    code, msg = check_json_wellformedness(str(json_file), ROOT_DIR_PATH)
+                    code, msg = check_json_wellformedness(str(json_file), ROOT_DIR)
                     if code == 0:
                         print(msg)
                     else:
@@ -622,7 +612,7 @@ def main():
 
             # Check TTL files directly
             print("\n=== Checking TTL syntax ===", flush=True)
-            ttl_ret, ttl_results = verify_turtle_syntax(paths_to_check, ROOT_DIR_PATH)
+            ttl_ret, ttl_results = verify_turtle_syntax(paths_to_check, ROOT_DIR)
             for code, msg in ttl_results:
                 if code == 0:
                     print(msg)
@@ -650,7 +640,7 @@ def main():
             # Use validator directly with files from temporary catalog
             returncode, output = validate_data_conformance(
                 [str(f) for f in jsonld_files],
-                Path(ROOT_DIR),
+                ROOT_DIR,
                 inference_mode="rdfs",
                 debug=False,
                 logfile=None,

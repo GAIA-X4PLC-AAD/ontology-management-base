@@ -46,7 +46,6 @@ NOTES:
 import argparse
 import io
 import json
-import os
 import sys
 from pathlib import Path
 from typing import List, Optional, Tuple, Union
@@ -86,7 +85,7 @@ def check_json_syntax(
     else:
         display_path = str(filename)
 
-    if not os.path.isfile(filename):
+    if not Path(filename).is_file():
         return ReturnCodes.JSON_SYNTAX_ERROR, f"File not found: {display_path}"
 
     try:
@@ -140,7 +139,7 @@ def verify_json_syntax(
 
     ret = 0
     for filename in files:
-        filename = os.path.normpath(filename)
+        filename = str(Path(filename).resolve())
         code, msg = check_json_syntax(filename, root_dir)
         results.append((code, msg))
         ret |= code
@@ -176,7 +175,7 @@ def check_turtle_syntax(
     else:
         display_path = str(filename)
 
-    if not os.path.isfile(filename):
+    if not Path(filename).is_file():
         return ReturnCodes.TURTLE_SYNTAX_ERROR, f"File not found: {display_path}"
 
     try:
@@ -231,7 +230,7 @@ def verify_turtle_syntax(
 
     ret = 0
     for filename in files:
-        filename = os.path.normpath(filename)
+        filename = str(Path(filename).resolve())
         code, msg = check_turtle_syntax(filename, root_dir)
         results.append((code, msg))
         ret |= code

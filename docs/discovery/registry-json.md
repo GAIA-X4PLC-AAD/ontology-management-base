@@ -18,18 +18,24 @@ Example snippet:
 
 ```json
 {
-  "automotive-simulator": {
-    "namespace": "gaia-x4plcaad",
-    "latest": "v2",
-    "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
-    "versions": {
-      "v2": {
-        "versionInfo": "v2",
-        "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
-        "files": {
-          "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
-          "shacl": ["artifacts/automotive-simulator/automotive-simulator.shacl.ttl"],
-          "instance": "tests/data/automotive-simulator/valid/automotive-simulator_instance.json"
+  "version": "2.1.0",
+  "latestRelease": "v0.0.5",
+  "ontologies": {
+    "automotive-simulator": {
+      "namespace": "gaia-x4plcaad",
+      "iri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
+      "latest": "v2",
+      "versions": {
+        "v2": {
+          "releaseTag": "v0.0.5",
+          "versionInfo": "v2",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
+          "files": {
+            "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
+            "shacl": ["artifacts/automotive-simulator/automotive-simulator.shacl.ttl"],
+            "properties": "artifacts/automotive-simulator/PROPERTIES.md",
+            "instance": "tests/data/automotive-simulator/valid/automotive-simulator_instance.json"
+          }
         }
       }
     }

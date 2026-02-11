@@ -372,18 +372,6 @@ class RegistryResolver:
             return None
         return info.get("jsonld")
 
-    def get_instance_path(self, domain: str) -> Optional[str]:
-        """
-        Get the instance file path for a domain.
-
-        Args:
-            domain: Domain name (e.g., "scenario")
-
-        Returns:
-            Repository-relative path to the instance file, or None if not found
-        """
-        return None
-
     def get_iri(self, domain: str) -> Optional[str]:
         """
         Get the IRI for a domain.

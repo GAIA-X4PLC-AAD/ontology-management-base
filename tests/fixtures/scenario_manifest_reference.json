@@ -177,6 +177,18 @@
         "manifest:filename": {
           "@value": "scenario_preview.png",
           "@type": "xsd:string"
+        },
+        "manifest:hasDimensions": {
+          "@type": "manifest:Dimensions",
+          "manifest:unit": "pixels",
+          "manifest:width": {
+            "@value": "1920.0",
+            "@type": "xsd:float"
+          },
+          "manifest:height": {
+            "@value": "1080.0",
+            "@type": "xsd:float"
+          }
         }
       }
     },

@@ -24,7 +24,6 @@ classifiers = [
 
 dependencies = [
     "rdflib>=7.5.0",
-    "rdflib-jsonld>=0.6.2",
     "pyshacl>=0.31.0",
     "keycloak_client>=0.15.4",
     "requests>=2.32.5",
@@ -60,8 +59,8 @@ Issues = "https://github.com/gaia-x4plc-aad/ontology-management-base/issues"
 
 [project.scripts]
 onto-validate = "src.tools.validators.validation_suite:main"
-onto-check-conformance = "src.tools.validators.validate_data_conformance:main"
-onto-check-coherence = "src.tools.validators.validate_artifact_coherence:main"
+onto-check-conformance = "src.tools.validators.conformance_validator:main"
+onto-check-coherence = "src.tools.validators.coherence_validator:main"
 onto-generate-docs = "src.tools.utils.properties_updater:main"
 
 [tool.setuptools.packages.find]

@@ -15,7 +15,6 @@ Usage:
 
 import argparse
 import json
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Union
@@ -34,19 +33,15 @@ import rdflib
 from rdflib import OWL, RDF, URIRef
 from rdflib.namespace import RDFS, SKOS
 
-# Try to use Oxigraph for speed
-try:
-    import oxrdflib  # noqa: F401
-
-    FAST_STORE = "oxigraph"
-except ImportError:
-    FAST_STORE = "default"
-
-# Import centralized file collector
+# Import from core
+from src.tools.core.constants import FAST_STORE
+from src.tools.core.logging import get_logger
 from src.tools.utils.file_collector import (
     collect_jsonld_files,
     collect_ontology_bundles,
 )
+
+logger = get_logger(__name__)
 
 # Constants
 ROOT_DIR = Path(__file__).parent.parent.parent.parent.resolve()
@@ -98,7 +93,7 @@ def parse_graph(file_path: Path) -> Optional[rdflib.Graph]:
         g.parse(str(file_path), format=fmt)
         return g
     except Exception as e:
-        print(f"⚠️  Warning: Could not parse {file_path.name}: {e}", file=sys.stderr)
+        logger.warning("Could not parse %s: %s", file_path.name, e)
         return None
 
 
@@ -289,24 +284,21 @@ def update_registry(release_tag: str, ontologies: Dict[str, dict]) -> dict:
         info = extract_ontology_info(owl_path)
 
         if not info["iri"]:
-            print(
-                f"⚠️  Skipping {domain}: No valid IRI found in {owl_path.name}",
-                file=sys.stderr,
+            logger.warning(
+                "Skipping %s: No valid IRI found in %s", domain, owl_path.name
             )
             continue
 
         if not info["versionInfo"]:
-            print(
-                f"⚠️  Skipping {domain}: owl:versionInfo missing in {owl_path.name}",
-                file=sys.stderr,
+            logger.warning(
+                "Skipping %s: owl:versionInfo missing in %s", domain, owl_path.name
             )
             continue
 
         if not info["versionIri"]:
-            print(
-                f"⚠️  Warning: owl:versionIRI missing in {owl_path.name}; "
-                "using ontology IRI as version IRI",
-                file=sys.stderr,
+            logger.warning(
+                "owl:versionIRI missing in %s; using ontology IRI as version IRI",
+                owl_path.name,
             )
             info["versionIri"] = info["iri"]
 
@@ -367,12 +359,12 @@ def write_registry(registry: dict) -> None:
         if _normalize_line_endings(existing_content) == _normalize_line_endings(
             new_content
         ):
-            print(f"✅ Registry unchanged: {REGISTRY_PATH.as_posix()}")
+            logger.info("Registry unchanged: %s", REGISTRY_PATH.as_posix())
             return
 
     with REGISTRY_PATH.open("w", encoding="utf-8", newline="\n") as f:
         f.write(new_content)
-    print(f"✅ Registry updated: {REGISTRY_PATH.as_posix()}")
+    logger.info("Registry updated: %s", REGISTRY_PATH.as_posix())
 
 
 def extract_shacl_iri(shacl_file: Path) -> Optional[str]:
@@ -424,10 +416,7 @@ def generate_xml_catalog(
             iri = registry["ontologies"][domain].get("iri")
 
         if not iri:
-            print(
-                f"⚠️  Warning: No ontology IRI found for domain '{domain}', skipping",
-                file=sys.stderr,
-            )
+            logger.warning("No ontology IRI found for domain '%s', skipping", domain)
             continue
 
         rel_path = to_posix_relative(Path(owl_path), catalog_base)
@@ -442,9 +431,8 @@ def generate_xml_catalog(
                 if not shacl_iri and is_single_shacl:
                     shacl_iri = build_shapes_iri(iri)
                 if not shacl_iri:
-                    print(
-                        f"⚠️  Warning: No SHACL IRI found in {Path(shacl_path).name}, skipping",
-                        file=sys.stderr,
+                    logger.warning(
+                        "No SHACL IRI found in %s, skipping", Path(shacl_path).name
                     )
                     continue
                 rel = to_posix_relative(Path(shacl_path), catalog_base)
@@ -503,10 +491,7 @@ def generate_imports_catalog(
         iri = info.get("iri")
 
         if not iri:
-            print(
-                f"⚠️  Warning: No IRI found in {Path(owl_path).name}, skipping",
-                file=sys.stderr,
-            )
+            logger.warning("No IRI found in %s, skipping", Path(owl_path).name)
             continue
 
         # Add ontology file
@@ -558,12 +543,12 @@ def write_file(content: str, path: Path) -> None:
         if _normalize_line_endings(existing_content) == _normalize_line_endings(
             content
         ):
-            print(f"✅ Unchanged: {path.as_posix()}")
+            logger.info("Unchanged: %s", path.as_posix())
             return
 
     with path.open("w", encoding="utf-8", newline="\n") as f:
         f.write(content)
-    print(f"✅ Generated: {path.as_posix()}")
+    logger.info("Generated: %s", path.as_posix())
 
 
 def discover_test_data() -> Dict[str, dict]:
@@ -708,10 +693,7 @@ def generate_ontoenv(
             continue
         info = extract_dependency_info(owl_path)
         if not info["iri"]:
-            print(
-                f"⚠️  Warning: No valid IRI found for dependency {domain}",
-                file=sys.stderr,
-            )
+            logger.warning("No valid IRI found for dependency %s", domain)
             continue
 
         lines.append(f"[dependencies.{domain}]")
@@ -735,28 +717,30 @@ def main():
     project_name = meta.get("name") or "ontology-management-base"
     project_version = meta.get("version") or release_tag.lstrip("v")
 
-    print(f"🔧 Using RDF store: {FAST_STORE}")
-    print(f"🏷️  Release tag: {release_tag}")
+    logger.info("Using RDF store: %s", FAST_STORE)
+    logger.info("Release tag: %s", release_tag)
 
-    print("🔍 Scanning artifacts/...")
+    logger.info("Scanning artifacts/...")
     domain_ontologies = collect_ontology_bundles(ARTIFACTS_DIR, TESTS_DATA_DIR)
 
-    print("🔍 Scanning imports/...")
+    logger.info("Scanning imports/...")
     base_ontologies = collect_ontology_bundles(IMPORTS_DIR)
 
-    print(f"📝 Updating registry.json (processing {len(domain_ontologies)} domains)...")
+    logger.info(
+        "Updating registry.json (processing %d domains)...", len(domain_ontologies)
+    )
     registry = update_registry(release_tag, domain_ontologies)
 
-    print("📋 Generating XML catalogs...")
+    logger.info("Generating XML catalogs...")
     artifacts_xml = generate_xml_catalog(
         domain_ontologies, registry, ARTIFACTS_CATALOG_PATH
     )
     imports_xml = generate_imports_catalog(base_ontologies, IMPORTS_CATALOG_PATH)
 
-    print("🧩 Generating ontoenv.toml...")
+    logger.info("Generating ontoenv.toml...")
     ontoenv_toml = generate_ontoenv(base_ontologies, project_name, project_version)
 
-    print("🔍 Discovering test data & fixtures...")
+    logger.info("Discovering test data & fixtures...")
     test_data = discover_test_data()
     fixtures = discover_fixtures()
     test_catalog_xml = generate_test_catalog(test_data, fixtures)

@@ -15,18 +15,11 @@ from typing import Tuple
 
 from rdflib import Graph
 
+from src.tools.core.constants import FAST_STORE
 from src.tools.core.logging import get_logger
 
 # Module logger
 logger = get_logger(__name__)
-
-# Try to import performance optimization
-try:
-    import oxrdflib  # noqa: F401
-
-    FAST_STORE = "oxigraph"
-except ImportError:
-    FAST_STORE = "default"
 
 # Maximum iterations to prevent infinite loops
 MAX_ITERATIONS = 10

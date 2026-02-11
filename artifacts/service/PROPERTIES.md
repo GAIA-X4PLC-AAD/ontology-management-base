@@ -66,26 +66,26 @@ class Class_definition_for_Service
 
 ### SHACL Properties
 
-#### service:description {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-description .property-anchor }
-#### service:hasContent {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hascontent .property-anchor }
-#### service:hasDomainSpecification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasdomainspecification .property-anchor }
-#### service:hasManifest {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasmanifest .property-anchor }
-#### service:hasServiceOffering {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasserviceoffering .property-anchor }
-#### service:requiredFile {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-requiredfile .property-anchor }
-#### service:resultingFile {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-resultingfile .property-anchor }
-#### service:specification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-specification .property-anchor }
-#### service:tooling {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-tooling .property-anchor }
+#### service:description {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-description .property-anchor }
+#### service:hasContent {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hascontent .property-anchor }
+#### service:hasDomainSpecification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasdomainspecification .property-anchor }
+#### service:hasManifest {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasmanifest .property-anchor }
+#### service:hasServiceOffering {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasserviceoffering .property-anchor }
+#### service:requiredFile {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-requiredfile .property-anchor }
+#### service:resultingFile {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-resultingfile .property-anchor }
+#### service:specification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-specification .property-anchor }
+#### service:tooling {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-tooling .property-anchor }
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasserviceoffering"></a>hasServiceOffering|1|1|||service.shacl.ttl|
-|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasdomainspecification"></a>hasDomainSpecification|1|1|||service.shacl.ttl|
-|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hasmanifest"></a>hasManifest|1|1|||service.shacl.ttl|
-|DomainSpecificationShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-hascontent"></a>hasContent|1|1|||service.shacl.ttl|
-|ContentShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-requiredfile"></a>requiredFile|||Required file object with properties for urls and description.||service.shacl.ttl|
-|ContentShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-resultingfile"></a>resultingFile|1||Resulting file object with properties for url and description.||service.shacl.ttl|
-|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-description"></a>description|1|1|Human readable description of the required file.|<http://www.w3.org/2001/XMLSchema#string>|service.shacl.ttl|
-|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-specification"></a>specification||1|Uniform Resource Identifier (URI) to identify to a formal specification of the file.|<http://www.w3.org/2001/XMLSchema#anyURI>|service.shacl.ttl|
-|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v1-tooling"></a>tooling||1|Uniform Resource Identifier (URI) to identify to a tool to help create the file.|<http://www.w3.org/2001/XMLSchema#anyURI>|service.shacl.ttl|
+|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasserviceoffering"></a>hasServiceOffering|1|1|||service.shacl.ttl|
+|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasdomainspecification"></a>hasDomainSpecification|1|1|||service.shacl.ttl|
+|ServiceShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hasmanifest"></a>hasManifest|1|1|||service.shacl.ttl|
+|DomainSpecificationShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-hascontent"></a>hasContent|1|1|||service.shacl.ttl|
+|ContentShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-requiredfile"></a>requiredFile|||Required file object with properties for urls and description.||service.shacl.ttl|
+|ContentShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-resultingfile"></a>resultingFile|1||Resulting file object with properties for url and description.||service.shacl.ttl|
+|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-description"></a>description|1|1|Human readable description of the required file.|<http://www.w3.org/2001/XMLSchema#string>|service.shacl.ttl|
+|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-specification"></a>specification||1|Uniform Resource Identifier (URI) to identify to a formal specification of the file.|<http://www.w3.org/2001/XMLSchema#anyURI>|service.shacl.ttl|
+|RequiredFileShape|service|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-service-v2-tooling"></a>tooling||1|Uniform Resource Identifier (URI) to identify to a tool to help create the file.|<http://www.w3.org/2001/XMLSchema#anyURI>|service.shacl.ttl|
 |ResultingFileShape|service|description|1|1|Human readable description.|<http://www.w3.org/2001/XMLSchema#string>|service.shacl.ttl|
 |ResultingFileShape|service|specification|1|1|Uniform Resource Identifier (URI) to identify to a formal specification of the file.|<http://www.w3.org/2001/XMLSchema#anyURI>|service.shacl.ttl|

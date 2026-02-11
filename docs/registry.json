@@ -169,7 +169,7 @@
         "v2": {
           "releaseTag": "v0.0.5",
           "versionInfo": "v2",
-          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/",
+          "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2",
           "files": {
             "ontology": "artifacts/leakage-test/leakage-test.owl.ttl",
             "shacl": [
