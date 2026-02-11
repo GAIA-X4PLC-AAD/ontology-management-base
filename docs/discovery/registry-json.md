@@ -19,7 +19,7 @@ Example snippet:
 ```json
 {
   "version": "2.1.0",
-  "latestRelease": "v0.0.5",
+  "latestRelease": "v0.1.0",
   "ontologies": {
     "automotive-simulator": {
       "namespace": "gaia-x4plcaad",
@@ -27,12 +27,14 @@ Example snippet:
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
           "files": {
             "ontology": "artifacts/automotive-simulator/automotive-simulator.owl.ttl",
-            "shacl": ["artifacts/automotive-simulator/automotive-simulator.shacl.ttl"],
+            "shacl": [
+              "artifacts/automotive-simulator/automotive-simulator.shacl.ttl"
+            ],
             "properties": "artifacts/automotive-simulator/PROPERTIES.md",
             "instance": "tests/data/automotive-simulator/valid/automotive-simulator_instance.json"
           }
