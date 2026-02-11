@@ -90,14 +90,3 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy-docs:
-    name: 📚 Deploy Documentation
-    needs: release
-    uses: ./.github/workflows/cd-docs.yml
-    with:
-      ref: main
-    permissions:
-      contents: read
-      pages: write
-      id-token: write

@@ -50,3 +50,19 @@ repos:
         pass_filenames: false
         files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$
         stages: [pre-commit]
+
+      - id: update-properties
+        name: Update Properties Documentation
+        entry: python -m src.tools.utils.properties_updater
+        language: system
+        pass_filenames: false
+        files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$
+        stages: [pre-commit]
+
+      - id: update-readme
+        name: Update README Catalog Table
+        entry: python -m src.tools.utils.readme_updater
+        language: system
+        pass_filenames: false
+        files: ^artifacts/.*\.(owl\.ttl|shacl\.ttl|context\.jsonld)$
+        stages: [pre-commit]
