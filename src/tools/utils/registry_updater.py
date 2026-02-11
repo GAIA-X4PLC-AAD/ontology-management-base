@@ -667,7 +667,7 @@ def _default_release_tag() -> str:
     version = meta.get("version")
     if version:
         return f"v{version}"
-    return "v0.0.5"
+    return "v0.1.0"
 
 
 def _toml_escape(value: str) -> str:

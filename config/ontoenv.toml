@@ -3,7 +3,7 @@
 
 [tool.ontoenv]
 name = "ontology-management-base"
-version = "0.0.5"
+version = "0.1.0"
 
 [dependencies.cred]
 uri = "https://www.w3.org/2018/credentials#"

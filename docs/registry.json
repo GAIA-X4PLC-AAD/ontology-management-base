@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "latestRelease": "v0.0.5",
+  "latestRelease": "v0.1.0",
   "ontologies": {
     "automotive-simulator": {
       "namespace": "gaia-x4plcaad",
@@ -8,7 +8,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2",
           "files": {
@@ -28,7 +28,7 @@
       "latest": "v0.5",
       "versions": {
         "v0.5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v0.5",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/description/v1",
           "files": {
@@ -47,7 +47,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/environment-model/v5",
           "files": {
@@ -67,7 +67,7 @@
       "latest": "v3",
       "versions": {
         "v3": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v3",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/envited-x/v3",
           "files": {
@@ -87,7 +87,7 @@
       "latest": "v0.5",
       "versions": {
         "v0.5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v0.5",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/example/v1",
           "files": {
@@ -107,7 +107,7 @@
       "latest": "v3",
       "versions": {
         "v3": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v3",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3",
           "files": {
@@ -127,7 +127,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/georeference/v5",
           "files": {
@@ -147,7 +147,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/hdmap/v5",
           "files": {
@@ -167,7 +167,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2",
           "files": {
@@ -187,7 +187,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/manifest/v5",
           "files": {
@@ -207,7 +207,7 @@
       "latest": "v1.0.0",
       "versions": {
         "v1.0.0": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v1.0.0",
           "versionIri": "https://openlabel.asam.net/V1-0-0/ontologies/",
           "files": {
@@ -227,7 +227,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/ositrace/v5",
           "files": {
@@ -247,7 +247,7 @@
       "latest": "v5",
       "versions": {
         "v5": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v5",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/scenario/v5",
           "files": {
@@ -267,7 +267,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/service/v2",
           "files": {
@@ -287,7 +287,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2",
           "files": {
@@ -307,7 +307,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2",
           "files": {
@@ -327,7 +327,7 @@
       "latest": "v6",
       "versions": {
         "v6": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v6",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/surface-model/v6",
           "files": {
@@ -347,7 +347,7 @@
       "latest": "v6",
       "versions": {
         "v6": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v6",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/survey/v6",
           "files": {
@@ -368,7 +368,7 @@
       "latest": "v1",
       "versions": {
         "v1": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v1",
           "versionIri": "https://w3id.org/ascs-ev/envited-x/tzip21/v1",
           "files": {
@@ -388,7 +388,7 @@
       "latest": "v2",
       "versions": {
         "v2": {
-          "releaseTag": "v0.0.5",
+          "releaseTag": "v0.1.0",
           "versionInfo": "v2",
           "versionIri": "https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2",
           "files": {

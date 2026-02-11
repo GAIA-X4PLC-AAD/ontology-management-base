@@ -107,7 +107,7 @@ help:
 	@echo ""
 	@echo "Registry:"
 	@echo "  make registry-update         Update registry (main branch)"
-	@echo "  make registry-update TAG=v0.0.5  Update registry with tag"
+	@echo "  make registry-update TAG=v0.1.0  Update registry with tag"
 	@echo ""
 	@echo "Cleaning:"
 	@echo "  make clean          Remove build artifacts"
