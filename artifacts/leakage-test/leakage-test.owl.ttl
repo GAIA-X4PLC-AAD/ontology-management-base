@@ -1,4 +1,6 @@
 @prefix leakage-test: <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -6,18 +8,16 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
 
 <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2> a owl:Ontology ;
-	rdfs:label "Ontology for leakage-test"@en ;
+    rdfs:label "Ontology for leakage-test"@en ;
 
-	dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
+    dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
         a foaf:Person ;
         foaf:name "Selcan Karadag" ;
         org:memberOf <https://www.continental.com> ;
-    ] ;  
+    ] ;
 
     # Permanent identifier for the ontology (not version-specific)
     dcterms:identifier <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test> ;
@@ -29,8 +29,11 @@
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/> ;
+    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2> ;
     owl:versionInfo "v2" ;
+
+    # Imports strict dependencies
+    owl:imports <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     # Reference to SHACL validation rules
     dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/shapes> ;
@@ -39,59 +42,108 @@
     dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
-# Classes
+
+#### Classes
 
 leakage-test:LeakageTest a owl:Class ;
-	rdfs:label "Class definition for LeakageTest"@en ;
-	rdfs:comment "Describes a leakage test."@en ;
-	rdfs:subClassOf gx:VirtualResource .
+    rdfs:label "Class definition for LeakageTest"@en ;
+    rdfs:comment "Describes a leakage test."@en ;
+    rdfs:subClassOf envited-x:CodeAsset .
+
+leakage-test:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata extension for leakage test assets."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
+
+leakage-test:Content a owl:Class ;
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Describes the content properties of a leakage test (machine and process parameters)."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 leakage-test:MachineParameter a owl:Class ;
-	rdfs:label "Class definition for MachineParameter"@en ;
-	rdfs:comment "Attributes for machine parameter of a leakage test."@en .
+    rdfs:label "Class definition for MachineParameter"@en ;
+    rdfs:comment "Attributes for machine parameter of a leakage test."@en .
 
 leakage-test:ProcessParameter a owl:Class ;
-	rdfs:label "Class definition for ProcessParameter"@en ;
-	rdfs:comment "Attributes for process parameter of a leakage test."@en .
+    rdfs:label "Class definition for ProcessParameter"@en ;
+    rdfs:comment "Attributes for process parameter of a leakage test."@en .
 
 leakage-test:CodingDownholder a owl:Class ;
-	rdfs:label "Class definition for CodingDownholder"@en ;
-	rdfs:comment "Attributes for coding downholder of a leakage test."@en .
+    rdfs:label "Class definition for CodingDownholder"@en ;
+    rdfs:comment "Attributes for coding downholder of a leakage test."@en .
 
 leakage-test:CodingTestAdapter a owl:Class ;
-	rdfs:label "Class definition for CodingTestAdapter"@en ;
-	rdfs:comment "Attributes for coding test adapter of a leakage test."@en .
+    rdfs:label "Class definition for CodingTestAdapter"@en ;
+    rdfs:comment "Attributes for coding test adapter of a leakage test."@en .
 
 leakage-test:CodingRFID a owl:Class ;
-	rdfs:label "Class definition for CodingRFID"@en ;
-	rdfs:comment "Attributes for coding RFID of a leakage test."@en .
+    rdfs:label "Class definition for CodingRFID"@en ;
+    rdfs:comment "Attributes for coding RFID of a leakage test."@en .
 
 leakage-test:MaximumPressure a owl:Class ;
-	rdfs:label "Class definition for MaximumPressure"@en ;
-	rdfs:comment "Attributes for maximum pressure of a leakage test."@en .
+    rdfs:label "Class definition for MaximumPressure"@en ;
+    rdfs:comment "Attributes for maximum pressure of a leakage test."@en .
 
 leakage-test:MinimumPressure a owl:Class ;
-	rdfs:label "Class definition for MinimumPressure"@en ;
-	rdfs:comment "Attributes for minimum pressure of a leakage test."@en .
+    rdfs:label "Class definition for MinimumPressure"@en ;
+    rdfs:comment "Attributes for minimum pressure of a leakage test."@en .
 
-# Properties
 
-leakage-test:general a owl:ObjectProperty ;
-    rdfs:label "general"@en ;
-    rdfs:comment "General information about the leakage test."@en ;
+#### Object Properties
+
+### hasCodeArtifact (LeakageTest -> envited-x:CodeArtifactBase)
+leakage-test:hasCodeArtifact a owl:ObjectProperty ;
+    rdfs:label "Object property: hasCodeArtifact"@en ;
+    rdfs:comment "Links a leakage test to its GX-compliant CodeArtifactBase."@en ;
+    rdfs:subPropertyOf envited-x:hasCodeArtifact ;
     rdfs:domain leakage-test:LeakageTest ;
-    rdfs:range general:General .
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:CodeArtifactBase manifest:Link )
+    ] .
 
+### hasDomainSpecification (LeakageTest -> DomainSpecification)
+leakage-test:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a leakage test to its domain-specific metadata."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
+    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:range leakage-test:DomainSpecification .
+
+### hasManifest (LeakageTest -> envited-x:Manifest or manifest:Link)
+leakage-test:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment """Links a leakage test to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node, or
+                - a manifest:Link node."""@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
+
+### hasContent (DomainSpecification -> Content)
+leakage-test:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DomainSpecification to its Content facet."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain leakage-test:DomainSpecification ;
+    rdfs:range leakage-test:Content .
+
+### machineParameter (Content -> MachineParameter)
 leakage-test:machineParameter a owl:ObjectProperty ;
     rdfs:label "machine parameter"@en ;
     rdfs:comment "Machine parameters for the test."@en ;
-    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:domain leakage-test:Content ;
     rdfs:range leakage-test:MachineParameter .
 
+### processParameter (Content -> ProcessParameter)
 leakage-test:processParameter a owl:ObjectProperty ;
     rdfs:label "process parameter"@en ;
     rdfs:comment "Process parameters for the test."@en ;
-    rdfs:domain leakage-test:LeakageTest ;
+    rdfs:domain leakage-test:Content ;
     rdfs:range leakage-test:ProcessParameter .
 
 leakage-test:codingRFID a owl:ObjectProperty ;
@@ -122,7 +174,7 @@ leakage-test:minimumPressure a owl:ObjectProperty ;
 leakage-test:setpoint a owl:DatatypeProperty ;
     rdfs:label "setpoint"@en ;
     rdfs:comment "Target value."@en ;
-    rdfs:range xsd:float . 
+    rdfs:range xsd:float .
 
 leakage-test:lowerTolerance a owl:DatatypeProperty ;
     rdfs:label "lower tolerance"@en ;

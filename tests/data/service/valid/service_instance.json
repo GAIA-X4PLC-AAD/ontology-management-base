@@ -1,80 +1,109 @@
 {
   "@context": {
-    "service": "https://w3id.org/gaia-x4plcaad/ontologies/service/v1/",
-    "general": "https://w3id.org/gaia-x4plcaad/ontologies/general/v3/",
+    "service": "https://w3id.org/gaia-x4plcaad/ontologies/service/v2/",
+    "envited-x": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/",
+    "manifest": "https://w3id.org/ascs-ev/envited-x/manifest/v5/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "gx": "https://w3id.org/gaia-x/development#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@id": "did:web:test.service.net:Service:test_valid_service_instance",
   "@type": "service:Service",
-  "service:general": {
-    "@type": "general:General",
-    "general:description": {
-      "@type": "general:Description",
-      "general:name": {
-        "@value": "Example Service",
-        "@type": "xsd:string"
-      },
-      "general:description": {
-        "@value": "Description of Example Service",
-        "@type": "xsd:string"
-      }
+  "service:hasServiceOffering": {
+    "@id": "did:web:registry.envited-x.net::ServiceOfferingBase:service-001",
+    "@type": "envited-x:ServiceOfferingBase",
+    "schema:name": "Example Service",
+    "schema:description": "Description of Example Service",
+    "gx:providedBy": {
+      "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     },
-    "general:data": {
-      "@type": "general:Data",
-      "general:size": {
-        "@value": "0.0",
-        "@type": "xsd:float"
+    "gx:serviceOfferingTermsAndConditions": {
+      "@type": "gx:TermsAndConditions",
+      "gx:url": {
+        "@value": "https://example.org/service/terms",
+        "@type": "xsd:anyURI"
       },
-      "general:recordingTime": {
-        "@value": "2024-08-19T18:05:00",
-        "@type": "xsd:dateTime"
+      "gx:hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "service:hasDomainSpecification": {
+    "@type": "service:DomainSpecification",
+    "service:hasContent": {
+      "@type": "service:Content",
+      "service:requiredFile": [
+        {
+          "@type": "service:RequiredFile",
+          "service:description": {
+            "@value": "A scenario following the ASAM OpenSCENARIO version 2.0.0 standard as a .osc file",
+            "@type": "xsd:string"
+          },
+          "service:specification": {
+            "@value": "https://www.asam.net/standards/detail/openscenario/v200/",
+            "@type": "xsd:anyURI"
+          }
+        },
+        {
+          "@type": "service:RequiredFile",
+          "service:description": {
+            "@value": "A road network following the ASAM OpenDRIVE v1.8.0 standard as a .xodr file",
+            "@type": "xsd:string"
+          },
+          "service:specification": {
+            "@value": "https://www.asam.net/standards/detail/opendrive/",
+            "@type": "xsd:anyURI"
+          }
+        }
+      ],
+      "service:resultingFile": {
+        "@type": "service:ResultingFile",
+        "service:description": {
+          "@value": "The ground-truth data of the executed simulation following the ASAM OSI v3.7.0 standard as a .osi file",
+          "@type": "xsd:string"
+        },
+        "service:specification": {
+          "@value": "https://www.asam.net/standards/detail/osi/",
+          "@type": "xsd:anyURI"
+        }
       }
     }
   },
-  "gx:version": "1.0.0",
-  "gx:license": "EPL-2.0",
-  "gx:resourcePolicy": "allow",
-  "gx:containsPII": false,
-  "gx:copyrightOwnedBy": {
-    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-  },
-  "gx:producedBy": {
-    "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
-  },
-  "service:requiredFile": [
-    {
-      "@type": "service:RequiredFile",
-      "service:description": {
-        "@value": "A scenario following the ASAM OpenSCENARIO version 2.0.0 standard as a .osc file",
-        "@type": "xsd:string"
-      },
-      "service:specification": {
-        "@value": "https://www.asam.net/standards/detail/openscenario/v200/",
-        "@type": "xsd:anyURI"
-      }
+  "service:hasManifest": {
+    "@type": "manifest:Link",
+    "manifest:iri": {
+      "@id": "did:web:test.fixture.net:Manifest:test_service_manifest_reference"
     },
-    {
-      "@type": "service:RequiredFile",
-      "service:description": {
-        "@value": "A road network following the ASAM OpenDRIVE v1.8.0 standard as a .xodr file",
-        "@type": "xsd:string"
-      },
-      "service:specification": {
-        "@value": "https://www.asam.net/standards/detail/opendrive/",
-        "@type": "xsd:anyURI"
-      }
-    }
-  ],
-  "service:resultingFile": {
-    "@type": "service:ResultingFile",
-    "service:description": {
-      "@value": "The ground-truth data of the executed simulation following the ASAM OSI v3.7.0 standard as a .osi file",
+    "skos:note": {
+      "@value": "Reference to the service manifest.",
       "@type": "xsd:string"
     },
-    "service:specification": {
-      "@value": "https://www.asam.net/standards/detail/osi/",
-      "@type": "xsd:anyURI"
+    "sh:conformsTo": [
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/envited-x/v3/"
+      },
+      {
+        "@id": "https://w3id.org/ascs-ev/envited-x/manifest/v5/"
+      }
+    ],
+    "manifest:hasAccessRole": {
+      "@type": "manifest:AccessRole",
+      "@id": "envited-x:isPublic"
+    },
+    "manifest:hasCategory": {
+      "@type": "manifest:Category",
+      "@id": "envited-x:isManifest"
+    },
+    "manifest:hasFileMetadata": {
+      "@type": "manifest:FileMetadata",
+      "manifest:filePath": {
+        "@value": "./base-references/service_manifest_reference.json",
+        "@type": "xsd:anyURI"
+      },
+      "manifest:mimeType": {
+        "@value": "application/ld+json",
+        "@type": "xsd:string"
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ name: Publish W3ID Ontologies
 on:
   push:
     tags:
-      - 'v0.0.5'
+      - 'v*.*.*'
 
 # Sets permissions of the GITHUB_TOKEN
 permissions:

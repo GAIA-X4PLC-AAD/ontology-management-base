@@ -63,15 +63,15 @@ hdmap:HdMap a owl:Class ;
     rdfs:subClassOf envited-x:SimulationAsset ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty hdmap:hasDataResourceExtension ;
-        owl:someValuesFrom hdmap:DataResourceExtension
+        owl:onProperty hdmap:hasDomainSpecification ;
+        owl:someValuesFrom hdmap:DomainSpecification
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty hdmap:hasDataResource ;
+        owl:onProperty hdmap:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
     rdfs:subClassOf [
@@ -83,10 +83,10 @@ hdmap:HdMap a owl:Class ;
         ]
     ] .
 
-hdmap:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
-    rdfs:comment "HD map DataResourceExtension containing additional metadata information of the simulation asset."@en ;
-    rdfs:subClassOf envited-x:DataResourceExtension ;
+hdmap:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "HD map DomainSpecification containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty hdmap:hasContent ;
@@ -151,23 +151,23 @@ hdmap:Range2D a owl:Class ;
 
 #### Object properties
 
-### hasDataResourceExtension (HdMap -> DataResourceExtension)
-hdmap:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResourceExtension"@en ;
-    rdfs:comment "Links an HD map asset to its specific metadata (DataResourceExtension), which may contain additional HD map-specific attributes."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+### hasDomainSpecification (HdMap -> DomainSpecification)
+hdmap:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links an HD map asset to its specific metadata (DomainSpecification), which may contain additional HD map-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain hdmap:HdMap ;
-    rdfs:range hdmap:DataResourceExtension .
+    rdfs:range hdmap:DomainSpecification .
 
-### hasDataResource (HdMap -> envited-x:DataResource)
-hdmap:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResource"@en ;
-    rdfs:comment "Links an HD map asset to a standard DataResource instance from envited-x."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResource ;
+### hasResourceDescription (HdMap -> envited-x:ResourceDescription)
+hdmap:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links an HD map asset to a standard ResourceDescription instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
     rdfs:domain hdmap:HdMap ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
 ### hasManifest (HdMap -> envited-x:Manifest OR manifest:Link)
@@ -193,56 +193,56 @@ hdmap:ContentOrOddScenery a owl:Class ;
     rdfs:comment "Combines HDMap content with OpenLABEL's OddScenery."@en ;
     owl:unionOf (hdmap:Content openlabel:OddScenery) .
 
-### hasContent (DataResourceExtension -> Content)
+### hasContent (DomainSpecification -> Content)
 hdmap:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Content that describes the HD map`s content."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:Content that describes the HD map`s content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:ContentOrOddScenery .
 
-### hasDataSource (DataResourceExtension -> DataSource)
+### hasDataSource (DomainSpecification -> DataSource)
 hdmap:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:DataSource that describes how the HD map was created."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:DataSource that describes how the HD map was created."@en ;
     rdfs:subPropertyOf envited-x:hasDataSource ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:DataSource .
 
-### hasFormat (DataResourceExtension -> Format)
+### hasFormat (DomainSpecification -> Format)
 hdmap:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Format that describes the HD map`s format details."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:Format that describes the HD map`s format details."@en ;
     rdfs:subPropertyOf envited-x:hasFormat ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:Format .
 
-### hasQuality (DataResourceExtension -> Quality)
+### hasQuality (DomainSpecification -> Quality)
 hdmap:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Quality describing the HD map`s quality or accuracy aspects."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:Quality describing the HD map`s quality or accuracy aspects."@en ;
     rdfs:subPropertyOf envited-x:hasQuality ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:Quality .
 
-### hasQuantity (DataResourceExtension -> Quantity)
+### hasQuantity (DomainSpecification -> Quantity)
 hdmap:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Quantity describing the HD map`s quantity (intersections, traffic signs, etc.)."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:Quantity describing the HD map`s quantity (intersections, traffic signs, etc.)."@en ;
     rdfs:subPropertyOf envited-x:hasQuantity ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:Quantity .
 
-### hasRange2D (DataResourceExtension -> Range2D)
+### hasRange2D (DomainSpecification -> Range2D)
 hdmap:hasRange2D a owl:ObjectProperty ;
     rdfs:label "Object property: hasRange2D"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of hdmap:Range2D describing the 2D bounding area of the HD map asset."@en ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to an instance of hdmap:Range2D describing the 2D bounding area of the HD map asset."@en ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range hdmap:Range2D .
 
-### hasGeoreference (DataResourceExtension -> georeference:Georeference)
+### hasGeoreference (DomainSpecification -> georeference:Georeference)
 hdmap:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;
-    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the HD map is georeferenced."@en ;
-    rdfs:domain hdmap:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to a georeference:Georeference describing how the HD map is georeferenced."@en ;
+    rdfs:domain hdmap:DomainSpecification ;
     rdfs:range georeference:Georeference .

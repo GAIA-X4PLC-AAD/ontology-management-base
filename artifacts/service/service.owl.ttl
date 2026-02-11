@@ -1,21 +1,24 @@
-@prefix service: <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> .
+@prefix service: <https://w3id.org/gaia-x4plcaad/ontologies/service/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix gx: <https://w3id.org/gaia-x/development#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://w3id.org/gaia-x4plcaad/ontologies/service/v1> a owl:Ontology ;
+<https://w3id.org/gaia-x4plcaad/ontologies/service/v2> a owl:Ontology ;
     rdfs:label "Ontology definition for a simulation service"@en ;
+    rdfs:comment "An ontology with common classes to describe the attributes of a simulation service."@en ;
 
     dcterms:creator "The GAIA-X 4 PLC AAD Project Team"@en ;
     dcterms:contributor [
         a foaf:Person ;
         foaf:name "Valentin Fischer" ;
         org:memberOf <https://www.tracetronic.de/> ;
-    ] ;  
+    ] ;
 
     # Permanent identifier for the ontology (not version-specific)
     dcterms:identifier <https://w3id.org/gaia-x4plcaad/ontologies/service> ;
@@ -27,20 +30,36 @@
     prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
 
     # Versioning
-    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/> ;
-    owl:versionInfo "v1" ;
+    owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/service/v2> ;
+    owl:versionInfo "v2" ;
+
+    # Imports strict dependencies
+    owl:imports <https://w3id.org/ascs-ev/envited-x/envited-x/v3> ;
 
     # Reference to SHACL validation rules
-    dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes> ;
+    dcterms:conformsTo <https://w3id.org/gaia-x4plcaad/ontologies/service/v2/shapes> ;
 
     # Additional references to documentation or related ontologies
     dcterms:references <https://w3id.org/gaia-x/development#> ;
     rdfs:seeAlso <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/blob/main/README.md> .
 
+
+#### Classes
+
 service:Service a owl:Class ;
     rdfs:label "Class definition for Service"@en ;
-    rdfs:comment "Attributes for simulation services."@en ;
-    rdfs:subClassOf gx:VirtualResource .
+    rdfs:comment "A structured digital asset representing a simulation service in the ENVITED-X Data Space."@en ;
+    rdfs:subClassOf envited-x:ServiceAsset .
+
+service:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Domain-specific metadata extension for simulation service assets."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification .
+
+service:Content a owl:Class ;
+    rdfs:label "Class definition for Content"@en ;
+    rdfs:comment "Describes the content properties of a simulation service (required files, resulting files)."@en ;
+    rdfs:subClassOf envited-x:Content .
 
 service:RequiredFile a owl:Class ;
     rdfs:label "Class definition for RequiredFile"@en ;
@@ -49,3 +68,61 @@ service:RequiredFile a owl:Class ;
 service:ResultingFile a owl:Class ;
     rdfs:label "Class definition for ResultingFile"@en ;
     rdfs:comment "Attributes for resulting files of simulation services."@en .
+
+
+#### Object Properties
+
+### hasServiceOffering (Service -> envited-x:ServiceOfferingBase)
+service:hasServiceOffering a owl:ObjectProperty ;
+    rdfs:label "Object property: hasServiceOffering"@en ;
+    rdfs:comment "Links a simulation service to its GX-compliant ServiceOfferingBase."@en ;
+    rdfs:subPropertyOf envited-x:hasServiceOffering ;
+    rdfs:domain service:Service ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:ServiceOfferingBase manifest:Link )
+    ] .
+
+### hasDomainSpecification (Service -> DomainSpecification)
+service:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a simulation service to its domain-specific metadata."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
+    rdfs:domain service:Service ;
+    rdfs:range service:DomainSpecification .
+
+### hasManifest (Service -> envited-x:Manifest or manifest:Link)
+service:hasManifest a owl:ObjectProperty ;
+    rdfs:label "Object property: hasManifest"@en ;
+    rdfs:comment """Links a simulation service to its manifest.
+                The value can be either:
+                - an inline envited-x:Manifest node, or
+                - a manifest:Link node."""@en ;
+    rdfs:subPropertyOf envited-x:hasManifest ;
+    rdfs:domain service:Service ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf ( envited-x:Manifest manifest:Link )
+    ] .
+
+### hasContent (DomainSpecification -> Content)
+service:hasContent a owl:ObjectProperty ;
+    rdfs:label "Object property: hasContent"@en ;
+    rdfs:comment "Links a DomainSpecification to its Content facet."@en ;
+    rdfs:subPropertyOf envited-x:hasContent ;
+    rdfs:domain service:DomainSpecification ;
+    rdfs:range service:Content .
+
+### requiredFile (Content -> RequiredFile)
+service:requiredFile a owl:ObjectProperty ;
+    rdfs:label "Object property: requiredFile"@en ;
+    rdfs:comment "Links Content to a required input file for the simulation service."@en ;
+    rdfs:domain service:Content ;
+    rdfs:range service:RequiredFile .
+
+### resultingFile (Content -> ResultingFile)
+service:resultingFile a owl:ObjectProperty ;
+    rdfs:label "Object property: resultingFile"@en ;
+    rdfs:comment "Links Content to a resulting output file from the simulation service."@en ;
+    rdfs:domain service:Content ;
+    rdfs:range service:ResultingFile .

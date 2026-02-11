@@ -9,9 +9,9 @@
   },
   "@id": "did:web:test.envited-x.net:SimulationAsset:test_invalid_fail_02_missing_iri_manifest_link_instance",
   "@type": "envited-x:SimulationAsset",
-  "envited-x:hasDataResource": {
-    "@id": "did:web:registry.envited-x.net::DataResource:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8",
-    "@type": "envited-x:DataResource",
+  "envited-x:hasResourceDescription": {
+    "@id": "did:web:registry.envited-x.net::ResourceDescription:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8",
+    "@type": "envited-x:ResourceDescription",
     "gx:name": "3D Model in Grafing",
     "gx:description": "A 3D model representing the town district with traffic signs.",
     "gx:version": "1.0.0",

@@ -24,8 +24,8 @@
   <uri name="https://w3id.org/gaia-x/development#" uri="gx/gx.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x/development#context" uri="gx/gx.context.jsonld"/>
   <uri name="https://w3id.org/gaia-x/development#shapes" uri="gx/gx.shacl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1" uri="automotive-simulator/automotive-simulator.owl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes" uri="automotive-simulator/automotive-simulator.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2" uri="automotive-simulator/automotive-simulator.owl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/shapes" uri="automotive-simulator/automotive-simulator.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/description/v1" uri="description/description.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/description/v1/shapes" uri="description/description.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/example/v1" uri="example/example.owl.ttl"/>
@@ -34,15 +34,15 @@
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/general/v3/shapes" uri="general/general.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2" uri="leakage-test/leakage-test.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/shapes" uri="leakage-test/leakage-test.shacl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/service/v1" uri="service/service.owl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/service/v1/shapes" uri="service/service.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/service/v2" uri="service/service.owl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/service/v2/shapes" uri="service/service.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2" uri="simulated-sensor/simulated-sensor.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/shapes" uri="simulated-sensor/simulated-sensor.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2" uri="simulation-model/simulation-model.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/shapes" uri="simulation-model/simulation-model.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6" uri="survey/survey.owl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes" uri="survey/survey-result-data-offering.shacl.ttl"/>
-  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes" uri="survey/survey-service-offering.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes/result-data-offering" uri="survey/survey-result-data-offering.shacl.ttl"/>
+  <uri name="https://w3id.org/gaia-x4plcaad/ontologies/survey/v6/shapes/service-offering" uri="survey/survey-service-offering.shacl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2" uri="vv-report/vv-report.owl.ttl"/>
   <uri name="https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/shapes" uri="vv-report/vv-report.shacl.ttl"/>
 </catalog>

@@ -56,15 +56,15 @@ ositrace:OSITrace a owl:Class ;
     rdfs:subClassOf envited-x:SimulationAsset ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty ositrace:hasDataResourceExtension ;
-        owl:someValuesFrom ositrace:DataResourceExtension
+        owl:onProperty ositrace:hasDomainSpecification ;
+        owl:someValuesFrom ositrace:DomainSpecification
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty ositrace:hasDataResource ;
+        owl:onProperty ositrace:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
     rdfs:subClassOf [
@@ -76,10 +76,10 @@ ositrace:OSITrace a owl:Class ;
         ]
     ] .
 
-ositrace:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
-    rdfs:comment "OSI trace DataResourceExtension containing additional metadata information of the simulation asset."@en ;
-    rdfs:subClassOf envited-x:DataResourceExtension ;
+ositrace:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "OSI trace DomainSpecification containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ositrace:hasContent ;
@@ -154,23 +154,23 @@ ositrace:Event a owl:Class ;
 
 #### Object properties
 
-### hasDataResourceExtension (ositrace -> DataResourceExtension)
-ositrace:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResourceExtension"@en ;
-    rdfs:comment "Links an OSI trace asset to its specific metadata (DataResourceExtension), which may contain additional OSI trace-specific attributes."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+### hasDomainSpecification (ositrace -> DomainSpecification)
+ositrace:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links an OSI trace asset to its specific metadata (DomainSpecification), which may contain additional OSI trace-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain ositrace:OSITrace ;
-    rdfs:range ositrace:DataResourceExtension .
+    rdfs:range ositrace:DomainSpecification .
 
-### hasDataResource (ositrace -> envited-x:DataResource)
-ositrace:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResource"@en ;
-    rdfs:comment "Links an OSI trace asset to a standard DataResource instance from envited-x."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResource ;
+### hasResourceDescription (ositrace -> envited-x:ResourceDescription)
+ositrace:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links an OSI trace asset to a standard ResourceDescription instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
     rdfs:domain ositrace:OSITrace ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
 ### hasManifest (ositrace -> envited-x:Manifest or manifest:Link)
@@ -190,51 +190,51 @@ ositrace:hasManifest a owl:ObjectProperty ;
         owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
-### hasGeoreference (DataResourceExtension -> georeference:Georeference)
+### hasGeoreference (DomainSpecification -> georeference:Georeference)
 ositrace:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;
-    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the OSI trace is georeferenced."@en ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to a georeference:Georeference describing how the OSI trace is georeferenced."@en ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range georeference:Georeference .
 
-### hasContent (DataResourceExtension -> Content)
+### hasContent (DomainSpecification -> Content)
 ositrace:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:Content that describes the OSI trace's content."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of ositrace:Content that describes the OSI trace's content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range ositrace:Content .
 
-### hasDataSource (DataResourceExtension -> DataSource)
+### hasDataSource (DomainSpecification -> DataSource)
 ositrace:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:DataSource that describes how the OSI trace was generated or recorded."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of ositrace:DataSource that describes how the OSI trace was generated or recorded."@en ;
     rdfs:subPropertyOf envited-x:hasDataSource ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range ositrace:DataSource .
 
-### hasFormat (DataResourceExtension -> Format)
+### hasFormat (DomainSpecification -> Format)
 ositrace:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:Format that describes the OSI trace file format details."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of ositrace:Format that describes the OSI trace file format details."@en ;
     rdfs:subPropertyOf envited-x:hasFormat ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range ositrace:Format .
 
-### hasQuality (DataResourceExtension -> Quality)
+### hasQuality (DomainSpecification -> Quality)
 ositrace:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:Quality describing the OSI trace's accuracy and reliability aspects."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of ositrace:Quality describing the OSI trace's accuracy and reliability aspects."@en ;
     rdfs:subPropertyOf envited-x:hasQuality ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range ositrace:Quality .
 
-### hasQuantity (DataResourceExtension -> Quantity)
+### hasQuantity (DomainSpecification -> Quantity)
 ositrace:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of ositrace:Quantity describing the OSI trace's quantity metrics (frames, objects, events, etc.)."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of ositrace:Quantity describing the OSI trace's quantity metrics (frames, objects, events, etc.)."@en ;
     rdfs:subPropertyOf envited-x:hasQuantity ;
-    rdfs:domain ositrace:DataResourceExtension ;
+    rdfs:domain ositrace:DomainSpecification ;
     rdfs:range ositrace:Quantity .
 
 ### hasTargetMovingObject (Content -> MovingObject)

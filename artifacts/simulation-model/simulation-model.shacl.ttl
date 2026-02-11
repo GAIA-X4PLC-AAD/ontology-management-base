@@ -1,9 +1,9 @@
 @prefix simulation-model: <https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # The Shapes Graph URI appends "/shapes" to the Ontology URI
@@ -14,54 +14,85 @@
 
 simulation-model:SimulationModelShape a sh:NodeShape ;
     sh:closed false ;
-    
-    sh:property [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:name "general object" ;
-            sh:description "general object with properties for descriptions, data, links, bundle" ;
-            sh:order 1 ;
-            sh:path simulation-model:general ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node simulation-model:FormatShape ;
-            sh:name "format object" ;
-            sh:description "format object with properties for format informations" ;
-            sh:order 2 ;
-            sh:path simulation-model:format ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node simulation-model:Content ;
-            sh:name "content object" ;
-            sh:description "content object with properties for simulation-model intrinsic attributes" ;
-            sh:order 3 ;
-            sh:path simulation-model:content ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node simulation-model:QuantityShape ;
-            sh:name "quantity object" ;
-            sh:description "quantity object with properties for quantity informations" ;
-            sh:order 4 ;
-            sh:path simulation-model:quantity ],            
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node simulation-model:QualityShape ;
-            sh:name "quality object" ;
-            sh:description "quality object with properties for quality informations" ;
-            sh:order 5 ;
-            sh:path simulation-model:quality ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:node simulation-model:DataSourceShape ;
-            sh:name "data source object" ;
-            sh:description "dataSource object with properties for data sources" ;
-            sh:order 6 ;
-            sh:path simulation-model:dataSource ] ;
-    sh:targetClass simulation-model:SimulationModel .
- 
+    sh:targetClass simulation-model:SimulationModel ;
+
+    # 1) hasSoftwareResource
+    sh:property [
+        sh:path simulation-model:hasSoftwareResource ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:SoftwareResourceBaseShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each SimulationModel must have exactly one associated SoftwareResourceBase (either inline or a valid manifest:Link)."@en ;
+    ] ;
+
+    # 2) hasDomainSpecification
+    sh:property [
+        sh:path simulation-model:hasDomainSpecification ;
+        sh:node simulation-model:DomainSpecificationShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each SimulationModel must have one associated DomainSpecification with content, format, quality, quantity, and data source."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path simulation-model:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each SimulationModel must have exactly one manifest."@en ;
+    ] .
+
+# DomainSpecification shape
+simulation-model:DomainSpecificationShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path simulation-model:hasContent ;
+        sh:node simulation-model:ContentShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Content facet."@en ;
+    ] ;
+    sh:property [
+        sh:path simulation-model:hasFormat ;
+        sh:node simulation-model:FormatShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Format facet."@en ;
+    ] ;
+    sh:property [
+        sh:path simulation-model:hasQuality ;
+        sh:node simulation-model:QualityShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Quality facet."@en ;
+    ] ;
+    sh:property [
+        sh:path simulation-model:hasQuantity ;
+        sh:node simulation-model:QuantityShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Quantity facet."@en ;
+    ] ;
+    sh:property [
+        sh:path simulation-model:hasDataSource ;
+        sh:node simulation-model:DataSourceShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one DataSource facet."@en ;
+    ] .
+
+# Format shape
 simulation-model:FormatShape a sh:NodeShape ;
     sh:closed false ;
-    
+
     sh:property [ skos:example "OSMP 1.0/OSI 3.1.2/FMI 2.0" ;
             sh:datatype xsd:string ;
             sh:description "Format of model implementation, e.g. OSMP 1.0/OSI 3.1.2/FMI 2.0"@en ;
@@ -91,15 +122,16 @@ simulation-model:FormatShape a sh:NodeShape ;
             sh:datatype xsd:anyURI ;
             sh:description "Provide a link to requirements and considerations for operating the model."@en ;
             sh:maxCount 1 ;
-            sh:message "Validation of modelIntegrationR<equirements failed!"@en ;
+            sh:message "Validation of modelIntegrationRequirements failed!"@en ;
             sh:name "modelIntegrationRequirements"@en ;
             sh:order 3 ;
             sh:path simulation-model:modelIntegrationRequirements ] ;
     sh:targetClass simulation-model:Format .
 
+# Content shape
 simulation-model:ContentShape a sh:NodeShape ;
     sh:closed false ;
-    
+
     sh:property [ skos:example "traffic participant" ;
             sh:datatype xsd:string ;
             sh:in ("traffic participant" "sensor" "vehicle dynamic" "actuator") ;
@@ -261,9 +293,10 @@ simulation-model:ContentShape a sh:NodeShape ;
             sh:path simulation-model:sensorTechnologyVariant ] ;
     sh:targetClass simulation-model:Content .
 
+# Quantity shape
 simulation-model:QuantityShape a sh:NodeShape ;
     sh:closed false ;
-    
+
     sh:property [ skos:example "800" ;
             sh:datatype xsd:integer ;
             sh:minInclusive 0 ;
@@ -286,9 +319,10 @@ simulation-model:QuantityShape a sh:NodeShape ;
             sh:path simulation-model:maxObjects ] ;
     sh:targetClass simulation-model:Quantity .
 
+# Quality shape
 simulation-model:QualityShape a sh:NodeShape ;
     sh:closed false ;
-    
+
     sh:property [ skos:example "This delivery is a pre-release and the model is intended to be used for checking the interfaces of the simulation toolchain. The model is not validated; thus it is not intended to be used for validation or verification of any sensor, especially not for ARS810 or ARS840. In particular, the existence of this model shall not be used to imply the existence of sensors ARS810 nor ARS840 nor their properties. This delivery is not developed according to process defined in ISO 26262 (Standard for Functional Safety)." ;
             sh:datatype xsd:string ;
             sh:description "Description of all limitations that apply to the model and its usage."@en ;
@@ -371,9 +405,10 @@ simulation-model:QualityShape a sh:NodeShape ;
             sh:path simulation-model:modelImplementationPerformanceCharacteristics ] ;
     sh:targetClass simulation-model:Quality .
 
+# DataSource shape
 simulation-model:DataSourceShape a sh:NodeShape ;
     sh:closed false ;
-    
+
     sh:property [ skos:example "http://mywebsite.de/ModelSpecification.pdf" ;
             sh:datatype xsd:anyURI ;
             sh:description "Provide a link to the model specification document"@en ;

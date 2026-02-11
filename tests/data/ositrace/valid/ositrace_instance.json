@@ -11,9 +11,9 @@
   },
   "@id": "did:web:test.ositrace.net:OSITrace:test_valid_ositrace_instance",
   "@type": "ositrace:OSITrace",
-  "ositrace:hasDataResource": {
-    "@id": "did:web:registry.envited-x.net::DataResource:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
-    "@type": "envited-x:DataResource",
+  "ositrace:hasResourceDescription": {
+    "@id": "did:web:registry.envited-x.net::ResourceDescription:T9rkdS19poUrbbAEk3rXMqZ3hzVezwDrrxaf",
+    "@type": "envited-x:ResourceDescription",
     "gx:name": "Cut-out scenario on testing ground",
     "gx:description": "OSI SensorData trace of cut-out scenario on testing ground.",
     "gx:version": "1.0.0",
@@ -27,8 +27,8 @@
       "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     }
   },
-  "ositrace:hasDataResourceExtension": {
-    "@type": "ositrace:DataResourceExtension",
+  "ositrace:hasDomainSpecification": {
+    "@type": "ositrace:DomainSpecification",
     "ositrace:hasFormat": {
       "@type": "ositrace:Format",
       "ositrace:formatType": "ASAM OSI SensorData",

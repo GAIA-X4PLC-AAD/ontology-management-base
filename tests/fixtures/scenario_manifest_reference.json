@@ -36,7 +36,7 @@
   "manifest:hasLicense": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net::DataResource:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
+      "@id": "did:web:registry.envited-x.net::ResourceDescription:kdHiux4L4it3ZsaBTMWWCX9v2sSuH3XCHPaN"
     },
     "manifest:hasAccessRole": {
       "@type": "manifest:AccessRole",
@@ -177,6 +177,18 @@
         "manifest:filename": {
           "@value": "scenario_preview.png",
           "@type": "xsd:string"
+        },
+        "manifest:hasDimensions": {
+          "@type": "manifest:Dimensions",
+          "manifest:unit": "pixels",
+          "manifest:width": {
+            "@value": "1920.0",
+            "@type": "xsd:float"
+          },
+          "manifest:height": {
+            "@value": "1080.0",
+            "@type": "xsd:float"
+          }
         }
       }
     },

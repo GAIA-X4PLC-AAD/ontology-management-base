@@ -1,9 +1,9 @@
-import os
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 # CONFIGURATION
-XML_FILE = "artifacts/catalog-v001.xml"
-README_FILE = "README.md"
+XML_FILE = Path("artifacts/catalog-v001.xml")
+README_FILE = Path("README.md")
 START_MARKER = "<!-- START_CATALOG_TABLE -->"
 END_MARKER = "<!-- END_CATALOG_TABLE -->"
 
@@ -35,18 +35,18 @@ def generate_table():
     # 3. Build the table rows from the sorted list
     for name, uri in entries:
         # Build the link relative to root (prepending artifacts/)
-        local_link = f"[{(uri)}]({os.path.join('artifacts', uri)})"
+        local_link = f"[{(uri)}]({Path('artifacts') / uri})"
         table_lines.append(f"| `{name}` | {local_link} |")
 
     return "\n".join(table_lines)
 
 
 def update_readme():
-    if not os.path.exists(XML_FILE):
+    if not XML_FILE.exists():
         print(f"Error: XML file not found at {XML_FILE}")
         return
 
-    if not os.path.exists(README_FILE):
+    if not README_FILE.exists():
         print(f"Error: README file not found at {README_FILE}")
         return
 

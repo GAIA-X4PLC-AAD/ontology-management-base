@@ -11,7 +11,7 @@
 <https://openlabel.asam.net/V1-0-0/ontologies/shapes>
     a owl:Ontology ;
     # The Shapes Graph must import the Domain Ontology
-    owl:imports <https://openlabel.asam.net/V1-0-0/ontologies> .
+    owl:imports <https://openlabel.asam.net/V1-0-0/ontologies/> .
 
 ##############################################################################
 # Tag Shape

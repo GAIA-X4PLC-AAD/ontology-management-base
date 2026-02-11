@@ -19,25 +19,25 @@ hdmap:HdMapShape a sh:NodeShape ;
     sh:closed false ;
     sh:targetClass hdmap:HdMap ;
 
-    # 1) hasDataResource
+    # 1) hasResourceDescription
     sh:property [
-        sh:path hdmap:hasDataResource ;
+        sh:path hdmap:hasResourceDescription ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:or (
-            [ sh:node envited-x:DataResourceShape ]
+            [ sh:node envited-x:ResourceDescriptionShape ]
             [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
         ) ;
-        sh:message "Each HD map must have exactly one associated DataResource (either inline conforming to envited-x:DataResourceShape or a valid manifest:Link)."@en ;
+        sh:message "Each HD map must have exactly one associated ResourceDescription (either inline conforming to envited-x:ResourceDescriptionShape or a valid manifest:Link)."@en ;
     ] ;
 
-    # 2) hasDataResourceExtension
+    # 2) hasDomainSpecification
     sh:property [
-        sh:path hdmap:hasDataResourceExtension ;
-        sh:node hdmap:DataResourceExtensionShape ; 
+        sh:path hdmap:hasDomainSpecification ;
+        sh:node hdmap:DomainSpecificationShape ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:message "Each HD map must have one associated DataResourceExtension object with format, content, quantity, quality, dataSource, and georeference."@en ;
+        sh:message "Each HD map must have one associated DomainSpecification object with format, content, quantity, quality, dataSource, and georeference."@en ;
     ] ;
 
     # 3) hasManifest
@@ -56,7 +56,7 @@ hdmap:HdMapShape a sh:NodeShape ;
     ] .
 
 
-hdmap:DataResourceExtensionShape a sh:NodeShape ;
+hdmap:DomainSpecificationShape a sh:NodeShape ;
     sh:closed false ;
     
     sh:property
@@ -114,7 +114,7 @@ hdmap:DataResourceExtensionShape a sh:NodeShape ;
             sh:order 6 ;
             sh:path hdmap:hasGeoreference ;
         ] ;
-    sh:targetClass hdmap:DataResourceExtension .
+    sh:targetClass hdmap:DomainSpecification .
 
 hdmap:ContentOrOddSceneryShape a sh:NodeShape ;
     sh:description "HDMap Content or OpenLABEL ODD Scenery Union Shape"@en ;

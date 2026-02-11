@@ -4,7 +4,10 @@
 
 ```mermaid
 classDiagram
+class Class_definition_for_Content
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Evaluation
+class Class_definition_for_Format
 class Class_definition_for_InputData
 class Class_definition_for_Metric
 class Class_definition_for_Parameter
@@ -15,7 +18,10 @@ class Class_definition_for_VvReport
 
 ### Class Hierarchy
 
+- Class definition for Content (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Content)
+- Class definition for DomainSpecification (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/DomainSpecification)
 - Class definition for Evaluation (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Evaluation)
+- Class definition for Format (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Format)
 - Class definition for InputData (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/InputData)
 - Class definition for Metric (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Metric)
 - Class definition for Parameter (https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Parameter)
@@ -27,13 +33,16 @@ class Class_definition_for_VvReport
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
+|Class definition for Content|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Content|Describes the content properties of a V&V report (system under test, evaluations).|Content|
+|Class definition for DomainSpecification|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/DomainSpecification|Domain-specific metadata extension for V&V report assets.|DomainSpecification|
 |Class definition for Evaluation|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Evaluation|Attributes for an evaluation element of a verification & validation report.||
+|Class definition for Format|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Format|Describes the format properties of a V&V report (report format).|Format|
 |Class definition for InputData|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/InputData|Attributes for the definition of an input data element of a verification & validation report.||
 |Class definition for Metric|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Metric|Attributes for the definition of a quality metric of a verification & validation report.||
 |Class definition for Parameter|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Parameter|Attributes for the definition of parameter element of a verification & validation report.||
 |Class definition for Result|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/Result|Attributes for evaluation results of a verification & validation report.||
 |Class definition for ResultVerification|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/ResultVerification|Attributes for the verification of the result by a third party of a verification & validation report.||
-|Class definition for VvReport|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/VvReport|Attributes for a verification & validation report.|VirtualResource|
+|Class definition for VvReport|https://w3id.org/gaia-x4plcaad/ontologies/vv-report/v2/VvReport|Attributes for a verification & validation report.|CodeAsset|
 
 ## Prefixes
 
@@ -45,9 +54,10 @@ class Class_definition_for_VvReport
 - dcmitype: <http://purl.org/dc/dcmitype/>
 - dcterms: <http://purl.org/dc/terms/>
 - doap: <http://usefulinc.com/ns/doap#>
+- envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/>
 - foaf: <http://xmlns.com/foaf/0.1/>
-- general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/>
 - geo: <http://www.opengis.net/ont/geosparql#>
+- manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/>
 - odrl: <http://www.w3.org/ns/odrl/2/>
 - org: <http://www.w3.org/ns/org#>
 - owl: <http://www.w3.org/2002/07/owl#>
@@ -73,7 +83,11 @@ class Class_definition_for_VvReport
 
 #### vv-report:conceptSpecificData {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-conceptspecificdata .property-anchor }
 #### vv-report:evaluations {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-evaluations .property-anchor }
-#### vv-report:general {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-general .property-anchor }
+#### vv-report:hasCodeArtifact {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hascodeartifact .property-anchor }
+#### vv-report:hasContent {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hascontent .property-anchor }
+#### vv-report:hasDomainSpecification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasdomainspecification .property-anchor }
+#### vv-report:hasFormat {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasformat .property-anchor }
+#### vv-report:hasManifest {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasmanifest .property-anchor }
 #### vv-report:inputData {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-inputdata .property-anchor }
 #### vv-report:inputDescription {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-inputdescription .property-anchor }
 #### vv-report:inputReference {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-inputreference .property-anchor }
@@ -85,6 +99,7 @@ class Class_definition_for_VvReport
 #### vv-report:parameterName {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-parametername .property-anchor }
 #### vv-report:parameters {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-parameters .property-anchor }
 #### vv-report:parameterValue {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-parametervalue .property-anchor }
+#### vv-report:reportFormat {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-reportformat .property-anchor }
 #### vv-report:result {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-result .property-anchor }
 #### vv-report:resultLog {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-resultlog .property-anchor }
 #### vv-report:resultTestPassed {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-resulttestpassed .property-anchor }
@@ -96,9 +111,14 @@ class Class_definition_for_VvReport
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-general"></a>general|1|1|General object with properties for descriptions, data, links, bundle.||vv-report.shacl.ttl|
-|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-systemundertest"></a>systemUnderTest|1|1|Uniform Resource Identifier (URI) to identify the tested artifact, like a simulation, model by location, name, or both.|<http://www.w3.org/2001/XMLSchema#anyURI>|vv-report.shacl.ttl|
-|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-evaluations"></a>evaluations|1||A list of all measures carried out on the subject under test.||vv-report.shacl.ttl|
+|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hascodeartifact"></a>hasCodeArtifact|1|1|||vv-report.shacl.ttl|
+|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasdomainspecification"></a>hasDomainSpecification|1|1|||vv-report.shacl.ttl|
+|VvReportShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasmanifest"></a>hasManifest|1|1|||vv-report.shacl.ttl|
+|DomainSpecificationShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hascontent"></a>hasContent|1|1|||vv-report.shacl.ttl|
+|DomainSpecificationShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-hasformat"></a>hasFormat|1|1|||vv-report.shacl.ttl|
+|FormatShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-reportformat"></a>reportFormat|1|1|The format or standard used for the V&V report.|<http://www.w3.org/2001/XMLSchema#string>|vv-report.shacl.ttl|
+|ContentShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-systemundertest"></a>systemUnderTest|1|1|Uniform Resource Identifier (URI) to identify the tested artifact, like a simulation, model by location, name, or both.|<http://www.w3.org/2001/XMLSchema#anyURI>|vv-report.shacl.ttl|
+|ContentShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-evaluations"></a>evaluations|1||A list of all measures carried out on the subject under test.||vv-report.shacl.ttl|
 |EvaluationShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-metric"></a>metric|1|1|The definition of the quality metric that has been used in this evaluation item.||vv-report.shacl.ttl|
 |EvaluationShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-inputdata"></a>inputData|1||The definition of a dataset that has been used as input to the quality metric.||vv-report.shacl.ttl|
 |EvaluationShape|vv-report|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-vv-report-v2-parameters"></a>parameters|0||A list of parameters that have been used to configure the quality metric and/or quality criterion.||vv-report.shacl.ttl|

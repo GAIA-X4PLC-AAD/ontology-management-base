@@ -34,7 +34,7 @@
   "manifest:hasLicense": {
     "@type": "manifest:Link",
     "manifest:iri": {
-      "@id": "did:web:registry.envited-x.net::DataResource:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8"
+      "@id": "did:web:registry.envited-x.net::ResourceDescription:pX8mN4kL2vR9ZjW5bS7yH3cW1dGf6A8"
     },
     "manifest:hasAccessRole": {
       "@type": "manifest:AccessRole",

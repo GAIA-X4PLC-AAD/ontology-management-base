@@ -1,5 +1,6 @@
 @prefix leakage-test: <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2/> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -12,19 +13,70 @@
     owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/leakage-test/v2> .
 
 leakage-test:LeakageTestShape a sh:NodeShape ;
-    sh:property [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node general:GeneralShape ;
-            sh:path leakage-test:general ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:MachineParameterShape ;
-            sh:path leakage-test:machineParameter ] ,
-        [ sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:node leakage-test:ProcessParameterShape ;
-            sh:path leakage-test:processParameter ] ;
-    sh:targetClass leakage-test:LeakageTest .
+    sh:closed false ;
+    sh:targetClass leakage-test:LeakageTest ;
+
+    # 1) hasCodeArtifact
+    sh:property [
+        sh:path leakage-test:hasCodeArtifact ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:CodeArtifactBaseShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each LeakageTest must have exactly one associated CodeArtifactBase (either inline or a valid manifest:Link)."@en ;
+    ] ;
+
+    # 2) hasDomainSpecification
+    sh:property [
+        sh:path leakage-test:hasDomainSpecification ;
+        sh:node leakage-test:DomainSpecificationShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each LeakageTest must have one associated DomainSpecification with content."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path leakage-test:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each LeakageTest must have exactly one manifest."@en ;
+    ] .
+
+# DomainSpecification shape
+leakage-test:DomainSpecificationShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path leakage-test:hasContent ;
+        sh:node leakage-test:ContentShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Content facet."@en ;
+    ] .
+
+# Content shape — leakage-test-specific metadata
+leakage-test:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:MachineParameterShape ;
+        sh:path leakage-test:machineParameter ;
+    ] ;
+    sh:property [
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node leakage-test:ProcessParameterShape ;
+        sh:path leakage-test:processParameter ;
+    ] .
 
 leakage-test:MachineParameterShape a sh:NodeShape ;
     sh:property [ sh:minCount 1 ;
@@ -34,7 +86,7 @@ leakage-test:MachineParameterShape a sh:NodeShape ;
         [ sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:node leakage-test:MinimumPressureShape;
-            sh:path leakage-test:minimumPressure ] ; 
+            sh:path leakage-test:minimumPressure ] ;
     sh:targetClass leakage-test:MachineParameter .
 
 leakage-test:ProcessParameterShape a sh:NodeShape ;
@@ -53,7 +105,7 @@ leakage-test:ProcessParameterShape a sh:NodeShape ;
     sh:targetClass leakage-test:ProcessParameter .
 
 leakage-test:MaximumPressureShape a sh:NodeShape ;
-    sh:property 
+    sh:property
         [ skos:example "bar" ;
             sh:datatype xsd:string ;
             sh:in ("bar") ;
@@ -82,11 +134,11 @@ leakage-test:MaximumPressureShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of lowerTolerance failed!"@en ;
             sh:name "lowerTolerance"@en ;
-            sh:path leakage-test:lowerTolerance ] ; 
+            sh:path leakage-test:lowerTolerance ] ;
     sh:targetClass leakage-test:MaximumPressure .
 
 leakage-test:MinimumPressureShape a sh:NodeShape ;
-    sh:property 
+    sh:property
         [ skos:example "bar" ;
             sh:datatype xsd:string ;
             sh:in ("bar") ;
@@ -115,7 +167,7 @@ leakage-test:MinimumPressureShape a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:message "Validation of lowerTolerance failed!"@en ;
             sh:name "lowerTolerance"@en ;
-            sh:path leakage-test:lowerTolerance ] ; 
+            sh:path leakage-test:lowerTolerance ] ;
     sh:targetClass leakage-test:MinimumPressure .
 
 leakage-test:CodingDownholderShape a sh:NodeShape ;

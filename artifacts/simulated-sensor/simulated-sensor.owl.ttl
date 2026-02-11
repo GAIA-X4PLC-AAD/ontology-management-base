@@ -33,6 +33,9 @@
     # GitHub repository
     dcterms:source <https://github.com/GAIA-X4PLC-AAD/ontology-management-base> ;
 
+    # Specific GitHub release used for publishing this version
+    prov:wasDerivedFrom <https://github.com/GAIA-X4PLC-AAD/ontology-management-base/releases/tag/v0.0.5> ;
+
     # Versioning
     owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2> ;
     owl:versionInfo "v2" ;

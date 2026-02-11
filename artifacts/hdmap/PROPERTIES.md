@@ -5,8 +5,8 @@
 ```mermaid
 classDiagram
 class Class_definition_for_Content
-class Class_definition_for_DataResourceExtension
 class Class_definition_for_DataSource
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Format
 class Class_definition_for_HdMap
 class Class_definition_for_Quality
@@ -18,8 +18,8 @@ class Content_or_OpenLabel_OddScenery
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/ascs-ev/envited-x/hdmap/v5/Content)
-- Class definition for DataResourceExtension (https://w3id.org/ascs-ev/envited-x/hdmap/v5/DataResourceExtension)
 - Class definition for DataSource (https://w3id.org/ascs-ev/envited-x/hdmap/v5/DataSource)
+- Class definition for DomainSpecification (https://w3id.org/ascs-ev/envited-x/hdmap/v5/DomainSpecification)
 - Class definition for Format (https://w3id.org/ascs-ev/envited-x/hdmap/v5/Format)
 - Class definition for HdMap (https://w3id.org/ascs-ev/envited-x/hdmap/v5/HdMap)
 - Class definition for Quality (https://w3id.org/ascs-ev/envited-x/hdmap/v5/Quality)
@@ -32,8 +32,8 @@ class Content_or_OpenLabel_OddScenery
 |Class|IRI|Description|Parents|
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/hdmap/v5/Content|Defines the content (road types, lane types, object types, traffic direction) of the HD map asset.|Content|
-|Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/hdmap/v5/DataResourceExtension|HD map DataResourceExtension containing additional metadata information of the simulation asset.|DataResourceExtension|
 |Class definition for DataSource|https://w3id.org/ascs-ev/envited-x/hdmap/v5/DataSource|Defines which data resources or measurement systems were used to create the HD map asset.|DataSource|
+|Class definition for DomainSpecification|https://w3id.org/ascs-ev/envited-x/hdmap/v5/DomainSpecification|HD map DomainSpecification containing additional metadata information of the simulation asset.|DomainSpecification|
 |Class definition for Format|https://w3id.org/ascs-ev/envited-x/hdmap/v5/Format|Contains properties to describe the format of the HD map asset.|Format|
 |Class definition for HdMap|https://w3id.org/ascs-ev/envited-x/hdmap/v5/HdMap|General properties for defining a high-definition map (HD map) asset used in simulation environments, such as format, content, quantity and quality properties.|SimulationAsset|
 |Class definition for Quality|https://w3id.org/ascs-ev/envited-x/hdmap/v5/Quality|Contains properties to describe the accuracy of the HD map asset.|Quality|
@@ -87,14 +87,14 @@ class Content_or_OpenLabel_OddScenery
 #### hdmap:elevationRange {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-elevationrange .property-anchor }
 #### hdmap:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-formattype .property-anchor }
 #### hdmap:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hascontent .property-anchor }
-#### hdmap:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdataresource .property-anchor }
-#### hdmap:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdataresourceextension .property-anchor }
 #### hdmap:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdatasource .property-anchor }
+#### hdmap:hasDomainSpecification {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdomainspecification .property-anchor }
 #### hdmap:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasformat .property-anchor }
 #### hdmap:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasgeoreference .property-anchor }
 #### hdmap:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasmanifest .property-anchor }
 #### hdmap:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquality .property-anchor }
 #### hdmap:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquantity .property-anchor }
+#### hdmap:hasResourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasresourcedescription .property-anchor }
 #### hdmap:laneTypes {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-lanetypes .property-anchor }
 #### hdmap:length {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-length .property-anchor }
 #### hdmap:levelOfDetail {: #prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-levelofdetail .property-anchor }
@@ -116,15 +116,15 @@ class Content_or_OpenLabel_OddScenery
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|HdMapShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdataresource"></a>hasDataResource|1|1|||hdmap.shacl.ttl|
-|HdMapShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||hdmap.shacl.ttl|
+|HdMapShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasresourcedescription"></a>hasResourceDescription|1|1|||hdmap.shacl.ttl|
+|HdMapShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdomainspecification"></a>hasDomainSpecification|1|1|||hdmap.shacl.ttl|
 |HdMapShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasmanifest"></a>hasManifest|1|1|||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasformat"></a>hasFormat|1|1|Contains properties to describe the format of the HD map asset.||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hascontent"></a>hasContent|1||Defines the content (road types, lane types, object types, traffic direction) of the HD map asset.||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquantity"></a>hasQuantity|1|1|Contains properties to describe the quantity of the HD map asset.||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquality"></a>hasQuality|1|1|Contains properties to describe the accuracy of the HD map asset.||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdatasource"></a>hasDataSource|1|1|Defines which data resources or measurement systems were used to create the HD map asset.||hdmap.shacl.ttl|
-|DataResourceExtensionShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasgeoreference"></a>hasGeoreference|1|1|||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasformat"></a>hasFormat|1|1|Contains properties to describe the format of the HD map asset.||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hascontent"></a>hasContent|1||Defines the content (road types, lane types, object types, traffic direction) of the HD map asset.||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquantity"></a>hasQuantity|1|1|Contains properties to describe the quantity of the HD map asset.||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasquality"></a>hasQuality|1|1|Contains properties to describe the accuracy of the HD map asset.||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasdatasource"></a>hasDataSource|1|1|Defines which data resources or measurement systems were used to create the HD map asset.||hdmap.shacl.ttl|
+|DomainSpecificationShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-hasgeoreference"></a>hasGeoreference|1|1|||hdmap.shacl.ttl|
 |ContentShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-roadtypes"></a>roadTypes|||Lists the road types used in the HD map asset.||hdmap.shacl.ttl|
 |ContentShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-lanetypes"></a>laneTypes|||Lists the lanes types used in the HD map asset.||hdmap.shacl.ttl|
 |ContentShape|hdmap|<a id="prop-https---w3id-org-ascs-ev-envited-x-hdmap-v5-levelofdetail"></a>levelOfDetail|||Lists the object types used in the HD map asset.||hdmap.shacl.ttl|

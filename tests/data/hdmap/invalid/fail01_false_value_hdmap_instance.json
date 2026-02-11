@@ -13,9 +13,9 @@
   },
   "@id": "did:web:test.hdmap.net:HdMap:test_invalid_fail01_false_value_hdmap_instance",
   "@type": "hdmap:HdMap",
-  "hdmap:hasDataResource": {
-    "@id": "did:web:registry.envited-x.net::DataResource:vP8mX2qL9kR5wJ3zN7bH4dC1fG0tY6",
-    "@type": "envited-x:DataResource",
+  "hdmap:hasResourceDescription": {
+    "@id": "did:web:registry.envited-x.net::ResourceDescription:vP8mX2qL9kR5wJ3zN7bH4dC1fG0tY6",
+    "@type": "envited-x:ResourceDescription",
     "gx:name": "Test HD Map Dataset",
     "gx:description": "A sample HD map dataset for testing, covering an urban environment.",
     "gx:version": "1.0.0",
@@ -29,8 +29,8 @@
       "@id": "did:web:test.fixture.net:LegalPerson:test_gx_legalperson_reference"
     }
   },
-  "hdmap:hasDataResourceExtension": {
-    "@type": "hdmap:DataResourceExtension",
+  "hdmap:hasDomainSpecification": {
+    "@type": "hdmap:DomainSpecification",
     "hdmap:hasFormat": {
       "@type": "hdmap:Format",
       "hdmap:formatType": "ASAM OpenDRIVE",

@@ -98,7 +98,7 @@ class ShaclValidator:
         self.verbose = verbose
 
     def _log(self, message: str) -> None:
-        """Print message if verbose mode is enabled."""
+        """Print verbose progress if enabled (user-facing output)."""
         if self.verbose:
             print(message, flush=True)
 
@@ -127,11 +127,11 @@ class ShaclValidator:
             )
 
         # Step 1: Load data
-        self._log("\n📂 Step 1: Loading JSON-LD Data Files...")
+        self._log("Step 1: Loading JSON-LD Data Files...")
         data_graph, prefixes = self._load_data(jsonld_files)
 
         # Step 2: Extract types and discover schemas
-        self._log("\n🔎 Step 2: Discovering Required Schemas...")
+        self._log("Step 2: Discovering Required Schemas...")
         rdf_types = extract_rdf_types(data_graph)
         predicates = extract_predicates(data_graph)
         datatypes = extract_datatype_iris(data_graph)
@@ -140,13 +140,13 @@ class ShaclValidator:
         )
 
         # Step 3: Apply inference if requested
-        self._log(f"\n🧠 Step 3: Applying Inference ({self.inference_mode})...")
+        self._log(f"Step 3: Applying Inference ({self.inference_mode})...")
         combined_graph, inferred_count = self._apply_inference(
             data_graph, ontology_graph
         )
 
         # Step 4: Run SHACL validation
-        self._log("\n🛡️ Step 4: Running SHACL Validation...")
+        self._log("Step 4: Running SHACL Validation...")
         conforms, report_text, report_graph = self._run_validation(
             combined_graph, ontology_graph, shacl_graph
         )

@@ -5,8 +5,8 @@
 ```mermaid
 classDiagram
 class Class_definition_for_Content
-class Class_definition_for_DataResourceExtension
 class Class_definition_for_DataSource
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Event
 class Class_definition_for_Format
 class Class_definition_for_MovingObject
@@ -18,8 +18,8 @@ class Class_definition_for_Quantity
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/ascs-ev/envited-x/ositrace/v5/Content)
-- Class definition for DataResourceExtension (https://w3id.org/ascs-ev/envited-x/ositrace/v5/DataResourceExtension)
 - Class definition for DataSource (https://w3id.org/ascs-ev/envited-x/ositrace/v5/DataSource)
+- Class definition for DomainSpecification (https://w3id.org/ascs-ev/envited-x/ositrace/v5/DomainSpecification)
 - Class definition for Event (https://w3id.org/ascs-ev/envited-x/ositrace/v5/Event)
 - Class definition for Format (https://w3id.org/ascs-ev/envited-x/ositrace/v5/Format)
 - Class definition for MovingObject (https://w3id.org/ascs-ev/envited-x/ositrace/v5/MovingObject)
@@ -32,8 +32,8 @@ class Class_definition_for_Quantity
 |Class|IRI|Description|Parents|
 |---|---|---|---|
 |Class definition for Content|https://w3id.org/ascs-ev/envited-x/ositrace/v5/Content|Attributes for the content of ASAM OSI trace files.|Content|
-|Class definition for DataResourceExtension|https://w3id.org/ascs-ev/envited-x/ositrace/v5/DataResourceExtension|OSI trace DataResourceExtension containing additional metadata information of the simulation asset.|DataResourceExtension|
 |Class definition for DataSource|https://w3id.org/ascs-ev/envited-x/ositrace/v5/DataSource|Attributes for the data source of ASAM OSI trace files.|DataSource|
+|Class definition for DomainSpecification|https://w3id.org/ascs-ev/envited-x/ositrace/v5/DomainSpecification|OSI trace DomainSpecification containing additional metadata information of the simulation asset.|DomainSpecification|
 |Class definition for Event|https://w3id.org/ascs-ev/envited-x/ositrace/v5/Event|Attributes for event in  ASAM OSI trace files.||
 |Class definition for Format|https://w3id.org/ascs-ev/envited-x/ositrace/v5/Format|Attributes for the format of ASAM OSI trace files.|Format|
 |Class definition for MovingObject|https://w3id.org/ascs-ev/envited-x/ositrace/v5/MovingObject|Attributes for moving objects in ASAM OSI trace files.||
@@ -88,9 +88,8 @@ class Class_definition_for_Quantity
 #### ositrace:formatType {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-formattype .property-anchor }
 #### ositrace:granularity {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-granularity .property-anchor }
 #### ositrace:hasContent {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hascontent .property-anchor }
-#### ositrace:hasDataResource {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresource .property-anchor }
-#### ositrace:hasDataResourceExtension {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresourceextension .property-anchor }
 #### ositrace:hasDataSource {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdatasource .property-anchor }
+#### ositrace:hasDomainSpecification {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdomainspecification .property-anchor }
 #### ositrace:hasEvent {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasevent .property-anchor }
 #### ositrace:hasFormat {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasformat .property-anchor }
 #### ositrace:hasGeoreference {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasgeoreference .property-anchor }
@@ -98,6 +97,7 @@ class Class_definition_for_Quantity
 #### ositrace:hasManifest {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasmanifest .property-anchor }
 #### ositrace:hasQuality {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquality .property-anchor }
 #### ositrace:hasQuantity {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquantity .property-anchor }
+#### ositrace:hasResourceDescription {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasresourcedescription .property-anchor }
 #### ositrace:hasTargetMovingObject {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hastargetmovingobject .property-anchor }
 #### ositrace:identifier {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-identifier .property-anchor }
 #### ositrace:laneTypes {: #prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-lanetypes .property-anchor }
@@ -119,15 +119,15 @@ class Class_definition_for_Quantity
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresource"></a>hasDataResource|1|1|||ositrace.shacl.ttl|
-|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdataresourceextension"></a>hasDataResourceExtension|1|1|||ositrace.shacl.ttl|
+|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasresourcedescription"></a>hasResourceDescription|1|1|||ositrace.shacl.ttl|
+|OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdomainspecification"></a>hasDomainSpecification|1|1|||ositrace.shacl.ttl|
 |OSITraceShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasmanifest"></a>hasManifest|1|1|||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hascontent"></a>hasContent|1|1|Attributes describing the content of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasformat"></a>hasFormat|1|1|File format details of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the OSI trace.||ositrace.shacl.ttl|
-|DataResourceExtensionShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasgeoreference"></a>hasGeoreference||1|Georeferencing information for the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hascontent"></a>hasContent|1|1|Attributes describing the content of the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasformat"></a>hasFormat|1|1|File format details of the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquality"></a>hasQuality|1|1|Quality metrics of the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasquantity"></a>hasQuantity|1|1|Quantitative metrics describing the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasdatasource"></a>hasDataSource|1|1|Data sources used to create the OSI trace.||ositrace.shacl.ttl|
+|DomainSpecificationShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-hasgeoreference"></a>hasGeoreference||1|Georeferencing information for the OSI trace.||ositrace.shacl.ttl|
 |ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-roadtypes"></a>roadTypes|||Covered/used road types, defined over ODR element t_road_type, see ODR spec section 8.3||ositrace.shacl.ttl|
 |ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-lanetypes"></a>laneTypes|||Covered lane types, see ODR spec section 9.5.3.||ositrace.shacl.ttl|
 |ContentShape|ositrace|<a id="prop-https---w3id-org-ascs-ev-envited-x-ositrace-v5-levelofdetail"></a>levelOfDetail|||Covered object classes, see ODR spec section 11||ositrace.shacl.ttl|

@@ -53,7 +53,7 @@
     rdfs:label "An example Ontology for demonstration purposes."@en ;
     # This predicate indicates the used owl-Version of your ontology
     owl:versionIRI <https://w3id.org/gaia-x4plcaad/ontologies/description/v1> ;
-    owl:versionInfo 0.5 .
+    owl:versionInfo "v0.5" .
 
 # The next line defines the class we want to create constraints for in the SHACL shape. The class is defined as being from type owl:Class
 <ExampleServiceOffering> rdf:type owl:Class ;

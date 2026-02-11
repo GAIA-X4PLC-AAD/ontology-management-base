@@ -58,15 +58,15 @@ environment-model:EnvironmentModel a owl:Class ;
     rdfs:subClassOf envited-x:SimulationAsset ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty environment-model:hasDataResourceExtension ;
-        owl:someValuesFrom environment-model:DataResourceExtension
+        owl:onProperty environment-model:hasDomainSpecification ;
+        owl:someValuesFrom environment-model:DomainSpecification
     ] ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty environment-model:hasDataResource ;
+        owl:onProperty environment-model:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
     rdfs:subClassOf [
@@ -80,15 +80,15 @@ environment-model:EnvironmentModel a owl:Class ;
 
 #### Object Properties
 
-### hasDataResource (environment-model -> envited-x:DataResource)
-environment-model:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResource"@en ;
-    rdfs:comment "Links an environment model asset to a standard DataResource instance from envited-x."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResource ;
+### hasResourceDescription (environment-model -> envited-x:ResourceDescription)
+environment-model:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links an environment model asset to a standard ResourceDescription instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
     rdfs:domain environment-model:EnvironmentModel ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
 ### hasManifest (environment-model -> envited-x:Manifest or manifest:Link)
@@ -108,59 +108,59 @@ environment-model:hasManifest a owl:ObjectProperty ;
         owl:unionOf ( envited-x:Manifest manifest:Link )
     ] .
 
-environment-model:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "has data resource extension"@en ;
-    rdfs:comment "Links an environment model asset to its metadata extensions."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+environment-model:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "has domain specification"@en ;
+    rdfs:comment "Links an environment model asset to its domain specifications."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain environment-model:EnvironmentModel ;
-    rdfs:range environment-model:DataResourceExtension .
+    rdfs:range environment-model:DomainSpecification .
 
 environment-model:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "has georeference"@en ;
     rdfs:comment "Links an environment model to georeference information."@en ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range georeference:Georeference .
 
 environment-model:hasFormat a owl:ObjectProperty ;
     rdfs:label "has format"@en ;
     rdfs:comment "Links an environment model to its format specifications."@en ;
     rdfs:subPropertyOf envited-x:hasFormat ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range environment-model:Format .
 
 environment-model:hasContent a owl:ObjectProperty ;
     rdfs:label "has content"@en ;
     rdfs:comment "Links an environment model to its content properties."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range environment-model:Content .
 
 environment-model:hasQuality a owl:ObjectProperty ;
     rdfs:label "has quality"@en ;
     rdfs:comment "Links an environment model to quality characteristics."@en ;
     rdfs:subPropertyOf envited-x:hasQuality ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range environment-model:Quality .
 
 environment-model:hasQuantity a owl:ObjectProperty ;
     rdfs:label "has quantity"@en ;
     rdfs:comment "Links an environment model to quantity attributes."@en ;
     rdfs:subPropertyOf envited-x:hasQuantity ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range environment-model:Quantity .
 
 environment-model:hasProject a owl:ObjectProperty ;
     rdfs:label "has project"@en ;
     rdfs:comment "Links an environment model to project-related metadata."@en ;
-    rdfs:domain environment-model:DataResourceExtension ;
+    rdfs:domain environment-model:DomainSpecification ;
     rdfs:range environment-model:Project .
 
 #### Supporting Classes
 
-environment-model:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
-    rdfs:comment "Environment-model specific metadata extensions."@en ;
-    rdfs:subClassOf envited-x:DataResourceExtension ;
+environment-model:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Environment-model specific domain specifications."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty environment-model:hasContent ;

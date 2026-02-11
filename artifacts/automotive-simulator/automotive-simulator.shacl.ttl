@@ -1,5 +1,6 @@
-@prefix automotive-simulator: <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/> .
-@prefix general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/> .
+@prefix automotive-simulator: <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/> .
+@prefix envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/> .
+@prefix manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/> .
 @prefix simulated-sensor: <https://w3id.org/gaia-x4plcaad/ontologies/simulated-sensor/v2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -7,24 +8,71 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # The Shapes Graph URI appends "/shapes" to the Ontology URI
-<https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1/shapes>
+<https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2/shapes>
     a owl:Ontology ;
     # The Shapes Graph must import the Domain Ontology
-    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v1> .
+    owl:imports <https://w3id.org/gaia-x4plcaad/ontologies/automotive-simulator/v2> .
 
 automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
+    sh:closed false ;
     sh:targetClass automotive-simulator:AutomotiveSimulator ;
-    # General shape (mandatory)
+
+    # 1) hasSoftwareResource
     sh:property [
-        sh:node general:GeneralShape ;
-        sh:name "general object" ;
-        sh:path automotive-simulator:general ;
-        sh:maxCount 1 ;
+        sh:path automotive-simulator:hasSoftwareResource ;
         sh:minCount 1 ;
-        sh:order 0 ;
-        sh:description "General object with properties for description and data."@en ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:node envited-x:SoftwareResourceBaseShape ]
+            [ sh:and ( manifest:LinkShape envited-x:ExtendedLinkShape ) ]
+        ) ;
+        sh:message "Each AutomotiveSimulator must have exactly one associated SoftwareResourceBase (either inline or a valid manifest:Link)."@en ;
     ] ;
-    # simulator type/make (String, mandatory)
+
+    # 2) hasDomainSpecification
+    sh:property [
+        sh:path automotive-simulator:hasDomainSpecification ;
+        sh:node automotive-simulator:DomainSpecificationShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each AutomotiveSimulator must have one associated DomainSpecification with content and format."@en ;
+    ] ;
+
+    # 3) hasManifest
+    sh:property [
+        sh:path automotive-simulator:hasManifest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:and ( manifest:ManifestShape envited-x:ManifestShape ) ]
+            [ sh:node envited-x:ManifestLinkReferenceShape ]
+        ) ;
+        sh:message "Each AutomotiveSimulator must have exactly one manifest."@en ;
+    ] .
+
+# DomainSpecification shape
+automotive-simulator:DomainSpecificationShape a sh:NodeShape ;
+    sh:closed false ;
+
+    sh:property [
+        sh:path automotive-simulator:hasContent ;
+        sh:node automotive-simulator:ContentShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Content facet."@en ;
+    ] ;
+    sh:property [
+        sh:path automotive-simulator:hasFormat ;
+        sh:node automotive-simulator:FormatShape ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Each DomainSpecification must have one Format facet."@en ;
+    ] .
+
+# Content shape — simulator-specific metadata
+automotive-simulator:ContentShape a sh:NodeShape ;
+    sh:closed false ;
+
     sh:property [
         skos:example "CARLA" ;
         sh:path automotive-simulator:simulatorMake ;
@@ -32,10 +80,9 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:name "simulator make"@en ;
-        sh:order 1 ;
+        sh:order 0 ;
         sh:description "Make/Type of automotive simulator."@en ;
     ] ;
-    # software version (String, mandatory)
     sh:property [
         skos:example "0.9.15" ;
         sh:path automotive-simulator:softwareVersion ;
@@ -43,10 +90,9 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:name "software version"@en ;
-        sh:order 2 ;
-        sh:description "Sofware version of the simulator."@en ;
+        sh:order 1 ;
+        sh:description "Software version of the simulator."@en ;
     ] ;
-    # Sensor Failure Flag (Boolean, mandatory)
     sh:property [
         skos:example "true" ;
         sh:path automotive-simulator:sensorFailureFlag ;
@@ -54,10 +100,9 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:name "sensor failure flag"@en ;
-        sh:order 3 ;
+        sh:order 2 ;
         sh:description "If true, the simulator supports the simulation of sensor failures."@en ;
     ] ;
-    # Sensor Attack Flag (Boolean, mandatory)
     sh:property [
         skos:example "true" ;
         sh:path automotive-simulator:sensorAttackFlag ;
@@ -65,10 +110,23 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:name "sensor attack flag"@en ;
-        sh:order 5 ;
+        sh:order 3 ;
         sh:description "If true, the simulator supports the simulation of sensor attacks."@en ;
     ] ;
-    # Open Scenario Version (List, optional)
+    sh:property [
+        sh:node simulated-sensor:SimulatedSensorShape ;
+        skos:example "Radar" ;
+        sh:path simulated-sensor:simulatedSensor ;
+        sh:minCount 0 ;
+        sh:name "simulated sensor"@en ;
+        sh:order 4 ;
+        sh:description "Type and kinds of sensors that are natively included in the simulator."@en ;
+    ] .
+
+# Format shape — interface and scenario definitions
+automotive-simulator:FormatShape a sh:NodeShape ;
+    sh:closed false ;
+
     sh:property [
         skos:example "ASAM OpenSCENARIO 1.x" ;
         sh:path automotive-simulator:scenarioDefinition ;
@@ -76,10 +134,9 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:in ("ASAM OpenSCENARIO 1.x" "ASAM OpenSCENARIO 2.x" "proprietary" "scenic") ;
         sh:minCount 0 ;
         sh:name "scenario definition"@en ;
-        sh:order 6 ;
+        sh:order 0 ;
         sh:description "Description language for defining driving scenarios supported by the simulator."@en ;
     ] ;
-    # Interface (List, optional)
     sh:property [
         skos:example "TCP" ;
         sh:path automotive-simulator:interface ;
@@ -87,16 +144,6 @@ automotive-simulator:AutomotiveSimulatorShape a sh:NodeShape ;
         sh:in ("PythonAPI" "TCP" "UDP" "ROS1" "ROS2") ;
         sh:minCount 0 ;
         sh:name "interface"@en ;
-        sh:order 7 ;
-        sh:description "Communcation interface provided by the simulator to communicate with different assets (e.g. agents/vehicle implementations)."@en ;
-    ] ;
-    # Sensor type(s) (optional, can be multiple)
-    sh:property [
-        sh:node simulated-sensor:SimulatedSensorShape ;
-        skos:example "Radar" ;
-        sh:path simulated-sensor:simulatedSensor ;
-        sh:minCount 0 ;
-        sh:name "simulated sensor"@en ;
-        sh:order 8 ;
-        sh:description "Type and kinds of sensors that are natively included in the simulator."@en ;
+        sh:order 1 ;
+        sh:description "Communication interface provided by the simulator."@en ;
     ] .

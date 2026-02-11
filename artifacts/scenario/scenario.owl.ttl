@@ -70,16 +70,16 @@ scenario:Scenario a owl:Class ;
                     openlabel:Scenario ;
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty scenario:hasDataResourceExtension ;
-        owl:someValuesFrom scenario:DataResourceExtension
+        owl:onProperty scenario:hasDomainSpecification ;
+        owl:someValuesFrom scenario:DomainSpecification
     ] ;
-    # Scenario must have a standard envited-x:DataResource
+    # Scenario must have a standard envited-x:ResourceDescription
     rdfs:subClassOf [
         a owl:Restriction ;
-        owl:onProperty scenario:hasDataResource ;
+        owl:onProperty scenario:hasResourceDescription ;
         owl:someValuesFrom [
             a owl:Class ;
-            owl:unionOf ( envited-x:DataResource manifest:Link )
+            owl:unionOf ( envited-x:ResourceDescription manifest:Link )
         ]
     ] ;
     # Scenario must have a manifest, either:
@@ -94,10 +94,10 @@ scenario:Scenario a owl:Class ;
         ]
     ] .
 
-scenario:DataResourceExtension a owl:Class ;
-    rdfs:label "Class definition for DataResourceExtension"@en ;
-    rdfs:comment "Scenario DataResourceExtension containing additional metadata information of the simulation asset."@en ;
-    rdfs:subClassOf envited-x:DataResourceExtension ;
+scenario:DomainSpecification a owl:Class ;
+    rdfs:label "Class definition for DomainSpecification"@en ;
+    rdfs:comment "Scenario DomainSpecification containing additional metadata information of the simulation asset."@en ;
+    rdfs:subClassOf envited-x:DomainSpecification ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty scenario:hasContent ;
@@ -151,21 +151,21 @@ scenario:DataSource a owl:Class ;
 
 ### Object properties #########################################################
 
-scenario:hasDataResourceExtension a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResourceExtension"@en ;
-    rdfs:comment "Links a scenario asset to its specific metadata (DataResourceExtension), which may contain additional scenario-specific attributes."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResourceExtension ;
+scenario:hasDomainSpecification a owl:ObjectProperty ;
+    rdfs:label "Object property: hasDomainSpecification"@en ;
+    rdfs:comment "Links a scenario asset to its specific metadata (DomainSpecification), which may contain additional scenario-specific attributes."@en ;
+    rdfs:subPropertyOf envited-x:hasDomainSpecification ;
     rdfs:domain scenario:Scenario ;
-    rdfs:range scenario:DataResourceExtension .
+    rdfs:range scenario:DomainSpecification .
 
-scenario:hasDataResource a owl:ObjectProperty ;
-    rdfs:label "Object property: hasDataResource"@en ;
-    rdfs:comment "Links a scenario asset to a standard DataResource instance from envited-x."@en ;
-    rdfs:subPropertyOf envited-x:hasDataResource ;
+scenario:hasResourceDescription a owl:ObjectProperty ;
+    rdfs:label "Object property: hasResourceDescription"@en ;
+    rdfs:comment "Links a scenario asset to a standard ResourceDescription instance from envited-x."@en ;
+    rdfs:subPropertyOf envited-x:hasResourceDescription ;
     rdfs:domain scenario:Scenario ;
     rdfs:range [
         a owl:Class ;
-        owl:unionOf ( envited-x:DataResource manifest:Link )
+        owl:unionOf ( envited-x:ResourceDescription manifest:Link )
     ] .
 
 scenario:hasManifest a owl:ObjectProperty ;
@@ -192,42 +192,42 @@ scenario:ContentOrTag a owl:Class ;
 
 scenario:hasContent a owl:ObjectProperty ;
     rdfs:label "Object property: hasContent"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Content that describes the scenario's content."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of scenario:Content that describes the scenario's content."@en ;
     rdfs:subPropertyOf envited-x:hasContent ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range scenario:ContentOrTag .
 
 scenario:hasDataSource a owl:ObjectProperty ;
     rdfs:label "Object property: hasDataSource"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of scenario:DataSource that describes how the scenario was created."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of scenario:DataSource that describes how the scenario was created."@en ;
     rdfs:subPropertyOf envited-x:hasDataSource ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range scenario:DataSource .
 
 scenario:hasFormat a owl:ObjectProperty ;
     rdfs:label "Object property: hasFormat"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Format that describes the scenario's format details."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of scenario:Format that describes the scenario's format details."@en ;
     rdfs:subPropertyOf envited-x:hasFormat ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range scenario:Format .
 
 scenario:hasQuantity a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuantity"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quantity describing the scenario's quantity."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of scenario:Quantity describing the scenario's quantity."@en ;
     rdfs:subPropertyOf envited-x:hasQuantity ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range scenario:Quantity .
 
 scenario:hasQuality a owl:ObjectProperty ;
     rdfs:label "Object property: hasQuality"@en ;
-    rdfs:comment "Links a DataResourceExtension to an instance of scenario:Quality describing the scenario's accuracy or calibration."@en ;
+    rdfs:comment "Links a DomainSpecification to an instance of scenario:Quality describing the scenario's accuracy or calibration."@en ;
     rdfs:subPropertyOf envited-x:hasQuality ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range scenario:Quality .
 
-### hasGeoreference (DataResourceExtension -> georeference:Georeference)
+### hasGeoreference (DomainSpecification -> georeference:Georeference)
 scenario:hasGeoreference a owl:ObjectProperty ;
     rdfs:label "Object property: hasGeoreference"@en ;
-    rdfs:comment "Links a DataResourceExtension to a georeference:Georeference describing how the scenario is georeferenced."@en ;
-    rdfs:domain scenario:DataResourceExtension ;
+    rdfs:comment "Links a DomainSpecification to a georeference:Georeference describing how the scenario is georeferenced."@en ;
+    rdfs:domain scenario:DomainSpecification ;
     rdfs:range georeference:Georeference .

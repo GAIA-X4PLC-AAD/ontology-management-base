@@ -6,31 +6,34 @@
 classDiagram
 class Class_definition_for_Content
 class Class_definition_for_DataSource
+class Class_definition_for_DomainSpecification
 class Class_definition_for_Format
 class Class_definition_for_Quality
 class Class_definition_for_Quantity
-class SimulationModel
+class Class_definition_for_SimulationModel
 ```
 
 ### Class Hierarchy
 
 - Class definition for Content (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Content)
 - Class definition for DataSource (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/DataSource)
+- Class definition for DomainSpecification (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/DomainSpecification)
 - Class definition for Format (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Format)
 - Class definition for Quality (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quality)
 - Class definition for Quantity (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quantity)
-- SimulationModel (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/SimulationModel)
+- Class definition for SimulationModel (https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/SimulationModel)
 
 ### Class Definitions
 
 |Class|IRI|Description|Parents|
 |---|---|---|---|
-|Class definition for Content|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Content|Class with attributes for the content of a simulation model.||
-|Class definition for DataSource|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/DataSource|Class with attributes for the data source of a simulation model.||
-|Class definition for Format|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Format|Class with attributes for the format of a simulation model.||
-|Class definition for Quality|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quality|Class with attributes for the quality of a simulation model.||
-|Class definition for Quantity|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quantity|Class with attributes for the quantity of a simulation model.||
-|SimulationModel|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/SimulationModel|Class definition for a simulation model.|VirtualResource|
+|Class definition for Content|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Content|Class with attributes for the content of a simulation model.|Content|
+|Class definition for DataSource|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/DataSource|Class with attributes for the data source of a simulation model.|DataSource|
+|Class definition for DomainSpecification|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/DomainSpecification|Domain-specific metadata extension for simulation model assets.|DomainSpecification|
+|Class definition for Format|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Format|Class with attributes for the format of a simulation model.|Format|
+|Class definition for Quality|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quality|Class with attributes for the quality of a simulation model.|Quality|
+|Class definition for Quantity|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/Quantity|Class with attributes for the quantity of a simulation model.|Quantity|
+|Class definition for SimulationModel|https://w3id.org/gaia-x4plcaad/ontologies/simulation-model/v2/SimulationModel|Class definition for a simulation model.|SoftwareAsset|
 
 ## Prefixes
 
@@ -42,9 +45,10 @@ class SimulationModel
 - dcmitype: <http://purl.org/dc/dcmitype/>
 - dcterms: <http://purl.org/dc/terms/>
 - doap: <http://usefulinc.com/ns/doap#>
+- envited-x: <https://w3id.org/ascs-ev/envited-x/envited-x/v3/>
 - foaf: <http://xmlns.com/foaf/0.1/>
-- general: <https://w3id.org/gaia-x4plcaad/ontologies/general/v3/>
 - geo: <http://www.opengis.net/ont/geosparql#>
+- manifest: <https://w3id.org/ascs-ev/envited-x/manifest/v5/>
 - odrl: <http://www.w3.org/ns/odrl/2/>
 - org: <http://www.w3.org/ns/org#>
 - owl: <http://www.w3.org/2002/07/owl#>
@@ -68,10 +72,14 @@ class SimulationModel
 
 ### SHACL Properties
 
-#### simulation-model:content {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-content .property-anchor }
-#### simulation-model:dataSource {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-datasource .property-anchor }
-#### simulation-model:format {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-format .property-anchor }
-#### simulation-model:general {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-general .property-anchor }
+#### simulation-model:hasContent {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hascontent .property-anchor }
+#### simulation-model:hasDataSource {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasdatasource .property-anchor }
+#### simulation-model:hasDomainSpecification {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasdomainspecification .property-anchor }
+#### simulation-model:hasFormat {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasformat .property-anchor }
+#### simulation-model:hasManifest {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasmanifest .property-anchor }
+#### simulation-model:hasQuality {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasquality .property-anchor }
+#### simulation-model:hasQuantity {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasquantity .property-anchor }
+#### simulation-model:hasSoftwareResource {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hassoftwareresource .property-anchor }
 #### simulation-model:maxDetections {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-maxdetections .property-anchor }
 #### simulation-model:maxObjects {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-maxobjects .property-anchor }
 #### simulation-model:modelFamily {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelfamily .property-anchor }
@@ -98,8 +106,6 @@ class SimulationModel
 #### simulation-model:modelVerificationReport {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelverificationreport .property-anchor }
 #### simulation-model:modelVerificationStatus {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelverificationstatus .property-anchor }
 #### simulation-model:modelVersion {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelversion .property-anchor }
-#### simulation-model:quality {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-quality .property-anchor }
-#### simulation-model:quantity {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-quantity .property-anchor }
 #### simulation-model:sensorFamily {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-sensorfamily .property-anchor }
 #### simulation-model:sensorManufacturer {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-sensormanufacturer .property-anchor }
 #### simulation-model:sensorManufacturerPartnumber {: #prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-sensormanufacturerpartnumber .property-anchor }
@@ -111,12 +117,14 @@ class SimulationModel
 
 |Shape|Property prefix|Property|MinCount|MaxCount|Description|Datatype/NodeKind|Filename|
 |---|---|---|---|---|---|---|---|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-general"></a>general|1|1|general object with properties for descriptions, data, links, bundle||simulation-model.shacl.ttl|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-format"></a>format|1|1|format object with properties for format informations||simulation-model.shacl.ttl|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-content"></a>content|1|1|content object with properties for simulation-model intrinsic attributes||simulation-model.shacl.ttl|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-quantity"></a>quantity|1|1|quantity object with properties for quantity informations||simulation-model.shacl.ttl|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-quality"></a>quality|1|1|quality object with properties for quality informations||simulation-model.shacl.ttl|
-|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-datasource"></a>dataSource|1|1|dataSource object with properties for data sources||simulation-model.shacl.ttl|
+|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hassoftwareresource"></a>hasSoftwareResource|1|1|||simulation-model.shacl.ttl|
+|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasdomainspecification"></a>hasDomainSpecification|1|1|||simulation-model.shacl.ttl|
+|SimulationModelShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasmanifest"></a>hasManifest|1|1|||simulation-model.shacl.ttl|
+|DomainSpecificationShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hascontent"></a>hasContent|1|1|||simulation-model.shacl.ttl|
+|DomainSpecificationShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasformat"></a>hasFormat|1|1|||simulation-model.shacl.ttl|
+|DomainSpecificationShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasquality"></a>hasQuality|1|1|||simulation-model.shacl.ttl|
+|DomainSpecificationShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasquantity"></a>hasQuantity|1|1|||simulation-model.shacl.ttl|
+|DomainSpecificationShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-hasdatasource"></a>hasDataSource|1|1|||simulation-model.shacl.ttl|
 |FormatShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelimplementationformat"></a>modelImplementationFormat|1|1|Format of model implementation, e.g. OSMP 1.0/OSI 3.1.2/FMI 2.0|<http://www.w3.org/2001/XMLSchema#string>|simulation-model.shacl.ttl|
 |FormatShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelpreconditions"></a>modelPreconditions||1|Preconditions for model validity, e.g. things that the rest of the simulation should provide the model with so that the model can work within its foreseen validity range.|<http://www.w3.org/2001/XMLSchema#string>|simulation-model.shacl.ttl|
 |FormatShape|simulation-model|<a id="prop-https---w3id-org-gaia-x4plcaad-ontologies-simulation-model-v2-modelimplementationpreconditions"></a>modelImplementationPreconditions||1|Implementation requirements.|<http://www.w3.org/2001/XMLSchema#string>|simulation-model.shacl.ttl|
