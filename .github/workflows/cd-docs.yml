@@ -7,7 +7,7 @@ on:
       - 'docs/**'
       - 'artifacts/**/*.ttl'
       - 'mkdocs.yml'
-      - '.github/workflows/docs.yml'
+      - '.github/workflows/cd-docs.yml'
 
   # 1. Allows manual runs
   workflow_dispatch:
